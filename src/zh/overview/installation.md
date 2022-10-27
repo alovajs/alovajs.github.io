@@ -25,7 +25,7 @@ yarn add alova
 ```
 :::
 
-### 在esModule中使用
+## 在esModule中使用
 
 ::: tabs
 @tab vue
@@ -86,22 +86,22 @@ const alovaInstance = createAlova({
 
 ## cdn
 
-### 引入核心代码
+## 引入核心代码
 ```html
 <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
 ```
 导入后，你可以通过`window.alova`使用api。
 
-### 引入fetch adapter
+## 引入fetch adapter
 ```html
 <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
 ```
 你可以通过`window.GlobalFetch`使用，它将使用`winfow.fetch`进行请求。
 
 
-### 引入lib hook
+## 引入States Hook
 
-你可以根据项目所用的框架，使用不同的lib hook
+你可以根据项目所用的框架，使用不同的States Hook
 
 ::: tabs
 @tab vue
@@ -134,7 +134,7 @@ svelte依赖于编译工具，不能通过cdn直接使用
 :::
 
 
-### 在静态html中使用
+## 在静态html中使用
 ::: tabs
 @tab vue
 

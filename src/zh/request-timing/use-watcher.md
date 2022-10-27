@@ -1,6 +1,6 @@
 ---
 title: 状态变化请求
-order: 50
+order: 20
 ---
 
 
@@ -83,3 +83,61 @@ const {
 ```
 
 > ⚠️ 如果你只希望重新请求当前页的数据（可能是数据更新了），你也可以手动触发请求，用法和`useRequest`相同。
+
+
+## 设置初始响应数据
+一个页面在获取到初始数据前，不可避免地需要等待服务端响应，在响应前一般需要先将状态初始化为一个空数组或空对象，以免造成页面报错，我们可以在`useRequest`和`useWatcher`中的第二个参数实现初始数据的设置。
+```javascript
+// 在useRequest中设置初始数据
+const {
+  // 响应前data的初始值为[]，而不是undefined
+  data
+} = useRequest(todoListGetter, {
+  initialData: []
+});
+
+// 在useWatcher中设置的方法相同
+const {
+  // 响应前data的初始值为[]，而不是undefined
+  data
+} = useWatcher(() => getTodoList(/* 参数 */), [/* 监听状态 */], {
+  initialData: []
+});
+```
+
+## 手动发送请求
+...
+
+## 请求防抖
+通常我们都会在频繁触发的事件层面编写防抖代码，这次我们在请求层面实现了防抖功能，这意味着你再也不用在模糊搜索功能中自己实现防抖了，用法也非常简单。
+```javascript
+const searchText = ref('');   // Vue3
+const {
+  loading,
+  data: todoList,
+  error
+} = useWatcher(() => filterTodoList(searchText.value), 
+  [searchText], {
+
+    // 设置debounce属性，单位为毫秒
+    // 如这边的searchText频繁变化，只有在停止变化后500ms才发送请求
+    debounce: 500,
+  }
+);
+```
+
+## 手动中断请求
+未设置`timeout`参数时请求是永不超时的，如果需要手动中断请求，可以在`useRequest`、`useWatcher`函数被调用时接收`abort`方法。
+```javascript
+const {
+  // 省略其他参数...
+
+  // abort函数用于中断请求
+  abort
+} = useRequest(todoListGetter);
+
+// 调用abort即可中断请求
+const handleCancel = () => {
+  abort();
+};
+```

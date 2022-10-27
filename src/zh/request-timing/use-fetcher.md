@@ -1,6 +1,6 @@
 ---
 title: 数据拉取
-order: 60
+order: 30
 ---
 
 `useFetcher` 它用于拉取数据，响应数据不能直接接收到，`useFetcher`的使用场景如下：

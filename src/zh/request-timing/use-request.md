@@ -1,12 +1,12 @@
 ---
 title: 发送请求
-order: 40
+order: 10
 ---
 
 
 接下来我们要来看看如何实际发出请求了，在`alova`中提供了`useRequest`、`useWatcher`、`useFetcher`三种`use hook`实现请求时机，由它们控制何时应该发出请求，同时将会为我们创建和维护状态化的请求相关数据，如`loading`、`data`、`error`等，省去了开发者自主维护这些状态的麻烦，下面我们来了解下它们。
 
-### useRequest
+## useRequest
 
 它表示一次请求的发送，执行`useRequest`时默认会发送一次请求，在页面获取初始化数据时是最常用的方法。同时也支持关闭它的默认的请求发送，这在例如提交数据等通过点击事件触发的场景下非常有用。下面我们来发出对 todo 列表数据的请求。
 
@@ -104,5 +104,44 @@ const handleAddTodo = () => {
 		.catch(error => {
 			console.log('新增todo项失败，错误信息为:', error);
 		});
+};
+```
+
+## 设置初始响应数据
+一个页面在获取到初始数据前，不可避免地需要等待服务端响应，在响应前一般需要先将状态初始化为一个空数组或空对象，以免造成页面报错，我们可以在`useRequest`和`useWatcher`中的第二个参数实现初始数据的设置。
+```javascript
+// 在useRequest中设置初始数据
+const {
+  // 响应前data的初始值为[]，而不是undefined
+  data
+} = useRequest(todoListGetter, {
+  initialData: []
+});
+
+// 在useWatcher中设置的方法相同
+const {
+  // 响应前data的初始值为[]，而不是undefined
+  data
+} = useWatcher(() => getTodoList(/* 参数 */), [/* 监听状态 */], {
+  initialData: []
+});
+```
+
+## 手动发送请求
+...
+
+## 手动中断请求
+未设置`timeout`参数时请求是永不超时的，如果需要手动中断请求，可以在`useRequest`、`useWatcher`函数被调用时接收`abort`方法。
+```javascript
+const {
+  // 省略其他参数...
+
+  // abort函数用于中断请求
+  abort
+} = useRequest(todoListGetter);
+
+// 调用abort即可中断请求
+const handleCancel = () => {
+  abort();
 };
 ```
