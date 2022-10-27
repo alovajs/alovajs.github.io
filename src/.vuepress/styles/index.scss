@@ -1,0 +1,82 @@
+// place your custom styles here
+html, body {
+  font-size: 14px;
+}
+
+.navbar {
+  box-shadow: none;
+}
+
+.sidebar {
+  box-shadow: none;
+  font-size: 14px;
+
+  .sidebar-heading {
+    font-size: 1em;
+    font-weight: bolder;
+  }
+
+  .sidebar-link {
+    width: 90%;
+    border-radius: 4px;
+    border-left-width: 0;
+    margin-left: 10px;
+  }
+}
+
+.toggle-sidebar-wrapper {
+  display: none;
+}
+
+// 面包屑
+.breadcrumb {
+  font-size: 1rem;
+}
+
+
+// 文档标题
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+// 文档引用
+blockquote > p {
+  color: var(--light-grey);
+  font-style: italic;
+  &::before,
+  &::after {
+    content: "\"";
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+  }
+}
+
+// 文档tab栏
+.tab-list {
+  border: solid 1px var(--c-border);
+}
+
+.tab-list-nav {
+  background: transparent;
+}
+.tab-list-nav-item {
+  border-radius: 8px;
+  padding: 0.2em 0.6em;
+  margin: 0.4em;
+}
+.tab-list-nav-item.active {
+  background: var(--theme-color-mask);
+  &::before, &::after {
+    background: none;
+  }
+}
