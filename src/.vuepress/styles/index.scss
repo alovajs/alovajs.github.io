@@ -1,12 +1,34 @@
 // place your custom styles here
+// 全局
 html, body {
   font-size: 14px;
 }
 
+// 首页样式修改
+.home.project .feature:hover {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+.home.project .features {
+  border-top: none;
+}
+.features,
+.hero img,
+.hero #main-title,
+.hero .description,
+.hero .actions
+ {
+  transition: none !important;
+}
+
+
+// 导航栏
 .navbar {
   box-shadow: none;
 }
 
+
+// 侧边栏
 .sidebar {
   box-shadow: none;
   font-size: 14px;
@@ -60,10 +82,16 @@ blockquote > p {
   font-style: italic;
   &::before,
   &::after {
-    content: "\"";
+    content: "“";
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: bolder;
     font-style: italic;
+  }
+}
+div[class*=language-] > button.copy:not(.pure) {
+  background: var(--theme-color);
+  &:hover {
+    background: var(--theme-color);
   }
 }
 

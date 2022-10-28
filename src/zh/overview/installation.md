@@ -1,6 +1,6 @@
 ---
 title: 安装/使用
-order: 4
+order: 50
 ---
 
 使用alova时，请确保以下版本

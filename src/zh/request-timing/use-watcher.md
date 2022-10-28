@@ -126,6 +126,9 @@ const {
 );
 ```
 
+## 参数传递
+...
+
 ## 手动中断请求
 未设置`timeout`参数时请求是永不超时的，如果需要手动中断请求，可以在`useRequest`、`useWatcher`函数被调用时接收`abort`方法。
 ```javascript

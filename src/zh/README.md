@@ -1,106 +1,56 @@
 ---
-home: false
-title: Alova.js
+home: true
+title: Alova.JS
 heroImage: /logo.svg
-heroText: Alova.js
-tagline: 一个请求场景管理库
+heroText: Alova.JS
+tagline: MVVM库的请求场景管理库
 actions:
-  - text: Demo
-    link: /zh/introduction/demo.html
+  - text: 示例
+    link: /zh/overview/demo.html
     type: primary
 
-  - text: 快速上手
-    link: /zh/introduction/overview.html
+  - text: 开始
+    link: /zh/overview/
 
 features:
-  - title: Markdown 增强
-    icon: markdown
-    details: 新增文字对齐、上下角标、脚注、标记、任务列表、数学公式、流程图、图表与幻灯片支持
-    # link: https://vuepress-theme-hope.github.io/v2/zh/guide/markdown/
+  - title: 多框架支持
+    details: alova通过states hook的设计将框架依赖分离，一套代码同时支持React/React Native/Vue/Svelte，或更多...
 
-  - title: 幻灯片页面
-    icon: slides
-    details: 添加幻灯片页面以显示你喜欢的内容
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/layout/slides.html
+  - title: 实时自动管理状态
+    details: 您的一切请求数据和状态都将由alova管理，您只需直接使用即可
 
-  - title: 布局增强
-    icon: layout
-    details: 添加路径导航、页脚、改进的导航栏、改进的页面导航等。
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/layout/
+  - title: 简单且熟悉
+    details: 与axios相似的api设计，让您上手更简单熟悉
 
-  - title: 浏览量与评论
-    icon: comment
-    details: 配合 Waline 来开启阅读量统计与评论支持
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/comment.html
+  - title: 轻量级
+    details: 压缩版只有4kb，只有axios的40%
 
-  - title: 文章信息
-    icon: info
-    details: 为你的文章添加作者、写作日期、预计阅读时间、字数统计等信息
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/page-info.html
+  - title: 简化请求逻辑
+    details: 声明式请求实现，无需您编写请求数据和状态，以及特定场景下的请求代码
 
-  - title: 博客支持
-    icon: blog
-    details: 使用一些很棒的布局提供博客功能，通过文章的日期、标签和分类，自动生成文章、分类、标签与时间轴列表
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/blog/intro.html
+  - title: 与任意请求库协作
+    details: 不管您喜欢使用axios、superagent，还是浏览器的fetch-api，alova都可以不失特性地完美兼容
 
-  - title: 主题色切换
-    icon: palette
-    details: 支持自定义主题色并允许用户在预设的主题颜色之间切换
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/interface/theme-color.html
+  - title: 多策略缓存服务端数据
+    details: 提供内存模式、持久化模式等多种服务端数据缓存策略，提升用户体验，同时降低服务端压力
 
-  - title: 深色模式
-    icon: contrast
-    details: 可以自由切换浅色模式与深色模式
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/interface/darkmode.html
+  - title: 更安全的乐观更新
+    details: alova实现了后台轮询机制，即使重新进入仍有效，直到请求成功，并配合独有的延迟数据更新机制，保证了乐观更新的安全性
 
-  - title: 完整的无障碍支持
-    icon: support
-    details: 为你的网站带来完整的无障碍支持
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/interface/accessibility.html
+  - title: 数据预拉取
+    details: 在任何情况下自定义提前拉取接口数据，这意味着用户可以更快看到信息，无需等待
 
-  - title: 文章加密
-    icon: lock
-    details: 你可以为你的特定页面或特定目录进行加密，以便陌生人不能随意访问它们
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/encrypt.html
+  - title: Typescript支持
+    details: 如果您喜欢使用typescript，alova的一切都将是类型化的
 
-  - title: 复制按钮
-    icon: copy
-    details: 一键复制代码块中的代码
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/copy-code.html
+  - title: 离线提交
+    details: 独有的请求缓存，即使在离线下也让请求具有可用性，而不打断正在使用的用户
 
-  - title: 图片预览
-    icon: pic
-    details: 像相册一样允许你浏览、缩放并分享你的页面图片
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/photo-swipe.html
+  - title: Tree shaking支持
+    details: alova未使用到的api将不会打包进生产包，这意味着alova的生产体积往往小于4kb
 
-  - title: SEO 增强
-    icon: config
-    details: 将最终生成的网页针对搜索引擎进行优化。
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/seo.html
-
-  - title: Sitemap
-    icon: sitemap
-    details: 自动为你的网站生成 Sitemap
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/sitemap.html
-
-  - title: Feed 支持
-    icon: rss
-    details: 生成你的 Feed，并通知你的用户订阅它
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/feed.html
-
-  - title: PWA 支持
-    icon: mobile
-    details: 让你的网站更像一个 APP
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/pwa.html
-
-  - title: 更多新特性
-    icon: more
-    details: 包括图标支持、全屏按钮、返回顶部按钮等
-    link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/
+prev: false
+next: false
+comment: false
+editLink: false
 ---
-
-这是项目主页的案例。你可以在这里放置你的主体内容。
-
-想要使用此布局，你需要在页面 front matter 中设置 `home: true`。
-
-配置项的相关说明详见 [项目主页配置](https://vuepress-theme-hope.github.io/v2/zh/guide/layout/home/)。

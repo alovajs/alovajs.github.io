@@ -5,12 +5,15 @@ import { enSidebar, zhSidebar } from "./sidebar/index.js";
 export default hopeTheme({
   hostname: "https://alova.js.org",
   iconAssets: "iconfont",
+  // iconAssets: "fontawesome",
   logo: "/logo.svg",
   repo: "alovajs/alovajs.github.io",
   docsDir: "docs",
   pageInfo: ["Category", "Tag"],
-  pure: false,
+  pure: true,
   displayFooter: true,
+  breadcrumb: false,
+  footer: `MIT Licensed | Copyright ©${new Date().getFullYear()} Alova.js Team`,
 
   locales: {
     "/": {
@@ -19,9 +22,6 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
-      
-      footer: `MIT Licensed | Copyright ©${new Date().getFullYear()} Alova.js Team`,
-
       metaLocales: {
         editLink: "Edit this page on GitHub",
       },
@@ -36,12 +36,8 @@ export default hopeTheme({
 
       // sidebar
       sidebar: zhSidebar,
-
-      footer: `MIT Licensed | Copyright ©${new Date().getFullYear()} Alova.js Team`,
-
-      // page meta
       metaLocales: {
-        editLink: "在 GitHub 上编辑此页",
+        editLink: "在GitHub上编辑此页",
       },
     },
   },
@@ -61,11 +57,12 @@ export default hopeTheme({
       /**
        * Using Giscus
        */
-      // provider: "Giscus",
-      // repo: "vuepress-theme-hope/giscus-discussions",
-      // repoId: "R_kgDOG_Pt2A",
-      // category: "Announcements",
-      // categoryId: "DIC_kwDOG_Pt2M4COD69",
+      provider: "Giscus",
+      repo: "alovajs/alova",
+      repoId: "R_kgDOIUSc6w",
+      category: "Doc site",
+      categoryId: "DIC_kwDOIUSc684CSPUG",
+      mapping: 'title',
 
       /**
        * Using Twikoo
@@ -76,8 +73,8 @@ export default hopeTheme({
       /**
        * Using Waline
        */
-      provider: "Waline",
-      serverURL: "https://vuepress-theme-hope-comment.vercel.app",
+      // provider: "Waline",
+      // serverURL: "https://vuepress-theme-hope-comment.vercel.app",
     },
 
     // Disable features you don't want here
