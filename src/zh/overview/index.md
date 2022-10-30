@@ -14,6 +14,9 @@ order: 10
 
 它目前支持`vue`、`react`、`svelte`，更多MVVM框架支持敬请期待...
 
+
+## 特性
+
 [![npm](https://img.shields.io/npm/v/alova)](https://www.npmjs.com/package/alova)
 [![build](https://github.com/JOU-amjs/alova/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/JOU-amjs/alova/actions/workflows/main.yml)
 [![coverage status](https://coveralls.io/repos/github/JOU-amjs/alova/badge.svg?branch=main)](https://coveralls.io/github/JOU-amjs/alova?branch=main)
@@ -23,7 +26,6 @@ order: 10
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 特性
 1. **[多框架支持]** alova通过states hook的设计将框架依赖分离，一套代码同时支持React/React Native/Vue/Svelte，或更多...
 2. **[实时自动管理状态]** 您的一切请求数据和状态都将由alova管理，您只需直接使用即可
 3. **[简单且熟悉]** 与axios相似的api设计，让您上手更简单熟悉

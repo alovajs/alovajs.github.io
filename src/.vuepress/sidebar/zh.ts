@@ -3,6 +3,11 @@ import { sidebar } from "vuepress-theme-hope";
 export const zhSidebar = sidebar({
   "/zh/": [
     {
+      text: "示例",
+      prefix: "example/",
+      children: "structure",
+    },
+    {
       text: "开始",
       prefix: "overview/",
       children: "structure",
@@ -34,12 +39,12 @@ export const zhSidebar = sidebar({
     },
     {
       text: "最佳实践(敬请期待)",
-      prefix: "best-practices/",
+      prefix: "best-practice/",
       children: "structure",
     },
     {
       text: "扩展",
-      prefix: "extensions/",
+      prefix: "extension/",
       children: "structure",
     },
   ],
