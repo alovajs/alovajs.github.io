@@ -23,7 +23,7 @@ export default hopeTheme({
       // sidebar
       sidebar: enSidebar,
       metaLocales: {
-        editLink: "Edit this page on GitHub",
+        editLink: "Unclear documents? I want to help modify",
       },
     },
 
@@ -37,7 +37,7 @@ export default hopeTheme({
       // sidebar
       sidebar: zhSidebar,
       metaLocales: {
-        editLink: "在GitHub上编辑此页",
+        editLink: "文档不清晰？我想帮助修改",
       },
     },
   },
