@@ -12,9 +12,10 @@
     <option value="class 3">class 3</option>
   </select>
   <span v-if="loading">Loading...</span>
-  <ul v-if="students.length > 0">
+  <ul v-if="students.length > 0" class="list">
     <li v-for="item in students" :key="item">
-      {{ item.name }} ({{ item.cls }})
+      <span class="name">{{ item.name }}</span>
+      <span>{{ item.cls }}</span>
     </li>
   </ul>
 </template>
@@ -36,6 +37,22 @@ const { loading, data: students } = useWatcher(
   }
 );
 </script>
+
+<style scoped>
+.list {
+  padding: 0;
+}
+.list li {
+  list-style-type: none;
+  padding: 10px 0;
+  border-bottom: solid 1px #ddd;
+  display: flex;
+}
+.list li .name {
+  width: 100px;
+}
+</style>
+
 
 ```
 
