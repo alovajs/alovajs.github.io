@@ -6,7 +6,7 @@ heroText: Alova.JS
 tagline: MVVM库的请求场景管理库
 actions:
   - text: 示例
-    link: /zh/overview/demo.html
+    link: /zh/example/init-page.html
     type: primary
 
   - text: 开始

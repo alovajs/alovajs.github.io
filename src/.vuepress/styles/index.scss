@@ -4,6 +4,21 @@ html, body {
   font-size: 14px;
 }
 
+// scroll bar style
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 8px;
+}
+:hover {
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--grey14);
+  }
+}
+
 // 首页样式修改
 .home.project .feature:hover {
   transform: translate(0, 0);
@@ -95,6 +110,13 @@ div[class*=language-] > button.copy:not(.pure) {
   }
 }
 
+// 文档链接
+.theme-hope-content a span,
+.page-meta a span {
+  display: none;
+}
+
+
 // 文档tab栏
 .tab-list {
   border: solid 1px var(--c-border);
@@ -112,5 +134,20 @@ div[class*=language-] > button.copy:not(.pure) {
   background: var(--theme-color-mask);
   &::before, &::after {
     background: none;
+  }
+}
+
+// vue-playground样式修改
+.vue-playground-wrapper {
+  .title-wrapper {
+    background: none !important;
+  }
+  .right {
+    height: 400px !important;
+  }
+  @media (max-width: 720px) {
+    .right {
+      height: 400px !important;
+    }
   }
 }
