@@ -7,4 +7,4 @@ order: 40
 
 @include(../../example-code/safer-ptimistic-update.md)
 
-在 [StackBlitz](#) 中运行此项目
+在 [StackBlitz](https://stackblitz.com/edit/alova-example-safer-ptimistic-update?file=src/App.vue) 中运行此项目

@@ -1,4 +1,4 @@
-::: vue-playground
+::: vue-playground Click right btn to view code
 
 @file App.vue
 
@@ -8,7 +8,7 @@
     loading ? 'Loading...' : 'Please click the item below to view detail.'
   }}</span>
   <ul v-if="students.length > 0" class="list">
-    <li v-for="item in students" :key="item" @click="handleDetailShow(item.id)">
+    <li v-for="item in students" :key="item.id" @click="handleDetailShow(item.id)">
       <span class="name">{{ item.name }}</span>
       <span>{{ item.cls }}</span>
     </li>
