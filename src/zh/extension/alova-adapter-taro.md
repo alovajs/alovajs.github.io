@@ -1,5 +1,5 @@
 ---
-title: Taro请求适配器
+title: Taro适配器
 order: 30
 ---
 
@@ -8,13 +8,13 @@ order: 30
 @tab npm
 
 ```bash
-npm install @alova/http-adapter-taro --save
+npm install @alova/adapter-taro --save
 ```
 
 @tab yarn
 
 ```bash
-yarn add @alova/http-adapter-taro
+yarn add @alova/adapter-taro
 ```
 :::
 

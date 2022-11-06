@@ -1,5 +1,5 @@
 ---
-title: Uniapp请求适配器
+title: Uniapp适配器
 order: 40
 ---
 
@@ -8,13 +8,13 @@ order: 40
 @tab npm
 
 ```bash
-npm install @alova/http-adapter-uniapp --save
+npm install @alova/adapter-uniapp --save
 ```
 
 @tab yarn
 
 ```bash
-yarn add @alova/http-adapter-uniapp
+yarn add @alova/adapter-uniapp
 ```
 :::
 

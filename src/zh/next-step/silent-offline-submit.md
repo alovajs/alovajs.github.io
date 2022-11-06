@@ -10,7 +10,7 @@ order: 70
 
 我们来展示一下静默创建todo项的代码。
 ```javascript
-const createTodoPoster = newTodo => alova.Post('/todo/create', newTodo);
+const createTodoPoster = newTodo => alovaInstance.Post('/todo/create', newTodo);
 
 const {
   send,
@@ -59,7 +59,7 @@ onSuccess(() => {
 接下来我们以在线文档编写器为示例，展示一下离线提交的代码。
 ```javascript
 const editingText = ref('');
-const saveDoc = () => alova.Post('/doc/save', {
+const saveDoc = () => alovaInstance.Post('/doc/save', {
   text: editingText.value
 });
 const {

@@ -12,7 +12,7 @@ order: 30
 `Method`对象匹配器是依据`Method`对象设置的`name`属性来过滤的，多个匹配器允许设置相同的`name`，因此首先需要为需要过滤的`Method`对象设置`name`属性。
 ```javascript
 // 每次调用getTodoList时都会生成一个新的Method对象，它们的name是相同的
-const getTodoList = currentPage => alova.Get('/tood/list', {
+const getTodoList = currentPage => alovaInstance.Get('/tood/list', {
   name: 'todoList',
   params: {
     currentPage,

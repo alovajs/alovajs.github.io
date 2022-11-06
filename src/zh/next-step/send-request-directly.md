@@ -10,7 +10,7 @@ v1.2.0+
 有时候我们只想要简单地发出请求，并不需要各种状态，此时可以直接调用`Method`对象的`send`函数即可，它将返回一个带返回参数的`Promise`对象。
 ```javascript
 // 获取全局的用户信息
-const globalUserGetter = alova.Get('/global/user', {
+const globalUserGetter = alovaInstance.Get('/global/user', {
   params: {
     userId: 1,
   },

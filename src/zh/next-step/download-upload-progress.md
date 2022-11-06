@@ -6,7 +6,7 @@ order: 60
 ## 下载进度
 在获取下载进度前，你需要在指定`Method`对象上启用下载进度，然后在`useRequest`、`useWatcher`、`useFetcher`三个use hook中接收`downloading`响应式状态，下载过程中将持续更新这个状态。
 ```javascript
-const downloadGetter = alova.Get('/tood/downloadfile', {
+const downloadGetter = alovaInstance.Get('/tood/downloadfile', {
   enableDownload: true
 });
 const {
@@ -22,7 +22,7 @@ const {
 ## 上传进度
 上传进度与下载进度使用方法相同，先启用再通过接收`uploading`响应式状态。
 ```javascript
-const uploadGetter = alova.Get('/tood/uploadfile', {
+const uploadGetter = alovaInstance.Get('/tood/uploadfile', {
   enableUpload: true
 });
 const {

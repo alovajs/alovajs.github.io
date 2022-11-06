@@ -1,5 +1,5 @@
 ---
-title: 失效响应缓存
+title: 主动失效响应缓存
 order: 20
 ---
 
@@ -13,7 +13,7 @@ order: 20
 import { invalidateCache } from 'alova';
 
 const getTodoList = currentPage => {
-  return alova.Get('/tood/list', {
+  return alovaInstance.Get('/tood/list', {
     params: {
       currentPage,
       pageSize: 10
@@ -40,7 +40,7 @@ const handleSubmit = () => {
 
 ```javascript
 const getTodoList = currentPage => {
-  return alova.Get('/tood/list', {
+  return alovaInstance.Get('/tood/list', {
     // 注意：设置了name属性，用于在无法直接指定Method对象时，过滤出需要的Method对象
     name: 'todoList',
     params: {

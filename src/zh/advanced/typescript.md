@@ -18,7 +18,7 @@ const {
   loading,  // Ref<boolean>
   data,  // Ref<unknown>
   error,  // Ref<Error>
-} = useRequest(vueAlova.Get('/todo/list'));
+} = useRequest(vuealovaInstance.Get('/todo/list'));
 ```
 使用ReactHook时：
 ```javascript
@@ -30,7 +30,7 @@ const {
   loading,  // boolean
   data,  // unknown
   error,  // Error
-} = useRequest(reactAlova.Get('/todo/list'));
+} = useRequest(reactalovaInstance.Get('/todo/list'));
 ```
 使用SvelteHook时：
 ```javascript
@@ -42,7 +42,7 @@ const {
   loading,  // Readable<boolean>
   data,  // Readable<unknown>
   error,  // Readable<Error>
-} = useRequest(svelteAlova.Get('/todo/list'));
+} = useRequest(sveltealovaInstance.Get('/todo/list'));
 ```
 你可能会发现，data的类型是`unknown`，因为data需要根据不同接口单独设置类型，接下来我们看下。
 ## 响应数据的类型
@@ -55,7 +55,7 @@ interface Todo {
   time: string;
   done: boolean;
 }
-const Get = alova.Get<Todo[]>('/todo/list');
+const Get = alovaInstance.Get<Todo[]>('/todo/list');
 ```
 
 情况2：响应数据需要再调用`transformData`转换
@@ -65,7 +65,7 @@ interface Todo {
   time: string;
   done: boolean;
 }
-const Get = alova.Get('/todo/list', {
+const Get = alovaInstance.Get('/todo/list', {
   // 将类型写到data参数中，而headers会自动推断，可以不用指定类型
   transformData(data: Todo[], headers) {
     return data.map(item => ({

@@ -1,5 +1,5 @@
 ---
-title: 失效响应缓存
+title: 手动设置缓存
 order: 40
 ---
 
@@ -10,7 +10,7 @@ order: 40
 ```javascript
 import { setCacheData } from 'alova';
 
-const getTodoListByDate = dateList => alova.Get('/todo/list/dates', {
+const getTodoListByDate = dateList => alovaInstance.Get('/todo/list/dates', {
   params: { dateList }
 });
 // 初始化时批量获取5天的数据

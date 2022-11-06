@@ -1,4 +1,4 @@
-::: vue-playground
+::: vue-playground Click right btn to view code
 
 @file App.vue
 

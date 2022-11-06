@@ -3,7 +3,7 @@ home: true
 title: Alova.JS
 heroImage: /logo.svg
 heroText: Alova.JS
-tagline: MVVM库的请求场景管理库
+tagline: 一个请求场景管理库，让你的应用更聪明地请求
 actions:
   - text: 示例
     link: /zh/example/init-page.html
@@ -23,7 +23,7 @@ features:
     details: 与axios相似的api设计，让您上手更简单熟悉
 
   - title: 轻量级
-    details: 压缩版只有4kb，只有axios的40%
+    details: 4kb，只有axios的40%
 
   - title: 简化请求逻辑
     details: 声明式请求实现，无需您编写请求数据和状态，以及特定场景下的请求代码
