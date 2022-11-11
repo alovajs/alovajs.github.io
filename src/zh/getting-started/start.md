@@ -92,7 +92,7 @@ const alovaInstance = createAlova({
 		onSuccess: async (response, config) => {
 			const json = await response.json();
 			if (json.code !== 200) {
-				// 这边抛出错误时，将会进入请求失败拦截器内
+				// 抛出错误或返回reject状态的Promise实例时，此请求将抛出错误
 				throw new Error(json.message);
 			}
 
@@ -101,7 +101,7 @@ const alovaInstance = createAlova({
 		},
 
 		// 请求失败的拦截器
-		// 请求抛出错误时，或请求成功拦截器抛出错误时，将会进入该拦截器。
+		// 请求错误时将会进入该拦截器。
 		// 第二个参数为请求的配置，它用于同步请求前后的配置信息
 		onError: (err, config) => {
 			alert(error.message);
@@ -121,7 +121,10 @@ const alovaInstance = createAlova({
 });
 ```
 
-> ⚠️ 注意：responsed可以是普通函数和异步函数
+:::warning 特别注意
+1. onError回调是请求错误的捕获函数，当捕获错误但没有抛出错误或返回reject状态的Promise实例，将认为请求是成功的，且不会获得响应数据
+2. responsed可设为是普通函数和异步函数
+:::
 
 
 ## 设置全局请求超时时间
