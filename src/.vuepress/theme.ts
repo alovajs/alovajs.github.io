@@ -7,12 +7,11 @@ export default hopeTheme({
   iconAssets: "iconfont",
   // iconAssets: "fontawesome",
   logo: "/logo.svg",
-  repo: "alovajs/alovajs.github.io",
+  repo: "alovajs/alova",
   docsDir: "docs",
   pageInfo: ["Category", "Tag"],
-  pure: true,
   displayFooter: true,
-  breadcrumb: false,
+  breadcrumb: true,
   footer: `MIT Licensed | Copyright ©${new Date().getFullYear()} Alova.js Team`,
 
   locales: {
