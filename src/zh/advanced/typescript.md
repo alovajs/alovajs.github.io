@@ -79,18 +79,18 @@ const Get = alovaInstance.Get('/todo/list', {
 
 
 ## 根据请求适配器推断的类型
-因为`alova`支持自定义请求适配器，而不同的适配器的请求配置对象、响应对象、响应头都可能不同，因此全局的`beforeRequest`、`responsed`拦截器，以及`Method`对象创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，我们先来看这几个类型。
+因为`alova`支持自定义请求适配器，而不同的适配器的请求配置对象、响应对象、响应头都可能不同，因此全局的`beforeRequest`、`responsed`拦截器，以及`Method`实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，我们先来看这几个类型。
 ```typescript
-// 通用的Method对象的通用配置类型
+// 通用的Method实例的通用配置类型
 type CommonMethodConfig = {
   readonly url: string,
   readonly method: MethodType,
   data?: Record<string, any> | FormData | string,
 };
 
-// `Method`对象创建时的配置对象的类型
+// `Method`实例创建时的配置对象的类型
 type AlovaMethodConfig<R, T, RC, RH> = {
-  // 以下为创建Method对象时指定的配置对象
+  // 以下为创建Method实例时指定的配置对象
   name?: string,
 
   // url中的参数，一个对象

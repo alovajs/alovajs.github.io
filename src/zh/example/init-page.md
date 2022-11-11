@@ -3,7 +3,7 @@ title: 页面初始化请求
 order: 10
 ---
 
-> 以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](/zh/overview/);
+> 以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](../overview/);
 
 :::info 示例说明
 本示例主要展示请求的简单性，它将返回状态化的请求状态、数据等，这些状态可直接在视图中使用，并且直接由alova管理

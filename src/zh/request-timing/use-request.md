@@ -52,7 +52,7 @@ const {
 	// 完成回调绑定
 	onComplete
 
-	// 直接将Method对象传入即可发送请求
+	// 直接将Method实例传入即可发送请求
 } = useRequest(todoListGetter, {
 	// 请求响应前，data的初始值
 	initialData: []
@@ -93,7 +93,7 @@ const App = () => {
 		// 完成回调绑定
 		onComplete
 
-		// 直接将Method对象传入即可发送请求
+		// 直接将Method实例传入即可发送请求
 	} = useRequest(todoListGetter, {
 		// 请求响应前，data的初始值
 		initialData: []
@@ -149,7 +149,7 @@ const {
 	// 完成回调绑定
 	onComplete
 
-	// 直接将Method对象传入即可发送请求
+	// 直接将Method实例传入即可发送请求
 } = useRequest(todoListGetter, {
 	// 请求响应前，data的初始值
 	initialData: []
@@ -182,7 +182,7 @@ onComplete(() => {
 :::
 
 ## 手动发送请求
-当你需要创建一条新的 todo 项时，可以先关闭默认发送请求，转为手动触发请求。然后将 useRequest 的第一个参数改为返回`Method`对象的函数，该函数在触发请求时被调用。
+当你需要创建一条新的 todo 项时，可以先关闭默认发送请求，转为手动触发请求。然后将 useRequest 的第一个参数改为返回`Method`实例的函数，该函数在触发请求时被调用。
 
 ```javascript
 const createTodoPoster = newTodo => alovaInstance.Post('/todo', newTodo);

@@ -3,7 +3,7 @@ title: 响应缓存-内存模式
 order: 20
 ---
 
-> 以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](/zh/overview/);
+> 以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](../overview/);
 
 :::info 示例说明
 内存缓存模式是将响应数据存放在内存中，缓存在刷新页面即失效。

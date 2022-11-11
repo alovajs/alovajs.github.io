@@ -9,7 +9,14 @@ order: 20
 3. 让这个响应缓存失效，当再次请求时将会因缓存失效而重新请求数据。这也是本小节所要讲的内容。
 
 现在我们尝试以缓存失效的方式实现本需求。
-```javascript
+:::tabs
+@tab vue
+```vue{22-25}
+<template>
+  <button @click="send">发送请求</button>
+</template>
+
+<script setup>
 import { invalidateCache } from 'alova';
 
 const getTodoList = currentPage => {
@@ -30,18 +37,73 @@ const {
 onSuccess(() => {
   invalidateCache(getTodoList(1));
 });
-
-// 当触发handleSubmit函数时将会触发请求
-const handleSubmit = () => {
-  send();
-};
+</script>
 ```
-它的功能还远不止于此，我们还可以通过设置`Method`对象匹配器来实现多个，甚至全部的缓存失效。
 
-```javascript
+@tab react
+```jsx{18-21}
+import { invalidateCache } from 'alova';
+
 const getTodoList = currentPage => {
   return alovaInstance.Get('/tood/list', {
-    // 注意：设置了name属性，用于在无法直接指定Method对象时，过滤出需要的Method对象
+    params: {
+      currentPage,
+      pageSize: 10
+    }
+  });
+};
+
+const App = () => {
+  const {
+    // ...
+    send,
+    onSuccess
+  } = useRequest(createTodoPoster, { immediate: false });
+  // 提交成功后，固定使第一页的todo数据缓存失效
+  onSuccess(() => {
+    invalidateCache(getTodoList(1));
+  });
+
+  return <button @click="send">发送请求</button>
+}
+```
+
+@tab svelte
+```html{18-21}
+<script>
+import { invalidateCache } from 'alova';
+
+const getTodoList = currentPage => {
+  return alovaInstance.Get('/tood/list', {
+    params: {
+      currentPage,
+      pageSize: 10
+    }
+  });
+};
+
+const {
+  // ...
+  send,
+  onSuccess
+} = useRequest(createTodoPoster, { immediate: false });
+// 提交成功后，固定使第一页的todo数据缓存失效
+onSuccess(() => {
+  invalidateCache(getTodoList(1));
+});
+</script>
+
+<button on:click={send}>发送请求</button>
+```
+
+:::
+
+它的功能还远不止于此，我们还可以通过设置`Method`实例匹配器来实现任意多个，甚至全部缓存的失效。
+
+```javascript{20-27,29-30}
+const getTodoList = currentPage => {
+  return alovaInstance.Get('/tood/list', {
+    // 注意：设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
     name: 'todoList',
     params: {
       currentPage,
@@ -62,7 +124,7 @@ onSuccess(() => {
   invalidateCache({
     name: 'todoList',
     filter: (method, index, ary) => {
-      // 名为todoList的前5个Method对象的响应缓存将会失效
+      // 名为todoList的前5个Method实例的响应缓存将会失效
       return index < 5;
     },
   });
@@ -72,4 +134,4 @@ onSuccess(() => {
 });
 ```
 
-详细的`Method`对象匹配器使用方法见 [进阶-Method对象匹配器](#Method对象匹配器)
+> 更多`Method`实例匹配器的使用方法见 [Method实例匹配器](../next-step/method-instance-matcher.html)

@@ -32,7 +32,7 @@ order: 30
 <script setup>
 const getTodoList = currentPage => {
 	return alovaInstance.Get('/tood/list', {
-		// 注意：这边设置了name属性，用于在无法直接指定Method对象时，过滤出需要的Method对象
+		// 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
 		// 详见后续的《Method实例匹配器》章节
 		name: 'todoList',
 		params: {
@@ -59,14 +59,14 @@ const handleSubmit = () => {
 	// todo项修改...
 
 	// 开始拉取更新后的数据
-	// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method对象
+	// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
 	fetch(getTodoList(1));
 
-	// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method对象匹配器来筛选
+	// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
 	fetch({
 		name: 'todoList',
 		filter: (method, index, ary) => {
-			// 返回true来指定需要拉取的Method对象
+			// 返回true来指定需要拉取的Method实例
 			return index === ary.length - 1;
 		}
 	});
@@ -78,7 +78,7 @@ const handleSubmit = () => {
 ```jsx
 const getTodoList = currentPage => {
 	return alovaInstance.Get('/tood/list', {
-		// 注意：这边设置了name属性，用于在无法直接指定Method对象时，过滤出需要的Method对象
+		// 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
 		// 详见后续的《Method实例匹配器》章节
 		name: 'todoList',
 		params: {
@@ -106,14 +106,14 @@ const App = () => {
 		// 假设已完成todo项的修改...
 
 		// 开始拉取更新后的数据
-		// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method对象
+		// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
 		fetch(getTodoList(1));
 
-		// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method对象匹配器来筛选
+		// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
 		fetch({
 			name: 'todoList',
 			filter: (method, index, ary) => {
-				// 返回true来指定需要拉取的Method对象
+				// 返回true来指定需要拉取的Method实例
 				return index === ary.length - 1;
 			}
 		});
@@ -133,7 +133,7 @@ const App = () => {
 <script>
 const getTodoList = currentPage => {
 	return alovaInstance.Get('/tood/list', {
-		// 注意：这边设置了name属性，用于在无法直接指定Method对象时，过滤出需要的Method对象
+		// 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
 		// 详见后续的《Method实例匹配器》章节
 		name: 'todoList',
 		params: {
@@ -160,14 +160,14 @@ const handleSubmit = () => {
 	// 假设已完成todo项的修改...
 
 	// 开始拉取更新后的数据
-	// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method对象
+	// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
 	fetch(getTodoList(1));
 
-	// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method对象匹配器来筛选
+	// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
 	fetch({
 		name: 'todoList',
 		filter: (method, index, ary) => {
-			// 返回true来指定需要拉取的Method对象
+			// 返回true来指定需要拉取的Method实例
 			return index === ary.length - 1;
 		}
 	});
@@ -184,7 +184,7 @@ const handleSubmit = () => {
 
 :::
 
-> 更多`Method`实例匹配器的使用方法见 [Method对象匹配器](/zh/next-step/method-instance-matcher.html)
+> 更多`Method`实例匹配器的使用方法见 [Method实例匹配器](../next-step/method-instance-matcher.html)
 
 
 ## 预加载数据
