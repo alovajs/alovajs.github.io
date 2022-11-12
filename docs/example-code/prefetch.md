@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <span>{{
     loading ? 'Loading...' : 'Mouse move to items below, it will prefetch detail data.'
@@ -103,7 +103,7 @@ const handleDetailShow = (id) => {
 
 
 @file Detail.vue
-```vue
+```html
 <template>
   <div v-if="show" class="detail-modal">
     <div class="modal-mask" @click="emit('update:show', false)"></div>

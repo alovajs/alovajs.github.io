@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <span v-if="loading && randomNumbers.length <= 0">Loading...</span>
   <span v-else-if="error">{{ error.message }}</span>

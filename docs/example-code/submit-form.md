@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <input v-model="fruit" placeholder="input a fruit" />
   <button @click="submitFruit" :disabled="submiting">Submit</button>

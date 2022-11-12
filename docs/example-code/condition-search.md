@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <input v-model="studentName" placeholder="input student name" />
   <select v-model="clsName">

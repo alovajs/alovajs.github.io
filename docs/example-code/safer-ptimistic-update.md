@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <span>{{
     loading
@@ -182,7 +182,7 @@ const allStudents = [
 ```
 
 @file Detail.vue
-```vue
+```html
 <template>
   <div v-if="show" class="detail-modal">
     <div class="modal-mask" @click="emit('update:show', false)"></div>

@@ -7,11 +7,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Alova.js',
-  tagline: '漂亮',
+  tagline: '一个请求场景管理库，让你的应用更聪明地请求',
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -23,11 +23,11 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'zh-Hans'],
+    defaultLocale: 'zh-Hans',
+    locales: ['zh-Hans'],
     localeConfigs: {
-      en: {
-        htmlLang: 'en-GB',
+      'zh-Hans': {
+        htmlLang: 'zh-Hans-GB',
       },
     }
   },
@@ -60,22 +60,22 @@ const config = {
       navbar: {
         title: 'alovajs',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'ALOVA',
           src: 'img/logo.svg',
         },
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'overview/index',
             position: 'left',
-            label: 'Tutorial',
+            label: '指南',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            type: 'localeDropdown',
-            docId: 'locale',
-            position: 'right',
-          },
+          // {to: '/blog', label: 'Blog', position: 'left'},
+          // {
+          //   type: 'localeDropdown',
+          //   docId: 'locale',
+          //   position: 'right',
+          // },
           {
             href: 'https://github.com/alovajs/alova',
             label: 'GitHub',
@@ -90,38 +90,34 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: '指南',
+                to: '/overview/index',
               },
             ],
           },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
+          // {
+          //   title: 'Community',
+          //   items: [
+          //     {
+          //       label: 'Stack Overflow',
+          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+          //     },
+          //     {
+          //       label: 'Discord',
+          //       href: 'https://discordapp.com/invite/docusaurus',
+          //     },
+          //     {
+          //       label: 'Twitter',
+          //       href: 'https://twitter.com/docusaurus',
+          //     },
+          //   ],
+          // },
           {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/alovajs/alova',
               },
             ],
           },

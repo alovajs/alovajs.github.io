@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <span v-if="loading">Loading...</span>
   <span v-else-if="error">{{ error.message }}</span>

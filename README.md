@@ -1,2 +1,2 @@
-# alovajs.github.io
-The official website of alova
+# The alova doc Website
+The official website of alova.

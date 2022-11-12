@@ -2,7 +2,7 @@
 
 @file App.vue
 
-```vue
+```html
 <template>
   <span>{{
     loading ? 'Loading...' : 'Please click the item below to view detail.'
@@ -133,7 +133,7 @@ export const queryStudentDetail = (id) =>
 ```
 
 @file Detail.vue
-```vue
+```html
 <template>
   <div v-if="show" class="detail-modal">
     <div class="modal-mask" @click="emit('update:show', false)"></div>
