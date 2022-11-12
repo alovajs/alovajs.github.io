@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkalova_website=self.webpackChunkalova_website||[]).push([[559],{8057:e=>{e.exports=JSON.parse('{"title":"\u6982\u89c8","slug":"/category/\u6982\u89c8","permalink":"/category/\u6982\u89c8","navigation":{"next":{"title":"\u6982\u8ff0","permalink":"/overview/index"}}}')}}]);

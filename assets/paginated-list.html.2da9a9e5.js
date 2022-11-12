@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper.cdc0426e.js";import{o as t,c as o,a as s}from"./app.4763b10d.js";const a={},c=s("p",null,"与加载更多相同",-1),n=[c];function _(r,i){return t(),o("div",null,n)}const f=e(a,[["render",_],["__file","paginated-list.html.vue"]]);export{f as default};
