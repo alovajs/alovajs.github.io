@@ -13,4 +13,15 @@ sidebar_position: 23
 2. 点击`Invalidate the data of placeholder`让缓存数据失效，此时你将重新看到Loading状态；
 :::
 
-在 [StackBlitz](https://stackblitz.com/edit/alova-example-storage-placeholder?file=src/App.vue) 中运行此项目
+<iframe src="https://codesandbox.io/embed/storage-placeholder-09053c?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="storage-placeholder"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

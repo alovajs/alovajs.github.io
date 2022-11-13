@@ -9,5 +9,15 @@ sidebar_position: 18
 本示例主要展示数据搜索的简单性，无需开发者自己维护请求状态、数据等状态，也无需手动触发请求发送，只需绑定好搜索条件的state即可
 :::
 
-
-在 [StackBlitz](https://stackblitz.com/edit/alova-example-condition-search?file=src/App.vue) 中运行此项目
+<iframe src="https://codesandbox.io/embed/vite-vue-starter-dljnml?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="condition-search"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

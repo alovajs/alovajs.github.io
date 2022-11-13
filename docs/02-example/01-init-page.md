@@ -12,5 +12,15 @@ last_update:
 本示例主要展示请求的简单性，它将返回状态化的请求状态、数据等，这些状态可直接在视图中使用，并且直接由alova管理
 :::
 
-
-在 [StackBlitz](https://stackblitz.com/edit/alova-example-page-init-request?file=README.md) 中运行此项目
+<iframe src="https://codesandbox.io/embed/init-page-e61o0q?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="init-page"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

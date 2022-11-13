@@ -1,5 +1,5 @@
 ---
-title: 扩展hooks
+title: usePagination
 sidebar_position: 20
 ---
 
@@ -29,11 +29,9 @@ yarn add @alova/hooks
 在使用扩展hooks前，确保你已熟悉了alova的基本使用。
 :::
 
-## usePagination
-
 为分页场景下设计的hook，你可以在下拉加载和页码翻页两种分页场景下使用它，**此hook提供了丰富的特性，助你的应用打造性能更好，使用更便捷的分页功能**。
 
-### 特性
+## 特性
 - ✨丰富全面的分页状态；
 - ✨丰富全面的分页事件；
 - ✨更改page、pageSize自动获取指定分页数据；
@@ -42,9 +40,34 @@ yarn add @alova/hooks
 - ✨搜索条件监听自动重新获取页数；
 - ✨支持列表数据的新增、编辑、删除；
 - ✨支持刷新指定页的数据，无需重置；
-- ✨请求级防抖，无需自行维护；
+- ✨请求级搜索防抖，无需自行维护；
 
-### 用法
+## 引入
+<Tabs>
+<TabItem value="1" label="vue">
+
+```javascript
+import { usePagination } from '@alova/hooks/vue';
+```
+
+</TabItem>
+<TabItem value="2" label="react">
+
+```javascript
+import { usePagination } from '@alova/hooks/react';
+```
+
+</TabItem>
+<TabItem value="3" label="svelte">
+
+```javascript
+import { usePagination } from '@alova/hooks/svelte';
+```
+
+</TabItem>
+</Tabs>
+
+## 用法
 展示和操作学生列表，以vue为例。
 ```javascript
 import { ref, watchEffect } from 'vue';
@@ -148,12 +171,15 @@ const handleSubmit = selectedId => {
 };
 ```
 
-### 列表操作说明
-#### insert
+## 列表操作函数说明
 
-此函数将会保证每页数据项的数量，即在插入后，它将会在末尾去掉一项，以保证和重新请求当前页数据一致的效果。
+usePagination提供了功能完善的列表操作函数，它可以在不重新请求列表的情况下，做到与重新请求列表一致的效果，大大提高了页面的交互体验，具体的函数说明继续往下看吧！
 
-在**非append模式**下，即页码翻页模式下，它将会以当前页的列表数据为索引参考进行插入，如果需要插入到第一页，你可以在`onBefore`回调中先设置page为1，这样就可以插入到第一页了。
+### insert
+
+列表项插入函数，它将会在插入列表项后去掉末尾的一项，来保证和重新请求当前页数据一致的效果。
+
+在**非append模式**下（页码翻页场景），它将会以当前页的列表数据为索引参考进行插入，如果需要插入到第一页，你可以在`onBefore`回调中先设置page为1，这样就可以插入到第一页了。
 ```javascript
 insert({ /** ... */}, {
   onBefore: () => {
@@ -163,7 +189,7 @@ insert({ /** ... */}, {
 });
 ```
 
-在**append模式**下，即下拉加载模式下，因为列表项是追加的，它会以多页数据为索引参考进行插入，如果你想要在插入后滚动到最顶部，可以在`onAfter`中执行滚动操作。
+在**append模式**下（下拉加载场景），因为分页数据是追加到原列表末尾的，所以它会以多页数据为索引参考进行插入，如果你想要在插入后滚动到最顶部，可以在`onAfter`中执行滚动操作。
 ```javascript
 insert({ /** ... */}, {
   onBefore: () => {},
@@ -173,20 +199,37 @@ insert({ /** ... */}, {
 });
 ```
 
-:::caution
+:::caution 注意
 onBefore、插入操作、onAfter都是串行异步执行，因此在`onBefore`中更改了状态，视图将会刷新再执行插入操作。
 :::
+:::caution 注意
+为了让数据正确，insert函数调用会清除全部缓存。
+:::
 
-#### remove
-...
+### remove
 
-#### refresh
-刷新指定页的数据
+列表项移除函数，在下一页有缓存的情况下，它将会在移除一项后使用下一页的缓存补充到列表项尾部，来保证和重新请求当前页数据一致的效果，在**append模式**和**非append模式**下表现相同。
 
-#### reload
-重置列表，它将清空本hook的全部缓存，并重新加载第一页
+但在以下两种情况下，它将重新发起请求刷新对应页的数据：
+1. 下一页没有缓存
+2. 同步连续调用了超过下一页缓存列表项的数据，缓存数据已经不够补充到当前页列表了。
 
-### usePagination类型
+:::caution 注意
+为了让数据正确，remove函数调用会清除全部缓存。
+:::
+
+### refresh
+
+当你在数据操作后不希望本地更新列表项，而是重新请求服务端的数据，你可以用refresh刷新任意页的数据，而不需要重置列表数据让用户又从第一页开始浏览。
+
+### reload
+
+重置列表，它将清空全部缓存，并重新加载第一页。
+
+### replace
+敬请期待...
+
+## 类型
 
 <Tabs>
 <TabItem value="1" label="vue">
@@ -395,10 +438,7 @@ export declare function usePagination<S extends Writable<any>, E extends Writabl
 </Tabs>
 
 
-## useIntervalRequest
-敬请期待...
+## 限制
 
-## useWindowFocusedRequest
-敬请期待...
-
-## ...
+1. 列表请求支持缓存功能，它极大地提高了列表性能，当你对列表进行操作时，其内部都会自行维护它所产生的缓存，目前是通过修改每个Method实例的**name**属性实现追踪的，因此传入usePagination的Method实例暂不支持自定义name，这可能会影响到你对Method的管理，后续的版本中我们也将对它进行优化。
+2. `insert`函数限制，因为usePagination所返回的data并不是useWatcher返回的data，目前暂无法使用[延迟数据更新](../../06-next-step/08-delayed-data-update.md)功能，如果你的新增列表项依赖服务端数据，建议使用`refresh`或`reload`重新请求数据，同时我们将在后续的版本中陆续支持。

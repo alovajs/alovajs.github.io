@@ -4,16 +4,26 @@ sidebar_position: 10
 ---
 
 ## 为什么创造alova
-数据请求一直是应用程序必不可少的重要部分，只是自从XMLHttpRequest诞生以来，`$.ajax`、`axios`、`react-query`，以及`fetch api`等等绝大部分请求工具都以面向开发者而设计，请求的编码形式从回调函数到Promise，到async/await，再到usehook，而少有针对用户体验而设计。
+数据请求一直是应用程序必不可少的重要部分，只是自从XMLHttpRequest诞生以来，`$.ajax`、`axios`、`react-query`，以及`fetch api`等等绝大部分请求工具都以面向开发者而设计，请求的编码形式发展：
+1. 回调函数
+2. Promise
+3. async/await异步函数
+4. usehook形式
 
-在用户体验方面，基本以业务开发者根据数据交互场景自行定制开发，数据交互的用户体验设计也从最初的无状态（卡死），到等待状态展示（loading）、骨架屏展示，以及旧数据占位展示不断发展，以及响应数据本地缓存等场景，还有没有更广阔的请求场景呢，我们觉得是有的。
+它们让请求实现越来越方便，但少有针对用户体验而设计的，大多数应用的数据交互体验也都停留在越来越友好的加载提示，发展历程也大致经历了以下几个阶段：
+1. 无状态（卡死状态）
+2. loading等待状态、进度条展示
+3. 骨架屏展示、旧数据占位展示
 
-在这个基础上，我们将请求场景进行抽象提出了 [请求场景管理的概念（RSM）](../overview/RSM)，而alova就说一个RSM实现库，它将承载着我们对请求场景的探索之路。我们对alova的预期是一个兼具开发体验和用户体验的请求工具，它拥有很灵活的扩展能力来实现更多的请求场景，并且它除了具备`react-query`的能力外，还具备更安全的无感数据交互能力，它让用户在一定程度上无需等待数据交互，这得益于alova独特的数据预拉取、静默提交、延迟数据更新特性，无感数据交互能力也会是我们接下来继续探索的方向。
+大多数应用都只做了请求状态的展示，很少有应用将思路放在请求策略上，但策略好的请求却能很好地提升性能和用户体验、降低服务端压力，**alova的使命，就是让应用更聪明地管理CS数据交互**，针对不同的请求场景提出更好的请求管理方案。在这个基础上，我们将请求场景进行抽象提出了 [请求场景管理的概念（RSM）](../overview/RSM)，而alova就说一个RSM实现库，它将承载着我们对请求场景的探索之路。
 
-除此以外，alova还能与`axios`、`superagent`，还是浏览器的`fetch-api`等任意请求库/函数完美兼容 [看看alova与请求库的关系](../overview/relationship-with-http-lib)，同时还具备离线提交能力，以及更轻量的体积，是`react-query`体积的30%，`axios`的40%。
+我们对alova的预期是一个**兼具开发体验和用户体验的请求管理工具**，它拥有很灵活的扩展能力来实现更多的请求场景，它除了具备`react-query`的能力外，还具备更安全的无感数据交互能力，它让用户在一定程度上无需等待数据交互，这得益于alova独特的数据预拉取、静默提交、延迟数据更新特性。
 
-它目前支持`vue`、`react`、`svelte`，更多MVVM框架支持敬请期待...
+> 目前支持`vue`、`react`、`svelte`，更多MVVM框架支持敬请期待...
 
+## 替代请求库？？？
+
+alova的创建初衷是对不同请求场景提出的一个解决方案，它可以更简洁优雅地实现体验更好，性能更好的请求功能，是一个RSM实现库，而例如`$.ajax`、`axios`和`fetch-api`等对请求发送和响应接收提供了很好的支持，它们是 [RSM](./RSM) 流程中必不可少的一个环节（请求事件环节），alova仍然需要依靠它们进行请求，因此我们可以将alova看作是请求库的一种武装，让请求库变得更加强大。
 
 ## 特性
 
@@ -50,7 +60,6 @@ sidebar_position: 10
 
 ## 各类库的体积对比
 
-| alova                                                                                                     | react-query                                                                                                           | vue-request                                                                                                           | vue                                                                                                   | react                                                                                                             |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [![minzipped size](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova) | [![minzipped size](https://badgen.net/bundlephobia/minzip/react-query)](https://bundlephobia.com/package/react-query) | [![minzipped size](https://badgen.net/bundlephobia/minzip/vue-request)](https://bundlephobia.com/package/vue-request) | [![minzipped size](https://badgen.net/bundlephobia/minzip/vue)](https://bundlephobia.com/package/vue) | [![minzipped size](https://badgen.net/bundlephobia/minzip/react-dom)](https://bundlephobia.com/package/react-dom) |
-
+| alova | axios | react-query | vue-request | vue | react |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| [![minzip](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova) | [![minzip](https://badgen.net/bundlephobia/minzip/axios)](https://bundlephobia.com/package/axios) | [![minzip](https://badgen.net/bundlephobia/minzip/react-query)](https://bundlephobia.com/package/react-query) | [![minzip](https://badgen.net/bundlephobia/minzip/vue-request)](https://bundlephobia.com/package/vue-request) | [![minzip](https://badgen.net/bundlephobia/minzip/vue)](https://bundlephobia.com/package/vue) | [![minzip](https://badgen.net/bundlephobia/minzip/react-dom)](https://bundlephobia.com/package/react-dom) |

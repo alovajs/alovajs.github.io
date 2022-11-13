@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Alova.js',
+  title: 'alova.JS',
   tagline: '一个请求场景管理库，让你的应用更聪明地请求',
   url: 'https://alova.js.org',
   baseUrl: '/',
@@ -58,7 +58,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'alovajs',
+        title: 'alova.JS',
         logo: {
           alt: 'ALOVA',
           src: 'img/logo.svg',

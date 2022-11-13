@@ -1,10 +1,19 @@
 ---
-title: 分页列表
+title: 页码列表
 sidebar_position: 60
 ---
 
 > 以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](../overview/index);
 
-@include(../../example-code/paginated-list.md)
-
-在 [StackBlitz](#) 中运行此项目
+<iframe src="https://codesandbox.io/embed/pagination-owb89r?fontsize=14&hidenavigation=1&theme=dark"
+  style={{
+    width: '100%',
+    height: '500px',
+    border: '0',
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  title="pagination"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
