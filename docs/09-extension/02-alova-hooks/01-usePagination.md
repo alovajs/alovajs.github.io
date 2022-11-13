@@ -42,6 +42,12 @@ yarn add @alova/hooks
 - ✨支持刷新指定页的数据，无需重置；
 - ✨请求级搜索防抖，无需自行维护；
 
+## 示例
+
+[页码列表](../../example/paginated-list)
+
+[下拉加载更多](../../example/load-more)
+
 ## 引入
 <Tabs>
 <TabItem value="1" label="vue">
