@@ -119,8 +119,15 @@ const {
   {
     watchingStates: [studentName, clsName], // 外部监听的状态，如搜索条件
     initialData: [], // 请求前的初始数据，
-    debounce: 300, // 防抖参数，单位为毫秒数
-    // append: true, // 是否启用追加模式，在下拉加载时需设置为true
+    debounce: 300, // 防抖参数，单位为毫秒数，也可以设置为数组对watchingStates单独设置防抖时间
+    // append: true, // 是否启用追加模式，在下拉加载时需设置为true，默认为false
+    // preloadPreviousPage: true, // 是否预加载上一页数据，默认为true
+    // preloadNextPage: true, // 是否预加载下一页数据，默认为true
+    // total: data => data['total'], // 指定如何获取列表项总数值，data为响应数据，默认获取data.total
+    // data: data['data'], // 指定如何获取列表数据，data为响应数据，默认获取data.data
+    // initialPage: 1, // 初始页码，默认为1
+    // initialPageSize: 10, // 初始每页数据条数，默认为10
+    // immediate: true // 是否立即发出请求，默认为true
   }
 );
 
@@ -177,31 +184,39 @@ const handleSubmit = selectedId => {
 };
 ```
 
+:::warning debounce参数说明
+debounce参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](../../request-timing/use-watcher#请求防抖) 来实现的。**监听状态末尾分别还有page和pageSize两个隐藏的监听状态，也可以通过debounce来设置。**
+:::
+
 ## 列表操作函数说明
 
 usePagination提供了功能完善的列表操作函数，它可以在不重新请求列表的情况下，做到与重新请求列表一致的效果，大大提高了页面的交互体验，具体的函数说明继续往下看吧！
 
-### insert
+### 插入列表项
+你可以用它插入列表项到列表任意位置，它将会在插入之后去掉末尾的一项，来保证和重新请求当前页数据一致的效果。
 
-列表项插入函数，它将会在插入列表项后去掉末尾的一项，来保证和重新请求当前页数据一致的效果。
+```typescript
+/**
+ * 插入一条数据，未传入index时默认插入到最前面
+ * @param item 插入项
+ * @param index 插入位置（索引）
+ */
+insert: (item: LD[number], index?: number) => void;
+```
 
-在**非append模式**下（页码翻页场景），它将会以当前页的列表数据为索引参考进行插入，如果需要插入到第一页，你可以在`onBefore`回调中先设置page为1，这样就可以插入到第一页了。
+以下为**非append模式**下（页码翻页场景），返回第一页再插入列表项的示例：
 ```javascript
-insert({ /** ... */}, {
-  onBefore: () => {
-    // 在此将page设置为1，可插入到第一页
-  },
-  onAfter: () => {},
+page.value = 1;
+nextTick(() => {
+  insert(newItem, 0);
 });
 ```
 
-在**append模式**下（下拉加载场景），因为分页数据是追加到原列表末尾的，所以它会以多页数据为索引参考进行插入，如果你想要在插入后滚动到最顶部，可以在`onAfter`中执行滚动操作。
+以下为在**append模式**下（下拉加载场景），插入列表项后滚动到最顶部的示例：
 ```javascript
-insert({ /** ... */}, {
-  onBefore: () => {},
-  onAfter: () => {
-    window.scrollTo(0, {});
-  },
+insert(newItem, 0);
+nextTick(() => {
+  window.scrollTo(0, {});
 });
 ```
 
@@ -212,9 +227,16 @@ onBefore、插入操作、onAfter都是串行异步执行，因此在`onBefore`�
 为了让数据正确，insert函数调用会清除全部缓存。
 :::
 
-### remove
+### 移除列表项
+在下一页有缓存的情况下，它将会在移除一项后使用下一页的缓存补充到列表项尾部，来保证和重新请求当前页数据一致的效果，在**append模式**和**非append模式**下表现相同。
 
-列表项移除函数，在下一页有缓存的情况下，它将会在移除一项后使用下一页的缓存补充到列表项尾部，来保证和重新请求当前页数据一致的效果，在**append模式**和**非append模式**下表现相同。
+```typescript
+/**
+ * 移除一条数据
+ * @param index 移除的索引
+ */
+remove: (index: number) => void;
+```
 
 但在以下两种情况下，它将重新发起请求刷新对应页的数据：
 1. 下一页没有缓存
@@ -224,16 +246,38 @@ onBefore、插入操作、onAfter都是串行异步执行，因此在`onBefore`�
 为了让数据正确，remove函数调用会清除全部缓存。
 :::
 
-### refresh
+### 更新数据项
+当你想要更新列表项时，使用此函数实现。
+```typescript
+/**
+ * 替换一条数据
+ * @param item 替换项
+ * @param index 替换位置（索引）
+ */
+replace: (item: LD[number], index: number) => void;
+```
+
+### 刷新指定页的数据
 
 当你在数据操作后不希望本地更新列表项，而是重新请求服务端的数据，你可以用refresh刷新任意页的数据，而不需要重置列表数据让用户又从第一页开始浏览。
 
-### reload
+```typescript
+/**
+ * 刷新指定页码数据，此函数将忽略缓存强制发送请求
+ * @param refreshPage 刷新的页码
+ */
+refresh: (refreshPage: number) => void;
+```
 
-重置列表，它将清空全部缓存，并重新加载第一页。
+### 重置列表
+它将清空全部缓存，并重新加载第一页。
 
-### replace
-敬请期待...
+```typescript
+/**
+ * 从第一页开始重新加载列表，并清空缓存
+ */
+reload: () => void;
+```
 
 ## 类型
 
@@ -292,7 +336,7 @@ interface UsePaginationReturnType<LD extends any[], R> {
 
 /**
  * 基于alova.js的vue分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/移除
+ * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/替换/移除
  *
  * @param handler method创建函数
  * @param config pagination hook配置
@@ -448,3 +492,4 @@ export declare function usePagination<S extends Writable<any>, E extends Writabl
 
 1. 列表请求支持缓存功能，它极大地提高了列表性能，当你对列表进行操作时，其内部都会自行维护它所产生的缓存，目前是通过修改每个Method实例的**name**属性实现追踪的，因此传入usePagination的Method实例暂不支持自定义name，这可能会影响到你对Method的管理，后续的版本中我们也将对它进行优化。
 2. `insert`函数限制，因为usePagination所返回的data并不是useWatcher返回的data，目前暂无法使用[延迟数据更新](../../06-next-step/08-delayed-data-update.md)功能，如果你的新增列表项依赖服务端数据，建议使用`refresh`或`reload`重新请求数据，同时我们将在后续的版本中陆续支持。
+3. **缓存占位模式** 和 **恢复模式** 暂时无效。

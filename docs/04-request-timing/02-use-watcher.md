@@ -374,18 +374,44 @@ const {
 
 ## 请求防抖
 通常我们都会在频繁触发的事件层面编写防抖代码，这次我们在请求层面实现了防抖功能，这意味着你再也不用在模糊搜索功能中自己实现防抖了，用法也非常简单。
+:::info Tips：什么是函数防抖
+函数防抖（debounce），就是指触发事件后，在 n 秒内函数只能执行一次，如果触发事件后在 n 秒内又触发了事件，则会重新计算函数延执行时间（在这里和函数节流区分一下，函数节流是在触发完事件之后的一段时间之内不能再次触发事件）
+:::
+
+### 设置所有监听状态的防抖时间
 ```javascript
 const {
   loading,
   data,
   error
-} = useWatcher(() => filterTodoList(keyword), 
-  [keyword], {
+} = useWatcher(() => filterTodoList(keyword, date), 
+  [keyword, date], {
 
     // highlight-start
-    // 设置debounce属性，单位为毫秒
-    // 如这边的keyword频繁变化，只有在停止变化后500ms才发送请求
+    // 设置debounce为数字时表示为所有监听状态的防抖时间，单位为毫秒
+    // 如这边表示当状态keyword、date的一个或多个变化时，将在500ms后才发送请求
     debounce: 500,
+    // highlight-end
+  }
+);
+```
+
+### 为单个监听状态设置防抖时间
+很多场景下，我们只需要对某几个频繁变化的监听状态进行防抖，如文本框的`onInput`触发的状态变化，可以这样做：
+```javascript
+const {
+  loading,
+  data,
+  error
+} = useWatcher(() => filterTodoList(keyword, date), 
+  [keyword, date], {
+
+    // highlight-start
+    // 以监听状态的数组顺序分别设置防抖时间，0或不传表示不防抖
+    // 这边监听状态的顺序是[keyword, date]，防抖数组设置的是[500, 0]，表示只对keyword单独设置防抖
+    debounce: [500, 0],
+    // 也可以这么按如下设置:
+    // debounce: [500],
     // highlight-end
   }
 );
