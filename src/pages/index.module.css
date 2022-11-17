@@ -21,3 +21,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.btn {
+  margin-right: 10px;
+}
+.btn:last-child {
+  margin-right: 0;
+}
+
+.logo {
+  width: 400px;
+}

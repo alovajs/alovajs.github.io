@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'alova.JS',
-  tagline: '一个请求场景管理库，让你的应用更聪明地请求',
+  tagline: '一个轻量级的MVVM请求场景管理库，可以让应用管理CS数据交互更高效，体验更好',
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -42,8 +42,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/alovajs/alovajs.github.io/tree/main/docs/templates/shared/',
+          editUrl: 'https://github.com/alovajs/alovajs.github.io/blob/main/',
         },
         // disable blog
         blog: false,
@@ -61,7 +60,7 @@ const config = {
         title: 'alova.JS',
         logo: {
           alt: 'ALOVA',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
@@ -119,6 +118,14 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/alovajs/alova',
               },
+              {
+                label: 'Issues',
+                href: 'https://github.com/alovajs/alova/issues',
+              },
+              {
+                label: 'Pull request',
+                href: 'https://github.com/alovajs/alova/pulls',
+              }
             ],
           },
         ],
