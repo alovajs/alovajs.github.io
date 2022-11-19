@@ -1,5 +1,5 @@
 ---
-title: Hide Referral Tips
+title: Hide recommend Tips
 sidebar_position: 10
 ---
 
