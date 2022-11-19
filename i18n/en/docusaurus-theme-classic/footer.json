@@ -1,0 +1,30 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Guide": {
+    "message": "Guide",
+    "description": "The label of footer link with label=Guide linking to /overview/index"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/alovajs/alova"
+  },
+  "link.item.label.Issues": {
+    "message": "Issues",
+    "description": "The label of footer link with label=Issues linking to https://github.com/alovajs/alova/issues"
+  },
+  "link.item.label.Pull request": {
+    "message": "Pull request",
+    "description": "The label of footer link with label=Pull request linking to https://github.com/alovajs/alova/pulls"
+  },
+  "copyright": {
+    "message": "Copyright © 2022 alova.js Team",
+    "description": "The footer copyright"
+  }
+}

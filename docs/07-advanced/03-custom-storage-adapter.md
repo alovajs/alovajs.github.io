@@ -1,26 +1,28 @@
 ---
-title: 自定义存储适配器
+title: Custom Storage Adapter
 sidebar_position: 30
 ---
 
+Alova involves multiple functions that require data persistence, such as persistent caching, silent commit, and offline commit. **By default, alova will use `localStorage` to store persistent data**, but considering the non-browser environment, it also supports customization.
 
-alova中涉及多个需要数据持久化的功能，如持久化缓存、静默提交和离线提交。**在默认情况下，alova会使用`localStorage`来存储持久化数据**，但考虑到非浏览器环境下，因此也支持了自定义。
+Custom storage adapters are also very simple, you only need to specify functions to save data, get data, and remove data, roughly like this.
 
-自定义存储适配器同样非常简单，你只需要指定保存数据、获取数据，以及移除数据的函数即可，大致是这样的。
 ```javascript
 const customStorageAdapter = {
   setItem(key, value) {
-    // 保存数据
+    // save data
   },
   getItem(key) {
-    // 获取数据
+    // retrieve data
   },
   removeItem(key) {
-    // 移除数据
+    // remove data
   }
 };
 ```
-然后在创建`alova`实例时传入这个适配器即可。
+
+Then pass in this adapter when creating an `alova` instance.
+
 ```javascript
 const alovaInstance = createAlova({
   // ...

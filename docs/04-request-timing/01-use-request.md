@@ -1,75 +1,75 @@
 ---
-title: 发送请求
+title: send request
 sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-接下来我们要来看看如何实际发出请求了，在`alova`中提供了`useRequest`、`useWatcher`、`useFetcher`三种`use hook`实现请求时机，由它们控制何时应该发出请求，同时将会为我们创建和维护状态化的请求相关数据，如`loading`、`data`、`error`等，无需自主维护这些状态，下面我们来了解下它们。
+Next, let's take a look at how to actually make a request. In `alova`, `useRequest`, `useWatcher`, and `useFetcher` three `use hook` are provided to realize the request timing, and they control when the request should be issued. At the same time, it will create and maintain stateful request-related data for us, such as `loading`, `data`, `error`, etc. There is no need to maintain these states independently. Let's learn about them below.
 
-本次我们先了解第一个use hook，**useRequest**，它表示一次请求的发送，执行`useRequest`时默认会发送一次请求，在页面获取初始数据时是最常用的方法，同时也支持关闭它的默认的请求发送，这在提交数据等通过点击事件触发的请求场景非常有用。。
+This time, let's first understand the first use hook, **useRequest**, which represents the sending of a request. When executing `useRequest`, a request will be sent by default. It is the most commonly used method for obtaining initial data on a page, and it also supports Turn off its default request sending, which is very useful in request scenarios such as submitting data that are triggered by click events. .
 
-## 初始数据请求
-我们来为 todo 列表获取页面数据。
+## Initial data request
+
+Let's get page data for the todo list.
 
 <Tabs>
 <TabItem value="1" label="vue">
 
 ```html
 <template>
-	<!-- 你可以直接使用 data 来渲染 todo 列表 -->
-	<div v-if="loading">Loading...</div>
-	<div
-		v-else-if="error"
-		class="error">
-		{{ error.message }}
-	</div>
-	<template v-else>
-		<div v-for="todo in data">
-			<div class="todo-title">{{ todo.title }}</div>
-			<div class="todo-time">{{ todo.time }}</div>
-		</div>
-	</template>
+  <!-- You can use data directly to render the todo list -->
+  <div v-if="loading">Loading...</div>
+  <div
+    v-else-if="error"
+    class="error">
+    {{ error.message }}
+  </div>
+  <template v-else>
+    <div v-for="todo in data">
+      <div class="todo-title">{{ todo.title }}</div>
+      <div class="todo-time">{{ todo.time }}</div>
+    </div>
+  </template>
 </template>
 
 <script setup>
-const {
-	// loading是加载状态值，当加载时它的值为true，结束后自动更新为false
-	// 它是一个Ref类型的值，你可以通过loading.value访问它，或直接绑定到界面中
-	loading,
+  const {
+    // loading is the loading state value, when it is loaded, its value is true, and it is automatically updated to false after the end
+    // It is a value of type Ref, you can access it through loading.value, or bind directly to the interface
+    loading,
 
-	// 响应数据，同样是Ref值
-	data,
+    // Response data, also Ref value
+    data,
 
-	// 请求错误对象，Ref值，请求错误时有值，否则为undefined
-	error,
+    // Request error object, Ref value, there is a value when the request is wrong, otherwise it is undefined
+    error,
 
-	// 成功回调绑定
-	onSuccess,
+    // successful callback binding
+    onSuccess,
 
-	// 失败回调绑定
-	onError,
+    // Failed callback binding
+    onError,
 
-	// 完成回调绑定
-	onComplete
+    // complete callback binding
+    onComplete
 
-	// 直接将Method实例传入即可发送请求
-} = useRequest(todoListGetter, {
-	// 请求响应前，data的初始值
-	initialData: []
-});
-onSuccess(todoListRaw => {
-	console.log('请求成功，响应数据为:', todoListRaw);
-});
-onError(error => {
-	console.log('请求失败，错误信息为:', error);
-});
-onComplete(() => {
-	console.log('请求完成，不管成功失败都会调用');
-});
+    // Directly pass in the Method instance to send the request
+  } = useRequest(todoListGetter, {
+    // Initial value of data before request response
+    initialData: []
+  });
+  onSuccess(todoListRaw => {
+    console.log('The request is successful, the response data is:', todoListRaw);
+  });
+  onError(error => {
+    console.log('The request failed, the error message is:', error);
+  });
+  onComplete(() => {
+    console.log('The request is completed, it will be called regardless of success or failure');
+  });
 </script>
-
 ```
 
 </TabItem>
@@ -77,208 +77,219 @@ onComplete(() => {
 
 ```jsx
 const App = () => {
-	const {
-		// loading是加载状态值，当加载时它的值为true，结束后自动更新为false
-		// 它的值为普通的boolean值，请求状态变化时内部将自动调用set函数更新它的值
-		loading,
+  const {
+    // loading is the loading state value, when it is loaded, its value is true, and it is automatically updated to false after the end
+    // Its value is a normal boolean value. When the request state changes, the set function will be automatically called internally to update its value
+    loading,
 
-		// 响应数据
-		data,
+    // response data
+    data,
 
-		// 请求错误对象，请求错误时有值，否则为undefined
-		error,
+    // Request error object, it has a value when the request is wrong, otherwise it is undefined
+    error,
 
-		// 成功回调绑定
-		onSuccess,
+    // successful callback binding
+    onSuccess,
 
-		// 失败回调绑定
-		onError,
+    // Failed callback binding
+    onError,
 
-		// 完成回调绑定
-		onComplete
+    // complete callback binding
+    onComplete
 
-		// 直接将Method实例传入即可发送请求
-	} = useRequest(todoListGetter, {
-		// 请求响应前，data的初始值
-		initialData: []
-	});
-	onSuccess(todoListRaw => {
-		console.log('请求成功，响应数据为:', todoListRaw);
-	});
-	onError(error => {
-		console.log('请求失败，错误信息为:', error);
-	});
-	onComplete(() => {
-		console.log('请求完成，不管成功失败都会调用');
-	});
+    // Directly pass in the Method instance to send the request
+  } = useRequest(todoListGetter, {
+    // Initial value of data before request response
+    initialData: []
+  });
+  onSuccess(todoListRaw => {
+    console.log('The request is successful, the response data is:', todoListRaw);
+  });
+  onError(error => {
+    console.log('The request failed, the error message is:', error);
+  });
+  onComplete(() => {
+    console.log('The request is completed, it will be called regardless of success or failure');
+  });
 
-	// 你可以直接使用 todoList 来渲染 todo 列表
-	if (loading) {
-		return <div>Loading...</div>;
-	} else if (error) {
-		return <div class="error">{ error.message }</div>;
-	} else {
-		return (
-			<>
-				<div v-for="todo in data">
-					<div class="todo-title">{{ todo.title }}</div>
-					<div class="todo-time">{{ todo.time }}</div>
-				</div>
-			</>
-		);	
-	}
-}
-
+  // You can use todoList directly to render the todo list
+  if (loading) {
+    return <div>Loading...</div>;
+  } else if (error) {
+    return <div class="error">{error.message}</div>;
+  } else {
+    return (
+      <>
+        <div v-for="todo in data">
+          <div class="todo-title">{todo.title}</div>
+          <div class="todo-time">{todo.time}</div>
+        </div>
+      </>
+    );
+  }
+};
 ```
+
 </TabItem>
 <TabItem value="3" label="svelte">
 
 ```html
 <script>
-const {
-	// loading是加载状态值，当加载时它的值为true，结束后自动更新为false
-	// 它是一个Writable类型的值，内部将维护它
-	loading,
+  const {
+    // loading is the loading state value, when it is loaded, its value is true, and it is automatically updated to false after the end
+    // it is a Writable value, it will be maintained internally
+    loading,
 
-	// 响应数据
-	data,
+    // response data
+    data,
 
-	// 请求错误对象，请求错误时有值，否则为undefined
-	error,
+    // Request error object, it has a value when the request is wrong, otherwise it is undefined
+    error,
 
-	// 成功回调绑定
-	onSuccess,
+    // successful callback binding
+    onSuccess,
 
-	// 失败回调绑定
-	onError,
+    // Failed callback binding
+    onError,
 
-	// 完成回调绑定
-	onComplete
+    // complete callback binding
+    onComplete
 
-	// 直接将Method实例传入即可发送请求
-} = useRequest(todoListGetter, {
-	// 请求响应前，data的初始值
-	initialData: []
-});
-onSuccess(todoListRaw => {
-	console.log('请求成功，响应数据为:', todoListRaw);
-});
-onError(error => {
-	console.log('请求失败，错误信息为:', error);
-});
-onComplete(() => {
-	console.log('请求完成，不管成功失败都会调用');
-});
+    // Directly pass in the Method instance to send the request
+  } = useRequest(todoListGetter, {
+    // Initial value of data before request response
+    initialData: []
+  });
+  onSuccess(todoListRaw => {
+    console.log('The request is successful, the response data is:', todoListRaw);
+  });
+  onError(error => {
+    console.log('The request failed, the error message is:', error);
+  });
+  onComplete(() => {
+    console.log('The request is completed, it will be called regardless of success or failure');
+  });
 </script>
 
-<!-- 你可以直接使用 todoList 来渲染 todo 列表 -->
+<!-- You can use todoList directly to render the todo list -->
 {#if $loading}
-	<div>Loading...</div>
+<div>Loading...</div>
 {:else if $error}
-	<div class="error">{ $error.message }</div>
-{:else}
-	{#each $data as todo}
-		<div>
-			<div class="todo-title">{ todo.title }</div>
-			<div class="todo-time">{ todo.time }</div>
-		</div>
-	{/each}
-{/if}
+<div class="error">{ $error.message }</div>
+{:else} {#each $data as todo}
+<div>
+  <div class="todo-title">{ todo.title }</div>
+  <div class="todo-time">{ todo.time }</div>
+</div>
+{/each} {/if}
 ```
 
 </TabItem>
 </Tabs>
 
-## 手动发送请求
-当你需要创建一条新的 todo 项时，可以先关闭默认发送请求，转为手动触发请求。然后将 useRequest 的第一个参数改为返回`Method`实例的函数，该函数在触发请求时被调用。
+## Manually send the request
+
+When you need to create a new todo item, you can turn off the default sending request first and switch to triggering the request manually. Then change the first parameter of useRequest to a function that returns an instance of `Method`, which is called when the request is fired.
 
 ```javascript
 const createTodoPoster = newTodo => alovaInstance.Post('/todo', newTodo);
 
 const {
-	loading,
-	data,
-	error,
+  loading,
+  data,
+  error,
 
-	// 手动发送器请求的函数，调用后发送请求
-	send: addTodo
+  // The function of the manual sender request, the request is sent after the call
+  send: addTodo
 } = useRequest(newTodo => createTodoPoster(newTodo), {
-	// 当immediate为false时，默认不发出
-	immediate: false
+  // When immediate is false, it is not emitted by default
+  immediate: false
 });
 
-// 手动发送请求
+// Manually send the request
 const handleAddTodo = () => {
-	/** 手动触发函数可接受任意个参数，这些参数将被传入4个函数
-	 * 1. useRequest的第一个参数为回调函数时可以接收到
-	 * 2. onSuccess设置的回调中从第二个参数开始接收（第一个参数为响应数据）
-	 * 3. onError设置的回调中从第二个参数开始接收（第一个参数为错误对象）
-	 * 4. onComplete设置的回调中从第一个参数开始接收
-	 * 具体见下一小节
-	 * 
-	 * 返回：一个Promise对象，可接收响应数据
-	 */
-	const newTodo = {
-		title: '新的todo项',
-		time: new Date().toLocaleString()
-	};
-	addTodo(newTodo)
-		.then(result => {
-			console.log('新增todo项成功，响应数据为:', result);
-		})
-		.catch(error => {
-			console.log('新增todo项失败，错误信息为:', error);
-		});
+  /** Manual trigger function can accept any number of parameters, these parameters will be passed to 4 functions
+   * 1. It can be received when the first parameter of useRequest is a callback function
+   * 2. The callback set by onSuccess starts to receive from the second parameter (the first parameter is the response data)
+   * 3. The callback set by onError starts to receive from the second parameter (the first parameter is the error object)
+   * 4. Received from the first parameter in the callback set by onComplete
+   * See next section for details
+   *
+   * Returns: a Promise object that can receive response data
+   */
+  const newTodo = {
+    title: 'New todo item',
+    time: new Date().toLocaleString()
+  };
+  addTodo(newTodo)
+    .then(result => {
+      console.log('Add todo item successfully, the response data is:', result);
+    })
+    .catch(error => {
+      console.log('Failed to add todo item, the error message is:', error);
+    });
 };
 ```
 
-## send函数参数传递规则
-在上面的示例中，调用send函数手动触发请求，它可以接受任意多个参数，这些参数将分别被以下4个函数接收：
+## Send function parameter passing rules
 
-### useRequest回调函数
-当useRequest的第一个参数设置为回调函数时可以接收到，具体如下：
+In the above example, the send function is called to manually trigger the request, which can accept any number of parameters, which will be received by the following 4 functions respectively:
+
+### useRequest callback function
+
+It can be received when the first parameter of useRequest is set to the callback function, as follows:
+
 ```javascript
 const { send } = useRequest(id => removeTodoPoster(id));
-send(1);	// 上面回调函数中的id将接收到1
+send(1); // the id in the above callback function will receive 1
 ```
-### onSuccess回调函数
-onSuccess设置的回调中从第二个参数开始接收（第一个参数为响应数据）
+
+### onSuccess callback function
+
+The callback set by onSuccess starts to receive from the second parameter (the first parameter is the response data)
+
 ```javascript
 const { send, onSuccess } = useRequest(id => removeTodoPoster(id));
 onSuccess((responseData, id) => {
-	// responseData为响应的数据
-	// id将接收到1
+  // responseData is the response data
+  // id will receive 1
 });
 send(1);
 ```
 
-### onError回调函数
-onError设置的回调中从第二个参数开始接收（第一个参数为错误对象）
+### onError callback function
+
+The callback set by onError starts to receive from the second parameter (the first parameter is the error object)
+
 ```javascript
 const { send, onError } = useRequest(id => removeTodoPoster(id));
 onError((err, id) => {
-	// err为请求错误时抛出的Error对象
-	// id将接收到1
+  // err is the Error object thrown when the request is wrong
+  // id will receive 1
 });
 send(1);
 ```
 
-### onComplete回调函数
-4. onComplete设置的回调中从第一个参数开始接收
+### onComplete callback function
+
+4. Receive from the first parameter in the callback set by onComplete
+
 ```javascript
 const { send, onComplete } = useRequest(id => removeTodoPoster(id));
 onComplete(id => {
-	// id将接收到1
+  // id will receive 1
 });
 send(1);
 ```
 
-## 设置初始响应数据
-一个页面在获取到初始数据前，不可避免地需要等待服务端响应，在响应前一般需要先将状态初始化为一个空数组或空对象，以免造成页面报错，我们可以在`useRequest`中的第二个参数实现初始数据的设置。
+## Set initial response data
+
+Before a page gets the initial data, it inevitably needs to wait for the server to respond. Before responding, it is generally necessary to initialize the state to an empty array or empty object, so as to avoid page errors. A parameter realizes the setting of the initial data.
+
 ```javascript
-// 在useRequest中设置初始数据
+// Set initial data in useRequest
 const {
-  // 响应前data的初始值为[]，而不是undefined
+  // The initial value of data before the response is [], not undefined
   // highlight-start
   data
 } = useRequest(todoListGetter, {
@@ -287,19 +298,21 @@ const {
 // highlight-end
 ```
 
-## 手动中断请求
-未设置`timeout`参数时请求是永不超时的，如果需要手动中断请求，可以在`useRequest`函数被调用时接收`abort`方法。
+## Manual interrupt request
+
+When the `timeout` parameter is not set, the request will never time out. If you need to manually interrupt the request, you can receive the `abort` method when the `useRequest` function is called.
+
 ```javascript
 const {
   // ...
   // highlight-start
-  // abort函数用于中断请求
+  // abort function is used for interrupt request
   abort
   // highlight-end
 } = useRequest(todoListGetter);
 
 // highlight-start
-// 调用abort即可中断请求
+// Call abort to interrupt the request
 const handleCancel = () => {
   abort();
 };

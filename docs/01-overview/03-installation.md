@@ -1,19 +1,21 @@
 ---
-title: 安装/使用
+title: Install
 sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-使用alova时，请确保以下版本
+When using alova, make sure the following version
+
 1. React: > v16.8
 2. Vue: 3.x
-3. Svelte: 任意
+3. Svelte: any
 
-> 想先尝试一下吗？可以[点此](#xx)查看示例！
+> Want to try it out first? You can [click here](../example/init-page) to see the example!
 
-## 安装
+## Install
+
 <Tabs>
 <TabItem value="1" label="npm">
 
@@ -31,7 +33,7 @@ yarn add alova
 </TabItem>
 </Tabs>
 
-## 在esModule中使用
+## ESM
 
 <Tabs>
 <TabItem value="1" label="vue">
@@ -41,14 +43,14 @@ import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
 import VueHook from 'alova/vue';
 const alovaInstance = createAlova({
-	// 服务器根目录
-	baseURL: 'https://api.alovajs.org',
+  // server root directory
+  baseURL: 'https://api.alovajs.org',
 
-	// VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等（后续详细介绍）
-	statesHook: VueHook,
+  // VueHook is used to create ref status, including request status loading, response data data, request error object error, etc. (detailed later)
+  statesHook: VueHook,
 
-	// 请求适配器，我们推荐并提供了fetch请求适配器
-	requestAdapter: GlobalFetch()
+  // request adapter, we recommend and provide the fetch request adapter
+  requestAdapter: GlobalFetch()
 });
 ```
 
@@ -60,16 +62,17 @@ import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
 import ReactHook from 'alova/react';
 const alovaInstance = createAlova({
-	// 服务器根目录
-	baseURL: 'https://api.alovajs.org',
+  // server root directory
+  baseURL: 'https://api.alovajs.org',
 
-	// ReactHook用于创建react状态，包括请求状态loading、响应数据data、请求错误对象error等（后续详细介绍）
-	statesHook: ReactHook,
+  // ReactHook is used to create react state, including request state loading, response data data, request error object error, etc. (detailed later)
+  statesHook: ReactHook,
 
-	// 请求适配器，我们推荐并提供了fetch请求适配器
-	requestAdapter: GlobalFetch()
+  // request adapter, we recommend and provide the fetch request adapter
+  requestAdapter: GlobalFetch()
 });
 ```
+
 </TabItem>
 <TabItem value="3" label="svelte">
 
@@ -78,37 +81,41 @@ import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
 import SvelteHook from 'alova/svelte';
 const alovaInstance = createAlova({
-	// 服务器根目录
-	baseURL: 'https://api.alovajs.org',
+  // server root directory
+  baseURL: 'https://api.alovajs.org',
 
-	// SvelteHook用于创建svelte的store状态，包括请求状态loading、响应数据data、请求错误对象error等（后续详细介绍）
-	statesHook: SvelteHook,
+  // SvelteHook is used to create the store status of svelte, including request status loading, response data data, request error object error, etc. (detailed later)
+  statesHook: SvelteHook,
 
-	// 请求适配器，我们推荐并提供了fetch请求适配器
-	requestAdapter: GlobalFetch()
+  // request adapter, we recommend and provide the fetch request adapter
+  requestAdapter: GlobalFetch()
 });
 ```
+
 </TabItem>
 </Tabs>
 
-## cdn
+## CDN
 
-### 引入核心代码
+### Import core code
+
 ```html
 <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
 ```
-导入后，你可以通过`window.alova`使用api。
 
-### 引入fetch adapter
+Once imported, you can use the api via `window.alova`.
+
+### Introduce fetch adapter
+
 ```html
 <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
 ```
-你可以通过`window.GlobalFetch`使用，它将使用`winfow.fetch`进行请求。
 
+You can use `window.GlobalFetch` which will use `winfow.fetch` for requests.
 
-### 引入States Hook
+### Introduce States Hook
 
-你可以根据项目所用的框架，使用不同的States Hook
+You can use different States Hook according to the framework used by the project
 
 <Tabs>
 <TabItem value="1" label="vue">
@@ -117,46 +124,52 @@ const alovaInstance = createAlova({
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="https://unpkg.com/alova/dist/hooks/vuehook.umd.min.js"></script>
 ```
-当在vue3项目中使用时需引入，你可以通过`window.VueHook`访问
 
-> 它依赖vue，因此需先引入vue
+It needs to be imported when used in a vue3 project, you can access it through `window.VueHook`
+
+> It depends on vue, so vue needs to be introduced first
 
 </TabItem>
 <TabItem value="2" label="react">
 
 ```html
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/alova/dist/hooks/reacthook.umd.min.js"></script>
 ```
-当在react项目中使用时需引入，你可以通过`window.ReactHook`访问
 
-> 它依赖react，因此需先引入react和react-dom
+It needs to be imported when used in a react project, you can access it through `window.ReactHook`
+
+> It depends on react, so you need to introduce react and react-dom first
 
 </TabItem>
 <TabItem value="3" label="svelte">
 
 :::tip
-svelte依赖于编译工具，不能通过cdn直接使用
+svelte depends on compilation tools and cannot be used directly through cdn
 :::
 
-详情见 [svelte.dev](https://svelte.dev/)
+See [svelte.dev](https://svelte.dev/) for details
 
 </TabItem>
 </Tabs>
 
+### In static html
 
-### 在静态html中使用
 <Tabs>
 <TabItem value="1" label="vue">
 
 ```html
 <script>
-const alovaInstance = window.alova.createAlova({
-	baseURL: 'https://api.alovajs.org',
-	statesHook: window.VueHook,
-	requestAdapter: window.GlobalFetch()
-});
+  const alovaInstance = window.alova.createAlova({
+    baseURL: 'https://api.alovajs.org',
+    statesHook: window.VueHook,
+    requestAdapter: window.GlobalFetch()
+  });
 </script>
 ```
 
@@ -165,11 +178,11 @@ const alovaInstance = window.alova.createAlova({
 
 ```html
 <script>
-const alovaInstance = window.alova.createAlova({
-	baseURL: 'https://api.alovajs.org',
-	statesHook: window.ReactHook,
-	requestAdapter: window.GlobalFetch()
-});
+  const alovaInstance = window.alova.createAlova({
+    baseURL: 'https://api.alovajs.org',
+    statesHook: window.ReactHook,
+    requestAdapter: window.GlobalFetch()
+  });
 </script>
 ```
 

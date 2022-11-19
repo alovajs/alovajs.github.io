@@ -1,74 +1,69 @@
 ---
-title: 自定义States Hook
+title: Custom States Hook
 sidebar_position: 20
 ---
 
-还记得你在调用`createAlova`时传入的`statesHook`吗？它将决定你在请求时返回哪个MVVM库的状态，如在vue项目中使用`VueHook`，在react项目中使用`ReactHook`，在svelte项目中使用`SvelteHook`，目前只支持这三个库。在大部分情况下你应该用不到这个功能，但如果你需要适配更多我们还不支持的MVVM库，就需要自定义编写`statesHook`了。
+Remember the `statesHook` you passed in when calling `createAlova`? It will decide which MVVM library status you return when you request, such as `VueHook` in vue project, `ReactHook` in react project, `SvelteHook` in svelte project, currently only these three libraries are supported. In most cases you should not use this feature, but if you need to adapt to more MVVM libraries that we don't support yet, you need to custom write `statesHook`.
 
-`statesHook`是一个包含特定函数的普通对象，不过这些还是基本不涉及算法，我们来看看 **VueHook** 是怎么编写的吧。
+`statesHook` is an ordinary object containing certain functions, but these are still basically no algorithms, let's see how **VueHook** is written.
 
-## statesHook结构
+## statesHook structure
+
 ```javascript
 import { ref, watch, onUnmounted } from 'vue';
 
 const VueHook = {
-  // 状态创建函数
+  // state creation function
   create: rawData => ref(data),
 
-  // 状态导出函数
+  // state export function
   export: state => state,
 
-  // 脱水函数
+  // dehydration function
   dehydrate: state => state.value,
 
-  // 响应式状态更新函数
+  // responsive state update function
   update: (newVal, states) => {
     Object.keys(newVal).forEach(key => {
       states[key].value = newVal[key];
     });
   },
 
-  // 请求发送控制函数
-  effectRequest({
-    handler,
-    removeStates,
-    saveStates,
-    immediate,
-    frontStates,
-    watchingStates
-  }) {
-    // 组件卸载时移除对应状态
+  // request to send control function
+  effectRequest({ handler, removeStates, saveStates, immediate, frontStates, watchingStates }) {
+    // Remove the corresponding state when the component is unloaded
     onUnmounted(removeStates);
 
-    // 调用useRequest和useFetcher时，watchingStates为undefined
+    // When calling useRequest and useFetcher, watchingStates is undefined
     if (!watchingStates) {
       handler();
       return;
     }
 
-    // 调用useWatcher时，watchingStates为需要监听的状态数组
-    // immediate为true时，表示需要立即发送请求
+    // When calling useWatcher, watchingStates is an array of states that need to be monitored
+    // When immediate is true, it means that the request needs to be sent immediately
     watch(watchingStates, handler, { immediate });
-  },
+  }
 };
 ```
 
-## 自定义statesHook函数说明
-> 以下5个函数均必须指定。
+## Custom statesHook function description
 
-- **create**：响应式状态创建函数，`loading`、`error`、`data`、`downloading`、`uploading`等都是调用此函数创建的，如vue3项目下将创建为ref值；
-- **export**：状态导出函数，此函数接收create函数创建的响应式状态，并导出最终给开发者使用的状态，这里`VueHook`导出的状态是原状态；
-- **dehydrate**：脱水函数，意思是将响应式状态转换为普通数据，与create是相反的操作，在`updateState`中；
-- **update**：响应式状态更新函数，`alova`内部维护的状态更新都是通过此函数完成。此函数接收两个参数，第一个参数是新的数据对象，第二个参数是原响应式状态的map集合，这里你可以固定写一个循环更新`states`；
-- **effectRequest**：请求发送控制函数，它会在`useRequest`、`useWatcher`、`useFetcher`被调用时立即执行此函数，我们要在这个函数内要完成三件事：
-    1. 当前组件卸载时，调用removeStates函数移除当前组件涉及到的响应式状态，避免内存溢出;
-    2. 当调用useWatcher时，绑定状态监听，状态改变时调用sendRequest函数，你可以用`states`是否为数组判断是否为`useWatcher`被调用，同时，`immediate`参数用于判断`useWatcher`调用时是否需要立即发送请求；
-    3. 当调用`useRequest`和`useFetcher`时，调用sendRequest发出一次请求，此时`states`为`undefined`；
+> The following 5 functions must be specified.
 
-:::caution 注意
-如果statesHook涉及的库是像`react`，每次重新渲染都会调用`alova`的use hook的，那么在`effectRequest`中还需要在每次重新渲染时触发`saveStates`函数，这是因为`react`每次重新渲染都会刷新它的状态引用，因此我们需要再次重新保存它们。
+- **create**: Responsive state creation function, `loading`, `error`, `data`, `downloading`, `uploading`, etc. are all created by calling this function, for example, it will be created as a ref value under the vue3 project ;
+- **export**: state export function, this function receives the responsive state created by the create function, and exports the state that is finally used by developers, where the state exported by `VueHook` is the original state;
+- **dehydrate**: Dehydration function, which means to convert the responsive state into normal data, which is the opposite of create, in `updateState`;
+- **update**: Responsive state update function, the state update maintained by `alova` is completed through this function. This function receives two parameters, the first parameter is the new data object, the second parameter is the map collection of the original reactive state, here you can write a fixed loop to update `states`;
+- **effectRequest**: request sending control function, it will execute this function immediately when `useRequest`, `useWatcher`, `useFetcher` are called, we need to do three things in this function:
+  1. When the current component is uninstalled, call the removeStates function to remove the responsive state involved in the current component to avoid memory overflow;
+  2. When calling useWatcher, bind the state monitor, and call the sendRequest function when the state changes. You can use whether `states` is an array to judge whether `useWatcher` is called, and at the same time, the `immediate` parameter is used to judge the `useWatcher` call whether the request needs to be sent immediately;
+  3. When calling `useRequest` and `useFetcher`, call sendRequest to send a request, at this time `states` is `undefined`;
+
+:::caution note
+If the library involved in statesHook is like `react`, the use hook of `alova` will be called each time it is re-rendered, then in `effectRequest` it is also necessary to trigger the `saveStates` function every time it re-renders, this is because `react` `Every re-render refreshes its state references, so we need to re-save them again.
 :::
 
-[ReactHook源码点此查看](https://github.com/alovajs/alova/blob/main/src/predefine/ReactHook.ts)
+[Click here to view the ReactHook source code](https://github.com/alovajs/alova/blob/main/src/predefine/ReactHook.ts)
 
-如果你在自定义statesHook时，也希望它可以支持typescript，可以 [点此查看](./typescript#请求适配器类型)
+If you want to support typescript when you customize statesHook, you can [click here](./typescript#request adapter type)

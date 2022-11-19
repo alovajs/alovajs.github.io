@@ -1,34 +1,32 @@
 ---
-title: 下载/上传进度
+title: Download/Upload progress
 sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+By default, upload and download progress is turned off. You need to enable upload and download progress information on the specified `Method` instance, as follows:
 
-默认情况下，上传和下载进度是关闭的，你需要在在指定的`Method`实例上开启上传和下载进度信息，具体如下：
+## download progress
 
-## 下载进度
-先将`enableDownload`设置为`true`，即表示开启了下载进度，然后在`useRequest`、`useWatcher`、`useFetcher`三个use hook中接收`downloading`响应式状态，下载过程中将持续更新这个状态。
+First set `enableDownload` to `true`, which means that the download progress is enabled, and then receive the `downloading` responsive state in the three use hooks `useRequest`, `useWatcher`, and `useFetcher`, which will be continuously updated during the download process. this state.
 
 <Tabs>
 <TabItem label="vue" value="1">
 
 ```html
 <template>
-  <div>文件大小：{{ downloading.total }}B</div>
-  <div>已下载：{{ downloading.loaded }}B</div>
-  <div>进度：{{ downloading.loaded / downloading.total * 100 }}%</div>
+  <div>File size: {{ downloading.total }}B</div>
+  <div>Downloaded: {{ downloading.loaded }}B</div>
+  <div>Progress: {{ downloading.loaded / downloading.total * 100 }}%</div>
 </template>
 
 <script setup>
-const downloadGetter = alovaInstance.Get('/tood/downloadfile', {
-  enableDownload: true
-});
-const {
-  dowinlading
-} = useRequest(downloadGetter);
+  const downloadGetter = alovaInstance.Get('/tood/downloadfile', {
+    enableDownload: true
+  });
+  const { dowinlading } = useRequest(downloadGetter);
 </script>
 ```
 
@@ -41,15 +39,15 @@ const downloadGetter = alovaInstance.Get('/tood/downloadfile', {
 });
 
 const App = () => {
-  const {
-    dowinlading
-  } = useRequest(downloadGetter);
-  return <>
-    <div>文件大小：{downloading.total}B</div>
-    <div>已下载：{downloading.loaded}B</div>
-    <div>进度：{downloading.loaded / downloading.total * 100}%</div>
-  </>;
-}
+  const { dowinlading } = useRequest(downloadGetter);
+  return (
+    <>
+      <div>File size: {downloading.total}B</div>
+      <div>Downloaded: {downloading.loaded}B</div>
+      <div>Progress: {(downloading.loaded / downloading.total) * 100}%</div>
+    </>
+  );
+};
 ```
 
 </TabItem>
@@ -57,42 +55,39 @@ const App = () => {
 
 ```html
 <script>
-const downloadGetter = alovaInstance.Get('/tood/downloadfile', {
-  enableDownload: true
-});
-const {
-  dowinlading
-} = useRequest(downloadGetter);
+  const downloadGetter = alovaInstance.Get('/tood/downloadfile', {
+    enableDownload: true
+  });
+  const { dowinlading } = useRequest(downloadGetter);
 </script>
 
-<div>文件大小：{downloading.total}B</div>
-<div>已下载：{downloading.loaded}B</div>
-<div>进度：{downloading.loaded / downloading.total * 100}%</div>
+<div>File size: {downloading.total}B</div>
+<div>Downloaded: {downloading.loaded}B</div>
+<div>Progress: {downloading.loaded / downloading.total * 100}%</div>
 ```
 
 </TabItem>
 </Tabs>
 
-## 上传进度
-上传进度与下载进度使用方法相同，先通过`enableUpload`开启上传进度信息，再通过接收`uploading`响应式状态接收。
+## upload progress
+
+The upload progress is used in the same way as the download progress. First, enable the upload progress information through `enableUpload`, and then receive it through the `uploading` response status.
 
 <Tabs>
 <TabItem label="vue" value="1">
 
 ```html
 <template>
-  <div>文件大小：{{ uploading.total }}B</div>
-  <div>已上传：{{ uploading.loaded }}B</div>
-  <div>进度：{{ uploading.loaded / uploading.total * 100 }}%</div>
+  <div>File size: {{ uploading.total }}B</div>
+  <div>Uploaded: {{ uploading.loaded }}B</div>
+  <div>Progress: {{ uploading.loaded / uploading.total * 100 }}%</div>
 </template>
 
 <script setup>
-const downloadGetter = alovaInstance.Get('/tood/uploadfile', {
-  enableUpload: true
-});
-const {
-  uploading
-} = useRequest(downloadGetter);
+  const downloadGetter = alovaInstance.Get('/tood/uploadfile', {
+    enableUpload: true
+  });
+  const { uploading } = useRequest(downloadGetter);
 </script>
 ```
 
@@ -105,15 +100,15 @@ const downloadGetter = alovaInstance.Get('/tood/uploadfile', {
 });
 
 const App = () => {
-  const {
-    uploading
-  } = useRequest(downloadGetter);
-  return <>
-    <div>文件大小：{uploading.total}B</div>
-    <div>已上传：{uploading.loaded}B</div>
-    <div>进度：{uploading.loaded / uploading.total * 100}%</div>
-  </>;
-}
+  const { uploading } = useRequest(downloadGetter);
+  return (
+    <>
+      <div>File size: {uploading.total}B</div>
+      <div>Uploaded: {uploading.loaded}B</div>
+      <div>Progress: {(uploading.loaded / uploading.total) * 100}%</div>
+    </>
+  );
+};
 ```
 
 </TabItem>
@@ -121,33 +116,31 @@ const App = () => {
 
 ```html
 <script>
-const downloadGetter = alovaInstance.Get('/tood/uploadfile', {
-  enableUpload: true
-});
-const {
-  uploading
-} = useRequest(downloadGetter);
+  const downloadGetter = alovaInstance.Get('/tood/uploadfile', {
+    enableUpload: true
+  });
+  const { uploading } = useRequest(downloadGetter);
 </script>
 
-<div>文件大小：{uploading.total}B</div>
-<div>已上传：{uploading.loaded}B</div>
-<div>进度：{uploading.loaded / uploading.total * 100}%</div>
+<div>File size: {uploading.total}B</div>
+<div>Uploaded: {uploading.loaded}B</div>
+<div>Progress: {uploading.loaded / uploading.total * 100}%</div>
 ```
 
 </TabItem>
 </Tabs>
 
-:::caution 使用`GlobalFetch`适配器需注意
-因fetch api限制，alova提供的 **GlobalFetch** 适配器不支持上传进度，后续将陆续提供更加完善的请求适配器。目前如需要上传进度，请自行编写请求适配器，详见 [编写请求适配器](../advanced/custom-http-adapter)。
+:::caution Caution when using the `GlobalFetch` adapter
+Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alova does not support upload progress, and more complete request adapters will be provided in the future. At present, if you need to upload the progress, please write your own request adapter. For details, see [Write a Request Adapter](../advanced/custom-http-adapter).
 :::
 
-## 上传/下载状态类型
+## upload/download status type
 
 ```typescript
 type Progress = {
-  /** 上传或下载的数据总数据量 */
+  /** The total amount of data uploaded or downloaded */
   total: number;
-  /** 已完成的数据 */
+  /** Completed data */
   loaded: number;
 };
 ```

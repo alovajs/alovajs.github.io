@@ -1,23 +1,23 @@
 ---
-title: 转换响应数据
+title: Transform response data
 sidebar_position: 10
 ---
 
-当响应数据结构不能直接满足前端需求时，我们可以为method实例设置`transformData`钩子函数将响应数据转换成需要的结构，数据转换后将会作为`data`状态的值。
+When the response data structure cannot directly meet the front-end requirements, we can set the `transformData` hook function for the method instance to convert the response data into the required structure, and the data will be used as the value of the `data` state after conversion.
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/tood/list', {
   params: {
-    page: 1,
+    page: 1
   },
 
-  // 函数接受未加工的数据和响应头对象，并要求将转换后的数据返回，它将会被赋值给data状态。
-  // 注意：rawData一般是响应拦截器过滤后的数据，响应拦截器的配置可以参考[设置全局响应拦截器]章节。
+  // The function accepts raw data and response header objects, and asks to return the converted data, which will be assigned to the data state.
+  // Note: rawData is generally the data filtered by the response interceptor. For the configuration of the response interceptor, please refer to the [Setting the Global Response Interceptor] chapter.
   transformData(rawData, headers) {
     return rawData.list.map(item => {
       return {
         ...item,
-        statusText: item.done ? '已完成' : '进行中',
+        statusText: item.done ? 'completed' : 'in progress'
       };
     });
   }

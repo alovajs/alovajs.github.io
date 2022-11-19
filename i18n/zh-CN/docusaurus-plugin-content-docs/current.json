@@ -1,0 +1,94 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.概览": {
+    "message": "概览",
+    "description": "The label for category 概览 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.示例": {
+    "message": "示例",
+    "description": "The label for category 示例 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.示例.link.generated-index.description": {
+    "message": "这里有丰富的示例，来展示alova在不同请求场景下的表现。",
+    "description": "The generated-index page description for category 示例 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.入门": {
+    "message": "入门",
+    "description": "The label for category 入门 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.在正确的时机请求": {
+    "message": "在正确的时机请求",
+    "description": "The label for category 在正确的时机请求 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.响应数据管理": {
+    "message": "响应数据管理",
+    "description": "The label for category 响应数据管理 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.下一步": {
+    "message": "下一步",
+    "description": "The label for category 下一步 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.高级": {
+    "message": "高级",
+    "description": "The label for category 高级 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.扩展": {
+    "message": "扩展",
+    "description": "The label for category 扩展 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.扩展hooks": {
+    "message": "扩展hooks",
+    "description": "The label for category 扩展hooks in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.其他": {
+    "message": "其他",
+    "description": "The label for category 其他 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Overview": {
+    "message": "Overview",
+    "description": "The label for category Overview in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Examples": {
+    "message": "Examples",
+    "description": "The label for category Examples in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Examples.link.generated-index.description": {
+    "message": "Here are rich examples to show how alova behaves in different request scenarios.",
+    "description": "The generated-index page description for category Examples in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Request at the right time": {
+    "message": "Request at the right time",
+    "description": "The label for category Request at the right time in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Response data management": {
+    "message": "Response data management",
+    "description": "The label for category Response data management in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Next step": {
+    "message": "Next step",
+    "description": "The label for category Next step in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Advanced": {
+    "message": "Advanced",
+    "description": "The label for category Advanced in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Extensions": {
+    "message": "Extensions",
+    "description": "The label for category Extensions in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.extend hooks": {
+    "message": "extend hooks",
+    "description": "The label for category extend hooks in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Others": {
+    "message": "Others",
+    "description": "The label for category Others in sidebar tutorialSidebar"
+  }
+}

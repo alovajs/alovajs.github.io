@@ -1,9 +1,9 @@
 ---
-title: 响应缓存-内存模式
+title: Response Cache - Memory Mode
 sidebar_position: 20
 ---
 
-> 示例以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](../overview/index);
+> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](../overview/index);
 
 <iframe src="https://codesandbox.io/embed/vite-vue-starter-cdgb8l?fontsize=14&hidenavigation=1&theme=dark&module=%2Fsrc%2FApp.vue"
   style={{
@@ -18,10 +18,10 @@ sidebar_position: 20
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-:::info 示例说明
-内存缓存模式是将响应数据存放在内存中，缓存在刷新页面即失效。
+:::info example description
+The memory cache mode stores the response data in memory, and the cache is invalid when the page is refreshed.
 
-*操作引导：*
-1. 点击以下的学生列表项，将会发送请求学生详细信息，此时模态框显示Loading状态；
-2. 点击遮罩关闭弹框，并重新打开它，此时将会命中缓存并立即显示学生详细信息，Request Records中不再打印请求记录；
+*Operation guide:*
+1. Click on the following student list item, the requesting student details will be sent, and the modal box will display the Loading status;
+2. Click the mask to close the pop-up box and reopen it. At this time, the cache will be hit and the student details will be displayed immediately, and the request record will no longer be printed in Request Records;
 :::

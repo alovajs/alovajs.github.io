@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'alova.JS',
-  tagline: '一个轻量级的MVVM请求场景管理库，可以让应用管理CS数据交互更高效，体验更好',
+  tagline: '一个轻量级的MVVM请求场景管理库，让应用管理CS数据交互更高效，体验更好',
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -23,11 +23,11 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans'],
+    defaultLocale: 'en',
+    locales: ['en', 'zh-CN'],
     localeConfigs: {
-      'zh-Hans': {
-        htmlLang: 'zh-Hans-GB',
+      en: {
+        htmlLang: 'en-GB'
       },
     }
   },
@@ -70,11 +70,11 @@ const config = {
             label: '指南',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
-          // {
-          //   type: 'localeDropdown',
-          //   docId: 'locale',
-          //   position: 'right',
-          // },
+          {
+            type: 'localeDropdown',
+            docId: 'locale',
+            position: 'right',
+          },
           {
             href: 'https://github.com/alovajs/alova',
             label: 'GitHub',

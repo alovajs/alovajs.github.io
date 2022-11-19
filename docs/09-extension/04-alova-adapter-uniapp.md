@@ -1,12 +1,12 @@
 ---
-title: Uniapp适配器
+title: Uniapp Adapter
 sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 安装
+## Install
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -26,7 +26,13 @@ yarn add @alova/adapter-uniapp
 </Tabs>
 
 ## UniappRequest
-敬请期待...
+
+Coming soon...
 
 ## uniappStorage
-敬请期待...
+
+Coming soon...
+
+## UniappMockRequest
+
+Coming soon...

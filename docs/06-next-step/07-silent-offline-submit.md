@@ -1,36 +1,32 @@
 ---
-title: 静默/离线提交
+title: Silent/Offline submit
 sidebar_position: 70
 ---
-
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+Suppose you want to further improve the experience of creating todo items, and let the user click the **Create** button to take effect immediately, without feeling the process of submitting to the server, you can consider using the silent submission method.
 
-假设你想要进一步提高创建todo项的体验感，让用户点击 **创建** 按钮后立即生效，而感觉不到提交服务器的过程，你可以考虑使用静默提交的方式。
+You might be thinking, can the server render the results to the user without a response? Yes, alova has a reliable mechanism for background requests. In the network connection environment, the request is repeated every 2 seconds until the request is successfully completed. This is very effective when the service is unstable. Of course, you still need to remind you that unstable In this case, if your data is displayed on multiple ends, it may be a little out of sync.
 
-你可能会想，服务器没有响应就可以把结果呈现给用户了吗？是的，alova具有后台请求可靠机制，在网络连接环境下间隔2秒重复发起请求，直到请求顺利完成，这在服务提供不稳定的时候很有效，当然，还是需要提醒你的是，不稳定的情况下，如果你的数据在多端展示时，可能就会有点不同步了。
+Let's show the code that silently creates todo items.
 
-我们来展示一下静默创建todo项的代码。
 ```javascript
 const createTodoPoster = newTodo => alovaInstance.Post('/todo/create', newTodo);
 
-const {
-  send,
-  onSuccess
-} = useRequest(createTodoPoster, {
-  // 在请求时开启静默提交
-  silent: true,
+const { send, onSuccess } = useRequest(createTodoPoster, {
+  // Enable silent submit on request
+  silent: true
 });
 onSuccess(() => {
-  // 设置为静默提交后，onSuccess将会立即被调用，并且回调函数的第一个参数为undefined
-  // 而onError将永远不会被调用
-  // 立即将新todo项添加到列表中
+  // After silent submission, onSuccess will be called immediately, and the first parameter of the callback function is undefined
+  // and onError will never be called
+  // Immediately add the new todo item to the list
   updateState(todoListGetter, todoList => [...todoList, newTodo]);
 });
 
-// 点击创建按钮触发此函数
+// Click the create button to trigger this function
 const handleSubmit = () => {
   send({
     title: 'test todo',
@@ -39,57 +35,58 @@ const handleSubmit = () => {
 };
 ```
 
-上面的静默提交会有一个问题，就是新的todo项没有id，而id一般需要等提交返回才行，此时我们可以使用延迟数据更新。
+There is a problem with the above silent submission, that is, the new todo item does not have an id, and the id generally needs to wait for the submission to return. At this time, we can use delayed data update.
+
 ```javascript
-// 省略其他代码...
+// omit other code...
 onSuccess(() => {
   updateState(todoListGetter, todoList => [
     ...todoList,
     {
-      // id设为占位符，等待响应后将自动替换为实际数据
+      // id is set as a placeholder, which will be automatically replaced with actual data after waiting for the response
       '+id': ({ id }) => id,
       ...newTodo
     }
   ]);
 });
 ```
-> 深入了解 [延迟数据更新](./delayed-data-update)
 
-## 离线提交
-如果你正在开发一个在线文档编写器，用户的每次输入都需要自动同步到服务端，即使是离线状态下也支持用户继续编写，在这种场景下，我们可以使用`alova`的离线提交机制，其实这个功能和静默提交功能是一体化的，都是得益于`alova`的后台请求可靠机制。
+> Learn more about [Delayed Data Update](./delayed-data-update)
 
-它的处理方式是，当开启了静默提交后，在离线状态时提交数据会直接将请求数据缓存在本地，等到网络恢复后，会自动将缓存的请求数据重新提交到服务端，这就保证了离线状态下的静默提交也是可靠的。
+## Offline submission
 
-接下来我们以在线文档编写器为示例，展示一下离线提交的代码。
+If you are developing an online document writer, each input of the user needs to be automatically synchronized to the server, and the user can continue to write even in the offline state. In this scenario, we can use the offline submission mechanism of `alova` , in fact, this function and the silent submission function are integrated, both benefit from the reliable mechanism of `alova` background request.
+
+Its processing method is that when silent submission is enabled, submitting data in offline state will directly cache the request data locally, and when the network is restored, the cached request data will be automatically resubmitted to the server, which ensures that Silent submits while offline are also reliable.
+
+Next, we take the online document writer as an example to show the code submitted offline.
 
 <Tabs>
 <TabItem label="vue" value="1">
 
 ```html
 <template>
-  <div v-if="loading">提交中...</div>
+  <div v-if="loading">Submitting...</div>
   <textarea v-model="editingText"></textarea>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useWatcher } from 'alova';
+  import { ref } from 'vue';
+  import { useWatcher } from 'alova';
 
-const editingText = ref('');
-const saveDoc = () => alovaInstance.Post('/doc/save', {
-  text: editingText.value
-});
-const {
-  loading
-} = useWatcher(saveDoc, [editingText], {
-  // 开启静默提交
-  silent: true,
+  const editingText = ref('');
+  const saveDoc = () =>
+    alovaInstance.Post('/doc/save', {
+      text: editingText.value
+    });
+  const { loading } = useWatcher(saveDoc, [editingText], {
+    // enable silent submit
+    silent: true,
 
-  // 设置500ms防抖降低服务器压力
-  debounce: 500
-});
+    // Set 500ms anti-shake to reduce server pressure
+    debounce: 500
+  });
 </script>
-
 ```
 
 </TabItem>
@@ -102,28 +99,24 @@ import { useWatcher } from 'alova';
 const saveDoc = text => alovaInstance.Post('/doc/save', { text });
 const App = () => {
   const [editingText, useEditingText] = useState('');
-  
-  const {
-    loading
-  } = useWatcher(() => saveDoc(editingText),
-    [editingText],
-    {
-      // 开启静默提交
-      silent: true,
 
-      // 设置500ms防抖降低服务器压力
-      debounce: 500
-    }
+  const { loading } = useWatcher(() => saveDoc(editingText), [editingText], {
+    // enable silent submit
+    silent: true,
+
+    // Set 500ms anti-shake to reduce server pressure
+    debounce: 500
+  });
+
+  return (
+    <>
+      {loading ? <div>Submitting...</div> : null}
+      <textarea
+        value={editingText}
+        onInput={e => setEditingText(e.target.value)}></textarea>
+    </>
   );
-
-  return <>
-    { loading ? <div>提交中...</div> : null }
-    <textarea
-      value={editingText}
-      onInput={e => setEditingText(e.target.value)}></textarea>
-  </>;
 };
-
 ```
 
 </TabItem>
@@ -131,35 +124,29 @@ const App = () => {
 
 ```html
 <script>
-import { writable } from 'svelte/store';
-import { useWatcher } from 'alova';
+  import { writable } from 'svelte/store';
+  import { useWatcher } from 'alova';
 
-const editingText = writable('');
-const saveDoc = () => alovaInstance.Post('/doc/save', {
-  text: $editingText
-});
-const {
-  loading
-} = useWatcher(
-  saveDoc, 
-  [editingText], 
-  {
-    // 开启静默提交
+  const editingText = writable('');
+  const saveDoc = () =>
+    alovaInstance.Post('/doc/save', {
+      text: $editingText
+    });
+  const { loading } = useWatcher(saveDoc, [editingText], {
+    // enable silent submit
     silent: true,
 
-    // 设置500ms防抖降低服务器压力
+    // Set 500ms anti-shake to reduce server pressure
     debounce: 500
-  }
-);
+  });
 </script>
 {#if loading}
-  <div>提交中...</div>
+<div>Submitting...</div>
 {/if}
-<textarea bind:value={editingText}></textarea>
-
+<textarea bind:value="{editingText}"></textarea>
 ```
 
 </TabItem>
 </Tabs>
 
-这样就完成了简单的在线文档编写器。当然，在静默提交创建todo项的例子中离线提交也是适用的，即在离线状态下也能保证顺利创建todo项。
+This completes the simple online document writer. Of course, offline submission is also applicable in the example of silent submission to create todo items, that is, the smooth creation of todo items can be guaranteed even in the offline state.

@@ -1,60 +1,60 @@
 ---
-title: 请求场景管理（RSM）
+title: RSM
 sidebar_position: 30
 ---
 
-## 什么是请求场景管理
+## What is request scene management
 
-我们在进行一次请求时总是要思考以下问题，
+We always have to think about the following questions when making a request,
 
-1. 什么时候发出请求；
-2. 是否要展示请求状态；
-3. 是否要封装成请求函数以便重复调用；
-4. 要如何加工响应数据；
-5. 是否要对高频使用的响应数据做缓存；
-6. 如何进行跨页面操作数据；
-7. 离线了还能提交数据吗；
+1. When is the request made;
+2. Whether to display the request status;
+3. Whether to encapsulate it into a request function for repeated calls;
+4. How to process the response data;
+5. Whether to cache frequently used response data;
+6. How to operate data across pages;
+7. Can I still submit data when I am offline?
 8. ...
 
-`fetch`或`axios`往往更专注于如何与服务端交互，但对于上面的问题我们总是需要自己处理，这些有利于应用性能和稳定性的功能，总会让程序员们编写出低维护性的代码。请求场景管理就是从准备请求到响应数据加工完毕的所有环节进行抽象，从而覆盖以前端为视角的，整个 CS 交互生命周期的模型。`alova`就是一个以请求场景模型的请求场景管理库，它是对`axios`等请求库的一种补充，而非替代品。
+`fetch` or `axios` tend to focus more on how to interact with the server, but we always need to deal with the above problems by ourselves. These functions that are beneficial to application performance and stability will always allow programmers to write low-maintenance functions. sexual code. The request scene management is to abstract all the links from the preparation of the request to the completion of the response data processing, so as to cover the model of the entire CS interaction life cycle from the perspective of the front end. `alova` is a request scene management library based on the request scene model. It is a supplement to the request library such as `axios`, not a replacement.
 
-> CS 交互：泛指所有客户端类型和服务端的数据交互
+> CS interaction: refers to all client types and server-side data interaction
 
-## 请求场景模型
+## Request scene model
 
-![model](https://user-images.githubusercontent.com/29848971/185773583-a884e1ed-7507-4e96-9030-f20aa557eb5a.png)
+![model](https://user-images.githubusercontent.com/29848971/185773573-761b6153-9e6c-42df-b0b7-beddd405833c.png)
 
-## 请求时机
+## Request timing
 
-描述在什么时候需要发出请求，在`alova`中以`useHook`实现。
+Describes when a request needs to be made, implemented as `useHook` in `alova`.
 
-- 初始化展示数据，如刚进入某个界面或子界面；
-- 人机交互触发 CS 交互，需要变更数据重新发出请求，如翻页、筛选、排序、模糊搜索等；
-- 预加载数据，如分页内预先加载下一页内容、预测用户点击某个按钮后预先拉取数据；
-- 操作服务端数据，需发出增删改查请求，如提交数据、删除数据等；
-- 同步服务端状态，如数据变化较快的场景下轮询请求、操作了某个数据后重新拉取数据；
+- Initialize display data, such as just entering an interface or sub-interface;
+- Human-computer interaction triggers CS interaction, which requires changing data to re-issue requests, such as page turning, filtering, sorting, fuzzy search, etc.;
+- Pre-loading data, such as pre-loading the content of the next page in a pagination, predicting that the user clicks a button to pre-fetch data;
+- To operate server-side data, it is necessary to issue a request for addition, deletion and modification, such as submitting data, deleting data, etc.;
+- Synchronize the status of the server, such as polling requests in scenarios where data changes rapidly, and re-pulling data after operating a certain data;
 
-## 请求行为
+## Request behavior
 
-描述以怎样的方式处理请求，在`alova`中以 method 对象实现。
+Describes how to handle the request, implemented as a method object in `alova`.
 
-- 占位请求，请求时展示 loading、骨架图、或者是上次使用的真实数据；
-- 缓存高频响应，多次执行请求会使用保鲜数据；
-- 多请求串行与并行；
-- 对频繁的请求进行防抖，避免前端数据闪动，以及降低服务端压力；
-- 重要接口重试机制，降低网络不稳定造成的请求失败概率；
-- 静默提交，当只关心提交数据时，提交请求后直接响应成功事件，后台保证请求成功；
-- 离线提交，离线时将提交数据暂存到本地，网络连接后再提交；
+- Placeholder request, displaying loading, skeleton diagram, or the last real data used when requesting;
+- Cache high-frequency responses, and execute requests multiple times will use fresh data;
+- Multi-request serial and parallel;
+- Anti-shake for frequent requests, avoid front-end data flashing, and reduce server pressure;
+- Important interface retry mechanism to reduce the probability of request failure caused by network instability;
+- Silent submission, when you only care about submitting data, directly respond to the success event after submitting the request, and the background ensures that the request is successful;
+- Offline submission, temporarily store the submitted data locally when offline, and submit it after network connection;
 
-## 请求事件
+## Request event
 
-表示携带请求参数发送请求，获得响应，`alova`可以与`axios`、`fetch`、`XMLHttpRequest`等任意请求库或原生方案共同协作。
+Indicates that the request is sent with the request parameters, and the response is obtained. `alova` can cooperate with any request library or native solution such as `axios`, `fetch`, `XMLHttpRequest`.
 
-## 响应数据管理
+## Response data management
 
-`alova`将响应数据状态化，并统一管理，任何位置都可以对响应数据进行操作，并利用 MVVM 库的特性自动更新对应的视图。
+`alova` will state the response data and manage it in a unified manner. The response data can be operated anywhere, and the corresponding views can be automatically updated by using the characteristics of the MVVM library.
 
-- 移除缓存响应数据，再次发起请求时将从服务端拉取；
-- 更新缓存响应数据，可更新任意位置响应数据，非常有利于跨页面更新数据；
-- 刷新响应数据，可重新刷新任意位置的响应数据，也非常有利于跨页面更新数据；
-- 自定义设置缓存，在请求批量数据时，可手动对批量数据一一设置缓存，从而满足后续单条数据的缓存命中；
+- Remove the cached response data and pull it from the server when the request is made again;
+- Update cache response data, which can update response data at any location, which is very beneficial to update data across pages;
+- Refresh the response data, which can re-refresh the response data at any location, and is also very beneficial to update data across pages;
+- Custom setting cache, when requesting batch data, you can manually set the cache for batch data one by one, so as to satisfy the cache hit of subsequent single data;

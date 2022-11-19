@@ -1,20 +1,20 @@
 ---
-title: 模拟数据
+title: mock data
 sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This mock plug-in is an alova request adapter. Different from the traditional Proxy form, you can control the scope of use of mock data. You can control the global scope, a group of interface scopes, and even the enabling and use of a certain interface. Disabled, which is very useful in our actual business scenarios. Each iteration will add or modify a set of interfaces. We hope that the previous functions will still follow the developed interfaces, and let the new or modified interfaces Taking the simulation data, at this time, each developer can group the interfaces involved in this iteration into a group, and turn them on or off.
 
-此mock插件是一个alova的请求适配器，与传统的Proxy形式不同，你可以很好地控制使用mock数据的使用范围，你可以控制全局范围、某一组接口范围，甚至是某一个接口的启用和禁用，这在我们实际的业务场景中是很有用的，每一次的迭代都会新增或修改一组接口，我们希望让之前的功能还是走已开发好的接口，而让新增或修改的接口走模拟数据，此时就可以将每个开发人员针对本次迭代涉及到的接口分为一组，并对它们进行开启或关闭。
+## Features
 
-## 特性
-- ✨与alova无缝协作
-- ✨模拟请求任意分组，可控制全局、组、以及单个模拟接口的启用和禁用
-- ✨不污染生产环境
+- ✨Works seamlessly with alova
+- ✨Arbitrary grouping of simulation requests to control global, group, and individual simulation interface enable and disable
+- ✨Do not pollute the production environment
 
-## 安装
+## Install
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -33,44 +33,50 @@ yarn add @alova/mock
 </TabItem>
 </Tabs>
 
-以下为使用流程。
+The following is the usage flow.
 
-## 定义mock接口
-使用`defineMock`定义一组mock接口，你可以在每一项模拟接口中直接指定返回响应数据，或指定为回调函数动态计算响应数据。
+## Define the mock interface
+
+Use `defineMock` to define a set of mock interfaces. You can directly specify the return response data in each mock interface, or specify the response data to be dynamically calculated for the callback function.
+
 ```javascript title=mockGrou1.js
 import { defineMock } from '@alova/mock';
 
-export default defineMock({
-  // 捕获get请求
-  '/todo': [1, 2, 3, 4],
+export default defineMock(
+  {
+    // capture get request
+    '/todo': [1, 2, 3, 4],
 
-  // rest风格请求
-  '/todo/{id}': ({ params }) => {
-    const id = params.id;
-    // ...
-    return {
-      title: '...',
-      time: '10:00'
-    };
+    // rest style request
+    '/todo/{id}': ({ params }) => {
+      const id = params.id;
+      // ...
+      return {
+        title: '...',
+        time: '10:00'
+      };
+    },
+
+    // capture post request
+    '[POST]/todo': ({ query, data }) => {
+      // ...
+      return { success: true };
+    },
+
+    // Add `-` before the key to disable this mock interface
+    '-[DELETE]/todo/{id}': ({ params }) => {
+      // ...
+      return { success: true };
+    }
   },
-
-  // 捕获post请求
-  '[POST]/todo': ({ query, data }) => {
-    // ...
-    return { success: true };
-  },
-
-  // key前面添加`-`，表示禁用此mock接口
-  '-[DELETE]/todo/{id}': ({ params }) => {
-    // ...
-    return { success: true };
-  }
-}, true);  // 第二个参数表示是否启用本组mock接口，默认为true，可以指定为false关闭
+  true
+); // The second parameter indicates whether to enable this group of mock interfaces, the default is true, and can be specified as false to close
 ```
 
+## Create mock request adapter
 
-## 创建模拟请求适配器
-在调用`createAlova`时创建一个模拟请求适配器，并将mock接口传入即可完成。
+Create a mock request adapter when calling `createAlova`, and pass in the mock interface to complete.
+
 ```javascript
 import GlobalFetch from 'alova/GlobalFetch';
 import { createAlovaMockAdapter } from '@alova/mock';
@@ -78,21 +84,21 @@ import mockGroup1 from './mockGroup1';
 
 // highlight-start
 const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
-  // 全局控制是否启用mock接口，默认为true
+  // Global control whether the mock interface is enabled, the default is true
   enable: true,
 
-  // 非模拟请求适配器，用于未匹配mock接口时发送请求
+  // Non-mock request adapter, used to send requests when the mock interface is not matched
   httpAdapter: GlobalFetch(),
 
-  // mock接口响应延迟，单位毫秒
+  // mock interface response delay, in milliseconds
   delay: 1000,
 
-  // 是否打印mock接口请求信息
+  // Whether to print mock interface request information
   mockRequestLogger: true,
 
-  // 模拟接口回调，data为返回的模拟数据，你可以用它构造任何你想要的对象返回给alova
-  // 以下为默认的回调函数，它适用于使用GlobalFetch请求适配器
-  // 如果你使用的是其他请求适配器，在模拟接口回调中请自定义返回适合适配器的数据结构
+  // Simulation interface callback, data is the returned simulation data, you can use it to construct any object you want and return it to alova
+  // The following is the default callback function, which is suitable for requesting the adapter using GlobalFetch
+  // If you are using other request adapters, please customize the return data structure suitable for the adapter in the mock interface callback
   onMockResponse: data => new Response(JSON.stringify(data))
 });
 // highlight-end
@@ -100,30 +106,32 @@ const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
 export const alovaInst = createAlova({
   baseURL: 'http://xxx',
 
-  // 使用mock请求适配器，如果需要切换适配器，请看下面的实践建议
+  // Use the mock request adapter, if you need to switch adapters, please see the following practical suggestions
   requestAdapter: mockAdapter,
 
   statesHook: /** ... */
 });
 ```
 
-## 实践建议
+## Practical advice
 
-### 按每个开发者每次版本分组接口
+### Group interfaces per developer per version
 
-在团队开发场景下，每次版本开发时我们经常只需要对部分未开发好的接口进行模拟请求，并且对之前版本的接口使用测试环境接口，此时为了达到更好的模拟接口管理，可以以开发版本和开发者两个维度将接口分组。
+In the team development scenario, we often only need to simulate some undeveloped interfaces for each version development, and use the test environment interface for the interface of the previous version. At this time, in order to achieve better simulation interface management, you can use The two dimensions, development version and developer, group interfaces.
 
-例如有两个开发者名为 *August*、*Keven*，他们正在开发v1.1产品功能，他们可以这样管理模拟接口。
+For example, there are two developers named _August_, _Keven_, they are developing v1.1 product features, they can manage the mock interface like this.
 
 ```javascript title=August-v1.1.js
 import { defineMock } from '@alova/mock';
 
 export default defineMock({
-  '/todo': [/** */],
+  '/todo': [
+    /** */
+  ],
   '[POST]/todo': ({ data }) => {
     // ...
-    // return ...
-  },
+    // return...
+  }
   // ...
 });
 ```
@@ -134,34 +142,34 @@ import { defineMock } from '@alova/mock';
 export default defineMock({
   '[PUT]/todo/add': ({ data }) => {
     // ...
-    // return ...
+    // return...
   },
   '[DELETE]/todo/remove': ({ data }) => {
     // ...
-    // return ...
-  },
+    // return...
+  }
   // ...
 });
 ```
 
 ```javascript title=request.js
 import Augustv1_1 from './August-v1.1';
-import Kevenv1_1 from './Keven-v1.1';
+import Keevenv1_1 from './Keven-v1.1';
 
 const mockAdapter = createAlovaMockAdapter([Augustv1_1, Kevenv1_1], {
   httpAdapter: GlobalFetch(),
-  delay: 1000,
+  delay: 1000
 });
 export const alovaInst = createAlova({
   baseURL: 'http://xxx',
-  requestAdapter: mockAdapter,
+  requestAdapter: mockAdapter
   // ...
 });
 ```
 
-### 在生产环境中排除mock代码
+### Exclude mock code in production
 
-mock数据一般只作用于开发环境，在生产环境下将会切换到实际的接口中，因此这段mock代码在生产环境就变得没有作用，此时我们可以通过环境变量的判断来排除这块代码，你只需要这样做：
+The mock data is generally only used in the development environment, and will be switched to the actual interface in the production environment, so this mock code becomes useless in the production environment. At this time, we can exclude this code by judging the environment variables. , you just need to do:
 
 ```javascript
 const globalFetch = GlobalFetch();
@@ -174,7 +182,7 @@ export const alovaInst = createAlova({
   baseURL: 'http://xxx',
 
   // highlight-start
-  // 通过环境变量控制生产环境下，不会将mock相关代码打包进去
+  // In the production environment controlled by environment variables, the mock-related code will not be packaged in
   requestAdapter: process.env.NODE_ENV === 'development' ? mockAdapter : globalFetch,
   // highlight-end
 

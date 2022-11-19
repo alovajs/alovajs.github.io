@@ -1,12 +1,12 @@
 ---
-title: Taro适配器
+title: Taro Adapter
 sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 安装
+## Install
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -26,7 +26,13 @@ yarn add @alova/adapter-taro
 </Tabs>
 
 ## TaroRequest
-敬请期待...
+
+Coming soon...
 
 ## taroStorage
-敬请期待...
+
+Coming soon...
+
+## TaroMockRequest
+
+Coming soon...

@@ -6,7 +6,7 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 安装
+## Install
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -26,29 +26,31 @@ yarn add @alova/hooks
 </Tabs>
 
 :::info
-在使用扩展hooks前，确保你已熟悉了alova的基本使用。
+Before using extension hooks, make sure you are familiar with the basic use of alova.
 :::
 
-为分页场景下设计的hook，你可以在下拉加载和页码翻页两种分页场景下使用它，**此hook提供了丰富的特性，助你的应用打造性能更好，使用更便捷的分页功能**。
+The hook designed for paging scenarios, you can use it in two paging scenarios: drop-down loading and page number flipping. **This hook provides rich features to help your application create better performance and use more convenient paging functions **.
 
-## 特性
-- ✨丰富全面的分页状态；
-- ✨丰富全面的分页事件；
-- ✨更改page、pageSize自动获取指定分页数据；
-- ✨数据缓存，无需重复请求相同参数的列表数据；
-- ✨前后页预加载，翻页不再等待；
-- ✨搜索条件监听自动重新获取页数；
-- ✨支持列表数据的新增、编辑、删除；
-- ✨支持刷新指定页的数据，无需重置；
-- ✨请求级搜索防抖，无需自行维护；
+## Features
 
-## 示例
+- ✨ Rich and comprehensive paging status;
+- ✨ Rich and comprehensive paging events;
+- ✨Change page and pageSize to automatically obtain the specified paging data;
+- ✨Data cache, no need to repeatedly request list data with the same parameters;
+- ✨Front and back pages are preloaded, no more waiting for page turning;
+- ✨Search condition monitoring automatically re-acquires the number of pages;
+- ✨Support adding, editing and deleting list data;
+- ✨Support to refresh the data of the specified page, no need to reset;
+- ✨Request-level search stabilization without self-maintenance;
 
-[页码列表](../../example/paginated-list)
+## example
 
-[下拉加载更多](../../example/load-more)
+[page number list](../../example/paginated-list)
 
-## 引入
+[pull down to load more](../../example/load-more)
+
+## import
+
 <Tabs>
 <TabItem value="1" label="vue">
 
@@ -73,138 +75,134 @@ import { usePagination } from '@alova/hooks/svelte';
 </TabItem>
 </Tabs>
 
-## 用法
-展示和操作学生列表，以vue为例。
+## usage
+
+Display and operate the student list, take Vue as an example.
+
 ```javascript
 import { ref, watchEffect } from 'vue';
 import { queryStudents, removeStudent, editStudent } from './api.js';
 import { usePagination } from '@alova/hooks/vue';
 import { useRequest } from 'alova';
 
-// 搜索条件状态
+// search condition status
 const studentName = ref('');
 const clsName = ref('');
 
 const {
-  // 加载状态
+  // load state
   loading,
 
-  // 列表数据
+  // list data
   data,
 
-  // 是否为最后一页
-  // 下拉加载时可通过此参数判断是否还需要加载
+  // Is it the last page
+  // When pull-down loading, you can use this parameter to determine whether it needs to be loaded
   isLastPage,
 
-  // 当前页码，改变此页码将自动触发请求
+  // The current page number, changing this page number will automatically trigger the request
   page,
 
-  // 每页数据条数
+  // number of data bars per page
   pageSize,
 
-  // 列表项移除函数
+  // list item removal function
   remove,
 
-  // 列表项插入函数
+  // list item insertion function
   insert,
 
-  // 刷新函数,你可以指定刷新某一页数据
+  // Refresh function, you can specify to refresh a page of data
   refresh,
 
-  // 重置函数，调用后将清空数据并重新加载第一页
+  // reset function, after calling it will clear the data and reload the first page
   reload
 } = usePagination(
-  // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
+  // Method instance get function, it will receive page and pageSize, and return a Method instance
   (page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value),
   {
-    watchingStates: [studentName, clsName], // 外部监听的状态，如搜索条件
-    initialData: [], // 请求前的初始数据，
-    debounce: 300, // 防抖参数，单位为毫秒数，也可以设置为数组对watchingStates单独设置防抖时间
-    // append: true, // 是否启用追加模式，在下拉加载时需设置为true，默认为false
-    // preloadPreviousPage: true, // 是否预加载上一页数据，默认为true
-    // preloadNextPage: true, // 是否预加载下一页数据，默认为true
-    // total: data => data['total'], // 指定如何获取列表项总数值，data为响应数据，默认获取data.total
-    // data: data['data'], // 指定如何获取列表数据，data为响应数据，默认获取data.data
-    // initialPage: 1, // 初始页码，默认为1
-    // initialPageSize: 10, // 初始每页数据条数，默认为10
-    // immediate: true // 是否立即发出请求，默认为true
+    watchingStates: [studentName, clsName], // The state of external listening, such as search conditions
+    initialData: [], // initial data before request,
+    debounce: 300 // Debounce parameter, the unit is milliseconds, it can also be set as an array to set the debounce time separately for watchingStates
+    // append: true, // Whether to enable append mode, it needs to be set to true when drop-down loading, the default is false
+    // preloadPreviousPage: true, // Whether to preload the previous page data, the default is true
+    // preloadNextPage: true, // Whether to preload the next page data, the default is true
+    // total: data => data['total'], // Specify how to get the total value of the list item, data is the response data, and data.total is obtained by default
+    // data: data['data'], // Specify how to get the list data, data is the response data, and data.data is obtained by default
+    // initialPage: 1, // initial page number, default is 1
+    // initialPageSize: 10, // The initial number of data per page, the default is 10
+    // immediate: true // whether to send the request immediately, the default is true
   }
 );
 
-
-// 下一页
+// next page
 const handleNextPage = () => {
   page.value++;
 };
 
-// 通过静默提交移除列表项
-const {
-  send: removeSend,
-  onSuccess: onRemoveSuccess
-} = useRequest(id => removeStudent(id), {
+// remove list item with silent commit
+const { send: removeSend, onSuccess: onRemoveSuccess } = useRequest(id => removeStudent(id), {
   immediate: false,
-  silent: true,
+  silent: true
 });
 onRemoveSuccess((_, removeId) => {
-  // 传入移除的索引项移除制定项
-  remove(students.value.findIndex((s) => s.id === removeId));
+  // Pass in the removed index item to remove the specified item
+  remove(students.value.findIndex(s => s.id === removeId));
 });
 
-
-// 新增或编辑列表项
+// add or edit list item
 const detail = ref({
   name: '',
-  cls: '',
+  cls: ''
 });
 const {
-  loading: submiting,
+  loading: submitting,
   send: sendStudentEdit,
-  onSuccess,
-} = useRequest(
-  selectedId => editStudent(detail.value.name, detail.value.cls, selectedId),
-  {
-    immediate: false,
-    silent: true,
-  }
-);
+  onSuccess
+} = useRequest(selectedId => editStudent(detail.value.name, detail.value.cls, selectedId), {
+  immediate: false,
+  silent: true
+});
 onSuccess((_, selectedId) => {
   if (selectedId) {
-    // 编辑时，刷新更新的列表项所在页，无需重置列表
+    // When editing, refresh the page where the updated list item is located, without resetting the list
     const refreshPage = Math.floor(students.value.findIndex(({ id }) => id === selectedId) / pageSize.value) + 1;
     refresh(refreshPage);
   } else {
-    // 添加时，重置列表
+    // When adding, reset the list
     reload();
   }
 });
 
-// 提交学生信息回调，selectedId有值表示编辑，否则为新增
+// Submit student information callback, selectedId has a value to indicate editing, otherwise it is new
 const handleSubmit = selectedId => {
   sendStudentEdit(selectedId);
 };
 ```
 
-:::warning debounce参数说明
-debounce参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](../../request-timing/use-watcher#请求防抖) 来实现的。**监听状态末尾分别还有page和pageSize两个隐藏的监听状态，也可以通过debounce来设置。**
+:::warning debounce parameter description
+The debounce parameter can be set as an array, and the debounce time can be set separately for the change of the monitoring state (watchingStates). realized. **At the end of the listening state, there are two hidden listening states, page and pageSize, which can also be set by debounce. **
 :::
 
-## 列表操作函数说明
+## List operation function description
 
-usePagination提供了功能完善的列表操作函数，它可以在不重新请求列表的情况下，做到与重新请求列表一致的效果，大大提高了页面的交互体验，具体的函数说明继续往下看吧！
+usePagination provides a full-featured list manipulation function, which can achieve the same effect as re-requesting the list without re-requesting the list, which greatly improves the interactive experience of the page. Continue to read the specific function description below!
 
-### 插入列表项
-你可以用它插入列表项到列表任意位置，它将会在插入之后去掉末尾的一项，来保证和重新请求当前页数据一致的效果。
+### Insert list item
+
+You can use it to insert a list item to any position in the list, it will remove the last item after inserting, to ensure the same effect as re-requesting the current page data.
 
 ```typescript
 /**
- * 插入一条数据，未传入index时默认插入到最前面
- * @param item 插入项
- * @param index 插入位置（索引）
+ * Insert a piece of data, if no index is passed in, it will be inserted to the front by default
+ * @param item Insert item
+ * @param index Insertion position (index)
  */
 insert: (item: LD[number], index?: number) => void;
 ```
 
-以下为**非append模式**下（页码翻页场景），返回第一页再插入列表项的示例：
+The following is an example of returning to the first page and inserting a list item in **non-append mode** (page number page turning scene):
+
 ```javascript
 page.value = 1;
 nextTick(() => {
@@ -212,7 +210,8 @@ nextTick(() => {
 });
 ```
 
-以下为在**append模式**下（下拉加载场景），插入列表项后滚动到最顶部的示例：
+The following is an example of scrolling to the top after inserting a list item in **append mode** (drop-down loading scene):
+
 ```javascript
 insert(newItem, 0);
 nextTick(() => {
@@ -220,131 +219,146 @@ nextTick(() => {
 });
 ```
 
-:::caution 注意
-onBefore、插入操作、onAfter都是串行异步执行，因此在`onBefore`中更改了状态，视图将会刷新再执行插入操作。
+:::caution note
+onBefore, insert operation, onAfter are all executed asynchronously in series, so if the state is changed in `onBefore`, the view will be refreshed and then the insert operation will be performed.
 :::
-:::caution 注意
-为了让数据正确，insert函数调用会清除全部缓存。
+:::caution note
+In order for the data to be correct, the insert function call clears the entire cache.
 :::
 
-### 移除列表项
-在下一页有缓存的情况下，它将会在移除一项后使用下一页的缓存补充到列表项尾部，来保证和重新请求当前页数据一致的效果，在**append模式**和**非append模式**下表现相同。
+### remove list item
+
+In the case where there is a cache on the next page, it will use the cache of the next page to add to the end of the list item after removing an item to ensure the same effect as re-requesting the current page data. In **append mode** and **Non-append mode** behaves the same.
 
 ```typescript
 /**
- * 移除一条数据
- * @param index 移除的索引
+ * remove a piece of data
+ * @param index the index to remove
  */
 remove: (index: number) => void;
 ```
 
-但在以下两种情况下，它将重新发起请求刷新对应页的数据：
-1. 下一页没有缓存
-2. 同步连续调用了超过下一页缓存列表项的数据，缓存数据已经不够补充到当前页列表了。
+But in the following two cases, it will re-initiate the request to refresh the data of the corresponding page:
 
-:::caution 注意
-为了让数据正确，remove函数调用会清除全部缓存。
+1. The next page is not cached
+2. The data that exceeds the cached list items on the next page is continuously called synchronously, and the cached data is not enough to be added to the current page list.
+
+:::caution note
+In order to make the data correct, the remove function call will clear the entire cache.
 :::
 
-### 更新数据项
-当你想要更新列表项时，使用此函数实现。
+### update data item
+
+Use this function when you want to update a list item.
+
 ```typescript
 /**
- * 替换一条数据
- * @param item 替换项
- * @param index 替换位置（索引）
+ * replace a piece of data
+ * @param item replacement
+ * @param index replacement position (index)
  */
 replace: (item: LD[number], index: number) => void;
 ```
 
-### 刷新指定页的数据
+### Refresh the data of the specified page
 
-当你在数据操作后不希望本地更新列表项，而是重新请求服务端的数据，你可以用refresh刷新任意页的数据，而不需要重置列表数据让用户又从第一页开始浏览。
+When you do not want to update the list items locally after the data operation, but re-request data from the server, you can use refresh to refresh the data of any page without resetting the list data and letting the user start browsing from the first page again.
 
 ```typescript
 /**
- * 刷新指定页码数据，此函数将忽略缓存强制发送请求
- * @param refreshPage 刷新的页码
+ * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+ * @param refreshPage refresh page number
  */
 refresh: (refreshPage: number) => void;
 ```
 
-### 重置列表
-它将清空全部缓存，并重新加载第一页。
+### reset list
+
+It will clear the entire cache and reload the first page.
 
 ```typescript
 /**
- * 从第一页开始重新加载列表，并清空缓存
+ * Reload the list from the first page and clear the cache
  */
 reload: () => void;
 ```
 
-## 类型
+## type
 
 <Tabs>
 <TabItem value="1" label="vue">
 
 ```typescript
 interface UsePaginationReturnType<LD extends any[], R> {
-	loading: Ref<boolean>;
-	error: Ref<Error | undefined>;
-	downloading: Ref<Progress>;
-	uploading: Ref<Progress>;
-	page: Ref<number>;
-	pageSize: Ref<number>;
-	data: Ref<LD>;
-	pageCount: ComputedRef<number | undefined>;
-	total: ComputedRef<number | undefined>;
-	isLastPage: ComputedRef<boolean>;
+  loading: Ref<boolean>;
+  error: Ref<Error | undefined>;
+  downloading: Ref<Progress>;
+  uploading: Ref<Progress>;
+  page: Ref<number>;
+  pageSize: Ref<number>;
+  data: Ref<LD>;
+  pageCount: ComputedRef<number | undefined>;
+  total: ComputedRef<number | undefined>;
+  isLastPage: ComputedRef<boolean>;
 
-	abort: () => void;
-	send: (...args: any[]) => Promise<R>;
-	onSuccess: (handler: SuccessHandler<R>) => void;
-	onError: (handler: ErrorHandler) => void;
-	onComplete: (handler: CompleteHandler) => void;
+  abort: () => void;
+  send: (...args: any[]) => Promise<R>;
+  onSuccess: (handler: SuccessHandler<R>) => void;
+  onError: (handler: ErrorHandler) => void;
+  onComplete: (handler: CompleteHandler) => void;
 
-	fetching: Ref<boolean>;
-	onFetchSuccess: (handler: SuccessHandler<R>) => void;
-	onFetchError: (handler: ErrorHandler) => void;
-	onFetchComplete: (handler: CompleteHandler) => void;
+  fetching: Ref<boolean>;
+  onFetchSuccess: (handler: SuccessHandler<R>) => void;
+  onFetchError: (handler: ErrorHandler) => void;
+  onFetchComplete: (handler: CompleteHandler) => void;
 
-	/**
-	 * 刷新指定页码数据，此函数将忽略缓存强制发送请求
-	 * @param refreshPage 刷新的页码
-	 */
-	refresh: (refreshPage: number) => void;
+  /**
+   * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+   * @param refreshPage refresh page number
+   */
+  refresh: (refreshPage: number) => void;
 
-	/**
-	 * 插入一条数据
-	 * onBefore、插入操作、onAfter三个都需要分别顺序异步执行，因为需要等待视图更新再执行
-	 * @param item 插入项
-	 * @param config 插入配置
-	 */
-	insert: (item: LD[number], config?: InsertConfig) => void;
+  /**
+   * insert a piece of data
+   * onBefore, insert operation, onAfter all need to be executed asynchronously in sequence, because you need to wait for the view to update before executing
+   * @param item Insert item
+   * @param config insert configuration
+   */
+  insert: (item: LD[number], config?: InsertConfig) => void;
 
-	/**
-	 * 移除一条数据
-	 * @param index 移除的索引
-	 */
-	remove: (index: any) => void;
+  /**
+   * remove a piece of data
+   * @param index the index to remove
+   */
+  remove: (index: any) => void;
 
-	/**
-	 * 从第一页开始重新加载列表，并清空缓存
-	 */
-	reload: () => void;
+  /**
+   * Reload the list from the first page and clear the cache
+   */
+  reload: () => void;
 }
 
 /**
- * 基于alova.js的vue分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/替换/移除
+ * vue paging hook based on alova.js
+ * Automatic management of paging related status, preloading of previous and previous pages, automatic maintenance of data addition/editing/replacement/removal
  *
- * @param handler method创建函数
- * @param config pagination hook配置
+ * @param handler method creation function
+ * @param config pagination hook configuration
  * @returns {UsePaginationReturnType}
  */
-export declare function usePagination<S extends Ref, E extends Ref, R, T, RC, RE, RH, LD extends any[], WS extends WatchSource[]>(
-	handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-	config: PaginationConfig<R, LD, WS>
+export declare function usePagination<
+  S extends Ref,
+  E extends Ref,
+  R,
+  T,
+  RC,
+  RE,
+  RH,
+  LD extends any[],
+  WS extends WatchSource[]
+>(
+  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
+  config: PaginationConfig<R, LD, WS>
 ): UsePaginationReturnType<LD, R>;
 ```
 
@@ -354,67 +368,66 @@ export declare function usePagination<S extends Ref, E extends Ref, R, T, RC, RE
 ```typescript
 type ReactState<S> = [S, Dispatch<SetStateAction<S>>];
 interface UsePaginationReturnType<LD extends any[], R> {
-	loading: boolean;
-	error: Error | undefined;
-	downloading: Progress;
-	uploading: Progress;
-	page: ReactState<number>;
-	pageSize: ReactState<number>;
-	data: LD;
-	pageCount: number | undefined;
-	total: number | undefined;
-	isLastPage: boolean;
+  loading: boolean;
+  error: Error | undefined;
+  downloading: Progress;
+  uploading: Progress;
+  page: ReactState<number>;
+  pageSize: ReactState<number>;
+  data: LD;
+  pageCount: number | undefined;
+  total: number | undefined;
+  isLastPage: boolean;
 
-	abort: () => void;
-	send: (...args: any[]) => Promise<R>;
-	onSuccess: (handler: SuccessHandler<R>) => void;
-	onError: (handler: ErrorHandler) => void;
-	onComplete: (handler: CompleteHandler) => void;
+  abort: () => void;
+  send: (...args: any[]) => Promise<R>;
+  onSuccess: (handler: SuccessHandler<R>) => void;
+  onError: (handler: ErrorHandler) => void;
+  onComplete: (handler: CompleteHandler) => void;
 
-	fetching: boolean;
-	onFetchSuccess: (handler: SuccessHandler<R>) => void;
-	onFetchError: (handler: ErrorHandler) => void;
-	onFetchComplete: (handler: CompleteHandler) => void;
+  fetching: boolean;
+  onFetchSuccess: (handler: SuccessHandler<R>) => void;
+  onFetchError: (handler: ErrorHandler) => void;
+  onFetchComplete: (handler: CompleteHandler) => void;
 
-	/**
-	 * 刷新指定页码数据，此函数将忽略缓存强制发送请求
-	 * @param refreshPage 刷新的页码
-	 */
-	refresh: (refreshPage: number) => void;
+  /**
+   * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+   * @param refreshPage refresh page number
+   */
+  refresh: (refreshPage: number) => void;
 
-	/**
-	 * 插入一条数据
-	 * onBefore、插入操作、onAfter三个都需要分别顺序异步执行，因为需要等待视图更新再执行
-	 * @param item 插入项
-	 * @param config 插入配置
-	 */
-	insert: (item: LD[number], config?: InsertConfig) => void;
+  /**
+   * insert a piece of data
+   * onBefore, insert operation, onAfter all need to be executed asynchronously in sequence, because you need to wait for the view to update before executing
+   * @param item Insert item
+   * @param config insert configuration
+   */
+  insert: (item: LD[number], config?: InsertConfig) => void;
 
-	/**
-	 * 移除一条数据
-	 * @param index 移除的索引
-	 */
-	remove: (index: any) => void;
+  /**
+   * remove a piece of data
+   * @param index the index to remove
+   */
+  remove: (index: any) => void;
 
-	/**
-	 * 从第一页开始重新加载列表，并清空缓存
-	 */
-	reload: () => void;
+  /**
+   * Reload the list from the first page and clear the cache
+   */
+  reload: () => void;
 }
 
 /**
- * 基于alova.js的react分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/移除
+ * React paging hook based on alova.js
+ * Automatic management of paging related status, preloading of previous and previous pages, automatic maintenance of data addition/editing/removal
  *
- * @param handler method创建函数
- * @param config pagination hook配置
+ * @param handler method creation function
+ * @param config pagination hook configuration
  * @returns {UsePaginationReturnType}
  */
 export declare function usePagination<S, E, R, T, RC, RE, RH, LD extends any[], WS extends DependencyList>(
-	handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-	config: PaginationConfig<R, LD, WS>
+  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
+  config: PaginationConfig<R, LD, WS>
 ): UsePaginationReturnType<LD, R>;
-
 ```
 
 </TabItem>
@@ -422,74 +435,83 @@ export declare function usePagination<S, E, R, T, RC, RE, RH, LD extends any[], 
 
 ```typescript
 interface UsePaginationReturnType<LD extends any[], R> {
-	loading: Writable<boolean>;
-	error: Writable<Error | undefined>;
-	downloading: Writable<Progress>;
-	uploading: Writable<Progress>;
-	page: Writable<number>;
-	pageSize: Writable<number>;
-	data: Writable<LD>;
-	pageCount: Readable<number | undefined>;
-	total: Readable<number | undefined>;
-	isLastPage: Readonly<Readable<boolean>>;
+  loading: Writable<boolean>;
+  error: Writable<Error | undefined>;
+  downloading: Writable<Progress>;
+  uploading: Writable<Progress>;
+  page: Writable<number>;
+  pageSize: Writable<number>;
+  data: Writable<LD>;
+  pageCount: Readable<number | undefined>;
+  total: Readable<number | undefined>;
+  isLastPage: Readonly<Readable<boolean>>;
 
-	abort: () => void;
-	send: (...args: any[]) => Promise<R>;
-	onSuccess: (handler: SuccessHandler<R>) => void;
-	onError: (handler: ErrorHandler) => void;
-	onComplete: (handler: CompleteHandler) => void;
+  abort: () => void;
+  send: (...args: any[]) => Promise<R>;
+  onSuccess: (handler: SuccessHandler<R>) => void;
+  onError: (handler: ErrorHandler) => void;
+  onComplete: (handler: CompleteHandler) => void;
 
-	fetching: Writable<boolean>;
-	onFetchSuccess: (handler: SuccessHandler<R>) => void;
-	onFetchError: (handler: ErrorHandler) => void;
-	onFetchComplete: (handler: CompleteHandler) => void;
+  fetching: Writable<boolean>;
+  onFetchSuccess: (handler: SuccessHandler<R>) => void;
+  onFetchError: (handler: ErrorHandler) => void;
+  onFetchComplete: (handler: CompleteHandler) => void;
 
-	/**
-	 * 刷新指定页码数据，此函数将忽略缓存强制发送请求
-	 * @param refreshPage 刷新的页码
-	 */
-	refresh: (refreshPage: number) => void;
+  /**
+   * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+   * @param refreshPage refresh page number
+   */
+  refresh: (refreshPage: number) => void;
 
-	/**
-	 * 插入一条数据
-	 * onBefore、插入操作、onAfter三个都需要分别顺序异步执行，因为需要等待视图更新再执行
-	 * @param item 插入项
-	 * @param config 插入配置
-	 */
-	insert: (item: LD[number], config?: InsertConfig) => void;
+  /**
+   * insert a piece of data
+   * onBefore, insert operation, onAfter all need to be executed asynchronously in sequence, because you need to wait for the view to update before executing
+   * @param item Insert item
+   * @param config insert configuration
+   */
+  insert: (item: LD[number], config?: InsertConfig) => void;
 
-	/**
-	 * 移除一条数据
-	 * @param index 移除的索引
-	 */
-	remove: (index: any) => void;
+  /**
+   * remove a piece of data
+   * @param index the index to remove
+   */
+  remove: (index: any) => void;
 
-	/**
-	 * 从第一页开始重新加载列表，并清空缓存
-	 */
-	reload: () => void;
+  /**
+   * Reload the list from the first page and clear the cache
+   */
+  reload: () => void;
 }
 
 /**
- * 基于alova.js的svelte分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/移除
+ * svelte paging hook based on alova.js
+ * Automatic management of paging related status, preloading of previous and previous pages, automatic maintenance of data addition/editing/removal
  *
- * @param handler method创建函数
- * @param config pagination hook配置
+ * @param handler method creation function
+ * @param config pagination hook configuration
  * @returns {UsePaginationReturnType}
  */
-export declare function usePagination<S extends Writable<any>, E extends Writable<any>, R, T, RC, RE, RH, LD extends any[], WS extends Readable<any>[]>(
-	handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-	config: PaginationConfig<R, LD, WS>
+export declare function usePagination<
+  S extends Writable<any>,
+  E extends Writable<any>,
+  R,
+  T,
+  RC,
+  RE,
+  RH,
+  LD extends any[],
+  WS extends Readable<any>[]
+>(
+  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
+  config: PaginationConfig<R, LD, WS>
 ): UsePaginationReturnType<LD, R>;
 ```
 
 </TabItem>
 </Tabs>
 
+## limit
 
-## 限制
-
-1. 列表请求支持缓存功能，它极大地提高了列表性能，当你对列表进行操作时，其内部都会自行维护它所产生的缓存，目前是通过修改每个Method实例的**name**属性实现追踪的，因此传入usePagination的Method实例暂不支持自定义name，这可能会影响到你对Method的管理，后续的版本中我们也将对它进行优化。
-2. `insert`函数限制，因为usePagination所返回的data并不是useWatcher返回的data，目前暂无法使用[延迟数据更新](../../06-next-step/08-delayed-data-update.md)功能，如果你的新增列表项依赖服务端数据，建议使用`refresh`或`reload`重新请求数据，同时我们将在后续的版本中陆续支持。
-3. **缓存占位模式** 和 **恢复模式** 暂时无效。
+1. The list request supports the caching function, which greatly improves the performance of the list. When you operate the list, it will internally maintain the cache generated by it. Currently, it is by modifying the **name** attribute of each Method instance. Tracking is implemented, so the Method instance passed into usePagination does not support custom names for the time being, which may affect your method management. We will also optimize it in subsequent versions.
+2. The `insert` function is limited, because the data returned by usePagination is not the data returned by useWatcher, and [Delayed Data Update](../../06-next-step/08-delayed-data-update is currently unavailable. .md) function, if your new list item depends on server-side data, it is recommended to use `refresh` or `reload` to re-request data, and we will support it in subsequent versions.
+3. **Cache Occupancy Mode** and **Recovery Mode** are temporarily disabled.

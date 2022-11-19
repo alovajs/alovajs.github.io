@@ -6,7 +6,7 @@ sidebar_position: 40
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 安装
+## Install
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -25,7 +25,8 @@ yarn add @alova/hooks
 </TabItem>
 </Tabs>
 
-## 引入
+## Import
+
 <Tabs>
 <TabItem value="1" label="vue">
 
@@ -50,4 +51,4 @@ import { useWindowFocusedRequest } from '@alova/hooks/svelte';
 </TabItem>
 </Tabs>
 
-敬请期待...
+Coming soon...

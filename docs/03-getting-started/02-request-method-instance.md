@@ -1,69 +1,67 @@
 ---
-title: 请求方法实例
+title: request method instance
 sidebar_position: 20
 ---
 
-在`alova`中，每个请求都对应一个 method 实例表示，它描述了一次请求的 url、请求头、请求参数，以及响应数据加工、缓存加工数据等请求行为参数，但它不会实际发出请求。
+In `alova`, each request corresponds to a method instance representation, which describes the url, request header, request parameters of a request, and request behavior parameters such as response data processing, cache processing data, etc., but it does not actually send a request .
 
+## create instance
 
-## 创建实例
-`Method`实例的创建也类似`axios`的请求发送函数，我们先来创建一个获取 todo 列表的`Method`实例。
+The creation of the `Method` instance is similar to the `axios` request sending function. Let's first create a `Method` instance that gets the todo list.
 
 ```javascript
-// 创建一个Get实例，描述一次Get请求的信息
+// Create a Get instance to describe the information of a Get request
 const todoListGetter = alovaInstance.Get('/todo/list', {
-	// 请求头
-	headers: {
-		'Content-Type': 'application/json;charset=UTF-8'
-	},
-	// params参数将会以?的形式拼接在url后面
-	params: {
-		userId: 1
-	}
+  // request header
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8'
+  },
+  // The params parameter will be spliced ​​after the url in the form of ?
+  params: {
+    userId: 1
+  }
 });
 ```
 
-接着再创建一个提交 todo 的，POST请求的`Method`实例。
+Then create a `Method` instance that submits the todo, POST request.
 
 ```javascript
-// 创建Post实例
+// create a Post instance
 const createTodoPoster = alovaInstance.Post(
-	'/todo/create',
-	// 第二个参数是http body数据
-	{
-		title: 'test todo',
-		time: '12:00'
-	},
-	// 第三个参数是请求配置相关信息
-	{
-		headers: {
-			'Content-Type': 'application/json;charset=UTF-8'
-		},
-		params: {
-			// ...
-		}
-	}
+  '/todo/create',
+  // The second parameter is the http body data
+  {
+    title: 'test todo',
+    time: '12:00'
+  },
+  // The third parameter is the request configuration related information
+  {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    params: {
+      // ...
+    }
+  }
 );
 ```
 
-> ⚠️ 注意：`Method`实例里只是保存了请求所需要的信息，它不会发出请求，而是需要通过`use hook`发送请求（后续详情），这点与`axios`不同。
+> ⚠️ Note: The `Method` instance only stores the information required for the request, it will not send the request, but needs to send the request through the `use hook` (details later), which is different from `axios`.
 
+## Set a finer grained timeout
 
-## 设置更细粒度的超时时间
-
-全局的请求超时时间作用于所有的`Method`实例，但很多时候我们需要根据特殊请求设置不同的超时时间，此时我们可以设置请求级的超时时间，它将覆盖全局的`timeout`参数
+The global request timeout applies to all `Method` instances, but in many cases we need to set different timeouts according to special requests. At this time, we can set the request-level timeout, which will override the global `timeout` parameter
 
 ```javascript
-// 请求级别的请求超时时间
+// request timeout at request level
 const todoListGetter = alovaInstance.Get('/todo/list', {
-	// ...
+  // ...
   // highlight-start
-	timeout: 10000
+  timeout: 10000
   // highlight-end
 });
 ```
 
+## request method type
 
-## 请求方法类型
-
-`Alova`提供了包括 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 七种请求方法的抽象实例，具体的使用方式可以阅读 [请求方法详解](../next-step/request-method-details)。
+`Alova` provides abstract instances of seven request methods including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. details).

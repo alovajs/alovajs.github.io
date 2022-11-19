@@ -1,18 +1,19 @@
 ---
-title: 直接发送请求
+title: Send request directly
 sidebar_position: 20
 ---
 
-:::info 提示
+:::info tips
 v1.2.0+
 :::
 
-有时候我们只想要简单地发出请求，并不需要各种状态，此时可以直接调用`Method`实例的`send`函数即可，它将返回一个带返回参数的`Promise`对象。
+Sometimes we just want to simply make a request and do not need various states. In this case, we can directly call the `send` function of the `Method` instance, which will return a `Promise` object with return parameters.
+
 ```javascript
-// 获取全局的用户信息
+// Get global user information
 const globalUserGetter = alovaInstance.Get('/global/user', {
   params: {
-    userId: 1,
+    userId: 1
   },
   transformData(rawData, headers) {
     return {
@@ -22,11 +23,13 @@ const globalUserGetter = alovaInstance.Get('/global/user', {
   }
 });
 
-// send方法接收一个参数，表示是否强制请求，默认为false
+// The send method receives a parameter, indicating whether to force the request, the default is false
 const { data, respHeaders } = await globalUserGetter.send(true);
-// 使用数据...
+// use data...
 ```
+
 :::caution
-1. 返回的响应数据也会依次被全局的`responsed`和当前`Method`实例的`transformData`处理；
-2. 缓存机制依然有效，如果命中缓存也会返回缓存数据，此时可以在`send`方法中传入`true`来强制发起请求；
-:::
+
+1. The returned response data will also be processed by the global `responsed` and the `transformData` of the current `Method` instance in turn;
+2. The cache mechanism is still valid. If the cache is hit, the cached data will also be returned. At this time, you can pass `true` in the `send` method to force the request;
+   :::

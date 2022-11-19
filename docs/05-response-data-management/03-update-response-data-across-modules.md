@@ -1,40 +1,37 @@
 ---
-title: 跨页面/模块更新响应数据
+title: Update response data across pages/modules
 sidebar_position: 30
 ---
 
-在上一小节[主动失效响应缓存](../response-data-management/invalidate-response-cache )的例子中，当用户点开todo列表中的某一项，进入todo详情页并对它执行了编辑，此时我们希望上一页中的todo列表数据也更新为编辑后的内容，使用`useFetcher`和`invalidateCache`的方式都会重新发起请求，那有没有不需要重新请求的方法呢？
+In the example in the previous section [Active Invalidate Response Cache] (../response-data-management/invalidate-response-cache ), when the user clicks on an item in the todo list, enter the todo details page and execute it At this time, we hope that the todo list data in the previous page will also be updated to the edited content. Using the methods of `useFetcher` and `invalidateCache` will re-initiate the request. Is there any method that does not require re-request?
 
-当然有！
+Of course there is!
 
-## 常规用法
+## General usage
+
 ```javascript
 import { updateState } from 'alova';
 
-// 正在编辑的todo项
+// the todo item being edited
 const editingTodo = {
   id: 1,
   title: 'todo1',
   time: '09:00'
 };
 
-const {
-  send,
-  onSuccess
-} = useRequest(createTodoPoster, { immediate: false });
+const { send, onSuccess } = useRequest(createTodoPoster, { immediate: false });
 
-// 提交成功后，固定使第一页的todo数据缓存失效
+// After the submission is successful, the todo data cache of the first page is fixed to be invalidated
 onSuccess(() => {
-
   // highlight-start
-  // 提交成功后，固定修改第一页的todo数据数据
-  // 第一个参数为Method实例，第二个为包含原缓存数据的回调函数，该函数需要返回修改后的数据
+  // After the submission is successful, the todo data data of the first page is fixedly modified
+  // The first parameter is the Method instance, and the second is the callback function containing the original cached data, which needs to return the modified data
   updateState(getTodoList(1), todoList => {
     return todoList.map(item => {
       if (item.id === editingTodo.id) {
         return {
           ...item,
-          ...editingTodo,
+          ...editingTodo
         };
       }
       return item;
@@ -44,11 +41,12 @@ onSuccess(() => {
 });
 ```
 
-:::caution 注意
-1. 通过`updateState`更新状态时，如果检测到缓存（内存缓存和持久化缓存）也将会更新新的数据更新缓存。
-2. 只有当使用useRequest、useWatcher发起过请求时，alova才会管理hook返回的状态，原因是响应状态是通过一个Method实例来生成key并保存的，但在未发起请求时Method实例内的url、params、query、headers等参数都还不确定。
-:::
+:::caution note
 
+1. When updating the state through `updateState`, if the cache (memory cache and persistent cache) is detected, it will also update the cache with new data.
+2. Alova manages the status returned by the hook only when a request is initiated using useRequest and useWatcher. The reason is that the response status is generated and saved through a Method instance, but when no request is initiated, the url, Parameters such as params, query, headers, etc. are still uncertain.
+   :::
 
-## 高级用法
-很多时候我们会有这样的需求，希望在静默提交创建todo项时，立即调用`updateState`更新数据得以立即展示新的todo项，并且同时还希望在todo项创建完成后再次把`id`更新上去，此时你可以使用[延迟数据更新](../next-step/delayed-data-update )
+## Advanced usage
+
+Many times we have such a requirement. We hope that when the todo item is created silently, `updateState` is called immediately to update the data to display the new todo item immediately, and at the same time, we also hope to update the `id` again after the todo item is created. , at this point you can use [delayed data update](../next-step/delayed-data-update)

@@ -1,9 +1,9 @@
 ---
-title: 更安全的乐观更新
+title: Safer optimistic update
 sidebar_position: 40
 ---
 
-> 示例以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](../overview/index);
+> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](../overview/index);
 
 <iframe src="https://codesandbox.io/embed/safer-ptimistic-update-tw16we?fontsize=14&hidenavigation=1&theme=dark&module=%2Fsrc%2FApp.vue"
   style={{
@@ -18,10 +18,10 @@ sidebar_position: 40
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-:::info 示例说明
-alova的静默提交功能可以让应用在后台提交数据，因此你可以立即将新数据更新到界面上，配合alova独有的延迟数据更新机制，以及后台轮询机制，将会保证后台请求的安全性，即使退出再次进入也将有效。
+:::info example description
+Alova's silent submission function allows applications to submit data in the background, so you can immediately update new data to the interface. With alova's unique delayed data update mechanism and background polling mechanism, it will ensure the security of background requests. It will work even if you exit and enter again.
 
-*操作引导：*
-1. 点击**Add student**，并立即点击**Submit**提交数据。
-2. 新增项将会立即出现在列表项，同时在后台静默发送提交，当请求响应后，新列表项的id将通过延迟更新机制自动更新进去。
+*Operation guide:*
+1. Click **Add student**, and click **Submit** to submit the data immediately.
+2. The newly added item will appear in the list item immediately, and the submission will be sent silently in the background. When the request responds, the id of the new list item will be automatically updated through the delayed update mechanism.
 :::

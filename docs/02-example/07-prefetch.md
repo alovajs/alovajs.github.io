@@ -1,9 +1,9 @@
 ---
-title: 数据预拉取
+title: Data Prefetch
 sidebar_position: 30
 ---
 
-> 示例以vue3为例，但你还可以在react、svelte中使用alova，详细请阅读 [入门指南](../overview/index);
+> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](../overview/index);
 
 <iframe src="https://codesandbox.io/embed/prefetch-v7bnyp?fontsize=14&hidenavigation=1&theme=dark&module=%2Fsrc%2FApp.vue"
      style={{
@@ -18,10 +18,10 @@ sidebar_position: 30
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-:::info 示例说明
-数据预拉取是一种预测用户操作行为的一种方式，来达到内容更快展示在用户面前的策略。
+:::info example description
+Data pre-fetching is a way to predict user operation behavior to achieve a strategy of displaying content to users faster.
 
-*操作引导：*
-1. 鼠标移动到任意列表项，并停留0.2秒，将会在底部面板上看到详情数据的请求被发送；
-2. 单击点开这个列表项，可以立即看到详情数据；
+*Operation guide:*
+1. Move the mouse to any list item and stay there for 0.2 seconds, a request for detailed data will be sent on the bottom panel;
+2. Click to open this list item, you can see the detailed data immediately;
 :::

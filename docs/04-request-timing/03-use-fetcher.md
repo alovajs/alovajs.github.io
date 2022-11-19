@@ -1,79 +1,80 @@
 ---
-title: 数据拉取
+title: fetch data
 sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+When you have the following needs:
 
-当你有以下需求时：
-1. 预加载后续流程中将会使用到的数据并存放在缓存中，让用户不再等待数据加载的过程；
-2. 便捷地实现跨页面更新数据（类似全局状态），例如修改 todo 列表的某一项后重新拉取最新数据，响应后将刷新界面。
+1. Preload the data that will be used in the subsequent process and store it in the cache, so that users no longer wait for the process of data loading;
+2. It is convenient to update data across pages (similar to the global state). For example, after modifying an item in the todo list, re-pull the latest data, and the interface will be refreshed after the response.
 
-`useFetcher`就是用于实现以上场景的hook，通过它获取的响应数据不能直接接收到，但通过它拉取的数据除了会更新缓存外还会更新对应的状态，从而重新渲染视图。
+`useFetcher` is a hook used to implement the above scenarios. The response data obtained through it cannot be directly received, but the data pulled through it will update the corresponding state in addition to updating the cache, thereby re-rendering the view.
 
-你可以用它预拉取数据并保存到缓存中，或优雅地跨组件更新状态，例如修改 todo 列表的某一项后重新拉取最新数据，响应后将会刷新界面
+You can use it to pre-fetch data and save it to the cache, or gracefully update state across components, such as modifying an item in the todo list and re-pulling the latest data, and the interface will be refreshed after the response
 
-与`useRequest`和`useWatcher`相比，`useFetcher`不返回`data`字段，将`loading`改名为了`fetching`，也没有`send`函数，但多了一个`fetch`函数，可以重复利用 fetch 函数拉取不同接口的数据，此时你可以使用 `fetching` 和 `error` 状态统一渲染视图，从而达到统一处理的目的。
+Compared with `useRequest` and `useWatcher`, `useFetcher` does not return `data` field, `loading` is renamed `fetching`, and there is no `send` function, but there is a `fetch` function, which can be reused The fetch function pulls data from different interfaces. At this time, you can use the `fetching` and `error` states to render the view uniformly, so as to achieve the purpose of unified processing.
 
-## 跨模块/组件更新视图
-下面我们来实现修改某个 todo 数据，并重新拉取最新的 todo 列表数据，让视图更新。
+## Update views across modules/components
+
+Next, let's modify a todo data, and re-pull the latest todo list data to update the view.
 
 <Tabs>
 <TabItem value="1" label="vue">
 
 ```html
 <template>
-	<!-- 渲染统一的拉取状态。 -->
-	<div v-if="fetching">{{ 正在后台拉取数据... }}</div>
+  <!-- Render a unified pull state. -->
+  <div v-if="fetching">{{ Fetching data in the background... }}</div>
 
-	<!-- ... -->
-	<button @click="handleSubmit">修改todo项</button>
+  <!-- ... -->
+  <button @click="handleSubmit">Modify todo item</button>
 </template>
 
 <script setup>
-const getTodoList = currentPage => {
-	return alovaInstance.Get('/tood/list', {
-		// 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
-		// 详见后续的《Method实例匹配器》章节
-		name: 'todoList',
-		params: {
-			currentPage,
-			pageSize: 10
-		}
-	});
-};
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/tood/list', {
+      // Note: The name attribute is set here to filter out the required Method instance when the Method instance cannot be specified directly
+      // See the subsequent "Method instance matcher" chapter for details
+      name: 'todoList',
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
 
-const {
-	// fetching属性与loading相同，发送拉取请求时为true，请求结束后为false
-	fetching,
-	error,
-	onSuccess,
-	onError,
-	onComplete,
+  const {
+    // The fetching attribute is the same as loading, true when a pull request is sent, and false after the request is complete
+    fetching,
+    error,
+    onSuccess,
+    onError,
+    onComplete,
 
-	// 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
-	fetch
-} = useFetcher();
+    // Only after calling fetch will the request to pull data be sent. You can repeatedly call fetch multiple times to pull data from different interfaces.
+    fetch
+  } = useFetcher();
 
-// 在事件中触发数据拉取
-const handleSubmit = () => {
-	// todo项修改...
+  // Trigger data pull in event
+  const handleSubmit = () => {
+    // todo item modification...
 
-	// 开始拉取更新后的数据
-	// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
-	fetch(getTodoList(1));
+    // Start pulling the updated data
+    // Case 1: When you clearly know to pull the first page of todoList data, pass in a Method instance
+    fetch(getTodoList(1));
 
-	// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
-	fetch({
-		name: 'todoList',
-		filter: (method, index, ary) => {
-			// 返回true来指定需要拉取的Method实例
-			return index === ary.length - 1;
-		}
-	});
-};
+    // Case 2: When you only know to pull the data of the last request of the todoList, filter by the Method instance matcher
+    fetch({
+      name: 'todoList',
+      filter: (method, index, ary) => {
+        // Return true to specify the Method instance to be pulled
+        return index === ary.length - 1;
+      }
+    });
+  };
 </script>
 ```
 
@@ -82,54 +83,54 @@ const handleSubmit = () => {
 
 ```jsx
 const getTodoList = currentPage => {
-	return alovaInstance.Get('/tood/list', {
-		// 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
-		// 详见后续的《Method实例匹配器》章节
-		name: 'todoList',
-		params: {
-			currentPage,
-			pageSize: 10
-		}
-	});
+return alovaInstance.Get('/tood/list', {
+// Note: The name attribute is set here to filter out the required Method instance when the Method instance cannot be specified directly
+// See the subsequent "Method instance matcher" chapter for details
+name: 'todoList',
+params: {
+currentPage,
+pageSize: 10
+}
+});
 };
 
 const App = () => {
-	const {
-		// fetching属性与loading相同，发送拉取请求时为true，请求结束后为false
-		fetching,
-		error,
-		onSuccess,
-		onError,
-		onComplete,
+const {
+// The fetching attribute is the same as loading, true when a pull request is sent, and false after the request is complete
+fetching,
+error,
+onSuccess,
+onError,
+onComplete,
 
-		// 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
-		fetch
-	} = useFetcher();
+// Only after calling fetch will the request to pull data be sent. You can repeatedly call fetch multiple times to pull data from different interfaces.
+fetch
+} = useFetcher();
 
-	// 在事件中触发数据拉取
-	const handleSubmit = () => {
-		// 假设已完成todo项的修改...
+// Trigger data pull in event
+const handleSubmit = () => {
+// Assuming you have finished modifying the todo item...
 
-		// 开始拉取更新后的数据
-		// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
-		fetch(getTodoList(1));
+// Start pulling the updated data
+// Case 1: When you clearly know to pull the first page of todoList data, pass in a Method instance
+fetch(getTodoList(1));
 
-		// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
-		fetch({
-			name: 'todoList',
-			filter: (method, index, ary) => {
-				// 返回true来指定需要拉取的Method实例
-				return index === ary.length - 1;
-			}
-		});
-	};
+// Case 2: When you only know to pull the data of the last request of the todoList, filter by the Method instance matcher
+fetch({
+name: 'todoList',
+filter: (method, index, ary) => {
+// Return true to specify the Method instance to be pulled
+return index === ary.length - 1;
+}
+});
+};
 
-	return (
-		{/* 渲染统一的拉取状态 */}
-		{ fetching ? <div>{{ 正在后台拉取数据... }}</div> : null }
-		{/* ... */}
-		<button onClick={handleSubmit}>修改todo项</button>
-	);
+return (
+{/* Render unified pull state */}
+{ fetching ? <div>{{ Fetching data in the background... }}</div> : null }
+{/* ... */}
+<button onClick={handleSubmit}>Modify todo item</button>
+);
 };
 ```
 
@@ -138,104 +139,97 @@ const App = () => {
 
 ```html
 <script>
-const getTodoList = currentPage => {
-	return alovaInstance.Get('/tood/list', {
-		// 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
-		// 详见后续的《Method实例匹配器》章节
-		name: 'todoList',
-		params: {
-			currentPage,
-			pageSize: 10
-		}
-	});
-};
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/tood/list', {
+      // Note: The name attribute is set here to filter out the required Method instance when the Method instance cannot be specified directly
+      // See the subsequent "Method instance matcher" chapter for details
+      name: 'todoList',
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
 
-const {
-	// fetching属性与loading相同，发送拉取请求时为true，请求结束后为false
-	fetching,
-	error,
-	onSuccess,
-	onError,
-	onComplete,
+  const {
+    // The fetching attribute is the same as loading, true when a pull request is sent, and false after the request is complete
+    fetching,
+    error,
+    onSuccess,
+    onError,
+    onComplete,
 
-	// 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
-	fetch
-} = useFetcher();
+    // Only after calling fetch will the request to pull data be sent. You can repeatedly call fetch multiple times to pull data from different interfaces.
+    fetch
+  } = useFetcher();
 
-// 在事件中触发数据拉取
-const handleSubmit = () => {
-	// 假设已完成todo项的修改...
+  // Trigger data pull in event
+  const handleSubmit = () => {
+    // Assuming you have finished modifying the todo item...
 
-	// 开始拉取更新后的数据
-	// 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
-	fetch(getTodoList(1));
+    // Start pulling the updated data
+    // Case 1: When you clearly know to pull the first page of todoList data, pass in a Method instance
+    fetch(getTodoList(1));
 
-	// 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
-	fetch({
-		name: 'todoList',
-		filter: (method, index, ary) => {
-			// 返回true来指定需要拉取的Method实例
-			return index === ary.length - 1;
-		}
-	});
-};
+    // Case 2: When you only know to pull the data of the last request of the todoList, filter by the Method instance matcher
+    fetch({
+      name: 'todoList',
+      filter: (method, index, ary) => {
+        // Return true to specify the Method instance to be pulled
+        return index === ary.length - 1;
+      }
+    });
+  };
 </script>
 
-<!-- 渲染统一的拉取状态 -->
+<!-- Render unified pull state -->
 {#if $fetching}
-	<div>{{ 正在后台拉取数据... }}</div>
+<div>{{ Pulling data in the background... }}</div>
 {/if}
 <!-- ... -->
-<button on:click={handleSubmit}>修改todo项</button>
+<button on:click="{handleSubmit}">Modify todo item</button>
 ```
 
 </TabItem>
 </Tabs>
 
-> 更多`Method`实例匹配器的使用方法见 [Method实例匹配器](../next-step/method-instance-matcher )
+> For more usage of `Method` instance matcher, see [Method instance matcher](../next-step/method-instance-matcher)
 
+## preload data
 
-## 预加载数据
-以下实现 todo 列表分页场景下，下一页数据的预加载功能。
+The following implements the preloading function of the next page data in the todo list paging scenario.
 
 <Tabs>
 <TabItem value="1" label="vue">
 
 ```html
 <template>
-	<!-- ... -->
+  <!-- ... -->
 </template>
 
 <script setup>
-// method实例创建函数
-const getTodoList = currentPage => {
-	return alovaInstance.Get('/tood/list', {
-		params: {
-			currentPage,
-			pageSize: 10
-		}
-	});
-};
+  // method instance creation function
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/tood/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
 
-const { fetch } = useFetcher();
+  const { fetch } = useFetcher();
 
-const currentPage = ref(1);
-const {
-	data,
-	onSuccess
-} = useWatcher(
-	() => getTodoList(currentPage.value),
-	[currentPage],
-	{
-		immediate: true
-	}
-);
+  const currentPage = ref(1);
+  const { data, onSuccess } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
+    immediate: true
+  });
 
-// 当前页请求成功时预拉取下一页的数据
-// 实现当翻页到下一页时不需要等待请求
-onSuccess(() => {
-	fetch(getTodoList(currentPage.value + 1));
-});
+  // Pre-fetch the data of the next page when the current page request is successful
+  // Realize that there is no need to wait for the request when turning to the next page
+  onSuccess(() => {
+    fetch(getTodoList(currentPage.value + 1));
+  });
 </script>
 ```
 
@@ -245,40 +239,33 @@ onSuccess(() => {
 ```jsx
 import { useState } from 'react';
 
-// method实例创建函数
+// method instance creation function
 const getTodoList = currentPage => {
-	return alovaInstance.Get('/tood/list', {
-		params: {
-			currentPage,
-			pageSize: 10
-		}
-	});
+  return alovaInstance.Get('/tood/list', {
+    params: {
+      currentPage,
+      pageSize: 10
+    }
+  });
 };
 
 const App = () => {
-	const { fetch } = useFetcher();
-	const [currentPage, setCurrentPage] = useState(1);
-	const {
-		data,
-		onSuccess
-	} = useWatcher(
-		() => getTodoList(currentPage),
-		[currentPage],
-		{
-			immediate: true
-		}
-	);
+  const { fetch } = useFetcher();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, onSuccess } = useWatcher(() => getTodoList(currentPage), [currentPage], {
+    immediate: true
+  });
 
-	// 当前页请求成功时预拉取下一页的数据
-	// 实现当翻页到下一页时不需要等待请求
-	onSuccess(() => {
-		fetch(getTodoList(currentPage + 1));
-	});
+  // Pre-fetch the data of the next page when the current page request is successful
+  // Realize that there is no need to wait for the request when turning to the next page
+  onSuccess(() => {
+    fetch(getTodoList(currentPage + 1));
+  });
 
-	return (
-		{/* ... */}
-	);
-}
+  return {
+    /* ... */
+  };
+};
 ```
 
 </TabItem>
@@ -286,36 +273,29 @@ const App = () => {
 
 ```html
 <script>
-import { writable } from 'svelte/store';
+  import { writable } from 'svelte/store';
 
-// method实例创建函数
-const getTodoList = currentPage => {
-	return alovaInstance.Get('/tood/list', {
-		params: {
-			currentPage,
-			pageSize: 10
-		}
-	});
-};
+  // method instance creation function
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/tood/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
 
-const { fetch } = useFetcher();
-const currentPage = writable(1);
-const {
-	data,
-	onSuccess
-} = useWatcher(
-	() => getTodoList($currentPage),
-	[currentPage],
-	{
-		immediate: true
-	}
-);
+  const { fetch } = useFetcher();
+  const currentPage = writable(1);
+  const { data, onSuccess } = useWatcher(() => getTodoList($currentPage), [currentPage], {
+    immediate: true
+  });
 
-// 当前页请求成功时预拉取下一页的数据
-// 实现当翻页到下一页时不需要等待请求
-onSuccess(() => {
-	fetch(getTodoList($currentPage + 1));
-});
+  // Pre-fetch the data of the next page when the current page request is successful
+  // Realize that there is no need to wait for the request when turning to the next page
+  onSuccess(() => {
+    fetch(getTodoList($currentPage + 1));
+  });
 </script>
 
 <!-- views... -->
@@ -324,16 +304,18 @@ onSuccess(() => {
 </TabItem>
 </Tabs>
 
+:::caution Notes
 
-:::caution 注意事项
-1. `useFetcher` 请求完成后只更新缓存，且如果发现该`Method`实例下还有`data`状态，也会同步更新它，从而保证页面数据一致，这是`useFetcher`用于跨模块/组件更新视图的保证。
+1. After the `useFetcher` request is completed, only the cache is updated, and if it is found that there is a `data` state under the `Method` instance, it will also be updated synchronously to ensure consistent page data. This is `useFetcher` for cross-module/ The component's guarantee that the view is updated.
 
-2. 它默认忽略缓存强制发起请求，你也可以通过以下方式关闭。
+2. It ignores the cache to force the request by default, and you can also close it in the following ways.
+
 ```javascript
 useFetcher({
   force: false
 });
 ```
+
 :::
 
-更多关于强制发送请求的内容，查看 [进阶-强制发送请求](#强制发送请求)
+For more information about forcing a request to be sent, see [Advanced-Force Sending Request](#Force Sending Request)

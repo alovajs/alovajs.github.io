@@ -1,73 +1,64 @@
 ---
-title: 手动更新缓存
+title: Manually update the cache
 sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+Some service interfaces support batch request data, which means that it is always composed of indeterminate sets of response data. When we want to batch request data when initializing the page, and then request only a single piece of data in the interaction, it will cause caching penetration problem.
 
-有些服务接口支持批量请求数据，它意味着总是由不确定的若干组响应数据组成，当我们想要在初始化页面时批量请求数据，然后在交互中只请求单条数据的情况下，会造成缓存穿透的问题。
+For example, we need to obtain the todo list data by date. During initialization, we obtained the data from May 1st to 5th and 5 days in one request, and then the user obtained the data of May 1st again during the operation. Hit the May 1st data during initialization, because the initialized 5-day data are stored together instead of being cached separately. At this time, we can manually create a single response cache for the 5-day data, so that we can Solve the problem of cache penetration when a single data request is made.
 
-例如我们需要按日期获取todo列表数据，在初始化时一次请求获取了5月1日到5日，5天的数据，然后用户在操作时又获取了一次5月1日的数据，此时不会命中初始化时的5月1日数据，因为初始化的5天数据是存放在一起的，而不是分开缓存的，此时我们就可以为这5天的数据相继手动创建单条的响应缓存，这样就可以解决单条数据请求时的缓存穿透的问题。
+## Update static cache data
 
-## 更新静态缓存数据
 <Tabs>
 <TabItem value="1" label="vue">
 
 ```html
 <template>
-  <button @click="handleTodolistToggle">切换日期，命中缓存</button>
+  <button @click="handleTodolistToggle">Switch date, hit cache</button>
 </template>
 <script setup>
-import { setCacheData } from 'alova';
-import { ref } from 'vue';
+  import { setCacheData } from 'alova';
+  import { ref } from 'vue';
 
-const getTodoListByDate = dateList => alovaInstance.Get('/todo/list/dates', {
-  params: { dateList }
-});
-// 初始化时批量获取5天的数据
-const dates = ref([
-  '2022-05-01',
-  '2022-05-02',
-  '2022-05-03',
-  '2022-05-04',
-  '2022-05-05',
-]);
-const {
-  // ...
-  onSuccess
-} = useWatcher(() => getTodoListByDate(dates.value.join()),
-  [dates],
-  {
+  const getTodoListByDate = dateList =>
+    alovaInstance.Get('/todo/list/dates', {
+      params: { dateList }
+    });
+  // Get 5 days of data in batches during initialization
+  const dates = ref(['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']);
+  const {
+    // ...
+    onSuccess
+  } = useWatcher(() => getTodoListByDate(dates.value.join()), [dates], {
     immediate: true
-  }
-);
-onSuccess(todoListDates => {
-  if (todoListDates.length <= 1) {
-    return;
-  }
+  });
+  onSuccess(todoListDates => {
+    if (todoListDates.length <= 1) {
+      return;
+    }
+
+    // highlight-start
+    // By default, these 5 days of data will be cached together in a key
+    // In order to make subsequent requests for a certain day's data also hit the cache, we can disassemble the 5-day data into daily, and manually set the response cache one after another through setCacheData
+    todoListDates.forEach(todoDate => {
+      // setCacheData parameter description:
+      // Parameter 1: method instance object, which is used to specify the cache key
+      // parameter 2: cache data
+      setCacheData(getTodoListByDate(todoDate.date), [todoDate]);
+    });
+    // highlight-end
+  });
 
   // highlight-start
-  // 默认情况下，这5天的数据会一起缓存到一个key中
-  // 为了让后续请求某一天的数据时也能命中缓存，我们可以将5天的数据拆解为按天，并通过setCacheData相继手动设置响应缓存
-  todoListDates.forEach(todoDate => {
-    
-    // setCacheData参数说明：
-    // 参数1：method实例对象，它用于指定缓存的key
-    // 参数2：缓存数据
-    setCacheData(getTodoListByDate(todoDate.date), [todoDate]);
-  });
+  const handleTodolistToggle = () => {
+    // At this point, when the switch date is May 1, it will hit the response cache we manually set.
+    // The dates value is being listened to by useWatcher, so changing it automatically triggers the request
+    dates.value = ['2022-05-01'];
+  };
   // highlight-end
-});
-
-// highlight-start
-const handleTodolistToggle = () => {
-  // 此时再在切换日期为5月1日时，它将会命中我们手动设置的响应缓存。
-  // dates值正在被useWatcher监听，因此改变它就可以自动触发请求
-  dates.value = ['2022-05-01'];
-};
-// highlight-end
 </script>
 ```
 
@@ -78,38 +69,30 @@ const handleTodolistToggle = () => {
 import { setCacheData } from 'alova';
 import { useState } from 'react';
 
-const getTodoListByDate = dateList => alovaInstance.Get('/todo/list/dates', {
-  params: { dateList }
-});
+const getTodoListByDate = dateList =>
+  alovaInstance.Get('/todo/list/dates', {
+    params: { dateList }
+  });
 
 const App = () => {
-  // 初始化时批量获取5天的数据
-  const [dates, setDates] = useState([
-    '2022-05-01',
-    '2022-05-02',
-    '2022-05-03',
-    '2022-05-04',
-    '2022-05-05',
-  ]);
+  // Get 5 days of data in batches during initialization
+  const [dates, setDates] = useState(['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']);
   const {
     // ...
     onSuccess
-  } = useWatcher(() => getTodoListByDate(dates.join()),
-    [dates],
-    {
-      immediate: true
-    }
-  );
+  } = useWatcher(() => getTodoListByDate(dates.join()), [dates], {
+    immediate: true
+  });
   onSuccess(todoListDates => {
     if (todoListDates.length <= 1) {
       return;
     }
 
     // highlight-start
-    // 默认情况下，这5天的数据会一起缓存到一个key中
-    // 为了让后续请求某一天的数据时也能命中缓存，我们可以将5天的数据拆解为按天，并通过setCacheData一一手动设置响应缓存
-    // setCacheData的第一个参数为method实例对象，它用于指定缓存的key
-    // 第二个参数为缓存数据
+    // By default, these 5 days of data will be cached together in a key
+    // In order to make subsequent requests for a certain day's data also hit the cache, we can disassemble the 5-day data into daily, and manually set the response cache one by one through setCacheData
+    // The first parameter of setCacheData is the method instance object, which is used to specify the cache key
+    // The second parameter is the cache data
     todoListDates.forEach(todoDate => {
       setCacheData(getTodoListByDate(todoDate.date), [todoDate]);
     });
@@ -118,15 +101,13 @@ const App = () => {
 
   // highlight-start
   const handleTodolistToggle = () => {
-    // 此时再在切换日期为5月1日时，它将会命中我们手动设置的响应缓存。
-    // dates值正在被useWatcher监听，因此改变它就可以自动触发请求
+    // At this point, when the switch date is May 1, it will hit the response cache we manually set.
+    // The dates value is being listened to by useWatcher, so changing it automatically triggers the request
     setDates(['2022-05-01']);
   };
   // highlight-end
 
-  return (
-    <button onClick={handleTodolistToggle}>切换日期，命中缓存</button>
-  );
+  return <button onClick={handleTodolistToggle}>Switch date, hit cache</button>;
 };
 ```
 
@@ -135,81 +116,75 @@ const App = () => {
 
 ```html
 <script>
-import { setCacheData } from 'alova';
-import { writable } from 'svelte/store';
+  import { setCacheData } from 'alova';
+  import { writable } from 'svelte/store';
 
-const getTodoListByDate = dateList => alovaInstance.Get('/todo/list/dates', {
-  params: { dateList }
-});
-// 初始化时批量获取5天的数据
-const dates = writable([
-  '2022-05-01',
-  '2022-05-02',
-  '2022-05-03',
-  '2022-05-04',
-  '2022-05-05',
-]);
-const {
-  // ...
-  onSuccess
-} = useWatcher(() => getTodoListByDate($dates.join()),
-  [dates],
-  {
+  const getTodoListByDate = dateList =>
+    alovaInstance.Get('/todo/list/dates', {
+      params: { dateList }
+    });
+  // Get 5 days of data in batches during initialization
+  const dates = writable(['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']);
+  const {
+    // ...
+    onSuccess
+  } = useWatcher(() => getTodoListByDate($dates.join()), [dates], {
     immediate: true
-  }
-);
-onSuccess(todoListDates => {
-  if (todoListDates.length <= 1) {
-    return;
-  }
+  });
+  onSuccess(todoListDates => {
+    if (todoListDates.length <= 1) {
+      return;
+    }
+
+    // highlight-start
+    // By default, these 5 days of data will be cached together in a key
+    // In order to make subsequent requests for a certain day's data also hit the cache, we can disassemble the 5-day data into daily, and manually set the response cache one by one through setCacheData
+    // The first parameter of setCacheData is the method instance object, which is used to specify the cache key
+    // The second parameter is the cache data
+    todoListDates.forEach(todoDate => {
+      setCacheData(getTodoListByDate(todoDate.date), [todoDate]);
+    });
+    // highlight-end
+  });
 
   // highlight-start
-  // 默认情况下，这5天的数据会一起缓存到一个key中
-  // 为了让后续请求某一天的数据时也能命中缓存，我们可以将5天的数据拆解为按天，并通过setCacheData一一手动设置响应缓存
-  // setCacheData的第一个参数为method实例对象，它用于指定缓存的key
-  // 第二个参数为缓存数据
-  todoListDates.forEach(todoDate => {
-    setCacheData(getTodoListByDate(todoDate.date), [todoDate]);
-  });
+  const handleTodolistToggle = () => {
+    // At this point, when the switch date is May 1, it will hit the response cache we manually set.
+    // The dates value is being listened to by useWatcher, so changing it automatically triggers the request
+    $dates = ['2022-05-01'];
+  };
   // highlight-end
-});
-
-// highlight-start
-const handleTodolistToggle = () => {
-  // 此时再在切换日期为5月1日时，它将会命中我们手动设置的响应缓存。
-  // dates值正在被useWatcher监听，因此改变它就可以自动触发请求
-  $dates = ['2022-05-01'];
-};
-// highlight-end
 </script>
-<button on:click={handleTodolistToggle}>切换日期，命中缓存</button>
+<button on:click="{handleTodolistToggle}">Switch date, hit cache</button>
 ```
 
 </TabItem>
 </Tabs>
 
+## Dynamic cache data update
 
-## 动态缓存数据更新
-你也可以在`setCacheData`中传入一个回调函数来动态计算缓存数据，并返回需要更新的缓存数据。
+You can also pass a callback function to `setCacheData` to dynamically calculate the cache data and return the cache data that needs to be updated.
+
 ```javascript
 setCacheData(getTodoListByDate('2022-10-01'), oldCache => {
-
-  // 返回需要缓存的数据
+  // return the data to be cached
   return {
     ...oldCache,
-    expire: isAfter('2022-10-01', new Date()),
+    expire: isAfter('2022-10-01', new Date())
   };
 });
 ```
 
-## 中断缓存更新
-你还可以在`setCacheData`的回调函数中返回`false`来中断缓存的更新。
+## interrupt cache update
+
+You can also interrupt the cache update by returning `false` in the `setCacheData` callback function.
+
 ```javascript
 setCacheData(getTodoListByDate('2022-10-01'), oldCache => {
   const isExpired = isAfter('2022-10-01', new Date());
   if (!isExpired) {
-    return false; // 中断缓存更新
+    return false; // interrupt cache update
   }
-  return undefined; // 将缓存更新为undefined
+  return undefined; // update the cache to undefined
 });
 ```
