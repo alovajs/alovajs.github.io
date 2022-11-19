@@ -7,7 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'alova.JS',
-  tagline: '一个轻量级的MVVM请求场景管理库，让应用管理CS数据交互更高效，体验更好',
+  tagline:
+    'A lightweight MVVM request scene management library to make application management CS data interaction more efficient and experience better',
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -28,7 +29,7 @@ const config = {
     localeConfigs: {
       en: {
         htmlLang: 'en-GB'
-      },
+      }
     }
   },
 
@@ -42,15 +43,15 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/alovajs/alovajs.github.io/blob/main/',
+          editUrl: 'https://github.com/alovajs/alovajs.github.io/blob/main/'
         },
         // disable blog
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      },
-    ],
+          customCss: require.resolve('./src/css/custom.css')
+        }
+      }
+    ]
   ],
 
   themeConfig:
@@ -60,27 +61,27 @@ const config = {
         title: 'alova.JS',
         logo: {
           alt: 'ALOVA',
-          src: 'img/logo.png',
+          src: 'img/logo.png'
         },
         items: [
           {
             type: 'doc',
             docId: 'overview/index',
             position: 'left',
-            label: '指南',
+            label: 'Guide'
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'localeDropdown',
             docId: 'locale',
-            position: 'right',
+            position: 'right'
           },
           {
             href: 'https://github.com/alovajs/alova',
             label: 'GitHub',
-            position: 'right',
-          },
-        ],
+            position: 'right'
+          }
+        ]
       },
       footer: {
         style: 'dark',
@@ -89,10 +90,10 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: '指南',
-                to: '/overview/index',
-              },
-            ],
+                label: 'Guide',
+                to: '/overview/index'
+              }
+            ]
           },
           // {
           //   title: 'Community',
@@ -116,26 +117,26 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/alovajs/alova',
+                href: 'https://github.com/alovajs/alova'
               },
               {
                 label: 'Issues',
-                href: 'https://github.com/alovajs/alova/issues',
+                href: 'https://github.com/alovajs/alova/issues'
               },
               {
                 label: 'Pull request',
-                href: 'https://github.com/alovajs/alova/pulls',
+                href: 'https://github.com/alovajs/alova/pulls'
               }
-            ],
-          },
+            ]
+          }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} alova.js Team`,
+        copyright: `Copyright © ${new Date().getFullYear()} alova.js Team`
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+        darkTheme: darkCodeTheme
+      }
+    })
 };
 
 module.exports = config;

@@ -1,9 +1,9 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "Latest",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.概览": {
+  "sidebar.tutorialSidebar.category.Overview": {
     "message": "概览",
     "description": "The label for category 概览 in sidebar tutorialSidebar"
   },
@@ -46,10 +46,6 @@
   "sidebar.tutorialSidebar.category.其他": {
     "message": "其他",
     "description": "The label for category 其他 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Overview": {
-    "message": "Overview",
-    "description": "The label for category Overview in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Examples": {
     "message": "Examples",
