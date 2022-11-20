@@ -17,6 +17,10 @@ Set environment variable **VITE_ALOVA_TIPS=0** in `.env.development` file
 VITE_ALOVA_TIPS=0
 ```
 
+:::warning Warning
+If info still exists. you can try to remove the deps cache of vite, which at the dir `node_modules/.vite/deps`.
+:::
+
 ## Webpack
 
 ### Vue

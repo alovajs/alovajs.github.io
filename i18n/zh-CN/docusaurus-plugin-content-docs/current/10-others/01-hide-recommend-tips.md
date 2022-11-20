@@ -15,6 +15,10 @@ alova可以配合扩展库获得更好的开发体验，为了让更多开发者
 VITE_ALOVA_TIPS=0
 ```
 
+:::warning 警告
+如果信息仍然存在，请尝试将vite的依赖缓存删除，它在`node_modules/.vite/deps`。
+:::
+
 ## Webpack
 ### Vue
 在`.env.development`文件中设置环境变量 **VUE_APP_ALOVA_TIPS=0**
