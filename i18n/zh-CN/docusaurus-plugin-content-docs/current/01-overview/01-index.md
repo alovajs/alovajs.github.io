@@ -3,7 +3,7 @@ title: 概述
 sidebar_position: 10
 ---
 
-<img width="350px" src="/img/logo-text.png" />
+<img width="350px" src={require('/img/logo-text.png').default} />
 
 ## alova是什么
 一个轻量级的MVVM请求场景管理库，它针对不同的请求场景提出了更好的请求管理方案，可以让你的应用管理CS数据交互更高效，体验更好。我们对 alova 的期望是一个结合了开发体验和用户体验的请求管理工具，具有非常灵活的扩展能力，可以实现更多的请求场景。如果你有期待的请求场景但我们未实现的，也欢迎贡献你为alova贡献你不可替代的力量。

@@ -9,3 +9,9 @@
   height: 100px;
   width: 100px;
 }
+
+.desc {
+  width: 75%;
+  margin: 0 auto;
+  color: #999;
+}

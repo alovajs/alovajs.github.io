@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 10
 ---
 
-<img width="350px" src="/img/logo-text.png" />
+<img width="350px" src={require('/img/logo-text.png').default} />
 
 ## What is alova
 A lightweight MVVM request scenario management library, it proposes better request management solutions for different request scenarios, allowing your application to manage CS data interaction more efficiently and experience better. Our expectation for alova is a request management tool that combines development experience and user experience, with very flexible expansion capabilities, and can implement more request scenarios. If you have an expected request scenario but we have not implemented it, you are also welcome to contribute your irreplaceable strength to alova.
@@ -49,7 +49,7 @@ The original intention of alova is to propose a solution for different request s
 6. **[Collaborate with any request library]** Whether you like to use axios, superagent, or the browser's fetch-api, alova can be perfectly compatible without losing features
 7. **[Multi-mode cache server data]** Provides a variety of server data cache modes such as memory mode, persistence mode, etc., to improve user experience and reduce server pressure at the same time
 8. **[Safer optimistic update]** alova implements a background polling mechanism, which is still valid even if re-entry is successful until the request is successful, and with the unique delayed data update mechanism, the security of optimistic update is guaranteed
-9. **[Data pre-pull]** Customize the interface data to be pulled in advance in any case, which means that users can see the information faster without waiting
+9. **[Data prefetch]** Customize the interface data to be pulled in advance in any case, which means that users can see the information faster without waiting
 10. **[Typescript support]** If you like to use typescript, everything in alova will be typed
 11. **[Offline Submission]** Unique request cache, which makes requests available even offline without interrupting users in use
 12. **[TreeShaking support]** APIs not used by alova will not be packaged into the production package, which means that the production volume of alova is often less than 4kb

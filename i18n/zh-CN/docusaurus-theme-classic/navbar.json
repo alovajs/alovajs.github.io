@@ -3,16 +3,12 @@
     "message": "alova.JS",
     "description": "The title in the navbar"
   },
-  "item.label.指南": {
+  "item.label.Guide": {
     "message": "指南",
-    "description": "Navbar item with label 指南"
+    "description": "Navbar item with label Guide"
   },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
-  },
-  "item.label.Guide": {
-    "message": "Guide",
-    "description": "Navbar item with label Guide"
   }
 }
