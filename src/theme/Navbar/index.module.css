@@ -12,6 +12,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 0;
+  height: 36px;
   border-bottom: solid 1px var(--ifm-table-border-color);
+}
+
+.navPlaceholer {
+  height: 96px;
 }
