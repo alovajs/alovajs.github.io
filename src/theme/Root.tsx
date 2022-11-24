@@ -1,13 +1,15 @@
 import React from 'react';
 
 // 自动判断语言环境
-// if (process.env.NODE_ENV === 'development') {
-//   const locale = window.navigator.language;
-//   const pathname = window.location.pathname;
-//   if (['zh-CN'].includes(locale) && pathname.indexOf(locale) < 0) {
-//     location.href = '/' + locale + pathname;
-//   }
-// }
+const storageKey = 'language.toggle';
+const locale = window.navigator.language;
+const href = window.location.href;
+if (['zh-CN'].includes(locale) && href.indexOf(locale) < 0 && !sessionStorage.getItem(storageKey)) {
+  const hrefSplited = href.split('/');
+  hrefSplited.splice(3, 0, locale);
+  location.href =  hrefSplited.join('/');
+  sessionStorage.setItem(storageKey, '1');
+}
 
 // 默认实现，你可以自定义
 export default function Root({ children }) {
