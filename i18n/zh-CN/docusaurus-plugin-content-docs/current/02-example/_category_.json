@@ -2,6 +2,6 @@
   "label": "示例",
   "link": {
     "type": "generated-index",
-    "description": "这里有丰富的示例，来展示alova在不同请求场景下的表现。"
+    "description": "这里有丰富的示例，来展示alova在不同请求场景下的表现，示例运行前会先安装依赖，要稍微等待一会儿！"
   }
 }
