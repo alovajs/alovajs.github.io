@@ -106,7 +106,7 @@ const alovaInstance = createAlova({
         throw new Error(json.message);
       }
 
-      // The parsed response data will be passed to three hook functions: staleTime, persistTime, and transformData, which will be explained later
+      // The parsed response data will be passed to the hook function transformData, which will be explained later
       return json.data;
     },
 

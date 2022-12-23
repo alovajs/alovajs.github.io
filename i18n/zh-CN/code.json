@@ -262,6 +262,14 @@
     "message": "标签",
     "description": "The title of the tag list page"
   },
+  "theme.tips.supportMe.prefix": {
+    "message": "如果你喜欢alova，",
+    "description": "The tips of support me snippet1"
+  },
+  "theme.tips.supportMe.linkText": {
+    "message": "请在Github为它点亮star！",
+    "description": "The tips of support me snippet2"
+  },
 
   "homepage.title": {
     "message": "{libName} - 轻量级MVVM请求场景管理库",
