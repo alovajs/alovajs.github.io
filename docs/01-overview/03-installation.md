@@ -35,7 +35,7 @@ yarn add alova
 
 ## ESM
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```javascript
@@ -117,7 +117,7 @@ You can use `window.GlobalFetch` which will use `winfow.fetch` for requests.
 
 You can use different States Hook according to the framework used by the project
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html
@@ -160,7 +160,7 @@ See [svelte.dev](https://svelte.dev/) for details
 
 ### In static html
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html

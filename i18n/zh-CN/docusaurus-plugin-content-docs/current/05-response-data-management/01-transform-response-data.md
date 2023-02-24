@@ -6,7 +6,7 @@ sidebar_position: 10
 当响应数据结构不能直接满足前端需求时，我们可以为method实例设置`transformData`钩子函数将响应数据转换成需要的结构，数据转换后将会作为`data`状态的值。
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/tood/list', {
+const todoListGetter = alovaInstance.Get('/todo/list', {
   params: {
     page: 1,
   },

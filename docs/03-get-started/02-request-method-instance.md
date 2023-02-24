@@ -3,11 +3,11 @@ title: request method instance
 sidebar_position: 20
 ---
 
-In `alova`, each request corresponds to a method instance representation, which describes the url, request header, request parameters of a request, and request behavior parameters such as response data processing, cache processing data, etc., but it does not actually send a request .
+In Alova, each request corresponds to a method instance, which describes the url, request header, request parameters, and request behavior parameters such as response data processing and cache data processing, but it does not actually send the request.
 
 ## create instance
 
-The creation of the `Method` instance is similar to the `axios` request sending function. Let's first create a `Method` instance that gets the todo list.
+The creation of a Method instance is also very similar to the request sending function of axios. Let's first create a Method instance to get the todo list.
 
 ```javascript
 // Create a Get instance to describe the information of a Get request
@@ -16,17 +16,17 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'
   },
-  // The params parameter will be spliced ​​after the url in the form of ?
+  // The params parameter will be spliced after the url in the form of?
   params: {
     userId: 1
   }
 });
 ```
 
-Then create a `Method` instance that submits the todo, POST request.
+Then create a POST request Method instance to submit the todo item.
 
 ```javascript
-// create a Post instance
+// Create a Post instance
 const createTodoPoster = alovaInstance.Post(
   '/todo/create',
   // The second parameter is the http body data
@@ -34,34 +34,34 @@ const createTodoPoster = alovaInstance.Post(
     title: 'test todo',
     time: '12:00'
   },
-  // The third parameter is the request configuration related information
+  // The third parameter is request configuration related information
   {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
     },
     params: {
-      // ...
+      //...
     }
   }
 );
 ```
 
-> ⚠️ Note: The `Method` instance only stores the information required for the request, it will not send the request, but needs to send the request through the `use hook` (details later), which is different from `axios`.
+> ⚠️ Note: The `Method` instance only saves the information needed for the request, it does not send the request, but needs to send the request through the `use hook` (will be explained in detail later), which is different from `axios`.
 
-## Set a finer grained timeout
+## Set a finer-grained timeout
 
-The global request timeout applies to all `Method` instances, but in many cases we need to set different timeouts according to special requests. At this time, we can set the request-level timeout, which will override the global `timeout` parameter
+The global request timeout applies to all `Method` instances, but many times we need to set different timeouts according to special requests. At this time, we can set the request-level timeout, which will override the global `timeout` parameter
 
 ```javascript
-// request timeout at request level
+// Request timeout at the request level
 const todoListGetter = alovaInstance.Get('/todo/list', {
-  // ...
+  //...
   // highlight-start
   timeout: 10000
   // highlight-end
 });
 ```
 
-## request method type
+## Request method type
 
-`Alova` provides abstract instances of seven request methods including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. details).
+`Alova` provides abstract instances of seven request methods including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. For specific usage methods, please read [Request Method Details](../next-step/request-method- details).

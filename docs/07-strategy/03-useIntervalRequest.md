@@ -1,0 +1,54 @@
+---
+title: useIntervalRequest
+sidebar_position: 30
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Install
+
+<Tabs groupId="framework">
+<TabItem value="1" label="npm">
+
+```bash
+npm install @alova/hooks --save
+```
+
+</TabItem>
+<TabItem value="2" label="yarn">
+
+```bash
+yarn add @alova/hooks
+```
+
+</TabItem>
+</Tabs>
+
+## Import
+
+<Tabs groupId="framework">
+<TabItem value="1" label="vue">
+
+```javascript
+import { useIntervalRequest } from '@alova/hooks/vue';
+```
+
+</TabItem>
+<TabItem value="2" label="react">
+
+```javascript
+import { useIntervalRequest } from '@alova/hooks/react';
+```
+
+</TabItem>
+<TabItem value="3" label="svelte">
+
+```javascript
+import { useIntervalRequest } from '@alova/hooks/svelte';
+```
+
+</TabItem>
+</Tabs>
+
+Coming soon...

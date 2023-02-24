@@ -1,24 +1,25 @@
 ---
-title: state change request
+title: Status Change Request
 sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-`useWatcher` is used to monitor the specified state change and send a request immediately. It is mainly used in scenarios where the data is updated with the state change, such as paging, data filtering, and fuzzy search.
+In some scenarios that need to be re-requested as the data changes, such as paging, data filtering, and fuzzy search, `useWatcher` can be used to monitor the specified state change and send the request immediately.
 
-##Keyword search
-Next, let's take the example of searching for todo items.
-<Tabs>
+## Keyword Search
+
+Next, let's take searching for todo items as an example.
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html
 <template>
-  <!-- keyword changes as input changes -->
+  <!-- keyword changes as the input content changes -->
   <input v-model="keyword" />
 
-  <!-- Render filtered todo list -->
+  <!-- Render the filtered todo list -->
   <div v-if="loading">Loading...</div>
   <template v-else>
     <div v-for="todo in data">
@@ -31,9 +32,9 @@ Next, let's take the example of searching for todo items.
 <script setup>
   // create method instance
   const filterTodoList = keyword => {
-    return alovaInstance.Get('/tood/list/search', {
+    return alovaInstance.Get('/todo/list/search', {
       params: {
-        keyword
+        keywords
       }
     });
   };
@@ -43,14 +44,14 @@ Next, let's take the example of searching for todo items.
     data,
     error
 
-    // The first parameter must be a function that returns an instance of method
+    // The first parameter must be a function that returns a method instance
   } = useWatcher(
     () => filterTodoList(keyword.value),
 
-    // Array of monitored states, these state changes will trigger a request
+    // array of states being monitored, these state changes will trigger a request
     [keyword],
     {
-      // Set 500ms anti-shake, if the keyword changes frequently, the request will only be sent 500ms after the change is stopped
+      // Set 500ms anti-shake, if the keyword changes frequently, only send the request 500ms after the change stops
       debounce: 500
     }
   );
@@ -63,9 +64,9 @@ Next, let's take the example of searching for todo items.
 ```jsx
 // create method instance
 const filterTodoList = keyword => {
-  return alovaInstance.Get('/tood/list/search', {
+  return alovaInstance.Get('/todo/list/search', {
     params: {
-      keyword
+      keywords
     }
   });
 };
@@ -76,27 +77,27 @@ const App = () => {
     loading,
     data,
     error
-    // The first parameter must be a function that returns an instance of method
+    // The first parameter must be a function that returns a method instance
   } = useWatcher(
     () => filterTodoList(keyword),
 
-    // Array of monitored states, these state changes will trigger a request
+    // array of states being monitored, these state changes will trigger a request
     [keyword],
     {
-      // Set 500ms anti-shake, if the keyword changes frequently, the request will only be sent 500ms after the change is stopped
+      // Set 500ms anti-shake, if the keyword changes frequently, only send the request 500ms after the change stops
       debounce: 500
     }
   );
 
   return (
     <>
-      {/* keyword changes as input changes */}
+      {/* keyword changes with input content */}
       <input
         value={keyword}
         onInput={e => setKeyword(e.target.value)}
       />
 
-      {/* Render filtered todo list */}
+      {/* Render the filtered todo list */}
       {loading ? <div>Loading...</div> : null}
       {!loading ? (
         <>
@@ -122,7 +123,7 @@ const App = () => {
 
   // create method instance
   const filterTodoList = text => {
-    return alovaInstance.Get('/tood/list/search', {
+    return alovaInstance.Get('/todo/list/search', {
       params: {
         keyword: text
       }
@@ -135,14 +136,14 @@ const App = () => {
     data,
     error
 
-    // The first parameter must be a function that returns an instance of method
+    // The first parameter must be a function that returns a method instance
   } = useWatcher(
     () => filterTodoList($keyword),
 
-    // Array of monitored states, these state changes will trigger a request
+    // array of states being monitored, these state changes will trigger a request
     [keyword],
     {
-      // Set 500ms anti-shake, if the keyword changes frequently, the request will only be sent 500ms after the change is stopped
+      // Set 500ms anti-shake, if the keyword changes frequently, only send the request 500ms after the change stops
       debounce: 500
     }
   );
@@ -151,17 +152,17 @@ const App = () => {
     $keyword = e.target.value;
   };
 </script>
-<!-- keyword changes as input changes -->
+<!-- keyword changes as the input content changes -->
 <input
   value="{$keyword}"
   on:input="{updateKeyword}" />
 
-<!-- Render filtered todo list -->
+<!-- Render the filtered todo list -->
 {#if $loading}
 <div>Loading...</div>
 {:else} {#each $data as todo}
 <div>
-  <div class="todo-title">{ todo.title }</div>
+  <div class="todo-title">{ todo. title }</div>
   <div class="todo-time">{ todo.time }</div>
 </div>
 {/each} {/if}
@@ -170,11 +171,11 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## Pagination
+## pagination
 
-Taking the todo list pagination request as an example, you can do this.
+Using the todo list pagination request as an example, you can do this.
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html
@@ -185,7 +186,7 @@ Taking the todo list pagination request as an example, you can do this.
 <script setup>
   // method instance creation function
   const getTodoList = currentPage => {
-    return alovaInstance.Get('/tood/list', {
+    return alovaInstance.Get('/todo/list', {
       params: {
         currentPage,
         pageSize: 10
@@ -202,11 +203,11 @@ Taking the todo list pagination request as an example, you can do this.
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList(currentPage.value),
-    // Array of monitored states, these state changes will trigger a request
+    // array of states being monitored, these state changes will trigger a request
     [currentPage],
     {
-      // ⚠️ Calling useWatcher does not trigger by default, pay attention to the difference from useRequest
-      // Manually set immediate to true to get the first page data initially
+      // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
+      // Manually set immediate to true to initially obtain the first page data
       immediate: true
     }
   );
@@ -221,7 +222,7 @@ import { useState } from 'react';
 
 // method instance creation function
 const getTodoList = currentPage => {
-  return alovaInstance.Get('/tood/list', {
+  return alovaInstance.Get('/todo/list', {
     params: {
       currentPage,
       pageSize: 10
@@ -239,11 +240,11 @@ const App = () => {
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList(currentPage),
-    // Array of monitored states, these state changes will trigger a request
+    // array of states being monitored, these state changes will trigger a request
     [currentPage],
     {
-      // ⚠️ Calling useWatcher does not trigger by default, pay attention to the difference from useRequest
-      // Manually set immediate to true to get the first page data initially
+      // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
+      // Manually set immediate to true to initially obtain the first page data
       immediate: true
     }
   );
@@ -263,7 +264,7 @@ const App = () => {
 
   // method instance creation function
   const getTodoList = currentPage => {
-    return alovaInstance.Get('/tood/list', {
+    return alovaInstance.Get('/todo/list', {
       params: {
         currentPage,
         pageSize: 10
@@ -280,11 +281,11 @@ const App = () => {
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList($currentPage),
-    // Array of monitored states, these state changes will trigger a request
+    // array of states being monitored, these state changes will trigger a request
     [currentPage],
     {
-      // ⚠️ Calling useWatcher does not trigger by default, pay attention to the difference from useRequest
-      // Manually set immediate to true to get the first page data initially
+      // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
+      // Manually set immediate to true to initially obtain the first page data
       immediate: true
     }
   );
@@ -298,17 +299,17 @@ const App = () => {
 
 ## Manually send the request
 
-Sometimes you want to resend the request when the listening state has not changed (such as server data has been updated), you can also manually trigger the request through the `send` function, the usage is the same as `useRequest`.
+Sometimes you want to resend the request when the monitoring state has not changed (for example, the server data has been updated), you can also manually trigger the request through the `send` function, the usage is the same as `useRequest`.
 
 ```javascript
 const {
-  // ...
+  //...
   // highlight-start
   send
   // highlight-end
 } = useWatcher(
   () => getTodoList($currentPage),
-  // Array of monitored states, these state changes will trigger a request
+  // array of states being monitored, these state changes will trigger a request
   [currentPage],
   {
     immediate: true
@@ -320,9 +321,48 @@ send();
 // highlight-end
 ```
 
+## Force send request
+
+Caching data can improve application fluency and reduce server pressure, but there is also the problem of data expiration. When you want to penetrate the cache to obtain the latest data, you can set the `force` property in the configuration of use hooks. help you.
+
+### Set static value
+
+force is false by default. When set to true, the cache will be penetrated every time and a request will be sent
+
+```javascript
+useWatcher(
+  () => alovaInstance.Get('/todo'),
+  [
+    /*watchingStates*/
+  ],
+  {
+    force: true
+  }
+);
+```
+
+### Dynamically set the force value
+
+In actual situations, we often need to set whether to force the request to be sent according to different situations. At this time, force can be set as a function, which can be passed in through the send function.
+
+```javascript
+const { send } = useWatcher(
+  alovaInstance.Get('/todo'),
+  [
+    /*watchingStates*/
+  ],
+  {
+    force: id => {
+      return !!id;
+    }
+  }
+);
+send(1);
+```
+
 ## Send function parameter passing rules
 
-In the above example, the send function is called to manually trigger the request, which can accept any number of parameters, which will be received by the following 4 functions respectively:
+In the above example, the send function is called to manually trigger the request, which can accept any number of parameters, and these parameters will be received by the following four functions:
 
 ### useWatcher callback function
 
@@ -333,57 +373,57 @@ const { send } = useWatcher(currentPage => getTodoList(currentPage));
 send(1); // currentPage in the above callback function will receive 1
 ```
 
-### onSuccess callback function
+### Received in onSuccess, onError, onComplete callback functions
 
-The callback set by onSuccess starts to receive from the second parameter (the first parameter is the response data)
+`event.sendArgs` in onSuccess, onError, and onComplete callback functions are received in the form of an array
 
 ```javascript
-const { send, onSuccess } = useWatcher(currentPage => getTodoList(currentPage));
-onSuccess((responseData, currentPage) => {
-  // responseData is the response data
-  // currentPage will receive 1
+const { send, onSuccess, onError, onComplete } = useWatcher(currentPage => getTodoList(currentPage));
+onSuccess(event => {
+  // The value of sendArgs is [1]
+  console.log(event.sendArgs);
+});
+onError(event => {
+  // The value of sendArgs is [1]
+  console.log(event.sendArgs);
+});
+onComplete(event => {
+  // The value of sendArgs is [1]
+  console.log(event.sendArgs);
 });
 send(1);
 ```
 
-### onError callback function
-
-The callback set by onError starts to receive from the second parameter (the first parameter is the error object)
+### Received in the force function
 
 ```javascript
-const { send, onError } = useWatcher(currentPage => getTodoList(currentPage));
-onError((err, currentPage) => {
-  // err is the Error object thrown when the request is wrong
-  // currentPage will receive 1
-});
+const { send } = useWatcher(
+  alovaInstance.Get('/todo'),
+  [
+    /*watchingStates*/
+  ],
+  {
+    force: id => {
+      return !!id;
+    }
+  }
+);
 send(1);
 ```
 
-### onComplete callback function
+## Set initial response data
 
-4. Receive from the first parameter in the callback set by onComplete
-
-```javascript
-const { send, onComplete } = useWatcher(currentPage => getTodoList(currentPage));
-onComplete(id => {
-  // currentPage will receive 1
-});
-send(1);
-```
-
-## set initial response data
-
-Before a page gets the initial data, it inevitably needs to wait for the server to respond. Before responding, it is generally necessary to initialize the state to an empty array or empty object, so as to avoid page errors. A parameter realizes the setting of the initial data.
+Before a page gets the initial data, it inevitably needs to wait for the response from the server. Before the response, it is generally necessary to initialize the state to an empty array or an empty object, so as not to cause an error on the page. We can set the second parameter to set the initial data.
 
 ```javascript
-// The initial value of data can also be set in useWatcher
+// You can also set the initial value of data in useWatcher
 const {
   // The initial value of data before the response is [], not undefined
   data
 } = useWatcher(
-  () => getTodoList(/* parameters */),
+  () => getTodoList(/* parameter */),
   [
-    /* monitor status */
+    /* Monitor status */
   ],
   {
     initialData: []
@@ -393,38 +433,97 @@ const {
 
 ## Request anti-shake
 
-Usually, we write anti-shake code at the level of frequently triggered events. This time, we implemented the anti-shake function at the request level, which means that you no longer have to implement anti-shake in the fuzzy search function, and the usage is very simple.
+Usually we write anti-shake code at the level of frequently triggered events. This time we implemented the anti-shake function at the request level, which means that you no longer need to implement anti-shake yourself in the fuzzy search function, and the usage is very simple.
 :::info Tips: What is function anti-shake
-Function debounce means that after the event is triggered, the function can only be executed once within n seconds. If the event is triggered again within n seconds after the event is triggered, the function delay execution time will be recalculated (here and the function section). To distinguish between streams, function throttling means that the event cannot be triggered again within a period of time after the event is triggered)
+Function debounce means that after an event is triggered, the function can only be executed once within n seconds. If an event is triggered again within n seconds after the event is triggered, the delayed execution time of the function will be recalculated (here and the function section To distinguish between streams, function throttling means that the event cannot be triggered again within a period of time after the event is triggered)
 :::
 
-### Set the anti-shake time for all monitoring states
+### Set the anti-shake time of all monitoring states
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // When setting debounce as a number, it represents the debounce time of all listening states, in milliseconds
-  // As shown here, when one or more of the status keyword and date change, the request will be sent after 500ms
+  // When debounce is set to a number, it represents the anti-shake time of all listening states, in milliseconds
+  // As shown here, when one or more changes of status keyword and date, the request will be sent after 500ms
   debounce: 500
   // highlight-end
 });
 ```
 
-### Set the anti-shake time for a single listening state
+### Set the anti-shake time for a single monitoring state
 
-In many scenarios, we only need to debounce certain frequently changing listening states, such as the state changes triggered by the `onInput` of the text box, you can do this:
+In many scenarios, we only need to stabilize some frequently changing monitoring states, such as state changes triggered by `onInput` of a text box, we can do this:
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // Set the anti-shake time in the array order of the listening state, 0 or no transmission means no anti-shake
-  // The order of the monitoring status here is [keyword, date], and the anti-shake array is set to [500, 0], which means that only the anti-shake is set separately for the keyword
+  // Set the anti-shake time respectively in the array order of the monitoring state, 0 or no transmission means no anti-shake
+  // The order of the monitoring status here is [keyword, date], and the anti-shake array is set to [500, 0], which means that the anti-shake is only set for the keyword alone
   debounce: [500, 0]
-  // can also be set as follows:
+  // You can also set it as follows:
   // debounce: [500],
   // highlight-end
 });
 ```
+
+## Manually modify the status value
+
+In alova, various states such as `data`, `loading`, and `error` returned by `useWatcher` allow custom modification, which will become very convenient in some cases.
+
+<Tabs groupId="framework">
+<TabItem value="1" label="vue">
+
+```javascript
+const watchingState = ref('');
+const { data, loading, error } = useWatcher(todoListGetter, [watchingState]);
+
+//...
+// Modify the data value directly
+data.value = {};
+```
+
+</TabItem>
+
+<TabItem value="2" label="react">
+
+In react, the returned state is data that can be used directly, so it needs to be modified by the `update` function.
+
+```javascript
+const [watchingState, setWatchingState] = useState('');
+const { data, loading, error, update } = useWatcher(todoListGetter, [watchingState]);
+
+//...
+// Modify the data value through update
+update({
+  data: {}
+});
+```
+
+</TabItem>
+
+<TabItem value="3" label="svelte">
+
+In svelte, the status returned by `useWatcher` is of type `writable`.
+
+```javascript
+const watchingState = writable('');
+const { data, loading, error } = useWatcher(todoListGetter, [watchingState]);
+
+//...
+// Modify the data value directly
+$data = {};
+// or data.update(d => ({}));
+```
+
+</TabItem>
+</Tabs>
+
+:::caution Notes
+
+1. The custom modified value will be overwritten by the internal state management mechanism of `useWatcher`. For example, when you modify the value of `data`, the value of `data` will be assigned the latest response data after requesting again;
+2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](/response-data-management/update-response-data-across-modules)
+
+:::
 
 ## Manual interrupt request
 
@@ -432,9 +531,9 @@ When the `timeout` parameter is not set, the request will never time out. If you
 
 ```javascript
 const {
-  // ...
+  //...
   // highlight-start
-  // abort function is used for interrupt request
+  // abort function is used to interrupt request
   abort
   // highlight-end
 } = useWatcher(() => filterTodoList(keyword), [keyword]);

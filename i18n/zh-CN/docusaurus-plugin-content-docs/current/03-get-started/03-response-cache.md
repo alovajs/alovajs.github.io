@@ -159,4 +159,4 @@ localCache: {
 ```
 
 ## 缓存key自动维护
-响应数据缓存的key是由 method 实例的请求方法(method)、请求地址(url)、请求头参数(headers)、url 参数(params)、请求体参数(requestBody)组合作为唯一标识，任意一个位置不同都将被当做不同的 key。
+响应数据缓存的key是由 method 实例的请求方法(method)、请求地址(url)、请求头参数(headers)、url 参数(params)、请求体参数(requestBody)组合作为唯一标识，任意一个信息或位置不同都将被当做不同的 key。

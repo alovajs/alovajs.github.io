@@ -35,7 +35,7 @@ yarn add alova
 
 ## 在 esModule 中使用
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```javascript
@@ -117,7 +117,7 @@ const alovaInstance = createAlova({
 
 你可以根据项目所用的框架，使用不同的 States Hook
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html
@@ -160,7 +160,7 @@ svelte 依赖于编译工具，不能通过 cdn 直接使用
 
 ### 在静态 html 中使用
 
-<Tabs>
+<Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html

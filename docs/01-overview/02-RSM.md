@@ -3,7 +3,7 @@ title: RSM
 sidebar_position: 30
 ---
 
-## What is request scene management
+## What is request scene model
 
 We always have to think about the following questions when making a request,
 
@@ -16,7 +16,7 @@ We always have to think about the following questions when making a request,
 7. Can I still submit data when I am offline?
 8. ...
 
-`fetch` or `axios` tend to focus more on how to interact with the server, but we always need to deal with the above problems by ourselves. These functions that are beneficial to application performance and stability will always allow programmers to write low-maintenance functions. sexual code. The request scene management is to abstract all the links from the preparation of the request to the completion of the response data processing, so as to cover the model of the entire CS interaction life cycle from the perspective of the front end. `alova` is a request scene management library based on the request scene model. It is a supplement to the request library such as `axios`, not a replacement.
+`fetch` or `axios` tend to focus more on how to interact with the server, but we always need to deal with the above problems by ourselves. These functions that are beneficial to application performance and stability will always allow programmers to write low-maintenance functions. sexual code. The request scene management is to abstract all the links from the preparation of the request to the completion of the response data processing, so as to cover the model of the entire CS interaction life cycle from the perspective of the front end. `alova` is a library based on the request scene model. It is a supplement to the request library such as `axios`, not a replacement.
 
 > CS interaction: refers to all client types and server-side data interaction
 

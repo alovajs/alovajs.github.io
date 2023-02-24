@@ -31,6 +31,14 @@
     "message": "下一步",
     "description": "The label for category Next step in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Strategy": {
+    "message": "请求策略",
+    "description": "The label for category Strategy in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Sensorless data interaction": {
+    "message": "无感数据交互",
+    "description": "The label for category Sensorless data interaction in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Advanced": {
     "message": "高级",
     "description": "The label for category Advanced in sidebar tutorialSidebar"

@@ -6,7 +6,7 @@ sidebar_position: 10
 When the response data structure cannot directly meet the front-end requirements, we can set the `transformData` hook function for the method instance to convert the response data into the required structure, and the data will be used as the value of the `data` state after conversion.
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/tood/list', {
+const todoListGetter = alovaInstance.Get('/todo/list', {
   params: {
     page: 1
   },

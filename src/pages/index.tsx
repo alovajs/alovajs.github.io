@@ -29,7 +29,10 @@ function HomepageHeader() {
           alt="logo"
         />
         <p className="hero__subtitle">
-          <Translate id="homepage.tagline">A lightweight MVVM request scene management library to make application management CS data interaction more efficient and experience better</Translate>
+          <Translate id="homepage.tagline">
+            A lightweight MVVM request scene management library to make application management CS data interaction more
+            efficient and experience better
+          </Translate>
         </p>
         <div className={styles.buttons}>
           {buttons.map(({ text, type, link }) => (
@@ -49,10 +52,13 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={translate({
-        message: '{libName} - lightweight MVVM request scene management library',
-        id: 'homepage.title',
-      }, { libName: siteConfig.title })}
+      title={translate(
+        {
+          message: '{libName} - lightweight MVVM request scene management library',
+          id: 'homepage.title'
+        },
+        { libName: siteConfig.title }
+      )}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>

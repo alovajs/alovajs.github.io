@@ -3,11 +3,11 @@ title: 请求方法实例
 sidebar_position: 20
 ---
 
-在`alova`中，每个请求都对应一个 method 实例表示，它描述了一次请求的 url、请求头、请求参数，以及响应数据加工、缓存加工数据等请求行为参数，但它不会实际发出请求。
+在alova中，每个请求都对应一个 method 实例，它描述了一次请求的 url、请求头、请求参数，以及响应数据处理、缓存数据处理等请求行为参数，但它不会实际发出请求。
 
 
 ## 创建实例
-`Method`实例的创建也类似`axios`的请求发送函数，我们先来创建一个获取 todo 列表的`Method`实例。
+Method实例的创建也和 axios 的请求发送函数非常类似，下面我们先来创建一个获取 todo 列表的Method实例。
 
 ```javascript
 // 创建一个Get实例，描述一次Get请求的信息
@@ -23,7 +23,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-接着再创建一个提交 todo 的，POST请求的`Method`实例。
+接着再创建一个提交 todo 项的POST请求Method实例。
 
 ```javascript
 // 创建Post实例
@@ -46,7 +46,7 @@ const createTodoPoster = alovaInstance.Post(
 );
 ```
 
-> ⚠️ 注意：`Method`实例里只是保存了请求所需要的信息，它不会发出请求，而是需要通过`use hook`发送请求（后续详情），这点与`axios`不同。
+> ⚠️ 注意：`Method`实例里只是保存了请求所需要的信息，它不会发出请求，而是需要通过`use hook`发送请求（后续将详细讲解），这点与`axios`不同。
 
 
 ## 设置更细粒度的超时时间
