@@ -1,5 +1,5 @@
 ---
-title: overview
+title: Overview
 sidebar_position: 10
 ---
 
@@ -62,7 +62,7 @@ The data we fill in when creating a list item is enough for the display of the l
 
 :::info example
 
-We provide a [simple list page example](/example/silent-submit-list), you can enter the experience.
+We provide a [simple list page example](/example/silent-submit-simple-list), you can enter the experience.
 
 :::
 

@@ -62,7 +62,7 @@ list.push(data);
 
 :::info 示例
 
-我们提供了一个[简单列表页示例](/example/silent-submit-list)，你可以进入体验。
+我们提供了一个[简单列表页示例](/example/silent-submit-simple-list)，你可以进入体验。
 
 :::
 

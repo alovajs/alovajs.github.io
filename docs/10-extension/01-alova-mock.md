@@ -1,5 +1,5 @@
 ---
-title: mock data
+title: Mock data
 sidebar_position: 10
 ---
 

@@ -272,11 +272,11 @@
   },
 
   "homepage.title": {
-    "message": "{libName} - 轻量级MVVM请求场景管理库",
+    "message": "轻量级请求策略库",
     "description": "The title of web page"
   },
   "homepage.tagline": {
-    "message": "一个轻量级MVVM请求场景管理库，使应用程序管理CS数据交互更高效，体验更好",
+    "message": "我们根据不同的请求场景，分别提供有针对性的请求策略，来提升应用流畅性、可用性，降低服务端压力，让应用如智者一般具备卓越的策略思维",
     "description": "网站tagline"
   },
   "homepage.Examples": {
@@ -287,23 +287,6 @@
     "message": "开始",
     "description": "开始按钮文字"
   },
-
-  "homepage.features.Multi-framework support": {
-    "message": "多框架支持",
-    "description": "多框架支持"
-  },
-  "homepage.features.Multi-framework support.desc": {
-    "message": "通过states hook的设计将框架依赖分离，一套代码同时支持React/React Native/Vue/Svelte，或更多...",
-    "description": "description of feature"
-  },
-  "homepage.features.Real-time automatic status management": {
-    "message": "实时自动状态管理",
-    "description": "实时自动状态管理"
-  },
-  "homepage.features.Real-time automatic status management.desc": {
-    "message": "您的所有请求数据和状态将由alova管理，您只需直接使用",
-    "description": "description of feature"
-  },
   "homepage.features.Simple and familiar": {
     "message": "简单且熟悉",
     "description": "简单且熟悉"
@@ -312,76 +295,28 @@
     "message": "与axios相似的api设计，让您上手更简单熟悉",
     "description": "description of feature"
   },
+  "homepage.features.High performance request stratrgy": {
+    "message": "高性能请求策略",
+    "description": "高性能请求策略"
+  },
+  "homepage.features.High performance request stratrgy.desc": {
+    "message": "针对不同请求场景提供了不同的请求策略，减小请求带来的性能问题",
+    "description": "description of feature"
+  },
+  "homepage.features.Request-level cache": {
+    "message": "请求级缓存",
+    "description": "请求级缓存"
+  },
+  "homepage.features.Request-level cache.desc": {
+    "message": "提供内存模式、持久化模式等多种服务端数据缓存模式，提升用户体验，同时降低服务端压力",
+    "description": "description of feature"
+  },
   "homepage.features.Lightweight": {
     "message": "轻量级",
     "description": "轻量级"
   },
   "homepage.features.Lightweight.desc": {
     "message": "4kb，只有axios的40%",
-    "description": "description of feature"
-  },
-  "homepage.features.Simplify request logic": {
-    "message": "简化请求逻辑",
-    "description": "简化请求逻辑"
-  },
-  "homepage.features.Simplify request logic.desc": {
-    "message": "声明式请求实现，无需您编写请求数据和状态，以及特定场景下的请求代码",
-    "description": "description of feature"
-  },
-  "homepage.features.Collaborate with any request library": {
-    "message": "与任意请求库协作",
-    "description": "与任意请求库协作"
-  },
-  "homepage.features.Collaborate with any request library.desc": {
-    "message": "不管您喜欢使用axios、superagent，还是浏览器的fetch-api，alova都可以不失特性地完美兼容",
-    "description": "description of feature"
-  },
-  "homepage.features.Multi-mode cache server data": {
-    "message": "多模式缓存服务端数据",
-    "description": "多模式缓存服务端数据"
-  },
-  "homepage.features.Multi-mode cache server data.desc": {
-    "message": "提供内存模式、持久化模式等多种服务端数据缓存模式，提升用户体验，同时降低服务端压力",
-    "description": "description of feature"
-  },
-  "homepage.features.Safer optimistic update": {
-    "message": "更安全的乐观更新",
-    "description": "更安全的乐观更新"
-  },
-  "homepage.features.Safer optimistic update.desc": {
-    "message": "alova实现了后台轮询机制，即使重新进入仍有效，直到请求成功，并配合独有的延迟数据更新机制，保证了乐观更新的安全性",
-    "description": "description of feature"
-  },
-  "homepage.features.Data prefetch": {
-    "message": "数据预拉取",
-    "description": "数据预拉取"
-  },
-  "homepage.features.Data prefetch.desc": {
-    "message": "在任何情况下自定义提前拉取接口数据，这意味着用户可以更快看到信息，无需等待",
-    "description": "description of feature"
-  },
-  "homepage.features.Typescript support": {
-    "message": "Typescript支持",
-    "description": "Typescript支持"
-  },
-  "homepage.features.Typescript support.desc": {
-    "message": "如果您喜欢使用typescript，alova的一切都将是类型化的",
-    "description": "description of feature"
-  },
-  "homepage.features.Offline Submission": {
-    "message": "离线提交",
-    "description": "离线提交"
-  },
-  "homepage.features.Offline Submission.desc": {
-    "message": "独有的请求缓存，即使在离线下也让请求具有可用性，而不打断正在使用的用户",
-    "description": "description of feature"
-  },
-  "homepage.features.TreeShaking support": {
-    "message": "Tree shaking支持",
-    "description": "Tree shaking支持"
-  },
-  "homepage.features.TreeShaking support.desc": {
-    "message": "未使用到的api将不会打包进生产包，这意味着alova的生产体积往往小于4kb",
     "description": "description of feature"
   }
 }

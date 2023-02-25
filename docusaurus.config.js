@@ -5,9 +5,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'alova.JS',
+  title: 'Alova.JS',
   tagline:
-    'A lightweight MVVM request scene management library to make application management CS data interaction more efficient and experience better',
+    'According to different request scenarios, we provide targeted request strategies to improve application fluency and availability, reduce server pressure, and enable applications to have excellent strategic thinking like a wise man',
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',

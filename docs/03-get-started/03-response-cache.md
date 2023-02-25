@@ -3,7 +3,7 @@ title: cache mode
 sidebar_position: 40
 ---
 
-The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache occupancy mode, and recovery mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
+The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache occupancy mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
 
 ## memory mode (default)
 
@@ -66,7 +66,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
 
-## recovery mode
+## restore mode
 
 In this mode, the server-side cached data will be persistent. If the expiration time is not reached, even if the page cache is refreshed, it will not be invalidated. It is generally used for some data that requires server-side management but is basically unchanged, such as the specific dates of annual holidays. It is different, but it will not change again. In this scenario, we only need to set the cache expiration time to the last moment of this year.
 
@@ -88,9 +88,9 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
 
-### What should I do if the data changes in recovery mode?
+### What should I do if the data changes in restore mode?
 
-When the `Method` instance in recovery mode is set, it may be due to the change of the interface data or the logic change of the front-end processing response data. At this time, it is necessary to let the user re-cache the changed data after publishing the application. At this time, you can use `tag` The attribute sets the cache tag. Each piece of persistent data contains a `tag` identifier. When the `tag` changes, the original persistent data will become invalid, and new data will be obtained again, and the new `tag` will be used for identification .
+When the `Method` instance in restore mode is set, it may be due to the change of the interface data or the logic change of the front-end processing response data. At this time, it is necessary to let the user re-cache the changed data after publishing the application. At this time, you can use `tag` The attribute sets the cache tag. Each piece of persistent data contains a `tag` identifier. When the `tag` changes, the original persistent data will become invalid, and new data will be obtained again, and the new `tag` will be used for identification .
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
