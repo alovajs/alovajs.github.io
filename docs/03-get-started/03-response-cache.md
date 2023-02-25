@@ -17,7 +17,7 @@ alovaInstance.GET('/todo/list', {
   // highlight-start
   localCache: {
     // Set cache mode to memory mode
-    mode: cacheMode.MEMORY,
+    mode: 'memory',
 
     // unit is milliseconds
     // When set to `Infinity`, it means that the data will never expire, and when it is set to 0 or a negative number, it means no caching
@@ -56,7 +56,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
   // highlight-start
   localCache: {
     // Set the cache mode to persistent placeholder mode
-    mode: cacheMode.STORAGE_PLACEHOLDER,
+    mode: 'placeholder',
     // cache time
     expire: 60 * 10 * 1000
   }
@@ -78,7 +78,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
   // highlight-start
   localCache: {
     // Set the cache mode to persistent mode
-    mode: cacheMode.STORAGE_RESTORE,
+    mode: 'restore',
     // cache time
     expire: 60 * 10 * 1000
   }
@@ -96,7 +96,7 @@ When the `Method` instance in restore mode is set, it may be due to the change o
 const todoListGetter = alovaInstance.Get('/todo/list', {
   //...
   localCache: {
-    mode: cacheMode.STORAGE_RESTORE,
+    mode: 'restore',
     expire: 60 * 10 * 1000,
 
     // highlight-start
@@ -122,7 +122,7 @@ const alovaInstance = createAlova({
   localCache: {
     // Uniformly set the cache mode of POST
     POST: {
-      mode: cacheMode.STORAGE_PLACEHOLDER,
+      mode: 'placeholder',
       expire: 60 * 10 * 1000
     },
     // Uniformly set the cache mode of the HEAD request

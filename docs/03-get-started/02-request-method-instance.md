@@ -7,7 +7,7 @@ In Alova, each request corresponds to a method instance, which describes the url
 
 ## create instance
 
-The creation of a Method instance is also very similar to the request sending function of axios. Let's first create a Method instance to get the todo list.
+The creation of a method instance is also very similar to the request sending function of axios. You need to create method instance by alova instance created in last term. Let's first create a Method instance to get the todo list.
 
 ```javascript
 // Create a Get instance to describe the information of a Get request

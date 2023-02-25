@@ -34,6 +34,19 @@
 .logo {
   width: 200px;
 }
+.relation {
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.relation > * {
+  text-align: center;
+}
+.relationTitle {
+  color: var(--ifm-color-primary);
+}
 
 @media screen and (max-width: 996px) {
   .heroBanner {
@@ -50,5 +63,8 @@
   }
   .logo {
     display: none;
+  }
+  .relation {
+    width: 80%;
   }
 }

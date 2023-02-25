@@ -1,5 +1,5 @@
 ---
-title: 开始
+title: 入门
 sidebar_position: 10
 ---
 
@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ## 创建 Alova 实例
 
-一个`alova`实例是使用的开端，所有的请求都需要从它开始。它的写法类似`axios`，以下是一个最简单的`alova`实例的创建方法。
+一个 alova 实例是使用的开端，所有的请求都需要从它开始。它的写法类似`axios`，以下是一个最简单的 alova 实例的创建方法。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -147,7 +147,8 @@ const alovaInstance = createAlova({
 
 1. onError 回调是请求错误的捕获函数，当捕获错误但没有抛出错误或返回 reject 状态的 Promise 实例，将认为请求是成功的，且不会获得响应数据
 2. responsed 可设为是普通函数和异步函数
-   :::
+
+:::
 
 ## 设置全局请求超时时间
 

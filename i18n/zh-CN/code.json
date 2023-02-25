@@ -279,6 +279,18 @@
     "message": "我们根据不同的请求场景，分别提供有针对性的请求策略，来提升应用流畅性、可用性，降低服务端压力，让应用如智者一般具备卓越的策略思维",
     "description": "网站tagline"
   },
+  "homepage.relationTitle": {
+    "message": "alova和请求库的关系",
+    "description": "关系标题"
+  },
+  "homepage.relationDesc": {
+    "message": "传统promise式的请求库很好地解决了请求发送的问题，只是...它们只是单纯的请求发送工具",
+    "description": "关系描述"
+  },
+  "homepage.relationAuxi": {
+    "message": "alova像它们的武装力量，通过alova可以获得更强大的能力，不管您喜欢使用axios、superagent，还是浏览器的fetch-api，alova都可以完美兼容",
+    "description": "关系附加信息"
+  },
   "homepage.Examples": {
     "message": "示例",
     "description": "示例按钮文字"
@@ -288,8 +300,8 @@
     "description": "开始按钮文字"
   },
   "homepage.features.Simple and familiar": {
-    "message": "简单且熟悉",
-    "description": "简单且熟悉"
+    "message": "简单熟悉",
+    "description": "简单熟悉"
   },
   "homepage.features.Simple and familiar.desc": {
     "message": "与axios相似的api设计，让您上手更简单熟悉",

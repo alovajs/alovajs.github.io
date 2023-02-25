@@ -68,9 +68,26 @@ export default function Home(): JSX.Element {
           id: 'homepage.title'
         })
       }
-      description="Description will go into a meta tag in <head />">
+      description="alova.js a lightweight request strategy library">
       <HomepageHeader />
       <main>
+        <div className={styles.relation}>
+          <strong className={styles.relationTitle}>
+            <Translate id="homepage.relationTitle">Relationship between alova and request library</Translate>
+          </strong>
+          <h3 className="hero__subtitle">
+            <Translate id="homepage.relationDesc">
+              Traditional promised request library solves the problem of request sending very well, but They are simply
+              request sending tools
+            </Translate>
+          </h3>
+          <p>
+            <Translate id="homepage.relationAuxi">
+              Alova is like their armed forces. Through alova, you can obtain more powerful capabilities. Whether you
+              like to use axios, super agent, or browser's fetch-api, alova can be perfectly compatible
+            </Translate>
+          </p>
+        </div>
         <HomepageFeatures />
       </main>
     </Layout>
