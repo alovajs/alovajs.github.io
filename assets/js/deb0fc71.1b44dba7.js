@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkalova_website=self.webpackChunkalova_website||[]).push([[238],{2958:e=>{e.exports=JSON.parse('{"title":"Extensions","slug":"/category/extensions","permalink":"/category/extensions","navigation":{"previous":{"title":"Typescript","permalink":"/advanced/typescript"},"next":{"title":"extend hooks","permalink":"/category/extend-hooks"}}}')}}]);
