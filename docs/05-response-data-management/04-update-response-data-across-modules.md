@@ -1,6 +1,6 @@
 ---
 title: Update response status across pages/modules
-sidebar_position: 30
+sidebar_position: 40
 ---
 
 In the example of the previous section [Active Invalidation Response Cache](../response-data-management/invalidate-response-cache), when the user clicks on an item in the todo list, enters the todo details page and executes Editing is done. At this time, we hope that the todo list data on the previous page will also be updated to the edited content. Using `useFetcher` and `invalidateCache` will re-initiate the request. Is there a method that does not need to re-request?

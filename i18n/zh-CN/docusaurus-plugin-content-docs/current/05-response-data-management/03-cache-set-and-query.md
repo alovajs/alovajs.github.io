@@ -1,6 +1,6 @@
 ---
-title: 手动更新缓存
-sidebar_position: 40
+title: 缓存更新与查找
+sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
@@ -177,6 +177,20 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
+同样的，你也可以通过 [method 实例匹配器](/next-step/method-instance-matcher) 动态查找 method 实例。
+
+```javascript
+setCache(
+  {
+    name: 'todoList',
+    filter: (method, index, ary) => {
+      return index < 5;
+    }
+  },
+  'newCache'
+);
+```
+
 ## 中断缓存更新
 
 有时候你需要动态判断是否需要更新缓存，如果在`setCache`的回调函数中未返回数据，或返回了`undefined`，此时将不更新原缓存数据
@@ -188,5 +202,26 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
     return; // 中断缓存更新
   }
   return null; // 将缓存更新为null
+});
+```
+
+## 缓存查询
+
+同时，我们也提供了缓存查询方法。
+
+```javascript
+import { queryCache } from 'alova';
+
+const cacheData = queryCache(getTodoListByDate('2022-10-01'));
+```
+
+你也可以通过 [method 实例匹配器](/next-step/method-instance-matcher) 动态查找 method 实例。
+
+```javascript
+const cacheData = queryCache({
+  name: 'todoList',
+  filter: (method, index, ary) => {
+    return index < 5;
+  }
 });
 ```

@@ -6,12 +6,19 @@
 }
 
 .featureSvg {
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
 }
 
 .desc {
   width: 75%;
   margin: 0 auto;
   color: #999;
+}
+.cardWrapper {
+  display: flex;
+  --ifm-card-vertical-spacing: 0.5rem;
+}
+.cardHeader {
+  align-items: center;
 }

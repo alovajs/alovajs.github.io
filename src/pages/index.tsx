@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
 import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import HomepageFeatures from '@site/src/pages/HomepageFeatures';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
@@ -38,7 +38,7 @@ function HomepageHeader() {
             <div className={styles.buttons}>
               {buttons.map(({ text, type, link }) => (
                 <Link
-                  className={clsx('button button--lg', styles.btn, `button--${type}`)}
+                  className={clsx('button button--lg margin-right--md', `button--${type}`)}
                   to={link}>
                   {text}
                 </Link>
@@ -64,15 +64,16 @@ export default function Home(): JSX.Element {
         siteConfig.title +
         ' - ' +
         translate({
-          message: 'lightweight request strategy library',
+          message: 'Lightweight request strategy library',
           id: 'homepage.title'
         })
       }
       description="alova.js a lightweight request strategy library">
       <HomepageHeader />
       <main>
+        <HomepageFeatures />
         <div className={styles.relation}>
-          <strong className={styles.relationTitle}>
+          <strong className={clsx(styles.relationTitle, 'margin-bottom--md')}>
             <Translate id="homepage.relationTitle">Relationship between alova and request library</Translate>
           </strong>
           <h3 className="hero__subtitle">
@@ -88,7 +89,6 @@ export default function Home(): JSX.Element {
             </Translate>
           </p>
         </div>
-        <HomepageFeatures />
       </main>
     </Layout>
   );

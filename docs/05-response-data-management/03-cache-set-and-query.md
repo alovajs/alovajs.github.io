@@ -1,6 +1,6 @@
 ---
-title: Manually update the cache
-sidebar_position: 40
+title: Cache set and query
+sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
@@ -163,7 +163,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## Dynamically update cache data
+## Dynamically set cache data
 
 You can also pass in a callback function in `setCache` to dynamically calculate the cache data and return the cache data that needs to be updated.
 
@@ -177,7 +177,21 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-## Interrupt cache update
+Similarly, you can also dynamically find method instances through [method instance matcher](/next-step/method-instance-matcher).
+
+```javascript
+setCache(
+  {
+    name: 'todoList',
+    filter: (method, index, ary) => {
+      return index < 5;
+    }
+  },
+  'newCache'
+);
+```
+
+## Interrupt cache set
 
 Sometimes you need to dynamically determine whether to update the cache. If no data is returned in the callback function of `setCache`, or `undefined` is returned, the original cache data will not be updated at this time
 
@@ -188,5 +202,26 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
     return; // interrupt cache update
   }
   return null; // update the cache to null
+});
+```
+
+## cache query
+
+At the same time, we also provide a cache query method.
+
+```javascript
+import { queryCache } from 'alova';
+
+const cacheData = queryCache(getTodoListByDate('2022-10-01'));
+```
+
+You can also dynamically find method instances via [method instance matcher](/next-step/method-instance-matcher).
+
+```javascript
+const cacheData = queryCache({
+  name: 'todoList',
+  filter: (method, index, ary) => {
+    return index < 5;
+  }
 });
 ```

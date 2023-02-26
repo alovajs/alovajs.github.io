@@ -52,16 +52,18 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, Svg, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--3')}>
-      <div className="text--center">
-        <Svg
-          className={styles.featureSvg}
-          role="img"
-        />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p className={styles.desc}>{description}</p>
+    <div className={clsx('col col--3 margin-bottom--lg', styles.cardWrapper)}>
+      <div>
+        <div className={clsx('card__header row', styles.cardHeader)}>
+          <Svg
+            className={clsx(styles.featureSvg, 'margin-right--md')}
+            role="img"
+          />
+          <h3>{title}</h3>
+        </div>
+        <div className="card__body">
+          <p>{description}</p>
+        </div>
       </div>
     </div>
   );
