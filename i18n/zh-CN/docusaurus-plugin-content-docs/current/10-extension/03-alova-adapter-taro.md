@@ -31,19 +31,9 @@ import AdapterTaro from '@alova/adapter-taro';
 
 // 默认情况下，将会使用ReactHook
 const alovaInstance = createAlova(
-  AdapterTaro({
-    baseURL: 'https://api.alovajs.org'
-  })
+  baseURL: 'https://api.alovajs.org',
+  ...AdapterTaro()
 );
 ```
 
-如果需要使用**VueHook**，可自定义传入
-
-```javascript
-const alovaInstance = createAlova(
-  AdapterTaro({
-    baseURL: 'https://api.alovajs.org',
-    statesHook: VueHook
-  })
-);
-```
+## 暂未发布，敬请期待...
