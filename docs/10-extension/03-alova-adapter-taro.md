@@ -328,7 +328,7 @@ export const alovaInst = createAlova({
 });
 ```
 
-##Typescript
+## Typescript
 
 The taro request adapter provides complete type adaptation, and the type of method configuration and response data will exactly match the type of taro.
 
