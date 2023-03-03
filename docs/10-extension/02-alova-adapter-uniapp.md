@@ -64,7 +64,7 @@ The usage method of the request is exactly the same as that used in the web envi
        enableHttp2: true,
        sslVerify: true
      });
-   const { loading, data, uploading } = useRequest(list);
+   const { loading, data } = useRequest(list);
 </script>
 ```
 
@@ -156,9 +156,41 @@ Similarly, it is fully compatible with `uni.downloadFile`, you can specify [all 
 </script>
 ```
 
+## Mock request adapter compatible
+
+When using uniapp to develop applications, we may still need to use simulated requests, but by default, the response data of [simulated request adapter (@alova/mock)](/extension/alova-mock) is a `Response` instance, That is, it is compatible with the `GlobalFetch` request adapter by default. When used in the uniapp environment, we need to make the response data of the simulated request adapter compatible with the uniapp adapter, so you need to use the **@alova/adapter-uniapp** package exported `uniappMockResponse` as response adapter.
+
+```javascript
+import { defineMock, createAlovaMockAdapter } from '@alova/mock';
+import AdapterUniapp, { uniappRequestAdapter, uniappMockResponse } from '@alova/adapter-uniapp';
+
+const mocks = defineMock({
+  //...
+});
+
+// mock data request adapter
+export default createAlovaMockAdapter([mocks], {
+  // After specifying the uniapp request adapter, requests that do not match the simulated interface will use this adapter to send requests
+  httpAdapter: uniappRequestAdapter,
+
+  // Simulate the response adapter, after specifying, the response data will be converted to a uniapp-compatible data format
+  onMockResponse: uniappMockResponse
+});
+
+export const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  timeout: 5000,
+  ...AdapterUniapp({
+    // Control whether to use the simulated request adapter through environment variables
+    mockRequest: process.env.NODE_ENV === 'development' ? mockAdapter : undefined
+  })
+  //...
+});
+```
+
 ## Typescript
 
-uniapp provides complete type adaptation, and the type of method configuration and response data will exactly match the type of uniapp.
+uniapp request adapter provides complete type adaptation, and the type of method configuration and response data will exactly match the type of uniapp.
 
 ### method configuration
 

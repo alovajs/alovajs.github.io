@@ -64,7 +64,7 @@ const alovaInst = createAlova(
       enableHttp2: true,
       sslVerify: true
     });
-  const { loading, data, uploading } = useRequest(list);
+  const { loading, data } = useRequest(list);
 </script>
 ```
 
@@ -156,9 +156,41 @@ const alovaInst = createAlova(
 </script>
 ```
 
+## 模拟请求适配器兼容
+
+在使用 uniapp 开发应用时，我们仍然可能需要用到模拟请求，只是默认情况下，[模拟请求适配器(@alova/mock)](/extension/alova-mock)的响应数据是一个`Response`实例，即默认兼容`GlobalFetch`请求适配器，当在 uniapp 环境下使用时，我们需要让模拟请求适配器的响应数据是兼容 uniapp 适配器的，因此你需要使用**@alova/adapter-uniapp**包中导出的`uniappMockResponse`作为响应适配器。
+
+```javascript
+import { defineMock, createAlovaMockAdapter } from '@alova/mock';
+import AdapterUniapp, { uniappRequestAdapter, uniappMockResponse } from '@alova/adapter-uniapp';
+
+const mocks = defineMock({
+  // ...
+});
+
+// 模拟数据请求适配器
+export default createAlovaMockAdapter([mocks], {
+  // 指定uniapp请求适配器后，未匹配模拟接口的请求将使用这个适配器发送请求
+  httpAdapter: uniappRequestAdapter,
+
+  //  模拟响应适配器，指定后响应数据将转换为uniapp兼容的数据格式
+  onMockResponse: uniappMockResponse
+});
+
+export const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  timeout: 5000,
+  ...AdapterUniapp({
+    // 通过环境变量控制是否使用模拟请求适配器
+    mockRequest: process.env.NODE_ENV === 'development' ? mockAdapter : undefined
+  })
+  // ...
+});
+```
+
 ## Typescript
 
-uniapp 提供了完整的类型适配，method 配置、响应数据的类型将与 uniapp 的类型完全匹配。
+uniapp 请求适配器提供了完整的类型适配，method 配置、响应数据的类型将与 uniapp 的类型完全匹配。
 
 ### method 配置
 

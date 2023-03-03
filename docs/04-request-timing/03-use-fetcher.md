@@ -1,5 +1,5 @@
 ---
-title: Data Pull
+title: Data fetch
 sidebar_position: 30
 ---
 
@@ -9,22 +9,22 @@ import TabItem from '@theme/TabItem';
 When you have the following needs:
 
 1. Preload the data that will be used in the subsequent process and store it in the cache, so that users no longer wait for the data loading process;
-2. It is convenient to update data across pages (similar to the global state), for example, after modifying an item in the todo list and re-pulling the latest data, the interface will be refreshed after the response.
+2. It is convenient to update data across pages (similar to the global state), for example, after modifying an item in the todo list and re-fetching the latest data, the interface will be refreshed after the response.
 
-`useFetcher` is the hook used to implement the above scenarios. The response data obtained through it cannot be received directly, but the data pulled through it will not only update the cache, but also update the corresponding state, thereby re-rendering the view.
+`useFetcher` is the hook used to implement the above scenarios. The response data obtained through it cannot be received directly, but the data fetched through it will not only update the cache, but also update the corresponding state, thereby re-rendering the view.
 
-You can use it to pre-fetch data and save it in the cache, or gracefully update the state across components, such as modifying an item in the todo list and re-pulling the latest data, and the interface will be refreshed after the response
+You can use it to pre-fetch data and save it in the cache, or gracefully update the state across components, such as modifying an item in the todo list and re-fetching the latest data, and the interface will be refreshed after the response
 
 ## Update views across modules/components
 
-Next, let's modify a certain todo data, and re-pull the latest todo list data to update the view.
+Next, let's modify a certain todo data, and re-fetch the latest todo list data to update the view.
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
 ```html
 <template>
-  <!-- Render the unified pull state. -->
+  <!-- Render the unified fetch state. -->
   <div v-if="fetching">{{ Fetching data in background... }}</div>
 
   <!-- ... -->
@@ -45,30 +45,30 @@ Next, let's modify a certain todo data, and re-pull the latest todo list data to
   };
 
   const {
-    // The fetching attribute is the same as loading, it is true when a pull request is sent, and it is false after the request ends
+    // The fetching attribute is the same as loading, it is true when a fetch request is sent, and it is false after the request ends
     fetching,
     error,
     onSuccess,
     onError,
     onComplete,
 
-    // After calling fetch, a request to pull data will be sent, and fetch can be called repeatedly to pull data from different interfaces
+    // After calling fetch, a request to fetch data will be sent, and fetch can be called repeatedly to fetch data from different interfaces
     fetch
   } = useFetcher();
 
-  // Trigger the data pull in the event
+  // Trigger the data fetch in the event
   const handleSubmit = () => {
     // todo item modification...
 
-    // Start to pull the updated data
-    // Situation 1: When you clearly know that the data on the first page of todoList is pulled, pass in a Method instance
+    // Start to fetch the updated data
+    // Situation 1: When you clearly know that the data on the first page of todoList is fetched, pass in a Method instance
     fetch(getTodoList(1));
 
-    // Situation 2: When you only know to pull the last requested data of todoList, use the Method instance matcher to filter
+    // Situation 2: When you only know to fetch the last requested data of todoList, use the Method instance matcher to filter
     fetch({
       name: 'todoList',
       filter: (method, index, ary) => {
-        // Return true to specify the Method instance that needs to be pulled
+        // Return true to specify the Method instance that needs to be fetched
         return index === ary.length - 1;
       }
     });
@@ -94,37 +94,37 @@ pageSize: 10
 
 const App = () => {
 const {
-// The fetching attribute is the same as loading, it is true when a pull request is sent, and it is false after the request ends
+// The fetching attribute is the same as loading, it is true when a fetch request is sent, and it is false after the request ends
 fetching,
 error,
 onSuccess,
 onError,
 onComplete,
 
-// After calling fetch, a request to pull data will be sent, and fetch can be called repeatedly to pull data from different interfaces
+// After calling fetch, a request to fetch data will be sent, and fetch can be called repeatedly to fetch data from different interfaces
 fetch
 } = useFetcher();
 
-// Trigger the data pull in the event
+// Trigger the data fetch in the event
 const handleSubmit = () => {
 // Assume the modification of the todo item has been completed...
 
-// Start to pull the updated data
-// Situation 1: When you clearly know that the data on the first page of todoList is pulled, pass in a Method instance
+// Start to fetch the updated data
+// Situation 1: When you clearly know that the data on the first page of todoList is fetched, pass in a Method instance
 fetch(getTodoList(1));
 
-// Situation 2: When you only know to pull the last requested data of todoList, use the Method instance matcher to filter
+// Situation 2: When you only know to fetch the last requested data of todoList, use the Method instance matcher to filter
 fetch({
 name: 'todoList',
 filter: (method, index, ary) => {
-// Return true to specify the Method instance that needs to be pulled
+// Return true to specify the Method instance that needs to be fetched
 return index === ary. length - 1;
 }
 });
 };
 
 return (
-{/* Render the unified pull state */}
+{/* Render the unified fetch state */}
 { fetching ? <div>{{ Fetching data in the background... }}</div> : null }
 {/* ... */}
 <button onClick={handleSubmit}>Modify todo items</button>
@@ -150,39 +150,39 @@ return (
   };
 
   const {
-    // The fetching attribute is the same as loading, it is true when a pull request is sent, and it is false after the request ends
+    // The fetching attribute is the same as loading, it is true when a fetch request is sent, and it is false after the request ends
     fetching,
     error,
     onSuccess,
     onError,
     onComplete,
 
-    // After calling fetch, a request to pull data will be sent, and fetch can be called repeatedly to pull data from different interfaces
+    // After calling fetch, a request to fetch data will be sent, and fetch can be called repeatedly to fetch data from different interfaces
     fetch
   } = useFetcher();
 
-  // Trigger the data pull in the event
+  // Trigger the data fetch in the event
   const handleSubmit = () => {
     // Assume the modification of the todo item has been completed...
 
-    // Start to pull the updated data
-    // Situation 1: When you clearly know that the data on the first page of todoList is pulled, pass in a Method instance
+    // Start to fetch the updated data
+    // Situation 1: When you clearly know that the data on the first page of todoList is fetched, pass in a Method instance
     fetch(getTodoList(1));
 
-    // Situation 2: When you only know to pull the last requested data of todoList, use the Method instance matcher to filter
+    // Situation 2: When you only know to fetch the last requested data of todoList, use the Method instance matcher to filter
     fetch({
       name: 'todoList',
       filter: (method, index, ary) => {
-        // Return true to specify the Method instance that needs to be pulled
+        // Return true to specify the Method instance that needs to be fetched
         return index === ary.length - 1;
       }
     });
   };
 </script>
 
-<!-- Render a unified pull state -->
+<!-- Render a unified fetch state -->
 {#if $fetching}
-<div>{{ Pulling data in background... }}</div>
+<div>{{ fetching data in background... }}</div>
 {/if}
 <!-- ... -->
 <button on:click="{handleSubmit}">Modify todo items</button>
@@ -322,18 +322,57 @@ useFetcher({ force: true });
 
 ### Dynamically set the force value
 
-In actual situations, we often need to set whether to force the request to be sent according to different situations. In this case, force can be set as a function.
+In actual situations, we often need to set whether to force the request to be sent according to different situations. At this time, force can be set as a function, which can be passed in through the fetch function.
 
 ```javascript
 useFetcher({
-  force: () => {
-    return true;
+  force: isForce => {
+    return isForce;
   }
 });
+```
+
+## fetch function parameter passing rules
+
+In the above example, the fetch function is called to trigger data fetching. The fetch function can also pass in custom parameters starting from the second parameter, and these parameters will be received by the following four functions:
+
+### Received in onSuccess, onError, onComplete callback functions
+
+`event.sendArgs` in onSuccess, onError, and onComplete callback functions are received in the form of an array
+
+```javascript
+const { fetch, onSuccess, onError, onComplete } = useFetcher();
+onSuccess(event => {
+  // The value of sendArgs is ['a', 'b']
+  console.log(event.sendArgs);
+});
+onError(event => {
+  // The value of sendArgs is ['a', 'b']
+  console.log(event.sendArgs);
+});
+onComplete(event => {
+  // The value of sendArgs is ['a', 'b']
+  console.log(event.sendArgs);
+});
+
+// fetch data
+fetch(getTodoList(10), 'a', 'b');
+```
+
+### Received in the force function
+
+```javascript
+const { fetch } = useFetcher({
+  force: isForce => {
+    // The value of isForce is true
+    return isForce;
+  }
+});
+fetch(getTodoList(10), true);
 ```
 
 ## Compare with useRequest and useWatcher
 
 1. useFetcher does not return the `data` field, the pre-fetched data will be saved in the cache, and the status data of the corresponding location will be updated;
 2. Rename `loading` to `fetching`;
-3. There is no `send` function, but there is a `fetch` function, which can be reused to pull data from different interfaces. At this time, you can use the `fetching` and `error` states to render views uniformly, so as to achieve unified processing the goal of;
+3. There is no `send` function, but there is a `fetch` function, which can be reused to fetch data from different interfaces. At this time, you can use the `fetching` and `error` states to render views uniformly, so as to achieve unified processing the goal of;

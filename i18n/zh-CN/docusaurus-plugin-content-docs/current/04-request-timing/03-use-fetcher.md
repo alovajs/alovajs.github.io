@@ -322,14 +322,53 @@ useFetcher({ force: true });
 
 ### 动态设置 force 值
 
-实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数。
+实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数，此函数可通过 fetch 函数传入。
 
 ```javascript
 useFetcher({
-  force: () => {
-    return true;
+  force: isForce => {
+    return isForce;
   }
 });
+```
+
+## fetch 函数参数传递规则
+
+在上面的示例中，调用 fetch 函数触发数据拉取，fetch 函数还可以从第二个参数开始传入自定义的参数，这些参数将分别被以下 4 个函数接收：
+
+### 在 onSuccess、onError、onComplete 回调函数中接收
+
+onSuccess、onError、onComplete 回调函数中的`event.sendArgs`以数组形式接收
+
+```javascript
+const { fetch, onSuccess, onError, onComplete } = useFetcher();
+onSuccess(event => {
+  // sendArgs的值为['a', 'b']
+  console.log(event.sendArgs);
+});
+onError(event => {
+  // sendArgs的值为['a', 'b']
+  console.log(event.sendArgs);
+});
+onComplete(event => {
+  // sendArgs的值为['a', 'b']
+  console.log(event.sendArgs);
+});
+
+// 拉取数据
+fetch(getTodoList(10), 'a', 'b');
+```
+
+### 在 force 函数中接收
+
+```javascript
+const { fetch } = useFetcher({
+  force: isForce => {
+    // isForce的值为true
+    return isForce;
+  }
+});
+fetch(getTodoList(10), true);
 ```
 
 ## 与 useRequest 和 useWatcher 的差异对比
