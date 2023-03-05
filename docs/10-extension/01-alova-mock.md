@@ -63,6 +63,26 @@ export default defineMock(
       return { success: true };
     },
 
+    // return more detailed information
+    '[POST]/todo': ({ query, data }) => {
+      //...
+      return {
+        status: 403,
+        statusText: 'unknown error',
+        responseHeaders: {
+          //...
+        },
+        body: {
+          success: true
+        }
+      };
+    },
+
+    // simulate network error
+    '[POST]/todo': ({ query, data }) => {
+      throw new Error('network error');
+    },
+
     // Add `-` before the key to disable this mock interface
     '-[DELETE]/todo/{id}': ({ params }) => {
       // ...
@@ -188,4 +208,27 @@ export const alovaInst = createAlova({
 
   statesHook: /** ... */
 });
+```
+
+### Convert Error Object
+
+You can intercept the error instance in the `onMockError` field and return the converted error message.
+
+```javascript
+const mockAdapter = createAlovaMockAdapter(
+  [
+    /* mock data */
+  ],
+  {
+    //...
+    // highlight-start
+    onMockError(error, currentMethod) {
+      // error is an error instance
+      // currentMethod is the method instance of the current request
+      //...
+      // Return the converted error message collection
+    }
+    // highlight-end
+  }
+);
 ```

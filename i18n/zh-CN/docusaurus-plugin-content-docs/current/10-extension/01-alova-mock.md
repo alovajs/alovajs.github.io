@@ -63,6 +63,26 @@ export default defineMock(
       return { success: true };
     },
 
+    // 返回更详细的信息
+    '[POST]/todo': ({ query, data }) => {
+      // ...
+      return {
+        status: 403,
+        statusText: 'unknown error',
+        responseHeaders: {
+          // ...
+        },
+        body: {
+          success: true
+        }
+      };
+    },
+
+    // 模拟网络错误
+    '[POST]/todo': ({ query, data }) => {
+      throw new Error('network error');
+    },
+
     // key前面添加`-`，表示禁用此mock接口
     '-[DELETE]/todo/{id}': ({ params }) => {
       // ...
@@ -188,4 +208,55 @@ export const alovaInst = createAlova({
 
   statesHook: /** ... */
 });
+```
+
+## 转换模拟数据
+
+**@alova/mock** 默认将响应数据包装为 Response 实例，将响应头默认包装为 Headers 实例，这是针对`GlobalFetch`进行适配的，但如果使用其他的请求适配器，就需要将模拟数据转换为相应的格式。
+
+### 转换响应数据
+
+你可以在`onMockResponse`字段中拦截模拟响应数据并返回转换后的数据。
+
+```javascript
+const mockAdapter = createAlovaMockAdapter(
+  [
+    /* 模拟数据 */
+  ],
+  {
+    // ...
+    // highlight-start
+    onMockResponse(response, request, currentMethod) {
+      // response为相应数据集合，其中包含status、statusText、responseHeaders、body
+      // request为请求数据，其中包含query、params、headers、data
+      // currentMethod为当前请求的method实例
+      // ...
+      // 返回转换后的响应数据
+    }
+    // highlight-end
+  }
+);
+```
+
+### 转换错误对象
+
+你可以在`onMockError`字段中拦截错误实例并返回转换后的错误信息。
+
+```javascript
+const mockAdapter = createAlovaMockAdapter(
+  [
+    /* 模拟数据 */
+  ],
+  {
+    // ...
+    // highlight-start
+    onMockError(error, currentMethod) {
+      // error为错误实例
+      // currentMethod为当前请求的method实例
+      // ...
+      // 返回转换后的错误信息集合
+    }
+    // highlight-end
+  }
+);
 ```
