@@ -6,12 +6,6 @@ sidebar_position: 40
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info 提示
-
-此插件只支持 react 16.8+、vue3 版本的 taro 应用。
-
-:::
-
 ## 安装
 
 <Tabs>

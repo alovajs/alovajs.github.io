@@ -6,12 +6,6 @@ sidebar_position: 40
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info Tips
-
-This plugin only supports the taro application of react 16.8+, vue3 version.
-
-:::
-
 ## Install
 
 <Tabs>
