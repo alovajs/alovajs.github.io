@@ -67,6 +67,18 @@ Automatic management of paging data, pre -loading data, reducing unnecessary dat
 
 Submitting is a response, which greatly reduces the impact of network fluctuations, allows your application to be unstable in the network, and even in the state of disconnection.
 
+## Official Ecosystem
+
+| Resources                                                          | Description                                  |
+| ------------------------------------------------------------------ | -------------------------------------------- |
+| [@alova/mock](https://github.com/alovajs/mock)                     | Mock request adapter for alova.js            |
+| [@alova/scene-react](https://github.com/alovajs/scene)             | react request strategy library for alova.js  |
+| [@alova/scene-vue](https://github.com/alovajs/scene)               | vue request strategy library for alova.js    |
+| [@alova/scene-svelte](https://github.com/alovajs/scene)            | svelte request strategy library for alova.js |
+| [@alova/adapter-uniapp](https://github.com/alovajs/adapter-uniapp) | uniapp adapter for alova.js                  |
+| [@alova/adapter-taro](https://github.com/alovajs/adapter-taro)     | taro adapter for alova.js                    |
+| [@alova/adapter-axios](https://github.com/alovajs/adapter-axios)   | axios adapter for alova.js                   |
+
 ## Alternative to the requests library? ? ?
 
 alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](./RSM) process (request events), alova still needs to rely on them to make requests, so we can Think of alova as an arm of the request library, making the request library more powerful.

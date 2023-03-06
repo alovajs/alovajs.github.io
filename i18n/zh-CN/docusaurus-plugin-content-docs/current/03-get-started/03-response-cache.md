@@ -86,6 +86,12 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
+:::caution 注意
+
+当 request body 是**FormData**、**Blob**、**ArrayBuffer**、**URLSearchParams**、**ReadableStream**等特殊数据时，我们认为你是有意图和服务端通信的，在这种情况下不会进行缓存。
+
+:::
+
 > 如果你需要全局统一设置缓存模式，见本节底部的 [全局设置缓存模式](#全局设置缓存模式)
 
 ### 恢复模式下数据有变怎么办？

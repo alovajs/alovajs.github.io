@@ -3,7 +3,7 @@ title: cache mode
 sidebar_position: 40
 ---
 
-The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache occupancy mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
+The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache replaceholder mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
 
 ## memory mode (default)
 
@@ -42,11 +42,11 @@ alovaInstance.GET('/todo/list', {
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
 
-## cache occupancy mode
+## cache replaceholder mode
 
-When you don't want the application to display Loading every time it enters, but want to use old data instead of Loading, you can use the cache occupancy mode, which has a better experience than Loading.
+When you don't want the application to display Loading every time it enters, but want to use old data instead of Loading, you can use the cache replaceholder mode, which has a better experience than Loading.
 
-In the cache occupancy mode, `data` will be immediately assigned the old data of the last cache. You can judge that if there is old data, use it to replace the Loading display. At the same time, it will send a request to obtain the latest data and update the cache, so as to achieve In order to quickly display the actual data, and obtain the latest data.
+In the cache replaceholder mode, `data` will be immediately assigned the old data of the last cache. You can judge that if there is old data, use it to replace the Loading display. At the same time, it will send a request to obtain the latest data and update the cache, so as to achieve In order to quickly display the actual data, and obtain the latest data.
 
 Set on `Method` instances:
 
@@ -85,6 +85,12 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
   // highlight-end
 });
 ```
+
+:::caution Caution
+
+When request body is special data such as **FormData**, **Blob**, **ArrayBuffer**, **URLSearchParams**, **ReadableStream**, we think you intend to communicate with server. In this case would not cache data.
+
+:::
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
 
