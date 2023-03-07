@@ -1,6 +1,6 @@
 ---
 title: axios adapter
-sidebar_position: 40
+sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
@@ -184,7 +184,7 @@ const mocks = defineMock({
 
 // mock data request adapter
 export default createAlovaMockAdapter([mocks], {
-  // After specifying the taro request adapter, requests that do not match the simulated interface will use this adapter to send requests
+  // After specifying axios request adapter, requests that do not match the simulated interface will use this adapter to send requests
   httpAdapter: axiosRequestAdapter(),
 
   // axiosMockResponse contains onMockResponse and onMockError

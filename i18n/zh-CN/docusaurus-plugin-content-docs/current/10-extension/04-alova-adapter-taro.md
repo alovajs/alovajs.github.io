@@ -1,6 +1,6 @@
 ---
 title: Taro适配器
-sidebar_position: 30
+sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';

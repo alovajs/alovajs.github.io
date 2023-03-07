@@ -73,15 +73,16 @@ alova 是核心库，它提供了缓存策略、请求共享策略，以及状�
 
 ## 官方生态
 
-| 项目                                                               | 说明                          |
-| ------------------------------------------------------------------ | ----------------------------- |
-| [@alova/mock](https://github.com/alovajs/mock)                     | alova.js 的模拟请求适配器     |
-| [@alova/scene-react](https://github.com/alovajs/scene)             | alova.js 的 react 请求策略库  |
-| [@alova/scene-vue](https://github.com/alovajs/scene)               | alova.js 的 vue 请求策略库    |
-| [@alova/scene-svelte](https://github.com/alovajs/scene)            | alova.js 的 svelte 请求策略库 |
-| [@alova/adapter-uniapp](https://github.com/alovajs/adapter-uniapp) | alova.js 的 uniapp 适配器     |
-| [@alova/adapter-taro](https://github.com/alovajs/adapter-taro)     | alova.js 的 taro 适配器       |
-| [@alova/adapter-axios](https://github.com/alovajs/adapter-axios)   | alova.js 的 axios 适配器      |
+| 项目                                                               | 说明                              |
+| ------------------------------------------------------------------ | --------------------------------- |
+| [@alova/mock](https://github.com/alovajs/mock)                     | alova.js 的模拟请求适配器         |
+| [@alova/scene-react](https://github.com/alovajs/scene)             | alova.js 的 react 请求策略库      |
+| [@alova/scene-vue](https://github.com/alovajs/scene)               | alova.js 的 vue 请求策略库        |
+| [@alova/scene-svelte](https://github.com/alovajs/scene)            | alova.js 的 svelte 请求策略库     |
+| [@alova/adapter-uniapp](https://github.com/alovajs/adapter-uniapp) | alova.js 的 uniapp 适配器         |
+| [@alova/adapter-taro](https://github.com/alovajs/adapter-taro)     | alova.js 的 taro 适配器           |
+| [@alova/adapter-axios](https://github.com/alovajs/adapter-axios)   | alova.js 的 axios 适配器          |
+| [@alova/adapter-xhr](https://github.com/alovajs/adapter-xhr)       | alova.js 的 XMLHttpRequest 适配器 |
 
 ## 替代请求库？？？
 

@@ -1,6 +1,6 @@
 ---
 title: Uniapp Adapter
-sidebar_position: 20
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
