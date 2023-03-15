@@ -139,7 +139,7 @@ export const alovaInst = createAlova({
 
 在团队开发场景下，每次版本开发时我们经常只需要对部分未开发好的接口进行模拟请求，并且对之前版本的接口使用测试环境接口，此时为了达到更好的模拟接口管理，可以以开发版本和开发者两个维度将接口分组。
 
-例如有两个开发者名为 _August_、_Keven_，他们正在开发 v1.1 产品功能，他们可以这样管理模拟接口。
+例如有两个开发者名为 _August_、_kevin_，他们正在开发 v1.1 产品功能，他们可以这样管理模拟接口。
 
 ```javascript title=August-v1.1.js
 import { defineMock } from '@alova/mock';
@@ -156,7 +156,7 @@ export default defineMock({
 });
 ```
 
-```javascript title=Keven-v1.1.js
+```javascript title=kevin-v1.1.js
 import { defineMock } from '@alova/mock';
 
 export default defineMock({
@@ -174,9 +174,9 @@ export default defineMock({
 
 ```javascript title=request.js
 import Augustv1_1 from './August-v1.1';
-import Kevenv1_1 from './Keven-v1.1';
+import kevinv1_1 from './kevin-v1.1';
 
-const mockAdapter = createAlovaMockAdapter([Augustv1_1, Kevenv1_1], {
+const mockAdapter = createAlovaMockAdapter([Augustv1_1, kevinv1_1], {
   httpAdapter: GlobalFetch(),
   delay: 1000
 });
@@ -216,7 +216,9 @@ export const alovaInst = createAlova({
 
 ### 转换响应数据
 
-你可以在`onMockResponse`字段中拦截模拟响应数据并返回转换后的数据。
+你可以在`onMockResponse`字段中拦截模拟响应数据并返回转换后的响应数据以及响应头。
+
+> 你也可以在 onMockResponse 中抛出一个错误，表示请求失败。
 
 ```javascript
 const mockAdapter = createAlovaMockAdapter(
@@ -231,7 +233,11 @@ const mockAdapter = createAlovaMockAdapter(
       // request为请求数据，其中包含query、params、headers、data
       // currentMethod为当前请求的method实例
       // ...
-      // 返回转换后的响应数据
+      // 返回转换后的响应数据和响应头
+      return {
+        response: /** 响应数据 */,
+        headers: /** 响应头 */
+      };
     }
     // highlight-end
   }

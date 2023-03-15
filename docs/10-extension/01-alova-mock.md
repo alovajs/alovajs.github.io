@@ -139,7 +139,7 @@ export const alovaInst = createAlova({
 
 In the team development scenario, we often only need to simulate some undeveloped interfaces for each version development, and use the test environment interface for the interface of the previous version. At this time, in order to achieve better simulation interface management, you can use The two dimensions, development version and developer, group interfaces.
 
-For example, there are two developers named _August_, _Keven_, they are developing v1.1 product features, they can manage the mock interface like this.
+For example, there are two developers named _August_, _kevin_, they are developing v1.1 product features, they can manage the mock interface like this.
 
 ```javascript title=August-v1.1.js
 import { defineMock } from '@alova/mock';
@@ -156,7 +156,7 @@ export default defineMock({
 });
 ```
 
-```javascript title=Keven-v1.1.js
+```javascript title=kevin-v1.1.js
 import { defineMock } from '@alova/mock';
 
 export default defineMock({
@@ -174,9 +174,9 @@ export default defineMock({
 
 ```javascript title=request.js
 import Augustv1_1 from './August-v1.1';
-import Keevenv1_1 from './Keven-v1.1';
+import Keevenv1_1 from './kevin-v1.1';
 
-const mockAdapter = createAlovaMockAdapter([Augustv1_1, Kevenv1_1], {
+const mockAdapter = createAlovaMockAdapter([Augustv1_1, kevinv1_1], {
   httpAdapter: GlobalFetch(),
   delay: 1000
 });
@@ -210,9 +210,45 @@ export const alovaInst = createAlova({
 });
 ```
 
-### Convert Error Object
+## Convert mock data
+
+**@alova/mock** By default, the response data is packaged as a Response instance, and the response header is packaged as a Headers instance by default, which is adapted for `GlobalFetch`, but if you use other request adapters, you need to mock the data Convert to the corresponding format.
+
+### Convert response data
+
+You can intercept the mock response data in the `onMockResponse` field and return the transformed response data and response headers.
+
+> You can also throw an ERROR in onMockResponse to indicate a failure request.
+
+```javascript
+const mockAdapter = createAlovaMockAdapter(
+   [
+     /* mock data */
+   ],
+   {
+     //...
+     // highlight-start
+     onMockResponse(response, request, currentMethod) {
+       // response is the corresponding data set, which contains status, statusText, responseHeaders, body
+       // request is the request data, which contains query, params, headers, data
+       // currentMethod is the method instance of the current request
+       //...
+       // Return converted response data and response headers
+       return {
+         response: /** response data */,
+         headers: /** Response headers */
+       };
+     }
+     // highlight-end
+   }
+);
+```
+
+### Convert Error Instance
 
 You can intercept the error instance in the `onMockError` field and return the converted error message.
+
+> You can also throw an ERROR in onMockResponse to indicate failure request.
 
 ```javascript
 const mockAdapter = createAlovaMockAdapter(
