@@ -67,6 +67,12 @@ Automatic management of paging data, pre -loading data, reducing unnecessary dat
 
 Submitting is a response, which greatly reduces the impact of network fluctuations, allows your application to be unstable in the network, and even in the state of disconnection.
 
+## Library Stability
+
+It has been nearly a year since the development of the first version of alova. During this year, we have been continuously discovering and optimizing problems. So far, alova has passed 126 unit tests, with a coverage rate of 99%. Even so, alova is still a rookie, so I suggest you use it conservatively.
+
+**I promise to solve it as soon as possible after receiving the issue**
+
 ## Official Ecosystem
 
 | Resources                                                          | Description                                  |
