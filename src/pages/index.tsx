@@ -38,6 +38,7 @@ function HomepageHeader() {
             <div className={styles.buttons}>
               {buttons.map(({ text, type, link }) => (
                 <Link
+                  key={link}
                   className={clsx('button button--lg margin-right--md', `button--${type}`)}
                   to={link}>
                   {text}

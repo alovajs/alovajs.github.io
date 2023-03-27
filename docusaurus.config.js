@@ -135,7 +135,17 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme
       }
-    })
+    }),
+
+  // 插件
+  plugins: [
+    [
+      './plugin/baiduStatistics',
+      {
+        id: '5afa4c96fca09cb386951b736ee31e56'
+      }
+    ]
+  ]
 };
 
 module.exports = config;
