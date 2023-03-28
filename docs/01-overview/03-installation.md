@@ -111,7 +111,7 @@ Once imported, you can use the api via `window.alova`.
 <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
 ```
 
-You can use `window.GlobalFetch` which will use `winfow.fetch` for requests.
+You can use `window.GlobalFetch` which will use `window.fetch` for requests.
 
 ### Introduce States Hook
 

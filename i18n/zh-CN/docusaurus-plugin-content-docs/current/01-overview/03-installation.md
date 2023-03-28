@@ -111,7 +111,7 @@ const alovaInstance = createAlova({
 <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
 ```
 
-你可以通过`window.GlobalFetch`使用，它将使用`winfow.fetch`进行请求。
+你可以通过`window.GlobalFetch`使用，它将使用`window.fetch`进行请求。
 
 ### 引入 States Hook
 
