@@ -23,8 +23,6 @@ The request scenario model is based on the perspective of the client. It describ
 
 ## Request scene model
 
-<!-- ![model](https://user-images.githubusercontent.com/29848971/185773583-a884e1ed-7507-4e96-9030-f20aa557eb5a.png) -->
-
 ![RSM](/img/rsm-en.png)
 
 ## request timing
