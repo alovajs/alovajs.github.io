@@ -44,10 +44,10 @@ Calling **AdapterTaro** will return _Request Adapter_, _Storage Adapter_, and _R
 import { createAlova } from 'alova';
 import AdapterTaro from '@alova/adapter-taro';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
    baseURL: 'https://api.alovajs.org',
    ...AdapterTaro()
-);
+});
 ```
 
 </TabItem>
@@ -59,13 +59,13 @@ import { createAlova } from 'alova';
 import VueHook from 'alova/vue';
 import AdapterTaro from '@alova/adapter-taro';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
    baseURL: 'https://api.alovajs.org',
    ...AdapterTaro(),
 
    // Use ReactHook by default, replace it with VueHook by overriding
    statesHook: VueHook
-);
+});
 ```
 
 </TabItem>
@@ -393,7 +393,7 @@ type TaroResponse =
 In actual use, we usually need to process the response data globally. It is recommended to judge the returned data separately. A simple example is as follows:
 
 ```typescript
-const alovaInst = createAlova(
+const alovaInst = createAlova({
    baseURL: 'https://api.alovajs.org',
    ...AdapterTaro(),
    responded(response) {
