@@ -64,15 +64,11 @@ const alovaInst = createAlova(
 
 ```javascript
 import { createAlova } from 'alova';
-import VueHook from 'alova/vue';
-import AdapterTaro from '@alova/adapter-taro';
+import AdapterTaroVue from '@alova/adapter-taro/vue';
 
 const alovaInst = createAlova(
    baseURL: 'https://api.alovajs.org',
-   ...AdapterTaro(),
-
-   // Use ReactHook by default, replace it with VueHook by overriding
-   statesHook: VueHook
+   ...AdapterTaroVue()
 );
 ```
 
