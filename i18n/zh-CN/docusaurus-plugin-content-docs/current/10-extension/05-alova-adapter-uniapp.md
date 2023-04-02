@@ -41,10 +41,10 @@ yarn add @alova/adapter-uniapp
 import { createAlova } from 'alova';
 import AdapterUniapp from '@alova/adapter-uniapp';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
   baseURL: 'https://api.alovajs.org',
   ...AdapterUniapp()
-);
+});
 ```
 
 ### 请求

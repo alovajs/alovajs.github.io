@@ -41,10 +41,10 @@ Calling **AdapterUniapp** will return _Request Adapter_, _Storage Adapter_, and 
 import { createAlova } from 'alova';
 import AdapterUniapp from '@alova/adapter-uniapp';
 
-const alovaInst = createAlova(
-   baseURL: 'https://api.alovajs.org',
-   ...AdapterUniapp()
-);
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  ...AdapterUniapp()
+});
 ```
 
 ### Request
