@@ -256,7 +256,7 @@ type UniappResponse =
 const alovaInst = createAlova(
   baseURL: 'https://api.alovajs.org',
   ...AdapterUniapp(),
-  responsed(response) {
+  responded(response) {
     const { statusCode, data } = response as UniNamespace.RequestSuccessCallbackResult;
     if (statusCode >= 400) {
       throw new Error('请求错误');

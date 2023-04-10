@@ -400,7 +400,7 @@ type TaroResponse =
 const alovaInst = createAlova(
   baseURL: 'https://api.alovajs.org',
   ...AdapterTaro(),
-  responsed(response) {
+  responded(response) {
     const { statusCode, data } = response as Taro.request.SuccessCallbackResult<any>;
     if (statusCode >= 400) {
       throw new Error('请求错误');

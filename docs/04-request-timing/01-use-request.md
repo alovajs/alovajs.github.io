@@ -153,6 +153,7 @@ const {
 onSuccess(event => {
   console.log('The request is successful, the response data is:', event.data);
   console.log('The method instance of this request is:', event.method);
+  console.log('is the response data from cache:', event.fromCache);
 });
 onError(event => {
   console.log('The request failed, the error message is:', event.error);
@@ -162,6 +163,7 @@ onComplete(event => {
   // event.status is success on success, error on failure
   console.log('The request is completed, the status is:', event.status);
   console.log('The method instance of this request is:', event.method);
+  console.log('is the response data from cache:', event.fromCache);
   if (event.data) {
     console.log('request data:', event.data);
   } else if (event.error) {

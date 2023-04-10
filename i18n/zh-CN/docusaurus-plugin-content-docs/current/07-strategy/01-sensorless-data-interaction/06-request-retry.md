@@ -127,7 +127,7 @@ useSQRequest(createOrEditTodo, {
 ```javascript
 const alovaInst = createAlova({
   // ...
-  responsed: {
+  responded: {
     onSuccess(response) {
       // 500错误时抛出错误
       if (response.status === 500) {

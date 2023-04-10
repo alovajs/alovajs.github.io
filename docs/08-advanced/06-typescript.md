@@ -119,7 +119,7 @@ The response data is converted by the global response interceptor, so when setti
 
 ## The type inferred from the request adapter
 
-Because alova supports custom request adapters, and different adapters may have different request configuration objects, response objects, and response headers, the global `beforeRequest`, `responsed` interceptors, and the configuration objects when `Method` instances are created The type will be automatically inferred based on the type provided by the request adapter. Let's look at these types first.
+Because alova supports custom request adapters, and different adapters may have different request configuration objects, response objects, and response headers, the global `beforeRequest`, `responded` interceptors, and the configuration objects when `Method` instances are created The type will be automatically inferred based on the type provided by the request adapter. Let's look at these types first.
 
 Following are the types of GlobalFetch
 
@@ -151,13 +151,13 @@ If you are using **GlobalFetch**, their types will be inferred as:
 
 ## Global response interceptor parameter type
 
-The global response interceptor `responsed` receives two parameters:
+The global response interceptor `responded` receives two parameters:
 
 - The first one is the response data, its type is the response object **RE**;
 - The second is the method instance of the current request, you can get the parameters of this request, or use it as the data transfer context before and after the request;
 
 ```typescript
-type ResponsedHandler<R, T, RC, RE, RH> = (response: RE, methodInstance: Method<any, any, R, T, RC, RE, RH>) => any;
+type RespondedHandler<R, T, RC, RE, RH> = (response: RE, methodInstance: Method<any, any, R, T, RC, RE, RH>) => any;
 ```
 
 When the request adapter uses `GlobalFetch`, **RE** will be automatically inferred to be of type `Response`.

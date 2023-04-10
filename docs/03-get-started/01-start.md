@@ -90,11 +90,31 @@ const alovaInstance = createAlova({
 });
 ```
 
+You can also set beforeRequest as an async function.
+
+```javascript
+const alovaInstance = createAlova({
+  //...
+  // highlight-start
+  async beforeRequest(method) {
+    // perform some asynchronous tasks
+    //...
+  }
+  // highlight-end
+});
+```
+
 > Detailed request method example introduction will be explained in the next section
 
 ## Set global response interceptor
 
 When we want to unify the parsing of response data and uniform handling of errors, we can specify a global response interceptor when creating an `alova` instance, which is also similar to `axios`. Response interceptors include interceptors for successful requests and interceptors for failed requests.
+
+:::info responded and responded are compatible
+
+In 2.0.x and previous versions, `responded` was misspelled as `responsed`, and the two have been made compatible in 2.1.0. It is recommended to use `responded` instead of `responsed` in subsequent versions.
+
+:::
 
 ```javascript
 const alovaInstance = createAlova({
@@ -145,8 +165,8 @@ const alovaInstance = createAlova({
 
 :::caution special attention
 
-1. The onError callback is a capture function for request errors. When an error is caught but no error is thrown or a Promise instance in the reject state is returned, the request will be considered successful and no response data will be obtained.
-2. responded can be set as a normal function or an asynchronous function.
+1. Both `onSuccess` and `onError` can be set as sync function and async functions.
+2. The onError callback is a capture function for request errors. When an error is caught but no error is thrown or a Promise instance in the reject state is returned, the request will be considered successful and no response data will be obtained.
 
 :::
 

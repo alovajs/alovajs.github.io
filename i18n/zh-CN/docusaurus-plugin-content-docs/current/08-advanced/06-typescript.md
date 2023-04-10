@@ -119,7 +119,7 @@ const { data } = useRequest(Get);
 
 ## 根据请求适配器推断的类型
 
-因为 alova 支持自定义请求适配器，而不同的适配器的请求配置对象、响应对象、响应头都可能不同，因此全局的`beforeRequest`、`responsed`拦截器，以及`Method`实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，我们先来看这几个类型。
+因为 alova 支持自定义请求适配器，而不同的适配器的请求配置对象、响应对象、响应头都可能不同，因此全局的`beforeRequest`、`responded`拦截器，以及`Method`实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，我们先来看这几个类型。
 
 以下是 GlobalFetch 的类型
 
@@ -151,13 +151,13 @@ type GlobalFetch = () => (
 
 ## 全局响应拦截器参数类型
 
-全局响应拦截器`responsed`接收两个参数：
+全局响应拦截器`responded`接收两个参数：
 
 - 第一个为响应数据，它的类型为响应对象 **RE**；
 - 第二个为当前请求的 method 实例，你可以获取此次请求的参数，也可以用它作为请求前后的数据传递上下文；
 
 ```typescript
-type ResponsedHandler<R, T, RC, RE, RH> = (response: RE, methodInstance: Method<any, any, R, T, RC, RE, RH>) => any;
+type RespondedHandler<R, T, RC, RE, RH> = (response: RE, methodInstance: Method<any, any, R, T, RC, RE, RH>) => any;
 ```
 
 当请求适配器使用`GlobalFetch`时，**RE** 将自动推断为`Response`类型。

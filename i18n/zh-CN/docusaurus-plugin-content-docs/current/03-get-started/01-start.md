@@ -90,9 +90,29 @@ const alovaInstance = createAlova({
 });
 ```
 
+你也可以将 beforeRequest 设置为异步函数。
+
+```javascript
+const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  async beforeRequest(method) {
+    // 执行一些异步任务
+    // ...
+  }
+  // highlight-end
+});
+```
+
 > 详细的请求方法实例介绍将在下一节中讲解
 
 ## 设置全局响应拦截器
+
+:::info responsed 和 responded 兼容
+
+在 2.0.x 及以前的版本中将`responded`错误地拼写为了`responsed`，在 2.1.0 中已将两者做了兼容处理，建议在后续版本中使用`responded`代替`responsed`。
+
+:::
 
 当我们希望统一解析响应数据、统一处理错误时，此时可以在创建`alova`实例时指定全局的响应拦截器，这同样与`axios`相似。响应拦截器包括请求成功的拦截器和请求失败的拦截器。
 
@@ -101,7 +121,7 @@ const alovaInstance = createAlova({
   // ...
   // highlight-start
   // 使用数组的两个项，分别指定请求成功的拦截器和请求失败的拦截器
-  responsed: {
+  responded: {
     // 请求成功的拦截器
     // 当使用GlobalFetch请求适配器时，第一个参数接收Response对象
     // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
@@ -136,7 +156,7 @@ const alovaInstance = createAlova({
 const alovaInstance = createAlova({
   // ...
   // highlight-start
-  async responsed(response, method) {
+  async responded(response, method) {
     // 请求成功的拦截器
   }
   // highlight-end
@@ -145,8 +165,8 @@ const alovaInstance = createAlova({
 
 :::caution 特别注意
 
-1. onError 回调是请求错误的捕获函数，当捕获错误但没有抛出错误或返回 reject 状态的 Promise 实例，将认为请求是成功的，且不会获得响应数据
-2. responsed 可设为是普通函数和异步函数
+1. `onSuccess`和`onError`均可以设为同步函数和异步函数。
+2. onError 回调是请求错误的捕获函数，当捕获错误但没有抛出错误或返回 reject 状态的 Promise 实例，将认为请求是成功的，且不会获得响应数据。
 
 :::
 

@@ -30,7 +30,7 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 
 :::caution
 
-1. 返回的响应数据也会依次被全局的 responsed 和当前`Method`实例的`transformData`处理；
+1. 返回的响应数据也会依次被全局的 responded 拦截器和当前`Method`实例的`transformData`处理；
 2. 缓存机制依然有效，如果命中缓存也会返回缓存数据，此时可以在`send`方法中传入`true`来强制发起请求；
 
 :::

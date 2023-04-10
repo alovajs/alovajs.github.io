@@ -236,7 +236,7 @@ axios 的响应数据类型是`AxiosResponse`，当你使用 axios 适配器时�
 const alovaInst = createAlova(
   baseURL: 'https://api.alovajs.org',
   requestAdapter: axiosRequestAdapter(),
-  responsed(response) {
+  responded(response) {
     // response自动被推断为AxiosResponse类型
     return response.data;
   }
@@ -251,7 +251,7 @@ const alovaInst = createAlova(
 const alovaInst = createAlova(
   baseURL: 'https://api.alovajs.org',
   requestAdapter: axiosRequestAdapter(),
-  responsed: {
+  responded: {
     onSuccess(response) {
       // response自动被推断为AxiosResponse类型
       return response.data;

@@ -73,7 +73,7 @@ interface RequestElements {
 
 **response（必填）**
 
-一个异步函数，函数返回响应值，它将会传递给全局的响应拦截器 responsed；
+一个异步函数，函数返回响应值，它将会传递给全局的响应拦截器（responded）；
 
 **headers（必填）**
 
