@@ -31,14 +31,15 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 1. 只有在网络请求响应时才被触发，而命中响应缓存时不会触发；
 2. 支持异步函数；
 
-你也可以将它当作网络请求响应的钩子函数使用，例如以文件为响应数据的缓存场景下，可以配合 IndexedDB 进行文件数据的缓存，同时配合 [缓存受控](/) 来命中 IndexedDB 中的文件缓存。
+你也可以将它当作网络请求响应的钩子函数使用，例如以文件为响应数据的缓存场景下，可以配合 IndexedDB 进行文件数据的缓存，同时配合 [受控的缓存](/next-step/controlled-cache) 来命中 IndexedDB 中的文件缓存。
 
 ```javascript
 const fileGetter = alovaInstance.Get('/file/file_name', {
   // 使用IndexedDB缓存文件
   async transformData(fileBlob) {
     await new Promise((resolve, reject) => {
-      const putRequest = db.transaction('files', 'readwrite').objectStore('files').put({
+      const tx = db.transaction(['files'], 'readwrite');
+      const putRequest = tx.objectStore('files').put({
         file: fileBlob
       });
       putRequest.onsuccess = resolve;

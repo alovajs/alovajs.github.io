@@ -1,6 +1,6 @@
 ---
 title: Download/Upload progress
-sidebar_position: 90
+sidebar_position: 100
 ---
 
 import Tabs from '@theme/Tabs';
