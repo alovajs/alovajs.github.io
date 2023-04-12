@@ -1,5 +1,5 @@
 ---
-title: serial request
+title: Serial request
 sidebar_position: 80
 ---
 

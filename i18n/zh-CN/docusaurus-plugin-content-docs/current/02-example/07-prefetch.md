@@ -5,7 +5,7 @@ sidebar_position: 30
 
 import Prefetch from '@site/example-links/Prefetch';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/overview/index);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/get-started/overview);
 
 <Prefetch></Prefetch>
 

@@ -202,7 +202,7 @@ const handleSubmit = selectedId => {
 
 :::warning debounce 参数说明
 
-debounce 参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](/request-timing/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
+debounce 参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
 
 :::
 

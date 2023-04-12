@@ -5,7 +5,7 @@ sidebar_position: 120
 
 import NoteSilentReact from '@site/example-links/NoteSilentReact';
 
-> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/overview/index) for details;
+> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/get-started/overview) for details;
 
 <NoteSilentReact></NoteSilentReact>
 
@@ -18,6 +18,6 @@ _Operation guidance:_
 1. Add, edit, and delete notes, it will generate feedback immediately without waiting for the server to respond;
 2. Switch the request mode and network status to experience the difference between them;
 
-[Silent submission policy document](/category/sensorless-data-interaction)
+[Silent submit policy document](/category/sensorless-data-interaction)
 
 :::

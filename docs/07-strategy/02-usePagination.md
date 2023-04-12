@@ -202,7 +202,7 @@ const handleSubmit = selectedId => {
 
 :::warning debounce description
 
-The debounce parameter can be set as an array, and the debounce time is set separately for changes in the monitoring state (watchingStates), which is achieved through the request debounce in [**useWatcher**](/request-timing/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
+The debounce parameter can be set as an array, and the debounce time is set separately for changes in the monitoring state (watchingStates), which is achieved through the request debounce in [**useWatcher**](/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
 
 :::
 

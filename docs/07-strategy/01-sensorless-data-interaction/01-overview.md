@@ -112,16 +112,14 @@ In the technical solution of non-inductive data interaction, alova has implement
 
 Please make sure you have mastered the following chapters before reading
 
-- [Getting Started](/category/getting-started)
-- [Send a request at the right time](/category/request-at-the-right-time)
-- [Response Data Management](/category/response-data-management)
-- [next step](/category/next-step)
+- [Basic Learning](/category/learning)
+- [Advanced Learning](/category/next-step)
 
 :::
 
 ### Data pre-fetching
 
-In html, you may have seen such a tag `<link rel="prefetch" href="index.css" as="style">`, which tells the browser to preload the style file when it is idle, and put it in the cache In , when you really need to use it, you can take it out of the cache. Alova also uses a similar scheme to pre-fetch the required data through [useFetcher](/request-timing/use-fetcher), and it will be stored locally. in cache. You can predict the content that the user needs to read under any circumstances, and then pre-fetch the corresponding content. For example, the content of the next page can be pre-loaded in the process page, or the user stays on a button 200ms, we can pre-fetch the data needed for the next interface, which is similar to **Next.js** page preloading.
+In html, you may have seen such a tag `<link rel="prefetch" href="index.css" as="style">`, which tells the browser to preload the style file when it is idle, and put it in the cache In , when you really need to use it, you can take it out of the cache. Alova also uses a similar scheme to pre-fetch the required data through [useFetcher](/learning/use-fetcher), and it will be stored locally. in cache. You can predict the content that the user needs to read under any circumstances, and then pre-fetch the corresponding content. For example, the content of the next page can be pre-loaded in the process page, or the user stays on a button 200ms, we can pre-fetch the data needed for the next interface, which is similar to **Next.js** page preloading.
 
 We provide a [preloaded example](/example/prefetch), you can enter the experience.
 

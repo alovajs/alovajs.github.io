@@ -12,12 +12,12 @@ function HomepageHeader() {
     {
       text: <Translate id="homepage.Get Started">Get Started</Translate>,
       type: 'primary',
-      link: '/overview/index'
+      link: '/get-started/overview'
     },
     {
       text: <Translate id="homepage.Examples">Examples</Translate>,
       type: 'secondary',
-      link: '/example/init-page'
+      link: '/category/examples'
     }
   ];
   return (

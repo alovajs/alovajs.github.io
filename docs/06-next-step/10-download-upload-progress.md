@@ -131,7 +131,7 @@ const App = () => {
 </Tabs>
 
 :::caution Caution when using the `GlobalFetch` adapter
-Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alova does not support upload progress, and more complete request adapters will be provided in the future. At present, if you need to upload the progress, please write your own request adapter. For details, see [Write a Request Adapter](../advanced/custom-http-adapter).
+Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alova does not support upload progress, and more complete request adapters will be provided in the future. At present, if you need to upload the progress, please write your own request adapter. For details, see [Write a Request Adapter](/advanced/custom-http-adapter).
 :::
 
 ## upload/download status type

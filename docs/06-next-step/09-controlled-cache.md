@@ -11,7 +11,7 @@ v2.1.0+
 
 When sending a request, by default, it will first check whether there is matching cache data, and if it matches, it will use it as the response data to return. If in some scenarios, the user needs to use a custom cache, he must first use `setCache` to synchronize It is only feasible to set cached data, which undoubtedly increases the burden on users. This is an uncontrolled cache.
 
-If you want to use **IndexedDB** custom management cache data with uncontrolled caching, you may first pre-set the hit cache for upcoming requests, like this:
+If you want to use such **IndexedDB** to custom management cache data with uncontrolled caching, you may first pre-set the hit cache for upcoming requests, like this:
 
 ```javascript
 const getFile = fileName => {
@@ -25,7 +25,7 @@ const getFile = fileName => {
 };
 ```
 
-**❌ But the above writing method is not recommended**, for the following reasons:
+**❌ But the usage above is not recommended**, for the following reasons:
 
 1. Each call to `getFile` will set up a cache, but fileGetter is not necessarily used to send requests;
 2. IndexedDB is an asynchronous interface. If the step of matching the cache occurs before IndexedDB triggers onsuccess, then the cached data will not be matched, and their order is unpredictable;
@@ -50,6 +50,6 @@ const getFile = fileName =>
 
 :::info reminder
 
-You can also cooperate with [special usage of transformData](/response-data-management/transform-response-data) to implement custom cache storage task.
+You can also cooperate with [special usage of transformData](/learning/transform-response-data) to implement custom cache storage task.
 
 :::

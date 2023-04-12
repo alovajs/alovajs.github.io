@@ -9,7 +9,7 @@
   },
   "link.item.label.Guide": {
     "message": "指南",
-    "description": "The label of footer link with label=Guide linking to /overview/index"
+    "description": "The label of footer link with label=Guide linking to /get-started/overview"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",

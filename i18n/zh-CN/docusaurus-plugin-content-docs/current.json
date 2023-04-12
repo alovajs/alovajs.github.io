@@ -15,13 +15,13 @@
     "message": "这里有丰富的示例，来展示alova在不同请求场景下的表现。",
     "description": "The generated-index page description for category Examples in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Getting Started": {
+  "sidebar.tutorialSidebar.category.Get Started": {
     "message": "开始",
-    "description": "The label for category Getting Started in sidebar tutorialSidebar"
+    "description": "The label for category Get Started in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Request at the right time": {
-    "message": "在正确的时机发送请求",
-    "description": "The label for category Request at the right time in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Learning": {
+    "message": "学习",
+    "description": "The label for category Learn in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Response data management": {
     "message": "响应数据管理",
@@ -50,6 +50,10 @@
   "sidebar.tutorialSidebar.category.extend hooks": {
     "message": "扩展hooks",
     "description": "The label for category extend hooks in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Best practice": {
+    "message": "最佳实践",
+    "description": "The label for category best practice in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Others": {
     "message": "其他",

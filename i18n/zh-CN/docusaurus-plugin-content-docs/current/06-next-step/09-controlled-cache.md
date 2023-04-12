@@ -50,6 +50,6 @@ const getFile = fileName =>
 
 :::info 提醒
 
-你还可以配合 [transformData 的特殊用法](/response-data-management/transform-response-data) 来实现自定义缓存的存储任务。
+你还可以配合 [transformData 的特殊用法](/learning/transform-response-data) 来实现自定义缓存的存储任务。
 
 :::

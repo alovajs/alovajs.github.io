@@ -5,7 +5,7 @@ sidebar_position: 27
 
 import StorageRestore from '@site/example-links/StorageRestore';
 
-> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](/overview/index);
+> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](/get-started/overview);
 
 <StorageRestore></StorageRestore>
 

@@ -41,7 +41,7 @@ const createOrEditTodo = (data, id) =>
 const deleteTodo = id => alovaInst.Delete('/todo', { id });
 ```
 
-这部分与[开始的章节](/get-started/start)相同，不再重复说明。
+这部分与[开始的章节](/get-started/quick-start)相同，不再重复说明。
 
 ## 启动静默工厂
 
