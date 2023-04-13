@@ -48,6 +48,8 @@ const getFile = fileName =>
   });
 ```
 
+If you want to continue sending requests, you can return undefined or no data in `localCache`, which is useful in case of a cache miss when customizing the managed cache.
+
 :::info reminder
 
 You can also cooperate with [special usage of transformData](/learning/transform-response-data) to implement custom cache storage task.

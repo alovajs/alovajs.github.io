@@ -162,7 +162,7 @@ const alovaInstance = createAlova({
 :::caution special attention
 
 1. Both `onSuccess` and `onError` can be set as synchronous function or asynchronous function.
-2. The onError callback is a capture function for request errors. When an error is caught but no error is thrown or a Promise instance in the reject state is returned, the request will be considered successful and no response data will be obtained.
+2. The `onError` callback is a capture function for request errors. it will not emit `onError` when throw error in `onSuccess`. When an error is caught but no error is thrown or a Promise instance in the reject state is returned, the request will be considered successful and no response data will be obtained.
 3. In 2.0.x and previous versions, `responded` was misspelled as `responsed`, and the two have been made compatible in 2.1.0. It is recommended to use `responded` instead of `responsed` in subsequent versions.
 
 :::
