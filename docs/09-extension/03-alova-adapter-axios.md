@@ -35,11 +35,11 @@ Use **axiosRequestAdapter** as request adapter for alova.
 import { createAlova } from 'alova';
 import { axiosRequestAdapter } from '@alova/adapter-axios';
 
-const alovaInst = createAlova(
-   //...
-   requestAdapter: axiosResponseAdapter(),
-   //...
-);
+const alovaInst = createAlova({
+  //...
+  requestAdapter: axiosResponseAdapter()
+  //...
+});
 ```
 
 ### ask

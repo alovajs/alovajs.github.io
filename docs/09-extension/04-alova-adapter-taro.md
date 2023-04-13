@@ -52,10 +52,10 @@ Calling **AdapterTaro** will return _Request Adapter_, _Storage Adapter_, and _R
 import { createAlova } from 'alova';
 import AdapterTaro from '@alova/adapter-taro';
 
-const alovaInst = createAlova(
-   baseURL: 'https://api.alovajs.org',
-   ...AdapterTaro()
-);
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  ...AdapterTaro()
+});
 ```
 
 </TabItem>
@@ -66,10 +66,10 @@ const alovaInst = createAlova(
 import { createAlova } from 'alova';
 import AdapterTaroVue from '@alova/adapter-taro/vue';
 
-const alovaInst = createAlova(
-   baseURL: 'https://api.alovajs.org',
-   ...AdapterTaroVue()
-);
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  ...AdapterTaroVue()
+});
 ```
 
 </TabItem>
@@ -397,15 +397,15 @@ type TaroResponse =
 In actual use, we usually need to process the response data globally. It is recommended to judge the returned data separately. A simple example is as follows:
 
 ```typescript
-const alovaInst = createAlova(
-   baseURL: 'https://api.alovajs.org',
-   ...AdapterTaro(),
-   responded(response) {
-     const { statusCode, data } = response as Taro.request.SuccessCallbackResult<any>;
-     if (statusCode >= 400) {
-       throw new Error('request error');
-     }
-     return data || null;
-   }
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  ...AdapterTaro(),
+  responded(response) {
+    const { statusCode, data } = response as Taro.request.SuccessCallbackResult<any>;
+    if (statusCode >= 400) {
+      throw new Error('request error');
+    }
+    return data || null;
+  }
 });
 ```

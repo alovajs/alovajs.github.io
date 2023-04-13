@@ -35,11 +35,11 @@ yarn add @alova/adapter-axios
 import { createAlova } from 'alova';
 import { axiosRequestAdapter } from '@alova/adapter-axios';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
   // ...
-  requestAdapter: axiosResponseAdapter(),
+  requestAdapter: axiosResponseAdapter()
   // ...
-);
+});
 ```
 
 ### 请求

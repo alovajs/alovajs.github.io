@@ -35,11 +35,11 @@ Use **xhrRequestAdapter** as request adapter for alova.
 import { createAlova } from 'alova';
 import { xhrRequestAdapter } from '@alova/adapter-xhr';
 
-const alovaInst = createAlova(
-   //...
-   requestAdapter: xhrResponseAdapter(),
-   //...
-);
+const alovaInst = createAlova({
+  //...
+  requestAdapter: xhrResponseAdapter()
+  //...
+});
 ```
 
 ### Request

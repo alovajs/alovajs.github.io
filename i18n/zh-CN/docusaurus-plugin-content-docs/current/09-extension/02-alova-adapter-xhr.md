@@ -35,11 +35,11 @@ yarn add @alova/adapter-xhr
 import { createAlova } from 'alova';
 import { xhrRequestAdapter } from '@alova/adapter-xhr';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
   // ...
-  requestAdapter: xhrResponseAdapter(),
+  requestAdapter: xhrResponseAdapter()
   // ...
-);
+});
 ```
 
 ### 请求
