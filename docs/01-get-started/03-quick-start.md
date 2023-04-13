@@ -65,7 +65,11 @@ First create an alova instance, use this instance to create the corresponding me
     statesHook: VueHook,
 
     // request adapter, it is recommended to use the fetch request adapter
-    requestAdapter: GlobalFetch()
+    requestAdapter: GlobalFetch(),
+
+    // adapter GlobalFetch will return a Response instance
+    // you can set a global response interception to return actual json data
+    responded: response => response.json()
   });
 
   // 2. Use the alova instance to create a method and pass it to useRequest to send the request

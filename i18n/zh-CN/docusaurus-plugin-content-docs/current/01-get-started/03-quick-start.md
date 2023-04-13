@@ -65,7 +65,10 @@ alova 结合 UI 框架，让请求变得更简单，你可以使用 alova 提供
     statesHook: VueHook,
 
     // 请求适配器，推荐使用fetch请求适配器
-    requestAdapter: GlobalFetch()
+    requestAdapter: GlobalFetch(),
+
+    // 全局的响应拦截器
+    responded: response => response.json()
   });
 
   // 2. 使用alova实例创建method并传给useRequest即可发送请求
@@ -93,7 +96,10 @@ const alovaInstance = createAlova({
   statesHook: VueHook,
 
   // 请求适配器，推荐使用fetch请求适配器
-  requestAdapter: GlobalFetch()
+  requestAdapter: GlobalFetch(),
+
+  // 全局的响应拦截器
+  responded: response => response.json()
 });
 
 const app = () => {
@@ -134,7 +140,11 @@ const app = () => {
     statesHook: SvelteHook,
 
     // 请求适配器，推荐使用fetch请求适配器
-    requestAdapter: GlobalFetch()
+    requestAdapter: GlobalFetch(),
+
+    // GlobalFetch适配器将会返回Response实例，
+    // 你可以设置一个全局的响应拦截器返回json数据
+    responded: response => response.json()
   });
 
   // 2. 使用alova实例创建method并传给useRequest即可发送请求
