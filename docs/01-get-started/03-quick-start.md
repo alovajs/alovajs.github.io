@@ -162,7 +162,27 @@ const app = () => {
 </TabItem>
 </Tabs>
 
-> Please note that the use of useRequest needs to comply with the rules of use hook, that is, it can only be called at the outermost layer of the function. Do not call in loops, conditionals, or subfunctions.
+### Use hook specification
+
+Please note that the use of useRequest needs to conform to the rules of use hook, that is, it can only be called at the outermost layer of the function. ❌❌❌ It is not recommended to call in loops, conditional judgments or sub-functions.
+
+For example, the following usage example in the click callback, when used in the callback function, although the request can be initiated normally, the responsive data returned by the use hook cannot be used in the view, and the same is true for loops and conditional judgments.
+
+```javascript
+// ❌ bad
+const handleClick = () => {
+  const { loading, data } = useRequest(getter);
+};
+
+// -------
+// ✅ good
+const { loading, data, send } = useRequest(getter, {
+  immediate: false
+});
+const handleClick = () => {
+  send();
+};
+```
 
 ## Use the method instance to send the request
 
@@ -171,6 +191,10 @@ The use hook can only be used to send requests within the component. Outside the
 ```javascript
 const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1').send();
 ```
+
+For more information about method instance sending request, please go to [Use method instance to send request](/next-step/send-request-directly) to read.
+
+Regarding when to use useRequest to send a request and when to use a method instance to send a request, please read the [Best Practice](/best-practice/skills) here.
 
 ## Used in static html
 

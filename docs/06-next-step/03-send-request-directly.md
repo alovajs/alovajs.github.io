@@ -34,3 +34,5 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 2. The cache mechanism is still valid. If the cache is hit, the cached data will be returned. At this time, you can pass `true` in the `send` method to force the request;
 
 :::
+
+Regarding when to use `useRequest` to send a request and when to use a method instance to send a request, please read the [Best Practice](/best-practice/skills) here.

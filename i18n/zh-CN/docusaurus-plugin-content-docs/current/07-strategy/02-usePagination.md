@@ -147,8 +147,8 @@ const {
     // append: true, // 是否启用追加模式，在下拉加载时需设置为true，默认为false
     // preloadPreviousPage: true, // 是否预加载上一页数据，默认为true
     // preloadNextPage: true, // 是否预加载下一页数据，默认为true
-    // total: data => data['total'], // 指定如何获取列表项总数值，data为响应数据，默认获取data.total
-    // data: data['data'], // 指定如何获取列表数据，data为响应数据，默认获取data.data
+    // total: res => res.total, // 指定如何获取列表项总数值，res为响应数据，默认获取res.total
+    // data: res.data, // 指定如何获取列表数据，res为响应数据，默认获取res.data
     // initialPage: 1, // 初始页码，默认为1
     // initialPageSize: 10, // 初始每页数据条数，默认为10
     // immediate: true // 是否立即发出请求，默认为true

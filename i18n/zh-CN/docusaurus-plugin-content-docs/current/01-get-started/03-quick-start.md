@@ -168,7 +168,27 @@ const app = () => {
 </TabItem>
 </Tabs>
 
-> 请注意，useRequest 的使用需要符合 use hook 使用规则，即只能在函数最外层调用。不要在循环、条件判断或者子函数中调用。
+### use hook 的使用规范
+
+请注意，useRequest 的使用需要符合 use hook 使用规则，即只能在函数最外层调用。❌❌❌ 不推荐在在循环、条件判断或者子函数中调用。
+
+例如以下在 click 回调中的使用示例，在回调函数中使用时，虽然可以正常发起请求，但 use hook 返回的响应式数据无法在视图中使用，循环和条件判断中使用也是如此。
+
+```javascript
+// ❌ bad
+const handleClick = () => {
+  const { loading, data } = useRequest(getter);
+};
+
+// -------
+// ✅ good
+const { loading, data, send } = useRequest(getter, {
+  immediate: false
+});
+const handleClick = () => {
+  send();
+};
+```
 
 ## 使用 method 实例发送请求
 
@@ -179,6 +199,8 @@ const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1')
 ```
 
 更多关于 method 实例发送请求的内容，请前往[使用 method 实例发送请求](/next-step/send-request-directly)阅读。
+
+关于在何时使用 useRequest 发送请求，何时使用 method 实例发送请求，请移步阅读这边的[最佳实践](/best-practice/skills)。
 
 ## 在静态 html 中使用
 
