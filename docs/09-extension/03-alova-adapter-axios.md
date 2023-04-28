@@ -37,7 +37,7 @@ import { axiosRequestAdapter } from '@alova/adapter-axios';
 
 const alovaInst = createAlova({
   //...
-  requestAdapter: axiosResponseAdapter()
+  requestAdapter: axiosRequestAdapter()
   //...
 });
 ```
