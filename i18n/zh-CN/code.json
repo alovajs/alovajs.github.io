@@ -307,11 +307,11 @@
     "message": "与axios相似的api设计，让您上手更简单熟悉",
     "description": "description of feature"
   },
-  "homepage.features.High performance request stratrgy": {
+  "homepage.features.High performance request strategy": {
     "message": "高性能请求策略",
     "description": "高性能请求策略"
   },
-  "homepage.features.High performance request stratrgy.desc": {
+  "homepage.features.High performance request strategy.desc": {
     "message": "针对不同请求场景提供了不同的请求策略，减小请求带来的性能问题",
     "description": "description of feature"
   },
