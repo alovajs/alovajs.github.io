@@ -141,7 +141,7 @@ const config = {
         appId: 'LGEFHNJ1SI',
 
         // Public API key: it is safe to commit it
-        apiKey: '6163bcd0bc438300778bfa2119b52a1d',
+        apiKey: '4c4f6078174a5ae66234de817e75e0a8',
 
         indexName: 'alova_website',
 
