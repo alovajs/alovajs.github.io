@@ -21,11 +21,11 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: (
-      <Translate id="homepage.features.High performance request stratrgy">High performance request stratrgy</Translate>
+      <Translate id="homepage.features.High performance request strategy">High performance request strategy</Translate>
     ),
     Svg: require('@site/static/img/4.svg').default,
     description: (
-      <Translate id="homepage.features.High performance request stratrgy.desc">
+      <Translate id="homepage.features.High performance request strategy.desc">
         Different request strategies are provided for different request scenarios to reduce performance problems caused
         by requests
       </Translate>

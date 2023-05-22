@@ -93,8 +93,8 @@ import ReactHook from 'alova/react';
 
 // 1. Create an alova instance
 const alovaInstance = createAlova({
-  // VueHook is used to create ref status, including request status loading, response data data, request error object error, etc.
-  statesHook: VueHook,
+  // ReactHook is used to create ref status, including request status loading, response data data, request error object error, etc.
+  statesHook: ReactHook,
 
   // request adapter, it is recommended to use the fetch request adapter
   requestAdapter: GlobalFetch()
@@ -134,7 +134,7 @@ const app = () => {
 
   // 1. Create an alova instance
   const alovaInstance = createAlova({
-    // VueHook is used to create ref status, including request status loading, response data data, request error object error, etc.
+    // SvelteHook is used to create ref status, including request status loading, response data data, request error object error, etc.
     statesHook: SvelteHook,
 
     // request adapter, it is recommended to use the fetch request adapter

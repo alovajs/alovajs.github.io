@@ -52,10 +52,10 @@ yarn add @alova/adapter-taro
 import { createAlova } from 'alova';
 import AdapterTaro from '@alova/adapter-taro';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
   baseURL: 'https://api.alovajs.org',
   ...AdapterTaro()
-);
+});
 ```
 
 </TabItem>
@@ -66,10 +66,10 @@ const alovaInst = createAlova(
 import { createAlova } from 'alova';
 import AdapterTaroVue from '@alova/adapter-taro/vue';
 
-const alovaInst = createAlova(
+const alovaInst = createAlova({
   baseURL: 'https://api.alovajs.org',
   ...AdapterTaroVue()
-);
+});
 ```
 
 </TabItem>

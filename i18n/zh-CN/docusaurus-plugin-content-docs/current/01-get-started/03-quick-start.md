@@ -92,8 +92,8 @@ import ReactHook from 'alova/react';
 
 // 1. 创建alova实例
 const alovaInstance = createAlova({
-  // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-  statesHook: VueHook,
+  // ReactHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
+  statesHook: ReactHook,
 
   // 请求适配器，推荐使用fetch请求适配器
   requestAdapter: GlobalFetch(),
@@ -136,7 +136,7 @@ const app = () => {
 
   // 1. 创建alova实例
   const alovaInstance = createAlova({
-    // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
+    // SvelteHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
     statesHook: SvelteHook,
 
     // 请求适配器，推荐使用fetch请求适配器
