@@ -41,7 +41,7 @@ jobs:
 
   algolia:
     name: Crawl with algolia
-    needs: [quality]
+    needs: [deploy]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
