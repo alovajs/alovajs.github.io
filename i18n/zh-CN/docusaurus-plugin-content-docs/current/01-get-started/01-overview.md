@@ -41,14 +41,16 @@ alova 具有很灵活的扩展能力来实现不同场景下的请求策略，�
 
 ## 选择 alova 的理由
 
-alova 可以让你在编写少量代码的情况下，提升应用在请求方面的流畅性，它提供了开箱即用的体验，而其他请求库更加关注网络请求的便利性。如果你希望不编写更多额外代码，也能获得流畅的应用，不妨来试试！
+alova 也致力于解决客户端网络请求的问题，但与其他请求库不同的是，alova 选择了场景化请求策略的方向，好的请求策略可以让你在编写更少代码的情况下，提升应用在请求方面的流畅性。alova 提供了许多开箱即用的场景化请求策略，同时，alova 还提供了丰富的特性，满足 99% 的请求需求。
 
-同时，alova 也提供了丰富的特性，满足 99%的请求需求，更完整的特性如下：
+如果你希望不编写更多额外代码，也能获得流畅的应用，不妨来试试！
 
-1. 🕶 支持 vue、react、svelte
+更完整的特性如下：
+
+1. 🕶 在 vue、react、svelte 3 个 UI 框架，以及 uniapp、taro 环境下提供统一的使用体验，无缝移植
 2. 📑 与 axios 相似的 api 设计，更简单熟悉
-3. 🍵 开箱即用的高性能请求策略，让应用更流畅
-4. 🐦 4kb，只有 axios 的 30%+
+3. 🍵 开箱即用的高性能场景化请求策略，让应用更流畅
+4. 🐦 4kb+，只有 axios 的 30%+
 5. 🔩 高灵活性，兼容任意请求库，如 axios、superagent 或 fetch-api
 6. 🔋 3 种数据缓存模式，提升请求性能，同时降低服务端压力
 7. 🔌 丰富的扩展功能，可以自定义请求适配器、存储适配器、中间件，以及 states hook
@@ -78,7 +80,7 @@ alova 是核心库，它提供了缓存策略、请求共享策略，以及状�
 
 ## 库稳定性
 
-alova 从第一个版本的开发到现在已经过去一年左右的时间了，在这一年中我们也在持续发现问题优化，到目前为止 alova 已通过了 143 项单元测试，覆盖率为 99%。即便如此，alova 还属于新秀，因此我也建议你可以先保守使用。
+alova 从第一个版本的开发到现在已经过去一年左右的时间了，在这一年中我们也在持续发现问题优化，到目前为止 alova 已通过了 160+ 项单元测试，覆盖率为 99%。即便如此，alova 还属于新秀，因此我也建议你可以先保守使用。
 
 如果发现了 alova 的任何问题，你都可以通过 [提交 issue](https://github.com/alovajs/alova/issues/new/choose) 告诉我们，**我们保证会在收到 issue 后，第一时间解决。**
 
@@ -95,12 +97,16 @@ alova 从第一个版本的开发到现在已经过去一年左右的时间了�
 | [@alova/adapter-axios](https://github.com/alovajs/adapter-axios)   | alova.js 的 axios 适配器          |
 | [@alova/adapter-xhr](https://github.com/alovajs/adapter-xhr)       | alova.js 的 XMLHttpRequest 适配器 |
 
-## 替代请求库？？？
-
-alova 是一个请求策略库，它的创建初衷是对不同请求场景提供特定的请求策略解决方案，从而更简洁优雅地实现流畅的请求体验，而例如`$.ajax`、`axios`和`fetch-api`等对请求发送和响应接收提供了很好的支持，它们是 [RSM](/get-started/RSM) 流程中必不可少的一个环节（请求事件），alova 仍然需要依靠它们进行请求，因此我们可以将 alova 看作是请求库的一种武装，让请求库变得更加强大。
-
 ## 各类库的体积对比
 
 | alova                                                                                             | axios                                                                                             | react-query                                                                                                   | vue-request                                                                                                   | vue                                                                                           | react                                                                                                     |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | [![minzip](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova) | [![minzip](https://badgen.net/bundlephobia/minzip/axios)](https://bundlephobia.com/package/axios) | [![minzip](https://badgen.net/bundlephobia/minzip/react-query)](https://bundlephobia.com/package/react-query) | [![minzip](https://badgen.net/bundlephobia/minzip/vue-request)](https://bundlephobia.com/package/vue-request) | [![minzip](https://badgen.net/bundlephobia/minzip/vue)](https://bundlephobia.com/package/vue) | [![minzip](https://badgen.net/bundlephobia/minzip/react-dom)](https://bundlephobia.com/package/react-dom) |
+
+## 替代请求库？
+
+alova 是一个请求策略库，它的创建初衷是对不同请求场景提供特定的请求策略解决方案，从而更简洁优雅地实现流畅的请求体验，而例如`$.ajax`、`axios`和`fetch-api`等对请求发送和响应接收提供了很好的支持，它们是 [RSM](/get-started/RSM) 流程中必不可少的一个环节（请求事件），alova 仍然需要依靠它们进行请求，因此我们可以将 alova 看作是请求库的一种武装，让请求库变得更加强大。
+
+## 为什么要深度绑定 UI 框架？
+
+对一个 js 库来说解耦意味着更多场景下的使用，例如 axios 可以在 nodejs 中使用，但同时意味着开发者需要写更多的模板代码，比如使用 useHooks 封装 axios 等。而 alova 摒弃了解耦带来的更多使用场景，将使用范围定位在与 UI 框架配合使用，以最精简的方式使用 alova，这是为了开发者的收益方面而考量的，在一个 UI 框架盛行的时候，深度绑定可以为开发者提供直接使用的功能，提升开发者的使用体验，而不需要太多的模板代码。

@@ -37,14 +37,16 @@ Alova has a very flexible expansion capability to implement request strategies i
 
 ## Reasons for choosing alova
 
-Alova allows you to improve the fluency of the application in terms of requests while writing a small amount of code. It provides an out-of-the-box experience, while other request libraries pay more attention to the convenience of network requests. If you want to get a smooth application without writing more extra code, you might as well give it a try!
+Alova is also committed to solving the problem of client network requests, but unlike other request libraries, alova chooses the direction of scenario-based request strategies. A good request strategy allows you to write less code to improve the application in the Fluency in requests. Alova provides many out-of-the-box scenario-based request strategies. At the same time, alova also provides a wealth of features to meet 99% of request requirements.
 
-At the same time, alova also provides a wealth of features to meet 99% of the request requirements, the more complete features are as follows:
+If you want to get a smooth application without writing more extra code, you might as well give it a try!
 
-1. 🕶 Support vue, react, svelte
+More complete feature is below:
+
+1. 🕶 Provide a unified user experience in the three UI frameworks of vue, react, and svelte, seamlessly transplant
 2. 📑 The api design is similar to axios, more simple and familiar
 3. 🍵 Out-of-the-box high-performance request strategy, making the application smoother
-4. 🐦 4kb, only 30% of axios+
+4. 🐦 4kb+, only 30% of axios+
 5. 🔩 High flexibility, compatible with any request library, such as axios, superagent or fetch-api
 6. 🔋 3 data cache modes to improve request performance and reduce server pressure
 7. 🔌 Rich extension functions, you can customize request adapter, storage adapter, middleware, and states hook
@@ -91,12 +93,16 @@ If you find any problems with alova, you can tell us by [submit an issue](https:
 | [@alova/adapter-axios](https://github.com/alovajs/adapter-axios)   | axios adapter for alova.js                   |
 | [@alova/adapter-xhr](https://github.com/alovajs/adapter-xhr)       | XMLHttpRequest adapter for alova.js          |
 
-## Alternative to the request libraries???
-
-alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](/get-started/RSM) process (request events), alova still needs to rely on them to make requests, so we can Think of alova as an arm of the request library, making the request library more powerful.
-
 ## Volume comparison of various libraries
 
 | alova                                                                                             | axios                                                                                             | react-query                                                                                                   | vue-request                                                                                                   | vue                                                                                           | react                                                                                                     |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | [![minzip](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova) | [![minzip](https://badgen.net/bundlephobia/minzip/axios)](https://bundlephobia.com/package/axios) | [![minzip](https://badgen.net/bundlephobia/minzip/react-query)](https://bundlephobia.com/package/react-query) | [![minzip](https://badgen.net/bundlephobia/minzip/vue-request)](https://bundlephobia.com/package/vue-request) | [![minzip](https://badgen.net/bundlephobia/minzip/vue)](https://bundlephobia.com/package/vue) | [![minzip](https://badgen.net/bundlephobia/minzip/react-dom)](https://bundlephobia.com/package/react-dom) |
+
+## Alternative to the request libraries?
+
+alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](/get-started/RSM) process (request events), alova still needs to rely on them to make requests, so we can Think of alova as an arm of the request library, making the request library more powerful.
+
+## Why deep binding UI framework?
+
+Decoupling a js library means using it in more scenarios. For example, axios can be used in nodejs, but it also means that developers need to write more template code, such as using useHooks to encapsulate axios. However, alova abandons more usage scenarios brought about by decoupling, and positions the scope of use in conjunction with the UI framework to use alova in the most streamlined way. This is for the benefit of developers and is prevalent in a UI framework. Sometimes, deep binding can provide developers with direct-use functions and improve the developer's experience without requiring too much template code.

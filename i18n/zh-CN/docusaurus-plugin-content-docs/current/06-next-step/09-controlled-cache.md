@@ -50,8 +50,7 @@ const getFile = fileName =>
 
 如果你希望继续发送请求，可以在`localCache`中返回 undefined 或不返回任何数据，这在自定义管理缓存时未命中缓存的情况下很有用。
 
-:::info 提醒
+## 注意事项
 
-你还可以配合 [transformData 的特殊用法](/learning/transform-response-data) 来实现自定义缓存的存储任务。
-
-:::
+1. 你还可以配合 [transformData 的特殊用法](/learning/transform-response-data) 来实现自定义缓存的存储任务。
+2. 在 usehooks 中使用时，在`localCache`函数中抛出错误将会触发`onError`，使用 method 实例直接发起请求时，将会返回一个 reject 状态的 promise 实例。

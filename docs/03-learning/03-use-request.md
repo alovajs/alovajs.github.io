@@ -172,6 +172,12 @@ onComplete(event => {
 });
 ```
 
+:::caution Note
+
+Throwing an error in `onSuccess` will trigger `onError`
+
+:::
+
 ## Manually send the request
 
 When you need to create a new todo item, you can turn off the default sending request first, switch to manually triggering the request, and receive the `send` function in useRequest to manually send the request, and the `send` function will return a Promise with response data Instance, it will change to resolve state after request response.

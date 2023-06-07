@@ -200,12 +200,6 @@ const handleSubmit = selectedId => {
 };
 ```
 
-:::warning debounce description
-
-The debounce parameter can be set as an array, and the debounce time is set separately for changes in the monitoring state (watchingStates), which is achieved through the request debounce in [**useWatcher**](/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
-
-:::
-
 ## List operation function description
 
 usePagination provides a full-featured list manipulation function, which can achieve the same effect as re-requesting the list without re-requesting the list, which greatly improves the interactive experience of the page. Continue to read the specific function description below!
@@ -242,10 +236,9 @@ nextTick(() => {
 ```
 
 :::caution note
-onBefore, insert operation, onAfter are all executed asynchronously in series, so if the state is changed in `onBefore`, the view will be refreshed and then the insert operation will be performed.
-:::
-:::caution note
+
 In order for the data to be correct, the insert function call clears the entire cache.
+
 :::
 
 ### remove list item
@@ -305,7 +298,41 @@ It will clear the entire cache and reload the first page.
 reload: () => void;
 ```
 
-## type
+## Attentions
+
+### debounce parameter
+
+The debounce parameter can be set as an array, and the debounce time is set separately for changes in the monitoring state (watchingStates), which is achieved through the request debounce in [**useWatcher**](/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
+
+For example, when `watchingStates` is set to `[studentName, clsName]`, `[studentName, clsName, page, pageSize]` will be monitored internally, so if you need to set anti-shake for page and pageSize, you can specify ` [0, 0, 500, 500]`.
+
+### initialData parameter
+
+When the initialData parameter is specified in usePagination, it indicates the format returned by the interface, not the converted list data, for example, when the data format returned by the interface is as follows.
+
+```typescript
+interface ListResponse {
+  total: number;
+  list: any[];
+}
+```
+
+Then, its initialData should be set to the following format instead of an empty array.
+
+```javascript
+usePagination(handler, {
+  total: res => res.total,
+  data: res => res.list,
+  // highlight-start
+  initialData: {
+    total: 0,
+    list: []
+  }
+  // highlight-end
+});
+```
+
+## Typescript
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">

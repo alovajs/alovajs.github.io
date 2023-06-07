@@ -172,6 +172,12 @@ onComplete(event => {
 });
 ```
 
+:::caution 注意
+
+在`onSuccess`中抛出错误将会触发`onError`
+
+:::
+
 ## 手动发送请求
 
 当你需要创建一条新的 todo 项时，可以先关闭默认发送请求，转为手动触发请求，并在 useRequest 中接收`send`函数用于手动发送请求，`send`函数将返回带响应数据的 Promise 实例，它将在请求响应后改为 resolve 状态。
