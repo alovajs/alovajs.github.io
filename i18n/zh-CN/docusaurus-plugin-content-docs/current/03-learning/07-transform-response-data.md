@@ -24,6 +24,13 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
+:::caution 注意
+
+1. 在 usehooks 中使用时，在`transformData`中抛出错误将会触发`onError`；
+2. 使用 method 实例直接发起请求时，将会返回一个 reject 状态的 promise 实例；
+
+:::
+
 ## transformData 的特殊使用场景
 
 由于 transformData 函数具有以下两个特性：

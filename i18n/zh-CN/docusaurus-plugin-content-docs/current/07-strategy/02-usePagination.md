@@ -200,12 +200,6 @@ const handleSubmit = selectedId => {
 };
 ```
 
-:::warning debounce 参数说明
-
-debounce 参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
-
-:::
-
 ## 列表操作函数说明
 
 usePagination 提供了功能完善的列表操作函数，它可以在不重新请求列表的情况下，做到与重新请求列表一致的效果，大大提高了页面的交互体验，具体的函数说明继续往下看吧！
@@ -242,10 +236,9 @@ nextTick(() => {
 ```
 
 :::caution 注意
-onBefore、插入操作、onAfter 都是串行异步执行，因此在`onBefore`中更改了状态，视图将会刷新再执行插入操作。
-:::
-:::caution 注意
+
 为了让数据正确，insert 函数调用会清除全部缓存。
+
 :::
 
 ### 移除列表项
@@ -305,7 +298,41 @@ refresh: (refreshPage: number) => void;
 reload: () => void;
 ```
 
-## 类型
+## 注意事项
+
+### debounce 参数说明
+
+debounce 参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
+
+举例来说，当`watchingStates`设置了`[studentName, clsName]`，内部将会监听`[studentName, clsName, page, pageSize]`，因此如果需要对 page 和 pageSize 设置防抖时，可以指定为`[0, 0, 500, 500]`。
+
+### initialData 参数说明
+
+在 usePagination 中指定 initialData 参数时，表示的是接口返回的格式，而非转换后的列表数据，例如当接口返回的数据格式是如下时。
+
+```typescript
+interface ListResponse {
+  total: number;
+  list: any[];
+}
+```
+
+那么，它的 initialData 应该设置为如下格式，而不是一个空数组。
+
+```javascript
+usePagination(handler, {
+  total: res => res.total,
+  data: res => res.list,
+  // highlight-start
+  initialData: {
+    total: 0,
+    list: []
+  }
+  // highlight-end
+});
+```
+
+## Typescript
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">

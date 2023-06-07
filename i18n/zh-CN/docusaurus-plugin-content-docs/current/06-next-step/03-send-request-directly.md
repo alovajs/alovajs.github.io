@@ -3,6 +3,8 @@ title: 使用method实例发送请求
 sidebar_position: 30
 ---
 
+## 发送请求
+
 :::info 提示
 v1.2.0+
 :::
@@ -28,7 +30,7 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 // 使用数据...
 ```
 
-:::caution
+:::caution 注意
 
 1. 返回的响应数据也会依次被全局的 responded 拦截器和当前`Method`实例的`transformData`处理；
 2. 缓存机制依然有效，如果命中缓存也会返回缓存数据，此时可以在`send`方法中传入`true`来强制发起请求；
@@ -36,3 +38,17 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 :::
 
 关于在何时使用 `useRequest` 发送请求，何时使用 method 实例发送请求，请移步阅读这边的[最佳实践](/best-practice/skills)。
+
+## 中断请求
+
+:::info 提示
+v2.6.0+
+:::
+
+如果需要中断`method.send`发送的请求，可以通过通过以下方式中断。
+
+```javascript
+globalUserGetter.abort();
+```
+
+值得注意的是，中断请求的 method 实例必须与发送请求的 method 实例是同一个引用。

@@ -5,11 +5,23 @@ sidebar_position: 60
 
 The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache replaceholder mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
 
+:::info note
+
+Whether to use the cache mode and which cache mode to use depends on the scenario. The usage scenarios of different cache modes will be mentioned below when introducing different cache modes separately.
+
+:::
+
 ## memory mode (default)
+
+:::info memory mode example
+
+[Click here to view](/example/memory-cache)。
+
+:::
 
 The memory mode puts the cache in the memory, which means that the page cache is invalidated when it is refreshed, and is the most commonly used cache mode.
 
-When you are writing a todo details page, you may think that users will frequently click to view details in the todo list. If users repeatedly view a certain detail, they will not repeatedly request the interface, and the data can be returned immediately, which improves the response speed. Colleagues also reduce server pressure. At this point we can set the response data cache for a todo detail `Method` instance.
+Memory mode is generally used to solve the performance consumption caused by frequent requests for the same data in a short period of time (minutes or seconds). For example, when you are writing a todo details page, you may think that users will frequently click on the todo list Check the details, if the user does not repeatedly request the interface when repeatedly viewing a certain detail, and can return the data immediately, the colleague who improves the response speed also reduces the pressure on the server. At this point we can set the response data cache for a todo detail `Method` instance.
 
 ```javascript
 alovaInstance.GET('/todo/list', {
@@ -44,9 +56,15 @@ alovaInstance.GET('/todo/list', {
 
 ## cache replaceholder mode
 
-When you don't want the application to display Loading every time it enters, but want to use old data instead of Loading, you can use the cache replaceholder mode, which has a better experience than Loading.
+:::info cache replaceholder mode example
 
-In the cache replaceholder mode, `data` will be immediately assigned the old data of the last cache. You can judge that if there is old data, use it to replace the Loading display. At the same time, it will send a request to obtain the latest data and update the cache, so as to achieve In order to quickly display the actual data, and obtain the latest data.
+[Click here to view](/example/storage-placeholder)。
+
+:::
+
+This cache mode is used when you don't want to display the Loading icon every time the application is entered, but you want to use the old data instead, you can use the cache occupancy mode, which has a better experience than Loading.
+
+In the cache occupancy mode, `data` will be immediately assigned the old data of the last cache. You can judge that if there is old data, use it to replace the Loading display. At the same time, it will send a request to obtain the latest data and update the cache, so as to achieve In order to quickly display the actual data, and obtain the latest data.
 
 Set on `Method` instances:
 
@@ -68,6 +86,12 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 ## restore mode
 
+:::info restore mode example
+
+[Click here to view](/example/storage-restore)。
+
+:::
+
 In this mode, the server-side cached data will be persistent. If the expiration time is not reached, even if the page cache is refreshed, it will not be invalidated. It is generally used for some data that requires server-side management but is basically unchanged, such as the specific dates of annual holidays. It is different, but it will not change again. In this scenario, we only need to set the cache expiration time to the last moment of this year.
 
 Set on `Method` instances:
@@ -88,7 +112,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 :::caution Caution
 
-When request body is special data such as **FormData**, **Blob**, **ArrayBuffer**, **URLSearchParams**, **ReadableStream**, we think you intend to communicate with server. In this case would not cache data.
+When request body is special data such as **FormData**, **Blob**, **ArrayBuffer**, **URLSearchParams**, **ReadableStream**, it will be considered that you intend to communicate with server. In this case would not cache data.
 
 :::
 
@@ -141,6 +165,20 @@ const alovaInstance = createAlova({
 Henceforth, the `Method` instance created by `alovaInstance` instance will use this cache setting by default, and it can also be overridden in the `Method` instance.
 
 > Note: When the cache mode is set globally, the original 5-minute GET cache mode will be overwritten.
+
+## Disable caching mode globally
+
+If you don't want to use any request cache in your project, you can turn it off globally. If you want to use it only in a few specific requests, you can also turn it off globally and set it in the specified `Method` instance .
+
+```javascript
+const alovaInstance = createAlova({
+  //...
+  // highlight-start
+  // Set to null to disable all request caching globally
+  localCache: null
+  // highlight-end
+});
+```
 
 ## Expiration time type
 

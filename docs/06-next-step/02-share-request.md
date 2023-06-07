@@ -8,6 +8,7 @@ We always encounter this situation. When a request is sent but has not been resp
 1. A component will obtain initialization data when it is created. When a page renders multiple components at the same time, it will send multiple identical requests at the same time;
 2. The submit button is not disabled, and the user clicks the submit button multiple times;
 3. When the preloading page is entered before the preloading is completed, the same request will be initiated multiple times;
+4. Prevent dumplicate requesting in StrictMode of react;
 
 **Share Requests are here to solve those problems! **It can not only improve application fluency, but also reduce server pressure.
 
