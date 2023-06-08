@@ -3,11 +3,14 @@ title: 请求中间件
 sidebar_position: 40
 ---
 
-请求中间件是一个异步函数，虽然只是一个函数，但它提供了强大的，几乎能控制一个请求的所有行为的能力。如果你只是使用 alova，那你应该很可能不需要使用请求中间件，因为它主要用于完成自定义的请求策略，无论简单还是复杂的请求策略，可能你都会用上它，接下来我们看下它到底有什么神通。
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+请求中间件是一个异步函数，它提供了强大的，几乎能控制一个请求的所有行为的能力。如果你只是使用 alova，那你应该很可能不需要使用请求中间件，因为它主要用于完成自定义的请求策略，无论简单还是复杂的请求策略，可能你都会用上它，接下来我们看下它到底有什么神通。
 
 ## 中间件函数
 
-你可以在`useRequest`、`useWatcher`、`useFetcher`中使用请求中间件。以下是一个简单的请求中间件，它在请求前和请求后分别打印了一些信息，没有改变任何请求行为。
+请求中间件是一个异步函数，你可以在`useRequest`、`useWatcher`、`useFetcher`中定义请求中间件。以下是一个简单的请求中间件，它在请求前和请求后分别打印了一些信息，没有改变任何请求行为。
 
 ```javascript
 useRequest(todoList, {
@@ -97,10 +100,10 @@ useRequest(todoList, {
 
 ### 抛出错误
 
-当然，也可以在中间件中抛出一个自定义错误，即使请求正常也将会触发全局的`onError`钩子。
+当然，也可以在中间件中抛出一个自定义错误，即使请求正常也将会进入请求错误的流程。
 
 ```javascript
-// 在请求前抛出错误时，不会发送请求
+// 未发出请求，同时还会触发全局的以及请求级的onError，如果是通过`method.send`发送的请求将返回reject的promise实例
 useRequest(todoList, {
   async middleware(_, next) {
     throw new Error('error on before request');
@@ -108,7 +111,7 @@ useRequest(todoList, {
   }
 });
 
-// 在请求后抛出错误时，请求将被发送
+// 请求成功后，将触发全局的以及请求级的onError，如果是通过`method.send`发送的请求将返回reject的promise实例
 useRequest(todoList, {
   async middleware(_, next) {
     await next();
@@ -148,52 +151,103 @@ useRequest(todoList, {
 
 ## 包含的请求信息
 
+<Tabs>
+<TabItem value="front" label="front hooks">
+
+以下为 useRequest 和 useWatcher 的中间件所包含的请求信息
+
 ```javascript
-useRequest(todoList, {
-  async middleware(context, next) {
-    // 本次请求的method实例
-    context.method;
+async function alovaFrontMiddleware(context, next) {
+  // 本次请求的method实例
+  context.method;
 
-    // send函数发送的参数数组，默认为[]
-    context.sendArgs;
+  // send函数发送的参数数组，默认为[]
+  context.sendArgs;
 
-    // 本次请求命中的缓存数据
-    context.cachedResponse;
+  // 本次请求命中的缓存数据
+  context.cachedResponse;
 
-    // useHook的配置集合
-    context.config;
+  // useHook的配置集合
+  context.config;
 
-    // useHook返回的各项状态，包含以下属性
-    // loading、data、error、downloading、uploading，以及通过managedStates管理的额外状态
-    context.frontStates;
-    // ...
-  }
-});
+  // useHook返回的各项状态，包含以下属性
+  // loading、data、error、downloading、uploading，以及通过managedStates管理的额外状态
+  context.frontStates;
+  // ...
+}
 ```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+以下为 useFetcher 的中间件所包含的请求信息
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  // 本次请求的method实例
+  context.method;
+
+  // 由useFetcher的fetch传入的参数组，默认为[]
+  context.fetchArgs;
+
+  // 本次请求命中的缓存数据
+  context.cachedResponse;
+
+  // useHook的配置集合
+  context.config;
+
+  // useHook返回的各项状态，包含以下属性
+  // fetching、error、downloading、uploading
+  context.fetchStates;
+  // ...
+}
+```
+
+</TabItem>
+</Tabs>
 
 接下来，我们再来看看有哪些控制能力。
 
-## 控制状态
+## 修改响应式数据
 
-`context.update`可以用于改变`context.frontStates`中的状态。
+使用`context.update`修改响应式数据。
+
+<Tabs>
+<TabItem value="front" label="front hooks">
 
 ```javascript
-useRequest(todoList, {
-  async middleware(context, next) {
-    context.update({
-      // 提前修改loading状态为true
-      loading: true,
+async function alovaFrontMiddleware(context, next) {
+  context.update({
+    // 提前修改loading状态为true
+    loading: true,
 
-      // 修改data值，如设置自定义的初始化数据
-      data: {
-        /* ... */
-      }
-    });
-
-    // ...
-  }
-});
+    // 修改data值，如设置自定义的初始化数据
+    data: {
+      /* ... */
+    }
+  });
+  // ...
+}
 ```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  context.update({
+    // 提前修改fetching状态为true
+    fetching: true,
+
+    // 修改error的值
+    error: new Error('custom midleware error')
+  });
+  // ...
+}
+```
+
+</TabItem>
+</Tabs>
 
 ## 装饰事件
 
@@ -235,3 +289,117 @@ onSuccess((event, extra) => {
 ```
 
 `decorateError`、`decorateComplete`的用法与`decorateSuccess`相同。
+
+## 中断或重复发送请求
+
+在中间件中还可以接收到 use hooks 返回的`abort`和`send`函数（useFetcher 中为`fetch`），你还可以在触发一次请求意图时，发送多个请求。
+
+典型的使用例子是请求重试，发送一次请求后如果请求失败将自动按一定策略再次请求，重试成功后再触发`onSuccess`。以下为简单的请求重试示例代码。
+
+<Tabs>
+<TabItem value="front" label="front hooks">
+
+```javascript
+async function alovaFrontMiddleware(context, next) {
+  return next().catch(error => {
+    if (needRetry) {
+      setTimeout(() => {
+        context.send(...context.sendArgs);
+      }, retryDelay);
+    }
+    return Promise.reject(error);
+  });
+}
+```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  return next().catch(error => {
+    if (needRetry) {
+      setTimeout(() => {
+        context.fetch(context.method, ...context.fetchArgs);
+      }, retryDelay);
+    }
+    return Promise.reject(error);
+  });
+}
+```
+
+</TabItem>
+</Tabs>
+
+如果需要在中间件内中断请求，可以调用`context.abort()`。
+
+## 受控的加载状态
+
+在上面内容中，我们知道了可以通过`context.update`自定义修改响应式数据，不过当你在修改加载状态值（`loading`或`fetching`）时将会有所阻碍，因为在正常情况下，加载状态值会在调用`next`时自动设置为 true，在响应流程中自动设置 false，这将覆盖通过`context.update`修改的加载状态值，此时我们可以开启受控的加载状态，开启后，在`next`函数和响应流程将不再修改加载状态值，而由我们完全控制。
+
+我们还是以请求重试为例，我们希望在触发一次请求意图开始，经过请求重试直到请求结束为止，加载状态一直保持为 true。
+
+<Tabs>
+<TabItem value="front" label="front hooks">
+
+在 useRequest 和 useWatcher 的中间件中，使用`context.controlLoading`开启自定义控制加载状态。
+
+```javascript
+async function alovaFrontMiddleware(context, next) {
+  context.controlLoading();
+
+  // 请求开始时设置为true
+  context.update({ loading: true });
+  return next()
+    .then(value => {
+      // 请求成功后设置为false
+      context.update({ loading: false });
+      return value;
+    })
+    .catch(error => {
+      if (needRetry) {
+        setTimeout(() => {
+          context.send(...context.sendArgs);
+        }, retryDelay);
+      } else {
+        // 不再重试时也设置为false
+        context.update({ loading: false });
+      }
+      return Promise.reject(error);
+    });
+}
+```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+在 useFetching 的中间件中，使用`context.controlFetching`开启自定义控制加载状态。
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  context.controlFetching();
+
+  // 请求开始时设置为true
+  context.update({ fetching: true });
+  return next()
+    .then(value => {
+      // 请求成功后设置为false
+      context.update({ fetching: false });
+      return value;
+    })
+    .catch(error => {
+      if (needRetry) {
+        setTimeout(() => {
+          context.fetch(context.method, ...context.fetchArgs);
+        }, retryDelay);
+      } else {
+        // 不再重试时也设置为false
+        context.update({ fetching: false });
+      }
+      return Promise.reject(error);
+    });
+}
+```
+
+</TabItem>
+</Tabs>

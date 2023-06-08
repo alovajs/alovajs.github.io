@@ -3,11 +3,14 @@ title: Middleware
 sidebar_position: 40
 ---
 
-Request middleware is an asynchronous function. Although it is only a function, it provides a powerful ability to control almost all behaviors of a request. If you just use alova, then you probably don't need to use request middleware, because it is mainly used to complete custom request strategies, no matter simple or complex request strategies, you may use it, let's look at it next What magical powers does it have.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Request middleware is an asynchronous function. it provides a powerful ability to control almost all behaviors of a request. If you just use alova, then you probably don't need to use request middleware, because it is mainly used to complete custom request strategies, no matter simple or complex request strategies, you may use it, let's look at it next What magical powers does it have.
 
 ## Middleware function
 
-You can use request middleware in `useRequest`, `useWatcher`, `useFetcher`. The following is a simple request middleware, which prints some information before and after the request without changing any request behavior.
+Request middleware is an async function, You can define request middleware in `useRequest`, `useWatcher`, `useFetcher`. The following is a simple request middleware, which prints some information before and after the request without changing any request behavior.
 
 ```javascript
 useRequest(todoList, {
@@ -97,10 +100,10 @@ useRequest(todoList, {
 
 ### Throw an error
 
-Of course, you can also throw a custom error in the middleware, even if the request is normal, the global `onError` hook will be triggered.
+Of course, you can also throw a custom error in the middleware, even if the request is normal, it will enter the request error process.
 
 ```javascript
-// When an error is thrown before the request, the request will not be sent
+// No request is sent, and global and request-level onError will be triggered at the same time. If the request is sent through `method.send`, the promise instance of rejection will be returned
 useRequest(todoList, {
   async middleware(_, next) {
     throw new Error('error on before request');
@@ -108,7 +111,7 @@ useRequest(todoList, {
   }
 });
 
-// When an error is thrown after the request, the request will be sent
+// After request is success, global and request-level onError will be triggered at the same time. If the request is sent through `method.send`, the promise instance of rejection will be returned
 useRequest(todoList, {
   async middleware(_, next) {
     await next();
@@ -140,7 +143,7 @@ useRequest(todoList, {
 });
 ```
 
-## more than that
+## More than that
 
 **So far, all we have mentioned is the use of the second parameter `next` of the middleware, so what is the first parameter for? **
 
@@ -148,54 +151,105 @@ The first parameter of the middleware contains some information about this reque
 
 ## Included request information
 
+<Tabs>
+<TabItem value="front" label="front hooks">
+
+The following is the request information contained in the middleware of useRequest and useWatcher
+
 ```javascript
-useRequest(todoList, {
-  async middleware(context, next) {
-    // The method instance of this request
-    context.method;
+async function alovaFrontMiddleware(context, next) {
+  // The method instance of this request
+  context.method;
 
-    // The parameter array sent by the send function, the default is []
-    context.sendArgs;
+  // The parameter array sent by the send function, the default is []
+  context.sendArgs;
 
-    // The cache data hit by this request
-    context.cachedResponse;
+  // The cache data hit by this request
+  context.cachedResponse;
 
-    // configuration collection of useHook
-    context.config;
+  // configuration collection of useHook
+  context.config;
 
-    // The various states returned by useHook, including the following attributes
-    // loading, data, error, downloading, uploading, and additional states managed by managedStates
-    context.frontStates;
-    //...
-  }
-});
+  // The various states returned by useHook, including the following attributes
+  // loading, data, error, downloading, uploading, and additional states managed by managedStates
+  context.frontStates;
+  //...
+}
 ```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+The following is the request information contained in the middleware of useFetcher
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  // The method instance of this request
+  context.method;
+
+  // The parameter group passed in by the fetch of useFetcher, the default is []
+  context.fetchArgs;
+
+  // The cache data hit by this request
+  context.cachedResponse;
+
+  // configuration collection of useHook
+  context.config;
+
+  // The various states returned by useHook, including the following attributes
+  // fetching, error, downloading, uploading
+  context.fetchStates;
+  //...
+}
+```
+
+</TabItem>
+</Tabs>
 
 Next, let's take a look at what controls are available.
 
-## Control state
+## Modify responsive data
 
-`context.update` can be used to change the state in `context.frontStates`.
+Use `context.update` to modify reactive data.
+
+<Tabs>
+<TabItem value="front" label="front hooks">
 
 ```javascript
-useRequest(todoList, {
-  async middleware(context, next) {
-    context.update({
-      // Modify the loading status to true in advance
-      loading: true,
+async function alovaFrontMiddleware(context, next) {
+  context.update({
+    // Modify the loading status to true in advance
+    loading: true,
 
-      // Modify the data value, such as setting custom initialization data
-      data: {
-        /* ... */
-      }
-    });
-
-    //...
-  }
-});
+    // Modify the data value, such as setting custom initialization data
+    data: {
+      /* ... */
+    }
+  });
+  //...
+}
 ```
 
-## Decorate the event
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  context.update({
+    // Modify the fetching status to true in advance
+    fetching: true,
+
+    // Modify the value of error
+    error: new Error('custom midleware error')
+  });
+  //...
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Decorate events
 
 You can also decorate _onSuccess_, _onError_, _onComplete_ callback functions in middleware to make them richer, such as changing the parameters of the callback function, or receiving the return value of the callback function to achieve more functions.
 
@@ -235,3 +289,117 @@ onSuccess((event, extra) => {
 ```
 
 The usage of `decorateError`, `decorateComplete` is the same as `decorateSuccess`.
+
+## Abort or repeat send request
+
+In the middleware, you can also receive `abort` and `send` functions returned by use hooks (`fetch` in useFetcher), and you can also send multiple requests when triggering a request intent.
+
+A typical usage example is request retry. After sending a request, if the request fails, it will automatically request again according to a certain strategy, and `onSuccess` will be triggered after the retry is successful. The following is a sample code for a simple request retry.
+
+<Tabs>
+<TabItem value="front" label="front hooks">
+
+```javascript
+async function alovaFrontMiddleware(context, next) {
+  return next().catch(error => {
+    if (needRetry) {
+      setTimeout(() => {
+        context.send(...context.sendArgs);
+      }, retryDelay);
+    }
+    return Promise.reject(error);
+  });
+}
+```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  return next().catch(error => {
+    if (needRetry) {
+      setTimeout(() => {
+        context.fetch(context.method, ...context.fetchArgs);
+      }, retryDelay);
+    }
+    return Promise.reject(error);
+  });
+}
+```
+
+</TabItem>
+</Tabs>
+
+If you need to abort the request inside the middleware, you can call `context.abort()`.
+
+## Controlled loading state
+
+In the above content, we know that you can customize and modify the responsive data through `context.update`, but when you modify the loading status value (`loading` or `fetching`), it will be hindered, because in normal circumstances Next, the loading status value will be automatically set to true when `next` is called, and false will be automatically set in the response process, which will overwrite the loading status value modified by `context.update`, at this time we can turn on the controlled loading status , after it is turned on, the `next` function and the response process will no longer modify the loading status value, but we have full control over it.
+
+Let's take request retry as an example. We hope that the loading status will remain true after the request is retried until the request ends.
+
+<Tabs>
+<TabItem value="front" label="front hooks">
+
+In the middleware of useRequest and useWatcher, use `context.controlLoading` to enable custom control loading status.
+
+```javascript
+async function alovaFrontMiddleware(context, next) {
+  context.controlLoading();
+
+  // Set to true when the request starts
+  context.update({ loading: true });
+  return next()
+    .then(value => {
+      // set to false after successful request
+      context.update({ loading: false });
+      return value;
+    })
+    .catch(error => {
+      if (needRetry) {
+        setTimeout(() => {
+          context.send(...context.sendArgs);
+        }, retryDelay);
+      } else {
+        // Also set to false when not retrying again
+        context.update({ loading: false });
+      }
+      return Promise.reject(error);
+    });
+}
+```
+
+</TabItem>
+<TabItem value="fetch" label="fetcher hook">
+
+In the middleware of useFetching, use `context.controlFetching` to enable custom control loading state.
+
+```javascript
+async function alovaFetcherMiddleware(context, next) {
+  context.controlFetching();
+
+  // Set to true when the request starts
+  context.update({ fetching: true });
+  return next()
+    .then(value => {
+      // set to false after successful request
+      context.update({ fetching: false });
+      return value;
+    })
+    .catch(error => {
+      if (needRetry) {
+        setTimeout(() => {
+          context.fetch(context.method, ...context.fetchArgs);
+        }, retryDelay);
+      } else {
+        // Also set to false when not retrying again
+        context.update({ fetching: false });
+      }
+      return Promise.reject(error);
+    });
+}
+```
+
+</TabItem>
+</Tabs>
