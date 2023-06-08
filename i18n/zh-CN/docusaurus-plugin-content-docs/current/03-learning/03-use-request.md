@@ -307,11 +307,16 @@ const {
 <TabItem value="1" label="vue">
 
 ```javascript
-const { data, loading, error } = useRequest(todoListGetter);
+const { data, loading, error, update } = useRequest(todoListGetter);
 
 // ...
 // 直接修改data值
 data.value = {};
+
+// 或者通过update函数修改
+update({
+  data: {}
+});
 ```
 
 </TabItem>
@@ -337,12 +342,17 @@ update({
 在 svelte 中，`useRequest`返回的状态为`writable`类型。
 
 ```javascript
-const { data, loading, error } = useRequest(todoListGetter);
+const { data, loading, error, update } = useRequest(todoListGetter);
 
 // ...
 // 直接修改data值
 $data = {};
 // 或data.update(d => ({}));
+
+// 或者通过update函数修改
+update({
+  data: {}
+});
 ```
 
 </TabItem>

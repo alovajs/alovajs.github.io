@@ -6,6 +6,32 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+Before using extension hooks, make sure you are familiar with basic usage of alova.
+
+:::
+
+A hook designed for paging scenarios, which can help you automatically manage paging data, preload data, reduce unnecessary data refresh, improve fluency by 300%, and reduce coding difficulty by 50%\*\*. You can use it in the two paging scenarios of pull-down loading and page number flipping. This hook provides a wealth of features to help your application create better performance and more convenient paging functions.
+
+## Example
+
+[page list](/example/paginated-list)
+
+[Pull down to load more](/example/load-more)
+
+## Features
+
+- ✨ Rich and comprehensive paging status;
+- ✨ Rich and comprehensive pagination events;
+- ✨ Change page, pageSize to automatically get specified paging data;
+- ✨Data caching, no need to repeatedly request list data of the same parameters;
+- ✨ Front and back pages are preloaded, no waiting for page turning;
+- ✨Search condition monitoring automatically reacquires pages;
+- ✨ Support adding, editing and deleting list data;
+- ✨ Support refreshing the data of the specified page without reset;
+- ✨ Request-level search anti-shake, no need to maintain by yourself;
+
 ## Install
 
 <Tabs groupId="framework">
@@ -45,179 +71,480 @@ yarn add @alova/scene-svelte
 </TabItem>
 </Tabs>
 
-:::info
-Before using extension hooks, make sure you are familiar with basic usage of alova.
-:::
+## Usage
 
-A hook designed for paging scenarios. You can use it in two paging scenarios: pull-down loading and page number flipping. **This hook provides a wealth of features to help your application create better performance and more convenient paging functions **.
-
-## Features
-
-- ✨ Rich and comprehensive paging status;
-- ✨ Rich and comprehensive pagination events;
-- ✨ Change page, pageSize to automatically get specified paging data;
-- ✨Data caching, no need to repeatedly request list data of the same parameters;
-- ✨ Front and back pages are preloaded, no waiting for page turning;
-- ✨Search condition monitoring automatically reacquires pages;
-- ✨ Support adding, editing and deleting list data;
-- ✨ Support refreshing the data of the specified page without reset;
-- ✨ Request-level search anti-shake, no need to maintain by yourself;
-
-## Example
-
-[Paginated list](/example/paginated-list)
-
-[Load more](/example/load-more)
-
-## import
+### Display list data
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
-```javascript
-import { usePagination } from '@alova/scene-vue';
+```html
+<template>
+  <div
+    v-for="item in data"
+    :key="item.id">
+    <span>{{ item.name }}</span>
+  </div>
+  <button @click="handlePrevPage">Previous page</button>
+  <button @click="handleNextPage">next page</button>
+  <button @click="handleSetPageSize">Set the number of pages</button>
+  <span>There are {{ pageCount }} pages</span>
+  <span>A total of {{ total }} data</span>
+</template>
+
+<script setup>
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-vue';
+
+  const {
+    // loading state
+    loading,
+
+    // list data
+    data,
+
+    // is it the last page
+    // This parameter can be used to determine whether it needs to be loaded during pull-down loading
+    isLastPage,
+
+    // The current page number, changing this page number will automatically trigger the request
+    page,
+
+    // Number of data items per page
+    pageSize,
+
+    // number of paging pages
+    pageCount,
+
+    // total amount of data
+    total
+  } = usePagination(
+    // Method instance acquisition function, it will receive page and pageSize, and return a Method instance
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // Initial data before the request (data format returned by the interface)
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // initial page number, default is 1
+      initialPageSize: 10 // The initial number of data items per page, the default is 10
+    }
+  );
+
+  // Turn to the previous page, the request will be sent automatically after the page value changes
+  const handlePrevPage = () => {
+    page.value--;
+  };
+
+  // Turn to the next page, the request will be sent automatically after the page value changes
+  const handleNextPage = () => {
+    page.value++;
+  };
+
+  // Change the number of pages, the request will be sent automatically after the pageSize value is changed
+  const handleSetPageSize = () => {
+    pageSize.value = 20;
+  };
+</script>
 ```
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```javascript
+```jsx
+import { queryStudents } from './api.js';
 import { usePagination } from '@alova/scene-react';
+
+const App = () => {
+  const {
+    // loading state
+    loading,
+
+    // list data
+    data,
+
+    // is it the last page
+    // This parameter can be used to determine whether it needs to be loaded during pull-down loading
+    isLastPage,
+
+    // The current page number, changing this page number will automatically trigger the request
+    page: [page, setPage],
+
+    // Number of data items per page
+    pageSize: [page, setPageSize],
+
+    // number of paging pages
+    pageCount,
+
+    // total amount of data
+    total
+  } = usePagination(
+    // Method instance acquisition function, it will receive page and pageSize, and return a Method instance
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // Initial data before the request (data format returned by the interface)
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // initial page number, default is 1
+      initialPageSize: 10 // The initial number of data items per page, the default is 10
+    }
+  );
+
+  // Turn to the previous page, the request will be sent automatically after the page value changes
+  const handlePrevPage = () => {
+    setPage(value => value - 1);
+  };
+
+  // Turn to the next page, the request will be sent automatically after the page value changes
+  const handleNextPage = () => {
+    setPage(value => value + 1);
+  };
+
+  // Change the number of pages, the request will be sent automatically after the pageSize value is changed
+  const handleSetPageSize = () => {
+    setPageSize(20);
+  };
+
+  return (
+    <div>
+      {data.map(item => (
+        <div key={item.id}>
+          <span>{item.name}</span>
+        </div>
+      ))}
+      <button onClick={handlePrevPage}>Previous page</button>
+      <button onClick={handleNextPage}>Next Page</button>
+      <button onClick={handleSetPageSize}>Set the number per page</button>
+      <span>There are {pageCount} pages</span>
+      <span>A total of {total} pieces of data</span>
+    </div>
+  );
+};
 ```
 
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```javascript
-import { usePagination } from '@alova/scene-svelte';
+```html
+<script>
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-svelte';
+
+  const {
+    // loading state
+    loading,
+
+    // list data
+    data,
+
+    // is it the last page
+    // This parameter can be used to determine whether it needs to be loaded during pull-down loading
+    isLastPage,
+
+    // The current page number, changing this page number will automatically trigger the request
+    page,
+
+    // Number of data items per page
+    pageSize,
+
+    // number of paging pages
+    pageCount,
+
+    // total amount of data
+    total
+  } = usePagination(
+    // Method instance acquisition function, it will receive page and pageSize, and return a Method instance
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // Initial data before the request (data format returned by the interface)
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // initial page number, default is 1
+      initialPageSize: 10 // The initial number of data items per page, the default is 10
+    }
+  );
+
+  // Turn to the previous page, the request will be sent automatically after the page value changes
+  const handlePrevPage = () => {
+    $page--;
+  };
+
+  // Turn to the next page, the request will be sent automatically after the page value changes
+  const handleNextPage = () => {
+    $page++;
+  };
+
+  // Change the number of pages, the request will be sent automatically after the pageSize value is changed
+  const handleSetPageSize = () => {
+    $pageSize = 20;
+  };
+</script>
+
+{#each $data as item}
+<div>
+  <span>{item.name}</span>
+</div>
+{/each}
+<button on:click="{handlePrevPage}">Previous page</button>
+<button on:click="{handleNextPage}">Next Page</button>
+<button on:click="{handleSetPageSize}">Set the number per page</button>
+<span>There are {pageCount} pages</span>
+<span>A total of {total} pieces of data</span>
 ```
 
 </TabItem>
 </Tabs>
 
-## usage
+### Specify pagination data
 
-Display and operate the student list, take Vue as an example.
+The data structure returned by each paging data interface is different, so we need to tell `usePagination` the list data and the total number of items separately, so as to help us manage the paging data.
+
+Suppose the data format returned by your paging interface is as follows:
+
+```typescript
+interface PaginationData {
+  totalNumber: number;
+  list: any[];
+}
+```
+
+At this point, you need to return the list data and the total number of items in the form of a function.
 
 ```javascript
-import { ref, watchEffect } from 'vue';
-import { queryStudents, removeStudent, editStudent } from './api.js';
-import { usePagination } from '@alova/hooks/vue';
-import { useRequest } from 'alova';
+usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  //...
+  // highlight-start
+  total: response => response.totalNumber,
+  data: response => response.list
+  // highlight-end
+});
+```
 
-// search condition status
-const studentName = ref('');
-const clsName = ref('');
+If you don't specify the total and data callback functions, they will get data in the following ways by default.
 
+```javascript
+const total = response => response.total;
+const data = response => response.data;
+```
+
+:::caution Caution
+
+The data callback function must return a list of data, indicating the data set used in paging, and total is mainly used to calculate the current page number. If no number is returned in the total callback function, it will pass whether the number of requested lists is less than the pageSize value To determine whether the current page is the last page, which is generally used for pull-down loading.
+
+:::
+
+### Enable append mode
+
+By default, the original list data will be replaced when the page is turned, and the append mode will append the data of the next page to the bottom of the current list when the page is turned. A common usage scenario is to pull down to load more.
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  //...
+  // highlight-start
+  append: true
+  // highlight-end
+});
+```
+
+### Preload adjacent page data
+
+In order to provide a better experience for pagination, when the previous and next pages of the current page meet the conditions, it will be automatically preloaded, so that when the user turns the page, the data can be displayed directly without waiting. This is the default behavior. If you don't want to preload the data of adjacent pages, you can turn it off in the following way.
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  //...
+  // highlight-start
+  preloadPreviousPage: false, // turn off preloading previous page data
+  preloadNextPage: false // turn off preloading next page data
+  // highlight-end
+});
+```
+
+In addition to `onSuccess, onError, onComplete` request events, when preloading is triggered, you can also know the preloading status through `fetching`, and you can also listen to preloading request events through `onFetchSuccess, onFetchError, onFetchComplete`.
+
+```javascript
 const {
-  // load state
-  loading,
+  // preload state
+  fetching,
 
-  // list data
-  data,
+  // preload success event binding function
+  onFetchSuccess,
 
-  // Is it the last page
-  // When pull-down loading, you can use this parameter to determine whether it needs to be loaded
-  isLastPage,
+  // preload error event binding function
+  onFetchError,
 
-  // The current page number, changing this page number will automatically trigger the request
-  page,
-
-  // number of data bars per page
-  pageSize,
-
-  // list item removal function
-  remove,
-
-  // list item insertion function
-  insert,
-
-  // Refresh function, you can specify to refresh a page of data
-  refresh,
-
-  // reset function, after calling it will clear the data and reload the first page
-  reload
-} = usePagination(
-  // Method instance get function, it will receive page and pageSize, and return a Method instance
-  (page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value),
-  {
-    watchingStates: [studentName, clsName], // The state of external listening, such as search conditions
-    initialData: [], // initial data before request,
-    debounce: 300 // Debounce parameter, the unit is milliseconds, it can also be set as an array to set the debounce time separately for watchingStates
-    // append: true, // Whether to enable append mode, it needs to be set to true when drop-down loading, the default is false
-    // preloadPreviousPage: true, // Whether to preload the previous page data, the default is true
-    // preloadNextPage: true, // Whether to preload the next page data, the default is true
-    // total: data => data['total'], // Specify how to get the total value of the list item, data is the response data, and data.total is obtained by default
-    // data: data['data'], // Specify how to get the list data, data is the response data, and data.data is obtained by default
-    // initialPage: 1, // initial page number, default is 1
-    // initialPageSize: 10, // The initial number of data per page, the default is 10
-    // immediate: true // whether to send the request immediately, the default is true
-  }
-);
-
-// next page
-const handleNextPage = () => {
-  page.value++;
-};
-
-// remove list item with silent commit
-const { send: removeSend, onSuccess: onRemoveSuccess } = useRequest(id => removeStudent(id), {
-  immediate: false,
-  silent: true
+  // Preloading complete event binding function
+  onFetchComplete
+} = usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  //...
 });
-onRemoveSuccess((_, removeId) => {
-  // Pass in the removed index item to remove the specified item
-  remove(students.value.findIndex(s => s.id === removeId));
-});
+```
 
-// add or edit list item
-const detail = ref({
-  name: '',
-  cls: ''
-});
-const {
-  loading: submitting,
-  send: sendStudentEdit,
-  onSuccess
-} = useRequest(selectedId => editStudent(detail.value.name, detail.value.cls, selectedId), {
-  immediate: false,
-  silent: true
-});
-onSuccess((_, selectedId) => {
-  if (selectedId) {
-    // When editing, refresh the page where the updated list item is located, without resetting the list
-    const refreshPage = Math.floor(students.value.findIndex(({ id }) => id === selectedId) / pageSize.value) + 1;
-    refresh(refreshPage);
-  } else {
-    // When adding, reset the list
-    reload();
-  }
-});
+### Listening filter conditions
 
-// Submit student information callback, selectedId has a value to indicate editing, otherwise it is new
-const handleSubmit = selectedId => {
-  sendStudentEdit(selectedId);
+In many cases, the list needs to be filtered by conditions. At this time, the re-request can be triggered through the status monitoring of `usePagination`, which is the same as `useWatcher` provided by alova.
+
+For example, filter by student name, student grade.
+
+<Tabs groupId="framework">
+<TabItem value="1" label="vue">
+
+```html
+<template>
+  <!-- highlight-start -->
+  <input v-model="studentName" />
+  <select v-model="clsName">
+    <option value="1">Class 1</option>
+    <option value="2">Class 2</option>
+    <option value="3">Class 3</option>
+  </select>
+  <!-- highlight-end -->
+  <!-- ... -->
+</template>
+
+<script setup>
+  import { ref } from 'vue';
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-vue';
+
+  // search condition status
+  const studentName = ref('');
+  const clsName = ref('');
+  const {
+    //...
+  } = usePagination((page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value), {
+    //...
+    // highlight-start
+    watchingStates: [studentName, clsName]
+    // highlight-end
+  });
+</script>
+```
+
+</TabItem>
+<TabItem value="2" label="react">
+
+```jsx
+import { queryStudents } from './api.js';
+import { usePagination } from '@alova/scene-react';
+
+const App = () => {
+   // search condition status
+   const [studentName, setStudentName] = useState('');
+   const [clsName, setClsName] = useState('');
+   const {
+     //...
+   } = usePagination(
+     (page, pageSize) => queryStudents(page, pageSize, studentName, clsName),
+     {
+       //...
+       // highlight-start
+       watchingStates: [studentName, clsName]
+       // highlight-end
+     }
+   );
+
+   return (
+     // highlight-start
+     <input value={studentName} onChange={({ target }) => setStudentName(target. value)} />
+     <select value={clsName} onChange={({ target }) => setClsName(target. value)}>
+       <option value="1">Class 1</option>
+       <option value="2">Class 2</option>
+       <option value="3">Class 3</option>
+     </select>
+     // highlight-end
+     //...
+   );
 };
 ```
 
-## List operation function description
+</TabItem>
+<TabItem value="3" label="svelte">
 
-usePagination provides a full-featured list manipulation function, which can achieve the same effect as re-requesting the list without re-requesting the list, which greatly improves the interactive experience of the page. Continue to read the specific function description below!
+```html
+<script>
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-svelte';
+  import { writable } from 'svelte/store';
+
+  // search condition status
+  const studentName = writable('');
+  const clsName = writable('');
+  const {
+    //...
+  } = usePagination((page, pageSize) => queryStudents(page, pageSize, $studentName, $clsName), {
+    //...
+    // highlight-start
+    watchingStates: [studentName, clsName]
+    // highlight-end
+  });
+</script>
+
+<!-- highlight-start -->
+<input bind:value="{studentName}" />
+<select bind:value="{clsName}">
+  <option value="1">Class 1</option>
+  <option value="2">Class 2</option>
+  <option value="3">Class 3</option>
+</select>
+<!-- highlight-end -->
+<!-- ... -->
+```
+
+</TabItem>
+</Tabs>
+
+Same as `useWatcher`, you can also implement request debounce by specifying `debounce`, for details, please refer to [useWatcher's debounce parameter setting](/learning/use-watcher).
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
+  //...
+  // highlight-start
+  debounce: 300 // Anti-shake parameters, in milliseconds, can also be set as an array to set the anti-shake time separately for watchingStates
+  // highlight-end
+});
+```
+
+It should be noted that `debounce` is achieved by request debounce in [**useWatcher**](/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
+
+For example, when `watchingStates` is set to `[studentName, clsName]`, `[studentName, clsName, page, pageSize]` will be monitored internally, so if you need to set anti-shake for page and pageSize, you can specify ` [0, 0, 500, 500]`.
+
+### Close initialization request
+
+By default, `usePagination` will initiate a request during initialization, but you can also use `immediate` to turn it off, and then pass the `send` function, or change `page` or `pageSize`, and `watchingStates`, etc. state to initiate the request.
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
+  //...
+  // highlight-start
+  immediate: false
+  // highlight-end
+});
+```
+
+## list manipulation functions
+
+usePagination provides a fully functional list operation function, which can achieve the same effect as the re-request list without re-requesting the list, which greatly improves the interactive experience of the page. The specific function description continues to look down!
 
 ### Insert list item
 
-You can use it to insert a list item to any position in the list, it will remove the last item after inserting, to ensure the same effect as re-requesting the current page data.
+You can use it to insert list items to any position in the list, and it will remove the last item after insertion to ensure the same effect as re-requesting the current page data.
 
 ```typescript
 /**
- * Insert a piece of data, if no index is passed in, it will be inserted to the front by default
- * @param item Insert item
- * @param index Insertion position (index)
- */
+  * Insert a piece of data, if the index is not passed in, it will be inserted at the front by default
+  * @param item insert item
+  * @param index insertion position (index)
+  */
 insert: (item: LD[number], index?: number) => void;
 ```
 
-The following is an example of returning to the first page and inserting a list item in **non-append mode** (page number page turning scene):
+The following is an example of returning to the first page and then inserting list items in **non-append mode** (page number flipping scenario):
 
 ```javascript
 page.value = 1;
@@ -235,104 +562,81 @@ nextTick(() => {
 });
 ```
 
-:::caution note
+:::caution Caution
 
-In order for the data to be correct, the insert function call clears the entire cache.
+In order to make the data correct, the insert function call will clear all caches.
 
 :::
 
-### remove list item
+### Remove list item
 
-In the case where there is a cache on the next page, it will use the cache of the next page to add to the end of the list item after removing an item to ensure the same effect as re-requesting the current page data. In **append mode** and **Non-append mode** behaves the same.
+In the case that the next page has a cache, it will use the cache of the next page to add to the end of the list item after removing an item, so as to ensure the same effect as re-requesting the data of the current page. In **append mode** and Behave the same in **non-append mode**.
 
 ```typescript
 /**
- * remove a piece of data
- * @param index the index to remove
- */
+  * Remove a piece of data
+  * @param index index to remove
+  */
 remove: (index: number) => void;
 ```
 
 But in the following two cases, it will re-initiate the request to refresh the data of the corresponding page:
 
 1. The next page is not cached
-2. The data that exceeds the cached list items on the next page is continuously called synchronously, and the cached data is not enough to be added to the current page list.
+2. The data that exceeds the next page cache list item is continuously called synchronously, and the cache data is not enough to supplement the current page list.
 
-:::caution note
-In order to make the data correct, the remove function call will clear the entire cache.
+:::caution Caution
+In order to make the data correct, the remove function call will clear all caches.
 :::
 
-### update data item
+### Update data items
 
-Use this function when you want to update a list item.
+Use this function when you want to update list items.
 
 ```typescript
 /**
- * replace a piece of data
- * @param item replacement
- * @param index replacement position (index)
- */
+  * Replace a piece of data
+  * @param item replacement item
+  * @param index replacement position (index)
+  */
 replace: (item: LD[number], index: number) => void;
 ```
 
 ### Refresh the data of the specified page
 
-When you do not want to update the list items locally after the data operation, but re-request data from the server, you can use refresh to refresh the data of any page without resetting the list data and letting the user start browsing from the first page again.
+When you do not want to update the list items locally after the data operation, but re-request the data on the server side, you can use refresh to refresh the data on any page, without resetting the list data and letting the user start browsing from the first page again.
 
 ```typescript
 /**
- * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
- * @param refreshPage refresh page number
- */
+  * Refresh the specified page number data, this function will ignore the cache to force the send request
+  * @param refreshPage refresh page number
+  */
 refresh: (refreshPage: number) => void;
 ```
 
-### reset list
+### Manually update list data
 
-It will clear the entire cache and reload the first page.
-
-```typescript
-/**
- * Reload the list from the first page and clear the cache
- */
-reload: () => void;
-```
-
-## Attentions
-
-### debounce parameter
-
-The debounce parameter can be set as an array, and the debounce time is set separately for changes in the monitoring state (watchingStates), which is achieved through the request debounce in [**useWatcher**](/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
-
-For example, when `watchingStates` is set to `[studentName, clsName]`, `[studentName, clsName, page, pageSize]` will be monitored internally, so if you need to set anti-shake for page and pageSize, you can specify ` [0, 0, 500, 500]`.
-
-### initialData parameter
-
-When the initialData parameter is specified in usePagination, it indicates the format returned by the interface, not the converted list data, for example, when the data format returned by the interface is as follows.
+Use the `update` function to update responsive data, which is similar to [useRequest's update](/learning/use-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
 
 ```typescript
-interface ListResponse {
-  total: number;
-  list: any[];
-}
-```
-
-Then, its initialData should be set to the following format instead of an empty array.
-
-```javascript
-usePagination(handler, {
-  total: res => res.total,
-  data: res => res.list,
-  // highlight-start
-  initialData: {
-    total: 0,
-    list: []
-  }
-  // highlight-end
+// case list data
+update({
+  data: []
 });
 ```
 
-## Typescript
+### Reset list
+
+It will clear all caches and reload the first page.
+
+```typescript
+/**
+  * Reload the list from the first page and clear the cache
+  */
+reload: () => void;
+```
+
+##Typescript
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -360,24 +664,25 @@ interface UsePaginationReturnType<LD extends any[], R> {
   onFetchSuccess: (handler: SuccessHandler<R>) => void;
   onFetchError: (handler: ErrorHandler) => void;
   onFetchComplete: (handler: CompleteHandler) => void;
+  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
 
   /**
-   * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+   * Refresh the specified page number data, this function will ignore the cache to force the send request
    * @param refreshPage refresh page number
    */
   refresh: (refreshPage: number) => void;
 
   /**
-   * insert a piece of data
-   * onBefore, insert operation, onAfter all need to be executed asynchronously in sequence, because you need to wait for the view to update before executing
-   * @param item Insert item
+   * Insert a piece of data
+   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
+   * @param item insert item
    * @param config insert configuration
    */
   insert: (item: LD[number], config?: InsertConfig) => void;
 
   /**
-   * remove a piece of data
-   * @param index the index to remove
+   * Remove a piece of data
+   * @param index index to remove
    */
   remove: (index: any) => void;
 
@@ -388,8 +693,8 @@ interface UsePaginationReturnType<LD extends any[], R> {
 }
 
 /**
- * vue paging hook based on alova.js
- * Automatic management of paging related status, preloading of previous and previous pages, automatic maintenance of data addition/editing/replacement/removal
+ * Vue paging hook based on alova.js
+ * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/replacement/removal
  *
  * @param handler method creation function
  * @param config pagination hook configuration
@@ -438,24 +743,25 @@ interface UsePaginationReturnType<LD extends any[], R> {
   onFetchSuccess: (handler: SuccessHandler<R>) => void;
   onFetchError: (handler: ErrorHandler) => void;
   onFetchComplete: (handler: CompleteHandler) => void;
+  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
 
   /**
-   * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+   * Refresh the specified page number data, this function will ignore the cache to force the send request
    * @param refreshPage refresh page number
    */
   refresh: (refreshPage: number) => void;
 
   /**
-   * insert a piece of data
-   * onBefore, insert operation, onAfter all need to be executed asynchronously in sequence, because you need to wait for the view to update before executing
-   * @param item Insert item
+   * Insert a piece of data
+   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
+   * @param item insert item
    * @param config insert configuration
    */
   insert: (item: LD[number], config?: InsertConfig) => void;
 
   /**
-   * remove a piece of data
-   * @param index the index to remove
+   * Remove a piece of data
+   * @param index index to remove
    */
   remove: (index: any) => void;
 
@@ -467,7 +773,7 @@ interface UsePaginationReturnType<LD extends any[], R> {
 
 /**
  * React paging hook based on alova.js
- * Automatic management of paging related status, preloading of previous and previous pages, automatic maintenance of data addition/editing/removal
+ * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/removal
  *
  * @param handler method creation function
  * @param config pagination hook configuration
@@ -505,24 +811,25 @@ interface UsePaginationReturnType<LD extends any[], R> {
   onFetchSuccess: (handler: SuccessHandler<R>) => void;
   onFetchError: (handler: ErrorHandler) => void;
   onFetchComplete: (handler: CompleteHandler) => void;
+  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
 
   /**
-   * Refresh the specified page number data, this function will ignore the cache and force the request to be sent
+   * Refresh the specified page number data, this function will ignore the cache to force the send request
    * @param refreshPage refresh page number
    */
   refresh: (refreshPage: number) => void;
 
   /**
-   * insert a piece of data
-   * onBefore, insert operation, onAfter all need to be executed asynchronously in sequence, because you need to wait for the view to update before executing
-   * @param item Insert item
+   * Insert a piece of data
+   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
+   * @param item insert item
    * @param config insert configuration
    */
   insert: (item: LD[number], config?: InsertConfig) => void;
 
   /**
-   * remove a piece of data
-   * @param index the index to remove
+   * Remove a piece of data
+   * @param index index to remove
    */
   remove: (index: any) => void;
 
@@ -534,7 +841,7 @@ interface UsePaginationReturnType<LD extends any[], R> {
 
 /**
  * svelte paging hook based on alova.js
- * Automatic management of paging related status, preloading of previous and previous pages, automatic maintenance of data addition/editing/removal
+ * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/removal
  *
  * @param handler method creation function
  * @param config pagination hook configuration
@@ -559,6 +866,6 @@ export declare function usePagination<
 </TabItem>
 </Tabs>
 
-## limit
+## Limitation
 
-1. **Placeholder Mode** and **Restore Mode** are temporarily disabled.
+**Cache replaceholder mode** and **recovery mode** are temporarily disabled
