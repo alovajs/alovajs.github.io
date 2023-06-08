@@ -6,6 +6,32 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
+
+:::
+
+为分页场景下设计的 hook，它可以帮助你自动管理分页数据，数据预加载，减少不必要的数据刷新，**流畅性提高 300%，编码难度降低 50%**。你可以在下拉加载和页码翻页两种分页场景下使用它，此 hook 提供了丰富的特性，助你的应用打造性能更好，使用更便捷的分页功能。
+
+## 示例
+
+[页码列表](/example/paginated-list)
+
+[下拉加载更多](/example/load-more)
+
+## 特性
+
+- ✨ 丰富全面的分页状态；
+- ✨ 丰富全面的分页事件；
+- ✨ 更改 page、pageSize 自动获取指定分页数据；
+- ✨ 数据缓存，无需重复请求相同参数的列表数据；
+- ✨ 前后页预加载，翻页不再等待；
+- ✨ 搜索条件监听自动重新获取页数；
+- ✨ 支持列表数据的新增、编辑、删除；
+- ✨ 支持刷新指定页的数据，无需重置；
+- ✨ 请求级搜索防抖，无需自行维护；
+
 ## 安装
 
 <Tabs groupId="framework">
@@ -45,162 +71,463 @@ yarn add @alova/scene-svelte
 </TabItem>
 </Tabs>
 
-:::info
-在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
-:::
+## 使用
 
-为分页场景下设计的 hook，你可以在下拉加载和页码翻页两种分页场景下使用它，**此 hook 提供了丰富的特性，助你的应用打造性能更好，使用更便捷的分页功能**。
-
-## 特性
-
-- ✨ 丰富全面的分页状态；
-- ✨ 丰富全面的分页事件；
-- ✨ 更改 page、pageSize 自动获取指定分页数据；
-- ✨ 数据缓存，无需重复请求相同参数的列表数据；
-- ✨ 前后页预加载，翻页不再等待；
-- ✨ 搜索条件监听自动重新获取页数；
-- ✨ 支持列表数据的新增、编辑、删除；
-- ✨ 支持刷新指定页的数据，无需重置；
-- ✨ 请求级搜索防抖，无需自行维护；
-
-## 示例
-
-[页码列表](/example/paginated-list)
-
-[下拉加载更多](/example/load-more)
-
-## 引入
+### 展示列表数据
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
-```javascript
-import { usePagination } from '@alova/scene-vue';
+```html
+<template>
+  <div
+    v-for="item in data"
+    :key="item.id">
+    <span>{{ item.name }}</span>
+  </div>
+  <button @click="handlePrevPage">上一页</button>
+  <button @click="handleNextPage">下一页</button>
+  <button @click="handleSetPageSize">设置每页数量</button>
+  <span>共有{{ pageCount }}页</span>
+  <span>共有{{ total }}条数据</span>
+</template>
+
+<script setup>
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-vue';
+
+  const {
+    // 加载状态
+    loading,
+
+    // 列表数据
+    data,
+
+    // 是否为最后一页
+    // 下拉加载时可通过此参数判断是否还需要加载
+    isLastPage,
+
+    // 当前页码，改变此页码将自动触发请求
+    page,
+
+    // 每页数据条数
+    pageSize,
+
+    // 分页页数
+    pageCount,
+
+    // 总数据量
+    total
+  } = usePagination(
+    // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // 请求前的初始数据（接口返回的数据格式）
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // 初始页码，默认为1
+      initialPageSize: 10 // 初始每页数据条数，默认为10
+    }
+  );
+
+  // 翻到上一页，page值更改后将自动发送请求
+  const handlePrevPage = () => {
+    page.value--;
+  };
+
+  // 翻到下一页，page值更改后将自动发送请求
+  const handleNextPage = () => {
+    page.value++;
+  };
+
+  // 更改每页数量，pageSize值更改后将自动发送请求
+  const handleSetPageSize = () => {
+    pageSize.value = 20;
+  };
+</script>
 ```
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```javascript
+```jsx
+import { queryStudents } from './api.js';
 import { usePagination } from '@alova/scene-react';
+
+const App = () => {
+  const {
+    // 加载状态
+    loading,
+
+    // 列表数据
+    data,
+
+    // 是否为最后一页
+    // 下拉加载时可通过此参数判断是否还需要加载
+    isLastPage,
+
+    // 当前页码，改变此页码将自动触发请求
+    page: [page, setPage],
+
+    // 每页数据条数
+    pageSize: [page, setPageSize],
+
+    // 分页页数
+    pageCount,
+
+    // 总数据量
+    total
+  } = usePagination(
+    // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // 请求前的初始数据（接口返回的数据格式）
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // 初始页码，默认为1
+      initialPageSize: 10 // 初始每页数据条数，默认为10
+    }
+  );
+
+  // 翻到上一页，page值更改后将自动发送请求
+  const handlePrevPage = () => {
+    setPage(value => value - 1);
+  };
+
+  // 翻到下一页，page值更改后将自动发送请求
+  const handleNextPage = () => {
+    setPage(value => value + 1);
+  };
+
+  // 更改每页数量，pageSize值更改后将自动发送请求
+  const handleSetPageSize = () => {
+    setPageSize(20);
+  };
+
+  return (
+    <div>
+      {data.map(item => (
+        <div key={item.id}>
+          <span>{item.name}</span>
+        </div>
+      ))}
+      <button onClick={handlePrevPage}>上一页</button>
+      <button onClick={handleNextPage}>下一页</button>
+      <button onClick={handleSetPageSize}>设置每页数量</button>
+      <span>共有{pageCount}页</span>
+      <span>共有{total}条数据</span>
+    </div>
+  );
+};
 ```
 
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```javascript
-import { usePagination } from '@alova/scene-svelte';
+```html
+<script>
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-svelte';
+
+  const {
+    // 加载状态
+    loading,
+
+    // 列表数据
+    data,
+
+    // 是否为最后一页
+    // 下拉加载时可通过此参数判断是否还需要加载
+    isLastPage,
+
+    // 当前页码，改变此页码将自动触发请求
+    page,
+
+    // 每页数据条数
+    pageSize,
+
+    // 分页页数
+    pageCount,
+
+    // 总数据量
+    total
+  } = usePagination(
+    // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // 请求前的初始数据（接口返回的数据格式）
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // 初始页码，默认为1
+      initialPageSize: 10 // 初始每页数据条数，默认为10
+    }
+  );
+
+  // 翻到上一页，page值更改后将自动发送请求
+  const handlePrevPage = () => {
+    $page--;
+  };
+
+  // 翻到下一页，page值更改后将自动发送请求
+  const handleNextPage = () => {
+    $page++;
+  };
+
+  // 更改每页数量，pageSize值更改后将自动发送请求
+  const handleSetPageSize = () => {
+    $pageSize = 20;
+  };
+</script>
+
+{#each $data as item}
+<div>
+  <span>{item.name}</span>
+</div>
+{/each}
+<button on:click="{handlePrevPage}">上一页</button>
+<button on:click="{handleNextPage}">下一页</button>
+<button on:click="{handleSetPageSize}">设置每页数量</button>
+<span>共有{pageCount}页</span>
+<span>共有{total}条数据</span>
 ```
 
 </TabItem>
 </Tabs>
 
-## 用法
+### 指定分页数据
 
-展示和操作学生列表，以 vue 为例。
+每个分页数据接口返回的数据结构各不相同，因此我们需要分别告诉`usePagination`列表数据与总条数，从而帮助我们管理分页数据。
+
+假如你的分页接口返回的数据格式是这样的：
+
+```typescript
+interface PaginationData {
+  totalNumber: number;
+  list: any[];
+}
+```
+
+此时你需要通过函数的形式返回列表数据与总条数。
 
 ```javascript
-import { ref, watchEffect } from 'vue';
-import { queryStudents, removeStudent, editStudent } from './api.js';
-import { usePagination } from '@alova/hooks/vue';
-import { useRequest } from 'alova';
+usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  // ...
+  // highlight-start
+  total: response => response.totalNumber,
+  data: response => response.list
+  // highlight-end
+});
+```
 
-// 搜索条件状态
-const studentName = ref('');
-const clsName = ref('');
+如果不指定 total 和 data 回调函数，它们将默认通过以下方式获取数据。
 
+```javascript
+const total = response => response.total;
+const data = response => response.data;
+```
+
+:::caution 注意
+
+data 回调函数必须返回一个列表数据，表示分页中所使用的数据集合，而 total 主要用于计算当前页数，在 total 回调函数中如果未返回数字，将会通过请求的列表数量是否少于 pageSize 值来判断当前是否为最后一页，这一般用于下拉加载时使用。
+
+:::
+
+### 开启追加模式
+
+默认情况下，翻页时会替换原有的列表数据，而追加模式是在翻页时会将下一页的数据追加到当前列表底部，常见的使用场景是下拉加载更多。
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  // ...
+  // highlight-start
+  append: true
+  // highlight-end
+});
+```
+
+### 预加载相邻页数据
+
+为了让分页提供更好的体验，在当前页的上一页和下一页满足条件时将会自动预加载，这样在用户翻页时可直接显示数据而不需要等待，这是默认的行为。如果你不希望预加载相邻页的数据，可通过以下方式关闭。
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  // ...
+  // highlight-start
+  preloadPreviousPage: false, // 关闭预加载上一页数据
+  preloadNextPage: false // 关闭预加载下一页数据
+  // highlight-end
+});
+```
+
+除了`onSuccess、onError、onComplete`请求事件外，在触发了预加载时，你还可以通过`fetching`来获知预加载状态，还可以通过`onFetchSuccess、onFetchError、onFetchComplete`来监听预加载请求的事件。
+
+```javascript
 const {
-  // 加载状态
-  loading,
+  // 预加载状态
+  fetching,
 
-  // 列表数据
-  data,
+  // 预加载成功事件绑定函数
+  onFetchSuccess,
 
-  // 是否为最后一页
-  // 下拉加载时可通过此参数判断是否还需要加载
-  isLastPage,
+  // 预加载错误事件绑定函数
+  onFetchError,
 
-  // 当前页码，改变此页码将自动触发请求
-  page,
-
-  // 每页数据条数
-  pageSize,
-
-  // 列表项移除函数
-  remove,
-
-  // 列表项插入函数
-  insert,
-
-  // 刷新函数,你可以指定刷新某一页数据
-  refresh,
-
-  // 重置函数，调用后将清空数据并重新加载第一页
-  reload
-} = usePagination(
-  // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
-  (page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value),
-  {
-    watchingStates: [studentName, clsName], // 外部监听的状态，如搜索条件
-    initialData: [], // 请求前的初始数据，
-    debounce: 300 // 防抖参数，单位为毫秒数，也可以设置为数组对watchingStates单独设置防抖时间
-    // append: true, // 是否启用追加模式，在下拉加载时需设置为true，默认为false
-    // preloadPreviousPage: true, // 是否预加载上一页数据，默认为true
-    // preloadNextPage: true, // 是否预加载下一页数据，默认为true
-    // total: res => res.total, // 指定如何获取列表项总数值，res为响应数据，默认获取res.total
-    // data: res.data, // 指定如何获取列表数据，res为响应数据，默认获取res.data
-    // initialPage: 1, // 初始页码，默认为1
-    // initialPageSize: 10, // 初始每页数据条数，默认为10
-    // immediate: true // 是否立即发出请求，默认为true
-  }
-);
-
-// 下一页
-const handleNextPage = () => {
-  page.value++;
-};
-
-// 通过静默提交移除列表项
-const { send: removeSend, onSuccess: onRemoveSuccess } = useRequest(id => removeStudent(id), {
-  immediate: false,
-  silent: true
+  // 预加载完成事件绑定函数
+  onFetchComplete
+} = usePagination((page, pageSize) => queryStudents(page, pageSize), {
+  // ...
 });
-onRemoveSuccess((_, removeId) => {
-  // 传入移除的索引项移除制定项
-  remove(students.value.findIndex(s => s.id === removeId));
-});
+```
 
-// 新增或编辑列表项
-const detail = ref({
-  name: '',
-  cls: ''
-});
-const {
-  loading: submiting,
-  send: sendStudentEdit,
-  onSuccess
-} = useRequest(selectedId => editStudent(detail.value.name, detail.value.cls, selectedId), {
-  immediate: false,
-  silent: true
-});
-onSuccess((_, selectedId) => {
-  if (selectedId) {
-    // 编辑时，刷新更新的列表项所在页，无需重置列表
-    const refreshPage = Math.floor(students.value.findIndex(({ id }) => id === selectedId) / pageSize.value) + 1;
-    refresh(refreshPage);
-  } else {
-    // 添加时，重置列表
-    reload();
-  }
-});
+### 监听筛选条件
 
-// 提交学生信息回调，selectedId有值表示编辑，否则为新增
-const handleSubmit = selectedId => {
-  sendStudentEdit(selectedId);
+很多时候列表需要通过条件进行筛选，此时可以通过`usePagination`的状态监听来触发重新请求，这与 alova 提供的`useWatcher`是一样的。
+
+例如通过学生姓名、学生年级进行筛选。
+
+<Tabs groupId="framework">
+<TabItem value="1" label="vue">
+
+```html
+<template>
+  <!-- highlight-start -->
+  <input v-model="studentName" />
+  <select v-model="clsName">
+    <option value="1">Class 1</option>
+    <option value="2">Class 2</option>
+    <option value="3">Class 3</option>
+  </select>
+  <!-- highlight-end -->
+  <!-- ... -->
+</template>
+
+<script setup>
+  import { ref } from 'vue';
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-vue';
+
+  // 搜索条件状态
+  const studentName = ref('');
+  const clsName = ref('');
+  const {
+    // ...
+  } = usePagination((page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value), {
+    // ...
+    // highlight-start
+    watchingStates: [studentName, clsName]
+    // highlight-end
+  });
+</script>
+```
+
+</TabItem>
+<TabItem value="2" label="react">
+
+```jsx
+import { queryStudents } from './api.js';
+import { usePagination } from '@alova/scene-react';
+
+const App = () => {
+  // 搜索条件状态
+  const [studentName, setStudentName] = useState('');
+  const [clsName, setClsName] = useState('');
+  const {
+    // ...
+  } = usePagination(
+    (page, pageSize) => queryStudents(page, pageSize, studentName, clsName),
+    {
+      // ...
+      // highlight-start
+      watchingStates: [studentName, clsName]
+      // highlight-end
+    }
+  );
+
+  return (
+    // highlight-start
+    <input value={studentName} onChange={({ target }) => setStudentName(target.value)} />
+    <select value={clsName} onChange={({ target }) => setClsName(target.value)}>
+      <option value="1">Class 1</option>
+      <option value="2">Class 2</option>
+      <option value="3">Class 3</option>
+    </select>
+    // highlight-end
+    // ...
+  );
 };
 ```
 
-## 列表操作函数说明
+</TabItem>
+<TabItem value="3" label="svelte">
+
+```html
+<script>
+  import { queryStudents } from './api.js';
+  import { usePagination } from '@alova/scene-svelte';
+  import { writable } from 'svelte/store';
+
+  // 搜索条件状态
+  const studentName = writable('');
+  const clsName = writable('');
+  const {
+    // ...
+  } = usePagination((page, pageSize) => queryStudents(page, pageSize, $studentName, $clsName), {
+    // ...
+    // highlight-start
+    watchingStates: [studentName, clsName]
+    // highlight-end
+  });
+</script>
+
+<!-- highlight-start -->
+<input bind:value="{studentName}" />
+<select bind:value="{clsName}">
+  <option value="1">Class 1</option>
+  <option value="2">Class 2</option>
+  <option value="3">Class 3</option>
+</select>
+<!-- highlight-end -->
+<!-- ... -->
+```
+
+</TabItem>
+</Tabs>
+
+与`useWatcher`相同，你也可以通过指定`debounce`来实现请求防抖，具体可参考[useWatcher 的 debounce 参数设置](/learning/use-watcher)。
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
+  // ...
+  // highlight-start
+  debounce: 300 // 防抖参数，单位为毫秒数，也可以设置为数组对watchingStates单独设置防抖时间
+  // highlight-end
+});
+```
+
+需要注意的是，`debounce`是通过 [**useWatcher**](/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
+
+举例来说，当`watchingStates`设置了`[studentName, clsName]`，内部将会监听`[studentName, clsName, page, pageSize]`，因此如果需要对 page 和 pageSize 设置防抖时，可以指定为`[0, 0, 500, 500]`。
+
+### 关闭初始化请求
+
+默认情况下，`usePagination`会在初始化时发起请求，但你也可以使用`immediate`关闭它，并在后续通过`send`函数，或者改变`page`或`pageSize`，以及`watchingStates`等监听状态来发起请求。
+
+```javascript
+usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
+  // ...
+  // highlight-start
+  immediate: false
+  // highlight-end
+});
+```
+
+## 列表操作函数
 
 usePagination 提供了功能完善的列表操作函数，它可以在不重新请求列表的情况下，做到与重新请求列表一致的效果，大大提高了页面的交互体验，具体的函数说明继续往下看吧！
 
@@ -287,6 +614,17 @@ replace: (item: LD[number], index: number) => void;
 refresh: (refreshPage: number) => void;
 ```
 
+### 手动更新列表数据
+
+使用`update`函数更新响应式数据，这与[useRequest 的 update](/learning/use-request)相似，唯一不同的是，在调用`update`更新`data`时，更新的是列表数据，而非响应数据。这在手动清除列表数据，而不重新发起请求时很有用。
+
+```typescript
+// 情况列表数据
+update({
+  data: []
+});
+```
+
 ### 重置列表
 
 它将清空全部缓存，并重新加载第一页。
@@ -296,40 +634,6 @@ refresh: (refreshPage: number) => void;
  * 从第一页开始重新加载列表，并清空缓存
  */
 reload: () => void;
-```
-
-## 注意事项
-
-### debounce 参数说明
-
-debounce 参数可以设置为数组，对监听状态(watchingStates)变化单独设置防抖时间，它是通过 [**useWatcher**](/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
-
-举例来说，当`watchingStates`设置了`[studentName, clsName]`，内部将会监听`[studentName, clsName, page, pageSize]`，因此如果需要对 page 和 pageSize 设置防抖时，可以指定为`[0, 0, 500, 500]`。
-
-### initialData 参数说明
-
-在 usePagination 中指定 initialData 参数时，表示的是接口返回的格式，而非转换后的列表数据，例如当接口返回的数据格式是如下时。
-
-```typescript
-interface ListResponse {
-  total: number;
-  list: any[];
-}
-```
-
-那么，它的 initialData 应该设置为如下格式，而不是一个空数组。
-
-```javascript
-usePagination(handler, {
-  total: res => res.total,
-  data: res => res.list,
-  // highlight-start
-  initialData: {
-    total: 0,
-    list: []
-  }
-  // highlight-end
-});
 ```
 
 ## Typescript

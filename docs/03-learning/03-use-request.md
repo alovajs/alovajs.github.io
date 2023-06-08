@@ -299,7 +299,7 @@ const {
 // highlight-end
 ```
 
-## Manually modify the status value
+## Manually update the states
 
 In alova, various states such as `data`, `loading`, and `error` returned by `useRequest` allow custom modification, which will become very convenient in some cases.
 
@@ -307,11 +307,16 @@ In alova, various states such as `data`, `loading`, and `error` returned by `use
 <TabItem value="1" label="vue">
 
 ```javascript
-const { data, loading, error } = useRequest(todoListGetter);
+const { data, loading, error, update } = useRequest(todoListGetter);
 
 //...
-// Modify the data value directly
+// update the data value directly
 data.value = {};
+
+// or use function update
+update({
+  data: {}
+});
 ```
 
 </TabItem>
@@ -324,7 +329,7 @@ In react, the returned state is data that can be used directly, so it needs to b
 const { data, loading, error, update } = useRequest(todoListGetter);
 
 //...
-// Modify the data value through update
+// update the data value by update
 update({
   data: {}
 });
@@ -337,12 +342,17 @@ update({
 In svelte, the status returned by `useRequest` is of type `writable`.
 
 ```javascript
-const { data, loading, error } = useRequest(todoListGetter);
+const { data, loading, error, update } = useRequest(todoListGetter);
 
 //...
-// Modify the data value directly
+// change the data value directly
 $data = {};
 // or data.update(d => ({}));
+
+// or use function update
+update({
+  data: {}
+});
 ```
 
 </TabItem>
