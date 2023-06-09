@@ -6,11 +6,13 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info
+:::info stragety type
 
-Before using extension hooks, make sure you are familiar with basic usage of alova.
+use hook
 
 :::
+
+> Before using extension hooks, make sure you are familiar with basic usage of alova.
 
 A hook designed for paging scenarios, which can help you automatically manage paging data, preload data, reduce unnecessary data refresh, improve fluency by 300%, and reduce coding difficulty by 50%\*\*. You can use it in the two paging scenarios of pull-down loading and page number flipping. This hook provides a wealth of features to help your application create better performance and more convenient paging functions.
 
@@ -527,9 +529,9 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-## list manipulation functions
+## List action functions
 
-usePagination provides a fully functional list operation function, which can achieve the same effect as the re-request list without re-requesting the list, which greatly improves the interactive experience of the page. The specific function description continues to look down!
+usePagination provides a fully functional list action function, which can achieve the same effect as the re-request list without re-requesting the list, which greatly improves the interactive experience of the page. The specific function description continues to look down!
 
 ### Insert list item
 
@@ -636,236 +638,61 @@ It will clear all caches and reload the first page.
 reload: () => void;
 ```
 
-##Typescript
-
-<Tabs groupId="framework">
-<TabItem value="1" label="vue">
-
-```typescript
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: Ref<boolean>;
-  error: Ref<Error | undefined>;
-  downloading: Ref<Progress>;
-  uploading: Ref<Progress>;
-  page: Ref<number>;
-  pageSize: Ref<number>;
-  data: Ref<LD>;
-  pageCount: ComputedRef<number | undefined>;
-  total: ComputedRef<number | undefined>;
-  isLastPage: ComputedRef<boolean>;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: Ref<boolean>;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
-
-  /**
-   * Refresh the specified page number data, this function will ignore the cache to force the send request
-   * @param refreshPage refresh page number
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * Insert a piece of data
-   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
-   * @param item insert item
-   * @param config insert configuration
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * Remove a piece of data
-   * @param index index to remove
-   */
-  remove: (index: any) => void;
-
-  /**
-   * Reload the list from the first page and clear the cache
-   */
-  reload: () => void;
-}
-
-/**
- * Vue paging hook based on alova.js
- * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/replacement/removal
- *
- * @param handler method creation function
- * @param config pagination hook configuration
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<
-  S extends Ref,
-  E extends Ref,
-  R,
-  T,
-  RC,
-  RE,
-  RH,
-  LD extends any[],
-  WS extends WatchSource[]
->(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-<TabItem value="2" label="react">
-
-```typescript
-type ReactState<S> = [S, Dispatch<SetStateAction<S>>];
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: boolean;
-  error: Error | undefined;
-  downloading: Progress;
-  uploading: Progress;
-  page: ReactState<number>;
-  pageSize: ReactState<number>;
-  data: LD;
-  pageCount: number | undefined;
-  total: number | undefined;
-  isLastPage: boolean;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: boolean;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
-
-  /**
-   * Refresh the specified page number data, this function will ignore the cache to force the send request
-   * @param refreshPage refresh page number
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * Insert a piece of data
-   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
-   * @param item insert item
-   * @param config insert configuration
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * Remove a piece of data
-   * @param index index to remove
-   */
-  remove: (index: any) => void;
-
-  /**
-   * Reload the list from the first page and clear the cache
-   */
-  reload: () => void;
-}
-
-/**
- * React paging hook based on alova.js
- * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/removal
- *
- * @param handler method creation function
- * @param config pagination hook configuration
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<S, E, R, T, RC, RE, RH, LD extends any[], WS extends DependencyList>(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-<TabItem value="3" label="svelte">
-
-```typescript
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: Writable<boolean>;
-  error: Writable<Error | undefined>;
-  downloading: Writable<Progress>;
-  uploading: Writable<Progress>;
-  page: Writable<number>;
-  pageSize: Writable<number>;
-  data: Writable<LD>;
-  pageCount: Readable<number | undefined>;
-  total: Readable<number | undefined>;
-  isLastPage: Readonly<Readable<boolean>>;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: Writable<boolean>;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
-
-  /**
-   * Refresh the specified page number data, this function will ignore the cache to force the send request
-   * @param refreshPage refresh page number
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * Insert a piece of data
-   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
-   * @param item insert item
-   * @param config insert configuration
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * Remove a piece of data
-   * @param index index to remove
-   */
-  remove: (index: any) => void;
-
-  /**
-   * Reload the list from the first page and clear the cache
-   */
-  reload: () => void;
-}
-
-/**
- * svelte paging hook based on alova.js
- * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/removal
- *
- * @param handler method creation function
- * @param config pagination hook configuration
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<
-  S extends Writable<any>,
-  E extends Writable<any>,
-  R,
-  T,
-  RC,
-  RE,
-  RH,
-  LD extends any[],
-  WS extends Readable<any>[]
->(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-</Tabs>
-
 ## Limitation
 
-**Cache replaceholder mode** and **recovery mode** are temporarily disabled
+**Cache replaceholder mode** are temporarily disabled.
+
+## API
+
+### Hook configuration
+
+Inherit all configurations of [**useWatcher**](/learning/use-watcher).
+
+| Name                | Description                                                           | Type                      | Default                    | Version |
+| ------------------- | --------------------------------------------------------------------- | ------------------------- | -------------------------- | ------- |
+| initialPage         | initial page number                                                   | number                    | 1                          | -       |
+| initialPageSize     | Initial number of data items per page                                 | number                    | 10                         | -       |
+| watchingStates      | state monitoring trigger request, implemented using useWatcher        | any[]                     | [page, pageSize]           | -       |
+| debounce            | The debounce parameter of state monitoring, implemented by useWatcher | number&#124;number[]      | -                          | -       |
+| append              | Whether to enable append mode                                         | boolean                   | false                      | -       |
+| data                | Array data specifying pagination                                      | (response: any) => any[]  | response => response.data  | -       |
+| total               | specify the total amount of data                                      | (response: any) => number | response => response.total | -       |
+| preloadPreviousPage | whether to preload previous page data                                 | boolean                   | true                       | -       |
+| preloadNextPage     | whether to preload next page data                                     | boolean                   | true                       | -       |
+
+### Responsive data
+
+Inherit all responsive data from [**useWatcher**](/learning/use-watcher).
+
+| Name       | Description                                                                                                                                                                                                         | Type    | Version |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
+| page       | Current page number, determined by initialPage                                                                                                                                                                      | number  | -       |
+| pageSize   | The current number of pages, determined by initialPageSize                                                                                                                                                          | number  | -       |
+| data       | paging list array data, obtained from data configuration                                                                                                                                                            | any[]   | -       |
+| total      | The total amount of data, obtained from total configuration, can be empty                                                                                                                                           | number  | -       |
+| pageCount  | The total number of pages, calculated from total and pageSize                                                                                                                                                       | number  | -       |
+| isLastPage | Whether the current page is the last page, if pageCount has a value, it will be obtained by comparing pageCount and page, otherwise it will be obtained by whether the length of the list data is less than pagSize | number  | -       |
+| fetching   | whether data is being preloaded                                                                                                                                                                                     | boolean | -       |
+
+### Action function
+
+Inherit all action functions of [**useWatcher**](/learning/use-watcher).
+
+| name    | description                                                                                                        | function parameters                                        | return value | version |
+| ------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------------ | ------- |
+| refresh | Refresh the data of the specified page number, this function will ignore the cache to force the request to be sent | refreshPage: Refresh the page number                       | -            | -       |
+| insert  | Insert a piece of data, if no index is passed in, it will be inserted at the front by default                      | 1. item: Insert item<br/>2. index: Insert index, default 0 | -            | -       |
+| remove  | remove a piece of data                                                                                             | index: removed index                                       | -            | -       |
+| replace | replace a piece of data                                                                                            | 1. item: replacement item<br/>2. index: replacement index  | -            | -       |
+| reload  | Clear the data and re-request the first page of data                                                               | -                                                          | -            | -       |
+| update  | Update state data, same as alova's use hook, but update list data when updating data field                         | newFrontStates: new state data object                      | -            | -       |
+
+### event
+
+Inherit all events from [**useWatcher**](/learning/use-watcher).
+
+| Name            | Description                                    | Callback Parameters                  | Version |
+| --------------- | ---------------------------------------------- | ------------------------------------ | ------- |
+| onFetchSuccess  | fetch success callback binding function        | event: alova success event object    | -       |
+| onFetchError    | callback binding function for fetch failure    | event: alova failure event object    | -       |
+| onFetchComplete | callback binding function for fetch completion | event: alova completion event object | -       |
