@@ -539,11 +539,13 @@ usePagination 提供了功能完善的列表操作函数，它可以在不重新
 
 ```typescript
 /**
- * 插入一条数据，未传入index时默认插入到最前面
+ * 插入一条数据
+ * 如果未传入index，将默认插入到最前面
+ * 如果传入一个列表项，将插入到这个列表项的后面，如果列表项未在列表数据中将会抛出错误
  * @param item 插入项
- * @param index 插入位置（索引）
+ * @param indexOrItem 插入位置（索引）
  */
-insert: (item: LD[number], index?: number) => void;
+declare function insert(item: LD[number], indexOrItem?: number | LD[number]): void;
 ```
 
 以下为**非 append 模式**下（页码翻页场景），返回第一页再插入列表项的示例：
@@ -564,6 +566,12 @@ nextTick(() => {
 });
 ```
 
+你也可以将`insert`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，插入项将插入到这个列表项的后面。
+
+```javascript
+insert(newItem, afterItem);
+```
+
 :::caution 注意
 
 为了让数据正确，insert 函数调用会清除全部缓存。
@@ -577,10 +585,13 @@ nextTick(() => {
 ```typescript
 /**
  * 移除一条数据
- * @param index 移除的索引
+ * 如果传入的是列表项，将移除此列表项，如果列表项未在列表数据中将会抛出错误
+ * @param position 移除的索引或列表项
  */
-remove: (index: number) => void;
+declare function remove(position: number | LD[number]): void;
 ```
+
+你也可以将`remove`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，将会移除此列表项。
 
 但在以下两种情况下，它将重新发起请求刷新对应页的数据：
 
@@ -588,7 +599,9 @@ remove: (index: number) => void;
 2. 同步连续调用了超过下一页缓存列表项的数据，缓存数据已经不够补充到当前页列表了。
 
 :::caution 注意
+
 为了让数据正确，remove 函数调用会清除全部缓存。
+
 :::
 
 ### 更新数据项
@@ -598,11 +611,14 @@ remove: (index: number) => void;
 ```typescript
 /**
  * 替换一条数据
+ * 如果position传入的是列表项，将替换此列表项，如果列表项未在列表数据中将会抛出错误
  * @param item 替换项
- * @param index 替换位置（索引）
+ * @param position 替换位置（索引）或列表项
  */
-replace: (item: LD[number], index: number) => void;
+declare function replace(item: LD extends any[] ? LD[number] : any, position: number | LD[number]): void;
 ```
+
+你也可以将`replace`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，将会替换此列表项。
 
 ### 刷新指定页的数据
 
@@ -611,10 +627,14 @@ replace: (item: LD[number], index: number) => void;
 ```typescript
 /**
  * 刷新指定页码数据，此函数将忽略缓存强制发送请求
- * @param refreshPage 刷新的页码
+ * 如果未传入页码则会刷新当前页
+ * 如果传入一个列表项，将会刷新此列表项所在页
+ * @param pageOrItemPage 刷新的页码或列表项
  */
-refresh: (refreshPage: number) => void;
+declare function refresh(pageOrItemPage?: number | LD[number]): void;
 ```
+
+在 append 模式下，你可以将`refresh`的参数指定为列表项，当查找到这个列表项的相同引用时，刷新此列表项所在页数的数据。
 
 ### 手动更新列表数据
 
@@ -635,7 +655,7 @@ update({
 /**
  * 从第一页开始重新加载列表，并清空缓存
  */
-reload: () => void;
+declare function reload(): void;
 ```
 
 ## 限制
@@ -678,14 +698,14 @@ reload: () => void;
 
 继承[**useWatcher**](/learning/use-watcher)所有操作函数。
 
-| 名称    | 描述                                                                            | 函数参数                                       | 返回值 | 版本 |
-| ------- | ------------------------------------------------------------------------------- | ---------------------------------------------- | ------ | ---- |
-| refresh | 刷新指定页码数据，此函数将忽略缓存强制发送请求                                  | refreshPage: 刷新页码                          | -      | -    |
-| insert  | 插入一条数据，未传入 index 时默认插入到最前面                                   | 1. item: 插入项<br/>2. index: 插入索引，默认 0 | -      | -    |
-| remove  | 移除一条数据                                                                    | index: 移除的索引                              | -      | -    |
-| replace | 替换一条数据                                                                    | 1. item: 替换项<br/>2. index: 替换索引         | -      | -    |
-| reload  | 清空数据，并重新请求第一页数据                                                  | -                                              | -      | -    |
-| update  | 更新状态数据，与 alova 的 use hook 用法相同，但在更新 data 字段时是更新列表数据 | newFrontStates：新的状态数据对象               | -      | -    |
+| 名称    | 描述                                                                                                                                   | 函数参数                                                               | 返回值 | 版本 |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------ | ---- |
+| refresh | 刷新指定页码数据，此函数将忽略缓存强制发送请求，append 模式下可传入列表项表示刷新此列表项所在的页数                                    | pageOrItemPage: 刷新的页码或列表项                                     | -      | -    |
+| insert  | 插入一条数据，如果未传入 index，将默认插入到最前面，如果传入一个列表项，将插入到这个列表项的后面，如果列表项未在列表数据中将会抛出错误 | 1. item: 插入项<br/>2. indexOrItem: 插入位置（索引）或列表项，默认为 0 | -      | -    |
+| remove  | 移除一条数据，如果 position 传入的是列表项，将替换此列表项，如果列表项未在列表数据中将会抛出错误                                       | position: 移除位置（索引）或列表项                                     | -      | -    |
+| replace | 替换一条数据，如果 position 传入的是列表项，将替换此列表项，如果列表项未在列表数据中将会抛出错误                                       | 1. item: 替换项<br/>2. position: 替换位置（索引）或列表项              | -      | -    |
+| reload  | 清空数据，并重新请求第一页数据                                                                                                         | -                                                                      | -      | -    |
+| update  | 更新状态数据，与 alova 的 use hook 用法相同，但在更新 data 字段时是更新列表数据                                                        | newFrontStates：新的状态数据对象                                       | -      | -    |
 
 ### 事件
 

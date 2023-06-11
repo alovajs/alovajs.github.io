@@ -539,11 +539,13 @@ You can use it to insert list items to any position in the list, and it will rem
 
 ```typescript
 /**
-  * Insert a piece of data, if the index is not passed in, it will be inserted at the front by default
-  * @param item insert item
-  * @param index insertion position (index)
-  */
-insert: (item: LD[number], index?: number) => void;
+ * Insert data
+ * If no index is passed in, it will be inserted at the front by default
+ * If a list item is passed in, it will be inserted after the list item, and an error will be thrown if the list item is not in the list data
+ * @param item insert item
+ * @param indexOrItem insertion position (index)
+ */
+declare function insert(item: LD[number], indexOrItem?: number | LD[number]): void;
 ```
 
 The following is an example of returning to the first page and then inserting list items in **non-append mode** (page number flipping scenario):
@@ -564,6 +566,12 @@ nextTick(() => {
 });
 ```
 
+You can also specify the second parameter of `insert` as a list item. When the same reference of this list item is found, the insert item will be inserted after this list item.
+
+```javascript
+insert(newItem, afterItem);
+```
+
 :::caution Caution
 
 In order to make the data correct, the insert function call will clear all caches.
@@ -576,11 +584,14 @@ In the case that the next page has a cache, it will use the cache of the next pa
 
 ```typescript
 /**
-  * Remove a piece of data
-  * @param index index to remove
-  */
-remove: (index: number) => void;
+ * Remove data
+ * If a list item is passed in, the list item will be removed, and an error will be thrown if the list item is not in the list data
+ * @param position index or list item to remove
+ */
+declare function remove(position: number | LD[number]): void;
 ```
+
+You can also specify the second parameter of `remove` as a list item, and when the same reference of this list item is found, this list item will be removed.
 
 But in the following two cases, it will re-initiate the request to refresh the data of the corresponding page:
 
@@ -588,7 +599,9 @@ But in the following two cases, it will re-initiate the request to refresh the d
 2. The data that exceeds the next page cache list item is continuously called synchronously, and the cache data is not enough to supplement the current page list.
 
 :::caution Caution
+
 In order to make the data correct, the remove function call will clear all caches.
+
 :::
 
 ### Update data items
@@ -597,12 +610,15 @@ Use this function when you want to update list items.
 
 ```typescript
 /**
-  * Replace a piece of data
-  * @param item replacement item
-  * @param index replacement position (index)
-  */
-replace: (item: LD[number], index: number) => void;
+ * Replace data
+ * If the position passed in is a list item, this list item will be replaced, if the list item is not in the list data, an error will be thrown
+ * @param item replacement item
+ * @param position replacement position (index) or list item
+ */
+declare function replace(item: LD extends any[] ? LD[number] : any, position: number | LD[number]): void;
 ```
+
+You can also specify the second parameter of `replace` as a list item, which will be replaced when an identical reference to the list item is found.
 
 ### Refresh the data of the specified page
 
@@ -610,11 +626,15 @@ When you do not want to update the list items locally after the data operation, 
 
 ```typescript
 /**
-  * Refresh the specified page number data, this function will ignore the cache to force the send request
-  * @param refreshPage refresh page number
-  */
-refresh: (refreshPage: number) => void;
+ * Refresh the specified page number data, this function will ignore the cache to force the send request
+ * If no page number is passed in, the current page will be refreshed
+ * If a list item is passed in, the page where the list item is located will be refreshed
+ * @param pageOrItemPage Refreshed page number or list item
+ */
+declare function refresh(pageOrItemPage?: number | LD[number]): void;
 ```
+
+In append mode, you can specify the parameter of `refresh` as a list item. When the same reference of this list item is found, the data of the page number where this list item is located will be refreshed.
 
 ### Manually update list data
 
@@ -633,9 +653,9 @@ It will clear all caches and reload the first page.
 
 ```typescript
 /**
-  * Reload the list from the first page and clear the cache
-  */
-reload: () => void;
+ * Reload the list from the first page and clear the cache
+ */
+declare function reload(): void;
 ```
 
 ## Limitation
@@ -678,14 +698,14 @@ Inherit all responsive data from [**useWatcher**](/learning/use-watcher).
 
 Inherit all action functions of [**useWatcher**](/learning/use-watcher).
 
-| name    | description                                                                                                        | function parameters                                        | return value | version |
-| ------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------------ | ------- |
-| refresh | Refresh the data of the specified page number, this function will ignore the cache to force the request to be sent | refreshPage: Refresh the page number                       | -            | -       |
-| insert  | Insert a piece of data, if no index is passed in, it will be inserted at the front by default                      | 1. item: Insert item<br/>2. index: Insert index, default 0 | -            | -       |
-| remove  | remove a piece of data                                                                                             | index: removed index                                       | -            | -       |
-| replace | replace a piece of data                                                                                            | 1. item: replacement item<br/>2. index: replacement index  | -            | -       |
-| reload  | Clear the data and re-request the first page of data                                                               | -                                                          | -            | -       |
-| update  | Update state data, same as alova's use hook, but update list data when updating data field                         | newFrontStates: new state data object                      | -            | -       |
+| name    | description                                                                                                                                                                                                                       | function parameters                                                                         | return value | version |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------ | ------- |
+| refresh | Refresh the data of the specified page number, this function will ignore the forced sending request of the cache, in the append mode, the list item can be passed in to indicate the page number where the list item is refreshed | pageOrItemPage: Refreshed page number or list item                                          | -            | -       |
+| insert  | Insert data. If no index is passed in, it will be inserted at the front by default. If a list item is passed in, it will be inserted after the list item. If the list item is not in the list data, an error will be thrown       | 1. item: insert item<br/>2. indexOrItem: insert position (index) or list item, default is 0 | -            | -       |
+| remove  | remove data, if the passed in position is a list item, this list item will be replaced, if the list item is not in the list data, an error will be thrown                                                                         | position: remove the position (index) or list item                                          | -            | -       |
+| replace | Replace data. If the input of position is a list item, the list item will be replaced. If the list item is not in the list data, an error will be thrown                                                                          | 1. item: replacement item<br/>2. position: replace position (index) or list item            | -            | -       |
+| reload  | Clear the data and re-request the first page of data                                                                                                                                                                              | -                                                                                           | -            | -       |
+| update  | Update state data, same as alova's use hook, but update list data when updating data field                                                                                                                                        | newFrontStates: new state data object                                                       | -            | -       |
 
 ### event
 

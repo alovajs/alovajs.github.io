@@ -8,11 +8,15 @@ export default function NavbarWrapper(props) {
     <>
       <div className={styles.navWrapper}>
         <div className={styles.navTips}>
-          <span>⭐️ 
-            <Translate id="theme.tips.supportMe.prefix">If you like alova, </Translate>
-            <a href="https://github.com/alovajs/alova" target="_blank">
-              <Translate id="theme.tips.supportMe.linkText">give it a star on GitHub!</Translate>  
-            </a> ⭐️
+          <span>
+            ⭐️
+            <Translate id="theme.tips.supportMe.prefix">If you also like alova, </Translate>
+            <a
+              href="https://github.com/alovajs/alova"
+              target="_blank">
+              <Translate id="theme.tips.supportMe.linkText">give it a star on GitHub!</Translate>
+            </a>{' '}
+            ⭐️
           </span>
         </div>
         <Navbar {...props} />

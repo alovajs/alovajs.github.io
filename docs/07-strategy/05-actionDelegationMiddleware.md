@@ -1,5 +1,5 @@
 ---
-title: useHook actions delegation
+title: Cross components to trigger request
 sidebar_position: 50
 ---
 
