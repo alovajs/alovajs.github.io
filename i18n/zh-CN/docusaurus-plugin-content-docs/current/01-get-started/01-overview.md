@@ -9,6 +9,7 @@ sidebar_position: 10
 [![build](https://github.com/alovajs/alova/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/alovajs/alova/actions/workflows/release.yml)
 [![coverage status](https://coveralls.io/repos/github/alovajs/alova/badge.svg?branch=main)](https://coveralls.io/github/alovajs/alova?branch=main)
 [![minzipped size](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova)
+[![stars](https://img.shields.io/github/stars/alovajs/alova?style=social)](https://github.com/alovajs/alova)
 [![tree shaking](https://badgen.net/bundlephobia/tree-shaking/alova)](https://bundlephobia.com/package/alova)
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -62,21 +63,24 @@ alova 也致力于解决客户端网络请求的问题，但与其他请求库�
 13. 🎈 Typescript 支持
 14. ⚡ 支持 tree shaking，这意味着 alova 的生产体积往往小于 4kb
 
-## 请求策略
+## alova 请求策略表
 
-alova 是核心库，它提供了缓存策略、请求共享策略，以及状态管理等通用功能，能满足 90%+的请求需求。而将具体的请求策略方案放在了`@alova/scene-vue`、`@alova/scene-react`、`@alova/scene-svelte`中，它们是依赖 alova 的扩展功能开发的，目前提供了以下两个主要的请求策略。
+alova 是核心库，它提供了缓存策略、请求共享策略，以及状态管理等通用功能，能满足 95%以上的请求需求。同时，alova 还提供了业务逻辑的，高频使用的请求策略 hook，可以直接用于特定场景。以下为 alova 提供的请求策略 hook 列表。
 
-### 分页请求策略
-
-自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%
-
-### 静默提交策略
-
-提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用
+| 名称                  | 描述                                                                                                                           | 文档                                                               |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| 分页请求策略          | 自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%                                          | [usePagination](/strategy/usePagination)                           |
+| 无感数据交互策略      | 全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用                         | [useSQRequest](/strategy/sensorless-data-interaction/overview)     |
+| 表单提交策略          | 为表单提交而设计的 hook，通过此 hook 你可以很方便地实现表单草稿、多页面（多步骤）表单，除此以外还提供了表单重置等常用功能      | [useForm](/strategy/useForm)                                       |
+| 发送验证码            | 验证码发送 hook，减掉你在开发验证码发送功能时的繁琐。                                                                          | [useCaptcha](/strategy/useCaptcha)                                 |
+| 跨组件触发请求        | 一个 alova 中间件，消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数                                                | [actionDelegationMiddleware](/strategy/actionDelegationMiddleware) |
+| 串行请求的 useRequest | 比[alova 的串行请求方式](/next-step/serial-request)更加简洁易用的串行请求 use hook，提供统一的 loading 状态、error、回调函数   | [useSerialRequest](/strategy/useSerialRequest)                     |
+| 串行请求的 useWatcher | 比[alova 的串行请求方式](/next-step/serial-request)更加简洁易用的串行请求 use hook，提供统一的 loading 状态、error、回调函数。 | [useSerialWatcher](/strategy/useSerialWatcher)                     |
+| 请求重试策略          | 请求失败自动重试，它在重要的请求和轮询请求上发挥重要作用                                                                       | [useRetriableRequest](/strategy/useRetriableRequest)               |
 
 ### 更多请求相关的业务场景征集中...
 
-如果你已经想到了一些特定且典型的业务请求场景，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。
+如果你还有特定且典型的业务请求场景，但我们还未实现的，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。同时也可以自定义请求 hook，请看 [高级](/category/advanced) 部分。
 
 ## 库稳定性
 

@@ -6,11 +6,13 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info
+:::info 策略类型
 
-在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
+use hook
 
 :::
+
+> 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
 为分页场景下设计的 hook，它可以帮助你自动管理分页数据，数据预加载，减少不必要的数据刷新，**流畅性提高 300%，编码难度降低 50%**。你可以在下拉加载和页码翻页两种分页场景下使用它，此 hook 提供了丰富的特性，助你的应用打造性能更好，使用更便捷的分页功能。
 
@@ -537,11 +539,13 @@ usePagination 提供了功能完善的列表操作函数，它可以在不重新
 
 ```typescript
 /**
- * 插入一条数据，未传入index时默认插入到最前面
+ * 插入一条数据
+ * 如果未传入index，将默认插入到最前面
+ * 如果传入一个列表项，将插入到这个列表项的后面，如果列表项未在列表数据中将会抛出错误
  * @param item 插入项
- * @param index 插入位置（索引）
+ * @param indexOrItem 插入位置（索引）
  */
-insert: (item: LD[number], index?: number) => void;
+declare function insert(item: LD[number], indexOrItem?: number | LD[number]): void;
 ```
 
 以下为**非 append 模式**下（页码翻页场景），返回第一页再插入列表项的示例：
@@ -562,6 +566,12 @@ nextTick(() => {
 });
 ```
 
+你也可以将`insert`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，插入项将插入到这个列表项的后面。
+
+```javascript
+insert(newItem, afterItem);
+```
+
 :::caution 注意
 
 为了让数据正确，insert 函数调用会清除全部缓存。
@@ -575,10 +585,13 @@ nextTick(() => {
 ```typescript
 /**
  * 移除一条数据
- * @param index 移除的索引
+ * 如果传入的是列表项，将移除此列表项，如果列表项未在列表数据中将会抛出错误
+ * @param position 移除的索引或列表项
  */
-remove: (index: number) => void;
+declare function remove(position: number | LD[number]): void;
 ```
+
+你也可以将`remove`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，将会移除此列表项。
 
 但在以下两种情况下，它将重新发起请求刷新对应页的数据：
 
@@ -586,7 +599,9 @@ remove: (index: number) => void;
 2. 同步连续调用了超过下一页缓存列表项的数据，缓存数据已经不够补充到当前页列表了。
 
 :::caution 注意
+
 为了让数据正确，remove 函数调用会清除全部缓存。
+
 :::
 
 ### 更新数据项
@@ -596,11 +611,14 @@ remove: (index: number) => void;
 ```typescript
 /**
  * 替换一条数据
+ * 当position传入数字时表示替换索引，负数表示从末尾算起，当 position 传入的是列表项，将替换此列表项，如果列表项未在列表数据中将会抛出错误
  * @param item 替换项
- * @param index 替换位置（索引）
+ * @param position 替换位置（索引）或列表项
  */
-replace: (item: LD[number], index: number) => void;
+declare function replace(item: LD extends any[] ? LD[number] : any, position: number | LD[number]): void;
 ```
+
+你也可以将`replace`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，将会替换此列表项。
 
 ### 刷新指定页的数据
 
@@ -609,10 +627,14 @@ replace: (item: LD[number], index: number) => void;
 ```typescript
 /**
  * 刷新指定页码数据，此函数将忽略缓存强制发送请求
- * @param refreshPage 刷新的页码
+ * 如果未传入页码则会刷新当前页
+ * 如果传入一个列表项，将会刷新此列表项所在页
+ * @param pageOrItemPage 刷新的页码或列表项
  */
-refresh: (refreshPage: number) => void;
+declare function refresh(pageOrItemPage?: number | LD[number]): void;
 ```
+
+在 append 模式下，你可以将`refresh`的参数指定为列表项，当查找到这个列表项的相同引用时，刷新此列表项所在页数的数据。
 
 ### 手动更新列表数据
 
@@ -633,236 +655,64 @@ update({
 /**
  * 从第一页开始重新加载列表，并清空缓存
  */
-reload: () => void;
+declare function reload(): void;
 ```
-
-## Typescript
-
-<Tabs groupId="framework">
-<TabItem value="1" label="vue">
-
-```typescript
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: Ref<boolean>;
-  error: Ref<Error | undefined>;
-  downloading: Ref<Progress>;
-  uploading: Ref<Progress>;
-  page: Ref<number>;
-  pageSize: Ref<number>;
-  data: Ref<LD>;
-  pageCount: ComputedRef<number | undefined>;
-  total: ComputedRef<number | undefined>;
-  isLastPage: ComputedRef<boolean>;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: Ref<boolean>;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-
-  /**
-   * 刷新指定页码数据，此函数将忽略缓存强制发送请求
-   * @param refreshPage 刷新的页码
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * 插入一条数据
-   * onBefore、插入操作、onAfter三个都需要分别顺序异步执行，因为需要等待视图更新再执行
-   * @param item 插入项
-   * @param config 插入配置
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * 移除一条数据
-   * @param index 移除的索引
-   */
-  remove: (index: any) => void;
-
-  /**
-   * 从第一页开始重新加载列表，并清空缓存
-   */
-  reload: () => void;
-}
-
-/**
- * 基于alova.js的vue分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/替换/移除
- *
- * @param handler method创建函数
- * @param config pagination hook配置
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<
-  S extends Ref,
-  E extends Ref,
-  R,
-  T,
-  RC,
-  RE,
-  RH,
-  LD extends any[],
-  WS extends WatchSource[]
->(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-<TabItem value="2" label="react">
-
-```typescript
-type ReactState<S> = [S, Dispatch<SetStateAction<S>>];
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: boolean;
-  error: Error | undefined;
-  downloading: Progress;
-  uploading: Progress;
-  page: ReactState<number>;
-  pageSize: ReactState<number>;
-  data: LD;
-  pageCount: number | undefined;
-  total: number | undefined;
-  isLastPage: boolean;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: boolean;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-
-  /**
-   * 刷新指定页码数据，此函数将忽略缓存强制发送请求
-   * @param refreshPage 刷新的页码
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * 插入一条数据
-   * onBefore、插入操作、onAfter三个都需要分别顺序异步执行，因为需要等待视图更新再执行
-   * @param item 插入项
-   * @param config 插入配置
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * 移除一条数据
-   * @param index 移除的索引
-   */
-  remove: (index: any) => void;
-
-  /**
-   * 从第一页开始重新加载列表，并清空缓存
-   */
-  reload: () => void;
-}
-
-/**
- * 基于alova.js的react分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/移除
- *
- * @param handler method创建函数
- * @param config pagination hook配置
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<S, E, R, T, RC, RE, RH, LD extends any[], WS extends DependencyList>(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-<TabItem value="3" label="svelte">
-
-```typescript
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: Writable<boolean>;
-  error: Writable<Error | undefined>;
-  downloading: Writable<Progress>;
-  uploading: Writable<Progress>;
-  page: Writable<number>;
-  pageSize: Writable<number>;
-  data: Writable<LD>;
-  pageCount: Readable<number | undefined>;
-  total: Readable<number | undefined>;
-  isLastPage: Readonly<Readable<boolean>>;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: Writable<boolean>;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-
-  /**
-   * 刷新指定页码数据，此函数将忽略缓存强制发送请求
-   * @param refreshPage 刷新的页码
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * 插入一条数据
-   * onBefore、插入操作、onAfter三个都需要分别顺序异步执行，因为需要等待视图更新再执行
-   * @param item 插入项
-   * @param config 插入配置
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * 移除一条数据
-   * @param index 移除的索引
-   */
-  remove: (index: any) => void;
-
-  /**
-   * 从第一页开始重新加载列表，并清空缓存
-   */
-  reload: () => void;
-}
-
-/**
- * 基于alova.js的svelte分页hook
- * 分页相关状态自动管理、前后一页预加载、自动维护数据的新增/编辑/移除
- *
- * @param handler method创建函数
- * @param config pagination hook配置
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<
-  S extends Writable<any>,
-  E extends Writable<any>,
-  R,
-  T,
-  RC,
-  RE,
-  RH,
-  LD extends any[],
-  WS extends Readable<any>[]
->(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-</Tabs>
 
 ## 限制
 
-1. **缓存占位模式** 和 **恢复模式** 暂时无效
+**缓存占位模式** 暂时无效
+
+## API
+
+### Hook 配置
+
+继承[**useWatcher**](/learning/use-watcher#api)所有配置。
+
+| 名称                | 描述                                     | 类型                      | 默认值                     | 版本 |
+| ------------------- | ---------------------------------------- | ------------------------- | -------------------------- | ---- |
+| initialPage         | 初始页码                                 | number                    | 1                          | -    |
+| initialPageSize     | 初始每页数据条数                         | number                    | 10                         | -    |
+| watchingStates      | 状态监听触发请求，使用 useWatcher 实现   | any[]                     | [page, pageSize]           | -    |
+| debounce            | 状态监听的防抖参数，使用 useWatcher 实现 | number&#124;number[]      | -                          | -    |
+| append              | 是否开启追加模式                         | boolean                   | false                      | -    |
+| data                | 指定分页的数组数据                       | (response: any) => any[]  | response => response.data  | -    |
+| total               | 指定数据总数量值                         | (response: any) => number | response => response.total | -    |
+| preloadPreviousPage | 是否预加载上一页数据                     | boolean                   | true                       | -    |
+| preloadNextPage     | 是否预加载下一页数据                     | boolean                   | true                       | -    |
+
+### 响应式数据
+
+继承[**useWatcher**](/learning/use-watcher#api)所有响应式数据。
+
+| 名称       | 描述                                                                                                               | 类型    | 版本 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------- | ---- |
+| page       | 当前页码，由 initialPage 决定                                                                                      | number  | -    |
+| pageSize   | 当前每页数量，由 initialPageSize 决定                                                                              | number  | -    |
+| data       | 分页列表数组数据，由 data 配置得到                                                                                 | any[]   | -    |
+| total      | 数据总数量，由 total 配置得到，可为空                                                                              | number  | -    |
+| pageCount  | 总页数，由 total 和 pageSize 计算得到                                                                              | number  | -    |
+| isLastPage | 当前是否为最后一页，pageCount 有值时会通过 pageCount 和 page 对比得到，否则会通过列表数据长度是否少于 pagSize 得到 | number  | -    |
+| fetching   | 是否正在预加载数据                                                                                                 | boolean | -    |
+
+### 操作函数
+
+继承[**useWatcher**](/learning/use-watcher#api)所有操作函数。
+
+| 名称    | 描述                                                                                                                                                   | 函数参数                                                                                | 返回值 | 版本 |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------ | ---- |
+| refresh | 刷新指定页码数据，此函数将忽略缓存强制发送请求，append 模式下可传入列表项表示刷新此列表项所在的页数                                                    | pageOrItemPage: 刷新的页码或列表项                                                      | -      | -    |
+| insert  | 插入一条数据，如果未传入 index，将默认插入到最前面，如果传入一个列表项，将插入到这个列表项的后面，如果列表项未在列表数据中将会抛出错误                 | 1. item: 插入项<br/>2. indexOrItem: 插入位置（索引）或列表项，默认为 0                  | -      | -    |
+| remove  | 移除一条数据，当传入数字时表示移除的索引，当 position 传入的是列表项，将移除此列表项，如果列表项未在列表数据中将会抛出错误                             | position: 移除位置（索引）或列表项                                                      | -      | -    |
+| replace | 替换一条数据，当第二个参数传入数字时表示替换索引，负数表示从末尾算起，当 position 传入的是列表项，将替换此列表项，如果列表项未在列表数据中将会抛出错误 | 1. item: 替换项<br/>2. position: 替换位置（索引）或列表项，传入负数时表示从末尾开始算起 | -      | -    |
+| reload  | 清空数据，并重新请求第一页数据                                                                                                                         | -                                                                                       | -      | -    |
+| update  | 更新状态数据，与 alova 的 use hook 用法相同，但在更新 data 字段时是更新列表数据                                                                        | newFrontStates：新的状态数据对象                                                        | -      | -    |
+
+### 事件
+
+继承[**useWatcher**](/learning/use-watcher#api)所有事件。
+
+| 名称            | 描述                     | 回调参数                  | 版本 |
+| --------------- | ------------------------ | ------------------------- | ---- |
+| onFetchSuccess  | fetch 成功的回调绑定函数 | event: alova 成功事件对象 | -    |
+| onFetchError    | fetch 失败的回调绑定函数 | event: alova 失败事件对象 | -    |
+| onFetchComplete | fetch 完成的回调绑定函数 | event: alova 完成事件对象 | -    |

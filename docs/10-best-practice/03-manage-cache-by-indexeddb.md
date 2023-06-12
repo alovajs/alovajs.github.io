@@ -13,7 +13,7 @@ Let's take custom management of large image data as an example.
 
 ## Create IndexedDB instance
 
-First create an IndexedDB instance to operate the local cache, and export the cache operation function.
+First create an IndexedDB instance to operate the local cache, and export the cache operate function.
 
 ```javascript title=db.js
 const dbVersion = 1;

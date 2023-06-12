@@ -6,11 +6,13 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info
+:::info stragety type
 
-Before using extension hooks, make sure you are familiar with basic usage of alova.
+use hook
 
 :::
+
+> Before using extension hooks, make sure you are familiar with basic usage of alova.
 
 A hook designed for paging scenarios, which can help you automatically manage paging data, preload data, reduce unnecessary data refresh, improve fluency by 300%, and reduce coding difficulty by 50%\*\*. You can use it in the two paging scenarios of pull-down loading and page number flipping. This hook provides a wealth of features to help your application create better performance and more convenient paging functions.
 
@@ -527,9 +529,9 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-## list manipulation functions
+## List action functions
 
-usePagination provides a fully functional list operation function, which can achieve the same effect as the re-request list without re-requesting the list, which greatly improves the interactive experience of the page. The specific function description continues to look down!
+usePagination provides a fully functional list action function, which can achieve the same effect as the re-request list without re-requesting the list, which greatly improves the interactive experience of the page. The specific function description continues to look down!
 
 ### Insert list item
 
@@ -537,11 +539,13 @@ You can use it to insert list items to any position in the list, and it will rem
 
 ```typescript
 /**
-  * Insert a piece of data, if the index is not passed in, it will be inserted at the front by default
-  * @param item insert item
-  * @param index insertion position (index)
-  */
-insert: (item: LD[number], index?: number) => void;
+ * Insert data
+ * If no index is passed in, it will be inserted at the front by default
+ * If a list item is passed in, it will be inserted after the list item, and an error will be thrown if the list item is not in the list data
+ * @param item insert item
+ * @param indexOrItem insertion position (index)
+ */
+declare function insert(item: LD[number], indexOrItem?: number | LD[number]): void;
 ```
 
 The following is an example of returning to the first page and then inserting list items in **non-append mode** (page number flipping scenario):
@@ -562,6 +566,12 @@ nextTick(() => {
 });
 ```
 
+You can also specify the second parameter of `insert` as a list item. When the same reference of this list item is found, the insert item will be inserted after this list item.
+
+```javascript
+insert(newItem, afterItem);
+```
+
 :::caution Caution
 
 In order to make the data correct, the insert function call will clear all caches.
@@ -574,11 +584,14 @@ In the case that the next page has a cache, it will use the cache of the next pa
 
 ```typescript
 /**
-  * Remove a piece of data
-  * @param index index to remove
-  */
-remove: (index: number) => void;
+ * Remove data
+ * If a list item is passed in, the list item will be removed, and an error will be thrown if the list item is not in the list data
+ * @param position index or list item to remove
+ */
+declare function remove(position: number | LD[number]): void;
 ```
+
+You can also specify the second parameter of `remove` as a list item, and when the same reference of this list item is found, this list item will be removed.
 
 But in the following two cases, it will re-initiate the request to refresh the data of the corresponding page:
 
@@ -586,7 +599,9 @@ But in the following two cases, it will re-initiate the request to refresh the d
 2. The data that exceeds the next page cache list item is continuously called synchronously, and the cache data is not enough to supplement the current page list.
 
 :::caution Caution
+
 In order to make the data correct, the remove function call will clear all caches.
+
 :::
 
 ### Update data items
@@ -595,12 +610,15 @@ Use this function when you want to update list items.
 
 ```typescript
 /**
-  * Replace a piece of data
-  * @param item replacement item
-  * @param index replacement position (index)
-  */
-replace: (item: LD[number], index: number) => void;
+ * Replace data
+ * If the position passed in is a list item, this list item will be replaced, if the list item is not in the list data, an error will be thrown
+ * @param item replacement item
+ * @param position replacement position (index) or list item
+ */
+declare function replace(item: LD extends any[] ? LD[number] : any, position: number | LD[number]): void;
 ```
+
+You can also specify the second parameter of `replace` as a list item, which will be replaced when an identical reference to the list item is found.
 
 ### Refresh the data of the specified page
 
@@ -608,11 +626,15 @@ When you do not want to update the list items locally after the data operation, 
 
 ```typescript
 /**
-  * Refresh the specified page number data, this function will ignore the cache to force the send request
-  * @param refreshPage refresh page number
-  */
-refresh: (refreshPage: number) => void;
+ * Refresh the specified page number data, this function will ignore the cache to force the send request
+ * If no page number is passed in, the current page will be refreshed
+ * If a list item is passed in, the page where the list item is located will be refreshed
+ * @param pageOrItemPage Refreshed page number or list item
+ */
+declare function refresh(pageOrItemPage?: number | LD[number]): void;
 ```
+
+In append mode, you can specify the parameter of `refresh` as a list item. When the same reference of this list item is found, the data of the page number where this list item is located will be refreshed.
 
 ### Manually update list data
 
@@ -631,241 +653,66 @@ It will clear all caches and reload the first page.
 
 ```typescript
 /**
-  * Reload the list from the first page and clear the cache
-  */
-reload: () => void;
-```
-
-##Typescript
-
-<Tabs groupId="framework">
-<TabItem value="1" label="vue">
-
-```typescript
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: Ref<boolean>;
-  error: Ref<Error | undefined>;
-  downloading: Ref<Progress>;
-  uploading: Ref<Progress>;
-  page: Ref<number>;
-  pageSize: Ref<number>;
-  data: Ref<LD>;
-  pageCount: ComputedRef<number | undefined>;
-  total: ComputedRef<number | undefined>;
-  isLastPage: ComputedRef<boolean>;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: Ref<boolean>;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
-
-  /**
-   * Refresh the specified page number data, this function will ignore the cache to force the send request
-   * @param refreshPage refresh page number
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * Insert a piece of data
-   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
-   * @param item insert item
-   * @param config insert configuration
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * Remove a piece of data
-   * @param index index to remove
-   */
-  remove: (index: any) => void;
-
-  /**
-   * Reload the list from the first page and clear the cache
-   */
-  reload: () => void;
-}
-
-/**
- * Vue paging hook based on alova.js
- * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/replacement/removal
- *
- * @param handler method creation function
- * @param config pagination hook configuration
- * @returns {UsePaginationReturnType}
+ * Reload the list from the first page and clear the cache
  */
-export declare function usePagination<
-  S extends Ref,
-  E extends Ref,
-  R,
-  T,
-  RC,
-  RE,
-  RH,
-  LD extends any[],
-  WS extends WatchSource[]
->(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
+declare function reload(): void;
 ```
-
-</TabItem>
-<TabItem value="2" label="react">
-
-```typescript
-type ReactState<S> = [S, Dispatch<SetStateAction<S>>];
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: boolean;
-  error: Error | undefined;
-  downloading: Progress;
-  uploading: Progress;
-  page: ReactState<number>;
-  pageSize: ReactState<number>;
-  data: LD;
-  pageCount: number | undefined;
-  total: number | undefined;
-  isLastPage: boolean;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: boolean;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
-
-  /**
-   * Refresh the specified page number data, this function will ignore the cache to force the send request
-   * @param refreshPage refresh page number
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * Insert a piece of data
-   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
-   * @param item insert item
-   * @param config insert configuration
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * Remove a piece of data
-   * @param index index to remove
-   */
-  remove: (index: any) => void;
-
-  /**
-   * Reload the list from the first page and clear the cache
-   */
-  reload: () => void;
-}
-
-/**
- * React paging hook based on alova.js
- * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/removal
- *
- * @param handler method creation function
- * @param config pagination hook configuration
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<S, E, R, T, RC, RE, RH, LD extends any[], WS extends DependencyList>(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-<TabItem value="3" label="svelte">
-
-```typescript
-interface UsePaginationReturnType<LD extends any[], R> {
-  loading: Writable<boolean>;
-  error: Writable<Error | undefined>;
-  downloading: Writable<Progress>;
-  uploading: Writable<Progress>;
-  page: Writable<number>;
-  pageSize: Writable<number>;
-  data: Writable<LD>;
-  pageCount: Readable<number | undefined>;
-  total: Readable<number | undefined>;
-  isLastPage: Readonly<Readable<boolean>>;
-
-  abort: () => void;
-  send: (...args: any[]) => Promise<R>;
-  onSuccess: (handler: SuccessHandler<R>) => void;
-  onError: (handler: ErrorHandler) => void;
-  onComplete: (handler: CompleteHandler) => void;
-
-  fetching: Writable<boolean>;
-  onFetchSuccess: (handler: SuccessHandler<R>) => void;
-  onFetchError: (handler: ErrorHandler) => void;
-  onFetchComplete: (handler: CompleteHandler) => void;
-  update: (newFrontStates: Partial<FrontRequestState<boolean, LD, Error | undefined, Progress, Progress>>) => void;
-
-  /**
-   * Refresh the specified page number data, this function will ignore the cache to force the send request
-   * @param refreshPage refresh page number
-   */
-  refresh: (refreshPage: number) => void;
-
-  /**
-   * Insert a piece of data
-   * onBefore, insert operation, and onAfter all need to be executed sequentially and asynchronously, because they need to wait for the view to be updated before executing
-   * @param item insert item
-   * @param config insert configuration
-   */
-  insert: (item: LD[number], config?: InsertConfig) => void;
-
-  /**
-   * Remove a piece of data
-   * @param index index to remove
-   */
-  remove: (index: any) => void;
-
-  /**
-   * Reload the list from the first page and clear the cache
-   */
-  reload: () => void;
-}
-
-/**
- * svelte paging hook based on alova.js
- * Automatic management of pagination-related states, preloading of previous and subsequent pages, automatic maintenance of data addition/editing/removal
- *
- * @param handler method creation function
- * @param config pagination hook configuration
- * @returns {UsePaginationReturnType}
- */
-export declare function usePagination<
-  S extends Writable<any>,
-  E extends Writable<any>,
-  R,
-  T,
-  RC,
-  RE,
-  RH,
-  LD extends any[],
-  WS extends Readable<any>[]
->(
-  handler: (page: number, pageSize: number) => Method<S, E, R, T, RC, RE, RH>,
-  config: PaginationConfig<R, LD, WS>
-): UsePaginationReturnType<LD, R>;
-```
-
-</TabItem>
-</Tabs>
 
 ## Limitation
 
-**Cache replaceholder mode** and **recovery mode** are temporarily disabled
+**Cache replaceholder mode** are temporarily disabled.
+
+## API
+
+### Hook configuration
+
+Inherit all configurations of [**useWatcher**](/learning/use-watcher#api).
+
+| Name                | Description                                                           | Type                      | Default                    | Version |
+| ------------------- | --------------------------------------------------------------------- | ------------------------- | -------------------------- | ------- |
+| initialPage         | initial page number                                                   | number                    | 1                          | -       |
+| initialPageSize     | Initial number of data items per page                                 | number                    | 10                         | -       |
+| watchingStates      | state monitoring trigger request, implemented using useWatcher        | any[]                     | [page, pageSize]           | -       |
+| debounce            | The debounce parameter of state monitoring, implemented by useWatcher | number&#124;number[]      | -                          | -       |
+| append              | Whether to enable append mode                                         | boolean                   | false                      | -       |
+| data                | Array data specifying pagination                                      | (response: any) => any[]  | response => response.data  | -       |
+| total               | specify the total amount of data                                      | (response: any) => number | response => response.total | -       |
+| preloadPreviousPage | whether to preload previous page data                                 | boolean                   | true                       | -       |
+| preloadNextPage     | whether to preload next page data                                     | boolean                   | true                       | -       |
+
+### Responsive data
+
+Inherit all responsive data from [**useWatcher**](/learning/use-watcher#api).
+
+| Name       | Description                                                                                                                                                                                                         | Type    | Version |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
+| page       | Current page number, determined by initialPage                                                                                                                                                                      | number  | -       |
+| pageSize   | The current number of pages, determined by initialPageSize                                                                                                                                                          | number  | -       |
+| data       | paging list array data, obtained from data configuration                                                                                                                                                            | any[]   | -       |
+| total      | The total amount of data, obtained from total configuration, can be empty                                                                                                                                           | number  | -       |
+| pageCount  | The total number of pages, calculated from total and pageSize                                                                                                                                                       | number  | -       |
+| isLastPage | Whether the current page is the last page, if pageCount has a value, it will be obtained by comparing pageCount and page, otherwise it will be obtained by whether the length of the list data is less than pagSize | number  | -       |
+| fetching   | whether data is being preloaded                                                                                                                                                                                     | boolean | -       |
+
+### Action function
+
+Inherit all action functions of [**useWatcher**](/learning/use-watcher#api).
+
+| name    | description                                                                                                                                                                                                                                                                                           | function parameters                                                                                                                                       | return value | version |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------- |
+| refresh | Refresh the data of the specified page number, this function will ignore the forced sending request of the cache, in the append mode, the list item can be passed in to indicate the page number where the list item is refreshed                                                                     | pageOrItemPage: Refreshed page number or list item                                                                                                        | -            | -       |
+| insert  | Insert a piece of data. If no index is passed in, it will be inserted at the front by default. If a list item is passed in, it will be inserted after the list item. If the list item is not in the list data, an error will be thrown                                                                | 1. item: insert item<br/>2. indexOrItem: insert position (index) or list item, default is 0                                                               | -            | -       |
+| remove  | Remove a piece of data. When a number is passed in, it means the removed index. When the position is passed in a list item, the list item will be removed. If the list item is not in the list data, an error will be thrown                                                                          | position : remove position (index) or list item                                                                                                           | -            | -       |
+| replace | Replace a piece of data. When the second parameter is passed in a number, it means the replacement index. A negative number means counting from the end. When the position passed in is a list item, the list item will be replaced. If the list item is not in the list data An error will be thrown | 1. item: replacement item<br/>2. position: replacement position (index) or list item, when a negative number is passed in, it means counting from the end | -            | -       |
+| reload  | Clear the data and re-request the first page of data                                                                                                                                                                                                                                                  | -                                                                                                                                                         | -            | -       |
+| update  | Update state data, same as alova's use hook, but update list data when updating data field                                                                                                                                                                                                            | newFrontStates: new state data object                                                                                                                     | -            | -       |
+
+### Event
+
+Inherit all events from [**useWatcher**](/learning/use-watcher#api).
+
+| Name            | Description                                    | Callback Parameters                  | Version |
+| --------------- | ---------------------------------------------- | ------------------------------------ | ------- |
+| onFetchSuccess  | fetch success callback binding function        | event: alova success event object    | -       |
+| onFetchError    | callback binding function for fetch failure    | event: alova failure event object    | -       |
+| onFetchComplete | callback binding function for fetch completion | event: alova completion event object | -       |

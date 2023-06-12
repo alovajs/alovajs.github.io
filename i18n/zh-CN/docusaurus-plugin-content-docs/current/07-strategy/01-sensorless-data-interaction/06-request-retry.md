@@ -36,7 +36,7 @@ useSQRequest(createOrEditTodo, {
 });
 ```
 
-如果需要按规则增长的延迟时间，可以再为它设置一个增长倍数。
+如果需要按规则增长的延迟时间，可以再为它设置一个增长倍数，延迟时间将按重试次数指数增长。
 
 ```javascript
 useSQRequest(createOrEditTodo, {
@@ -45,7 +45,7 @@ useSQRequest(createOrEditTodo, {
   backoff: {
     delay: 2000,
     // highlight-start
-    // multiplier设置为2时，第一次重试延迟为2秒，第二次为4秒，第三次为6秒
+    // multiplier设置为2时，第一次重试延迟为2秒，第二次为4秒，第三次为8秒，以此类推
     multiplier: 2
     // highlight-end
   }

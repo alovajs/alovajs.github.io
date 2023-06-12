@@ -385,3 +385,107 @@ const handleCancel = () => {
 };
 // highlight-end
 ```
+
+## API
+
+### Hook 配置
+
+| 名称          | 描述                                                                | 类型                                                                                                                                  | 默认值 | 版本 |
+| ------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---- |
+| immediate     | 是否立即发起请求                                                    | boolean                                                                                                                               | true   | -    |
+| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined` | any                                                                                                                                   | -      | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                       | boolean &#124; (...args: any[]) => boolean                                                                                            | false  | -    |
+| managedStates | 额外的监管状态，可通过 updateState 更新                             | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                 | -      | -    |
+| middleware    | 中间件函数，[了解 alova 中间件](/advanced/middleware)               | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise&lt;any&gt; | -      | -    |
+
+#### AlovaFrontMiddlewareContext
+
+| 名称             | 描述                                                                                                 | 类型                                                                                                                                                                                                         | 版本    |
+| ---------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| method           | 当前请求的 method 对象                                                                               | Method                                                                                                                                                                                                       | -       |
+| cachedResponse   | 命中的缓存数据                                                                                       | any                                                                                                                                                                                                          | -       |
+| config           | 当前的 use hook 配置                                                                                 | Record<string, any>                                                                                                                                                                                          | -       |
+| sendArgs         | 响应处理回调的参数，该参数由 use hooks 的 send 传入                                                  | any[]                                                                                                                                                                                                        | -       |
+| frontStates      | use hook 前端状态集合，如 data、loading、error 等                                                    | [FrontRequestState](#frontrequeststate)                                                                                                                                                                      | -       |
+| send             | 发送请求函数                                                                                         | (...args: any[]) => void                                                                                                                                                                                     | Promise |
+| abort            | 中断函数                                                                                             | () => void                                                                                                                                                                                                   | -       |
+| decorateSuccess  | 装饰成功回调函数                                                                                     | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](#alovasuccessevent), <br/>index: number, <br/>length: number<br/>) => void) => void     | -       |
+| decorateError    | 装饰失败回调函数                                                                                     | (decorator: (<br/>handler: (event: [AlovaErrorEvent](#alovaerrorevent)) => void, <br/>event: [AlovaErrorEvent](#alovaerrorevent), <br/>index: number, <br/>length: number<br/>) => void) => void             | -       |
+| decorateComplete | 装饰完成回调函数                                                                                     | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](#alovacompleteevent), <br/>index: number, <br/>length: number<br/>) => void) => void | -       |
+| update           | 更新当前 use hook 前端状态的函数，在 react 中较有用                                                  | (newFrontStates: [FrontRequestState](#frontrequeststate)) => void;                                                                                                                                           | -       |
+| controlLoading   | 将自定义控制 loading 的状态，调用内部不再触发 loading 状态的变更，传入 control 为 false 时将取消控制 | (control?: boolean) => void                                                                                                                                                                                  | -       |
+
+#### AlovaGuardNext
+
+```typescript
+type AlovaGuardNext = (guardNextConfig?: {
+  force?: boolean | (...args: any[]) => boolean;
+  method?: Method;
+}): Promise;
+```
+
+#### FrontRequestState
+
+以下属性值将会根据`statesHook`自动推断出对应 UI 框架的响应式数据类型，在 vue3 中为`Ref`类型，在 react 中为普通值，在 svelte 中为`Writable`类型
+
+| 名称        | 描述         | 类型                   | 版本 |
+| ----------- | ------------ | ---------------------- | ---- |
+| loading     | 请求加载状态 | boolean                | -    |
+| data        | 响应数据     | any                    | -    |
+| error       | 请求错误信息 | Error &#124; undefined | -    |
+| downloading | 下载进度信息 | Object                 | -    |
+| uploading   | 上传进度信息 | Object                 | -    |
+
+#### AlovaSuccessEvent
+
+| 名称      | 描述                                                | 类型    | 版本 |
+| --------- | --------------------------------------------------- | ------- | ---- |
+| method    | 当前请求的 method 对象                              | Method  | -    |
+| sendArgs  | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]   | -    |
+| data      | 响应数据                                            | any     | -    |
+| fromCache | 响应数据是否来自缓存                                | boolean | -    |
+
+#### AlovaErrorEvent
+
+| 名称     | 描述                                                | 类型   | 版本 |
+| -------- | --------------------------------------------------- | ------ | ---- |
+| method   | 当前请求的 method 对象                              | Method | -    |
+| sendArgs | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]  | -    |
+| error    | 响应错误实例                                        | Error  | -    |
+
+#### AlovaCompleteEvent
+
+| 名称      | 描述                                                | 类型                     | 版本 |
+| --------- | --------------------------------------------------- | ------------------------ | ---- |
+| method    | 当前请求的 method 对象                              | Method                   | -    |
+| sendArgs  | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]                    | -    |
+| status    | 响应状态，成功时为 success，失败时为 error          | 'success' &#124; 'error' | -    |
+| data      | 响应数据，成功时有值                                | any                      | -    |
+| fromCache | 响应数据是否来自缓存，成功时有值                    | boolean                  | -    |
+| error     | 响应错误实例，失败时有值                            | Error                    | -    |
+
+### 响应式数据
+
+| 名称        | 描述         | 类型                   | 版本 |
+| ----------- | ------------ | ---------------------- | ---- |
+| loading     | 请求加载状态 | boolean                | -    |
+| data        | 响应数据     | any                    | -    |
+| error       | 请求错误信息 | Error &#124; undefined | -    |
+| downloading | 下载进度信息 | Object                 | -    |
+| uploading   | 上传进度信息 | Object                 | -    |
+
+### 操作函数
+
+| 名称   | 描述                                                | 函数参数                                                | 返回值  | 版本 |
+| ------ | --------------------------------------------------- | ------------------------------------------------------- | ------- | ---- |
+| send   | 发送请求函数                                        | ...args: any[]                                          | -       | -    |
+| abort  | 中断函数                                            | -                                                       | Promise | -    |
+| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](#frontrequeststate) | -       |
+
+### 事件
+
+| 名称       | 描述             | 回调参数                                         | 版本 |
+| ---------- | ---------------- | ------------------------------------------------ | ---- |
+| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](#alovasuccessevent)   | -    |
+| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](#alovaerrorevent)       | -    |
+| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](#alovacompleteevent) | -    |

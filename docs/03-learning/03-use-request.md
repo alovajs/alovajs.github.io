@@ -385,3 +385,107 @@ const handleCancel = () => {
 };
 // highlight-end
 ```
+
+## API
+
+### Hook configuration
+
+| Name          | Description                                                                                                   | Type                                                                                                                                  | Default | Version |
+| ------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
+| immediate     | Whether to initiate the request immediately                                                                   | boolean                                                                                                                               | true    | -       |
+| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set | any                                                                                                                                   | -       | -       |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean &#124; (...args: any[]) => boolean                                                                                            | false   | -       |
+| managedStates | Additional managed states, can be updated via updateState                                                     | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                 | -       | -       |
+| middleware    | Middleware function, [Learn about alova middleware](/advanced/middleware)                                     | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise&lt;any&gt; | -       | -       |
+
+#### AlovaFrontMiddlewareContext
+
+| Name             | Description                                                                                                                                                                             | Type                                                                                                                                                                                                          | Version |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| method           | The method object of the current request                                                                                                                                                | Method                                                                                                                                                                                                        | -       |
+| cachedResponse   | hit cached data                                                                                                                                                                         | any                                                                                                                                                                                                           | -       |
+| config           | current use hook configuration                                                                                                                                                          | Record<string, any>                                                                                                                                                                                           | -       |
+| sendArgs         | The parameters of the response processing callback, which are passed in by send of use hooks                                                                                            | any[]                                                                                                                                                                                                         | -       |
+| frontStates      | use hook front-end state collection, such as data, loading, error, etc.                                                                                                                 | [FrontRequestState](#frontrequeststate)                                                                                                                                                                       | -       |
+| send             | send request function                                                                                                                                                                   | (...args: any[]) => void                                                                                                                                                                                      | Promise |
+| abort            | interrupt function                                                                                                                                                                      | () => void                                                                                                                                                                                                    | -       |
+| decorateSuccess  | Decorate success callback function                                                                                                                                                      | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](#alovasuccessevent), <br/ >index: number, <br/>length: number<br/>) => void) => void     | -       |
+| decorateError    | callback function for decoration failure                                                                                                                                                | (decorator: (<br/>handler: (event: [AlovaErrorEvent](#alovaerrorevent)) => void, <br/>event: [AlovaErrorEvent](#alovaerrorevent), <br/>index: number, <br />length: number<br/>) => void) => void             | -       |
+| decorateComplete | Decoration completion callback function                                                                                                                                                 | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](#alovacompleteevent), <br/ >index: number, <br/>length: number<br/>) => void) => void | -       |
+| update           | A function to update the front-end state of the current use hook, more useful in react                                                                                                  | (newFrontStates: [FrontRequestState](#frontrequeststate)) => void;                                                                                                                                            | -       |
+| controlLoading   | will customize the loading state of the control, and the call will no longer trigger the change of the loading state. When the passed in control is false, the control will be canceled | (control?: boolean) => void                                                                                                                                                                                   | -       |
+
+####AlovaGuardNext
+
+```typescript
+type AlovaGuardNext = (guardNextConfig?: {
+   force?: boolean | (...args: any[]) => boolean;
+   method?: Method;
+}): Promise;
+```
+
+#### FrontRequestState
+
+The following attribute values will automatically infer the responsive data type corresponding to the UI framework according to `statesHook`, which is `Ref` type in vue3, normal value in react, and `Writable` type in svelte
+
+| Name        | Description                   | Type                   | Version |
+| ----------- | ----------------------------- | ---------------------- | ------- |
+| loading     | request loading status        | boolean                | -       |
+| data        | response data                 | any                    | -       |
+| error       | request error message         | Error &#124; undefined | -       |
+| downloading | download progress information | Object                 | -       |
+| uploading   | upload progress information   | Object                 | -       |
+
+#### AlovaSuccessEvent
+
+| Name      | Description                                                                                  | Type    | Version |
+| --------- | -------------------------------------------------------------------------------------------- | ------- | ------- |
+| method    | The method object of the current request                                                     | Method  | -       |
+| sendArgs  | The parameters of the response processing callback, which are passed in by send of use hooks | any[]   | -       |
+| data      | response data                                                                                | any     | -       |
+| fromCache | Whether the response data comes from the cache                                               | boolean | -       |
+
+#### AlovaErrorEvent
+
+| Name     | Description                                                                                  | Type   | Version |
+| -------- | -------------------------------------------------------------------------------------------- | ------ | ------- |
+| method   | The method object of the current request                                                     | Method | -       |
+| sendArgs | The parameters of the response processing callback, which are passed in by send of use hooks | any[]  | -       |
+| error    | response error instance                                                                      | Error  | -       |
+
+#### AlovaCompleteEvent
+
+| Name      | Description                                                                                  | Type                     | Version |
+| --------- | -------------------------------------------------------------------------------------------- | ------------------------ | ------- |
+| method    | The method object of the current request                                                     | Method                   | -       |
+| sendArgs  | The parameters of the response processing callback, which are passed in by send of use hooks | any[]                    | -       |
+| status    | Response status, success on success, error on failure                                        | 'success' &#124; 'error' | -       |
+| data      | response data, value on success                                                              | any                      | -       |
+| fromCache | Whether the response data comes from the cache or not, it has a value when successful        | boolean                  | -       |
+| error     | response error instance, value on failure                                                    | Error                    | -       |
+
+### Responsive data
+
+| Name        | Description                   | Type                   | Version |
+| ----------- | ----------------------------- | ---------------------- | ------- |
+| loading     | request loading status        | boolean                | -       |
+| data        | response data                 | any                    | -       |
+| error       | request error message         | Error &#124; undefined | -       |
+| downloading | download progress information | Object                 | -       |
+| uploading   | upload progress information   | Object                 | -       |
+
+### Action function
+
+| name   | description                                                                            | function parameters                                     | return value | version |
+| ------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------ | ------- |
+| send   | send request function                                                                  | ...args: any[]                                          | Promise      | -       |
+| abort  | interrupt function                                                                     | -                                                       | -            | -       |
+| update | A function to update the front-end state of the current use hook, more useful in react | newFrontStates: [FrontRequestState](#frontrequeststate) | -            |
+
+### Event
+
+| Name       | Description                      | Callback Parameters                              | Version |
+| ---------- | -------------------------------- | ------------------------------------------------ | ------- |
+| onSuccess  | Request success event binding    | event: [AlovaSuccessEvent](#alovasuccessevent)   | -       |
+| onError    | request error event binding      | event: [AlovaErrorEvent](#alovaerrorEvent)       | -       |
+| onComplete | Request completion event binding | event: [AlovaCompleteEvent](#alovacompleteevent) | -       |
