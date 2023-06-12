@@ -126,16 +126,16 @@ useSerialRequest([
 
 ### Hook 配置
 
-继承[**useWatcher**](/learning/use-watcher)所有配置。
+继承[**useWatcher**](/learning/use-watcher#api)所有配置。
 
 ### 响应式数据
 
-继承[**useWatcher**](/learning/use-watcher)所有响应式数据。
+继承[**useWatcher**](/learning/use-watcher#api)所有响应式数据。
 
 ### 操作函数
 
-继承[**useWatcher**](/learning/use-watcher)所有操作函数。
+继承[**useWatcher**](/learning/use-watcher#api)所有操作函数。
 
 ### 事件
 
-继承[**useWatcher**](/learning/use-watcher)所有事件。
+继承[**useWatcher**](/learning/use-watcher#api)所有事件。

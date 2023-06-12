@@ -545,3 +545,42 @@ const handleCancel = () => {
 };
 // highlight-end
 ```
+
+## API
+
+### Hook 配置
+
+| 名称          | 描述                                                                       | 类型                                                                                                                                                                              | 默认值   | 版本 |
+| ------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---- | --- |
+| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                           | true     | -    |
+| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                               | -        | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean &#124; (...args: any[]) => boolean                                                                                                                                        | false    | -    |
+| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                             | -        | -    |
+| debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number                                                                                                                                                                            | number[] | -    | -   |
+| middleware    | 中间件函数，[了解 alova 中间件](/advanced/middleware)                      | (context: [AlovaFrontMiddlewareContext](/learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](/learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -        | -    |
+
+### 响应式数据
+
+| 名称        | 描述         | 类型                   | 版本 |
+| ----------- | ------------ | ---------------------- | ---- |
+| loading     | 请求加载状态 | boolean                | -    |
+| data        | 响应数据     | any                    | -    |
+| error       | 请求错误信息 | Error &#124; undefined | -    |
+| downloading | 下载进度信息 | Object                 | -    |
+| uploading   | 上传进度信息 | Object                 | -    |
+
+### 操作函数
+
+| 名称   | 描述                                                | 函数参数                                                                      | 返回值  | 版本 |
+| ------ | --------------------------------------------------- | ----------------------------------------------------------------------------- | ------- | ---- |
+| send   | 发送请求函数                                        | ...args: any[]                                                                | Promise | -    |
+| abort  | 中断函数                                            | -                                                                             | -       | -    |
+| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](/learning/use-request/#frontrequeststate) | -       |
+
+### 事件
+
+| 名称       | 描述             | 回调参数                                                               | 版本 |
+| ---------- | ---------------- | ---------------------------------------------------------------------- | ---- |
+| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](/learning/use-request/#alovasuccessevent)   | -    |
+| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](/learning/use-request/#alovaerrorevent)       | -    |
+| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](/learning/use-request/#alovacompleteevent) | -    |

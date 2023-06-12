@@ -447,7 +447,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### Hook 配置
 
-继承[**useRequest**](/learning/use-request)所有配置。
+继承[**useRequest**](/learning/use-request#api)所有配置。
 
 | 名称                | 描述                                                                                                     | 类型                                                  | 默认值 | 版本 |
 | ------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------ | ---- |
@@ -458,7 +458,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### 响应式数据
 
-继承[**useRequest**](/learning/use-request)所有响应式数据。
+继承[**useRequest**](/learning/use-request#api)所有响应式数据。
 
 | 名称 | 描述                          | 类型 | 版本 |
 | ---- | ----------------------------- | ---- | ---- |
@@ -480,7 +480,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### 操作函数
 
-继承[**useRequest**](/learning/use-request)所有操作函数。
+继承[**useRequest**](/learning/use-request#api)所有操作函数。
 
 | 名称       | 描述                                       | 函数参数                                                                       | 返回值 | 版本 |
 | ---------- | ------------------------------------------ | ------------------------------------------------------------------------------ | ------ | ---- |
@@ -489,7 +489,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### 事件
 
-继承[**useRequest**](/learning/use-request)所有事件。
+继承[**useRequest**](/learning/use-request#api)所有事件。
 
 | 名称      | 描述                 | 回调参数 | 版本 |
 | --------- | -------------------- | -------- | ---- |

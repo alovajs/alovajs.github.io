@@ -666,7 +666,7 @@ declare function reload(): void;
 
 ### Hook configuration
 
-Inherit all configurations of [**useWatcher**](/learning/use-watcher).
+Inherit all configurations of [**useWatcher**](/learning/use-watcher#api).
 
 | Name                | Description                                                           | Type                      | Default                    | Version |
 | ------------------- | --------------------------------------------------------------------- | ------------------------- | -------------------------- | ------- |
@@ -682,7 +682,7 @@ Inherit all configurations of [**useWatcher**](/learning/use-watcher).
 
 ### Responsive data
 
-Inherit all responsive data from [**useWatcher**](/learning/use-watcher).
+Inherit all responsive data from [**useWatcher**](/learning/use-watcher#api).
 
 | Name       | Description                                                                                                                                                                                                         | Type    | Version |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
@@ -696,20 +696,20 @@ Inherit all responsive data from [**useWatcher**](/learning/use-watcher).
 
 ### Action function
 
-Inherit all action functions of [**useWatcher**](/learning/use-watcher).
+Inherit all action functions of [**useWatcher**](/learning/use-watcher#api).
 
-| name    | description                                                                                                                                                                                                                       | function parameters                                                                         | return value | version |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------ | ------- |
-| refresh | Refresh the data of the specified page number, this function will ignore the forced sending request of the cache, in the append mode, the list item can be passed in to indicate the page number where the list item is refreshed | pageOrItemPage: Refreshed page number or list item                                          | -            | -       |
-| insert  | Insert data. If no index is passed in, it will be inserted at the front by default. If a list item is passed in, it will be inserted after the list item. If the list item is not in the list data, an error will be thrown       | 1. item: insert item<br/>2. indexOrItem: insert position (index) or list item, default is 0 | -            | -       |
-| remove  | remove data, if the passed in position is a list item, this list item will be replaced, if the list item is not in the list data, an error will be thrown                                                                         | position: remove the position (index) or list item                                          | -            | -       |
-| replace | Replace data. If the input of position is a list item, the list item will be replaced. If the list item is not in the list data, an error will be thrown                                                                          | 1. item: replacement item<br/>2. position: replace position (index) or list item            | -            | -       |
-| reload  | Clear the data and re-request the first page of data                                                                                                                                                                              | -                                                                                           | -            | -       |
-| update  | Update state data, same as alova's use hook, but update list data when updating data field                                                                                                                                        | newFrontStates: new state data object                                                       | -            | -       |
+| name    | description                                                                                                                                                                                                                                                                                           | function parameters                                                                                                                                       | return value | version |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------- |
+| refresh | Refresh the data of the specified page number, this function will ignore the forced sending request of the cache, in the append mode, the list item can be passed in to indicate the page number where the list item is refreshed                                                                     | pageOrItemPage: Refreshed page number or list item                                                                                                        | -            | -       |
+| insert  | Insert a piece of data. If no index is passed in, it will be inserted at the front by default. If a list item is passed in, it will be inserted after the list item. If the list item is not in the list data, an error will be thrown                                                                | 1. item: insert item<br/>2. indexOrItem: insert position (index) or list item, default is 0                                                               | -            | -       |
+| remove  | Remove a piece of data. When a number is passed in, it means the removed index. When the position is passed in a list item, the list item will be removed. If the list item is not in the list data, an error will be thrown                                                                          | position : remove position (index) or list item                                                                                                           | -            | -       |
+| replace | Replace a piece of data. When the second parameter is passed in a number, it means the replacement index. A negative number means counting from the end. When the position passed in is a list item, the list item will be replaced. If the list item is not in the list data An error will be thrown | 1. item: replacement item<br/>2. position: replacement position (index) or list item, when a negative number is passed in, it means counting from the end | -            | -       |
+| reload  | Clear the data and re-request the first page of data                                                                                                                                                                                                                                                  | -                                                                                                                                                         | -            | -       |
+| update  | Update state data, same as alova's use hook, but update list data when updating data field                                                                                                                                                                                                            | newFrontStates: new state data object                                                                                                                     | -            | -       |
 
-### event
+### Event
 
-Inherit all events from [**useWatcher**](/learning/use-watcher).
+Inherit all events from [**useWatcher**](/learning/use-watcher#api).
 
 | Name            | Description                                    | Callback Parameters                  | Version |
 | --------------- | ---------------------------------------------- | ------------------------------------ | ------- |

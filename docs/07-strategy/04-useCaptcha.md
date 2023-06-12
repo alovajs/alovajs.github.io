@@ -183,7 +183,7 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 ### Hook configuration
 
-Inherit all configurations of [**useRequest**](/learning/use-request) except `immediate`, `immediate` in `useCaptcha` has been hard-coded to false.
+Inherit all configurations of [**useRequest**](/learning/use-request#api) except `immediate`, `immediate` in `useCaptcha` has been hard-coded to false.
 
 | Name             | Description                                                                                                | Type   | Default | Version |
 | ---------------- | ---------------------------------------------------------------------------------------------------------- | ------ | ------- | ------- |
@@ -191,7 +191,7 @@ Inherit all configurations of [**useRequest**](/learning/use-request) except `im
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/learning/use-request).
+Inherit all responsive data from [**useRequest**](/learning/use-request#api).
 
 | Name      | Description                                                                                                 | Type   | Version |
 | --------- | ----------------------------------------------------------------------------------------------------------- | ------ | ------- |
@@ -199,7 +199,7 @@ Inherit all responsive data from [**useRequest**](/learning/use-request).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/learning/use-request).
+Inherit all action functions of [**useRequest**](/learning/use-request#api).
 
 | name | description                                                                  | function parameters             | return value            | version |
 | ---- | ---------------------------------------------------------------------------- | ------------------------------- | ----------------------- | ------- |
@@ -207,4 +207,4 @@ Inherit all action functions of [**useRequest**](/learning/use-request).
 
 ### Event
 
-Inherit all events from [**useRequest**](/learning/use-request).
+Inherit all events from [**useRequest**](/learning/use-request#api).

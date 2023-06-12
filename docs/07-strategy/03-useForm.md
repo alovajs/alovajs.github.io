@@ -447,7 +447,7 @@ In conditional filtering scenarios, `useForm` is more suitable for non-paginated
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](/learning/use-request).
+Inherit all configurations from [**useRequest**](/learning/use-request#api).
 
 | Name                | Description                                                                                                                                                                  | Type                                                  | Default | Version |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------- | ------- |
@@ -458,7 +458,7 @@ Inherit all configurations from [**useRequest**](/learning/use-request).
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/learning/use-request).
+Inherit all responsive data from [**useRequest**](/learning/use-request#api).
 
 | Name | Description                         | Type | Version |
 | ---- | ----------------------------------- | ---- | ------- |
@@ -480,7 +480,7 @@ Inherit all responsive data from [**useRequest**](/learning/use-request).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/learning/use-request).
+Inherit all action functions of [**useRequest**](/learning/use-request#api).
 
 | name       | description                                                                     | function parameters                                                              | return value | version |
 | ---------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------ | ------- |
@@ -489,7 +489,7 @@ Inherit all action functions of [**useRequest**](/learning/use-request).
 
 ### Event
 
-Inherit all events from [**useRequest**](/learning/use-request).
+Inherit all events from [**useRequest**](/learning/use-request#api).
 
 | Name      | Description                                     | Callback Parameters | Version |
 | --------- | ----------------------------------------------- | ------------------- | ------- |

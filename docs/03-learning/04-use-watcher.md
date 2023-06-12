@@ -545,3 +545,42 @@ const handleCancel = () => {
 };
 // highlight-end
 ```
+
+## API
+
+### Hook configuration
+
+| Name          | Description                                                                                                                                        | Type                                                                                                                                                                               | Default  | Version |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | --- |
+| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                            | true     | -       |
+| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                                | -        | -       |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean &#124; (...args: any[]) => boolean                                                                                                                                         | false    | -       |
+| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                              | -        | -       |
+| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                             | number[] | -       | -   |
+| middleware    | Middleware function, [Learn about alova middleware](/advanced/middleware)                                                                          | (context: [AlovaFrontMiddlewareContext](/learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](/learning/use-request /#alovaguardnext)) => Promise&lt;any&gt; | -        | -       |
+
+### Responsive data
+
+| Name        | Description                   | Type                   | Version |
+| ----------- | ----------------------------- | ---------------------- | ------- |
+| loading     | request loading status        | boolean                | -       |
+| data        | response data                 | any                    | -       |
+| error       | request error message         | Error &#124; undefined | -       |
+| downloading | download progress information | Object                 | -       |
+| uploading   | upload progress information   | Object                 | -       |
+
+### Action function
+
+| name   | description                                                                            | function parameters                                                           | return value | version |
+| ------ | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------ | ------- |
+| send   | send request function                                                                  | ...args: any[]                                                                | Promise      | -       |
+| abort  | interrupt function                                                                     | -                                                                             | -            | -       |
+| update | A function to update the front-end state of the current use hook, more useful in react | newFrontStates: [FrontRequestState](/learning/use-request/#frontrequeststate) | -            |
+
+### Event
+
+| Name       | Description                    | Callback Parameters                                                    | Version |
+| ---------- | ------------------------------ | ---------------------------------------------------------------------- | ------- |
+| onSuccess  | request success event binding  | event: [AlovaSuccessEvent](/learning/use-request/#alovasuccessevent)   | -       |
+| onError    | request error event binding    | event: [AlovaErrorEvent](/learning/use-request/#alovaerrorevent)       | -       |
+| onComplete | request complete event binding | event: [AlovaCompleteEvent](/learning/use-request/#alovacompleteevent) | -       |

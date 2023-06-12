@@ -125,16 +125,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](/learning/use-request).
+Inherit all configurations from [**useRequest**](/learning/use-request#api).
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/learning/use-request).
+Inherit all responsive data from [**useRequest**](/learning/use-request#api).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/learning/use-request).
+Inherit all action functions of [**useRequest**](/learning/use-request#api).
 
-### event
+### Event
 
-Inherit all events from [**useRequest**](/learning/use-request).
+Inherit all events from [**useRequest**](/learning/use-request#api).
