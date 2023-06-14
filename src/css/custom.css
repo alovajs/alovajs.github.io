@@ -21,6 +21,8 @@
   --ifm-font-weight-bold: 600;
   --ifm-alert-shadow: none;
   --ifm-menu-link-padding-vertical: 0.3rem;
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-background-color: 255 255 255/0.3;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -54,13 +56,17 @@ html[data-theme='dark'] .header-github-link:before {
     no-repeat;
 }
 
+/* navbar */
+.navbar {
+  backdrop-filter: blur(16px);
+}
+
 /* sidebar */
 .menu__link {
   font-size: 0.9rem;
 }
 .menu__link--sublist {
   font-weight: var(--ifm-font-weight-bold);
-  color: var(--ifm-color-gray-900);
 }
 .menu__link--active {
   color: var(--ifm-menu-color-active) !important;
