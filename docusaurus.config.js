@@ -36,7 +36,7 @@ const config = {
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
-      {
+      ({
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
@@ -49,10 +49,14 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css')
         }
-      }
+      })
     ]
   ],
 
+  stylesheets: [
+    'https://rsms.me/inter/inter.css',
+    'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -67,7 +71,7 @@ const config = {
             type: 'doc',
             docId: 'get-started/overview',
             position: 'left',
-            label: 'Guide'
+            label: 'Document'
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -77,13 +81,32 @@ const config = {
           },
           {
             href: 'https://github.com/alovajs/alova',
-            label: 'GitHub',
+            className: 'header-github-link',
             position: 'right'
           }
         ]
       },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true
+      },
+      announcementBar: {
+        id: 'support_us',
+        content: `⭐️
+          If you also like alova, 
+          <a
+            href="https://github.com/alovajs/alova"
+            target="_blank">
+            give it a star on GitHub!
+          </a>
+          ⭐️`,
+        backgroundColor: 'var(--ifm-color-primary-light)',
+        textColor: '#fff',
+        isCloseable: false
+      },
       footer: {
-        style: 'dark',
+        style: 'light',
         links: [
           {
             title: 'Docs',
@@ -99,15 +122,15 @@ const config = {
           //   items: [
           //     {
           //       label: 'Stack Overflow',
-          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+          //       to: 'https://stackoverflow.com/questions/tagged/docusaurus',
           //     },
           //     {
           //       label: 'Discord',
-          //       href: 'https://discordapp.com/invite/docusaurus',
+          //       to: 'https://discordapp.com/invite/docusaurus',
           //     },
           //     {
           //       label: 'Twitter',
-          //       href: 'https://twitter.com/docusaurus',
+          //       to: 'https://twitter.com/docusaurus',
           //     },
           //   ],
           // },
@@ -116,15 +139,15 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/alovajs/alova'
+                to: 'https://github.com/alovajs/alova'
               },
               {
                 label: 'Issues',
-                href: 'https://github.com/alovajs/alova/issues'
+                to: 'https://github.com/alovajs/alova/issues'
               },
               {
                 label: 'Pull request',
-                href: 'https://github.com/alovajs/alova/pulls'
+                to: 'https://github.com/alovajs/alova/pulls'
               }
             ]
           }
