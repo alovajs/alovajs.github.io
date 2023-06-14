@@ -3,9 +3,9 @@
     "message": "alova.JS",
     "description": "The title in the navbar"
   },
-  "item.label.Guide": {
-    "message": "指南",
-    "description": "Navbar item with label Guide"
+  "item.label.Document": {
+    "message": "文档",
+    "description": "Navbar item with label Document"
   },
   "item.label.GitHub": {
     "message": "GitHub",
