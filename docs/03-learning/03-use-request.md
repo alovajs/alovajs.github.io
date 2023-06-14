@@ -415,7 +415,7 @@ const handleCancel = () => {
 | update           | A function to update the front-end state of the current use hook, more useful in react                                                                                                  | (newFrontStates: [FrontRequestState](#frontrequeststate)) => void;                                                                                                                                            | -       |
 | controlLoading   | will customize the loading state of the control, and the call will no longer trigger the change of the loading state. When the passed in control is false, the control will be canceled | (control?: boolean) => void                                                                                                                                                                                   | -       |
 
-####AlovaGuardNext
+#### AlovaGuardNext
 
 ```typescript
 type AlovaGuardNext = (guardNextConfig?: {
