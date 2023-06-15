@@ -90,3 +90,42 @@ table td {
 table thead tr {
   border-bottom: none;
 }
+.theme-code-block {
+  box-shadow: none !important;
+  border: solid 1px var(--ifm-color-emphasis-200);
+}
+
+/* //////// 自定义类 //////// */
+/* flex */
+.flex-row {
+  display: flex !important;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex !important;
+  flex-direction: column;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+.align-center {
+  align-items: center !important;
+}
+.align-start {
+  align-items: flex-start !important;
+}
+.align-end {
+  align-items: flex-end !important;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}

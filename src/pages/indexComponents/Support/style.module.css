@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  @media (max-width: 996px) {
+    margin: 24px;
+  }
+}
+.icon {
+  width: auto;
+  height: 42px;
+  padding: 0 20px;
+  @media (max-width: 996px) {
+    height: 32px;
+    padding: 0 10px;
+  }
+}

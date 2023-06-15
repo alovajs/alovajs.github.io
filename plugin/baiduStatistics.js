@@ -1,4 +1,4 @@
-module.exports = async function myPlugin(context, { id }) {
+module.exports = async function myPlugin(_, { id }) {
   const isProd = process.env.NODE_ENV === 'production';
   return {
     name: 'baidu-statistics',
