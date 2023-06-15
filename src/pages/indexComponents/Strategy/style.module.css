@@ -6,13 +6,6 @@
   --ifm-heading-margin-bottom: 0.5rem;
   margin-bottom: 5rem;
   --ifm-paragraph-margin-bottom: 0;
-
-  @media (max-width: 996px) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: 0;
-    padding: 1.6rem;
-  }
 }
 .describe {
   color: var(--ifm-color-emphasis-400);
@@ -21,17 +14,10 @@
 .custom {
   text-align: right;
   cursor: pointer;
-  @media (max-width: 996px) {
-    text-align: left;
-  }
 }
 .customHeader {
   display: flex;
   justify-content: flex-end;
-  @media (max-width: 996px) {
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
 }
 
 .iconArrow {
@@ -74,4 +60,20 @@ h4 {
 }
 .item:hover {
   border: solid 1px var(--ifm-color-primary-darkest);
+}
+
+@media screen and (max-width: 996px) {
+  .wrapper {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+    padding: 1.6rem;
+  }
+  .custom {
+    text-align: left;
+  }
+  .customHeader {
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
 }

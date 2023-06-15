@@ -38,12 +38,6 @@
   width: 200px;
 }
 
-.codeExample {
-  @media (max-width: 996px) {
-    display: none;
-  }
-}
-
 .relation {
   width: 40%;
   margin: 5rem auto;
@@ -76,5 +70,8 @@
   }
   .relation {
     width: 90%;
+  }
+  .codeExample {
+    display: none;
   }
 }
