@@ -31,7 +31,7 @@ const config = {
       }
     }
   },
-
+  scripts: ['iconfont/iconfont.js'],
   presets: [
     [
       'classic',

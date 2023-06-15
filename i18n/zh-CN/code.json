@@ -296,7 +296,7 @@
     "description": "示例按钮文字"
   },
   "homepage.Get Started": {
-    "message": "开始",
+    "message": "快速开始",
     "description": "开始按钮文字"
   },
   "homepage.features.Simple and familiar": {
@@ -330,5 +330,69 @@
   "homepage.features.Lightweight.desc": {
     "message": "4kb，只有axios的40%",
     "description": "description of feature"
+  },
+  "homepage.request strategy": {
+    "message": "核心请求策略",
+    "description": "description of request strategy"
+  },
+  "homepage.request strategy.desc": {
+    "message": "这些请求策略除了可以让你早下班，还能让你的应用更加顺畅",
+    "description": "description of request strategy desc"
+  },
+  "homepage.Custom strategy": {
+    "message": "自定义请求策略",
+    "description": "description of custom strategy"
+  },
+  "homepage.Custom strategy.desc": {
+    "message": "超强的扩展性可快速构建自定义请求策略",
+    "description": "description of custom strategy desc"
+  },
+  "homepage.strategy.Pagination request strategy": {
+    "message": "分页请求策略",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.Pagination request strategy.desc": {
+    "message": "自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%",
+    "description": "description of Pagination request strategy desc"
+  },
+  "homepage.strategy.Sensorless interact strategy": {
+    "message": "无感数据交互策略",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.Sensorless interact strategy.desc": {
+    "message": "全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用",
+    "description": "description of Sensorless interact strategy desc"
+  },
+  "homepage.strategy.Cross-component request": {
+    "message": "跨组件请求策略",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.Cross-component request.desc": {
+    "message": "消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数",
+    "description": "description of Cross-component request desc"
+  },
+  "homepage.strategy.Form submit": {
+    "message": "表单提交策略",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.Form submit.desc": {
+    "message": "表单草稿、多页面（多步骤）表单，除此以外还提供了表单重置等常用功能",
+    "description": "description of Form submit desc"
+  },
+  "homepage.strategy.Send captcha": {
+    "message": "表单提交策略",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.Send captcha.desc": {
+    "message": "减掉你在开发验证码发送功能时的繁琐",
+    "description": "description of Form submit desc"
+  },
+  "homepage.strategy.Request retry strategy": {
+    "message": "请求重试策略",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.Request retry strategy.desc": {
+    "message": "请求失败自动重试，它在重要的请求和轮询请求上发挥重要作用",
+    "description": "description of Request retry strategy desc"
   }
 }

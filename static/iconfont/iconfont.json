@@ -1,0 +1,44 @@
+{
+  "id": "4123843",
+  "name": "alova-website",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "36020189",
+      "name": "右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "36014912",
+      "name": "闪电",
+      "font_class": "shandian",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "36014913",
+      "name": "数据库",
+      "font_class": "shujuku",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "322824",
+      "name": "check",
+      "font_class": "check",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "13693752",
+      "name": "箱子",
+      "font_class": "box",
+      "unicode": "e8c6",
+      "unicode_decimal": 59590
+    }
+  ]
+}
