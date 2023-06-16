@@ -3,7 +3,9 @@ title: Overview
 sidebar_position: 10
 ---
 
-<img width="350px" src={require('/img/logo-text.png').default} />
+import Logo from '@site/static/img/logo-text.svg';
+
+<Logo />
 
 [![npm](https://img.shields.io/npm/v/alova)](https://www.npmjs.com/package/alova)
 [![build](https://github.com/alovajs/alova/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/alovajs/alova/actions/workflows/release.yml)

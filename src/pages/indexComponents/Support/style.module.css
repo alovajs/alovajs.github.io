@@ -1,21 +1,31 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem auto;
+}
+.icons {
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 50px auto;
+  flex-wrap: wrap;
 }
 .icon {
   width: auto;
-  height: 42px;
-  padding: 0 20px;
+  height: 2rem;
+  padding: 0 1rem;
+  transition: all 0.3s;
+}
+.icon:hover {
+  transform: scale(1.2);
 }
 
 @media screen and (max-width: 996px) {
   .wrapper {
-    margin: 24px;
+    margin: 1.5rem;
   }
   .icon {
-    height: 32px;
-    padding: 0 10px;
+    height: 3rem;
+    padding: 0.5rem 0.6rem;
   }
 }

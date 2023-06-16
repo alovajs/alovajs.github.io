@@ -1,14 +1,18 @@
 {
-  "link.title.Docs": {
-    "message": "文档",
+  "link.title.Nav": {
+    "message": "导航",
     "description": "The title of the footer links column with title=Docs in the footer"
   },
   "link.title.More": {
     "message": "更多",
     "description": "The title of the footer links column with title=More in the footer"
   },
-  "link.item.label.Guide": {
-    "message": "指南",
+  "link.item.label.Docs": {
+    "message": "文档",
+    "description": "The label of footer link with label=Guide linking to /get-started/overview"
+  },
+  "link.item.label.Example": {
+    "message": "示例",
     "description": "The label of footer link with label=Guide linking to /get-started/overview"
   },
   "link.item.label.GitHub": {

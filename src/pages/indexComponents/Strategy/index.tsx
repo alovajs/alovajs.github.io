@@ -113,6 +113,24 @@ export default function Strategy() {
             </div>
           </a>
         ))}
+
+        <a className={clsx('col col--4', styles.itemWrapper)}>
+          <div className={clsx(styles.item, styles.itemMobile)}>
+            <div className="flex-row justify-between">
+              <h4>
+                <Translate id="homepage.Custom strategy">Costom your strategy</Translate>
+              </h4>
+              <IconFont
+                name="youjiantou"
+                className={styles.iconArrow}></IconFont>
+            </div>
+            <p className={styles.describe}>
+              <Translate id="homepage.Custom strategy.desc">
+                Super extensibility can quickly build custom request strategies
+              </Translate>
+            </p>
+          </div>
+        </a>
       </div>
     </div>
   );

@@ -59,7 +59,15 @@ h4 {
   transition: all 0.3s;
 }
 .item:hover {
-  border: solid 1px var(--ifm-color-primary-darkest);
+  border-color: var(--ifm-color-primary-darkest);
+}
+
+.itemMobile {
+  border-style: dashed;
+  display: none;
+}
+.itemMobile .iconArrow {
+  opacity: 1;
 }
 
 @media screen and (max-width: 996px) {
@@ -70,10 +78,13 @@ h4 {
     padding: 1.6rem;
   }
   .custom {
-    text-align: left;
+    display: none;
   }
   .customHeader {
     justify-content: space-between;
     margin-top: 2rem;
+  }
+  .itemMobile {
+    display: block;
   }
 }
