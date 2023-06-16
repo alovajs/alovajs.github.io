@@ -54,7 +54,7 @@
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 1rem;
   }
   .heroContent {
     flex-direction: column;
