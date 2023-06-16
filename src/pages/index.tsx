@@ -6,9 +6,9 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
 import HomepageFeatures from './indexComponents/HomepageFeatures';
-import styles from './indexComponents/index.module.css';
 import Strategy from './indexComponents/Strategy';
 import Support from './indexComponents/Support';
+import styles from './indexComponents/index.module.css';
 
 function HomepageHeader() {
   const buttons = [
@@ -28,9 +28,9 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroContent}>
           <div className={styles.left}>
-            <h2 className="hero__title">
-              <Translate id="homepage.title">Lightweight request strategy library</Translate>
-            </h2>
+            <h1>
+              <Translate id="homepage.title">A lightweight request strategy library</Translate>
+            </h1>
             <p>
               <Translate id="homepage.tagline">
                 According to different request scenarios, we provide targeted request strategies to improve application
@@ -39,10 +39,14 @@ function HomepageHeader() {
               </Translate>
             </p>
             <div className={clsx(styles.buttons, 'margin-bottom--md')}>
-              {buttons.map(({ text, type, link }) => (
+              {buttons.map(({ text, type, link }, i) => (
                 <Link
                   key={link}
-                  className={clsx('button button--lg margin-right--md', `button--${type}`)}
+                  className={clsx(
+                    'button button--lg',
+                    i === buttons.length - 1 ? '' : 'margin-right--md',
+                    `button--${type}`
+                  )}
                   to={link}>
                   {text}
                 </Link>
