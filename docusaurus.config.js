@@ -61,17 +61,23 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'alova.JS',
+        title: '',
         logo: {
           alt: 'ALOVA',
-          src: 'img/logo.png'
+          src: 'img/logo-text.svg'
         },
         items: [
           {
             type: 'doc',
             docId: 'get-started/overview',
             position: 'left',
-            label: 'Document'
+            label: 'Docs'
+          },
+          {
+            type: 'doc',
+            docId: 'example/init-page',
+            position: 'left',
+            label: 'Example'
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -109,11 +115,15 @@ const config = {
         style: 'light',
         links: [
           {
-            title: 'Docs',
+            title: 'Nav',
             items: [
               {
-                label: 'Guide',
-                to: '/get-started/overview'
+                label: 'Docs',
+                to: 'get-started/overview'
+              },
+              {
+                label: 'Example',
+                to: 'example/init-page'
               }
             ]
           },

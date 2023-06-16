@@ -56,7 +56,7 @@ function HomepageHeader() {
               styles.codeExample
             }>{`const todo = alova.Get('/todo', {\n    params: {\n    id: 1\n  }\n});\nconst { loading, data, error } = useRequest(todo);`}</CodeBlock>
           {/* <img
-            src={require('@site/static/img/logo.png').default}
+            src={require('@site/static/img/logo.svg').default}
             className={styles.logo}
             alt="logo"
           /> */}

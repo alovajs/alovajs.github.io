@@ -1,10 +1,14 @@
 {
   "title": {
-    "message": "alova.JS",
+    "message": "",
     "description": "The title in the navbar"
   },
-  "item.label.Document": {
+  "item.label.Docs": {
     "message": "文档",
+    "description": "Navbar item with label Document"
+  },
+  "item.label.Example": {
+    "message": "示例",
     "description": "Navbar item with label Document"
   },
   "item.label.GitHub": {

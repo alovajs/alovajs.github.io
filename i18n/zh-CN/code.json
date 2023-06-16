@@ -340,12 +340,16 @@
     "description": "description of request strategy desc"
   },
   "homepage.Custom strategy": {
-    "message": "自定义请求策略",
+    "message": "自定义你的请求策略",
     "description": "description of custom strategy"
   },
   "homepage.Custom strategy.desc": {
     "message": "超强的扩展性可快速构建自定义请求策略",
     "description": "description of custom strategy desc"
+  },
+  "homepage.support.title": {
+    "message": "可在以上平台获得相同的使用体验，无缝移植",
+    "description": "description of support title"
   },
   "homepage.strategy.Pagination request strategy": {
     "message": "分页请求策略",
