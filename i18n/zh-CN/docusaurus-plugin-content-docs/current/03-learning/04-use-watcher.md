@@ -546,6 +546,19 @@ const handleCancel = () => {
 // highlight-end
 ```
 
+另外，这个`abort`函数也会同时绑定到当前的 method 实例上，因此你还可以在`beforeRequest`中调用`abort`中断请求。
+
+```javascript
+const alovaInst = createAlova({
+  // ...
+  beforeRequest(method) {
+    if (someCondition) {
+      method.abort();
+    }
+  }
+});
+```
+
 ## API
 
 ### Hook 配置

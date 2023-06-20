@@ -44,7 +44,9 @@ Regarding when to use `useRequest` to send a request and when to use a method in
 ## abort request
 
 :::info Tips
+
 v2.6.0+
+
 :::
 
 If you need to interrupt the request sent by `method.send`, you can interrupt it in the following ways.
@@ -54,3 +56,16 @@ globalUserGetter.abort();
 ```
 
 It is worth noting that the method instance of the interrupt request must be the same reference as the method instance of the sending request.
+
+`[v2.6.2+]`In addition, you can also call `abort` in `beforeRequest` to abort this request.
+
+```javascript
+const alovaInst = createAlova({
+  //...
+  beforeRequest(method) {
+    if (someCondition) {
+      method.abort();
+    }
+  }
+});
+```

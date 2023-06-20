@@ -525,7 +525,7 @@ $data = {};
 
 :::
 
-## Manual interrupt request
+## Abort request manually
 
 When the `timeout` parameter is not set, the request will never time out. If you need to manually interrupt the request, you can receive the `abort` method when the `useWatcher` function is called.
 
@@ -544,6 +544,19 @@ const handleCancel = () => {
   abort();
 };
 // highlight-end
+```
+
+In addition, this `abort` function will also be bound to the current method instance, so you can also call `abort` in `beforeRequest` to abort the request.
+
+```javascript
+const alovaInst = createAlova({
+  //...
+  beforeRequest(method) {
+    if (someCondition) {
+      method.abort();
+    }
+  }
+});
 ```
 
 ## API

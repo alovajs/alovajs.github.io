@@ -85,7 +85,7 @@ If you still have a specific and typical business request scenario, but we have 
 
 ## Library Stability
 
-It has been about a year since the development of the first version of alova. During this year, we have continued to find problems and optimize them. So far, alova has passed 143 unit tests, with a coverage rate of 99%. Even so, alova is still a rookie, so I suggest you use it sparingly.
+It has been about a year since the development of the first version of alova. During this year, we have continued to find problems and optimize them. So far, alova has passed 143 unit tests, with a coverage rate of 99%. Even so, alova is still a rookie, it still has a large development space.
 
 If you find any problems with alova, you can tell us by [submit an issue](https://github.com/alovajs/alova/issues/new/choose), **WE PROMISE that after receiving the issue, it will be resolved as soon as possible. **
 
