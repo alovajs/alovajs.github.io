@@ -5,7 +5,10 @@ sidebar_position: 10
 
 import Logo from '@site/static/img/logo-text.svg';
 
-<Logo />
+<Logo style={{
+  width: '50%',
+  maxWidth: '320px'
+}} />
 
 [![npm](https://img.shields.io/npm/v/alova)](https://www.npmjs.com/package/alova)
 [![build](https://github.com/alovajs/alova/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/alovajs/alova/actions/workflows/release.yml)
