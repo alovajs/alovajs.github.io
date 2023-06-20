@@ -42,7 +42,9 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 ## 中断请求
 
 :::info 提示
+
 v2.6.0+
+
 :::
 
 如果需要中断`method.send`发送的请求，可以通过通过以下方式中断。
@@ -52,3 +54,16 @@ globalUserGetter.abort();
 ```
 
 值得注意的是，中断请求的 method 实例必须与发送请求的 method 实例是同一个引用。
+
+`[v2.6.2+]`另外，你还可以在`beforeRequest`中调用`abort`中断请求。
+
+```javascript
+const alovaInst = createAlova({
+  // ...
+  beforeRequest(method) {
+    if (someCondition) {
+      method.abort();
+    }
+  }
+});
+```

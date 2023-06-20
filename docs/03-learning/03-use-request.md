@@ -365,25 +365,51 @@ update({
 
 :::
 
-## Manual interrupt request
+## Abort request manually
 
-When the `timeout` parameter is not set, the request will never time out. If you need to manually interrupt the request, you can receive the `abort` method when the `useRequest` function is called.
+When the `timeout` parameter is not set, the request will never time out. If you need to manually abort the request, you can receive the `abort` method when the `useRequest` function is called.
 
 ```javascript
 const {
   //...
   // highlight-start
-  // abort function is used to interrupt request
+  // abort function is used to abort request
   abort
   // highlight-end
 } = useRequest(todoListGetter);
 
 // highlight-start
-// Call abort to interrupt the request
+// Call abort to abort the request
 const handleCancel = () => {
   abort();
 };
 // highlight-end
+```
+
+In addition, this `abort` function will also be bound to the current method instance, so you can also call `method.abort` to abort this request.
+
+```javascript
+useRequest(todoListGetter);
+
+// highlight-start
+// Calling abort on the method can also abort the current request
+const handleCancel = () => {
+  todoListGetter.abort();
+};
+// highlight-end
+```
+
+You can also call `abort` in `beforeRequest` to abort the request.
+
+```javascript
+const alovaInst = createAlova({
+  //...
+  beforeRequest(method) {
+    if (someCondition) {
+      method.abort();
+    }
+  }
+});
 ```
 
 ## API
@@ -408,7 +434,7 @@ const handleCancel = () => {
 | sendArgs         | The parameters of the response processing callback, which are passed in by send of use hooks                                                                                            | any[]                                                                                                                                                                                                         | -       |
 | frontStates      | use hook front-end state collection, such as data, loading, error, etc.                                                                                                                 | [FrontRequestState](#frontrequeststate)                                                                                                                                                                       | -       |
 | send             | send request function                                                                                                                                                                   | (...args: any[]) => void                                                                                                                                                                                      | Promise |
-| abort            | interrupt function                                                                                                                                                                      | () => void                                                                                                                                                                                                    | -       |
+| abort            | abort function                                                                                                                                                                          | () => void                                                                                                                                                                                                    | -       |
 | decorateSuccess  | Decorate success callback function                                                                                                                                                      | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](#alovasuccessevent), <br/ >index: number, <br/>length: number<br/>) => void) => void     | -       |
 | decorateError    | callback function for decoration failure                                                                                                                                                | (decorator: (<br/>handler: (event: [AlovaErrorEvent](#alovaerrorevent)) => void, <br/>event: [AlovaErrorEvent](#alovaerrorevent), <br/>index: number, <br />length: number<br/>) => void) => void             | -       |
 | decorateComplete | Decoration completion callback function                                                                                                                                                 | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](#alovacompleteevent), <br/ >index: number, <br/>length: number<br/>) => void) => void | -       |
@@ -479,7 +505,7 @@ The following attribute values will automatically infer the responsive data type
 | name   | description                                                                            | function parameters                                     | return value | version |
 | ------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------ | ------- |
 | send   | send request function                                                                  | ...args: any[]                                          | Promise      | -       |
-| abort  | interrupt function                                                                     | -                                                       | -            | -       |
+| abort  | abort function                                                                         | -                                                       | -            | -       |
 | update | A function to update the front-end state of the current use hook, more useful in react | newFrontStates: [FrontRequestState](#frontrequeststate) | -            |
 
 ### Event
