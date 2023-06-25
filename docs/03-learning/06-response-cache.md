@@ -140,7 +140,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 ## Global setting cache mode
 
-:::info Tips
+:::info version required
 v1.3.0+
 :::
 The above settings are all set separately on `Method`. If you need to set the cache mode globally, you can do it as follows:

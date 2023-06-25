@@ -3,15 +3,17 @@ title: Detailed request method
 sidebar_position: 10
 ---
 
-The alova instance object provides abstract objects of seven request methods, including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. For ease of use, alova borrows the same parameter structure as `axios`.
+The alova instance object provides abstract objects of seven request methods, including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. For ease of use, alova uses the same parameter structure as `axios`.
 
-- GET: `alovaInstance. Get(url[, config])`;
-- POST: `alovaInstance.Post(url[, data[, config]])`;
-- PUT: `alova.Put(url[, data[, config]])`;
-- DELETE: `alova.Delete(url[, data[, config]])`;
-- HEAD: `alova.Head(url[, config])`;
-- OPTIONS: `alova.Options(url[, config])`;
-- PATCH: `alova.Patch(url[, data[, config]])`;
+| instance creation function | parameters                                  |
+| -------------------------- | ------------------------------------------- |
+| GET                        | `alovaInstance. Get(url[, config])`         |
+| POST                       | `alovaInstance.Post(url[, data[, config]])` |
+| PUT                        | `alova.Put(url[, data[, config]])`          |
+| DELETE                     | `alova. Delete(url[, data[, config]])`      |
+| HEAD                       | `alova.Head(url[, config])`                 |
+| OPTIONS                    | `alova. Options(url[, config])`             |
+| PATCH                      | `alova.Patch(url[, data[, config]])`        |
 
 Parameter Description:
 
@@ -21,41 +23,36 @@ Parameter Description:
 
 ## config parameter description
 
-There are 10 fixed configuration items in total, which are
+### General configuration items
 
-**name**: method name, which is generally used for [matching method instance](/next-step/method-instance-matcher)
+The config object has a total of 10 common configuration items.
 
-**params**: Set url parameters, see [Request Method Instance](/learning/method-instance) for details
+| Name           | Description                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| name           | method instance name, it is generally used for [matching method instance](/next-step/method-instance-matcher)               |
+| params         | Set url parameters, see [Request Method Instance](/learning/method-instance) for details                                    |
+| headers        | Set request headers, see [Request Method Instance](/learning/method-instance) for details                                   |
+| transformData  | Set the response data transformation function, see [Transform Response Data](/learning/transform-response-data) for details |
+| localCache     | Set request-level cache mode, see [Cache Mode](/learning/response-cache) for details                                        |
+| timeout        | Set request-level timeout                                                                                                   |
+| enableDownload | Enable download progress information, see [Download/Upload Progress](/next-step/download-upload-progress) for details       |
+| enableUpload   | Enable upload progress information, see [Download/Upload Progress](/next-step/download-upload-progress) for details         |
+| hitSource      | Cache auto-invalidation setting, see [Auto-invalidate cache](/next-step/auto-invalidate-cache) for details                  |
+| shareRequest   | Share request, see [Share Request](/next-step/share-request) for details                                                    |
 
-**headers**: Set request headers, see [Request Method Instance](/learning/method-instance) for details
+### Adapter configuration items
 
-**transformData**: Set the response data conversion function, see [Transform Response Data](/learning/transform-response-data) for details
-
-**localCache**: set request-level cache mode, see [cache mode](/learning/response-cache) for details
-
-**timeout**: Set request-level timeout
-
-**enableDownload**: enable download progress information, see [download/upload progress](/next-step/download-upload-progress) for details
-
-**enableUpload**: enable upload progress information, see [download/upload progress](/next-step/download-upload-progress) for details
-
-**hitSource**: cache automatic invalidation setting, see [auto-invalidate cache](/next-step/auto-invalidate-cache) for details
-
-**shareRequest**: Share request, see [Share Request](/next-step/share-request) for details
-
-### Other configuration items
-
-It is different according to different requestAdapter configurations. For example, the GlobalFetch adapter will retain all configuration items of config in `fetch(url, config)`
+It varies according to different requestAdapter configurations. For example, the GlobalFetch adapter will retain all the configuration items of config in `fetch(url, config)`. The specific supported configuration items can be viewed in different request adapter documents.
 
 ## instance method
 
-### send
+| Name    | Description                                                                                                                                                                               |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| send    | Send a request directly, see [Send Request Directly](/next-step/send-request-directly) for details                                                                                        |
+| setName | Dynamically set the name of the method instance, which is generally used when the name needs to be set later, such as setting the name according to the response data after the response. |
+| abort   | abort the request sent by the current method instance, it can abort request sent by use hook and directly call send                                                                       |
 
-To send a request directly, see [Send Request Directly](/next-step/send-request-directly) for details
-
-### setName
-
-Dynamically set the name of the method instance, which is generally used when the name needs to be set later, such as setting the name according to the response data after the response.
+### setName Example
 
 ```javascript
 // Use the data id as the name of the current method after the request is successful

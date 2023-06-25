@@ -3,7 +3,7 @@ title: Controlled Caching
 sidebar_position: 90
 ---
 
-:::info Tips
+:::info version required
 
 v2.1.0+
 

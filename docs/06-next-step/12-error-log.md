@@ -3,7 +3,7 @@ title: Error log
 sidebar_position: 110
 ---
 
-:::info Tips
+:::info version required
 
 v2.6.0+
 
