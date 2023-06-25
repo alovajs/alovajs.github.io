@@ -1,5 +1,5 @@
 ---
-title: Method实例匹配器
+title: method实例匹配器
 sidebar_position: 40
 ---
 

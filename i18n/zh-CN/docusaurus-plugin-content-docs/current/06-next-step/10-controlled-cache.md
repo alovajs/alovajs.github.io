@@ -3,7 +3,7 @@ title: 受控的缓存
 sidebar_position: 90
 ---
 
-:::info 提示
+:::info 版本要求
 
 v2.1.0+
 

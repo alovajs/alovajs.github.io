@@ -5,7 +5,7 @@ sidebar_position: 30
 
 ## 发送请求
 
-:::info 提示
+:::info 版本要求
 v1.2.0+
 :::
 
@@ -41,7 +41,7 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 
 ## 中断请求
 
-:::info 提示
+:::info 版本要求
 
 v2.6.0+
 

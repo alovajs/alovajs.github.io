@@ -140,7 +140,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 ## 全局设置缓存模式
 
-:::info 提示
+:::info 版本要求
 
 v1.3.0+
 

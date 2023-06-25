@@ -399,7 +399,7 @@ const handleCancel = () => {
 // highlight-end
 ```
 
-You can also call `abort` in `beforeRequest` to abort the request.
+`[2.6.2+]`You can also call `abort` in `beforeRequest` to abort the request.
 
 ```javascript
 const alovaInst = createAlova({

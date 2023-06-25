@@ -546,7 +546,7 @@ const handleCancel = () => {
 // highlight-end
 ```
 
-In addition, this `abort` function will also be bound to the current method instance, so you can also call `abort` in `beforeRequest` to abort the request.
+`[2.6.2+]`In addition, this `abort` function will also be bound to the current method instance, so you can also call `abort` in `beforeRequest` to abort the request.
 
 ```javascript
 const alovaInst = createAlova({

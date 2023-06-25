@@ -399,7 +399,7 @@ const handleCancel = () => {
 // highlight-end
 ```
 
-你还可以在`beforeRequest`中调用`abort`中断请求。
+`[2.6.2+]`你还可以在`beforeRequest`中调用`abort`中断请求。
 
 ```javascript
 const alovaInst = createAlova({

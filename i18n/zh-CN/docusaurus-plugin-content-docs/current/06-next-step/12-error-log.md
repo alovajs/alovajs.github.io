@@ -3,7 +3,7 @@ title: 错误日志
 sidebar_position: 110
 ---
 
-:::info 提示
+:::info 版本要求
 
 v2.6.0+
 

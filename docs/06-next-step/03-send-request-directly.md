@@ -5,7 +5,7 @@ sidebar_position: 30
 
 ## send request
 
-:::info Tips
+:::info version required
 
 v1.2.0+
 
@@ -43,7 +43,7 @@ Regarding when to use `useRequest` to send a request and when to use a method in
 
 ## abort request
 
-:::info Tips
+:::info version required
 
 v2.6.0+
 
