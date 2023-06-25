@@ -3,6 +3,12 @@ title: 隐藏推荐提示
 sidebar_position: 10
 ---
 
+:::info 版本要求
+
+v2.7.0-
+
+:::
+
 alova 可以配合扩展库获得更好的开发体验，为了让更多开发者获得更好的开发体验，在使用时将会在控制台中推荐 alova 的扩展。
 
 ![tips](/img/alova-tips.png)

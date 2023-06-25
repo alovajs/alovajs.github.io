@@ -3,6 +3,12 @@ title: Hide recommend Tips
 sidebar_position: 10
 ---
 
+:::info version required
+
+v2.7.0-
+
+:::
+
 Alova can cooperate with the extension library to obtain a better development experience. In order to allow more developers to obtain a better development experience, the extension of alova will be recommended in the console when using it.
 
 ![tips](/img/alova-tips.png)
