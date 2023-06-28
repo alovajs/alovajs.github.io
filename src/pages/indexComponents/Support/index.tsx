@@ -23,11 +23,11 @@ const supportList: SupportItem[] = [
   },
   {
     Image: require('@site/static/img/next.svg').default,
-    link: 'https://nextjs.org/'
+    link: '/next-step/ssr'
   },
   {
     Image: require('@site/static/img/nuxt.svg').default,
-    link: 'https://nuxt.com'
+    link: '/next-step/ssr'
   },
   {
     Image: ({ className }) => (

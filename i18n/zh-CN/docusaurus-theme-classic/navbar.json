@@ -11,6 +11,10 @@
     "message": "示例",
     "description": "Navbar item with label Document"
   },
+  "item.label.Releases": {
+    "message": "发布日志",
+    "description": "Navbar item with label Releases"
+  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"

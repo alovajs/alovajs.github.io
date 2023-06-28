@@ -12,6 +12,7 @@ import TabItem from '@theme/TabItem';
 
 - ✨ 与 alova 无缝协作
 - ✨ 模拟请求任意分组，可控制全局、组、以及单个模拟接口的启用和禁用
+- ✨ 与 mockjs 配合使用
 - ✨ 不污染生产环境
 
 ## 安装
@@ -35,7 +36,9 @@ yarn add @alova/mock
 
 以下为使用流程。
 
-## 定义 mock 接口
+## 使用
+
+### 定义 mock 接口
 
 使用`defineMock`定义一组 mock 接口，你可以在每一项模拟接口中直接指定返回响应数据，或指定为回调函数动态计算响应数据。
 
@@ -93,7 +96,7 @@ export default defineMock(
 ); // 第二个参数表示是否启用本组mock接口，默认为true，可以指定为false关闭
 ```
 
-## 创建模拟请求适配器
+### 创建模拟请求适配器
 
 在调用`createAlova`时创建一个模拟请求适配器，并将 mock 接口传入即可完成。
 
@@ -130,6 +133,49 @@ export const alovaInst = createAlova({
   requestAdapter: mockAdapter,
 
   statesHook: /** ... */
+});
+```
+
+### 路径匹配模式
+
+:::info 版本要求
+
+1.5.0+
+
+:::
+
+默认情况下，在`defineMock`中定义的路径是一个 url 的完整 pathname，看以下代码片段。
+
+```javascript
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org'
+  // ...
+});
+alovaInst.Get('/user?id=1').send();
+```
+
+示例中的请求路径为`https://api.alovajs.org/user?id=1`时，它的完整 pathname 为`/user`，此时可以匹配到`defineMock`中的`/user`。
+
+通常情况下这已经足够了，但是当你的 baseURL 不仅仅是一个域名时。
+
+```javascript
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org/v1/subname'
+  // ...
+});
+alovaInst.Get('/user?id=1').send();
+```
+
+这个示例中的请求路径为`https://api.alovajs.org/v1/subname/user?id=1`，mock 的匹配路径为`/v1/subname/user`，需要将 baseURL 中的`/v1/subname`也一同写上，当接口数量较多时就稍显冗余。
+
+此时，你可以在`createAlovaMockAdapter`中设置`matchMode`为`methodurl`，它将只匹配 method 实例中定义的 url，例如上面的实例将会匹配到`/user?id=1`，而不再需要写 baseURL 中的部分，相对的，如果 method 实例中的 url 中带了 get 参数时，也需要将它一同写到`defineMock`的匹配路径中，就像这边的`?id=1`。
+
+```javascript
+createAlovaMockAdapter([mockGroup1 /** ... */], {
+  // ...
+  // highlight-start
+  matchMode: 'methodurl'
+  // highlight-end
 });
 ```
 
@@ -207,6 +253,21 @@ export const alovaInst = createAlova({
   // highlight-end
 
   statesHook: /** ... */
+});
+```
+
+### 与 mockjs 一同使用
+
+如果你不希望自己编写模拟数据，而是使用模拟数据库（例如 mockjs）一同使用，你可以这样做。
+
+```javascript
+import { defineMock } from '@alova/mock';
+import Mock from 'mockjs';
+
+export default defineMock({
+  '/api1': Mock.mock({
+    'id|1-10000': 100
+  })
 });
 ```
 

@@ -140,7 +140,7 @@ const App = () => {
     debounce: 500
   });
 </script>
-{#if loading}
+{#if $loading}
 <div>提交中...</div>
 {/if}
 <textarea bind:value="{editingText}"></textarea>

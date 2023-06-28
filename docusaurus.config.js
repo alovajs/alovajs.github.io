@@ -79,6 +79,11 @@ const config = {
             position: 'left',
             label: 'Example'
           },
+          {
+            to: 'https://github.com/alovajs/alova/releases',
+            position: 'left',
+            label: 'Releases'
+          },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'localeDropdown',
