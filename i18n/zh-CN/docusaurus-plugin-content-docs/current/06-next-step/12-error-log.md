@@ -22,6 +22,16 @@ const alovaInstance = createAlova({
 });
 ```
 
+你也可以根据不同的环境动态开启与关闭。
+
+```javascript
+const alovaInstance = createAlova({
+  // ...
+  // 在开发环境开启错误日志
+  errorLogger: process.env.NODE_ENV === 'development'
+});
+```
+
 ## 自定义打印错误日志
 
 错误日志默认通过`console.error`进行打印，如果你的项目环境中不支持`console.error`，或者希望收集错误信息，可以将`errorLogger`指定为一个函数自定义处理错误日志。
@@ -29,9 +39,13 @@ const alovaInstance = createAlova({
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  // error为错误对象，methodInstance为错误出现对应的method实例
-  errorLogger(error, methodInstance) {
-    reportError(`${methodInstance.url}: ${error.message}`);
+  /**
+   * 自定义的错误日志函数
+   * @param error 错误对象
+   * @param method 当前的method实例
+   */
+  errorLogger(error, method) {
+    reportError(`${method.url}: ${error.message}`);
   }
 });
 ```

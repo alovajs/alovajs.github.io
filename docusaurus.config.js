@@ -79,6 +79,11 @@ const config = {
             position: 'left',
             label: 'Example'
           },
+          {
+            to: 'https://github.com/alovajs/alova/releases',
+            position: 'left',
+            label: 'Releases'
+          },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'localeDropdown',
@@ -104,7 +109,7 @@ const config = {
           <a
             href="https://github.com/alovajs/alova"
             target="_blank">
-            give it a star on GitHub!
+            star it on GitHub!
           </a>
           ⭐️`,
         backgroundColor: 'var(--ifm-color-primary-light)',

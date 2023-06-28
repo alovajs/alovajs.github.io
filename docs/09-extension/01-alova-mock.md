@@ -12,6 +12,7 @@ This mock plug-in is an alova request adapter. Different from the traditional Pr
 
 - ✨Works seamlessly with alova
 - ✨Arbitrary grouping of simulation requests to control global, group, and individual simulation interface enable and disable
+- ✨Works with mockjs
 - ✨Do not pollute the production environment
 
 ## Install
@@ -35,7 +36,9 @@ yarn add @alova/mock
 
 The following is the usage flow.
 
-## Define the mock interface
+## Usage
+
+### Define the mock interface
 
 Use `defineMock` to define a set of mock interfaces. You can directly specify the return response data in each mock interface, or specify the response data to be dynamically calculated for the callback function.
 
@@ -93,7 +96,7 @@ export default defineMock(
 ); // The second parameter indicates whether to enable this group of mock interfaces, the default is true, and can be specified as false to close
 ```
 
-## Create mock request adapter
+### Create mock request adapter
 
 Create a mock request adapter when calling `createAlova`, and pass in the mock interface to complete.
 
@@ -130,6 +133,49 @@ export const alovaInst = createAlova({
   requestAdapter: mockAdapter,
 
   statesHook: /** ... */
+});
+```
+
+### Paths match mode
+
+:::info version required
+
+1.5.0+
+
+:::
+
+By default, the path defined in `defineMock` is the full pathname of a url, see the following code snippet.
+
+```javascript
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org'
+  //...
+});
+alovaInst.Get('/user?id=1').send();
+```
+
+When the request path in the example is `https://api.alovajs.org/user?id=1`, its full pathname is `/user`, which can match `/user` in `defineMock`.
+
+Usually this is enough, but when your baseURL is not just a domain name.
+
+```javascript
+const alovaInst = createAlova({
+  baseURL: 'https://api.alovajs.org/v1/subname'
+  //...
+});
+alovaInst.Get('/user?id=1').send();
+```
+
+In this example, the request path is `https://api.alovajs.org/v1/subname/user?id=1`, the matching path of the mock is `/v1/subname/user`, and `/ in the baseURL needs to be v1/subname` is also written together, which is slightly redundant when the number of interfaces is large.
+
+At this point, you can set `matchMode` to `methodurl` in `createAlovaMockAdapter`, it will only match the url defined in the method instance, for example, the above instance will match `/user?id=1` instead of The part in baseURL needs to be written. On the contrary, if the url in the method instance has a get parameter, it also needs to be written in the matching path of `defineMock`, just like `?id=1` here.
+
+```javascript
+createAlovaMockAdapter([mockGroup1 /** ... */], {
+  //...
+  // highlight-start
+  matchMode: 'methodurl'
+  // highlight-end
 });
 ```
 
@@ -207,6 +253,21 @@ export const alovaInst = createAlova({
   // highlight-end
 
   statesHook: /** ... */
+});
+```
+
+### Use with mockjs
+
+If you don't want to write the mock data yourself, but use it with a mock js library (such as mockjs), you can do so.
+
+```javascript
+import { defineMock } from '@alova/mock';
+import Mock from 'mockjs';
+
+export default defineMock({
+  '/api1': Mock.mock({
+    'id|1-10000': 100
+  })
 });
 ```
 
