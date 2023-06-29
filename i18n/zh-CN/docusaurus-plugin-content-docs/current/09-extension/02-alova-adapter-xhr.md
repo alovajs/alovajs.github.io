@@ -187,7 +187,7 @@ const App = () => {
 
 ### 上传
 
-使用`FormData`上传文件，这个`FormData`实例会通过`xhr.send`发送到服务端。
+使用`FormData`上传文件，这个`FormData`实例会通过`xhr.send`发送到服务端。上传时将自动设置`Content-Type`，不需要自定义设置为`multipart/form-data`。
 
 ```javascript
 const uploadFile = imageFile => {
