@@ -187,7 +187,7 @@ const App = () => {
 
 ### Upload
 
-Use `FormData` to upload files, and this `FormData` instance will be sent to the server through `xhr.send`.
+Use `FormData` to upload files, and this `FormData` instance will be sent to the server through `xhr.send`. It will be set `Content-Type` automatically, you don't need to custom it with `multipart/form-data`.
 
 ```javascript
 const uploadFile = imageFile => {
