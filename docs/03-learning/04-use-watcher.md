@@ -1,5 +1,5 @@
 ---
-title: Status Change Request
+title: Request when states Changed
 sidebar_position: 50
 ---
 
@@ -321,6 +321,8 @@ send();
 // highlight-end
 ```
 
+> `[2.9.0+]`In react, the send function is wrapped with `useCallback`, and it is not limited by the closure trap. You can use it directly in the event without worrying about performance problems.
+
 ## Force send request
 
 Caching data can improve application fluency and reduce server pressure, but there is also the problem of data expiration. When you want to penetrate the cache to obtain the latest data, you can set the `force` property in the configuration of use hooks. help you.
@@ -545,6 +547,8 @@ const handleCancel = () => {
 };
 // highlight-end
 ```
+
+> `[2.9.0+]`In react, the abort function is wrapped with `useCallback`, and it is not limited by the closure trap. You can use it directly in the event without worrying about performance problems.
 
 `[2.6.2+]`In addition, this `abort` function will also be bound to the current method instance, so you can also call `abort` in `beforeRequest` to abort the request.
 
