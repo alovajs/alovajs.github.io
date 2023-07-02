@@ -209,6 +209,8 @@ const handleAddTodo = () => {
 };
 ```
 
+> `[2.9.0+]`在 react 中，send 函数使用了`useCallback`包裹，同时它也不受闭包陷阱限制，你可以直接在事件中使用它，不用担心引起性能问题。
+
 ## 强制发送请求
 
 缓存数据可以很好地提升应用流畅性和减小服务端压力，但同时也存在着数据过期的问题，当你希望穿透缓存获取最新数据时，在 use hooks 的配置中设置`force`属性可以帮助你。
@@ -386,7 +388,9 @@ const handleCancel = () => {
 // highlight-end
 ```
 
-另外，这个`abort`函数也会同时绑定到当前的 method 实例上，因此你也可以这样来中断请求。
+> `[2.9.0+]`在 react 中，abort 函数使用了`useCallback`包裹，同时它也不受闭包陷阱限制，你可以直接在事件中使用它，不用担心引起性能问题。
+
+`[2.6.2+]`另外，这个`abort`函数也会同时绑定到当前的 method 实例上，因此你也可以这样来中断请求。
 
 ```javascript
 useRequest(todoListGetter);
