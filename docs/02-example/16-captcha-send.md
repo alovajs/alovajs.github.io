@@ -1,6 +1,6 @@
 ---
 title: Send captcha
-sidebar_position: 150
+sidebar_position: 160
 ---
 
 import CaptchaSend from '@site/example-links/CaptchaSend';

@@ -1,6 +1,6 @@
 ---
 title: Response Caching - Restore Mode
-sidebar_position: 27
+sidebar_position: 60
 ---
 
 import StorageRestore from '@site/example-links/StorageRestore';

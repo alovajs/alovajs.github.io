@@ -1,6 +1,6 @@
 ---
 title: 响应缓存-恢复模式
-sidebar_position: 27
+sidebar_position: 60
 ---
 
 import StorageRestore from '@site/example-links/StorageRestore';

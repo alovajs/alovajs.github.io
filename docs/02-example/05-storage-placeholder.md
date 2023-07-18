@@ -1,6 +1,6 @@
 ---
 title: Response Cache - Cache Placeholder Mode
-sidebar_position: 23
+sidebar_position: 50
 ---
 
 import StoragePlaceholder from '@site/example-links/StoragePlaceholder';

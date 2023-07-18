@@ -1,6 +1,6 @@
 ---
 title: 页码列表
-sidebar_position: 60
+sidebar_position: 100
 ---
 
 import Pagination from '@site/example-links/Pagination';

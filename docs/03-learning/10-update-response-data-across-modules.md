@@ -16,6 +16,8 @@ This problem often occurs when the state is updated across pages, because what w
 1. Persist the page components to ensure that the updated state can still be found.
 2. Use [manually update the cache(setCache)](/learning/cache-set-and-query) instead of `updateState`, the principle is that when the request for the previous page exists in the cache, update its cache to ensure that it is created again page, the triggered request can hit the updated cache to achieve the same effect.
 
+[Here is a demo about `updateState`](/example/update-state)
+
 ## Use the method instance to find the response status
 
 When determining the method instance corresponding to the updated response state, you can pass this method instance in `updateState`, it will check whether there is a corresponding response state under this instance, and provide it to you for modification in the callback function, and finally Just return the modified data.

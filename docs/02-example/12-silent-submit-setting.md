@@ -1,6 +1,6 @@
 ---
 title: Silent Submit - Settings Page
-sidebar_position: 110
+sidebar_position: 120
 ---
 
 import SettingSilentSvelte from '@site/example-links/SettingSilentSvelte';

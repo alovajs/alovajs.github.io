@@ -1,6 +1,6 @@
 ---
 title: Response Cache - Memory Mode
-sidebar_position: 20
+sidebar_position: 40
 ---
 
 import MemoryCache from '@site/example-links/MemoryCache';

@@ -1,6 +1,6 @@
 ---
 title: 静默提交-简单列表
-sidebar_position: 120
+sidebar_position: 130
 ---
 
 import SimpleListSilentVue from '@site/example-links/SimpleListSilentVue';
