@@ -7,6 +7,15 @@ In the example of the previous section [Active Invalidation Response Cache](/lea
 
 Of course there is! alova provides `updateState` to manually update the existing responsive state under any module/page. It is worth noting that the different response states are stored with the method instance that sent the request as the key, so the method instance will also be used to find the corresponding response state when updating the state.
 
+## ⚠️ Please make sure the component is not destroyed
+
+`updateState` will look for the response state created by alova's use hooks by default, and the destruction of a component will also recycle all the state created inside it at the same time, so when using `updateState`, please make sure you want to update the response The container component corresponding to the status has not been destroyed, otherwise the corresponding response status will not be found and the update will fail.
+
+This problem often occurs when the state is updated across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update the state across pages, here are two suggestions :
+
+1. Persist the page components to ensure that the updated state can still be found.
+2. Use [manually update the cache(setCache)](/learning/cache-set-and-query) instead of `updateState`, the principle is that when the request for the previous page exists in the cache, update its cache to ensure that it is created again page, the triggered request can hit the updated cache to achieve the same effect.
+
 ## Use the method instance to find the response status
 
 When determining the method instance corresponding to the updated response state, you can pass this method instance in `updateState`, it will check whether there is a corresponding response state under this instance, and provide it to you for modification in the callback function, and finally Just return the modified data.
