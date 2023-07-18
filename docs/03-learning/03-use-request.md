@@ -178,7 +178,7 @@ Throwing an error in `onSuccess` will trigger `onError`
 
 :::
 
-## Manually send the request
+## Manually send request
 
 When you need to create a new todo item, you can turn off the default sending request first, switch to manually triggering the request, and receive the `send` function in useRequest to manually send the request, and the `send` function will return a Promise with response data Instance, it will change to resolve state after request response.
 
@@ -208,6 +208,8 @@ const handleAddTodo = () => {
     });
 };
 ```
+
+> `[2.9.0+]`In react, the send function is wrapped with `useCallback`, and it is not limited by the closure trap. You can use it directly in the event without worrying about performance problems.
 
 ## Force send request
 
@@ -386,7 +388,9 @@ const handleCancel = () => {
 // highlight-end
 ```
 
-In addition, this `abort` function will also be bound to the current method instance, so you can also call `method.abort` to abort this request.
+> `[2.9.0+]`In react, the abort function is wrapped with `useCallback`, and it is not limited by the closure trap. You can use it directly in the event without worrying about performance problems.
+
+`[2.6.2+]`In addition, this `abort` function will also be bound to the current method instance, so you can also call `method.abort` to abort this request.
 
 ```javascript
 useRequest(todoListGetter);
