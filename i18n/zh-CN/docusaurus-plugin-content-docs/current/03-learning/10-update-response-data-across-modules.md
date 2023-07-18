@@ -16,6 +16,8 @@ sidebar_position: 100
 1. 将页面组件持久化，以保证被更新的状态还可以被查找到；
 2. 使用 [手动更新缓存（setCache）](/learning/cache-set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
 
+[这里有个`updateState`的 demo](/example/update-state)
+
 ## 使用 method 实例查找响应状态
 
 当确定更新的响应状态对应的 method 实例时，你可以在`updateState`中传入此 method 实例，它将查找这个实例下是否存在对应的响应状态，并在回调函数中提供给你进行修改，最后将修改后的数据返回即可。

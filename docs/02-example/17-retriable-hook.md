@@ -1,18 +1,18 @@
 ---
-title: Form submit strategy
-sidebar_position: 140
+title: Request Retry/Poll Request
+sidebar_position: 170
 ---
 
-import FormHook from '@site/example-links/FormHook';
+import RetriableHook from '@site/example-links/RetriableHook';
 
 > The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/get-started/overview) for details;
 
-<FormHook></FormHook>
+<RetriableHook></RetriableHook>
 
 :::info example description
 
 This example provides four parts: form data persistence, form editing, multi-module form, and form filtering data, which can be tried separately.
 
-[Form submit strategy document](/strategy/useForm)
+[Request Retry Strategy Documentation](/strategy/useRetriableRequest)
 
 :::

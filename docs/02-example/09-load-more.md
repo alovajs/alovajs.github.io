@@ -1,6 +1,6 @@
 ---
 title: Load more
-sidebar_position: 50
+sidebar_position: 90
 ---
 
 import LoadMore from '@site/example-links/LoadMore';

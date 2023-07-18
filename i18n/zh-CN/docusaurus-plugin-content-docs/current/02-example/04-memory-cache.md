@@ -1,6 +1,6 @@
 ---
 title: 响应缓存-内存模式
-sidebar_position: 20
+sidebar_position: 40
 ---
 
 import MemoryCache from '@site/example-links/MemoryCache';

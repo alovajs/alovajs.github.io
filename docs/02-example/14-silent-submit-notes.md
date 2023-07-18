@@ -1,6 +1,6 @@
 ---
 title: Silent Commit - Notebook
-sidebar_position: 123
+sidebar_position: 140
 ---
 
 import NoteSilentReact from '@site/example-links/NoteSilentReact';

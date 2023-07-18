@@ -1,6 +1,6 @@
 ---
 title: 下拉加载更多
-sidebar_position: 50
+sidebar_position: 80
 ---
 
 import LoadMore from '@site/example-links/LoadMore';

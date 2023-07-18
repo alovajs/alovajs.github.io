@@ -1,6 +1,6 @@
 ---
 title: Manage Cache with IndexedDB
-sidebar_position: 100
+sidebar_position: 110
 ---
 
 import ControlledCacheByIndexedDB from '@site/example-links/ControlledCacheByIndexedDB';
