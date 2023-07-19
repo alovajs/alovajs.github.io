@@ -36,7 +36,7 @@ const alovaInstance = createAlova({
 
 ## 自定义打印缓存命中日志
 
-错误日志默认通过`console.log`进行打印，如果你的项目环境中不支持`console.log`或其他目的，可以将`cacheLogger`指定为一个函数自定义处理缓存命中的日志。
+缓存日志默认通过`console.log`进行打印，如果你的项目环境中不支持`console.log`或其他目的，可以将`cacheLogger`指定为一个函数自定义处理缓存命中的日志。
 
 ```javascript
 const alovaInstance = createAlova({

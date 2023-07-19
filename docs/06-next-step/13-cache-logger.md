@@ -1,5 +1,5 @@
 ---
-title: cache hit logger
+title: cache logger
 sidebar_position: 130
 ---
 
@@ -13,7 +13,7 @@ In order to facilitate debugging when using the interface cache, when the reques
 
 If you don't want to print cache information or custom control print cache information in some cases (such as production environment), alova also provides support for them.
 
-## Turn off printing cache hit log
+## Turn off printing cache logger
 
 Console printing can be turned off by setting `cacheLogger` to `false or null` when creating an alova instance.
 
@@ -29,20 +29,20 @@ You can also dynamically turn it on and off according to different environments.
 ```javascript
 const alovaInstance = createAlova({
   //...
-  // Enable cache hit logging in the development environment
+  // Enable cache logger in the development environment
   cacheLogger: process.env.NODE_ENV === 'development'
 });
 ```
 
-## Custom print cache hit log
+## Custom print cache logger
 
-The error log is printed by `console.log` by default. If `console.log` or other purposes are not supported in your project environment, `cacheLogger` can be specified as a function to customize the log for processing cache hits.
+The cache logger is printed via `console.log` by default. If `console.log` or other purposes are not supported in your project environment, `cacheLogger` can be specified as a function to customize the logger for processing cache hits.
 
 ```javascript
 const alovaInstance = createAlova({
   //...
   /**
-   * Custom cache hit log function
+   * Custom cache logger function
    * @param response hit cache data
    * @param method the current method instance
    * @param cacheMode cache mode memory or restore

@@ -30,7 +30,7 @@ alova.Get('/todo/1', {
 });
 ```
 
-### Match failure sources by method name
+### Match invalidating source by method name
 
 Like the method instance matcher, you can specify the name of the method in hitSource to match the failure source. Multiple failure sources can be set to the same name. When the method instance request with this name succeeds, the target cache will be automatically cleared.
 
@@ -47,7 +47,7 @@ alova.Get('/todo/1', {
 });
 ```
 
-### Match failure source by method name regular expression
+### Match invalidating source by regexp of method name
 
 If the method instance name is not fixed, you can specify a regular expression in hitSource to match the method name, and the target cache will be automatically cleared when the matched method instance succeeds in the request.
 
@@ -64,7 +64,7 @@ alova.Get('/todo/1', {
 });
 ```
 
-### Combination setting failure source
+### Combination setting validating source
 
 If you want to use the above multiple rules to match failure sources, you can specify hitSource as an array, and the array item is any one of the above three rules, and the method instance that meets any one of the rules in the array will be matched.
 
