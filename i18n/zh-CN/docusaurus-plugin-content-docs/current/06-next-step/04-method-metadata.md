@@ -13,6 +13,8 @@ method 实例是贯穿 alova 的整个请求生命周期的，并且，在项目
 
 ## 使用元数据标识身份
 
+### 在请求前使用身份标识
+
 例如，你的项目中大部分接口在每次请求时需附带`token`，但还存在一些接口无需验证的，可能你会在全局的`beforeRequest`函数中统一处理它们。
 
 ```javascript
@@ -39,7 +41,7 @@ createAlova({
 
 为解决这两个问题，我们将使用元数据的方式，在创建特定的 method 实例时对它进行标识。
 
-**在创建 method 实例时定义元数据**
+**第一步：在创建 method 实例时定义元数据**
 
 ```javascript
 const loginAPI = (username, password) => {
@@ -54,19 +56,50 @@ const loginAPI = (username, password) => {
 };
 ```
 
-**在`beforeRequest`中通过元数据作为判断依据。**
+**第二步：在`beforeRequest`中通过元数据作为判断依据**
 
 ```javascript
 createAlova({
+  // ...
   beforeRequest(method) {
-    if (!method.meta.ignoreToken) {
+    if (!method.meta?.ignoreToken) {
       method.config.headers.token = '...';
     }
   }
 });
 ```
 
-这种方式还可以用于在全局的`responded`中， 你可以在响应成功或响应失败时使用不同的元数据分别处理不同的响应。
+### 在响应后使用标识身份
+
+这种方式还可以用于在全局的`responded`中，例如，在绝大部分情况下，请求 api 都将返回 json 数据，但可能存在文件下载接口，它将返回二进制数据流，在这种情况下，你可以在`responded`中使用不同的元数据分别处理不同的响应。
+
+**第一步：创建 method 实例时同样需要分配一个元数据**
+
+```javascript
+const downloadAPI = filePath => {
+  const methodInstance = alovaInst.Post('/download_file', {
+    filePath
+  });
+  methodInstance.meta = {
+    isDownload: true
+  };
+  return methodInstance;
+};
+```
+
+**第二步：在`responded`中通过元数据作为判断依据**
+
+```javascript
+createAlova({
+  // ...
+  responded:
+    onSuccess: (response, method) => method.meta?.isDownload ? response.blob() : response.json()
+    onError: (error, method) => {
+      // 在响应错误时也可以访问method实例的元数据
+    }
+  }
+});
+```
 
 ## 使用元数据传递信息
 
@@ -93,7 +126,7 @@ createAlova({
 });
 ```
 
-## 注意事项
+## 非 typescript 项目提示
 
 在非 typescript 环境下，你可以使用任意一个属性作为信息载体，而不局限于`meta`属性。
 

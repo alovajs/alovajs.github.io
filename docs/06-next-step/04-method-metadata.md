@@ -13,6 +13,8 @@ Method instances run through the entire request life cycle of alova, and there a
 
 ## Use metadata to identify identities
 
+### Use the identity before the request
+
 For example, most of the interfaces in your project need to be accompanied by `token` for each request, but there are still some interfaces that do not need to be verified, and you may handle them uniformly in the global `beforeRequest` function.
 
 ```javascript
@@ -37,9 +39,9 @@ This will cause the following two problems:
 1. The information is not aggregated with the method instance, and the maintainability is worse;
 2. Coding is more troublesome;
 
-To solve these problems, we will use metadata to identify a specific method instance when it is created.
+To solve these two problems, we will use metadata to identify a specific method instance when it is created.
 
-**Define metadata when creating a method instance**
+**Step 1: Define metadata when creating a method instance**
 
 ```javascript
 const loginAPI = (username, password) => {
@@ -54,21 +56,52 @@ const loginAPI = (username, password) => {
 };
 ```
 
-** Use metadata as the basis for judgment in `beforeRequest`. **
+**Step 2: Use metadata as the basis for judgment in `beforeRequest`**
 
 ```javascript
 createAlova({
+  //...
   beforeRequest(method) {
-    if (!method.meta.ignoreToken) {
+    if (!method.meta?.ignoreToken) {
       method.config.headers.token = '...';
     }
   }
 });
 ```
 
-This method can also be used in the global `responded`, you can use different metadata to handle different responses separately when the response succeeds or fails.
+### Use identity after response
 
-## Use metadata to pass information
+This method can also be used in the global `responded`. For example, in most cases, the request api will return json data, but there may be a file download interface, which will return a binary data stream. In this case Next, you can use different metadata in `responded` to handle different responses separately.
+
+**Step 1: When creating a method instance, you also need to assign a metadata**
+
+```javascript
+const downloadAPI = filePath => {
+  const methodInstance = alovaInst.Post('/download_file', {
+    filePath
+  });
+  methodInstance.meta = {
+    isDownload: true
+  };
+  return methodInstance;
+};
+```
+
+**Step 2: Use metadata as the basis for judgment in `responded`**
+
+```javascript
+createAlova({
+   //...
+   responded:
+     onSuccess: (response, method) => method.meta?.isDownload ? response.blob() : response.json()
+     onError: (error, method) => {
+       // You can also access the metadata of the method instance when responding to errors
+     }
+   }
+});
+```
+
+## Use metadata to pass data
 
 In some cases, if you want to add additional information to different method instances for use elsewhere, you can also use metadata to save it. Take the uniform generation of different method instance ids as an example.
 
@@ -93,7 +126,7 @@ createAlova({
 });
 ```
 
-## Precautions
+## Prompt for non-typescript projects
 
 In a non-typescript environment, you can use any attribute as an information carrier, not limited to the `meta` attribute.
 
