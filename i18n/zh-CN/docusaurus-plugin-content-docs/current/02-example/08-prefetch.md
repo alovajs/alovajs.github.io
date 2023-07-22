@@ -1,6 +1,6 @@
 ---
 title: 数据预拉取
-sidebar_position: 90
+sidebar_position: 80
 ---
 
 import Prefetch from '@site/example-links/Prefetch';
