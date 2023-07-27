@@ -1,0 +1,7 @@
+{
+  "label": "Examples",
+  "link": {
+    "type": "generated-index",
+    "description": "Here are rich examples to show how alova behaves in different request scenarios.The dependencies will be installed before the example runs, so wait for a while!"
+  }
+}

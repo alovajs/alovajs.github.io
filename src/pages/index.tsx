@@ -6,16 +6,16 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
 import HomepageFeatures from './indexComponents/HomepageFeatures';
+import styles from './indexComponents/index.module.css';
 import Strategy from './indexComponents/Strategy';
 import Support from './indexComponents/Support';
-import styles from './indexComponents/index.module.css';
 
 function HomepageHeader() {
   const buttons = [
     {
       text: <Translate id="homepage.Get Started">Get Started</Translate>,
       type: 'primary',
-      link: '/get-started/overview'
+      link: '/tutorial/get-started/overview'
     },
     {
       text: <Translate id="homepage.Examples">Examples</Translate>,

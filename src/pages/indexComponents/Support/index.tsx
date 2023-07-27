@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './style.module.css';
 
 type SupportItem = {
+  id?: string;
   Image: React.ComponentType<React.ComponentProps<'svg'>>;
   link: string;
 };
@@ -22,10 +23,12 @@ const supportList: SupportItem[] = [
     link: 'https://svelte.dev'
   },
   {
+    id: 'next',
     Image: require('@site/static/img/next.svg').default,
     link: '/next-step/ssr'
   },
   {
+    id: 'nuxt',
     Image: require('@site/static/img/nuxt.svg').default,
     link: '/next-step/ssr'
   },
@@ -53,11 +56,11 @@ export default function Support(): JSX.Element {
   return (
     <div className={clsx('flex-col align-center', styles.wrapper)}>
       <div className={styles.icons}>
-        {supportList.map(({ Image, link }) => (
+        {supportList.map(({ id, Image, link }) => (
           <a
             href={link}
             target="_blank"
-            key={link}
+            key={id || link}
             className={styles.iconWrapper}>
             <Image
               role="img"
@@ -68,7 +71,7 @@ export default function Support(): JSX.Element {
       </div>
       <h5 className="margin-top--md text--center">
         <Translate id="homepage.support.title">
-          Get the same experience on above platforms and seamless migration
+          Gain the same experience on above platforms and seamless migration
         </Translate>
       </h5>
     </div>

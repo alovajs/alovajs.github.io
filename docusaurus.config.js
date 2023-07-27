@@ -68,27 +68,46 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'get-started/overview',
+            to: 'tutorial/get-started/overview',
             position: 'left',
             label: 'Docs'
           },
           {
-            type: 'doc',
-            docId: 'example/init-page',
+            to: 'tutorial/example/init-page',
             position: 'left',
             label: 'Example'
           },
           {
-            to: 'https://github.com/alovajs/alova/releases',
+            type: 'dropdown',
+            label: 'Contributing',
             position: 'left',
-            label: 'Releases'
+            items: [
+              {
+                label: 'Contributing Guidelines',
+                to: 'contributing/overview'
+              },
+              {
+                label: 'Become core member',
+                to: 'contributing/become-core-member'
+              },
+              {
+                label: 'Developing Guidelines',
+                to: 'contributing/developing-guidelines'
+              },
+              {
+                label: 'Code of conduct',
+                to: 'contributing/code-of-conduct'
+              }
+            ]
           },
-          // {to: '/blog', label: 'Blog', position: 'left'},
           {
             type: 'localeDropdown',
-            docId: 'locale',
             position: 'right'
+          },
+          {
+            to: 'https://github.com/alovajs/alova/releases',
+            position: 'right',
+            label: 'Releases'
           },
           {
             href: 'https://github.com/alovajs/alova',

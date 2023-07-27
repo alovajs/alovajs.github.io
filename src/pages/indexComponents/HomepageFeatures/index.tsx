@@ -46,7 +46,7 @@ const FeatureList: FeatureItem[] = [
     title: <Translate id="homepage.features.Lightweight">Lightweight</Translate>,
     icon: 'box',
     description: (
-      <Translate id="homepage.features.Lightweight.desc">compressed version is only 4kb, only 40% of axios</Translate>
+      <Translate id="homepage.features.Lightweight.desc">compressed version is only 4kb+, only 30% of axios</Translate>
     )
   }
 ];
