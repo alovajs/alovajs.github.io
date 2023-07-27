@@ -85,7 +85,7 @@ Alova is the core library, which provides common functions such as caching strat
 
 ### More request-related business scenarios are being collected...
 
-If you still have a specific and typical business request scenario, but we have not implemented it yet, you can [submit an issue](https://github.com/alovajs/scene/issues/new/choose) to tell us here, we Will make it available to more people. You can also customize the request hook, please see the [Advanced](../category/advanced) section.
+If you still have a specific and typical business request scenario, but we have not implemented it yet, you can [submit an issue](https://github.com/alovajs/scene/issues/new/choose) to tell us here, we Will make it available to more people. You can also customize the request hook, please see the [Advanced](../../category/advanced) section.
 
 ## Library Stability
 

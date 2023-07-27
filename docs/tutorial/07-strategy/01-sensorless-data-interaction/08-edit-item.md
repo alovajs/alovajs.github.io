@@ -18,7 +18,7 @@ And here we will focus on the case of **2-2**.
 
 In the previous chapters, we know that when the newly created data item has not been successfully submitted, the virtual data will be used as the placeholder for the id. Usually, we also get the data item through the id. At this time, we are in `useSQRequeset` Virtual data interception is implemented on the above, if a request is accompanied by virtual data information, it will be intercepted before sending and the data can be specified to replace the response data, and the request will be abandoned.
 
-Remember the **silentMethod.reviewData** saved in [Step 2 - Adjust Response Handling](../strategy/sensorless-data-interaction/modify-response)?
+Remember the **silentMethod.reviewData** saved in [Step 2 - Adjust Response Handling](../../strategy/sensorless-data-interaction/modify-response)?
 
 ```javascript
 onSuccess(({ silentMethod }) => {
