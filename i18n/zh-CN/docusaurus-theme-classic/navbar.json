@@ -9,7 +9,27 @@
   },
   "item.label.Example": {
     "message": "示例",
-    "description": "Navbar item with label Document"
+    "description": "Navbar item with label Example"
+  },
+  "item.label.Contributing": {
+    "message": "社区贡献",
+    "description": "Navbar item with label Contributing"
+  },
+  "item.label.Contributing Guidelines": {
+    "message": "贡献指南",
+    "description": "Navbar item with label Contributing Guidelines"
+  },
+  "item.label.Become core member": {
+    "message": "成为核心成员",
+    "description": "Navbar item with label Become core member"
+  },
+  "item.label.Developing Guidelines": {
+    "message": "开发指南",
+    "description": "Navbar item with label Developing Guidelines"
+  },
+  "item.label.Code of conduct": {
+    "message": "行为准则",
+    "description": "Navbar item with label Code of Conduct"
   },
   "item.label.Releases": {
     "message": "发布日志",

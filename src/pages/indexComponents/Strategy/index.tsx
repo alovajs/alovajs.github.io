@@ -1,3 +1,4 @@
+import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import IconFont from '@site/src/components/IconFont';
 import clsx from 'clsx';
@@ -13,7 +14,7 @@ const strategyList = [
         reduce coding difficulty by 50%
       </Translate>
     ),
-    link: 'strategy/usePagination'
+    link: 'tutorial/strategy/usePagination'
   },
   {
     title: (
@@ -25,7 +26,7 @@ const strategyList = [
         allowing your application to remain available even when the network is unstable or even disconnected
       </Translate>
     ),
-    link: 'strategy/sensorless-data-interaction/overview'
+    link: 'tutorial/strategy/sensorless-data-interaction/overview'
   },
   {
     title: <Translate id="homepage.strategy.Cross-component request">Cross-component request strategy</Translate>,
@@ -35,7 +36,7 @@ const strategyList = [
         any component
       </Translate>
     ),
-    link: 'strategy/actionDelegationMiddleware'
+    link: 'tutorial/strategy/actionDelegationMiddleware'
   },
   {
     title: <Translate id="homepage.strategy.Form submit">Form Submit strategy</Translate>,
@@ -44,7 +45,7 @@ const strategyList = [
         Form draft, multi-page (multi-step) form, in addition to providing common functions such as form reset
       </Translate>
     ),
-    link: 'strategy/useForm'
+    link: 'tutorial/strategy/useForm'
   },
   {
     title: <Translate id="homepage.strategy.Send captcha">Send captcha</Translate>,
@@ -53,7 +54,7 @@ const strategyList = [
         Reduce your tediousness when developing the verification code sending function
       </Translate>
     ),
-    link: 'strategy/useCaptcha'
+    link: 'tutorial/strategy/useCaptcha'
   },
   {
     title: <Translate id="homepage.strategy.Request retry strategy">Request retry strategy</Translate>,
@@ -62,7 +63,7 @@ const strategyList = [
         Request failure automatic retry, it plays an important role on important requests and polling requests
       </Translate>
     ),
-    link: 'strategy/useRetriableRequest'
+    link: 'tutorial/strategy/useRetriableRequest'
   }
 ];
 
@@ -81,7 +82,9 @@ export default function Strategy() {
             </Translate>
           </p>
         </div>
-        <div className={clsx('col col--4', styles.custom)}>
+        <Link
+          to="tutorial/advanced/overview"
+          className={clsx('col col--4', styles.custom)}>
           <div className={styles.customHeader}>
             <h4>
               <Translate id="homepage.Custom strategy">Costom strategy</Translate>
@@ -95,13 +98,14 @@ export default function Strategy() {
               Super extensibility can quickly build custom request strategies
             </Translate>
           </p>
-        </div>
+        </Link>
       </div>
       <div className="row">
         {strategyList.map(({ title, describe, link }) => (
-          <a
+          <Link
             className={clsx('col col--4', styles.itemWrapper)}
-            href={link}>
+            to={link}
+            key={link}>
             <div className={styles.item}>
               <div className="flex-row justify-between">
                 <h4>{title}</h4>
@@ -111,7 +115,7 @@ export default function Strategy() {
               </div>
               <p className={styles.describe}>{describe}</p>
             </div>
-          </a>
+          </Link>
         ))}
 
         <a className={clsx('col col--4', styles.itemWrapper)}>

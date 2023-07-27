@@ -328,7 +328,7 @@
     "description": "轻量级"
   },
   "homepage.features.Lightweight.desc": {
-    "message": "4kb+，只有axios的30%+",
+    "message": "4kb+，只有axios的30%",
     "description": "description of feature"
   },
   "homepage.request strategy": {
