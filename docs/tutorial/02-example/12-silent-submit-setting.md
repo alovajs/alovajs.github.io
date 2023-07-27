@@ -18,6 +18,6 @@ _Operation guidance:_
 1. Operate the setting item, it will generate feedback immediately without waiting for the server to respond;
 2. Switch the request mode and network status to experience the difference between them;
 
-[Silent submit policy document](../category/sensorless-data-interaction)
+[Silent submit policy document](../../category/sensorless-data-interaction)
 
 :::

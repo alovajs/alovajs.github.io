@@ -363,7 +363,7 @@ update({
 :::caution Notes
 
 1. The custom modified value will be overwritten by the internal state management mechanism of `useRequest`, for example, when you modify the `data` value, the `data` value will be assigned the latest response data after requesting again;
-2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](/learning/update-response-data-across-modules)
+2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](../learning/update-response-data-across-modules)
 
 :::
 
@@ -426,7 +426,7 @@ const alovaInst = createAlova({
 | initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set | any                                                                                                                                   | -       | -       |
 | force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean &#124; (...args: any[]) => boolean                                                                                            | false   | -       |
 | managedStates | Additional managed states, can be updated via updateState                                                     | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                 | -       | -       |
-| middleware    | Middleware function, [Learn about alova middleware](/advanced/middleware)                                     | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise&lt;any&gt; | -       | -       |
+| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                   | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise&lt;any&gt; | -       | -       |
 
 #### AlovaFrontMiddlewareContext
 

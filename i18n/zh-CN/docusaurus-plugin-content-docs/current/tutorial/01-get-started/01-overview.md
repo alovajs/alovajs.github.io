@@ -85,7 +85,7 @@ alova 是核心库，它提供了缓存策略、请求共享策略，以及状�
 
 ### 更多请求相关的业务场景征集中...
 
-如果你还有特定且典型的业务请求场景，但我们还未实现的，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。同时也可以自定义请求 hook，请看 [高级](../category/advanced) 部分。
+如果你还有特定且典型的业务请求场景，但我们还未实现的，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。同时也可以自定义请求 hook，请看 [高级](../../category/advanced) 部分。
 
 ## 库稳定性
 

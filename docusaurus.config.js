@@ -143,11 +143,11 @@ const config = {
             items: [
               {
                 label: 'Docs',
-                to: 'get-started/overview'
+                to: 'tutorial/get-started/overview'
               },
               {
                 label: 'Example',
-                to: 'example/init-page'
+                to: 'tutorial/example/init-page'
               }
             ]
           },
