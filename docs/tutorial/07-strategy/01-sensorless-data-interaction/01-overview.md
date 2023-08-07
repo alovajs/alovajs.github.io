@@ -123,7 +123,7 @@ In html, you may have seen such a tag `<link rel="prefetch" href="index.css" as=
 
 We provide a [preloaded example](../../example/prefetch), you can enter the experience.
 
-### Silent commit
+### Silent submit
 
 Silent submission is a mechanism of submitting and responding. In the scheme, the completion of submission will be guaranteed, so it can be regarded as a safer optimistic update scheme. Silent submission mainly uses **Silent Queue** to persist request information and ensure request timing issues. **Virtual data** is used as a placeholder for server response data, which is replaced with actual response data when the request is completed. , through these two technologies, localized data creation is realized, and operations such as editing and deleting of newly created data are realized, even if the created data has not yet been submitted successfully on the server side. In order to keep development costs to a minimum, this is done automatically in alova.
 

@@ -108,7 +108,7 @@ const defaultSerializers = {
 
 ## Manipulate the silent queue
 
-Silent queues are used to ensure the timing of requests. We can create queues arbitrarily, and all requests entering the queue will be stored in the queue in the form of **SilentMethod** instances. Each **SilentMethod** not only contains request information, but also Contains relevant configuration for silent commits. Any number of silent queues can be generated, and it supports searching, modifying, and deleting silentMethod instances in the queue.
+Silent queues are used to ensure the timing of requests. We can create queues arbitrarily, and all requests entering the queue will be stored in the queue in the form of **SilentMethod** instances. Each **SilentMethod** not only contains request information, but also Contains relevant configuration for silent submission. Any number of silent queues can be generated, and it supports searching, modifying, and deleting silentMethod instances in the queue.
 
 ### Using multiple silent queues
 
@@ -291,7 +291,7 @@ onSuccess(({ data, silentMethod }) => {
 });
 ```
 
-## Global silent commit event
+## Global silent submit event
 
 In the previous chapter, we touched `onSilentSubmitSuccess`, we provided a total of 5 global events.
 
