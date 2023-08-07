@@ -1,5 +1,5 @@
 ---
-title: Silent Commit - Notebook
+title: Silent submit - Notebook
 sidebar_position: 140
 ---
 

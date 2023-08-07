@@ -1,5 +1,5 @@
 ---
-title: Silent Commit - Simple List
+title: Silent submit - Simple List
 sidebar_position: 130
 ---
 

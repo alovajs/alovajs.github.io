@@ -255,4 +255,4 @@ onSuccess(({ sendArgs: [deletingId], silentMethod }) => {
 2. Generally speaking, you can use `silentMethod.a = ...` or `silentMethod.b = ...` to save operation records, but it will report an error in typescript, so _reviewData_ is specially provided as a silent Submit the save attribute of the operation record;
 3. After modifying the silentMethod data, you need to save the modification through `silentMethod.save()`;
 
-The next step is to set retry parameters on silent commit requests.
+The next step is to set retry parameters on silent submit requests.
