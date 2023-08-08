@@ -25,12 +25,12 @@ const supportList: SupportItem[] = [
   {
     id: 'next',
     Image: require('@site/static/img/next.svg').default,
-    link: '/next-step/ssr'
+    link: '/tutorial/next-step/ssr'
   },
   {
     id: 'nuxt',
     Image: require('@site/static/img/nuxt.svg').default,
-    link: '/next-step/ssr'
+    link: '/tutorial/next-step/ssr'
   },
   {
     Image: ({ className }) => (
