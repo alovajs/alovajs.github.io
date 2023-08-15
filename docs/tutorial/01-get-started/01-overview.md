@@ -25,8 +25,6 @@ A lightweight request strategy library, which provides targeted request strategi
 
 ## Why create alova
 
-Draft: Alova starts from the request strategy and business scenarios. While helping developers write less request code, it can also provide a high-performance request process.
-
 Data requests have always been an essential part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in an endless stream. Client data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and `react-query` and other request tools, the encoding form is constantly transitioning from callback function, Promise, and then to usehook, which makes the request easier and simpler. However, in the era of more and more emphasis on user experience, our focus From the simplicity of the request to the fluency of the application, developers need to write more complex request logic according to different business scenarios, which is a test of the developer's skill level.
 
 Alova focuses on improving application fluency, and uses different request strategies to manage request timing and response data according to different request business scenarios, thereby improving performance and user experience, and reducing server pressure. **alova's mission is to enable developers to achieve more efficient Client-Server data interaction while writing a small amount of code**, so that both developers and users can benefit
