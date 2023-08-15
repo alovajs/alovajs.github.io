@@ -563,29 +563,23 @@ const alovaInst = createAlova({
 });
 ```
 
-## Do not send request when state changes
+## Prevent sending request when state changes
 
 Sometimes you want not to send a request when the monitored state changes. You can control whether to send a request when the monitored state changes through the sendable attribute in the Hook configuration. The sendable attribute is a function whose parameter is the `AlovaEvent` event object. Contains the array `sendArgs` composed of the parameters passed in by the `send` function, and the `method` instance of the current request, and the function returns a `truthy/falsy` value to determine whether the request needs to be triggered when the status changes (default is `true`), **throwing an error also means not triggering the request**.
 
 ```javascript
-const {
-  // ...
-  // highlight-start
-  // When the request is not sent, the value of data is the response of the last successful request
-  data,
-  // When the request is not sent, the loading value is false
-  loading
-  // highlight-end
-} = useWatcher(
+useWatcher(
   () => getTodoList($currentPage),
   // An array of monitored states, these state changes will trigger a request
   [state],
   {
+    // highlight-start
     sendable: methodInstance => {
       // do something
       // Send request only when state is 1
       return state === 1;
     }
+    // highlight-end
   }
 );
 ```
@@ -594,15 +588,15 @@ const {
 
 ### Hook configuration
 
-| Name          | Description                                                                                                                                        | Type                                                                                                                                                                                  | Default  | Version |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | --- |
-| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                               | true     | -       |
-| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                                   | -        | -       |
-| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean &#124; (...args: any[]) => boolean                                                                                                                                            | false    | -       |
-| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                                 | -        | -       |
-| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                                | number[] | -       | -   |
-| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -        | -       |
-| sendable        | Whether to send a request when the monitored state changes                                                   | (methodInstance: AlovaEvent) => boolean                                                                                                                                            | () => true | -       |
+| Name          | Description                                                                                                                                        | Type                                                                                                                                                                                  | Default    | Version |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------- | --- |
+| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                               | true       | -       |
+| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                                   | -          | -       |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean &#124; (...args: any[]) => boolean                                                                                                                                            | false      | -       |
+| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                                 | -          | -       |
+| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                                | number[]   | -       | -   |
+| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -          | -       |
+| sendable      | Whether to send a request when the monitored state changes                                                                                         | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -       |
 
 ### Responsive data
 

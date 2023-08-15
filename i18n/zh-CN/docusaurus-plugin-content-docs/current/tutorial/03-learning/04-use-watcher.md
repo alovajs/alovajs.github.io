@@ -562,29 +562,24 @@ const alovaInst = createAlova({
   }
 });
 ```
+
 ## 状态改变时不发送请求
 
 有时候你希望在监听的状态改变时不发送请求，你可以通过 Hook 配置中的 sendable 属性来控制监听的状态改变时是否发送请求，sendable 属性为一个函数，它的参数为`AlovaEvent`事件对象，包含`send`函数传入的参数所组成的数组`sendArgs`，以及当前请求的`method`实例，并且该函数返回一个`truthy/falsy`值来判断本次状态改变时是否需要触发请求（默认为`true`），**抛出错误也表示不触发请求**。
 
 ```javascript
-const {
-  // ...
-  // highlight-start
-  // 请求未发送时，data 值为上一次请求成功的响应
-  data,
-  // 请求未发送时，loading 值为 false
-  loading
-  // highlight-end
-} = useWatcher(
+useWatcher(
   () => getTodoList($currentPage),
   // 被监听的状态数组，这些状态变化将会触发一次请求
   [state],
   {
+    // highlight-start
     sendable: methodInstance => {
       // do something
       // 仅当 state 为 1 时发送请求
       return state === 1;
     }
+    // highlight-end
   }
 );
 ```
@@ -593,15 +588,15 @@ const {
 
 ### Hook 配置
 
-| 名称          | 描述                                                                       | 类型                                                                                                                                                                                  | 默认值   | 版本 |
-| ------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---- | --- |
-| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                               | true     | -    |
-| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                                   | -        | -    |
-| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean &#124; (...args: any[]) => boolean                                                                                                                                            | false    | -    |
-| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                                 | -        | -    |
-| debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number                                                                                                                                                                                | number[] | -    | -   |
-| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)                    | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -        | -    |
-| sendable         | 监听的状态改变时是否发送请求                              | (methodInstance: AlovaEvent) => boolean                                                                                                                                            | () => true  | -    |
+| 名称          | 描述                                                                       | 类型                                                                                                                                                                                  | 默认值     | 版本 |
+| ------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---- | --- |
+| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                               | true       | -    |
+| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                                   | -          | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean &#124; (...args: any[]) => boolean                                                                                                                                            | false      | -    |
+| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                                 | -          | -    |
+| debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number                                                                                                                                                                                | number[]   | -    | -   |
+| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)                    | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -          | -    |
+| sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -    |
 
 ### 响应式数据
 
