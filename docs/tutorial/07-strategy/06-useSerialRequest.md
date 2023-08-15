@@ -22,6 +22,10 @@ This use hook is more concise and easy to use than [alova's serial request metho
 - ✨Unified request status and callback function;
 - ✨ send function can trigger serial execution of multiple requests;
 
+## Example
+
+[serial request](../example/serial-request)
+
 ## Install
 
 <Tabs groupId="framework">

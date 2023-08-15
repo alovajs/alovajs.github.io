@@ -22,6 +22,10 @@ use hook
 - ✨ 统一的请求状态和回调函数；
 - ✨ 状态更新触发多个请求串行执行；
 
+## 示例
+
+[串行请求](../example/serial-request)
+
 ## 安装
 
 <Tabs groupId="framework">
