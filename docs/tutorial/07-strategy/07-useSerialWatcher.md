@@ -22,6 +22,10 @@ Status update triggers a set of serial requests, which is more concise and easy 
 - ✨Unified request status and callback function;
 - ✨Status update triggers serial execution of multiple requests;
 
+## Example
+
+[serial request](../example/serial-request)
+
 ## Install
 
 <Tabs groupId="framework">
