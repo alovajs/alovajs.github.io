@@ -72,7 +72,7 @@ Alova is the core library, which provides common functions such as caching strat
 
 | Name                                 | Description                                                                                                                                                                                             | Documentation                                                        |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Paging request strategy              | Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, reduce coding difficulty by 50%                                                            | [usePagination](../strategy/usePagination)                           |
+| Pagination request strategy          | Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, reduce coding difficulty by 50%                                                            | [usePagination](../strategy/usePagination)                           |
 | Non-inductive data interact strategy | A new interactive experience, submitting and responding, greatly reducing the impact of network fluctuations, making your application still available when the network is unstable or even disconnected | [useSQRequest](../strategy/sensorless-data-interaction/overview)     |
 | Form Submit Strategy                 | A hook designed for form submission, through which you can easily implement form drafts, multi-page (multi-step) forms, in addition to providing common functions such as form reset                    | [useForm](../strategy/useForm)                                       |
 | Send Captcha                         | Captcha sending hook, which saves you the trouble of developing the verification code sending function.                                                                                                 | [useCaptcha](../strategy/useCaptcha)                                 |
@@ -83,7 +83,7 @@ Alova is the core library, which provides common functions such as caching strat
 
 ### More request-related business scenarios are being collected...
 
-If you still have a specific and typical business request scenario, but we have not implemented it yet, you can [submit an issue](https://github.com/alovajs/scene/issues/new/choose) to tell us here, we Will make it available to more people. You can also customize the request hook, please see the [Advanced](../../category/advanced) section.
+If you still have a specific and typical business request scenario, but we have not implemented it yet, you can [submit an issue](https://github.com/alovajs/scene/issues/new/choose) to tell us here, we Will make it available to more people. You can also customize the request hook, please see the [advanced](../../category/advanced) section.
 
 ## Library Stability
 
