@@ -1,0 +1,14 @@
+.wrapper {
+  background: var(--ifm-color-emphasis-200);
+  border-radius: 0.33rem;
+  font-size: 0.8rem;
+  display: block;
+  color: var(--ifm-font-color-base);
+  width: 200px;
+}
+.wrapper:hover {
+  color: var(--ifm-font-color-base);
+}
+.wrapper img {
+  border-radius: 0.33rem;
+}

@@ -398,5 +398,10 @@
   "homepage.strategy.Request retry strategy.desc": {
     "message": "请求失败自动重试，它在重要的请求和轮询请求上发挥重要作用",
     "description": "description of Request retry strategy desc"
+  },
+
+  "ad.project collection": {
+    "message": "alova用在项目里了吗？快来告诉我",
+    "description": "description of ad.project collection"
   }
 }
