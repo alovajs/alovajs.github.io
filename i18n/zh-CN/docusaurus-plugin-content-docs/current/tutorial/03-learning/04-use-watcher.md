@@ -584,6 +584,32 @@ useWatcher(
 );
 ```
 
+## 是否中断上一次的未响应请求
+
+有时候当`useWatcher`监听的状态发生连续的改变导致连续的请求的发起时，后一次的请求先于前一次的请求获得响应，但是当前一次请求获得响应时，会覆盖后一次请求的响应，导致获取到与状态不匹配的响应；例如说有个状态`state`改变后发出了请求`1`，然后在请求`1`还未响应时又改变了`state`值，并发出了请求`2`，如果请求`1`后于请求`2`返回，最终的响应数据会维持在请求`1`。
+所以我们设计了`abortLast`参数，它用于标记当下一次请求发出时，是否中断上一次的未响应请求，默认为`true`，这样`useWatcher`所发出的请求只有最后一次有效。
+
+![tips](/img/abortLast.png)
+
+```javascript
+useWatcher(
+  () => getTodoList($currentPage),
+  // 被监听的状态数组，这些状态变化将会触发一次请求
+  [state],
+  {
+    // highlight-start
+    abortLast: true // 是否中断上一次的未响应请求，默认为true
+    // highlight-end
+  }
+);
+```
+
+:::caution 注意事项
+
+`abortLast`默认为`true`，如果修改为`false`，可能会导致状态与响应不匹配的问题。
+
+:::
+
 ## API
 
 ### Hook 配置
@@ -597,6 +623,7 @@ useWatcher(
 | debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number                                                                                                                                                                                | number[]   | -    | -   |
 | middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)                    | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -          | -    |
 | sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -    |
+| abortLast     | 是否中断上一次的未响应请求                                                 | boolean                                                                                                                                                                               | true       | -    |
 
 ### 响应式数据
 

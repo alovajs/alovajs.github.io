@@ -584,6 +584,30 @@ useWatcher(
 );
 ```
 
+## Whether to interrupt the last unresponsive request
+
+Sometimes when the status monitored by `useWatcher` changes continuously and leads to the initiation of continuous requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Causes to get a response that does not match the state; for example, a request `1` is sent after a state `state` changes, and then the value of `state` is changed before the request `1` is responded to, and a request is sent` 2`, if request `1` returns after request `2`, the final response data will remain at request `1`.
+So we designed the `abortLast` parameter, which is used to mark whether to interrupt the last unresponsive request when the next request is sent. The default is `true`, so that only the last request issued by `useWatcher` is valid.
+
+```javascript
+useWatcher(
+  () => getTodoList($currentPage),
+  // An array of monitored states, these state changes will trigger a request
+  [state],
+  {
+    // highlight-start
+    abortLast: true // Whether to interrupt the last unresponsive request, the default is true
+    // highlight-end
+  }
+);
+```
+
+:::caution Precautions
+
+`abortLast` defaults to `true`, if it is changed to `false`, it may cause a problem that the state does not match the response.
+
+:::
+
 ## API
 
 ### Hook configuration
@@ -597,6 +621,7 @@ useWatcher(
 | debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                                | number[]   | -       | -   |
 | middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -          | -       |
 | sendable      | Whether to send a request when the monitored state changes                                                                                         | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -       |
+| abortLast     | Whether to interrupt the last unresponsive request                                                                                                 | boolean                                                                                                                                                                               | true       | -       |
 
 ### Responsive data
 
