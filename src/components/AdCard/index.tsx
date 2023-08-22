@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { FC, ReactNode } from 'react';
 import styles from './styles.module.css';
 
-const AdCard: FC<{ img: string; children: ReactNode; className: string; href }> = ({
+const AdCard: FC<{ img: string; children: ReactNode; className: string; href: string }> = ({
   img,
   children,
   className,
