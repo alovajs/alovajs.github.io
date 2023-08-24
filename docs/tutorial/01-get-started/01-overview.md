@@ -23,6 +23,8 @@ import Logo from '@site/static/img/logo-text.svg';
 
 A lightweight request strategy library, which provides targeted request strategies for different request scenarios to improve application availability and fluency, reduce server pressure, and enable applications to have excellent strategic thinking like a wise man. The alova core module provides various adapter interfaces and middleware mechanisms to ensure high scalability and realize more request scenarios. If you have an expected request scenario but we have not implemented it, you are also welcome to contribute your irreplaceable power to alova.
 
+But, alova still needs to dependent on request functions such as `axios` or `fetch API` for requests, so you can still use your favorite request library. and alova can be understood as a wrapper of weaponry for them, making the request functions more powerful.
+
 ## Why create alova
 
 Data requests have always been an essential part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in an endless stream. Client data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and `react-query` and other request tools, the encoding form is constantly transitioning from callback function, Promise, and then to usehook, which makes the request easier and simpler. However, in the era of more and more emphasis on user experience, our focus From the simplicity of the request to the fluency of the application, developers need to write more complex request logic according to different business scenarios, which is a test of the developer's skill level.
@@ -141,7 +143,7 @@ Contributing effectively will earn you some alova community fame. Before partici
 
 ## Alternative to the request libraries?
 
-alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](./RSM) process (request events), alova still needs to rely on them to make requests, so we can Think of alova as an arm of the request library, making the request library more powerful.
+alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](./RSM) process (request events), alova still needs to dependent on them to make requests, so we can Think of alova as an weaponry of the request library, making the request library more powerful.
 
 ## Why binding UI framework?
 
