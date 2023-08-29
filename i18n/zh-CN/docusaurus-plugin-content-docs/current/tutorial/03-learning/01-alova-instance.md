@@ -68,7 +68,7 @@ const alovaInstance = createAlova({
 </TabItem>
 </Tabs>
 
-在这个创建 alova 实例的代码中，分别指定了**baseURL、SvelteHook、requestAdapter**，现在我们来了解下它们：
+在这个创建 alova 实例的代码中，分别指定了**baseURL、statesHook、requestAdapter**，现在我们来了解下它们：
 
 - **baseURL**：（可选）表示请求的根路径，通过这个 alova 实例发送的请求都会在前面拼接 baseURL，一般设置为域名；
 - **statesHook**：（必须）它用于确定在 use hook（例如 useRequest）应该如何返回状态化数据，目前提供了 VueHook、ReactHook、SvelteHook 分别用于支持 vue、react 和 svelte，statesHook 将会帮我们创建不同 UI 框架的请求相关的、可以被 Alova 管理的状态，包括请求状态 loading、响应数据 data、请求错误对象 error 等；
