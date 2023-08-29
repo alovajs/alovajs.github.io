@@ -253,7 +253,7 @@ bootSilentFactory({
        queue: /^delay,
        // Only delay 5000ms for post requests with url /edit
        wait: (silentMethod, queueName) => {
-         const { type, url, data } = silentMethod. entity;
+         const { type, url, data } = silentMethod.entity;
          if (type === 'POST' && url === '/edit') {
            return 5000;
          }

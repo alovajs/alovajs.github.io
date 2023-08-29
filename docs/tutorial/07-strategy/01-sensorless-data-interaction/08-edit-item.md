@@ -89,7 +89,7 @@ let id = /* todo virtual id */;
 // Binding listener silently submits the successful event to update the id, and returns the unbind function, don't forget to call the unbind function when the component is destroyed
 const unbindEvent = onSilentSubmitSuccess(event => {
    const vDataId = stringifyVData(id);
-   if (event. vDataResponse[vDataId]) {
+   if (event.vDataResponse[vDataId]) {
      id = event.vDataResponse[vDataId];
 
      // The following is to change the virtual id in the url to the actual id

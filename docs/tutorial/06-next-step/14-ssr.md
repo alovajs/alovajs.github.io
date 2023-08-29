@@ -81,7 +81,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
   }
 });
 
-/** @type {import('./$types'). PageServerLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   return {
     list: todoListGetter.send()
@@ -216,7 +216,7 @@ export const getServerSideProps = async () => {
 ```javascript title=+page.server.js
 import { invalidateCache } from 'alova';
 
-/** @type {import('./$types'). PageServerLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   // Clear the cache on server
   invalidateCache(alovaGetter);

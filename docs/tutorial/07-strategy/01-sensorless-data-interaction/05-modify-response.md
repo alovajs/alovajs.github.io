@@ -122,7 +122,7 @@ When the list page has been destroyed and the data has been released, such as ju
 import { useSQRequest, setCache, equals } from '@alova/scene-*';
 import { createOrEditTodo, todoList } from './api.js';
 
-const urlParams = new URLSearchParams(window. location. search);
+const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id') || '';
 const { onSuccess } = useSQRequest(createOrEditTodo, {
    behavior: 'silent',
@@ -152,16 +152,16 @@ onSuccess(({ data, silentMethod }) => {
    const method TodoList = todoList();
    setCache(methodTodoList, todoListRaw => {
      if (id) {
-       todoListRaw = todoListRaw. map(item => (equals(item. id, id) ? editingItem : item));
+       todoListRaw = todoListRaw.map(item => (equals(item.id, id) ? editingItem : item));
      } else {
-       todoListRaw. unshift(editingItem);
+       todoListRaw.unshift(editingItem);
      }
      return todoListRaw;
    });
    // Call setUpdateState to set response data tracking, so as to achieve the same delayed update effect as updateStateEffect
    if (silentMethod) {
      silentMethod.setUpdateState(methodTodoList);
-     silentMethod. save();
+     silentMethod.save();
    }
 });
 // highlight-end

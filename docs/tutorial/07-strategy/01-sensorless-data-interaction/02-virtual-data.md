@@ -158,7 +158,7 @@ But if virtual data is concatenated as string, it will be automatically converte
 
 ```javascript
 const deleteTodo = virtualId => {
-   return alova. Delete('/deleteTodo', {
+   return alova.Delete('/deleteTodo', {
      id: 'id'_virtualId
    });
 };

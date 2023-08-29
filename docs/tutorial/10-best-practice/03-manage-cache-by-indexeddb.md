@@ -75,7 +75,7 @@ When saving data, we can save the cache in the `transformData` of the method, be
 import { addImage2Cache } from './db';
 
 export const image = fileName =>
-   alovaInst. Get(`/image/${fileName}`, {
+   alovaInst.Get(`/image/${fileName}`, {
      // highlight-start
      async transformData(imgBlob) {
        // Asynchronously convert the blob to base64

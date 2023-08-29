@@ -42,9 +42,11 @@ const alovaInst = createAlova({
 });
 ```
 
-### ask
+## usage
 
-The usage method of the request is exactly the same as that used in the web environment. Already fully compatible with **axios**, you can specify [all configuration items] supported by `axios` in _config_ of method instance creation (https://axios-http.com/docs/req_config)
+### request
+
+The usage of request is exactly the same as that used in the web environment. Already fully compatible with **axios**, you can specify [all configuration items](https://axios-http.com/docs/req_config) supported by `axios` in _config_ of method instance creation.
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -57,10 +59,10 @@ The usage method of the request is exactly the same as that used in the web envi
 
 <script setup>
    const list = () =>
-     alovaInst. Get('/list', {
+     alovaInst.Get('/list', {
        // The set parameters will be passed to axios
        paramsSerializer: params => {
-         return Qs. stringify(params, { arrayFormat: 'brackets' });
+         return Qs.stringify(params, { arrayFormat: 'brackets' });
        }
      });
    const { loading, data } = useRequest(list);
@@ -72,10 +74,10 @@ The usage method of the request is exactly the same as that used in the web envi
 
 ```jsx
 const list = () =>
-   alovaInst. Get('/list', {
+   alovaInst.Get('/list', {
      // The set parameters will be passed to axios
      paramsSerializer: params => {
-       return Qs. stringify(params, {arrayFormat: 'brackets'})
+       return Qs.stringify(params, {arrayFormat: 'brackets'})
      },
    });
 
@@ -148,7 +150,7 @@ Point the request url to the file address to download, you can also enable the d
 
 ```javascript
 const downloadFile = () =>
-  alovaInst.Get('/bigImage. jpg', {
+  alovaInst.Get('/bigImage.jpg', {
     // Start download progress
     enableDownload: true,
     responseType: 'blob'

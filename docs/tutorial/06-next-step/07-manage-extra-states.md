@@ -61,7 +61,7 @@ const handleSuccess = () => {
 // a.jsx
 const PageA = () => {
    const todoList = page =>
-     alova. Get('/todo', {
+     alova.Get('/todo', {
        name: 'todoList'
      });
 
@@ -91,7 +91,7 @@ const PageB = () => {
      updateState('todoList', {
        allTodo: allTodoData => {
          // Add a new todo item
-         allTodoData. push({
+         allTodoData.push({
            title: 'new todo',
            time: '10:00'
          });
