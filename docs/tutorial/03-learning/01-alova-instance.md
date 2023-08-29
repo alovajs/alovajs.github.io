@@ -68,7 +68,7 @@ const alovaInstance = createAlova({
 </TabItem>
 </Tabs>
 
-In the code for creating an alova instance, **baseURL, SvelteHook, and requestAdapter** are respectively specified. Now let's understand them:
+In the code for creating an alova instance, **baseURL, statesHook, and requestAdapter** are respectively specified. Now let's understand them:
 
 - **baseURL**: (optional) indicates the root path of the request. Requests sent through this alova instance will be spliced with baseURL in front, generally set to the domain name;
 - **statesHook**: (required) It is used to determine how to return stateful data in the use hook (such as useRequest). Currently, VueHook, ReactHook, and SvelteHook are provided to support vue, react, and svelte respectively. statesHook will help We create request-related states of different UI frameworks that can be managed by Alova, including request state loading, response data data, request error object error, etc.;
