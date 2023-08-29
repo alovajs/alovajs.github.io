@@ -162,7 +162,7 @@ const App = () => {
 <div>Loading...</div>
 {:else} {#each $data as todo}
 <div>
-  <div class="todo-title">{ todo. title }</div>
+  <div class="todo-title">{ todo.title }</div>
   <div class="todo-time">{ todo.time }</div>
 </div>
 {/each} {/if}

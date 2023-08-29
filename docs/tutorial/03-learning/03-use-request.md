@@ -24,7 +24,7 @@ Let's get the page data for the todo list.
   <div
     v-else-if="error"
     class="error">
-    {{ error. message }}
+    {{ error.message }}
   </div>
   <template v-else>
     <div v-for="todo in data">
@@ -121,10 +121,10 @@ const App = () => {
 {#if $loading}
 <div>Loading...</div>
 {:else if $error}
-<div class="error">{ $error. message }</div>
+<div class="error">{ $error.message }</div>
 {:else} {#each $data as todo}
 <div>
-  <div class="todo-title">{ todo. title }</div>
+  <div class="todo-title">{ todo.title }</div>
   <div class="todo-time">{ todo.time }</div>
 </div>
 {/each} {/if}

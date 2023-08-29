@@ -7,12 +7,12 @@ The alova instance object provides abstract objects of seven request methods, in
 
 | instance creation function | parameters                                  |
 | -------------------------- | ------------------------------------------- |
-| GET                        | `alovaInstance. Get(url[, config])`         |
+| GET                        | `alovaInstance.Get(url[, config])`          |
 | POST                       | `alovaInstance.Post(url[, data[, config]])` |
 | PUT                        | `alova.Put(url[, data[, config]])`          |
-| DELETE                     | `alova. Delete(url[, data[, config]])`      |
+| DELETE                     | `alova.Delete(url[, data[, config]])`       |
 | HEAD                       | `alova.Head(url[, config])`                 |
-| OPTIONS                    | `alova. Options(url[, config])`             |
+| OPTIONS                    | `alova.Options(url[, config])`              |
 | PATCH                      | `alova.Patch(url[, data[, config]])`        |
 
 Parameter Description:

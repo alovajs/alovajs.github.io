@@ -96,7 +96,7 @@ The XMLHttpRequest adapter provides basic configuration parameters, including `r
 
 ```jsx
 const list = () =>
-   alovaInst. Get('/list', {
+   alovaInst.Get('/list', {
      /**
         * Set the response data type
         * Can be set to change the response type. Values are: "arraybuffer", "blob", "document", "json" and "text"
@@ -220,7 +220,7 @@ Point the request url to the file address to download, you can also enable the d
 
 ```javascript
 const downloadFile = () =>
-  alovaInst.Get('/bigImage. jpg', {
+  alovaInst.Get('/bigImage.jpg', {
     // Start download progress
     enableDownload: true,
     responseType: 'blob'

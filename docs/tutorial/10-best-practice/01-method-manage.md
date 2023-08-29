@@ -111,7 +111,7 @@ In the **user component**, the method function can be directly imported for use,
 ```html title=views/user.vue
 <template>
   <div v-if="loading">Loading...</div>
-  <div v-else-if="error">{{ error. message }}</div>
+  <div v-else-if="error">{{ error.message }}</div>
   <template v-else>
     <div>
       <label>name:</label>

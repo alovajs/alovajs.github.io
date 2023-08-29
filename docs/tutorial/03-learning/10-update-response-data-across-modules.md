@@ -38,7 +38,7 @@ onSuccess(() => {
    // Fixedly modify the todo data on the first page
    // updateState will return whether the update is successful
    const updated = updateState(getTodoList(1), todoList => {
-     return todoList. map(item => {
+     return todoList.map(item => {
        if (item.id === editingTodo.id) {
          return {
            ...item,

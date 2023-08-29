@@ -118,7 +118,7 @@ fetch({
 name: 'todoList',
 filter: (method, index, ary) => {
 // Return true to specify the Method instance that needs to be fetched
-return index === ary. length - 1;
+return index === ary.length - 1;
 }
 });
 };

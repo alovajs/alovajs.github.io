@@ -453,8 +453,8 @@ const App = () => {
 
    return (
      // highlight-start
-     <input value={studentName} onChange={({ target }) => setStudentName(target. value)} />
-     <select value={clsName} onChange={({ target }) => setClsName(target. value)}>
+     <input value={studentName} onChange={({ target }) => setStudentName(target.value)} />
+     <select value={clsName} onChange={({ target }) => setClsName(target.value)}>
        <option value="1">Class 1</option>
        <option value="2">Class 2</option>
        <option value="3">Class 3</option>

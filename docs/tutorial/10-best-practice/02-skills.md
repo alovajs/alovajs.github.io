@@ -196,19 +196,19 @@ onSuccess(({ sendArgs: [content] }) => {
 In many scenarios, we need to invalidate multiple caches at the same time. For example, the data of a page comes from multiple interfaces. When editing the data of this page, it is necessary to invalidate the cached data of these interfaces at the same time. You can method instances with the same prefix to classify them, and use this regex to invalidate caches with the same prefix.
 
 ```javascript
-const getData1 = id => alovaInstance. Get('/data1', {
+const getData1 = id => alovaInstance.Get('/data1', {
    name: `data-${id}-1`,
    params: {
      id
    }
 });
-const getData2 = alovaInstance. Get('/data2', {
+const getData2 = alovaInstance.Get('/data2', {
    name: `data-${id}-2`,
    params: {
      id
    }
 });
-const getData3 = alovaInstance. Get('/data3', {
+const getData3 = alovaInstance.Get('/data3', {
    name: `data-${id}-3`,
    params: {
      id

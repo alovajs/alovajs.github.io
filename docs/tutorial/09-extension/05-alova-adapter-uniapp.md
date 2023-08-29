@@ -59,7 +59,7 @@ The usage method of the request is exactly the same as that used in the web envi
 
 <script setup>
    const list = () =>
-     alovaInst. Get('/list', {
+     alovaInst.Get('/list', {
        // The set parameters will be passed to uni.request
        enableHttp2: true,
        sslVerify: true
@@ -137,7 +137,7 @@ Similarly, it is fully compatible with `uni.downloadFile`, you can specify [all 
 
 <script setup>
    const downloadFile = filePath =>
-     alovaInst. Get('/bigImage. jpg', {
+     alovaInst.Get('/bigImage.jpg', {
        // Set the request method to download, and the adapter will call uni.downloadFile
        requestType: 'download',
        filePath,
@@ -257,7 +257,7 @@ const alovaInst = createAlova(
    baseURL: 'https://api.alovajs.org',
    ...AdapterUniapp(),
    responded(response) {
-     const { statusCode, data } = response as UniNamespace. RequestSuccessCallbackResult;
+     const { statusCode, data } = response as UniNamespace.RequestSuccessCallbackResult;
      if (statusCode >= 400) {
        throw new Error('request error');
      }

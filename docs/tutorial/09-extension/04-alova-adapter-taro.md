@@ -84,7 +84,7 @@ The usage method of the request is exactly the same as that used in the web envi
 
 ```jsx
 const list = () =>
-   alovaInst. Get('/list', {
+   alovaInst.Get('/list', {
      // The set parameters will be passed to Taro.request
      enableHttp2: true
    });
@@ -110,7 +110,7 @@ const App = () => {
 
 <script setup>
    const list = () =>
-     alovaInst. Get('/list', {
+     alovaInst.Get('/list', {
        // The set parameters will be passed to Taro.request
        enableHttp2: true
      });
@@ -132,7 +132,7 @@ Similarly, it is fully compatible with `Taro.uploadFile`, you can specify [all c
 
 ```jsx
 const uploadFile = (name, filePath, formData) =>
-   alovaInst. Post(
+   alovaInst.Post(
      '/uploadImg',
      {
        name,
@@ -156,7 +156,7 @@ const App = () => {
    });
 
    const handleImageChoose = () => {
-     Taro. chooseImage({
+     Taro.chooseImage({
        success: chooseImageRes => {
          const tempFilePaths = chooseImageRes.tempFilePaths;
          send('fileName', tempFilePaths[0], {
@@ -189,7 +189,7 @@ const App = () => {
 
 <script setup>
    const uploadFile = (name, filePath, formData) =>
-     alovaInst. Post(
+     alovaInst.Post(
        '/uploadImg',
        {
          name,
@@ -212,7 +212,7 @@ const App = () => {
    });
 
    const handleImageChoose = () => {
-     Taro. chooseImage({
+     Taro.chooseImage({
        success: chooseImageRes => {
          const tempFilePaths = chooseImageRes.tempFilePaths;
          send('fileName', tempFilePaths[0], {
@@ -239,7 +239,7 @@ Similarly, it is fully compatible with `Taro.downloadFile`, you can specify [all
 
 ```jsx
 const downloadFile = filePath =>
-   alovaInst. Get('/bigImage. jpg', {
+   alovaInst.Get('/bigImage.jpg', {
      // Set the request method to download, and the adapter will call uni.downloadFile
      requestType: 'download',
      filePath,
@@ -278,7 +278,7 @@ const App = () => {
 
 <script setup>
    const downloadFile = filePath =>
-     alovaInst. Get('/bigImage. jpg', {
+     alovaInst.Get('/bigImage.jpg', {
        // Set the request method to download, and the adapter will call uni.downloadFile
        requestType: 'download',
        filePath,
