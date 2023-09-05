@@ -21,26 +21,23 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## What is alova
 
-A lightweight request strategy library, which provides targeted request strategies for different request scenarios to improve application availability and fluency, reduce server pressure, and enable applications to have excellent strategic thinking like a wise man. The alova core module provides various adapter interfaces and middleware mechanisms to ensure high scalability and realize more request scenarios. If you have an expected request scenario but we have not implemented it, you are also welcome to contribute your irreplaceable power to alova.
+alova is a lightweight request strategy library, which uses corresponding request modules for different request scenarios, allowing developers to use a very small amount of code to achieve high-availability and high-fluency request functions, which means that you no longer need to You need to rack your brains to write the request optimization code, and you no longer need to maintain the request data and related status by yourself. You only need to select and use the request module, and after setting the parameters, alova will help you. This improves development efficiency, application operation efficiency, and reduces server pressure.
 
-But, alova still needs to dependent on request functions such as `axios` or `fetch API` for requests, so you can still use your favorite request library. and alova can be understood as a wrapper of weaponry for them, making the request functions more powerful.
+## Why create alova?
 
-## Why create alova
+Data requests have always been an essential part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in an endless stream. Client data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and `react-query` and other request tools, the coding form is continuously developed from callback function, Promise, and then usehook. These js libraries have done a good job in request simplicity, but they only provide general functions, which means For different request scenarios such as sharing requests, paging requests, form submissions, uploading and downloading files, etc., developers still need to write complex codes themselves, which reduces development efficiency and performance cannot be guaranteed. In this era, application fluency has become more and more important.
 
-Data requests have always been an essential part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in an endless stream. Client data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and `react-query` and other request tools, the encoding form is constantly transitioning from callback function, Promise, and then to usehook, which makes the request easier and simpler. However, in the era of more and more emphasis on user experience, our focus From the simplicity of the request to the fluency of the application, developers need to write more complex request logic according to different business scenarios, which is a test of the developer's skill level.
+**And we think that we can go further in this regard, using different request strategies to solve the needs of different request scenarios, so that developers can write less code while achieving more efficient Client-Server data interaction. This is the solution we propose and also the mission of alova.**
 
-Alova focuses on improving application fluency, and uses different request strategies to manage request timing and response data according to different request business scenarios, thereby improving performance and user experience, and reducing server pressure. **alova's mission is to enable developers to achieve more efficient Client-Server data interaction while writing a small amount of code**, so that both developers and users can benefit
-.
+You can use different request strategies to manage request timing and response data according to different request business scenarios, thereby improving performance and user experience, and reducing server pressure, so that both developers and users can benefit. On the basis of the above, we abstract the request scenario and propose [Request Scenario Model (RSM)](./RSM), which explains alova's request strategy scheme well.
 
-On the basis of the above, we abstract the request scenario and propose [Request Scene Model(RSM)](./RSM), which explains alova's request strategy scheme well.
-
-Alova has a very flexible expansion capability to implement request strategies in different scenarios. Our expectation for alova is **a request strategy tool that writes less code to achieve efficient data interaction in specific business scenarios**.
+alova has very flexible expansion capabilities to implement request strategies in different scenarios, and users can also customize their own request scenarios.
 
 In the future, alova will continue to carry forward our exploration of request strategies.
 
 > Currently supports `vue/react/react-native/svelte`, and `next/nuxt/sveltekit` and other SSR frameworks, and also supports `Uniapp/Taro` multi-terminal unified framework, more framework support, so stay tuned...
 
-At the same time, in the scenario of non-sensing data interaction, alova has taken a big step forward. It allows users to respond without waiting for data requests to a certain extent. **In the next chapter, we will explain non-sensing data Interaction related content**.
+In the scenario of non-inductive data interaction, alova has taken a big step forward. It allows users to respond without waiting for data requests to a certain extent. **In the next chapter, we will explain the non-inductive data interaction in a chapter related information**.
 
 ## Reasons for choosing alova
 
