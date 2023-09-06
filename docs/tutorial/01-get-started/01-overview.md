@@ -21,7 +21,7 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## What is alova
 
-alova is a lightweight request strategy library, which uses corresponding request modules for different request scenarios, allowing developers to use a very small amount of code to achieve high-availability and high-fluency request functions, which means that you no longer need to You need to rack your brains to write the request optimization code, and you no longer need to maintain the request data and related status by yourself. You only need to select and use the request module, and after setting the parameters, alova will help you. This improves development efficiency, application operation efficiency, and reduces server pressure.
+alova is a lightweight request strategy library, which uses corresponding request modules for different request scenarios, allowing developers to code less to achieve high-availability and high-fluency request-response, which means that you no longer need to rack your brains to write the request optimization code, and you no longer need to maintain the request data and related states by yourself. Only need to select and use the request module, and after setting the parameters, alova will help you. This improves development efficiency, application operation efficiency, and reduces server pressure.
 
 ## Why create alova?
 
