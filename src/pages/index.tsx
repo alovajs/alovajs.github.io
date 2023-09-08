@@ -33,9 +33,8 @@ function HomepageHeader() {
             </h1>
             <p>
               <Translate id="homepage.tagline">
-                According to different request scenarios, we provide targeted request strategies to improve application
-                fluency and availability, reduce server pressure, and enable applications to have excellent strategic
-                thinking like a wise man
+                Select different request modules in different situations, let developers code less to achieve a lower
+                latency network requests, make your app to perform better, think like a wise man
               </Translate>
             </p>
             <div className={clsx(styles.buttons, 'margin-bottom--md')}>

@@ -1,6 +1,6 @@
 ---
 title: Request Scene Model (RSM)
-sidebar_position: 30
+sidebar_position: 20
 ---
 
 ## What is the request scene model

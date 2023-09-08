@@ -1,6 +1,6 @@
 ---
 title: 请求场景模型（RSM）
-sidebar_position: 30
+sidebar_position: 20
 ---
 
 ## 什么是请求场景模型

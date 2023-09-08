@@ -276,7 +276,7 @@
     "description": "The title of web page"
   },
   "homepage.tagline": {
-    "message": "我们根据不同的请求场景，分别提供有针对性的请求策略，来提升应用流畅性、可用性，降低服务端压力，让应用如智者一般具备卓越的策略思维",
+    "message": "在不同情况选用不同的请求模块，让开发者使用非常少量的代码实现更高的流畅性和可用性的网络请求，让应用如智者一般具备卓越的策略思维",
     "description": "网站tagline"
   },
   "homepage.relationTitle": {
