@@ -158,7 +158,7 @@ We welcome project collaboration with any organization or individual, which can 
 
 You can donate to the project through the following 3 ways. Please go to the donation page to view the donation privileges.
 
-1. [Github sponsors](https://github.com/alovajs)
+1. [Github sponsors](https://github.com/sponsors/alovajs)
 2. [OpenCollective](https://opencollective.com/alova)
 3. [afdian](https://afdian.net/a/huzhen555)
 
