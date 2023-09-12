@@ -135,7 +135,7 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 
 ### 参与社区交流/PR review
 
-如果你对技术交流感兴趣，那么参与更多的社区交流可能更适合你，你可以在 Github issues 中参与 bug 和新特性的讨论，也可以在[Github Disscussion](https://github.com/alovajs/alova/discussions)中、微信群、Discord 频道中为别人解答问题，这可以让你与世界各地的人交流，是一件很有趣的事情。
+如果你对技术交流感兴趣，那么参与更多的社区交流可能更适合你，你可以在 Github issues 中参与 bug 和新特性的讨论，也可以在[Github Disscussion](https://github.com/alovajs/alova/discussions)中、[Discord](https://discord.gg/S47QGJgkVb)或[QQ 频道](https://pd.qq.com/s/1cdjx0nnw)中为别人解答问题，这可以让你与世界各地的人交流，是一件很有趣的事情。
 
 同时，你也可以在[pull request](https://github.com/alovajs/alova/pulls)中参与 PR review，这也是一种交流的主题。
 
@@ -157,7 +157,11 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 
 ### 项目捐赠
 
-暂未开通，敬请期待...
+您可以在以下三个渠道为项目捐赠，捐赠特权说明请进入捐赠页面查看。
+
+1. [Github sponsors](https://github.com/alovajs)
+2. [OpenCollective](https://opencollective.com/alova)
+3. [afdian](https://afdian.net/a/huzhen555)
 
 ### 更正或编写文档
 

@@ -135,7 +135,7 @@ If you have written an alova-based js library, please submit your project in [th
 
 ### Participate in community/PR review
 
-If you are interested in technical communication, then it may be more suitable for you to participate in more community communication. You can participate in the discussion of bugs and new features in Github issues, or in [Github Discussion](https://github.com/alovajs/alova/discussions) and Discord channels to answer questions for others, which allows you to communicate with people from all over the world, which is a very interesting thing.
+If you are interested in technical communication, then it may be more suitable for you to participate in more community communication. You can participate in the discussion of bugs and new features in Github issues, or in [Github Discussion](https://github.com/alovajs/alova/discussions), [Discord](https://discord.gg/S47QGJgkVb) or [QQ channel](https://pd.qq.com/s/1cdjx0nnw) to answer questions for others, which allows you to communicate with people from all over the world, which is a very interesting thing.
 
 At the same time, you can also participate in PR review in [pull request](https://github.com/alovajs/alova/pulls), which is also a topic of communication.
 
@@ -156,7 +156,11 @@ We welcome project collaboration with any organization or individual, which can 
 
 ### Donation
 
-Coming soon...
+You can donate to the project through the following 3 ways. Please go to the donation page to view the donation privileges.
+
+1. [Github sponsors](https://github.com/alovajs)
+2. [OpenCollective](https://opencollective.com/alova)
+3. [afdian](https://afdian.net/a/huzhen555)
 
 ### Correct or add docs
 
