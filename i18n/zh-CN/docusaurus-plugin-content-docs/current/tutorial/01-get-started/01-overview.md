@@ -15,6 +15,8 @@ import Logo from '@site/static/img/logo-text.svg';
 [![coverage status](https://coveralls.io/repos/github/alovajs/alova/badge.svg?branch=main)](https://coveralls.io/github/alovajs/alova?branch=main)
 [![minzipped size](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova)
 [![stars](https://img.shields.io/github/stars/alovajs/alova?style=social)](https://github.com/alovajs/alova)
+[![discord](https://img.shields.io/badge/chat-Discord-515ff1)](https://discord.gg/S47QGJgkVb)
+[![qq](https://img.shields.io/badge/chat_with_CH-QQ-0094f7)](https://pd.qq.com/s/1cdjx0nnw)
 [![tree shaking](https://badgen.net/bundlephobia/tree-shaking/alova)](https://bundlephobia.com/package/alova)
 ![typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -85,6 +87,11 @@ alova 是核心库，它提供了缓存策略、请求共享策略，以及状�
 ### 更多请求相关的业务场景征集中...
 
 如果你还有特定且典型的业务请求场景，但我们还未实现的，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。同时也可以自定义请求 hook，请看 [高级](../../category/advanced) 部分。
+
+## 加入交流社区
+
+- [加入 QQ 频道社区参与交流](https://pd.qq.com/s/1cdjx0nnw)
+- [加入在 Discord 社区参与交流](https://discord.gg/S47QGJgkVb)
 
 ## 库稳定性
 
