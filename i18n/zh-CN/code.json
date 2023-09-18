@@ -348,7 +348,7 @@
     "description": "description of custom strategy desc"
   },
   "homepage.support.title": {
-    "message": "可在以上平台获得相同的使用体验，无缝移植",
+    "message": "可在以上平台获得相同的使用体验，完美迁移",
     "description": "description of support title"
   },
   "homepage.strategy.Pagination request strategy": {

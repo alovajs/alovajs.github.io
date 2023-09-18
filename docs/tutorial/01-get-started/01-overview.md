@@ -47,14 +47,14 @@ Alova is also committed to solving the problem of client network requests, but u
 
 - You may have been thinking about encapsulating `fetch` and `axios`, but now you don’t need to do this anymore, alova has prepared all the advanced request functions you need, such as request use hooks, automatic cache management , request sharing, cross-component update status, and request strategies in different business scenarios are available out of the box.
 - alova is lightweight, only 4kb+, which is 30%+ of axios.
-- alova is low-coupling, you can make alova work with any UI framework in any js environment through different adapters (the built-in supported UI framework is `vue/react/svelte`), and provides a unified experience And seamless code porting.
+- alova is low-coupling, you can make alova work with any UI framework in any js environment through different adapters (built-in supported UI framework is `vue/react/svelte`), and provides a unified experience and perfect code migration.
 - alova can also achieve a highly aggregated organization of APIs. The request parameters, cache behavior, and response data transform of each API will be in the same code block, which has great advantages for managing a large number of APIs.
 
 For comparison with other request libraries, please [click here for more detail](/tutorial/get-started/comparison)
 
 ### Complete feature list
 
-1. 🕶 Provide a unified experience in the vue, react, and svelte, and seamlessly transplant
+1. 🕶 Provide a unified experience in the vue, react, and svelte, and perfect migration
 2. 📑 The api design is similar to axios, more simple and familiar
 3. 🍵 Out-of-the-box high-performance request strategy, making the application smoother
 4. 🐦 4kb+, only 30% of axios+

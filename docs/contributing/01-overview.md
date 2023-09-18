@@ -46,7 +46,7 @@ For developers, alova provides them with a simple API and out-of-the-box advance
 1. The api design is similar to axios, allowing users to learn at a lower cost;
 2. Deep binding of the UI framework, greatly improving the benefits of developers;
 3. Out-of-the-box advanced functions to avoid repeated packaging, such as request sharing, request caching, etc., to reduce developers' repeated packaging;
-4. The platform-independent coding method can be seamlessly transplanted;
+4. The platform-independent coding way, and it can perfectly migrate in different platform;
 5. High scalability design, which can encapsulate high-reusability and high-performance business-related request strategies;
 6. Highly aggregated and low-coupling method design improves API code maintainability;
 

@@ -79,9 +79,10 @@ In fact, alova's use hook also refers to the design of react-query and swr, but 
 
 Both react-query and swr use `axios` or `fetch api` directly in use hook to send requests, while alova uses the `Method` proxy design mode. This design has the following 3 benefits:
 
-1. Request libraries such as `axios` and `fetch api` are decoupled from each API in the form of request adapters, which allows alova to provide a unified development experience and seamless code porting.
-2. Each `Method` instance represents an API, you can aggregate the request parameters and request behavior parameters of the same API into the same `Method` instance without spreading them to different files, which is more suitable for managing a large number of APIs.
-3. alova realizes automatic management of response data cache by serializing request parameters on the `Method` instance. You do not need to specify the cache key, and both react-query and swr need to customize the `queryKey` to manage the cache.
+1. Unified usage without different usage depending on the platform or UI framework.
+2. Request libraries such as `axios` and `fetch api` are decoupled from each API in the form of request adapters, which allows alova to provide a unified development experience and perfect coding migration.
+3. Each `Method` instance represents an API, you can aggregate the request parameters and request behavior parameters of the same API into the same `Method` instance without spreading them to different files, which is more suitable for managing a large number of APIs.
+4. alova realizes automatic management of response data cache by serializing request parameters on the `Method` instance. You do not need to specify the cache key, and both react-query and swr need to customize the `queryKey` to manage the cache.
 
 ### High flexibility
 
