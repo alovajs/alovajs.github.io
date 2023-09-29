@@ -3,14 +3,14 @@ title: useRequest with serial
 sidebar_position: 60
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info strategy type
 
 use hook
 
 :::
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 

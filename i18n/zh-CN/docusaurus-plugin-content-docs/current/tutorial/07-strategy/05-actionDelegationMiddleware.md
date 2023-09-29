@@ -3,6 +3,9 @@ title: 跨组件触发请求
 sidebar_position: 50
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info 策略类型
 
 中间件

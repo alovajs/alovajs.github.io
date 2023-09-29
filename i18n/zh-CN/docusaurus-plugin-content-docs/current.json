@@ -55,6 +55,10 @@
     "message": "最佳实践",
     "description": "The label for category best practice in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Framework": {
+    "message": "UI框架",
+    "description": "The label for category Framework in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Others": {
     "message": "其他",
     "description": "The label for category Others in sidebar tutorialSidebar"

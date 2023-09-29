@@ -276,7 +276,7 @@
     "description": "The title of web page"
   },
   "homepage.tagline": {
-    "message": "在不同情况选用不同的请求模块，让开发者使用非常少量的代码实现更高的流畅性和可用性的网络请求，让应用如智者一般具备卓越的策略思维",
+    "message": "以声明的方式完成各种复杂场景的网络请求，这意味着使用非常少量的代码就可以实现更高的流畅性和可用性的网络请求，让你的应用如智者一般具备卓越的策略思维",
     "description": "网站tagline"
   },
   "homepage.relationTitle": {

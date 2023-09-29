@@ -6,9 +6,9 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
 import HomepageFeatures from './indexComponents/HomepageFeatures';
-import styles from './indexComponents/index.module.css';
 import Strategy from './indexComponents/Strategy';
 import Support from './indexComponents/Support';
+import styles from './indexComponents/index.module.css';
 
 function HomepageHeader() {
   const buttons = [
@@ -33,8 +33,9 @@ function HomepageHeader() {
             </h1>
             <p>
               <Translate id="homepage.tagline">
-                Select different request modules in different situations, let developers code less to achieve a lower
-                latency network requests, make your app to perform better, think like a wise man
+                Completing complex network requests in a declarative style, which means that you can use less code to
+                implement higher fluency and availability of network requests, allowing your application to have
+                excellent strategic thinking like a wise man.
               </Translate>
             </p>
             <div className={clsx(styles.buttons, 'margin-bottom--md')}>

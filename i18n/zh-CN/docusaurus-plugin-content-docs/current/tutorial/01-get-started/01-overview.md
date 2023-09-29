@@ -23,7 +23,7 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## alova 是什么
 
-alova 是一个轻量级的请求策略库，针对不同请求场景使用对应的请求模块，让开发者使用非常少量的代码就可以实现高可用性和高流畅性的请求功能，这意味着，你再也不需要自己绞尽脑汁编写请求优化代码，再也不需要自己维护请求数据和相关状态，你只需要选择并使用请求模块，设置参数后，alova 帮你搞定。从而提升开发效率、应用运行效率，还能降低服务端压力。
+alova 是一个轻量级的请求策略库，支持开发者使用声明式实现例如请求共享、分页请求、表单提交、断点上传等各种较复杂的请求，让开发者使用非常少量的代码就可以实现高可用性和高流畅性的请求功能，这意味着，你再也不需要自己绞尽脑汁编写请求优化代码，再也不需要自己维护请求数据和相关状态，你只需要选择并使用请求模块，设置参数后，alova 帮你搞定。从而提升开发效率、应用运行效率，还能降低服务端压力。
 
 ## 为什么创造 alova
 
@@ -31,24 +31,31 @@ alova 是一个轻量级的请求策略库，针对不同请求场景使用对�
 
 **而我们认为还有更简单的方案，即使用不同的请求策略来解决不同的请求场景需求，从而让开发者在编写更少量代码同时，也能实现更高效地 Client-Server 数据交互，这就是我们提出的解决方案，也是 alova 的使命。**
 
-你可以根据不同的请求业务场景使用不同的请求策略来管理请求时机和响应数据，从而提升性能和用户体验，还可以降低服务端压力，让开发者和使用者都能获得收益。在以上的基础上，我们将请求场景进行抽象提出了 [请求场景模型（RSM）](./RSM)，它很好地解释了 alova 的请求策略方案。
+你可以根据不同的请求业务场景使用不同的请求策略来管理请求时机和响应数据，从而提升性能和用户体验，还可以降低服务端压力，让开发者和使用者都能获得收益。在以上的基础上，我们将请求场景进行抽象提出了 [请求场景模型（RSM）](/tutorial/get-started/RSM)，它很好地解释了 alova 的请求策略方案。在未来，alova 将承载着我们对请求策略的探索之路继续前行。
 
-alova 具有很灵活的扩展能力来实现不同场景下的请求策略，用户也可以自定义自己的请求场景。
+alova 具有很灵活的扩展能力来实现不同场景下的请求策略，用户也可以自定义自己的请求场景，这部分内容在[高级章节](/category/advanced)。
 
-在未来，alova 将承载着我们对请求策略的探索之路继续前行。
-
-> 目前支持`vue/react/react-native/svelte`，以及`next/nuxt/sveltekit`等 SSR 框架，同时也支持`Uniapp/Taro`多端统一框架，更多框架支持敬请期待...
-
-在无感数据交互场景下，alova 已经走出了一大步，它让用户在一定程度上无需等待数据请求，以及提交即响应，**在接下来我们将会一个章节来讲解无感数据交互的相关内容**。
+> 在无感数据交互场景下，alova 已经走出了一大步，它让用户在一定程度上无需等待数据请求，以及提交即响应，**在接下来我们将会一个章节来讲解无感数据交互的相关内容**。
 
 ## 选择 alova 的理由
 
 alova 也致力于解决客户端网络请求的问题，但与其他请求库不同的是，alova 选择了业务场景化请求策略的方向，它配合`axios/fetch api`等请求库后能满足你绝大部分请求需求（99%）的同时，还提供了丰富的高级功能。
 
-- 你可能曾经也在思考着应该封装`fetch`和`axios`，现在你不再需要这么做了，你需要的高级请求功能 alova 都已经帮你准备好了，例如请求 use hooks、自动化缓存管理、请求共享、跨组件更新状态，以及不同业务场景下的开箱即用的请求策略。
+- 你可能曾经也在思考着应该封装`fetch`和`axios`，现在你不再需要这么做了，通过 alova 使用声明的方式完成请求，例如请求共享、分页请求、表单提交、断点上传等各种较复杂的请求，以及自动化缓存管理、请求共享、跨组件更新状态等。
 - alova 是轻量级的，只有 4kb+，是 axios 的 30%+。
+- 目前支持`vue/react/react-native/svelte`，以及`next/nuxt/sveltekit`等 SSR 框架，同时也支持`Uniapp/Taro`多端统一框架。
 - alova 是低耦合的，你可以通过不同的适配器让 alova 在任何 js 环境下，与任何 UI 框架协作使用（内置支持的 UI 框架为`vue/react/svelte`），并且提供了统一的使用体验和完美的代码迁移。
 - 使用 alova 还能实现 api 代码的高聚合组织方式，每个 api 的请求参数、缓存行为、响应数据转换等都将聚集在相同的代码块中，这对于管理大量的 api 有很大的优势。
+
+:::info 多框架支持
+
+现在，你还可以在 [vue options（vue2 和 vue3）](https://vuejs.org/guide/introduction.html#api-styles) 写法中完美使用 alova，[点此查看详情](/tutorial/framework/vue-options)。后续我们将陆续支持以下框架：
+
+- 函数式，如`solid/preact/qwik`。
+- class 式，如`angular/lit/stencil`。
+- options 式，如`原生小程序(中国🇨🇳)`。
+
+:::
 
 与其他请求库的对比，请[点此查看](/tutorial/get-started/comparison)
 
@@ -73,20 +80,20 @@ alova 也致力于解决客户端网络请求的问题，但与其他请求库�
 
 alova 是核心库，它提供了缓存策略、请求共享策略，以及状态管理等通用功能，能满足 99%以上的请求需求。同时，alova 还提供了业务逻辑的，高频使用的请求策略 hook，可以直接用于特定场景。以下为 alova 提供的请求策略 hook 列表。
 
-| 名称                  | 描述                                                                                                                             | 文档                                                                 |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| 分页请求策略          | 自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%                                            | [usePagination](../strategy/usePagination)                           |
-| 无感数据交互策略      | 全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用                           | [useSQRequest](../strategy/sensorless-data-interaction/overview)     |
-| 表单提交策略          | 为表单提交而设计的 hook，通过此 hook 你可以很方便地实现表单草稿、多页面（多步骤）表单，除此以外还提供了表单重置等常用功能        | [useForm](../strategy/useForm)                                       |
-| 发送验证码            | 验证码发送 hook，减掉你在开发验证码发送功能时的繁琐。                                                                            | [useCaptcha](../strategy/useCaptcha)                                 |
-| 跨组件触发请求        | 一个 alova 中间件，消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数                                                  | [actionDelegationMiddleware](../strategy/actionDelegationMiddleware) |
-| 串行请求的 useRequest | 比[alova 的串行请求方式](../next-step/serial-request)更加简洁易用的串行请求 use hook，提供统一的 loading 状态、error、回调函数   | [useSerialRequest](../strategy/useSerialRequest)                     |
-| 串行请求的 useWatcher | 比[alova 的串行请求方式](../next-step/serial-request)更加简洁易用的串行请求 use hook，提供统一的 loading 状态、error、回调函数。 | [useSerialWatcher](../strategy/useSerialWatcher)                     |
-| 请求重试策略          | 请求失败自动重试，它在重要的请求和轮询请求上发挥重要作用                                                                         | [useRetriableRequest](../strategy/useRetriableRequest)               |
+| 名称                  | 描述                                                                                                                                    | 文档                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 分页请求策略          | 自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%                                                   | [usePagination](/tutorial/strategy/usePagination)                           |
+| 无感数据交互策略      | 全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用                                  | [useSQRequest](/tutorial/strategy/sensorless-data-interaction/overview)     |
+| 表单提交策略          | 为表单提交而设计的 hook，通过此 hook 你可以很方便地实现表单草稿、多页面（多步骤）表单，除此以外还提供了表单重置等常用功能               | [useForm](/tutorial/strategy/useForm)                                       |
+| 发送验证码            | 验证码发送 hook，减掉你在开发验证码发送功能时的繁琐。                                                                                   | [useCaptcha](/tutorial/strategy/useCaptcha)                                 |
+| 跨组件触发请求        | 一个 alova 中间件，消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数                                                         | [actionDelegationMiddleware](/tutorial/strategy/actionDelegationMiddleware) |
+| 串行请求的 useRequest | 比[alova 的串行请求方式](/tutorial/next-step/serial-request)更加简洁易用的串行请求 use hook，提供统一的 loading 状态、error、回调函数   | [useSerialRequest](/tutorial/strategy/useSerialRequest)                     |
+| 串行请求的 useWatcher | 比[alova 的串行请求方式](/tutorial/next-step/serial-request)更加简洁易用的串行请求 use hook，提供统一的 loading 状态、error、回调函数。 | [useSerialWatcher](/tutorial/strategy/useSerialWatcher)                     |
+| 请求重试策略          | 请求失败自动重试，它在重要的请求和轮询请求上发挥重要作用                                                                                | [useRetriableRequest](/tutorial/strategy/useRetriableRequest)               |
 
 ### 更多请求相关的业务场景征集中...
 
-如果你还有特定且典型的业务请求场景，但我们还未实现的，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。同时也可以自定义请求 hook，请看 [高级](../../category/advanced) 部分。
+如果你还有特定且典型的业务请求场景，但我们还未实现的，可以在这边 [提交 issue](https://github.com/alovajs/scene/issues/new/choose) 告诉我们，我们会实现它提供给更多人使用。同时也可以自定义请求 hook，请看 [高级](/category/advanced) 部分。
 
 ## 加入交流社区
 
@@ -145,11 +152,11 @@ alova 还属于新秀，它依然还有很长一段路需要走，现在参与�
 - 翻译文档
 - 以及你能想到的其他正向发展的活动...
 
-有效的贡献将为你赢得一定的 alova 社区名望。在参与贡献前，请务必详细阅读 [贡献指南](../../contributing/overview)，以保证你的有效贡献。
+有效的贡献将为你赢得一定的 alova 社区名望。在参与贡献前，请务必详细阅读 [贡献指南](/contributing/overview)，以保证你的有效贡献。
 
 ## 替代请求库？
 
-alova 是一个请求策略库，它的创建初衷是对不同请求场景提供特定的请求策略解决方案，从而更简洁优雅地实现流畅的请求体验，而例如`$.ajax`、`axios`和`fetch-api`等对请求发送和响应接收提供了很好的支持，它们是 [RSM](./RSM) 流程中必不可少的一个环节（请求事件），alova 仍然需要依靠它们进行请求，因此我们可以将 alova 看作是请求库的一种武装，让请求库变得更加强大。
+alova 是一个请求策略库，它的创建初衷是对不同请求场景提供特定的请求策略解决方案，从而更简洁优雅地实现流畅的请求体验，而例如`$.ajax`、`axios`和`fetch-api`等对请求发送和响应接收提供了很好的支持，它们是 [RSM](/tutorial/get-started/RSM) 流程中必不可少的一个环节（请求事件），alova 仍然需要依靠它们进行请求，因此我们可以将 alova 看作是请求库的一种武装，让请求库变得更加强大。
 
 ## 为什么要深度绑定 UI 框架？
 

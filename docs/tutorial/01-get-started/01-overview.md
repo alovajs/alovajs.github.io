@@ -23,7 +23,7 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## What is alova
 
-alova is a lightweight request strategy library, which uses corresponding request modules for different request scenarios, allowing developers to code less to achieve high-availability and high-fluency request-response, which means that you no longer need to rack your brains to write the request optimization code, and you no longer need to maintain the request data and related states by yourself. Only need to select and use the request module, and after setting the parameters, alova will help you. This improves development efficiency, application operation efficiency, and reduces server pressure.
+alova is a lightweight request strategy library that supports developers to implement complex requests such as request sharing, paging requests, form submissions, breakpoint uploads and others with declarative style code, allowing developers to implement high availability and high fluency request with less code, which means that you no longer need to rack your brains to write request optimization code, and no longer need to maintain request data and related status by yourself. You only need to select and use the request module, and set After setting the parameters, alova will do it for you. This improves development efficiency, application operation efficiency, and reduces server pressure.
 
 ## Why create alova?
 
@@ -31,7 +31,7 @@ Data requests have always been an essential part of applications. Since the birt
 
 **But we think that must be more simple way, it's using different request strategies to solve the needs of different request scenarios, so that developers can write less code while achieving more efficient Client-Server data interaction. This is the solution we propose and also the mission of alova.**
 
-You can use different request strategies to manage request timing and response data according to different request business scenarios, thereby improving performance and user experience, and reducing server pressure, so that both developers and users can benefit. On the basis of the above, we abstract the request scenario and propose [Request Scenario Model (RSM)](./RSM), which explains alova's request strategy scheme well.
+You can use different request strategies to manage request timing and response data according to different request business scenarios, thereby improving performance and user experience, and reducing server pressure, so that both developers and users can benefit. On the basis of the above, we abstract the request scenario and propose [Request Scenario Model (RSM)](/tutorial/get-started/RSM), which explains alova's request strategy scheme well.
 
 alova has very flexible expansion capabilities to implement request strategies in different scenarios, and users can also customize their own request scenarios.
 
@@ -45,10 +45,20 @@ In the scenario of non-inductive data interaction, alova has taken a big step fo
 
 Alova is also committed to solving the problem of client network requests, but unlike other request libraries, alova chooses the direction of business scenario request strategy, and it also provides rich Advanced Features.
 
-- You may have been thinking about encapsulating `fetch` and `axios`, but now you don’t need to do this anymore, alova has prepared all the advanced request functions you need, such as request use hooks, automatic cache management , request sharing, cross-component update status, and request strategies in different business scenarios are available out of the box.
+- You may have been thinking about how to wrap `fetch` and `axios`. Now you no longer need to do this. alova complete complex requests with declarative style, such as request sharing, paging requests, form submissions, breakpoint uploads, etc, as well as automated cache management, request sharing, cross-component status update, etc.
 - alova is lightweight, only 4kb+, which is 30%+ of axios.
 - alova is low-coupling, you can make alova work with any UI framework in any js environment through different adapters (built-in supported UI framework is `vue/react/svelte`), and provides a unified experience and perfect code migration.
 - alova can also achieve a highly aggregated organization of APIs. The request parameters, cache behavior, and response data transform of each API will be in the same code block, which has great advantages for managing a large number of APIs.
+
+:::info More framework support
+
+Now, alova is available in [vue options (vue2 and vue3)](https://vuejs.org/guide/introduction.html#api-styles), [click here to view details](/tutorial/framework/vue-options). In the future, the following frameworks will be supported:
+
+- Function style such as `solid/preact/qwik`.
+- class style such as `angular/lit/stencil`.
+- options style such as `native mini Program (China🇨🇳)`.
+
+:::
 
 For comparison with other request libraries, please [click here for more detail](/tutorial/get-started/comparison)
 
@@ -73,20 +83,20 @@ For comparison with other request libraries, please [click here for more detail]
 
 Alova is the core library, which provides common functions such as caching strategy, request sharing strategy, and state management, and can meet more than 99% of request requirements. At the same time, alova also provides business logic and frequently used request strategy hooks, which can be directly used in specific scenarios. The following is a list of request policy hooks provided by alova.
 
-| Name                                 | Description                                                                                                                                                                                             | Documentation                                                        |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Pagination request strategy          | Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, reduce coding difficulty by 50%                                                            | [usePagination](../strategy/usePagination)                           |
-| Non-inductive data interact strategy | A new interactive experience, submitting and responding, greatly reducing the impact of network fluctuations, making your application still available when the network is unstable or even disconnected | [useSQRequest](../strategy/sensorless-data-interaction/overview)     |
-| Form Submit Strategy                 | A hook designed for form submission, through which you can easily implement form drafts, multi-page (multi-step) forms, in addition to providing common functions such as form reset                    | [useForm](../strategy/useForm)                                       |
-| Send Captcha                         | Captcha sending hook, which saves you the trouble of developing the verification code sending function.                                                                                                 | [useCaptcha](../strategy/useCaptcha)                                 |
-| Cross-component trigger request      | An alova middleware, which removes the limitation of component hierarchy and quickly triggers the operation function of any request in any component                                                    | [actionDelegationMiddleware](../strategy/actionDelegationMiddleware) |
-| useRequest with serial               | A more concise and easy-to-use serial request use hook than [alova's serial request method](../next-step/serial-request), providing a unified loading status, error, and callback function              | [useSerialRequest ](../strategy/useSerialRequest)                    |
-| useWatcher with serial               | A more concise and easy-to-use serial request use hook than [alova's serial request method](../next-step/serial-request), providing a unified loading status, error, and callback function.             | [useSerialWatcher](../strategy/useSerialWatcher)                     |
-| Request retriable strategy           | Automatic retry on request failure, it plays an important role on important requests and polling requests                                                                                               | [useRetriableRequest](../strategy/useRetriableRequest)               |
+| Name                                 | Description                                                                                                                                                                                             | Documentation                                                               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Pagination request strategy          | Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, reduce coding difficulty by 50%                                                            | [usePagination](/tutorial/strategy/usePagination)                           |
+| Non-inductive data interact strategy | A new interactive experience, submitting and responding, greatly reducing the impact of network fluctuations, making your application still available when the network is unstable or even disconnected | [useSQRequest](/tutorial/strategy/sensorless-data-interaction/overview)     |
+| Form Submit Strategy                 | A hook designed for form submission, through which you can easily implement form drafts, multi-page (multi-step) forms, in addition to providing common functions such as form reset                    | [useForm](/tutorial/strategy/useForm)                                       |
+| Send Captcha                         | Captcha sending hook, which saves you the trouble of developing the verification code sending function.                                                                                                 | [useCaptcha](/tutorial/strategy/useCaptcha)                                 |
+| Cross-component trigger request      | An alova middleware, which removes the limitation of component hierarchy and quickly triggers the operation function of any request in any component                                                    | [actionDelegationMiddleware](/tutorial/strategy/actionDelegationMiddleware) |
+| useRequest with serial               | A more concise and easy-to-use serial request use hook than [alova's serial request method](/tutorial/next-step/serial-request), providing a unified loading status, error, and callback function       | [useSerialRequest ](/tutorial/strategy/useSerialRequest)                    |
+| useWatcher with serial               | A more concise and easy-to-use serial request use hook than [alova's serial request method](/tutorial/next-step/serial-request), providing a unified loading status, error, and callback function.      | [useSerialWatcher](/tutorial/strategy/useSerialWatcher)                     |
+| Request retriable strategy           | Automatic retry on request failure, it plays an important role on important requests and polling requests                                                                                               | [useRetriableRequest](/tutorial/strategy/useRetriableRequest)               |
 
 ### More request-related business scenarios are being collected...
 
-If you still have a specific and typical business request scenario, but we have not implemented it yet, you can [submit an issue](https://github.com/alovajs/scene/issues/new/choose) to tell us here, we Will make it available to more people. You can also customize the request hook, please see the [advanced](../../category/advanced) section.
+If you still have a specific and typical business request scenario, but we have not implemented it yet, you can [submit an issue](https://github.com/alovajs/scene/issues/new/choose) to tell us here, we Will make it available to more people. You can also customize the request hook, please see the [advanced](/category/advanced) section.
 
 ## Join the channel community
 
@@ -145,11 +155,11 @@ We believe that contributing to alova is not only limited to code contributions,
 - Translate docs
 - and any other positive activity you can think of...
 
-Contributing effectively will earn you some alova community fame. Before participating in the contribution, please be sure to read the [Contribution Guidelines](../../contributing/overview) in detail to ensure your effective contribution.
+Contributing effectively will earn you some alova community fame. Before participating in the contribution, please be sure to read the [Contribution Guidelines](/contributing/overview) in detail to ensure your effective contribution.
 
 ## Alternative to the request libraries?
 
-alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](./RSM) process (request events), alova still needs to dependent on them to make requests, so we can Think of alova as an weaponry of the request library, making the request library more powerful.
+alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](/tutorial/get-started/RSM) process (request events), alova still needs to dependent on them to make requests, so we can Think of alova as an weaponry of the request library, making the request library more powerful.
 
 ## Why binding UI framework?
 

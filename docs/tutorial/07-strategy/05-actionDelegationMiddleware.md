@@ -3,6 +3,9 @@ title: Cross components to trigger request
 sidebar_position: 50
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info strategy type
 
 middleware

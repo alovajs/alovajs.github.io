@@ -3,6 +3,9 @@ title: send captcha
 sidebar_position: 40
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info strategy type
 
 use hook
