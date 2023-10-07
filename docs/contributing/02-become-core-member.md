@@ -7,17 +7,17 @@ You can become a core team member of alova by actively participating in maintain
 
 1. Develop and maintain the warehouse of your choice, such as adding new features, bug fixes, optimizing original code and project configurations, reviewing contributors' codes, etc., and promptly solving related issues raised by users on github or social software;
 2. Write and maintain the development documents of the warehouse you choose, and continuously optimize the document content to make it clearer and easier to understand;
-3. Positively promote your relevant warehouses or alova core libraries in any form on social platforms or short video platforms, such as publishing articles or videos, to increase the influence of the alovajs ecosystem;
+3. Positively promote your relevant repository or alova core libraries in any form on social platforms or short video platforms, such as publishing articles or videos, to increase the influence of the alovajs ecosystem;
 
 ## Join requirements and apply
 
 ### Require
 
-The warehouses that can participate in development and maintenance in [alovajs organization](https://github.com/alovajs) are listed below. You can choose the warehouses you are more interested in. It should be noted that the implementation of these warehouses needs to be as provided. Code design to implement (click each link to view the code design, and you can also propose modifications to the design if there is a better implementation). You need to submit the implementation code of the corresponding warehouse in the form of a PR for review. After passing it, you can become a core team member of the corresponding warehouse.
+The repository that can participate in development and maintenance in [alovajs organization](https://github.com/alovajs) are listed below. You can choose the repository you are more interested in. It should be noted that the implementation of these repository needs to be as provided. To implement the code design, click each link in the **Participating warehouse list** to view the code design. If there is a better implementation, you can also propose a modified design.
 
-### Apply
+You need to submit the implementation code of the corresponding warehouse in the form of PR, and send an email to **hujou555@gmail.com** to apply, and attach the PR link. Please be sure to add `alova core member application` at the beginning, and we will Review and inform the results as quickly as possible. Once passed, you can become a core team member of the corresponding warehouse.
 
-Send an email to **hujou555@gmail.com** to apply and attach the PR link. Please be sure to add `alova core member application` at the beginning. We will review and inform you of the result as soon as possible.
+> > You can also create your own alova adaptation warehouse to implement different ideas without joining the alova core team member.
 
 ## List of participating repositories
 
@@ -43,6 +43,7 @@ The following scene modules are placed in the [@alova/scene](https://github.com/
 - A simpler file upload module that can automatically convert the incoming data format into a File object to implement a simpler file upload function.
 - Repeat request sending module, used for polling requests, browser tab switching requests, and browser focus requests to ensure the factuality of page data.
 - SSE request module, request module based on `EventSource`.
+- Request rate limiting middleware to control only N requests to be sent within a certain interval. [Refer to this discussion](https://github.com/alovajs/alova/discussions/205).
 
 ### Development tools
 
