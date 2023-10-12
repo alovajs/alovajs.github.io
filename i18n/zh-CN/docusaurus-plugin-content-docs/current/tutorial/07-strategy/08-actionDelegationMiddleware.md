@@ -1,6 +1,6 @@
 ---
 title: 跨组件触发请求
-sidebar_position: 50
+sidebar_position: 80
 ---
 
 import Tabs from '@theme/Tabs';

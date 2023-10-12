@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip 示例提示
 
-1. 如果你还未了解 alova，强烈推荐你先阅读 [alova 概述部分](../get-started/overview)。
+1. 如果你还未了解 alova，强烈推荐你先阅读 [alova 概述部分](/tutorial/get-started/overview)。
 2. 想先尝试一下吗？可以 [点此](../example/init-page) 尝试一个简单的示例！
 
 :::

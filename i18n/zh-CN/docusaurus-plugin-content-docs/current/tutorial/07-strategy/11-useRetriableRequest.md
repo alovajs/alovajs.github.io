@@ -1,6 +1,6 @@
 ---
 title: 请求重试策略
-sidebar_position: 80
+sidebar_position: 110
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,7 +14,7 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-请求失败可自动重试的 use hook，你可以将它用于重要的请求上，也可以用它进行轮询请求。
+请求失败可自动重试的 use hook，你可以将它用于重要的请求上。
 
 ## 示例
 

@@ -313,6 +313,35 @@ const handleReset = () => {
 // highlight-end
 ```
 
+### 更新表单数据
+
+在编辑表单时，我们需要展示原表单的数据，此时可以使用`updateForm`来异步更新表单数据。
+
+```javascript
+const {
+  // ...
+  updateForm
+} = useForm(submitData, {
+  // ...
+  {
+    // 初始化表单数据
+    initialForm: {
+      name: '',
+      cls: '1'
+    }
+  }
+});
+
+// 请求表单数据并更新到表单中
+const { onSuccess } = useRequest(getData);
+onSuccess(({ data }) => {
+  updateForm({
+    name: data.name,
+    cls: data.cls
+  });
+});
+```
+
 ### 表单草稿
 
 `useForm`还提供了表单草稿功能，在数据重置前即使刷新页面也可以恢复表单数据，其原理是使用 alova 实例上的存储适配器，将表单数据进行持久化。使用时只需要将`store`设置为 true 即可。

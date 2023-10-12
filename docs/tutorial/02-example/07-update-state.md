@@ -5,7 +5,7 @@ sidebar_position: 70
 
 import UpdateState from '@site/example-links/UpdateState';
 
-> The example uses vue3 as an example, but you can also use alova in react and svelte, please read the [Getting Started Guide](../get-started/overview) for details;
+> The example uses vue3 as an example, but you can also use alova in react and svelte, please read the [Getting Started Guide](/tutorial/get-started/overview) for details;
 
 <UpdateState></UpdateState>
 

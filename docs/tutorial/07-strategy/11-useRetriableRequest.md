@@ -14,7 +14,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-A use hook that can automatically retry a request failure, you can use it for important requests, or use it for polling requests.
+A use hook that can automatically retry a request failure, you can use it for important requests.
 
 ## Example
 

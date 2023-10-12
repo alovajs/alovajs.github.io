@@ -23,9 +23,9 @@ sidebar_position: 20
 
 ### UI 框架适配库
 
-- [**alova/solid**](https://github.com/alovajs/alova/tree/main/src/predefine)：[solidjs](https://www.solidjs.com/) 适配器，让 alova 兼容 [solidjs](https://www.solidjs.com/)，该模块将在 alova 核心库的`src/predefine`中添加。
-- [**alova/preact**](https://github.com/alovajs/alova/tree/main/src/predefine)：[preact](https://preactjs.com/) 适配器，让 alova 兼容 [preact](https://preactjs.com/)，该模块将在 alova 核心库的`src/predefine`中添加。
-- [**alova/qwik**](https://github.com/alovajs/alova/tree/main/src/predefine)：[qwik](https://qwik.builder.io/) 适配器，让 alova 兼容 [qwik](https://qwik.builder.io/)，该模块将在 alova 核心库的`src/predefine`中添加。
+- [**alova/solid**](https://github.com/alovajs/alova/tree/main/src/predefine#solidhook)：[solidjs](https://www.solidjs.com/) 适配器，让 alova 兼容 [solidjs](https://www.solidjs.com/)，该模块将在 alova 核心库的`src/predefine`中添加。
+- [**alova/preact**](https://github.com/alovajs/alova/tree/main/src/predefine#preacthook)：[preact](https://preactjs.com/) 适配器，让 alova 兼容 [preact](https://preactjs.com/)，该模块将在 alova 核心库的`src/predefine`中添加。
+- [**alova/qwik**](https://github.com/alovajs/alova/tree/main/src/predefine#qwikhook)：[qwik](https://qwik.builder.io/) 适配器，让 alova 兼容 [qwik](https://qwik.builder.io/)，该模块将在 alova 核心库的`src/predefine`中添加。
 - [**@alova/angular**](https://github.com/alovajs/angular)：alova 的 [angular](https://angularjs.org/) 适配仓库。
 - [**@alova/miniprogram**](https://github.com/alovajs/miniprogram)：alova 的原生小程序（中国 🇨🇳）适配仓库，支持[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[qq 小程序](https://q.qq.com/wiki/develop/miniprogram/frame/)、[字节小程序](https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/introduction/usage-guide)等支持`behaviors`属性的小程序。
 - [**@alova/lit**](https://github.com/alovajs/lit)：alova 的 [lit](https://lit.dev/) 适配仓库。

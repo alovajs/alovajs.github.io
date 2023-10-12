@@ -5,7 +5,7 @@ sidebar_position: 120
 
 import SettingSilentSvelte from '@site/example-links/SettingSilentSvelte';
 
-> 示例以 svelte 为例，但你还可以在 react、vue 中使用 alova，详细请阅读 [入门指南](../get-started/overview);
+> 示例以 svelte 为例，但你还可以在 react、vue 中使用 alova，详细请阅读 [入门指南](/tutorial/get-started/overview);
 
 <SettingSilentSvelte></SettingSilentSvelte>
 

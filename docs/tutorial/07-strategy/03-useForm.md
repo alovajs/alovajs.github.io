@@ -313,6 +313,35 @@ const handleReset = () => {
 // highlight-end
 ```
 
+### Update form data
+
+When editing a form, we need to display the data of the original form. At this time, we can use `updateForm` to asynchronously update the form data.
+
+```javascript
+const {
+   // ...
+   updateForm
+} = useForm(submitData, {
+   // ...
+   {
+     //Initialize form data
+     initialForm: {
+       name: '',
+       cls: '1'
+     }
+   }
+});
+
+// Request form data and update it to the form
+const { onSuccess } = useRequest(getData);
+onSuccess(({ data }) => {
+   updateForm({
+     name: data.name,
+     cls: data.cls
+   });
+});
+```
+
 ### Form draft
 
 `useForm` also provides a form draft function, even if the page is refreshed before the data is reset, the form data can be restored. The principle is to use the storage adapter on the alova instance to persist the form data. You only need to set `store` to true when using it.

@@ -17,15 +17,15 @@ The repository that can participate in development and maintenance in [alovajs o
 
 You need to submit the implementation code of the corresponding warehouse in the form of PR, and send an email to **hujou555@gmail.com** to apply, and attach the PR link. Please be sure to add `alova core member application` at the beginning, and we will Review and inform the results as quickly as possible. Once passed, you can become a core team member of the corresponding warehouse.
 
-> > You can also create your own alova adaptation warehouse to implement different ideas without joining the alova core team member.
+> You can also create your own alova adaptation warehouse to implement different ideas without joining the alova core team member.
 
 ## List of participating repositories
 
 ### UI framework adapters
 
-- [**alova/solid**](https://github.com/alovajs/alova/tree/main/src/predefine): [solidjs](https://www.solidjs.com/) adapter, let alova is compatible with [solidjs](https://www.solidjs.com/), and this module will be added in `src/predefine` of the alova core library.
-- [**alova/preact**](https://github.com/alovajs/alova/tree/main/src/predefine): [preact](https://preactjs.com/) adapter to make alova compatible [preact](https://preactjs.com/), this module will be added in `src/predefine` of the alova core library.
-- [**alova/qwik**](https://github.com/alovajs/alova/tree/main/src/predefine): [qwik](https://qwik.builder.io/) adapter, let alova is compatible with [qwik](https://qwik.builder.io/), this module will be added in `src/predefine` of the alova core library.
+- [**alova/solid**](https://github.com/alovajs/alova/tree/main/src/predefine#solidhook): [solidjs](https://www.solidjs.com/) adapter, let alova is compatible with [solidjs](https://www.solidjs.com/), and this module will be added in `src/predefine` of the alova core library.
+- [**alova/preact**](https://github.com/alovajs/alova/tree/main/src/predefine#preacthook): [preact](https://preactjs.com/) adapter to make alova compatible [preact](https://preactjs.com/), this module will be added in `src/predefine` of the alova core library.
+- [**alova/qwik**](https://github.com/alovajs/alova/tree/main/src/predefine#qwikhook): [qwik](https://qwik.builder.io/) adapter, let alova is compatible with [qwik](https://qwik.builder.io/), this module will be added in `src/predefine` of the alova core library.
 - [**@alova/angular**](https://github.com/alovajs/angular): alova’s [angular](https://angularjs.org/) adaptation warehouse.
 - [**@alova/miniprogram**](https://github.com/alovajs/miniprogram): alova’s native mini program (China🇨🇳) adaptation warehouse supports [WeChat mini program](https://developers.weixin.qq.com/miniprogram/dev/framework/), [qq applet](https://q.qq.com/wiki/develop/miniprogram/frame/), [byte applet](https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/introduction/usage-guide) and other small programs that support the `behaviors` attribute.
 - [**@alova/lit**](https://github.com/alovajs/lit): alova’s [lit](https://lit.dev/) adaptation repository.

@@ -5,7 +5,7 @@ sidebar_position: 40
 
 import MemoryCache from '@site/example-links/MemoryCache';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](../get-started/overview);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/get-started/overview);
 
 <MemoryCache></MemoryCache>
 
