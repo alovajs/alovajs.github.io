@@ -146,7 +146,7 @@ export default function Support(): JSX.Element {
     <PageModule
       text="Runs in any JS environment with any request tool"
       textTransId="homepage.support.title"
-      desc="Not limited by JS environments and UI frameworks, and can be used with your familiar request tools"
+      desc="alova is innovatively compatible with options-style and class-style UI frameworks. Not limited by JS environments and UI frameworks, and can be used with your familiar request tools"
       descTransId="homepage.support.subtitle"
       align="center">
       <div className={clsx('row align-center', styles.wrapper)}>

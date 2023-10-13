@@ -543,7 +543,7 @@
     "description": "description of support title"
   },
   "homepage.support.subtitle": {
-    "message": "几乎不受JS环境和UI框架限制，并且可以与你熟悉的请求工具一起使用",
+    "message": "alova创新性地兼容了options和class风格的UI框架，它几乎不受JS环境和UI框架限制，并且可以与你熟悉的请求工具一起使用",
     "description": "description of support subtitle"
   },
 

@@ -268,10 +268,7 @@ export default function Strategy() {
       descTransId="homepage.strategy.subtitle">
       <div>
         <div>
-          <ul
-            className={clsx(styles.tabs, isMouseEnter ? styles.tabsHover : null)}
-            onMouseEnter={() => setIsMouseEnter(true)}
-            onMouseLeave={() => setIsMouseEnter(false)}>
+          <ul className={clsx(styles.tabs, isMouseEnter ? styles.tabsHover : null)}>
             {strategyList.map(({ title, link }, i) => (
               <li
                 key={link}

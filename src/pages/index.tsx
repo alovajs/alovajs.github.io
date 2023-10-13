@@ -1,16 +1,16 @@
 import Link from '@docusaurus/Link';
 import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import PageModule from '@site/src/components/PageModule';
 import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
-import PageModule from '../components/PageModule';
-import HomepageFeatures from './indexComponents/HomepageFeatures';
-import styles from './indexComponents/index.module.css';
-import Like from './indexComponents/Like';
-import Strategy from './indexComponents/Strategy';
-import Support from './indexComponents/Support';
+import Features from './_indexComponent/Features';
+import Like from './_indexComponent/Like';
+import Strategy from './_indexComponent/Strategy';
+import Support from './_indexComponent/Support';
+import styles from './_indexComponent/index.module.css';
 
 function HomepageHeader() {
   const buttons = [
@@ -90,7 +90,7 @@ export default function Home(): JSX.Element {
       description="alova.js a lightweight request strategy library">
       <HomepageHeader></HomepageHeader>
       <main>
-        <HomepageFeatures></HomepageFeatures>
+        <Features></Features>
         <PageModule
           text="Relationship between alova and request library"
           textTransId="homepage.relationTitle"
