@@ -12,23 +12,23 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: <Translate id="homepage.features.Simple and familiar">Simple and familiar</Translate>,
-    icon: 'check',
-    description: (
-      <Translate id="homepage.features.Simple and familiar.desc">
-        API design similar to axios, making it easier and more familiar for you to get started
-      </Translate>
-    )
-  },
-  {
     title: (
       <Translate id="homepage.features.High performance request strategy">High performance request strategy</Translate>
     ),
     icon: 'shandian',
     description: (
       <Translate id="homepage.features.High performance request strategy.desc">
-        Different request strategies are provided for different request scenarios to reduce performance problems caused
-        by requests
+        10+ request strategy modules that can be used directly, just choose the one you want to use, and it can also
+        reduce performance problems caused by requests.
+      </Translate>
+    )
+  },
+  {
+    title: <Translate id="homepage.features.Simple and familiar">Simple and familiar</Translate>,
+    icon: 'check',
+    description: (
+      <Translate id="homepage.features.Simple and familiar.desc">
+        API design similar to axios, making it easier and more familiar for you to get started
       </Translate>
     )
   },

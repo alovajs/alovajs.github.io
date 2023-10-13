@@ -5,10 +5,12 @@ import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
+import PageModule from '../components/PageModule';
 import HomepageFeatures from './indexComponents/HomepageFeatures';
+import styles from './indexComponents/index.module.css';
+import Like from './indexComponents/Like';
 import Strategy from './indexComponents/Strategy';
 import Support from './indexComponents/Support';
-import styles from './indexComponents/index.module.css';
 
 function HomepageHeader() {
   const buttons = [
@@ -33,9 +35,9 @@ function HomepageHeader() {
             </h1>
             <p>
               <Translate id="homepage.tagline">
-                Completing complex network requests in a declarative style, which means that you can use less code to
-                implement higher fluency and availability of network requests, allowing your application to have
-                excellent strategic thinking like a wise man.
+                Choose the request strategy you want, the declarative implementation of complex network requests with
+                minimal code can greatly enhance the fluidity and availability of your application, making it appear as
+                if it has exceptional strategic thinking, much like a wise man.
               </Translate>
             </p>
             <div className={clsx(styles.buttons, 'margin-bottom--md')}>
@@ -56,9 +58,12 @@ function HomepageHeader() {
           </div>
           <CodeBlock
             language="javascript"
-            className={
-              styles.codeExample
-            }>{`const todo = alova.Get('/todo', {\n    params: {\n    id: 1\n  }\n});\nconst { loading, data, error } = useRequest(todo);`}</CodeBlock>
+            className={styles.codeExample}>{`const todo = alova.Get('/todo', {
+  params: {
+    id: 1
+  }
+});
+const { loading, data, error } = useRequest(todo);`}</CodeBlock>
           {/* <img
             src={require('@site/static/img/logo.svg').default}
             className={styles.logo}
@@ -85,26 +90,25 @@ export default function Home(): JSX.Element {
       description="alova.js a lightweight request strategy library">
       <HomepageHeader></HomepageHeader>
       <main>
-        <Support></Support>
         <HomepageFeatures></HomepageFeatures>
-        <div className={styles.relation}>
-          <h3 className={clsx(styles.relationTitle, 'margin-bottom--lg')}>
-            <Translate id="homepage.relationTitle">Relationship between alova and request library</Translate>
-          </h3>
-          <h2 className="hero__subtitle">
-            <Translate id="homepage.relationDesc">
-              Traditional promised request library solves the problem of request sending very well, but They are simply
-              request sending tools
-            </Translate>
-          </h2>
-          <p>
+        <PageModule
+          text="Relationship between alova and request library"
+          textTransId="homepage.relationTitle"
+          desc="Traditional promised request library solves the problem of request sending very well, but They are simply
+          request sending tools"
+          descTransId="homepage.relationDesc">
+          <div className={styles.relationContent}>
+            <span className={styles.quota}>“</span>
             <Translate id="homepage.relationAuxi">
-              Alova is like their armed forces. Through alova, you can obtain more powerful capabilities. Whether you
-              like to use axios, super agent, or browser's fetch-api, alova can be perfectly compatible
+              Just like their weapon arsenal, alova grants them enhanced capabilities. Whether you prefer using axios,
+              superagent, or the browser's fetch API, alova seamlessly integrates with all of them.
             </Translate>
-          </p>
-        </div>
+            <span className={styles.quota}>”</span>
+          </div>
+        </PageModule>
         <Strategy></Strategy>
+        <Support></Support>
+        <Like></Like>
       </main>
     </Layout>
   );

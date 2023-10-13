@@ -288,7 +288,7 @@
     "description": "关系描述"
   },
   "homepage.relationAuxi": {
-    "message": "alova像它们的武装力量，通过alova可以获得更强大的能力，不管您喜欢使用axios、superagent，还是浏览器的fetch-api，alova都可以完美兼容",
+    "message": "alova像它们的武器装备，通过alova可以获得更强大的能力，不管您喜欢使用axios、superagent，还是浏览器的fetch-api，alova都可以完美兼容",
     "description": "关系附加信息"
   },
   "homepage.Examples": {
@@ -299,6 +299,7 @@
     "message": "快速开始",
     "description": "开始按钮文字"
   },
+
   "homepage.features.Simple and familiar": {
     "message": "简单熟悉",
     "description": "简单熟悉"
@@ -312,7 +313,7 @@
     "description": "高性能请求策略"
   },
   "homepage.features.High performance request strategy.desc": {
-    "message": "针对不同请求场景提供了不同的请求策略，减小请求带来的性能问题",
+    "message": "10+个可直接使用的请求策略模块，选择你想要的使用就好了，还能减小请求带来的性能问题",
     "description": "description of feature"
   },
   "homepage.features.Request-level cache": {
@@ -331,12 +332,13 @@
     "message": "4kb+，只有axios的30%",
     "description": "description of feature"
   },
-  "homepage.request strategy": {
-    "message": "核心请求策略",
+
+  "homepage.strategy.title": {
+    "message": "以声明的方式完成你的请求",
     "description": "description of request strategy"
   },
-  "homepage.request strategy.desc": {
-    "message": "这些请求策略除了可以让你早下班，还能让你的应用更加顺畅",
+  "homepage.strategy.subtitle": {
+    "message": "选择你想要使用的请求模块就好了，节省大量时间，还能让你的应用更加流畅",
     "description": "description of request strategy desc"
   },
   "homepage.Custom strategy": {
@@ -347,17 +349,89 @@
     "message": "超强的扩展性可快速构建自定义请求策略",
     "description": "description of custom strategy desc"
   },
-  "homepage.support.title": {
-    "message": "可在以上平台获得相同的使用体验，完美迁移",
-    "description": "description of support title"
+  "homepage.strategy.useRequest": {
+    "message": "基础请求",
+    "description": "description of Pagination request strategy"
   },
-  "homepage.strategy.Pagination request strategy": {
+  "homepage.strategy.useRequest.desc": {
+    "message": "使用useRequest请求数据，它将自动维护当前请求的相关状态",
+    "description": "description of Pagination request strategy desc"
+  },
+  "homepage.strategy.useRequest.feature1": {
+    "message": "与axios相似的用法",
+    "description": "description of useRequest feature1"
+  },
+  "homepage.strategy.useRequest.feature2": {
+    "message": "自动维护相关的状态",
+    "description": "description of useRequest feature1"
+  },
+  "homepage.strategy.useRequest.feature3": {
+    "message": "响应数据缓存",
+    "description": "description of useRequest feature2"
+  },
+  "homepage.strategy.useRequest.feature4": {
+    "message": "共享同时发起的相同请求",
+    "description": "description of useRequest feature2"
+  },
+  "homepage.strategy.useWatcher": {
+    "message": "状态变化请求",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.useWatcher.desc": {
+    "message": "在开发例如分页、数据过滤、模糊搜索等功能时，监听状态变化并立即发送请求",
+    "description": "description of useWatcher desc"
+  },
+  "homepage.strategy.useWatcher.feature1": {
+    "message": "请求防抖",
+    "description": "description of useWatcher feature1"
+  },
+  "homepage.strategy.useWatcher.feature2": {
+    "message": "保证请求时序",
+    "description": "description of useWatcher feature1"
+  },
+  "homepage.strategy.useWatcher.feature3": {
+    "message": "过滤状态变化时是否发送请求",
+    "description": "description of useWatcher feature2"
+  },
+  "homepage.strategy.useFetcher": {
+    "message": "预加载数据",
+    "description": "description of Pagination request strategy"
+  },
+  "homepage.strategy.useFetcher.desc": {
+    "message": "提前预加载数据使界面更快呈现，或跨组件重新拉取数据",
+    "description": "description of useFetcher desc"
+  },
+  "homepage.strategy.useFetcher.feature1": {
+    "message": "跨模块/组件更新视图",
+    "description": "description of useFetcher feature1"
+  },
+  "homepage.strategy.useFetcher.feature2": {
+    "message": "预加载数据",
+    "description": "description of useFetcher feature1"
+  },
+  "homepage.strategy.Pagination": {
     "message": "分页请求策略",
     "description": "description of Pagination request strategy"
   },
-  "homepage.strategy.Pagination request strategy.desc": {
+  "homepage.strategy.Pagination.desc": {
     "message": "自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%",
     "description": "description of Pagination request strategy desc"
+  },
+  "homepage.strategy.Pagination.feature1": {
+    "message": "丰富全面的分页状态和事件",
+    "description": "description of Pagination feature1"
+  },
+  "homepage.strategy.Pagination.feature2": {
+    "message": "监听状态改变自动获取指定分页数据",
+    "description": "description of Pagination feature2"
+  },
+  "homepage.strategy.Pagination.feature3": {
+    "message": "预加载下一页数据",
+    "description": "description of Pagination feature3"
+  },
+  "homepage.strategy.Pagination.feature4": {
+    "message": "高性能的列表操作函数",
+    "description": "description of Pagination feature4"
   },
   "homepage.strategy.Sensorless interact strategy": {
     "message": "无感数据交互策略",
@@ -365,6 +439,22 @@
   },
   "homepage.strategy.Sensorless interact strategy.desc": {
     "message": "全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用",
+    "description": "description of Sensorless interact strategy desc"
+  },
+  "homepage.strategy.Sensorless interact strategy.feature1": {
+    "message": "像操作本地数据一样，无需等待网络响应",
+    "description": "description of Sensorless interact strategy desc"
+  },
+  "homepage.strategy.Sensorless interact strategy.feature2": {
+    "message": "弱网或断网状态依然可用",
+    "description": "description of Sensorless interact strategy desc"
+  },
+  "homepage.strategy.Sensorless interact strategy.feature3": {
+    "message": "更稳定的数据同步，用户无感知的",
+    "description": "description of Sensorless interact strategy desc"
+  },
+  "homepage.strategy.Sensorless interact strategy.feature4": {
+    "message": "自由切换无感请求和正常网络请求",
     "description": "description of Sensorless interact strategy desc"
   },
   "homepage.strategy.Cross-component request": {
@@ -375,29 +465,103 @@
     "message": "消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数",
     "description": "description of Cross-component request desc"
   },
+  "homepage.strategy.Cross-component request.feature1": {
+    "message": "跨越任意组件层级触发重新请求",
+    "description": "description of Cross-component request feature1"
+  },
   "homepage.strategy.Form submit": {
     "message": "表单提交策略",
     "description": "description of Pagination request strategy"
   },
   "homepage.strategy.Form submit.desc": {
-    "message": "表单草稿、多页面（多步骤）表单，除此以外还提供了表单重置等常用功能",
+    "message": "自动管理表单数据，可以快速实现各种表单",
     "description": "description of Form submit desc"
   },
+  "homepage.strategy.Form submit.feature1": {
+    "message": "保存表单草稿",
+    "description": "description of Form submit feature1"
+  },
+  "homepage.strategy.Form submit.feature2": {
+    "message": "多步骤表单",
+    "description": "description of Form submit feature2"
+  },
+  "homepage.strategy.Form submit.feature3": {
+    "message": "表单提交自动重置数据",
+    "description": "description of Form submit feature3"
+  },
+  "homepage.strategy.Upload": {
+    "message": "文件上传策略",
+    "description": "description of Upload strategy"
+  },
+  "homepage.strategy.Upload.desc": {
+    "message": "更简单的文件上传策略，支持对base64、Blob、ArrayBuffer、Canvas数据的自动识别和转换",
+    "description": "description of Form submit desc"
+  },
+  "homepage.strategy.Upload.feature1": {
+    "message": "自动识别和转换数据格式",
+    "description": "description of Form submit feature1"
+  },
+  "homepage.strategy.Upload.feature2": {
+    "message": "多文件同时上传",
+    "description": "description of Form submit feature2"
+  },
+  "homepage.strategy.Upload.feature3": {
+    "message": "图片预览图生成",
+    "description": "description of Form submit feature3"
+  },
   "homepage.strategy.Send captcha": {
-    "message": "表单提交策略",
-    "description": "description of Pagination request strategy"
+    "message": "发送验证码",
+    "description": "description of Send captcha strategy"
   },
   "homepage.strategy.Send captcha.desc": {
     "message": "减掉你在开发验证码发送功能时的繁琐",
     "description": "description of Form submit desc"
+  },
+  "homepage.strategy.Send captcha.feature1": {
+    "message": "自动倒计时",
+    "description": "description of Form submit feature1"
   },
   "homepage.strategy.Request retry strategy": {
     "message": "请求重试策略",
     "description": "description of Pagination request strategy"
   },
   "homepage.strategy.Request retry strategy.desc": {
-    "message": "请求失败自动重试，它在重要的请求和轮询请求上发挥重要作用",
+    "message": "在重要的请求上使用它，可以提高请求的稳定性",
     "description": "description of Request retry strategy desc"
+  },
+  "homepage.strategy.Request retry strategy.feature1": {
+    "message": "自定义是否重试，以及重试延迟",
+    "description": "description of Request retry strategy feature1"
+  },
+  "homepage.strategy.Request retry strategy.feature2": {
+    "message": "手动停止重试",
+    "description": "description of Request retry strategy feature2"
+  },
+
+  "homepage.support.title": {
+    "message": "与任何请求工具在任何JS环境下运行",
+    "description": "description of support title"
+  },
+  "homepage.support.subtitle": {
+    "message": "几乎不受JS环境和UI框架限制，并且可以与你熟悉的请求工具一起使用",
+    "description": "description of support subtitle"
+  },
+
+  "homepage.like.title": {
+    "message": "如果你也喜欢alova",
+    "description": "description of support title"
+  },
+  "homepage.like.btnGithub": {
+    "message": "在Github star alova",
+    "description": "description of like btnGithub"
+  },
+  "homepage.like.btnDiscord": {
+    "message": "加入Discord",
+    "description": "description of like btnDiscord"
+  },
+  "homepage.like.btnQQ": {
+    "message": "加入QQ频道",
+    "description": "description of like btnQQ"
   },
 
   "ad.project collection": {

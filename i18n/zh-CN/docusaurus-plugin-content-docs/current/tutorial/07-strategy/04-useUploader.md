@@ -165,3 +165,13 @@ interface AlovaFileCompleteEvent extends AlovaCompleteEvent {
   file: file; // 上传成功的文件项
 }
 ```
+
+## 开发指南
+
+开发前请仔细阅读[开发指南](/contributing/developing-guidelines)
+
+开发此 use hook 需要开发以下内容：
+
+1. 在 src/hooks 下编写 useUploader 功能代码
+2. useUploader 功能的完整单元测试，建议在 vue 和 react 下测试
+3. useUploader 的 typescript 类型声明，需要分别在`packages/scene-react/typings/index.d.ts`、`packages/scene-vue/typings/index.d.ts`、`packages/scene-svelte/typings/index.d.ts`下添加。公共的类型声明可以放在`typings/general.d.ts`中，打包时会将此文件分别复制到子包的`typings`文件夹下，也可以手动运行`npm run cp:files`复制文件夹。

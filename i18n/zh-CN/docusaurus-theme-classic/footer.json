@@ -28,7 +28,7 @@
     "description": "The label of footer link with label=Pull request linking to https://github.com/alovajs/alova/pulls"
   },
   "copyright": {
-    "message": "Copyright © 2022 alova.js Team",
+    "message": "Copyright © 2023 alova.js Team",
     "description": "The footer copyright"
   }
 }
