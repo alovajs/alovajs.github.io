@@ -48,7 +48,7 @@ const jsEnvList: SupportItem[] = [
     link: 'tutorial/framework/solid'
   },
   {
-    id: 'Mini program(China)',
+    id: 'Mini program🇨🇳',
     Image: require('@site/static/img/miniprogram.svg').default,
     link: 'tutorial/framework/native-mp'
   },
@@ -146,7 +146,7 @@ export default function Support(): JSX.Element {
     <PageModule
       text="Runs in any JS environment with any request tool"
       textTransId="homepage.support.title"
-      desc="alova is innovatively compatible with options-style and class-style UI frameworks. Not limited by JS environments and UI frameworks, and can be used with your familiar request tools"
+      desc="Use hooks originated from functional components, but alova innovatively made it compatible with options and class-style UI frameworks, which means that alova's use hooks are almost not restricted by JS environments and UI frameworks, and can be used together with your familiar request tools."
       descTransId="homepage.support.subtitle"
       align="center">
       <div className={clsx('row align-center', styles.wrapper)}>
