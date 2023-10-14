@@ -268,7 +268,10 @@ export default function Strategy() {
       descTransId="homepage.strategy.subtitle">
       <div>
         <div>
-          <ul className={clsx(styles.tabs, isMouseEnter ? styles.tabsHover : null)}>
+          <ul
+            className={clsx(styles.tabs, isMouseEnter ? styles.tabsHover : null)}
+            onMouseEnter={() => setIsMouseEnter(true)}
+            onMouseLeave={() => setIsMouseEnter(false)}>
             {strategyList.map(({ title, link }, i) => (
               <li
                 key={link}
@@ -298,7 +301,7 @@ export default function Strategy() {
             <Link
               className={clsx('button button--primary margin-top--lg', styles.btnPC)}
               to={activeStrategy.link}>
-              查看详情
+              <Translate id="homepage.strategy.More details">More details</Translate>
             </Link>
           </div>
           <CodeBlock
@@ -309,7 +312,7 @@ export default function Strategy() {
           <Link
             className={clsx('button button--primary margin-top--md', styles.btnMobile)}
             to={activeStrategy.link}>
-            查看详情
+            <Translate id="homepage.strategy.More details">More details</Translate>
           </Link>
         </div>
       </div>

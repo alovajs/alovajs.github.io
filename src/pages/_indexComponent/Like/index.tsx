@@ -7,6 +7,15 @@ import styles from './index.module.css';
 
 const buttons = [
   {
+    icon: (
+      <IconFont
+        name="youjiantou"
+        size={24}></IconFont>
+    ),
+    text: <Translate>Get Started</Translate>,
+    link: '/tutorial/get-started/overview'
+  },
+  {
     icon: <span className="header-github-link"></span>,
     text: <Translate id="homepage.like.btnGithub">Star alova on Github</Translate>,
     link: 'https://github.com/alovajs/alova'
@@ -15,6 +24,7 @@ const buttons = [
     icon: (
       <IconFont
         name="discord"
+        style={{ color: '#5865f2' }}
         size={30}></IconFont>
     ),
     text: <Translate id="homepage.like.btnDiscord">Say "Hi" on Discord</Translate>,

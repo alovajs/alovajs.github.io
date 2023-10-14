@@ -537,6 +537,10 @@
     "message": "手动停止重试",
     "description": "description of Request retry strategy feature2"
   },
+  "homepage.strategy.More details": {
+    "message": "查看详情",
+    "description": "description of btnDetail of strategy"
+  },
 
   "homepage.support.title": {
     "message": "与任何请求工具在任何JS环境下运行",

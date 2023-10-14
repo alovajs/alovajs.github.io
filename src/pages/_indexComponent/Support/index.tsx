@@ -35,12 +35,17 @@ const jsEnvList: SupportItem[] = [
   {
     id: 'Next',
     Image: require('@site/static/img/next.svg').default,
-    link: 'tutorial/next-step/ssr'
+    link: 'tutorial/next-step/ssr#nextjs'
   },
   {
     id: 'Nuxt',
     Image: require('@site/static/img/nuxt.svg').default,
-    link: 'tutorial/next-step/ssr'
+    link: 'tutorial/next-step/ssr#nuxt3x'
+  },
+  {
+    id: 'Sveltekit',
+    Image: require('@site/static/img/svelte.svg').default,
+    link: 'tutorial/next-step/ssr#sveltekit'
   },
   {
     id: 'Solid',
@@ -60,7 +65,7 @@ const jsEnvList: SupportItem[] = [
         className={className}
       />
     ),
-    link: 'https://uniapp.dcloud.net.cn/'
+    link: 'tutorial/extension/alova-adapter-uniapp'
   },
   {
     id: 'Taro',
@@ -70,7 +75,7 @@ const jsEnvList: SupportItem[] = [
         className={className}
       />
     ),
-    link: 'https://taro.jd.com/'
+    link: 'tutorial/extension/alova-adapter-taro'
   },
   {
     id: 'Angular',
@@ -151,10 +156,10 @@ export default function Support(): JSX.Element {
       align="center">
       <div className={clsx('row align-center', styles.wrapper)}>
         {ListView(jsEnvList)}
-        <div className={clsx('col col--1', styles.iconPlus)}>
+        <div className={clsx('col col--1 flex-col align-center', styles.iconPlus)}>
           <IconFont
             name="plus"
-            size={40}></IconFont>
+            size={32}></IconFont>
         </div>
         {ListView(requestTools, 4)}
       </div>
