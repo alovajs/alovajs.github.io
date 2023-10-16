@@ -33,7 +33,11 @@ const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
 });
 ```
 
-自定义监听函数
+## 自定义监听函数
+
+以上 4 种自动重新拉取数据的方式，都是通过事件监听的方式实现的，为了全局可用且便于管理，在设计时将监听函数挂载到了`useAutoRequest`函数上，在用户每次调用此 hook 时根据开启情况来调用对应的监听函数，并在组件卸载时调用监听函数返回的卸载函数来卸载监听事件。
+
+在默认情况下实现了在浏览器环境下的事件监听，但有可能用户会在其他环境下使用，此时用户可以覆盖监听函数，自定义对应的监听形式，在调用`notify`时就会触发一次数据拉取，但需要注意的是，还有`throttle`属性会限制触发频率，因此`notify`函数内需要做节流功能。
 
 ```javascript
 // 网络重连自定义函数
@@ -65,6 +69,11 @@ useAutoRequest.onFocus = notify => {
   return () => window.removeEventListener('focus', notify);
 };
 ```
+
+## 内部实现建议
+
+1. 内部使用`useRequest`实现；
+2. 自动拉取数据时，需要强制发起请求，而不能命中缓存；
 
 ## 开发指南
 

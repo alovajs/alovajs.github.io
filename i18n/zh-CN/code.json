@@ -521,6 +521,22 @@
     "message": "自动倒计时",
     "description": "description of Form submit feature1"
   },
+  "homepage.strategy.Auto refetch": {
+    "message": "自动重新拉取数据",
+    "description": "description of Auto refetch strategy"
+  },
+  "homepage.strategy.Auto refetch.desc": {
+    "message": "在一定条件下自动重新拉取数据，保证始终展示最新数据",
+    "description": "description of Auto refetch desc"
+  },
+  "homepage.strategy.Auto refetch.feature1": {
+    "message": "自由选择4个拉取条件",
+    "description": "description of Form submit feature1"
+  },
+  "homepage.strategy.Auto refetch.feature2": {
+    "message": "自定义拉取触发规则",
+    "description": "description of Form submit feature2"
+  },
   "homepage.strategy.Request retry strategy": {
     "message": "请求重试策略",
     "description": "description of Pagination request strategy"
@@ -536,6 +552,22 @@
   "homepage.strategy.Request retry strategy.feature2": {
     "message": "手动停止重试",
     "description": "description of Request retry strategy feature2"
+  },
+  "homepage.strategy.SSE": {
+    "message": "SSE",
+    "description": "description of SSE strategy"
+  },
+  "homepage.strategy.SSE.desc": {
+    "message": "通过Server-sent Events进行请求",
+    "description": "description of SSE desc"
+  },
+  "homepage.strategy.SSE.feature1": {
+    "message": "通过全局响应和方法实例的函数transformData自动转换数据",
+    "description": "description of SSE feature1"
+  },
+  "homepage.strategy.SSE.feature2": {
+    "message": "EventSource的全部控制",
+    "description": "description of SSE feature2"
   },
   "homepage.strategy.More details": {
     "message": "查看详情",
