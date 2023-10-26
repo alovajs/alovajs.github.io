@@ -42,6 +42,13 @@ const alovaInst = createAlova({
 });
 ```
 
+适配器内部将会使用默认的 axios 实例进行请求，如果你为 axios 设置了一些全局参数，你可能需要注意以下两点：
+
+1. 优先使用 axios 实例内的`baseURL`和`timeout`参数，因此如果你在 axios 实例上设置了这些参数，那么就可以不需要在`createAlova`时设置了；
+2. alova 实例的`beforeRequest`钩子将会早于 axios 的`interceptor.request`触发，axios 实例的`responded`钩子将会晚于 axios 实例的`interceptor.response`触发；
+
+> 你也可以[使用自定义的 axios 实例](#使用自定义的-axios-实例)
+
 ### 请求
 
 请求的使用方法与 web 环境中使用完全一致。已经完全兼容**axios**，你可以在创建 method 实例的*config*中指定`axios`支持的[全部配置项](https://axios-http.com/docs/req_config)
@@ -168,6 +175,25 @@ onSuccess(({ data: imageBlob }) => {
 const handleImageDownload = () => {
   send();
 };
+```
+
+## 使用自定义的 axios 实例
+
+在默认情况下，此适配器会使用默认的 axios 实例进行请求，但在一些情况下你需要使用自定义创建的 axios 实例，你可以这么做：
+
+```javascript
+const customAxios = axios.create({
+  // ...
+});
+
+const alovaInst = createAlova({
+  // ...
+  // highlight-start
+  requestAdapter: axiosRequestAdapter({
+    axios: customAxios
+  })
+  // highlight-end
+});
 ```
 
 ## 模拟请求适配器兼容
