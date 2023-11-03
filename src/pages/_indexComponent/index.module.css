@@ -41,7 +41,7 @@
 .relationContent {
   background: var(--ifm-color-emphasis-100);
   border-radius: 0.5rem;
-  padding: 4rem 10rem;
+  padding: 2rem 3rem;
   font-weight: bolder;
   color: var(--ifm-color-emphasis-600);
 }

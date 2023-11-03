@@ -23,23 +23,38 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## What is alova
 
-alova is a lightweight request strategy library that supports developers to implement complex requests such as request sharing, paging requests, form submissions, breakpoint uploads and others with declarative style code, allowing developers to implement high availability and high fluency request with less code, which means that you no longer need to rack your brains to write request optimization code, and no longer need to maintain request data and related status by yourself. You only need to select and use the request module, and set After setting the parameters, alova will do it for you. This improves development efficiency, application operation efficiency, and reduces server pressure.
+alova is a lightweight request strategy library that use and manage APIs easily. It is mainly divided into the following two parts:
 
-## Why create alova?
+**Complete complex requests declaratively**
 
-Data requests have always been an essential part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in an endless stream. Client data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and `react-query` and other request tools, the coding form is continuously developed from callback function, Promise, and then usehook. These js libraries have done a good job in request simplicity, but they only provide general functions, which means For different request scenarios such as sharing requests, paging requests, form submissions, uploading and downloading files, etc., developers still need to write complex codes themselves, which reduces development efficiency and performance cannot be guaranteed. In this era, application fluency has become more and more important.
+It supports developers to use declarative way for various complex requests such as request sharing, paging requests, form submission, breakpoint resumption, etc., allowing developers to use little code to complete high availability and high fluency network interaction. This means that you no longer need to write the codes about request logic, and no longer need to maintain relevant data and states yourself. You only need to select and use the request useHook, alova will take over it for you. This will improve development efficiency, application operation efficiency, and reduces server pressure.
 
-**We believe that there are simpler solutions, such as using a use hook to get and manage paging data, manage form data, and implement brokenpoint continuingly-transferring, etc. That is use different request strategies in different request scenarios to efficiently implement the request function, so that developers can code less and achieve more efficient Client-Server data interaction. This is the solution we proposed and the mission of alova.**
+**API automatic management and maintenance (developing)**
 
-You can use different request strategies to manage request timing and response data according to different request business scenarios, thereby improving performance and user experience, and reducing server pressure, so that both developers and users can benefit. On the basis of the above, we abstract the request scenario and propose [Request Scenario Model (RSM)](/tutorial/get-started/RSM), which explains alova's request strategy scheme well.
+It can automatically generate complete and fully described request functions with full typescript type. You no longer need to consult the API documentation. Instead, you can find the request functions you need through keywords in the IDE, and then use them like accessing `location.reload` , allowing seamless connection between client side and server side. Whether it is a js project or a ts project, you can enjoy type hints for response data.
 
-alova has very flexible expansion capabilities to implement request strategies in different scenarios, and users can also customize their own request scenarios.
+When the server updates the API, the front-end project will also receive a change notification and the project will be blocked from publishing.
 
-In the future, alova will continue to carry forward our exploration of request strategies.
+## Why was alova created?
 
-> Currently supports `vue/react/react-native/svelte`, and `next/nuxt/sveltekit` and other SSR frameworks, and also supports `Uniapp/Taro` multi-terminal unified framework, more framework support, so stay tuned...
+Data requests have always been an indispensable and important part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in endlessly. Client-side data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and Request tools such as `react-query`, the coding form continues to evolve from callback functions, Promise, to usehook. These js libraries have done a good job in making requests simple, but they only provide common functions, which means For different request scenarios such as sharing requests, paging requests, form submissions, uploading and downloading files, etc., developers still need to write complex codes themselves, which reduces development efficiency and performance cannot be guaranteed. As user experience becomes more and more important, In this era, application fluency has become more and more important.
 
-In the scenario of non-inductive data interaction, alova has taken a big step forward. It allows users to respond without waiting for data requests to a certain extent. **In the next chapter, we will explain the non-inductive data interaction in a chapter related information**.
+Additionally, the collaboration between client and server is also separated. Front-end engineers need to consult API documents and manually write API functions, and any changes of APIs need to actively notify front-end engineers, which will make your product more uncontrollable.
+
+**And we think there is a simpler solution that can complete complex requests in 2 steps:**
+
+1. Use keywords directly in the IDE to find the specified request functions (all the request functions is automatically generated);
+2. Based on your request scenarios such as paging, form submission, breakpoint resumption, etc., select the corresponding useHook, which will help you manage data and control when requests should be sent;
+
+This allows developers to achieve more efficient Client-Server data interaction while writing little code. This is the solution we propose. Additionally, alova has very flexible expansion capabilities to implement request strategies in different scenarios. You can also customize your own request scenarios. This part is in [Advanced Chapter](/category/advanced).
+
+In order to cover more request scenarios, we also abstracted the request scenarios into [Request scene model(RSM)](/tutorial/get-started/RSM), which explains alova's request strategy scheme well. In the future, alova will continue to carry forward our exploration of request strategies.
+
+:::info API automatic management and maintenance (developing)
+
+In order to seamlessly connect the client and server, we will automatically manage and maintain request functions through plugins, which are currently in development.
+
+:::
 
 ## Reasons for choosing alova
 
