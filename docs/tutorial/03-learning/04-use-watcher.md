@@ -51,7 +51,7 @@ Next, let's take searching for todo items as an example.
     // array of states being monitored, these state changes will trigger a request
     [keyword],
     {
-      // Set 500ms anti-shake, if the keyword changes frequently, only send the request 500ms after the change stops
+      // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
       debounce: 500
     }
   );
@@ -84,7 +84,7 @@ const App = () => {
     // array of states being monitored, these state changes will trigger a request
     [keyword],
     {
-      // Set 500ms anti-shake, if the keyword changes frequently, only send the request 500ms after the change stops
+      // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
       debounce: 500
     }
   );
@@ -143,7 +143,7 @@ const App = () => {
     // array of states being monitored, these state changes will trigger a request
     [keyword],
     {
-      // Set 500ms anti-shake, if the keyword changes frequently, only send the request 500ms after the change stops
+      // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
       debounce: 500
     }
   );
@@ -433,34 +433,37 @@ const {
 );
 ```
 
-## Request anti-shake
+## Request debounce
 
-Usually we write anti-shake code at the level of frequently triggered events. This time we implemented the anti-shake function at the request level, which means that you no longer need to implement anti-shake yourself in the fuzzy search function, and the usage is very simple.
-:::info Tips: What is function anti-shake
+Usually we write debounce code at the level of frequently triggered events. This time we implemented the debounce function at the request level, which means that you no longer need to implement debounce yourself in the fuzzy search function, and the usage is very simple.
+
+:::info Tips: What is function debounce
+
 Function debounce means that after an event is triggered, the function can only be executed once within n seconds. If an event is triggered again within n seconds after the event is triggered, the delayed execution time of the function will be recalculated (here and the function section To distinguish between streams, function throttling means that the event cannot be triggered again within a period of time after the event is triggered)
+
 :::
 
-### Set the anti-shake time of all monitoring states
+### Set the debounce time of all monitoring states
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // When debounce is set to a number, it represents the anti-shake time of all listening states, in milliseconds
+  // When debounce is set to a number, it represents the debounce time of all listening states, in milliseconds
   // As shown here, when one or more changes of status keyword and date, the request will be sent after 500ms
   debounce: 500
   // highlight-end
 });
 ```
 
-### Set the anti-shake time for a single monitoring state
+### Set the debounce time for a single monitoring state
 
 In many scenarios, we only need to stabilize some frequently changing monitoring states, such as state changes triggered by `onInput` of a text box, we can do this:
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // Set the anti-shake time respectively in the array order of the monitoring state, 0 or no transmission means no anti-shake
-  // The order of the monitoring status here is [keyword, date], and the anti-shake array is set to [500, 0], which means that the anti-shake is only set for the keyword alone
+  // Set the debounce time respectively in the array order of the monitoring state, 0 or no transmission means no debounce
+  // The order of the monitoring status here is [keyword, date], and the debounce array is set to [500, 0], which means that the debounce is only set for the keyword alone
   debounce: [500, 0]
   // You can also set it as follows:
   // debounce: [500],
