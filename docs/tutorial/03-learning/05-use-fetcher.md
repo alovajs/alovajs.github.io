@@ -81,54 +81,56 @@ Next, let's modify a certain todo data, and re-fetch the latest todo list data t
 
 ```jsx
 const getTodoList = currentPage => {
-return alovaInstance. Get('/todo/list', {
-// Note: The name attribute is set here to filter out the required Method instance when the Method instance cannot be specified directly
-// For details, see the subsequent "Method Instance Matcher" chapter
-name: 'todoList',
-params: {
-currentPage,
-pageSize: 10
-}
-});
+  return alovaInstance.Get('/todo/list', {
+    // Note: The name attribute is set here to filter out the required Method instance when the Method instance cannot be specified directly
+    // For details, see the subsequent "Method Instance Matcher" chapter
+    name: 'todoList',
+    params: {
+      currentPage,
+      pageSize: 10
+    }
+  });
 };
 
 const App = () => {
-const {
-// The fetching attribute is the same as loading, it is true when a fetch request is sent, and it is false after the request ends
-fetching,
-error,
-onSuccess,
-onError,
-onComplete,
+  const {
+    // The fetching attribute is the same as loading, it is true when a fetch request is sent, and it is false after the request ends
+    fetching,
+    error,
+    onSuccess,
+    onError,
+    onComplete,
 
-// After calling fetch, a request to fetch data will be sent, and fetch can be called repeatedly to fetch data from different interfaces
-fetch
-} = useFetcher();
+    // After calling fetch, a request to fetch data will be sent, and fetch can be called repeatedly to fetch data from different interfaces
+    fetch
+  } = useFetcher();
 
-// Trigger the data fetch in the event
-const handleSubmit = () => {
-// Assume the modification of the todo item has been completed...
+  // Trigger the data fetch in the event
+  const handleSubmit = () => {
+    // Assume the modification of the todo item has been completed...
 
-// Start to fetch the updated data
-// Situation 1: When you clearly know that the data on the first page of todoList is fetched, pass in a Method instance
-fetch(getTodoList(1));
+    // Start to fetch the updated data
+    // Situation 1: When you clearly know that the data on the first page of todoList is fetched, pass in a Method instance
+    fetch(getTodoList(1));
 
-// Situation 2: When you only know to fetch the last requested data of todoList, use the Method instance matcher to filter
-fetch({
-name: 'todoList',
-filter: (method, index, ary) => {
-// Return true to specify the Method instance that needs to be fetched
-return index === ary.length - 1;
-}
-});
-};
+    // Situation 2: When you only know to fetch the last requested data of todoList, use the Method instance matcher to filter
+    fetch({
+      name: 'todoList',
+      filter: (method, index, ary) => {
+        // Return true to specify the Method instance that needs to be fetched
+        return index === ary.length - 1;
+      }
+    });
+  };
 
-return (
-{/* Render the unified fetch state */}
-{ fetching ? <div>{{ Fetching data in the background... }}</div> : null }
-{/* ... */}
-<button onClick={handleSubmit}>Modify todo items</button>
-);
+  return (
+    <>
+      {/* Render the unified fetch state */}
+      {fetching ? <div>Fetching data in the background...</div> : null}
+      {/* ... */}
+      <button onClick={handleSubmit}>Modify todo items</button>
+    </>
+  );
 };
 ```
 
