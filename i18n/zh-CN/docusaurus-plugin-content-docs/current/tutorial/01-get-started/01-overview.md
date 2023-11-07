@@ -84,7 +84,7 @@ alova 也致力于解决客户端网络请求的问题，但与其他请求库�
 
 ### 完整的特性列表
 
-1. 🕶 在 vue、react、svelte 3 个 UI 框架，以及 uniapp、taro 环境下提供统一的使用体验，完美迁移
+1. 🕶 在 vue(composition/options)、react、svelte 3 个 UI 框架，以及 uniapp、taro 环境下提供统一的使用体验，完美迁移
 2. 📑 与 axios 相似的 api 设计，更简单熟悉
 3. 🍵 开箱即用的高性能场景化请求策略，让应用更流畅
 4. 🐦 4kb+，只有 axios 的 30%+

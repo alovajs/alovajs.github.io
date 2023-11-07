@@ -35,9 +35,6 @@ It can automatically generate complete and fully described request functions wit
 
 When the server updates the API, the front-end project will also receive a change notification and the project will be blocked from publishing.
 
-打破 useHook 使用边界
-现在，alova 已经完美兼容了 vue options，尽情使用吧！
-
 ## Breaking boundary of the usage of useHook
 
 NOW, alova has perfect compatibility with [vue options, let's enjoy it!](/tutorial/framework/vue-options)
@@ -86,7 +83,7 @@ For comparison with other request libraries, please [click here for more detail]
 
 ### Complete feature list
 
-1. 🕶 Provide a unified experience in the vue, react, and svelte, and perfect migration
+1. 🕶 Provide a unified experience in the vue(composition/options), react, and svelte, and perfect migration
 2. 📑 The api design is similar to axios, more simple and familiar
 3. 🍵 Out-of-the-box high-performance request strategy, making the application smoother
 4. 🐦 4kb+, only 30% of axios+
