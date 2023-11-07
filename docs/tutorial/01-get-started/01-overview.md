@@ -35,6 +35,13 @@ It can automatically generate complete and fully described request functions wit
 
 When the server updates the API, the front-end project will also receive a change notification and the project will be blocked from publishing.
 
+打破 useHook 使用边界
+现在，alova 已经完美兼容了 vue options，尽情使用吧！
+
+## Breaking boundary of the usage of useHook
+
+NOW, alova has perfect compatibility with [vue options, let's enjoy it!](/tutorial/framework/vue-options)
+
 ## Why was alova created?
 
 Data requests have always been an indispensable and important part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in endlessly. Client-side data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and Request tools such as `react-query`, the coding form continues to evolve from callback functions, Promise, to usehook. These js libraries have done a good job in making requests simple, but they only provide common functions, which means For different request scenarios such as sharing requests, paging requests, form submissions, uploading and downloading files, etc., developers still need to write complex codes themselves, which reduces development efficiency and performance cannot be guaranteed. As user experience becomes more and more important, In this era, application fluency has become more and more important.

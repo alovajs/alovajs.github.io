@@ -6,6 +6,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
+import AvailableScope from './_indexComponent/AvailableScope';
 import Features from './_indexComponent/Features';
 import Like from './_indexComponent/Like';
 import Strategy from './_indexComponent/Strategy';
@@ -91,6 +92,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader></HomepageHeader>
       <main>
         <Features></Features>
+        <AvailableScope></AvailableScope>
         <PageModule
           text="Relationship between alova and request library"
           textTransId="homepage.relationTitle"

@@ -333,6 +333,15 @@
     "description": "description of feature"
   },
 
+  "homepage.availableScope.title": {
+    "message": "🎉打破useHook使用边界",
+    "description": "description of available scope"
+  },
+  "homepage.availableScope.subtitle": {
+    "message": "现在，alova已经完美兼容了vue options，尽情使用吧！",
+    "description": "description of available scope desc"
+  },
+
   "homepage.strategy.title": {
     "message": "以声明的方式完成你的请求",
     "description": "description of request strategy"

@@ -181,3 +181,8 @@ export const getData = () => alovaInst.Get('/todolist');
 **typescript**
 
 在 typescript 中添加响应数据类型，请阅读 [alova 文档 typescript 章节](/tutorial/advanced/typescript/#the-type-of-response-data)
+
+## 限制
+
+1. 暂不支持[管理额外的状态](/tutorial/next-step/manage-extra-states)。
+2. 目前只支持 alova 的`useRequest/useWatcher/useFetcher`三个核心 useHook，以及你在自己项目中基于核心 useHook 的封装，暂不支持[@alova/scene](https://github.com/alovajs/scene)内的扩展 useHook。
