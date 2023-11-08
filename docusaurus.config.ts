@@ -32,7 +32,7 @@ const config: Config = {
       }
     }
   },
-  scripts: ['iconfont/iconfont.js'],
+  scripts: ['/iconfont/iconfont.js'],
   presets: [
     [
       'classic',
@@ -188,7 +188,10 @@ const config: Config = {
     },
     prism: {
       theme: lightCodeTheme,
-      darkTheme: darkCodeTheme
+      darkTheme: darkCodeTheme,
+
+      // https://github.com/facebook/docusaurus/discussions/9506#discussioncomment-7506183
+      additionalLanguages: ['javascript']
     },
 
     algolia: {

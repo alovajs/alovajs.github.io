@@ -6,7 +6,7 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { Sandpack } from "@codesandbox/sandpack-react";
-import { quickStartVueCN } from './codes';
+import { quickStartVue, quickStartReact, quickStartSvelte } from './lives';
 
 :::tip 示例提示
 
@@ -46,134 +46,50 @@ alova 结合 UI 框架，让请求变得更简单，你可以使用 alova 提供
 
 首先创建一个 alova 实例，并使用这个实例创建对应的 method，把它传给 useRequest 即可。
 
-<Sandpack template="vue" customSetup={{
-    dependencies: {
-      alova: 'latest'
-    }
-  }} files={{
-    '/src/App.vue': quickStartVueCN
-  }} />
-
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
-```markup
-<template>
-  <div v-if="loading">Loading...</div>
-  <div v-else-if="error">{{ error.message }}</div>
-  <span v-else>responseData: {{ data }}</span>
-</template>
-
-<script setup>
-  import { createAlova, useRequest } from 'alova';
-  import GlobalFetch from 'alova/GlobalFetch';
-  import VueHook from 'alova/vue';
-
-  // 1. 创建alova实例
-  const alovaInstance = createAlova({
-    // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-    statesHook: VueHook,
-
-    // 请求适配器，推荐使用fetch请求适配器
-    requestAdapter: GlobalFetch(),
-
-    // 全局的响应拦截器
-    responded: response => response.json()
-  });
-
-  // 2. 使用alova实例创建method并传给useRequest即可发送请求
-  const { loading, data, error } = useRequest(
-    alovaInstance.Get('https://api.alovajs.org/profile', {
-      params: {
-        id: 1
-      }
-    })
-  );
-</script>
-```
+<Sandpack template="vue" customSetup={{
+  dependencies: {
+    alova: 'latest'
+  }
+}} files={{
+  '/src/App.vue': quickStartVue['zh-CN']
+}} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```jsx
-import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import ReactHook from 'alova/react';
-
-// 1. 创建alova实例
-const alovaInstance = createAlova({
-  // ReactHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-  statesHook: ReactHook,
-
-  // 请求适配器，推荐使用fetch请求适配器
-  requestAdapter: GlobalFetch(),
-
-  // 全局的响应拦截器
-  responded: response => response.json()
-});
-
-const app = () => {
-  // 2. 使用alova实例创建method并传给useRequest即可发送请求
-  const { loading, data, error } = useRequest(
-    alovaInstance.Get('https://api.alovajs.org/profile', {
-      params: {
-        id: 1
-      }
-    })
-  );
-
-  if (loading) {
-    return <div>Loading...</div>;
-  } else if (error) {
-    return <div>{error.message}</div>;
+<Sandpack template="react" customSetup={{
+  dependencies: {
+    alova: 'latest'
   }
-  return (
-    <>
-      <span>responseData: {JSON.stringify(data)}</span>
-    </>
-  );
-};
-```
+}} files={{
+  '/App.js': quickStartReact['zh-CN']
+}} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { createAlova, useRequest } from 'alova';
-  import GlobalFetch from 'alova/GlobalFetch';
-  import SvelteHook from 'alova/svelte';
+<Sandpack template="svelte" customSetup={{
+  dependencies: {
+    alova: '^2.13.1'
+  }
+}} files={{
+'/App.svelte': `<script>
+import { createAlova, useRequest } from 'alova';
+import GlobalFetch from 'alova/GlobalFetch';
+// import hook from 'alova/svelte';
+import { onDestroy } from'svelte';
+import { readable } from 'svelte/store';
 
-  // 1. 创建alova实例
-  const alovaInstance = createAlova({
-    // SvelteHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-    statesHook: SvelteHook,
-
-    // 请求适配器，推荐使用fetch请求适配器
-    requestAdapter: GlobalFetch(),
-
-    // GlobalFetch适配器将会返回Response实例，
-    // 你可以设置一个全局的响应拦截器返回json数据
-    responded: response => response.json()
-  });
-
-  // 2. 使用alova实例创建method并传给useRequest即可发送请求
-  const { loading, data, error } = useRequest(
-    alovaInstance.Get('https://api.alovajs.org/profile', {
-      params: {
-        id: 1
-      }
-    })
-  );
+onDestroy(() => {
+alert(123);
+})
 </script>
-{#if $loading}
-<div>Loading...</div>
-{:else if $error}
-<div>{ $error.message }</div>
-{:else}
-<span>responseData: {{ data }}</span>
-{/if}
-```
+
+  <div>abc</div>`
+}} />
 
 </TabItem>
 </Tabs>
@@ -220,7 +136,7 @@ const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1')
 <TabItem value="1" label="vue">
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
@@ -247,7 +163,7 @@ const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1')
 <TabItem value="2" label="react">
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
