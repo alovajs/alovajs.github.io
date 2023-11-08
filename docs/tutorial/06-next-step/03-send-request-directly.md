@@ -32,7 +32,7 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 // use data...
 ```
 
-:::caution Note
+:::warning Note
 
 1. The returned response data will also be processed by the global responded and the `transformData` of the current `Method` instance in turn;
 2. The cache mechanism is still valid. If the cache is hit, the cached data will be returned. At this time, you can pass `true` in the `send` method to force the request;

@@ -66,7 +66,7 @@ const { loading, data } = useSQRequest(id => todoDetail(id), {
 });
 ```
 
-:::caution 注意
+:::warning 注意
 
 你可以在 **silentMethod.reviewData** 中保存足够多的数据，让它既可以满足列表数据补偿，也可以满足编辑页数据回显。
 

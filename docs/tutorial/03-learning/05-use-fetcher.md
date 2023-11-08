@@ -304,7 +304,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-:::caution Notes
+:::warning Notes
 
 After the useFetcher request is completed, only the cache is updated, and if it is found that there is still a `data` state under the `Method` instance, it will also be updated synchronously, so as to ensure that the page data is consistent. This is `useFetcher` used to update views across modules/components ensure.
 
@@ -385,8 +385,8 @@ fetch(getTodoList(10), true);
 
 | Name       | Description                                                                                     | Type                                                                                                                                                              | Default | Version |
 | ---------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
-| force      | Whether to force the request, it can be set as a function to dynamically return a boolean value | boolean &#124; (...args: any[]) => boolean                                                                                                                        | false   | -       |
-| middleware | Middleware function, [Learn about alova middleware](../advanced/middleware)                     | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -       | -       |
+| force      | Whether to force the request, it can be set as a function to dynamically return a boolean value | boolean | (...args: any[]) => boolean                                                                                                                        | false   | -       |
+| middleware | Middleware function, [Learn about alova middleware](../advanced/middleware)                     | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -       | -       |
 
 ####AlovaFetcherMiddlewareContext
 
@@ -394,7 +394,7 @@ fetch(getTodoList(10), true);
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | method           | The method object of the current request                                                                                                                                                                   | Method                                                                                                                                                                                                                                                       | -       |
 | cachedResponse   | hit cached data                                                                                                                                                                                            | any                                                                                                                                                                                                                                                          | -       |
-| config           | current use hook configuration                                                                                                                                                                             | Record<string, any>                                                                                                                                                                                                                                          | -       |
+| config           | current use hook configuration                                                                                                                                                                             | Record\<string, any\>                                                                                                                                                                                                                                          | -       |
 | fetchArgs        | The parameters of the response processing callback, which are passed in by the fetch of useFetcher                                                                                                         | any[]                                                                                                                                                                                                                                                        | -       |
 | fetchStates      | use hook preload state collection, such as fetching, error, etc.                                                                                                                                           | [FetchRequestState](#fetchrequeststate)                                                                                                                                                                                                                      | -       |
 | fetch            | data preloading function                                                                                                                                                                                   | (method: Method, ...args: any[]) => void                                                                                                                                                                                                                     | Promise |
@@ -412,7 +412,7 @@ The following attribute values will automatically infer the responsive data type
 | Name        | Description                   | Type                   | Version |
 | ----------- | ----------------------------- | ---------------------- | ------- |
 | fetching    | preload request status        | boolean                | -       |
-| error       | request error message         | Error &#124; undefined | -       |
+| error       | request error message         | Error | undefined | -       |
 | downloading | download progress information | Object                 | -       |
 | uploading   | upload progress information   | Object                 | -       |
 
@@ -421,7 +421,7 @@ The following attribute values will automatically infer the responsive data type
 | Name        | Description                   | Type                   | Version |
 | ----------- | ----------------------------- | ---------------------- | ------- |
 | fetching    | preload request status        | boolean                | -       |
-| error       | request error message         | Error &#124; undefined | -       |
+| error       | request error message         | Error | undefined | -       |
 | downloading | download progress information | Object                 | -       |
 | uploading   | upload progress information   | Object                 | -       |
 

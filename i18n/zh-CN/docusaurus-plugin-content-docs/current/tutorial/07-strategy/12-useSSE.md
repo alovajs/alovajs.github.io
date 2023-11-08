@@ -3,7 +3,7 @@ title: Server-sent events发送请求
 sidebar_position: 120
 ---
 
-:::caution
+:::warning
 
 此策略暂未实现，以下为设计文档
 

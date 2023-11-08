@@ -148,7 +148,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-:::caution Caution when using the `GlobalFetch` adapter
+:::warning Caution when using the `GlobalFetch` adapter
 
 Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload the progress, please use [XMLHttpRequest adapter](../extension/alova-adapter-xhr) or [axios adapter](../extension/alova-adapter-axios)。
 

@@ -206,7 +206,7 @@ accessAction(/^prefix_/, delegatedActions => {
 | replace  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
 | reload   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
 | update   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| getState | 按名称获取分页相关数据                                      | stateKey: 'page' &#124; 'pageSize' &#124; 'data' &#124; 'pageCount' &#124; 'total' &#124; 'isLastPage' | 对应 statekey 的值 | -    |
+| getState | 按名称获取分页相关数据                                      | stateKey: 'page' | 'pageSize' | 'data' | 'pageCount' | 'total' | 'isLastPage' | 对应 statekey 的值 | -    |
 
 ### useSQRequest
 

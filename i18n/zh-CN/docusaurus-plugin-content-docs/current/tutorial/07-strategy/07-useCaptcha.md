@@ -206,7 +206,7 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 | 名称 | 描述                                     | 函数参数                | 返回值                  | 版本 |
 | ---- | ---------------------------------------- | ----------------------- | ----------------------- | ---- |
-| send | 发送请求，当倒计时未结束时调用将抛出错误 | 与 useRequest.send 一致 | Promise&lt;Response&gt; | -    |
+| send | 发送请求，当倒计时未结束时调用将抛出错误 | 与 useRequest.send 一致 | Promise\<Response\> | -    |
 
 ### 事件
 

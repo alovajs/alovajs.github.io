@@ -334,7 +334,7 @@ const total = response => response.total;
 const data = response => response.data;
 ```
 
-:::caution 注意
+:::warning 注意
 
 data 回调函数必须返回一个列表数据，表示分页中所使用的数据集合，而 total 主要用于计算当前页数，在 total 回调函数中如果未返回数字，将会通过请求的列表数量是否少于 pageSize 值来判断当前是否为最后一页，这一般用于下拉加载时使用。
 
@@ -572,7 +572,7 @@ nextTick(() => {
 insert(newItem, afterItem);
 ```
 
-:::caution 注意
+:::warning 注意
 
 为了让数据正确，insert 函数调用会清除全部缓存。
 
@@ -598,7 +598,7 @@ declare function remove(position: number | LD[number]): void;
 1. 下一页没有缓存
 2. 同步连续调用了超过下一页缓存列表项的数据，缓存数据已经不够补充到当前页列表了。
 
-:::caution 注意
+:::warning 注意
 
 为了让数据正确，remove 函数调用会清除全部缓存。
 
@@ -673,7 +673,7 @@ declare function reload(): void;
 | initialPage         | 初始页码                                 | number                    | 1                          | -    |
 | initialPageSize     | 初始每页数据条数                         | number                    | 10                         | -    |
 | watchingStates      | 状态监听触发请求，使用 useWatcher 实现   | any[]                     | [page, pageSize]           | -    |
-| debounce            | 状态监听的防抖参数，使用 useWatcher 实现 | number&#124;number[]      | -                          | -    |
+| debounce            | 状态监听的防抖参数，使用 useWatcher 实现 | number|number[]      | -                          | -    |
 | append              | 是否开启追加模式                         | boolean                   | false                      | -    |
 | data                | 指定分页的数组数据                       | (response: any) => any[]  | response => response.data  | -    |
 | total               | 指定数据总数量值                         | (response: any) => number | response => response.total | -    |

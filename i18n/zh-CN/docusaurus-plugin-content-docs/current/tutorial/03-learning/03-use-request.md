@@ -172,7 +172,7 @@ onComplete(event => {
 });
 ```
 
-:::caution 注意
+:::warning 注意
 
 在`onSuccess`中抛出错误将会触发`onError`
 
@@ -360,7 +360,7 @@ update({
 </TabItem>
 </Tabs>
 
-:::caution 注意事项
+:::warning 注意事项
 
 1. 自定义修改的值将会被`useRequest`内部的状态管理机制覆盖，如当你修改了`data`值，再次请求后`data`值将被赋值为最新的响应数据；
 2. 通过直接修改的状态值不会同步修改缓存数据，如需要同步修改缓存数据，建议使用[updateState](../learning/update-response-data-across-modules)
@@ -424,9 +424,9 @@ const alovaInst = createAlova({
 | ------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---- |
 | immediate     | 是否立即发起请求                                                    | boolean                                                                                                                               | true   | -    |
 | initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined` | any                                                                                                                                   | -      | -    |
-| force         | 是否强制请求，可设置为函数动态返回 boolean 值                       | boolean &#124; (...args: any[]) => boolean                                                                                            | false  | -    |
-| managedStates | 额外的监管状态，可通过 updateState 更新                             | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                 | -      | -    |
-| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)             | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise&lt;any&gt; | -      | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                       | boolean | (...args: any[]) => boolean                                                                                            | false  | -    |
+| managedStates | 额外的监管状态，可通过 updateState 更新                             | Record\<string | number | symbol, any\>                                                                                 | -      | -    |
+| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)             | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -      | -    |
 
 #### AlovaFrontMiddlewareContext
 
@@ -434,7 +434,7 @@ const alovaInst = createAlova({
 | ---------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | method           | 当前请求的 method 对象                                                                               | Method                                                                                                                                                                                                       | -       |
 | cachedResponse   | 命中的缓存数据                                                                                       | any                                                                                                                                                                                                          | -       |
-| config           | 当前的 use hook 配置                                                                                 | Record<string, any>                                                                                                                                                                                          | -       |
+| config           | 当前的 use hook 配置                                                                                 | Record\<string, any\>                                                                                                                                                                                          | -       |
 | sendArgs         | 响应处理回调的参数，该参数由 use hooks 的 send 传入                                                  | any[]                                                                                                                                                                                                        | -       |
 | frontStates      | use hook 前端状态集合，如 data、loading、error 等                                                    | [FrontRequestState](#frontrequeststate)                                                                                                                                                                      | -       |
 | send             | 发送请求函数                                                                                         | (...args: any[]) => void                                                                                                                                                                                     | Promise |
@@ -462,7 +462,7 @@ type AlovaGuardNext = (guardNextConfig?: {
 | ----------- | ------------ | ---------------------- | ---- |
 | loading     | 请求加载状态 | boolean                | -    |
 | data        | 响应数据     | any                    | -    |
-| error       | 请求错误信息 | Error &#124; undefined | -    |
+| error       | 请求错误信息 | Error | undefined | -    |
 | downloading | 下载进度信息 | Object                 | -    |
 | uploading   | 上传进度信息 | Object                 | -    |
 
@@ -489,7 +489,7 @@ type AlovaGuardNext = (guardNextConfig?: {
 | --------- | --------------------------------------------------- | ------------------------ | ---- |
 | method    | 当前请求的 method 对象                              | Method                   | -    |
 | sendArgs  | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]                    | -    |
-| status    | 响应状态，成功时为 success，失败时为 error          | 'success' &#124; 'error' | -    |
+| status    | 响应状态，成功时为 success，失败时为 error          | 'success' | 'error' | -    |
 | data      | 响应数据，成功时有值                                | any                      | -    |
 | fromCache | 响应数据是否来自缓存，成功时有值                    | boolean                  | -    |
 | error     | 响应错误实例，失败时有值                            | Error                    | -    |
@@ -500,7 +500,7 @@ type AlovaGuardNext = (guardNextConfig?: {
 | ----------- | ------------ | ---------------------- | ---- |
 | loading     | 请求加载状态 | boolean                | -    |
 | data        | 响应数据     | any                    | -    |
-| error       | 请求错误信息 | Error &#124; undefined | -    |
+| error       | 请求错误信息 | Error | undefined | -    |
 | downloading | 下载进度信息 | Object                 | -    |
 | uploading   | 上传进度信息 | Object                 | -    |
 

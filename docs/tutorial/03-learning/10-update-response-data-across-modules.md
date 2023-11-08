@@ -52,7 +52,7 @@ onSuccess(() => {
 });
 ```
 
-:::caution Caution
+:::warning Caution
 
 1. When updating the state through `updateState`, if the cache (memory cache and persistent cache) is detected, it will also update the new data update cache.
 2. Alova will manage the status returned by the hook only when using useRequest and useWatcher to initiate a request. The reason is that the response status is generated and saved through a Method instance, but when no request is initiated, the url in the Method instance, Parameters such as params, query, and headers are still uncertain.

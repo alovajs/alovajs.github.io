@@ -106,7 +106,7 @@ After finish code, it is necessary to add corresponding unit tests.
 
 The alova project uses **jest** as the unit test framework, and msw as the mock server. It is recommended to use the TDD mode. After modifying code every time, please pass the corresponding unit test.
 
-:::caution IMPORTANT
+:::warning IMPORTANT
 
 When you're ready to commit your code, make sure all your unit tests are passed. When you're working on a pull request, you can have multiple small commits, and GitHub can automatically squash them before merging them.
 

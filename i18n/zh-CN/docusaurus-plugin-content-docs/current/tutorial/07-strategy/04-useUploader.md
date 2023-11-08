@@ -3,7 +3,7 @@ title: 通用的上传策略
 sidebar_position: 40
 ---
 
-:::caution
+:::warning
 
 此策略暂未实现，以下为设计文档
 

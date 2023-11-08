@@ -88,7 +88,7 @@ Request sending control function, it will execute this function immediately when
 2. When calling useWatcher, bind the state monitor, and call the sendRequest function when the state changes. You can use whether `states` is an array to judge whether `useWatcher` is called. At the same time, the `immediate` parameter is used to judge whether `useWatcher` is called Whether the request needs to be sent immediately;
 3. When calling `useRequest` and `useFetcher`, call sendRequest to send a request, at this time `states` is `undefined`;
 
-:::caution Caution
+:::warning Caution
 
 If the library involved in statesHook is like `react`, the use hook of `alova` will be called every time it is re-rendered, then the `saveStates` function needs to be triggered every time it is re-rendered in `effectRequest`, this is because `react `Every re-render refreshes its state references, so we need to re-save them again.
 

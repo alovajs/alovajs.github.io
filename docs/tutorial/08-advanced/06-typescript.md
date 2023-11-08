@@ -111,7 +111,7 @@ const { data } = useRequest(Get);
 // svelte: The type of data is Writable<(Todo & { status: string })[]>
 ```
 
-:::caution Caution
+:::warning Caution
 
 The response data is converted by the global response interceptor, so when setting the type, it should also be set to the converted type.
 

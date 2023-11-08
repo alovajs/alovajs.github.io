@@ -172,7 +172,7 @@ onComplete(event => {
 });
 ```
 
-:::caution Note
+:::warning Note
 
 Throwing an error in `onSuccess` will trigger `onError`
 
@@ -360,7 +360,7 @@ update({
 </TabItem>
 </Tabs>
 
-:::caution Notes
+:::warning Notes
 
 1. The custom modified value will be overwritten by the internal state management mechanism of `useRequest`, for example, when you modify the `data` value, the `data` value will be assigned the latest response data after requesting again;
 2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](../learning/update-response-data-across-modules)
@@ -424,9 +424,9 @@ const alovaInst = createAlova({
 | ------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
 | immediate     | Whether to initiate the request immediately                                                                   | boolean                                                                                                                               | true    | -       |
 | initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set | any                                                                                                                                   | -       | -       |
-| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean &#124; (...args: any[]) => boolean                                                                                            | false   | -       |
-| managedStates | Additional managed states, can be updated via updateState                                                     | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                 | -       | -       |
-| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                   | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise&lt;any&gt; | -       | -       |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean | (...args: any[]) => boolean                                                                                            | false   | -       |
+| managedStates | Additional managed states, can be updated via updateState                                                     | Record\<string | number | symbol, any\>                                                                                 | -       | -       |
+| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                   | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -       | -       |
 
 #### AlovaFrontMiddlewareContext
 
@@ -434,7 +434,7 @@ const alovaInst = createAlova({
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | method           | The method object of the current request                                                                                                                                                | Method                                                                                                                                                                                                        | -       |
 | cachedResponse   | hit cached data                                                                                                                                                                         | any                                                                                                                                                                                                           | -       |
-| config           | current use hook configuration                                                                                                                                                          | Record<string, any>                                                                                                                                                                                           | -       |
+| config           | current use hook configuration                                                                                                                                                          | Record\<string, any\>                                                                                                                                                                                           | -       |
 | sendArgs         | The parameters of the response processing callback, which are passed in by send of use hooks                                                                                            | any[]                                                                                                                                                                                                         | -       |
 | frontStates      | use hook front-end state collection, such as data, loading, error, etc.                                                                                                                 | [FrontRequestState](#frontrequeststate)                                                                                                                                                                       | -       |
 | send             | send request function                                                                                                                                                                   | (...args: any[]) => void                                                                                                                                                                                      | Promise |
@@ -462,7 +462,7 @@ The following attribute values will automatically infer the responsive data type
 | ----------- | ----------------------------- | ---------------------- | ------- |
 | loading     | request loading status        | boolean                | -       |
 | data        | response data                 | any                    | -       |
-| error       | request error message         | Error &#124; undefined | -       |
+| error       | request error message         | Error | undefined | -       |
 | downloading | download progress information | Object                 | -       |
 | uploading   | upload progress information   | Object                 | -       |
 
@@ -489,7 +489,7 @@ The following attribute values will automatically infer the responsive data type
 | --------- | -------------------------------------------------------------------------------------------- | ------------------------ | ------- |
 | method    | The method object of the current request                                                     | Method                   | -       |
 | sendArgs  | The parameters of the response processing callback, which are passed in by send of use hooks | any[]                    | -       |
-| status    | Response status, success on success, error on failure                                        | 'success' &#124; 'error' | -       |
+| status    | Response status, success on success, error on failure                                        | 'success' | 'error' | -       |
 | data      | response data, value on success                                                              | any                      | -       |
 | fromCache | Whether the response data comes from the cache or not, it has a value when successful        | boolean                  | -       |
 | error     | response error instance, value on failure                                                    | Error                    | -       |
@@ -500,7 +500,7 @@ The following attribute values will automatically infer the responsive data type
 | ----------- | ----------------------------- | ---------------------- | ------- |
 | loading     | request loading status        | boolean                | -       |
 | data        | response data                 | any                    | -       |
-| error       | request error message         | Error &#124; undefined | -       |
+| error       | request error message         | Error | undefined | -       |
 | downloading | download progress information | Object                 | -       |
 | uploading   | upload progress information   | Object                 | -       |
 

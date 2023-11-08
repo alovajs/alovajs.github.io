@@ -88,7 +88,7 @@ const VueHook = {
 2. 当调用 useWatcher 时，绑定状态监听，状态改变时调用 sendRequest 函数，你可以用`states`是否为数组判断是否为`useWatcher`被调用，同时，`immediate`参数用于判断`useWatcher`调用时是否需要立即发送请求；
 3. 当调用`useRequest`和`useFetcher`时，调用 sendRequest 发出一次请求，此时`states`为`undefined`；
 
-:::caution 注意
+:::warning 注意
 
 如果 statesHook 涉及的库是像`react`，每次重新渲染都会调用`alova`的 use hook 的，那么在`effectRequest`中还需要在每次重新渲染时触发`saveStates`函数，这是因为`react`每次重新渲染都会刷新它的状态引用，因此我们需要再次重新保存它们。
 

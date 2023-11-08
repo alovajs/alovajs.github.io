@@ -110,7 +110,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-:::caution 注意
+:::warning 注意
 
 当 request body 是**FormData**、**Blob**、**ArrayBuffer**、**URLSearchParams**、**ReadableStream**等特殊数据时，将会被认为你是有意图和服务端通信的，在这种情况下不会进行缓存。
 

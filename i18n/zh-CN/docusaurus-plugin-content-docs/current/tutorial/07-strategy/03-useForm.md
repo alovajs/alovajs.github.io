@@ -271,7 +271,7 @@ const App = () => {
 
 `useForm`默认不会请求，在调用`send`后才会发出请求，同时在`useForm`的回调函数将传入最新的 form 数据，如果需要在提交前转换数据，可在此进行转换，也可以在`formSubmit`函数中转换。
 
-:::caution 注意
+:::warning 注意
 
 1. `initialForm`是设置初始表单数据，`initialData`是设置初始响应数据，注意区分；
 2. `updateForm`是更新表单数据，`update`是更新响应数据，注意区分；
@@ -466,7 +466,7 @@ const { send: searchData } = useForm(queryCity, {
 });
 ```
 
-:::caution 条件限制
+:::warning 条件限制
 
 在条件筛选场景下，`useForm`更适用于非分页的列表条件查询，如果你需要在分页列表中进行条件查询，建议使用 [分页请求策略(usePagination)](../strategy/usePagination)。
 
@@ -481,8 +481,8 @@ const { send: searchData } = useForm(queryCity, {
 | 名称                | 描述                                                                                                     | 类型                                                  | 默认值 | 版本 |
 | ------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------ | ---- |
 | initialForm         | 初始表单数据                                                                                             | any                                                   | -      | -    |
-| id                  | form id，相同 id 的 data 数据是同一份引用，可以用于在多页表单时共用同一份表单数据。单页表单不需要指定 id | string&#124;number                                    | -      | -    |
-| store               | 是否持久化保存数据，设置为 true 后将实时持久化未提交的数据                                               | boolean&#124; [StoreDetailConfig](#storedetailconfig) | false  | -    |
+| id                  | form id，相同 id 的 data 数据是同一份引用，可以用于在多页表单时共用同一份表单数据。单页表单不需要指定 id | string|number                                    | -      | -    |
+| store               | 是否持久化保存数据，设置为 true 后将实时持久化未提交的数据                                               | boolean| [StoreDetailConfig](#storedetailconfig) | false  | -    |
 | resetAfterSubmiting | 提交后重置数据                                                                                           | boolean                                               | false  | -    |
 
 ### 响应式数据
@@ -498,14 +498,14 @@ const { send: searchData } = useForm(queryCity, {
 | 名称        | 描述                                                                                                                                                            | 类型                                                          | 默认值   | 版本 |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------- | ---- |
 | enable      | 是否启用持久化数据                                                                                                                                              | boolean                                                       | required | -    |
-| serializers | 自定义序列化器的集合，内置的序列化器：<br/>1. date 序列化器用于转换日期<br/>2. regexp 序列化器用于转化正则表达式<br/>可以通过设置同名序列化器来覆盖内置序列化器 | Record<string&#124;number, [DataSerializer](#dataserializer)> | -        | -    |
+| serializers | 自定义序列化器的集合，内置的序列化器：<br/>1. date 序列化器用于转换日期<br/>2. regexp 序列化器用于转化正则表达式<br/>可以通过设置同名序列化器来覆盖内置序列化器 | Record\<string|number, [DataSerializer](#dataserializer)\> | -        | -    |
 
 #### DataSerializer
 
 | 名称     | 描述                                                                                                  | 类型                                        | 默认值   | 版本 |
 | -------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------- | ---- |
-| forward  | 序列化函数，forward 中序列化时需判断是否为指定的数据，并返回转换后的数据，否则返回 undefined 或不返回 | (data: any) => any&#124;undefined&#124;void | required | -    |
-| backward | 反序列化函数，直接反序列化数据                                                                        | (data: any) => any&#124;undefined&#124;void | required | -    |
+| forward  | 序列化函数，forward 中序列化时需判断是否为指定的数据，并返回转换后的数据，否则返回 undefined 或不返回 | (data: any) => any|undefined|void | required | -    |
+| backward | 反序列化函数，直接反序列化数据                                                                        | (data: any) => any|undefined|void | required | -    |
 
 ### 操作函数
 
@@ -513,7 +513,7 @@ const { send: searchData } = useForm(queryCity, {
 
 | 名称       | 描述                                       | 函数参数                                                                       | 返回值 | 版本 |
 | ---------- | ------------------------------------------ | ------------------------------------------------------------------------------ | ------ | ---- |
-| updateForm | 更新一项或多项表单数据                     | newForm: Partial&lt;F&gt; &#124; (oldForm: F) => F)<br/> F 为`initialForm`类型 | -      | -    |
+| updateForm | 更新一项或多项表单数据                     | newForm: Partial\<F\> | (oldForm: F) => F)<br/> F 为`initialForm`类型 | -      | -    |
 | reset      | 重置为初始化数据，如果有持久化数据也会清空 | -                                                                              | -      | -    |
 
 ### 事件

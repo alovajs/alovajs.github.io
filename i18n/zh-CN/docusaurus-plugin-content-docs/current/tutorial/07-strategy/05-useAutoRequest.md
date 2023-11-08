@@ -3,7 +3,7 @@ title: 自动刷新数据
 sidebar_position: 50
 ---
 
-:::caution
+:::warning
 
 此策略暂未实现，以下为设计文档
 

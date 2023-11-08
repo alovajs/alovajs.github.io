@@ -66,7 +66,7 @@ const { loading, data } = useSQRequest(id => todoDetail(id), {
 });
 ```
 
-:::caution Caution
+:::warning Caution
 
 You can save enough data in **silentMethod.reviewData** to satisfy both list data compensation and edit page data echo.
 

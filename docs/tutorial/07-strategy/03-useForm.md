@@ -271,7 +271,7 @@ const App = () => {
 
 `useForm` will not request by default, and the request will be sent after calling `send`. At the same time, the callback function of `useForm` will pass in the latest form data. If you need to convert the data before submitting, you can convert it here, or Can be converted in the `formSubmit` function.
 
-:::caution Caution
+:::warning Caution
 
 1. `initialForm` is to set the initial form data, `initialData` is to set the initial response data, pay attention to the distinction;
 2. `updateForm` is to update the form data, and `update` is to update the response data, pay attention to the distinction;
@@ -466,7 +466,7 @@ const { send: searchData } = useForm(queryCity, {
 });
 ```
 
-:::caution Conditional Restrictions
+:::warning Conditional Restrictions
 
 In conditional filtering scenarios, `useForm` is more suitable for non-paginated list conditional queries. If you need to perform conditional queries in paginated lists, it is recommended to use [Pagination Request Strategy (usePagination)](../strategy/usePagination).
 
@@ -481,8 +481,8 @@ Inherit all configurations from [**useRequest**](../learning/use-request#api).
 | Name                | Description                                                                                                                                                                  | Type                                                  | Default | Version |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------- | ------- |
 | initialForm         | initial form data                                                                                                                                                            | any                                                   | -       | -       |
-| id                  | form id, the data data of the same id is the same reference, which can be used to share the same form data in multi-page forms. Single page form does not need to specify id | string&#124;number                                    | -       | -       |
-| store               | Whether to save data persistently, after setting to true, uncommitted data will be persisted in real time                                                                    | boolean&#124; [StoreDetailConfig](#storedetailconfig) | false   | -       |
+| id                  | form id, the data data of the same id is the same reference, which can be used to share the same form data in multi-page forms. Single page form does not need to specify id | string|number                                    | -       | -       |
+| store               | Whether to save data persistently, after setting to true, uncommitted data will be persisted in real time                                                                    | boolean| [StoreDetailConfig](#storedetailconfig) | false   | -       |
 | resetAfterSubmiting | reset data after submission                                                                                                                                                  | boolean                                               | false   | -       |
 
 ### Responsive data
@@ -498,14 +498,14 @@ Inherit all responsive data from [**useRequest**](../learning/use-request#api).
 | Name        | Description                                                                                                                                                                                                                                                             | Type                                                          | Default  | Version |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------- | ------- |
 | enable      | Whether to enable persistent data                                                                                                                                                                                                                                       | boolean                                                       | required | -       |
-| serializers | A collection of custom serializers, built-in serializers:<br/>1. The date serializer is used to convert dates<br/>2. The regexp serializer is used to convert regular expressions<br/>Yes Override the built-in serializer by setting the serializer with the same name | Record<string&#124;number, [DataSerializer](#dataserializer)> | -        | -       |
+| serializers | A collection of custom serializers, built-in serializers:<br/>1. The date serializer is used to convert dates<br/>2. The regexp serializer is used to convert regular expressions<br/>Yes Override the built-in serializer by setting the serializer with the same name | Record\<string|number, [DataSerializer](#dataserializer)\> | -        | -       |
 
 #### DataSerializer
 
 | Name     | Description                                                                                                                                                                      | Type                                        | Default  | Versionthis |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------- | ----------- |
-| forward  | Serialization function, when serializing in forward, it needs to judge whether it is the specified data, and return the converted data, otherwise return undefined or not return | (data: any) => any&#124;undefined&#124;void | required | -           |
-| backward | deserialization function, deserialization data directly                                                                                                                          | (data: any) => any&#124;undefined&#124;void | required | -           |
+| forward  | Serialization function, when serializing in forward, it needs to judge whether it is the specified data, and return the converted data, otherwise return undefined or not return | (data: any) => any|undefined|void | required | -           |
+| backward | deserialization function, deserialization data directly                                                                                                                          | (data: any) => any|undefined|void | required | -           |
 
 ### Action function
 
@@ -513,7 +513,7 @@ Inherit all action functions of [**useRequest**](../learning/use-request#api).
 
 | name       | description                                                                     | function parameters                                                              | return value | version |
 | ---------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------ | ------- |
-| updateForm | Update one or more form data                                                    | newForm: Partial&lt;F&gt; &#124; (oldForm: F) => F)<br/> F is `initialForm` type | -            | -       |
+| updateForm | Update one or more form data                                                    | newForm: Partial\<F\> | (oldForm: F) => F)<br/> F is `initialForm` type | -            | -       |
 | reset      | Reset to initialized data, if there is persistent data, it will also be cleared | -                                                                                | -            | -       |
 
 ### Event

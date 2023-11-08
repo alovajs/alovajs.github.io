@@ -24,7 +24,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-:::caution Note
+:::warning Note
 
 1. When used in usehooks, throwing an error in `transformData` will trigger `onError`;
 2. When sent a request by method instance, a rejected promise instance will be returned;

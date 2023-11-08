@@ -31,7 +31,7 @@ yarn add @alova/adapter-taro
 </TabItem>
 </Tabs>
 
-:::caution 注意
+:::warning 注意
 
 如果你正在使用 Taro 开发 React-Native 应用，请确保`metro >= 0.76.0`，并在`metro.config.js`中开启`resolver.unstable_enablePackageExports`
 

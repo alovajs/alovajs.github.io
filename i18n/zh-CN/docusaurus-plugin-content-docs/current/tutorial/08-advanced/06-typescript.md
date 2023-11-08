@@ -111,7 +111,7 @@ const { data } = useRequest(Get);
 // svelte: data的类型为Writable<(Todo & { status: string })[]>
 ```
 
-:::caution 注意
+:::warning 注意
 
 响应数据是经过全局响应拦截器转换后的，因此设置类型时也应该设置为转换后的类型。
 

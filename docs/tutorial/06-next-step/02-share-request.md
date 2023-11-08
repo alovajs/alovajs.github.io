@@ -39,7 +39,7 @@ alovaInst.Get('/todo', {
 });
 ```
 
-:::caution Notes
+:::warning Notes
 
 It should be noted again that alova is uniquely identified through the combination of the method instance’s request method, request url, request header parameters, url parameters, and request body. That is to say, it is the same request, rather than comparing the reference address of the method instance.
 

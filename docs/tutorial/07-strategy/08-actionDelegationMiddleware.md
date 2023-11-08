@@ -206,7 +206,7 @@ Same as [useRequest delegate list](#userequest).
 | replace  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
 | reload   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
 | update   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| getState | Get paging related data by name                                                 | stateKey: 'page' &#124; 'pageSize' &#124; 'data' &#124; 'pageCount' &#124; 'total' &#124; 'isLastPage' | Corresponding to the value of the statekey | -       |
+| getState | Get paging related data by name                                                 | stateKey: 'page' | 'pageSize' | 'data' | 'pageCount' | 'total' | 'isLastPage' | Corresponding to the value of the statekey | -       |
 
 ### useSQRequest
 

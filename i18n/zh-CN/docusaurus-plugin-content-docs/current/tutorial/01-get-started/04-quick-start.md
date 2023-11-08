@@ -5,6 +5,8 @@ sidebar_position: 50
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { Sandpack } from "@codesandbox/sandpack-react";
+import { quickStartVueCN } from './codes';
 
 :::tip 示例提示
 
@@ -44,10 +46,18 @@ alova 结合 UI 框架，让请求变得更简单，你可以使用 alova 提供
 
 首先创建一个 alova 实例，并使用这个实例创建对应的 method，把它传给 useRequest 即可。
 
+<Sandpack template="vue" customSetup={{
+    dependencies: {
+      alova: 'latest'
+    }
+  }} files={{
+    '/src/App.vue': quickStartVueCN
+  }} />
+
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
-```html
+```markup
 <template>
   <div v-if="loading">Loading...</div>
   <div v-else-if="error">{{ error.message }}</div>

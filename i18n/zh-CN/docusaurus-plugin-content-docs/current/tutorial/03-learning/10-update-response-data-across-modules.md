@@ -52,7 +52,7 @@ onSuccess(() => {
 });
 ```
 
-:::caution 注意
+:::warning 注意
 
 1. 通过`updateState`更新状态时，如果检测到缓存（内存缓存和持久化缓存）也将会更新新的数据更新缓存。
 2. 只有当使用 useRequest、useWatcher 发起过请求时，alova 才会管理 hook 返回的状态，原因是响应状态是通过一个 Method 实例来生成 key 并保存的，但在未发起请求时 Method 实例内的 url、params、query、headers 等参数都还不确定。

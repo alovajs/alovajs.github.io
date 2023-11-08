@@ -106,7 +106,7 @@ forEach(arr, item => {
 
 alova 项目使用 jest 作为单元测试框架，使用 msw 作为模拟服务器。建议使用 TDD 模式。每次修改代码后，运行对应的单元测试并通过它。
 
-:::caution 重要
+:::warning 重要
 
 当准备提交代码时，请确保通过了全部单元测试，当您处理 pull request 时，可以有多个小提交，GitHub 可以在合并之前自动压缩它们。
 

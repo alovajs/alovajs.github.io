@@ -60,7 +60,7 @@ silentMethod The event after entering the queue. It is valid when the behavior m
 
 Similar to the traditional optimistic ui solution, we also provide a request rollback event, which will be triggered when the request reaches the maximum number of retries or the retry judgment fails. You can use it to handle some rollback operations.
 
-:::caution Warning
+:::warning Warning
 
 When the fallback event is bound, even if the behavior mode is `silent`, the request will no longer be persisted, and it will be lost after refreshing the page. This is because the persistent silentMethod usually needs to ensure completion, not Rollbacks allow the user to re-process, in which case the rollback function should not be used.
 

@@ -206,7 +206,7 @@ Inherit all action functions of [**useRequest**](../learning/use-request#api).
 
 | name | description                                                                  | function parameters             | return value            | version |
 | ---- | ---------------------------------------------------------------------------- | ------------------------------- | ----------------------- | ------- |
-| send | Send a request, when the countdown is not over, the call will throw an error | Consistent with useRequest.send | Promise&lt;Response&gt; | -       |
+| send | Send a request, when the countdown is not over, the call will throw an error | Consistent with useRequest.send | Promise\<Response\> | -       |
 
 ### Event
 

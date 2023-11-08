@@ -302,7 +302,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-:::caution 注意事项
+:::warning 注意事项
 
 useFetcher 请求完成后只更新缓存，且如果发现该`Method`实例下还有`data`状态，也会同步更新它，从而保证页面数据一致，这是`useFetcher`用于跨模块/组件更新视图的保证。
 
@@ -383,8 +383,8 @@ fetch(getTodoList(10), true);
 
 | 名称       | 描述                                                    | 类型                                                                                                                                                              | 默认值 | 版本 |
 | ---------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---- |
-| force      | 是否强制请求，可设置为函数动态返回 boolean 值           | boolean &#124; (...args: any[]) => boolean                                                                                                                        | false  | -    |
-| middleware | 中间件函数，[了解 alova 中间件](../advanced/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -      | -    |
+| force      | 是否强制请求，可设置为函数动态返回 boolean 值           | boolean | (...args: any[]) => boolean                                                                                                                        | false  | -    |
+| middleware | 中间件函数，[了解 alova 中间件](../advanced/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -      | -    |
 
 #### AlovaFetcherMiddlewareContext
 
@@ -392,7 +392,7 @@ fetch(getTodoList(10), true);
 | ---------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
 | method           | 当前请求的 method 对象                                                                                   | Method                                                                                                                                                                                                                                                       | -       |
 | cachedResponse   | 命中的缓存数据                                                                                           | any                                                                                                                                                                                                                                                          | -       |
-| config           | 当前的 use hook 配置                                                                                     | Record<string, any>                                                                                                                                                                                                                                          | -       |
+| config           | 当前的 use hook 配置                                                                                     | Record\<string, any\>                                                                                                                                                                                                                                          | -       |
 | fetchArgs        | 响应处理回调的参数，该参数由 useFetcher 的 fetch 传入                                                    | any[]                                                                                                                                                                                                                                                        | -       |
 | fetchStates      | use hook 预加载状态集合，如 fetching、error 等                                                           | [FetchRequestState](#fetchrequeststate)                                                                                                                                                                                                                      | -       |
 | fetch            | 数据预加载函数                                                                                           | (method: Method, ...args: any[]) => void                                                                                                                                                                                                                     | Promise |
@@ -410,7 +410,7 @@ fetch(getTodoList(10), true);
 | 名称        | 描述           | 类型                   | 版本 |
 | ----------- | -------------- | ---------------------- | ---- |
 | fetching    | 预加载请求状态 | boolean                | -    |
-| error       | 请求错误信息   | Error &#124; undefined | -    |
+| error       | 请求错误信息   | Error | undefined | -    |
 | downloading | 下载进度信息   | Object                 | -    |
 | uploading   | 上传进度信息   | Object                 | -    |
 
@@ -419,7 +419,7 @@ fetch(getTodoList(10), true);
 | 名称        | 描述           | 类型                   | 版本 |
 | ----------- | -------------- | ---------------------- | ---- |
 | fetching    | 预加载请求状态 | boolean                | -    |
-| error       | 请求错误信息   | Error &#124; undefined | -    |
+| error       | 请求错误信息   | Error | undefined | -    |
 | downloading | 下载进度信息   | Object                 | -    |
 | uploading   | 上传进度信息   | Object                 | -    |
 

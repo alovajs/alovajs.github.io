@@ -334,7 +334,7 @@ const total = response => response.total;
 const data = response => response.data;
 ```
 
-:::caution Caution
+:::warning Caution
 
 The data callback function must return a list of data, indicating the data set used in paging, and total is mainly used to calculate the current page number. If no number is returned in the total callback function, it will pass whether the number of requested lists is less than the pageSize value To determine whether the current page is the last page, which is generally used for pull-down loading.
 
@@ -572,7 +572,7 @@ You can also specify the second parameter of `insert` as a list item. When the s
 insert(newItem, afterItem);
 ```
 
-:::caution Caution
+:::warning Caution
 
 In order to make the data correct, the insert function call will clear all caches.
 
@@ -598,7 +598,7 @@ But in the following two cases, it will re-initiate the request to refresh the d
 1. The next page is not cached
 2. The data that exceeds the next page cache list item is continuously called synchronously, and the cache data is not enough to supplement the current page list.
 
-:::caution Caution
+:::warning Caution
 
 In order to make the data correct, the remove function call will clear all caches.
 
@@ -673,7 +673,7 @@ Inherit all configurations of [**useWatcher**](../learning/use-watcher#api).
 | initialPage         | initial page number                                                   | number                    | 1                          | -       |
 | initialPageSize     | Initial number of data items per page                                 | number                    | 10                         | -       |
 | watchingStates      | state monitoring trigger request, implemented using useWatcher        | any[]                     | [page, pageSize]           | -       |
-| debounce            | The debounce parameter of state monitoring, implemented by useWatcher | number&#124;number[]      | -                          | -       |
+| debounce            | The debounce parameter of state monitoring, implemented by useWatcher | number|number[]      | -                          | -       |
 | append              | Whether to enable append mode                                         | boolean                   | false                      | -       |
 | data                | Array data specifying pagination                                      | (response: any) => any[]  | response => response.data  | -       |
 | total               | specify the total amount of data                                      | (response: any) => number | response => response.total | -       |

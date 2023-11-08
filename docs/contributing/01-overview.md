@@ -103,7 +103,7 @@ If you have an idea for adding a new feature, please also [submit an issue of a 
 
 If you are very good at project configuration and find deficiencies in the alova project, such as incomplete configuration, too old configuration version, insufficient automation (including project development automation and Github warehouse management automation), you can also press [New Feature development](#new-feature-development) process to contribute.
 
-:::caution IMPORTANT
+:::warning IMPORTANT
 
 1. Please read the [Developing Guidelines](./developing-guidelines) carefully before developing, it can guide you step by step on how to contribute code.
 2. When you identify an issue that needs to be resolved, please make sure that it has not been flagged by someone else's pull request, which means that it has been pre-occupied.

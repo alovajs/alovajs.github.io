@@ -218,7 +218,7 @@ Inherit all configurations from [**useRequest**](../learning/use-request#api).
 
 | Name    | Description                                                                                                                                  | Type                                                  | Default | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------- | ------- |
-| retry   | The maximum number of retries can also be set as a function returning a boolean value to dynamically determine whether to continue to retry. | number&#124;(error: Error, ...args: any[]) => boolean | 3       | -       |
+| retry   | The maximum number of retries can also be set as a function returning a boolean value to dynamically determine whether to continue to retry. | number|(error: Error, ...args: any[]) => boolean | 3       | -       |
 | backoff | Backoff policy, set retry delay time, etc.                                                                                                   | [BackoffPolicy](#backoffpolicy)                       | -       | -       |
 
 ####BackoffPolicy

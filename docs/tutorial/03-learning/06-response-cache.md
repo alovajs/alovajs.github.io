@@ -110,7 +110,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-:::caution Caution
+:::warning Caution
 
 When request body is special data such as **FormData**, **Blob**, **ArrayBuffer**, **URLSearchParams**, **ReadableStream**, it will be considered that you intend to communicate with server. In this case would not cache data.
 

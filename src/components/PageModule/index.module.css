@@ -15,8 +15,8 @@
 
 .wrapper {
   margin: 0 auto;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
 }
 .title {
   font-size: var(--ifm-h1-font-size);

@@ -520,7 +520,7 @@ $data = {};
 </TabItem>
 </Tabs>
 
-:::caution 注意事项
+:::warning 注意事项
 
 1. 自定义修改的值将会被`useWatcher`内部的状态管理机制覆盖，如当你修改了`data`值，再次请求后`data`值将被赋值为最新的响应数据；
 2. 通过直接修改的状态值不会同步修改缓存数据，如需要同步修改缓存数据，建议使用[updateState](../learning/update-response-data-across-modules)
@@ -604,7 +604,7 @@ useWatcher(
 );
 ```
 
-:::caution 注意事项
+:::warning 注意事项
 
 `abortLast`默认为`true`，如果修改为`false`，可能会导致状态与响应不匹配的问题。
 
@@ -618,10 +618,10 @@ useWatcher(
 | ------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---- | --- |
 | immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                               | true       | -    |
 | initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                                   | -          | -    |
-| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean &#124; (...args: any[]) => boolean                                                                                                                                            | false      | -    |
-| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                                 | -          | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean | (...args: any[]) => boolean                                                                                                                                            | false      | -    |
+| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record\<string | number | symbol, any\>                                                                                                                                 | -          | -    |
 | debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number                                                                                                                                                                                | number[]   | -    | -   |
-| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)                    | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -          | -    |
+| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)                    | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -          | -    |
 | sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -    |
 | abortLast     | 是否中断上一次的未响应请求                                                 | boolean                                                                                                                                                                               | true       | -    |
 
@@ -631,7 +631,7 @@ useWatcher(
 | ----------- | ------------ | ---------------------- | ---- |
 | loading     | 请求加载状态 | boolean                | -    |
 | data        | 响应数据     | any                    | -    |
-| error       | 请求错误信息 | Error &#124; undefined | -    |
+| error       | 请求错误信息 | Error | undefined | -    |
 | downloading | 下载进度信息 | Object                 | -    |
 | uploading   | 上传进度信息 | Object                 | -    |
 

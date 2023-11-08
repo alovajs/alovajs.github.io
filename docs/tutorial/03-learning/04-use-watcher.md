@@ -6,7 +6,7 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In some scenarios that need to be re-requested as the data changes, such as paging, data filtering, and fuzzy search, `useWatcher` can be used to monitor the specified state change and send the request immediately.
+In some scenarios that need to be re-requested as the data changes, such as paging, data filtering, and fuzzy search, `useWatcher` can be used to watch the specified state change and send the request immediately.
 
 ## Keyword Search
 
@@ -48,7 +48,7 @@ Next, let's take searching for todo items as an example.
   } = useWatcher(
     () => filterTodoList(keyword.value),
 
-    // array of states being monitored, these state changes will trigger a request
+    // array of states being watched, these state changes will trigger a request
     [keyword],
     {
       // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
@@ -81,7 +81,7 @@ const App = () => {
   } = useWatcher(
     () => filterTodoList(keyword),
 
-    // array of states being monitored, these state changes will trigger a request
+    // array of states being watched, these state changes will trigger a request
     [keyword],
     {
       // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
@@ -140,7 +140,7 @@ const App = () => {
   } = useWatcher(
     () => filterTodoList($keyword),
 
-    // array of states being monitored, these state changes will trigger a request
+    // array of states being watched, these state changes will trigger a request
     [keyword],
     {
       // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
@@ -203,7 +203,7 @@ Using the todo list pagination request as an example, you can do this.
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList(currentPage.value),
-    // array of states being monitored, these state changes will trigger a request
+    // array of states being watched, these state changes will trigger a request
     [currentPage],
     {
       // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
@@ -240,7 +240,7 @@ const App = () => {
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList(currentPage),
-    // array of states being monitored, these state changes will trigger a request
+    // array of states being watched, these state changes will trigger a request
     [currentPage],
     {
       // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
@@ -281,7 +281,7 @@ const App = () => {
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList($currentPage),
-    // array of states being monitored, these state changes will trigger a request
+    // array of states being watched, these state changes will trigger a request
     [currentPage],
     {
       // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
@@ -299,7 +299,7 @@ const App = () => {
 
 ## Manually send the request
 
-Sometimes you want to resend the request when the monitoring state has not changed (for example, the server data has been updated), you can also manually trigger the request through the `send` function, the usage is the same as `useRequest`.
+Sometimes you want to resend the request when the watching state has not changed (for example, the server data has been updated), you can also manually trigger the request through the `send` function, the usage is the same as `useRequest`.
 
 ```javascript
 const {
@@ -309,7 +309,7 @@ const {
   // highlight-end
 } = useWatcher(
   () => getTodoList($currentPage),
-  // array of states being monitored, these state changes will trigger a request
+  // array of states being watched, these state changes will trigger a request
   [currentPage],
   {
     immediate: true
@@ -425,7 +425,7 @@ const {
 } = useWatcher(
   () => getTodoList(/* parameter */),
   [
-    /* Monitor status */
+    /* watch states */
   ],
   {
     initialData: []
@@ -443,27 +443,27 @@ Function debounce means that after an event is triggered, the function can only 
 
 :::
 
-### Set the debounce time of all monitoring states
+### Set the debounce time of all watching states
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
   // When debounce is set to a number, it represents the debounce time of all listening states, in milliseconds
-  // As shown here, when one or more changes of status keyword and date, the request will be sent after 500ms
+  // As shown here, when one or more changes of states keyword and date, the request will be sent after 500ms
   debounce: 500
   // highlight-end
 });
 ```
 
-### Set the debounce time for a single monitoring state
+### Set the debounce time for a single watching state
 
-In many scenarios, we only need to stabilize some frequently changing monitoring states, such as state changes triggered by `onInput` of a text box, we can do this:
+In many scenarios, we only need to stabilize some frequently changing watching states, such as state changes triggered by `onInput` of a text box, we can do this:
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // Set the debounce time respectively in the array order of the monitoring state, 0 or no transmission means no debounce
-  // The order of the monitoring status here is [keyword, date], and the debounce array is set to [500, 0], which means that the debounce is only set for the keyword alone
+  // Set the debounce time respectively in the array order of the watching state, 0 or no transmission means no debounce
+  // The order of the watching states here is [keyword, date], and the debounce array is set to [500, 0], which means that the debounce is only set for the keyword alone
   debounce: [500, 0]
   // You can also set it as follows:
   // debounce: [500],
@@ -471,7 +471,7 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 });
 ```
 
-## Manually modify the status value
+## Manually modify the states value
 
 In alova, various states such as `data`, `loading`, and `error` returned by `useWatcher` allow custom modification, which will become very convenient in some cases.
 
@@ -508,7 +508,7 @@ update({
 
 <TabItem value="3" label="svelte">
 
-In svelte, the status returned by `useWatcher` is of type `writable`.
+In svelte, the states returned by `useWatcher` is of type `writable`.
 
 ```javascript
 const watchingState = writable('');
@@ -523,7 +523,7 @@ $data = {};
 </TabItem>
 </Tabs>
 
-:::caution Notes
+:::warning Notes
 
 1. The custom modified value will be overwritten by the internal state management mechanism of `useWatcher`. For example, when you modify the value of `data`, the value of `data` will be assigned the latest response data after requesting again;
 2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](../learning/update-response-data-across-modules)
@@ -568,12 +568,12 @@ const alovaInst = createAlova({
 
 ## Prevent sending request when state changes
 
-Sometimes you want not to send a request when the monitored state changes. You can control whether to send a request when the monitored state changes through the sendable attribute in the Hook configuration. The sendable attribute is a function whose parameter is the `AlovaEvent` event object. Contains the array `sendArgs` composed of the parameters passed in by the `send` function, and the `method` instance of the current request, and the function returns a `truthy/falsy` value to determine whether the request needs to be triggered when the status changes (default is `true`), **throwing an error also means not triggering the request**.
+Sometimes you want not to send a request when the watched state changes. You can control whether to send a request when the watched state changes through the sendable attribute in the Hook configuration. The sendable attribute is a function whose parameter is the `AlovaEvent` event object. Contains the array `sendArgs` composed of the parameters passed in by the `send` function, and the `method` instance of the current request, and the function returns a `truthy/falsy` value to determine whether the request needs to be triggered when the states changes (default is `true`), **throwing an error also means not triggering the request**.
 
 ```javascript
 useWatcher(
   () => getTodoList($currentPage),
-  // An array of monitored states, these state changes will trigger a request
+  // An array of watched states, these state changes will trigger a request
   [state],
   {
     // highlight-start
@@ -589,13 +589,13 @@ useWatcher(
 
 ## Whether to interrupt the last unresponsive request
 
-Sometimes when the status monitored by `useWatcher` changes continuously and leads to the initiation of continuous requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Causes to get a response that does not match the state; for example, a request `1` is sent after a state `state` changes, and then the value of `state` is changed before the request `1` is responded to, and a request is sent` 2`, if request `1` returns after request `2`, the final response data will remain at request `1`.
+Sometimes when the states watched by `useWatcher` changes continuously and leads to the initiation of continuous requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Causes to get a response that does not match the state; for example, a request `1` is sent after a state `state` changes, and then the value of `state` is changed before the request `1` is responded to, and a request is sent` 2`, if request `1` returns after request `2`, the final response data will remain at request `1`.
 So we designed the `abortLast` parameter, which is used to mark whether to interrupt the last unresponsive request when the next request is sent. The default is `true`, so that only the last request issued by `useWatcher` is valid.
 
 ```javascript
 useWatcher(
   () => getTodoList($currentPage),
-  // An array of monitored states, these state changes will trigger a request
+  // An array of watched states, these state changes will trigger a request
   [state],
   {
     // highlight-start
@@ -605,7 +605,7 @@ useWatcher(
 );
 ```
 
-:::caution Precautions
+:::warning Precautions
 
 `abortLast` defaults to `true`, if it is changed to `false`, it may cause a problem that the state does not match the response.
 
@@ -615,26 +615,26 @@ useWatcher(
 
 ### Hook configuration
 
-| Name          | Description                                                                                                                                        | Type                                                                                                                                                                                  | Default    | Version |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------- | --- |
-| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                               | true       | -       |
-| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                                   | -          | -       |
-| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean &#124; (...args: any[]) => boolean                                                                                                                                            | false      | -       |
-| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record&lt;string &#124; number &#124; symbol, any&gt;                                                                                                                                 | -          | -       |
-| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                                | number[]   | -       | -   |
-| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise&lt;any&gt; | -          | -       |
-| sendable      | Whether to send a request when the monitored state changes                                                                                         | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -       |
-| abortLast     | Whether to interrupt the last unresponsive request                                                                                                 | boolean                                                                                                                                                                               | true       | -       |
+| Name          | Description                                                                                                                                        | Type                                                                                                                                                                              | Default                     | Version       |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------------- | --- | --- |
+| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                           | true                        | -             |
+| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                               | -                           | -             |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean                                                                                                                                                                           | (...args: any[]) => boolean | false         | -   |
+| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record\<string                                                                                                                                                                    | number                      | symbol, any\> | -   | -   |
+| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                            | number[]                    | -             | -   |
+| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -                           | -             |
+| sendable      | Whether to send a request when the watched state changes                                                                                           | (methodInstance: AlovaEvent) => boolean                                                                                                                                           | () => true                  | -             |
+| abortLast     | Whether to interrupt the last unresponsive request                                                                                                 | boolean                                                                                                                                                                           | true                        | -             |
 
 ### Responsive data
 
-| Name        | Description                   | Type                   | Version |
-| ----------- | ----------------------------- | ---------------------- | ------- |
-| loading     | request loading status        | boolean                | -       |
-| data        | response data                 | any                    | -       |
-| error       | request error message         | Error &#124; undefined | -       |
-| downloading | download progress information | Object                 | -       |
-| uploading   | upload progress information   | Object                 | -       |
+| Name        | Description                   | Type    | Version   |
+| ----------- | ----------------------------- | ------- | --------- | --- |
+| loading     | request loading states        | boolean | -         |
+| data        | response data                 | any     | -         |
+| error       | request error message         | Error   | undefined | -   |
+| downloading | download progress information | Object  | -         |
+| uploading   | upload progress information   | Object  | -         |
 
 ### Action function
 

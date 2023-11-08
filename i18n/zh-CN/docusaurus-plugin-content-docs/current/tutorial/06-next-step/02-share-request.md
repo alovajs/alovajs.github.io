@@ -39,7 +39,7 @@ alovaInst.Get('/todo', {
 });
 ```
 
-:::caution 注意事项
+:::warning 注意事项
 
 需要再次注意的是，alova 是通过 method 实例的请求方法、请求 url、请求头、url 参数、请求体组合作为唯一标识，标识相同即表示为相同请求，而不是对比 method 实例的引用地址。
 
