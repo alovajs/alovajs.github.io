@@ -3,6 +3,8 @@ title: Transform response data
 sidebar_position: 70
 ---
 
+import ControlledCacheByIndexedDB from '@site/example-links/ControlledCacheByIndexedDB';
+
 When the response data structure cannot directly meet the front-end requirements, we can set the `transformData` hook function for the method instance to convert the response data into the required structure, and the data will be used as the value of the `data` state after conversion.
 
 ```javascript
@@ -56,3 +58,7 @@ const fileGetter = alovaInstance.Get('/file/file_name', {
   }
 });
 ```
+
+### IndexedDB example
+
+<ControlledCacheByIndexedDB></ControlledCacheByIndexedDB>

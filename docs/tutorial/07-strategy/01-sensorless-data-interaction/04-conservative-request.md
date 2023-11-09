@@ -41,7 +41,7 @@ const createOrEditTodo = (data, id) =>
 const deleteTodo = id => alovaInst.Delete('/todo', { id });
 ```
 
-This part is the same as the [started chapter](../../get-started/quick-start), and will not be repeated.
+This part is the same as the [started chapter](..//tutorial/get-started/quick-start), and will not be repeated.
 
 ## Start the silent factory
 

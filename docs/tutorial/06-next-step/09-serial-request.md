@@ -5,7 +5,7 @@ sidebar_position: 80
 
 Serial requests also have two ways
 
-## way 1
+## Approach 1
 
 Let the first request be sent automatically, and the second request will be triggered in the `onSuccess` callback of the first request to complete the serial request. The serial request can be completed in the following way:
 
@@ -20,7 +20,7 @@ onSuccess(event => {
 });
 ```
 
-## way 2
+## Approach 2
 
 Using the `send` function returned by the `useRequest` function, calling `send` will return a usable promise object.
 

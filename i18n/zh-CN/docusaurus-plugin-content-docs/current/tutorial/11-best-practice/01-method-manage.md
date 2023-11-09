@@ -5,7 +5,7 @@ sidebar_position: 10
 
 在一个项目中，我们可能需要使用到成百上千个请求 api，因此管理这些请求 api 变得尤为重要。
 
-你可能会像 [快速入门](../get-started/quick-start) 中的代码片段那样编写请求发送的代码，即调用 useRequest 的同时使用 alova 实例创建 method 实例。
+你可能会像 [快速入门](/tutorial/get-started/quick-start) 中的代码片段那样编写请求发送的代码，即调用 useRequest 的同时使用 alova 实例创建 method 实例。
 
 ```javascript
 const { loading, data, error } = useRequest(

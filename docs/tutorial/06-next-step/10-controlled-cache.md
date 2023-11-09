@@ -50,5 +50,5 @@ const getFile = fileName =>
 
 If you want to continue sending requests, you can return undefined or no data in `localCache`, which is useful in case of a cache miss when customizing the managed cache.
 
-1. You can also use [special usage of transformData](../learning/transform-response-data) to implement custom cache storage tasks.
+1. You can also use [special usage of transformData](/tutorial/learning/transform-response-data) to implement custom cache storage tasks.
 2. When used in usehooks, throwing an error in the `localCache` function will trigger `onError`, and when using the method instance to request directly, a rejected promise will be returned.

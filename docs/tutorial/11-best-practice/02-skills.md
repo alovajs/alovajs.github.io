@@ -17,7 +17,7 @@ The `useRequest` provided by alova will only send a request and get the response
 When you finish editing a piece of data in a list, you don't want to re-request to update the list data again, but manually update the list data. Many developers may directly modify the list data.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -98,7 +98,7 @@ Although this can trigger the interface to refresh, it may cause another problem
 So you can call `updateState` to update the stateful data and update the cache immediately.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>

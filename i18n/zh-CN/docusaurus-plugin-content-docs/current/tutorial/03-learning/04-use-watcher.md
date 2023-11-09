@@ -5,6 +5,8 @@ sidebar_position: 40
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import { useWatcherSearchVue, useWatcherSearchReact, useWatcherSearchVueOptions } from './lives';
 
 在一些需要随数据变化而重新请求的场景下，如分页、数据筛选、模糊搜索，可以使用`useWatcher` 来监听指定的状态变化时立即发送请求。
 
@@ -12,107 +14,14 @@ import TabItem from '@theme/TabItem';
 
 接下来我们以搜索 todo 项为例。
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
-```html
-<template>
-  <!-- keyword随着输入内容变化而变化 -->
-  <input v-model="keyword" />
-
-  <!-- 渲染筛选后的todo列表 -->
-  <div v-if="loading">Loading...</div>
-  <template v-else>
-    <div v-for="todo in data">
-      <div class="todo-title">{{ todo.title }}</div>
-      <div class="todo-time">{{ todo.time }}</div>
-    </div>
-  </template>
-</template>
-
-<script setup>
-  // 创建method实例
-  const filterTodoList = keyword => {
-    return alovaInstance.Get('/todo/list/search', {
-      params: {
-        keyword
-      }
-    });
-  };
-  const keyword = ref('');
-  const {
-    loading,
-    data,
-    error
-
-    // 第一个参数必须为返回method实例的函数
-  } = useWatcher(
-    () => filterTodoList(keyword.value),
-
-    // 被监听的状态数组，这些状态变化将会触发一次请求
-    [keyword],
-    {
-      // 设置500ms防抖，如果keyword频繁变化，只有在停止变化后500ms才发送请求
-      debounce: 500
-    }
-  );
-</script>
-```
+<EmbedSandpack template="vue" mainFile={useWatcherSearchVue} editorHeight={800} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```jsx
-// 创建method实例
-const filterTodoList = keyword => {
-  return alovaInstance.Get('/todo/list/search', {
-    params: {
-      keyword
-    }
-  });
-};
-
-const App = () => {
-  const [keyword, setKeyword] = useState('');
-  const {
-    loading,
-    data,
-    error
-    // 第一个参数必须为返回method实例的函数
-  } = useWatcher(
-    () => filterTodoList(keyword),
-
-    // 被监听的状态数组，这些状态变化将会触发一次请求
-    [keyword],
-    {
-      // 设置500ms防抖，如果keyword频繁变化，只有在停止变化后500ms才发送请求
-      debounce: 500
-    }
-  );
-
-  return (
-    <>
-      {/* keyword随着输入内容变化而变化 */}
-      <input
-        value={keyword}
-        onInput={e => setKeyword(e.target.value)}
-      />
-
-      {/* 渲染筛选后的todo列表 */}
-      {loading ? <div>Loading...</div> : null}
-      {!loading ? (
-        <>
-          {data.map(todo => (
-            <div>
-              <div class="todo-title">{todo.title}</div>
-              <div class="todo-time">{todo.time}</div>
-            </div>
-          ))}
-        </>
-      ) : null}
-    </>
-  );
-};
-```
+<EmbedSandpack template="react" mainFile={useWatcherSearchReact} editorHeight={800} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
@@ -122,51 +31,40 @@ const App = () => {
   import { writable } from 'svelte/store';
 
   // 创建method实例
-  const filterTodoList = text => {
-    return alovaInstance.Get('/todo/list/search', {
-      params: {
-        keyword: text
-      }
-    });
+  const filterTodoList = userId => {
+    return alovaInstance.Get(`/users/${userId}/todos`);
   };
-  const keyword = writable('');
-
-  const {
-    loading,
-    data,
-    error
-
-    // 第一个参数必须为返回method实例的函数
-  } = useWatcher(
-    () => filterTodoList($keyword),
+  const userId = writable(0);
+  const { loading, data, error } = useWatcher(
+    // 参数必须设置为返回method实例的函数
+    () => filterTodoList($userId),
 
     // 被监听的状态数组，这些状态变化将会触发一次请求
-    [keyword],
-    {
-      // 设置500ms防抖，如果keyword频繁变化，只有在停止变化后500ms才发送请求
-      debounce: 500
-    }
+    [userId]
   );
-
-  const updateKeyword = e => {
-    $keyword = e.target.value;
-  };
 </script>
-<!-- keyword随着输入内容变化而变化 -->
-<input
-  value="{$keyword}"
-  on:input="{updateKeyword}" />
+<select bind:value="{$userId}">
+  <option value="{1}">User 1</option>
+  <option value="{2}">User 2</option>
+  <option value="{3}">User 3</option>
+</select>
 
 <!-- 渲染筛选后的todo列表 -->
 {#if $loading}
 <div>Loading...</div>
-{:else} {#each $data as todo}
-<div>
-  <div class="todo-title">{ todo.title }</div>
-  <div class="todo-time">{ todo.time }</div>
-</div>
-{/each} {/if}
+{:else}
+<ul>
+  {#each $data as todo}
+  <li class="todo-title">{{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}</li>
+  {/each}
+</ul>
+{/if}
 ```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+<EmbedSandpack template="vue" deps="vue-options" mainFile={useWatcherSearchVueOptions} editorHeight={800} />
 
 </TabItem>
 </Tabs>
@@ -176,7 +74,7 @@ const App = () => {
 以 todo 列表分页请求为例，你可以这样做。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -195,13 +93,8 @@ const App = () => {
   };
 
   const currentPage = ref(1);
-  const {
-    loading,
-    data,
-    error
-
+  const { loading, data, error } = useWatcher(
     // 第一个参数为返回method实例的函数，而非method实例本身
-  } = useWatcher(
     () => getTodoList(currentPage.value),
     // 被监听的状态数组，这些状态变化将会触发一次请求
     [currentPage],
@@ -292,6 +185,50 @@ const App = () => {
 </script>
 
 <!-- ... -->
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <!-- ... -->
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alovajs/vue-options';
+
+  // method实例创建函数
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      paging: useWatcher(
+        () => getTodoList(this.currentPage),
+
+        // 被监听的状态数组，这些状态变化将会触发一次请求
+        ['currentPage'],
+        {
+          // ⚠️调用useWatcher默认不触发，注意和useRequest的区别
+          // 手动设置immediate为true可以初始获取第1页数据
+          immediate: true
+        }
+      );
+    }),
+    data() {
+      return {
+        currentPage: 1
+      };
+    }
+  };
+</script>
 ```
 
 </TabItem>
@@ -473,7 +410,7 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 在 alova 中，通过`useWatcher`返回的`data`、`loading`、`error`等各项状态是允许自定义修改的，这在一些情况下将变得很方便。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```javascript
 const watchingState = ref('');
@@ -518,12 +455,34 @@ $data = {};
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```javascript
+export default {
+  mixins: mapAlovaHook(function () {
+    todo: useWatcher(todoListGetter, ['watchingState']);
+  }),
+  methods: {
+    handleModifyTodo() {
+      // 直接修改data值
+      this.todo.data = {};
+
+      // 或者通过update函数修改
+      this.todo.update({
+        data: {}
+      });
+    }
+  }
+};
+```
+
+</TabItem>
 </Tabs>
 
 :::warning 注意事项
 
 1. 自定义修改的值将会被`useWatcher`内部的状态管理机制覆盖，如当你修改了`data`值，再次请求后`data`值将被赋值为最新的响应数据；
-2. 通过直接修改的状态值不会同步修改缓存数据，如需要同步修改缓存数据，建议使用[updateState](../learning/update-response-data-across-modules)
+2. 通过直接修改的状态值不会同步修改缓存数据，如需要同步修改缓存数据，建议使用[updateState](/tutorial/learning/update-response-data-across-modules)
 
 :::
 
@@ -614,39 +573,39 @@ useWatcher(
 
 ### Hook 配置
 
-| 名称          | 描述                                                                       | 类型                                                                                                                                                                                  | 默认值     | 版本 |
-| ------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---- | --- |
-| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                               | true       | -    |
-| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                                   | -          | -    |
-| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean | (...args: any[]) => boolean                                                                                                                                            | false      | -    |
-| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record\<string | number | symbol, any\>                                                                                                                                 | -          | -    |
-| debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number                                                                                                                                                                                | number[]   | -    | -   |
-| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)                    | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -          | -    |
-| sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                                                                               | () => true | -    |
-| abortLast     | 是否中断上一次的未响应请求                                                 | boolean                                                                                                                                                                               | true       | -    |
+| 名称          | 描述                                                                       | 类型                                                                                                                                                                                            | 默认值     | 版本 |
+| ------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---- |
+| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                                         | true       | -    |
+| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                                             | -          | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean \| (...args: any[]) => boolean \| false                                                                                                                                                 |
+| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record\<string \| number \| symbol, any\>                                                                                                                                                       | -          |
+| debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number \| number[]                                                                                                                                                                              | -          |
+| middleware    | 中间件函数，[了解 alova 中间件](/tutorial/advanced/middleware)             | (context: [AlovaFrontMiddlewareContext](/tutorial/learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -          | -    |
+| sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                                                                                         | () => true | -    |
+| abortLast     | 是否中断上一次的未响应请求                                                 | boolean                                                                                                                                                                                         | true       | -    |
 
 ### 响应式数据
 
-| 名称        | 描述         | 类型                   | 版本 |
-| ----------- | ------------ | ---------------------- | ---- |
-| loading     | 请求加载状态 | boolean                | -    |
-| data        | 响应数据     | any                    | -    |
-| error       | 请求错误信息 | Error | undefined | -    |
-| downloading | 下载进度信息 | Object                 | -    |
-| uploading   | 上传进度信息 | Object                 | -    |
+| 名称        | 描述         | 类型               | 版本 |
+| ----------- | ------------ | ------------------ | ---- |
+| loading     | 请求加载状态 | boolean            | -    |
+| data        | 响应数据     | any                | -    |
+| error       | 请求错误信息 | Error \| undefined | -    |
+| downloading | 下载进度信息 | Object             | -    |
+| uploading   | 上传进度信息 | Object             | -    |
 
 ### 操作函数
 
-| 名称   | 描述                                                | 函数参数                                                                        | 返回值  | 版本 |
-| ------ | --------------------------------------------------- | ------------------------------------------------------------------------------- | ------- | ---- |
-| send   | 发送请求函数                                        | ...args: any[]                                                                  | Promise | -    |
-| abort  | 中断函数                                            | -                                                                               | -       | -    |
-| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](../learning/use-request/#frontrequeststate) | -       |
+| 名称   | 描述                                                | 函数参数                                                                               | 返回值  | 版本 |
+| ------ | --------------------------------------------------- | -------------------------------------------------------------------------------------- | ------- | ---- |
+| send   | 发送请求函数                                        | ...args: any[]                                                                         | Promise | -    |
+| abort  | 中断函数                                            | -                                                                                      | -       | -    |
+| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](/tutorial/learning/use-request/#frontrequeststate) | -       |
 
 ### 事件
 
-| 名称       | 描述             | 回调参数                                                                 | 版本 |
-| ---------- | ---------------- | ------------------------------------------------------------------------ | ---- |
-| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](../learning/use-request/#alovasuccessevent)   | -    |
-| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](../learning/use-request/#alovaerrorevent)       | -    |
-| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent) | -    |
+| 名称       | 描述             | 回调参数                                                                        | 版本 |
+| ---------- | ---------------- | ------------------------------------------------------------------------------- | ---- |
+| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent)   | -    |
+| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent)       | -    |
+| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent) | -    |

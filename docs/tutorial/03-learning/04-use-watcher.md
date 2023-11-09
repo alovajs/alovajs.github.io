@@ -5,6 +5,8 @@ sidebar_position: 50
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import { useWatcherSearchVue, useWatcherSearchReact, useWatcherSearchVueOptions } from './lives';
 
 In some scenarios that need to be re-requested as the data changes, such as paging, data filtering, and fuzzy search, `useWatcher` can be used to watch the specified state change and send the request immediately.
 
@@ -12,107 +14,14 @@ In some scenarios that need to be re-requested as the data changes, such as pagi
 
 Next, let's take searching for todo items as an example.
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
-```html
-<template>
-  <!-- keyword changes as the input content changes -->
-  <input v-model="keyword" />
-
-  <!-- Render the filtered todo list -->
-  <div v-if="loading">Loading...</div>
-  <template v-else>
-    <div v-for="todo in data">
-      <div class="todo-title">{{ todo.title }}</div>
-      <div class="todo-time">{{ todo.time }}</div>
-    </div>
-  </template>
-</template>
-
-<script setup>
-  // create method instance
-  const filterTodoList = keyword => {
-    return alovaInstance.Get('/todo/list/search', {
-      params: {
-        keywords
-      }
-    });
-  };
-  const keyword = ref('');
-  const {
-    loading,
-    data,
-    error
-
-    // The first parameter must be a function that returns a method instance
-  } = useWatcher(
-    () => filterTodoList(keyword.value),
-
-    // array of states being watched, these state changes will trigger a request
-    [keyword],
-    {
-      // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
-      debounce: 500
-    }
-  );
-</script>
-```
+<EmbedSandpack template="vue" mainFile={useWatcherSearchVue} editorHeight={800} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```jsx
-// create method instance
-const filterTodoList = keyword => {
-  return alovaInstance.Get('/todo/list/search', {
-    params: {
-      keywords
-    }
-  });
-};
-
-const App = () => {
-  const [keyword, setKeyword] = useState('');
-  const {
-    loading,
-    data,
-    error
-    // The first parameter must be a function that returns a method instance
-  } = useWatcher(
-    () => filterTodoList(keyword),
-
-    // array of states being watched, these state changes will trigger a request
-    [keyword],
-    {
-      // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
-      debounce: 500
-    }
-  );
-
-  return (
-    <>
-      {/* keyword changes with input content */}
-      <input
-        value={keyword}
-        onInput={e => setKeyword(e.target.value)}
-      />
-
-      {/* Render the filtered todo list */}
-      {loading ? <div>Loading...</div> : null}
-      {!loading ? (
-        <>
-          {data.map(todo => (
-            <div>
-              <div class="todo-title">{todo.title}</div>
-              <div class="todo-time">{todo.time}</div>
-            </div>
-          ))}
-        </>
-      ) : null}
-    </>
-  );
-};
-```
+<EmbedSandpack template="react" mainFile={useWatcherSearchReact} editorHeight={800} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
@@ -121,52 +30,41 @@ const App = () => {
 <script>
   import { writable } from 'svelte/store';
 
-  // create method instance
-  const filterTodoList = text => {
-    return alovaInstance.Get('/todo/list/search', {
-      params: {
-        keyword: text
-      }
-    });
+  //Create method instance
+  const filterTodoList = userId => {
+    return alovaInstance.Get(`/users/${userId}/todos`);
   };
-  const keyword = writable('');
+  const userId = writable(0);
+  const { loading, data, error } = useWatcher(
+    // Parameters must be set to functions that return method instances
+    () => filterTodoList($userId),
 
-  const {
-    loading,
-    data,
-    error
-
-    // The first parameter must be a function that returns a method instance
-  } = useWatcher(
-    () => filterTodoList($keyword),
-
-    // array of states being watched, these state changes will trigger a request
-    [keyword],
-    {
-      // Set 500ms debounce, if the keyword changes frequently, only send the request 500ms after the change stops
-      debounce: 500
-    }
+    // The monitored status array, these status changes will trigger a request
+    [userId]
   );
-
-  const updateKeyword = e => {
-    $keyword = e.target.value;
-  };
 </script>
-<!-- keyword changes as the input content changes -->
-<input
-  value="{$keyword}"
-  on:input="{updateKeyword}" />
+<select bind:value="{$userId}">
+  <option value="{1}">User 1</option>
+  <option value="{2}">User 2</option>
+  <option value="{3}">User 3</option>
+</select>
 
 <!-- Render the filtered todo list -->
 {#if $loading}
 <div>Loading...</div>
-{:else} {#each $data as todo}
-<div>
-  <div class="todo-title">{ todo.title }</div>
-  <div class="todo-time">{ todo.time }</div>
-</div>
-{/each} {/if}
+{:else}
+<ul>
+  {#each $data as todo}
+  <li class="todo-title">{{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}</li>
+  {/each}
+</ul>
+{/if}
 ```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+<EmbedSandpack template="vue" deps="vue-options" mainFile={useWatcherSearchVueOptions} editorHeight={800} />
 
 </TabItem>
 </Tabs>
@@ -176,7 +74,7 @@ const App = () => {
 Using the todo list pagination request as an example, you can do this.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -195,13 +93,8 @@ Using the todo list pagination request as an example, you can do this.
   };
 
   const currentPage = ref(1);
-  const {
-    loading,
-    data,
-    error
-
+  const { loading, data, error } = useWatcher(
     // The first parameter is the function that returns the method instance, not the method instance itself
-  } = useWatcher(
     () => getTodoList(currentPage.value),
     // array of states being watched, these state changes will trigger a request
     [currentPage],
@@ -292,6 +185,50 @@ const App = () => {
 </script>
 
 <!-- ... -->
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <!-- ... -->
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alovajs/vue-options';
+
+  // method instance creation function
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      paging: useWatcher(
+        () => getTodoList(this.currentPage),
+
+        // array of states being watched, these state changes will trigger a request
+        ['currentPage'],
+        {
+          // ⚠️Calling useWatcher does not trigger by default, pay attention to the difference with useRequest
+          // Manually set immediate to true to initially obtain the first page data
+          immediate: true
+        }
+      );
+    }),
+    data() {
+      return {
+        currentPage: 1
+      };
+    }
+  };
+</script>
 ```
 
 </TabItem>
@@ -476,7 +413,7 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 In alova, various states such as `data`, `loading`, and `error` returned by `useWatcher` allow custom modification, which will become very convenient in some cases.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```javascript
 const watchingState = ref('');
@@ -498,7 +435,7 @@ const [watchingState, setWatchingState] = useState('');
 const { data, loading, error, update } = useWatcher(todoListGetter, [watchingState]);
 
 //...
-// Modify the data value through update
+// update the data value through update
 update({
   data: {}
 });
@@ -515,9 +452,31 @@ const watchingState = writable('');
 const { data, loading, error } = useWatcher(todoListGetter, [watchingState]);
 
 //...
-// Modify the data value directly
+// update the data value directly
 $data = {};
 // or data.update(d => ({}));
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```javascript
+export default {
+  mixins: mapAlovaHook(function () {
+    todo: useWatcher(todoListGetter, ['watchingState']);
+  }),
+  methods: {
+    handleModifyTodo() {
+      // updat the data value directly
+      this.todo.data = {};
+
+      // or use update function
+      this.todo.update({
+        data: {}
+      });
+    }
+  }
+};
 ```
 
 </TabItem>
@@ -526,7 +485,7 @@ $data = {};
 :::warning Notes
 
 1. The custom modified value will be overwritten by the internal state management mechanism of `useWatcher`. For example, when you modify the value of `data`, the value of `data` will be assigned the latest response data after requesting again;
-2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](../learning/update-response-data-across-modules)
+2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](/tutorial/learning/update-response-data-across-modules)
 
 :::
 
@@ -615,39 +574,39 @@ useWatcher(
 
 ### Hook configuration
 
-| Name          | Description                                                                                                                                        | Type                                                                                                                                                                              | Default                     | Version       |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------------- | --- | --- |
-| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                           | true                        | -             |
-| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                               | -                           | -             |
-| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean                                                                                                                                                                           | (...args: any[]) => boolean | false         | -   |
-| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record\<string                                                                                                                                                                    | number                      | symbol, any\> | -   | -   |
-| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                            | number[]                    | -             | -   |
-| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](../learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -                           | -             |
-| sendable      | Whether to send a request when the watched state changes                                                                                           | (methodInstance: AlovaEvent) => boolean                                                                                                                                           | () => true                  | -             |
-| abortLast     | Whether to interrupt the last unresponsive request                                                                                                 | boolean                                                                                                                                                                           | true                        | -             |
+| Name          | Description                                                                                                                                        | Type                                                                                                                                                                                            | Default                                   | Version |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------- |
+| immediate     | Whether to initiate the request immediately                                                                                                        | boolean                                                                                                                                                                                         | true                                      | -       |
+| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set                                      | any                                                                                                                                                                                             | -                                         | -       |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value                                                    | boolean                                                                                                                                                                                         | (...args: any[]) => boolean \| false      | -       |
+| managedStates | Additional managed states, can be updated via updateState                                                                                          | Record\<string                                                                                                                                                                                  | Record\<string \| number \| symbol, any\> | -       |
+| debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time separately according to the order of watchingStates | number                                                                                                                                                                                          | number \| number[]                        | -       |
+| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                                                        | (context: [AlovaFrontMiddlewareContext](/tutorial/learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                         | -       |
+| sendable      | Whether to send a request when the watched state changes                                                                                           | (methodInstance: AlovaEvent) => boolean                                                                                                                                                         | () => true                                | -       |
+| abortLast     | Whether to interrupt the last unresponsive request                                                                                                 | boolean                                                                                                                                                                                         | true                                      | -       |
 
 ### Responsive data
 
-| Name        | Description                   | Type    | Version   |
-| ----------- | ----------------------------- | ------- | --------- | --- |
-| loading     | request loading states        | boolean | -         |
-| data        | response data                 | any     | -         |
-| error       | request error message         | Error   | undefined | -   |
-| downloading | download progress information | Object  | -         |
-| uploading   | upload progress information   | Object  | -         |
+| Name        | Description                   | Type               | Version |
+| ----------- | ----------------------------- | ------------------ | ------- |
+| loading     | request loading states        | boolean            | -       |
+| data        | response data                 | any                | -       |
+| error       | request error message         | Error \| undefined | -       |
+| downloading | download progress information | Object             | -       |
+| uploading   | upload progress information   | Object             | -       |
 
 ### Action function
 
-| name   | description                                                                            | function parameters                                                             | return value | version |
-| ------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------ | ------- |
-| send   | send request function                                                                  | ...args: any[]                                                                  | Promise      | -       |
-| abort  | interrupt function                                                                     | -                                                                               | -            | -       |
-| update | A function to update the front-end state of the current use hook, more useful in react | newFrontStates: [FrontRequestState](../learning/use-request/#frontrequeststate) | -            |
+| name   | description                                                                            | function parameters                                                                    | return value | version |
+| ------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------ | ------- |
+| send   | send request function                                                                  | ...args: any[]                                                                         | Promise      | -       |
+| abort  | interrupt function                                                                     | -                                                                                      | -            | -       |
+| update | A function to update the front-end state of the current use hook, more useful in react | newFrontStates: [FrontRequestState](/tutorial/learning/use-request/#frontrequeststate) | -            |
 
 ### Event
 
-| Name       | Description                    | Callback Parameters                                                      | Version |
-| ---------- | ------------------------------ | ------------------------------------------------------------------------ | ------- |
-| onSuccess  | request success event binding  | event: [AlovaSuccessEvent](../learning/use-request/#alovasuccessevent)   | -       |
-| onError    | request error event binding    | event: [AlovaErrorEvent](../learning/use-request/#alovaerrorevent)       | -       |
-| onComplete | request complete event binding | event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent) | -       |
+| Name       | Description                    | Callback Parameters                                                             | Version |
+| ---------- | ------------------------------ | ------------------------------------------------------------------------------- | ------- |
+| onSuccess  | request success event binding  | event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent)   | -       |
+| onError    | request error event binding    | event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent)       | -       |
+| onComplete | request complete event binding | event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent) | -       |

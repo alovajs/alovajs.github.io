@@ -82,7 +82,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 ## 设置请求适配器支持的参数
 
-在[了解 alova 实例的章节](/tutorial/learning/alova-instance)中，我们内置并推荐了`GlobalFetch`作为 alova 的请求适配器，它内部将会通过`fetch`函数发送请求，此时你还可以在`method`实例上配置任何`fetch`支持的参数，但我们推荐使用上面提到的字段设置请求参数。
+method 实例的配置参数除了[10 项通用配置项](/tutorial/next-step/method-details)外，还可以配置对应请求适配器支持的参数，例如，在[了解 alova 实例的章节](/tutorial/learning/alova-instance)中，我们内置并推荐了`GlobalFetch`作为 alova 的请求适配器，它内部将会通过`fetch`函数发送请求。此时你还可以在`method`实例上配置任何`fetch`支持的参数，这些参数会在请求时传给`fetch`函数。
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -95,4 +95,17 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-这很容易理解，即除了请求参数和请求行为参数等统一的参数外，你还可以设置请求适配器支持的任意参数。在扩展中，我们还提供了[XMLHttpRequest 适配器](/tutorial/extension/alova-adapter-xhr)、[axios 适配器](/tutorial/extension/alova-adapter-axios)、[Uniapp 适配器](/tutorial/extension/alova-adapter-uniapp)、[Taro 适配器](/tutorial/extension/alova-adapter-taro)等，每个适配器也有它们支持的参数。
+以上`method`实例在通过`fetch`发送请求时，将会以以下参数请求。
+
+```javascript
+fetch('/todo/list', {
+  // ...
+  // highlight-start
+  credentials: 'same-origin',
+  referrerPolicy: 'no-referrer',
+  mode: 'cors'
+  // highlight-end
+});
+```
+
+在扩展中，我们还提供了[XMLHttpRequest 适配器](/tutorial/extension/alova-adapter-xhr)、[axios 适配器](/tutorial/extension/alova-adapter-axios)、[Uniapp 适配器](/tutorial/extension/alova-adapter-uniapp)、[Taro 适配器](/tutorial/extension/alova-adapter-taro)等，每个适配器也有它们支持的参数。

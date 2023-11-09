@@ -5,6 +5,8 @@ sidebar_position: 50
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import { quickStartVue, quickStartReact, quickStartVueOptions, quickStartStaticVue, quickStartStaticVueOptions, quickStartStaticReact } from './lives';
 
 :::tip example tip
 
@@ -45,83 +47,14 @@ When using alova, please ensure that the UI framework meets the following versio
 First create an alova instance, use this instance to create the corresponding method, and pass it to useRequest.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
-```html
-<template>
-  <div v-if="loading">Loading...</div>
-  <div v-else-if="error">{{ error. message }}</div>
-  <span v-else>responseData: {{ data }}</span>
-</template>
-
-<script setup>
-  import { createAlova, useRequest } from 'alova';
-  import GlobalFetch from 'alova/GlobalFetch';
-  import VueHook from 'alova/vue';
-
-  // 1. Create an alova instance
-  const alovaInstance = createAlova({
-    // VueHook is used to create ref status, including request status loading, response data data, request error object error, etc.
-    statesHook: VueHook,
-
-    // request adapter, it is recommended to use the fetch request adapter
-    requestAdapter: GlobalFetch(),
-
-    // adapter GlobalFetch will return a Response instance
-    // you can set a global response interception to return actual json data
-    responded: response => response.json()
-  });
-
-  // 2. Use the alova instance to create a method and pass it to useRequest to send the request
-  const { loading, data, error } = useRequest(
-    alovaInstance.Get('https://api.alovajs.org/profile', {
-      params: {
-        id: 1
-      }
-    })
-  );
-</script>
-```
+<EmbedSandpack template="vue" mainFile={quickStartVue} editorHeight={600} defaultAlova={false} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```jsx
-import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import ReactHook from 'alova/react';
-
-// 1. Create an alova instance
-const alovaInstance = createAlova({
-  // ReactHook is used to create ref status, including request status loading, response data data, request error object error, etc.
-  statesHook: ReactHook,
-
-  // request adapter, it is recommended to use the fetch request adapter
-  requestAdapter: GlobalFetch()
-});
-
-const app = () => {
-  // 2. Use the alova instance to create a method and pass it to useRequest to send the request
-  const { loading, data, error } = useRequest(
-    alovaInstance.Get('https://api.alovajs.org/profile', {
-      params: {
-        id: 1
-      }
-    })
-  );
-
-  if (loading) {
-    return <div>Loading...</div>;
-  } else if (error) {
-    return <div>{error.message}</div>;
-  }
-  return (
-    <>
-      <span>responseData: {JSON.stringify(data)}</span>
-    </>
-  );
-};
-```
+<EmbedSandpack template="react" mainFile={quickStartReact} editorHeight={600} defaultAlova={false} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
@@ -138,26 +71,29 @@ const app = () => {
     statesHook: SvelteHook,
 
     // request adapter, it is recommended to use the fetch request adapter
-    requestAdapter: GlobalFetch()
+    requestAdapter: GlobalFetch(),
+
+    // adapter GlobalFetch will return a Response instance
+    // you can set a global response interception to return actual json data
+    responded: response => response.json()
   });
 
   // 2. Use the alova instance to create a method and pass it to useRequest to send the request
-  const { loading, data, error } = useRequest(
-    alovaInstance.Get('https://api.alovajs.org/profile', {
-      params: {
-        id: 1
-      }
-    })
-  );
+  const { loading, data, error } = useRequest(alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1'));
 </script>
 {#if $loading}
 <div>Loading...</div>
 {:else if $error}
-<div>{ $error. message }</div>
+<div>{ $error.message }</div>
 {:else}
-<span>responseData: {{ data }}</span>
+<span>responseData: { data }</span>
 {/if}
 ```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartVueOptions} editorHeight={600} defaultAlova={false} />
 
 </TabItem>
 </Tabs>
@@ -201,59 +137,14 @@ Regarding when to use useRequest to send a request and when to use a method inst
 In addition to using esModule to install alova, you can also use `<script>` tags to use alova.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
-    <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- vuehook depends on vue, so you need to introduce vue first -->
-    <script src="https://unpkg.com/alova/dist/hooks/vuehook.umd.min.js"></script>
-    <script>
-      const alovaInstance = window.alova.createAlova({
-        baseURL: 'https://api.alovajs.org',
-        statesHook: window.VueHook,
-        requestAdapter: window.GlobalFetch()
-      });
-      //...
-    </script>
-  </head>
-  <body>
-    <!-- ... -->
-  </body>
-</html>
-```
+<EmbedSandpack template="static" mainFile={quickStartStaticVue} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
-    <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- reacthook depends on react, so you need to introduce react and react-dom first -->
-    <script src="https://unpkg.com/alova/dist/hooks/reacthook.umd.min.js"></script>
-    <script>
-      const alovaInstance = window.alova.createAlova({
-        baseURL: 'https://api.alovajs.org',
-        statesHook: window.ReactHook,
-        requestAdapter: window.GlobalFetch()
-      });
-      //...
-    </script>
-  </head>
-  <body>
-    <!-- ... -->
-  </body>
-</html>
-```
+<EmbedSandpack template="static" mainFile={quickStartStaticReact} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
@@ -263,6 +154,11 @@ In addition to using esModule to install alova, you can also use `<script>` tags
 svelte depends on compilation tools and cannot be used directly through CDN. For details, see [svelte.dev](https://svelte.dev/)
 
 :::
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+<EmbedSandpack template="static" deps="vue-options" mainFile={quickStartStaticVueOptions} editorHeight={700} />
 
 </TabItem>
 </Tabs>

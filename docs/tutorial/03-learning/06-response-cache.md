@@ -3,7 +3,11 @@ title: Cache mode
 sidebar_position: 60
 ---
 
-The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache replaceholder mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
+import MemoryCache from '@site/example-links/MemoryCache';
+import StoragePlaceholder from '@site/example-links/StoragePlaceholder';
+import StorageRestore from '@site/example-links/StorageRestore';
+
+The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache placeholder mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
 
 :::info note
 
@@ -11,13 +15,7 @@ Whether to use the cache mode and which cache mode to use depends on the scenari
 
 :::
 
-## memory mode (default)
-
-:::info memory mode example
-
-[Click here to view](../example/memory-cache)。
-
-:::
+## Memory mode (default)
 
 The memory mode puts the cache in the memory, which means that the page cache is invalidated when it is refreshed, and is the most commonly used cache mode.
 
@@ -54,13 +52,11 @@ alovaInstance.GET('/todo/list', {
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
 
-## cache replaceholder mode
+### Memory mode example
 
-:::info cache replaceholder mode example
+<MemoryCache></MemoryCache>
 
-[Click here to view](../example/storage-placeholder)。
-
-:::
+## Cache placeholder mode
 
 This cache mode is used when you don't want to display the Loading icon every time the application is entered, but you want to use the old data instead, you can use the cache occupancy mode, which has a better experience than Loading.
 
@@ -84,13 +80,11 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
 
-## restore mode
+### Cache placeholder mode example
 
-:::info restore mode example
+<StoragePlaceholder></StoragePlaceholder>
 
-[Click here to view](../example/storage-restore)。
-
-:::
+## Restore mode
 
 In this mode, the server-side cached data will be persistent. If the expiration time is not reached, even if the page cache is refreshed, it will not be invalidated. It is generally used for some data that requires server-side management but is basically unchanged, such as the specific dates of annual holidays. It is different, but it will not change again. In this scenario, we only need to set the cache expiration time to the last moment of this year.
 
@@ -117,6 +111,10 @@ When request body is special data such as **FormData**, **Blob**, **ArrayBuffer*
 :::
 
 > If you need to set the caching mode globally, see [Global setting cache mode] at the bottom of this section (#Global setting cache mode)
+
+### Restore mode example
+
+<StorageRestore></StorageRestore>
 
 ### What should I do if the data changes in restore mode?
 

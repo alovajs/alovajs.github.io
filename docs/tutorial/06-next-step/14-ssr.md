@@ -104,7 +104,7 @@ If you use alova's caching function, you may need to pay attention here that the
 Please see the following code snippet.
 
 <Tabs groupId="framework">
-<TabItem label="vue" value="1">
+<TabItem label="nuxt" value="1">
 
 ```html
 <template>
@@ -118,7 +118,7 @@ Please see the following code snippet.
 ```
 
 </TabItem>
-<TabItem label="react" value="2">
+<TabItem label="next" value="2">
 
 ```jsx
 function App(props) {
@@ -133,7 +133,7 @@ function App(props) {
 ```
 
 </TabItem>
-<TabItem label="svelte" value="3">
+<TabItem label="sveltekit" value="3">
 
 ```html
 <script>
@@ -161,7 +161,7 @@ At this time, when the html is generated on server , `loading` is `false` and do
 3. If caching is also required, you can clear the cache on server in the data initialization function of server. The sample code is as follows:
 
 <Tabs groupId="framework">
-<TabItem label="vue" value="1">
+<TabItem label="nuxt" value="1">
 
 ```html
 <template>
@@ -186,7 +186,7 @@ At this time, when the html is generated on server , `loading` is `false` and do
 ```
 
 </TabItem>
-<TabItem label="react" value="2">
+<TabItem label="next" value="2">
 
 ```jsx
 import { invalidateCache } from 'alova';
@@ -211,7 +211,7 @@ export const getServerSideProps = async () => {
 ```
 
 </TabItem>
-<TabItem label="svelte" value="3">
+<TabItem label="sveltekit" value="3">
 
 ```javascript title=+page.server.js
 import { invalidateCache } from 'alova';

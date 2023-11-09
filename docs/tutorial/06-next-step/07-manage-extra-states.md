@@ -13,7 +13,7 @@ In the previous [Cross Page/Module Update Response Status] (/learning/update-res
 Additional states can be managed via `managedStates` when called by the use hook, and automatically assigned the state name to update it when `updateState` is called in other modules/pages.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```javascript
 // a.vue
@@ -148,6 +148,15 @@ const handleSuccess = () => {
   // highlight-end
 };
 ```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+:::info Note
+
+Not support to manage additional states.
+
+:::
 
 </TabItem>
 </Tabs>

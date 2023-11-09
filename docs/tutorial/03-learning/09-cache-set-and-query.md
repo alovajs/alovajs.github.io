@@ -10,12 +10,12 @@ Some service interfaces support batch request data, which means that it is alway
 
 For example, we need to obtain the todo list data by date. During initialization, a request obtains the data of 5 days from May 1 to 5, and then the user obtains the data of May 1 again during the operation. At this time, it will not Hit the data on May 1st when it was initialized, because the initialized data of 5 days is stored together instead of being cached separately. At this time, we can manually create a single response cache for the data of these 5 days, so that we can Solve the problem of cache penetration when a single data request is made.
 
-As we mentioned in [cache mode](../learning/response-cache), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
+As we mentioned in [cache mode](/tutorial/learning/response-cache), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
 
 ## Update static cache data
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -161,6 +161,67 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <button @click="handleTodolistToggle">Switch date, hit cache</button>
+</template>
+<script>
+  import { setCache, useWatcher } from 'alova';
+  import { mapAlovaHook } from '@alova/vue-options';
+
+  const getTodoListByDate = dateList =>
+    alovaInstance.Get('/todo/list/dates', {
+      params: { dateList }
+    });
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      return {
+        todo: useWatcher(() => getTodoListByDate(this.dates.join()), ['dates'], {
+          immediate: true
+        })
+      };
+    }),
+    data() {
+      return {
+        // Get 5 days of data in batches during initialization
+        dates: ['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']
+      };
+    },
+    mounted() {
+      this.todo$onSuccess(({ data: todoListDates }) => {
+        if (todoListDates.length <= 1) {
+          return;
+        }
+
+        // highlight-start
+        // By default, the data of these 5 days will be cached together in a key
+        // In order to make subsequent requests for data of a certain day also hit the cache, we can disassemble the data of 5 days into days, and manually set the response cache successively through setCache
+        todoListDates.forEach(todoDate => {
+          // setCache parameter description:
+          // Parameter 1: method instance object, which is used to specify the key of the cache
+          // Parameter 2: Cache data
+          setCache(getTodoListByDate(todoDate.date), [todoDate]);
+        });
+        // highlight-end
+      });
+    },
+    methods: {
+      // highlight-start
+      handleTodolistToggle() {
+        // At this time, when the switching date is May 1, it will hit the response cache we manually set.
+        // The dates value is being monitored by useWatcher, so changing it can automatically trigger the request
+        this.dates = ['2022-05-01'];
+      }
+      // highlight-end
+    }
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 ## Dynamically set cache data
@@ -191,7 +252,7 @@ setCache(
 );
 ```
 
-## Interrupt cache set
+## Abort to set cache
 
 Sometimes you need to dynamically determine whether to update the cache. If no data is returned in the callback function of `setCache`, or `undefined` is returned, the original cache data will not be updated at this time
 
@@ -199,7 +260,7 @@ Sometimes you need to dynamically determine whether to update the cache. If no d
 setCache(getTodoListByDate('2022-10-01'), oldCache => {
   const isExpired = isAfter('2022-10-01', new Date());
   if (!isExpired) {
-    return; // interrupt cache update
+    return; // abort cache updating when return the undefined
   }
   return null; // update the cache to null
 });

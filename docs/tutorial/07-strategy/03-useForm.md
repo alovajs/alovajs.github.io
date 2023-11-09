@@ -30,7 +30,7 @@ A hook designed for form submission. Through this hook, you can easily implement
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -73,7 +73,7 @@ yarn add @alova/scene-svelte
 Demonstrates basic use of form hooks.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -476,18 +476,18 @@ In conditional filtering scenarios, `useForm` is more suitable for non-paginated
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](../learning/use-request#api).
+Inherit all configurations from [**useRequest**](/tutorial/learning/use-request#api).
 
-| Name                | Description                                                                                                                                                                  | Type                                                  | Default | Version |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------- | ------- |
-| initialForm         | initial form data                                                                                                                                                            | any                                                   | -       | -       |
-| id                  | form id, the data data of the same id is the same reference, which can be used to share the same form data in multi-page forms. Single page form does not need to specify id | string|number                                    | -       | -       |
-| store               | Whether to save data persistently, after setting to true, uncommitted data will be persisted in real time                                                                    | boolean| [StoreDetailConfig](#storedetailconfig) | false   | -       |
-| resetAfterSubmiting | reset data after submission                                                                                                                                                  | boolean                                               | false   | -       |
+| Name                | Description                                                                                                                                                                  | Type                                                        | Default | Version |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------- | ------- |
+| initialForm         | initial form data                                                                                                                                                            | any                                                         | -       | -       |
+| id                  | form id, the data data of the same id is the same reference, which can be used to share the same form data in multi-page forms. Single page form does not need to specify id | string \| number                                            | -       | -       |
+| store               | Whether to save data persistently, after setting to true, uncommitted data will be persisted in real time                                                                    | boolean \| [StoreDetailConfig](#storedetailconfig) \| false | -       |
+| resetAfterSubmiting | reset data after submission                                                                                                                                                  | boolean                                                     | false   | -       |
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](../learning/use-request#api).
+Inherit all responsive data from [**useRequest**](/tutorial/learning/use-request#api).
 
 | Name | Description                         | Type | Version |
 | ---- | ----------------------------------- | ---- | ------- |
@@ -498,27 +498,27 @@ Inherit all responsive data from [**useRequest**](../learning/use-request#api).
 | Name        | Description                                                                                                                                                                                                                                                             | Type                                                          | Default  | Version |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------- | ------- |
 | enable      | Whether to enable persistent data                                                                                                                                                                                                                                       | boolean                                                       | required | -       |
-| serializers | A collection of custom serializers, built-in serializers:<br/>1. The date serializer is used to convert dates<br/>2. The regexp serializer is used to convert regular expressions<br/>Yes Override the built-in serializer by setting the serializer with the same name | Record\<string|number, [DataSerializer](#dataserializer)\> | -        | -       |
+| serializers | A collection of custom serializers, built-in serializers:<br/>1. The date serializer is used to convert dates<br/>2. The regexp serializer is used to convert regular expressions<br/>Yes Override the built-in serializer by setting the serializer with the same name | Record\<string \| number, [DataSerializer](#dataserializer)\> | -        | -       |
 
 #### DataSerializer
 
-| Name     | Description                                                                                                                                                                      | Type                                        | Default  | Versionthis |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------- | ----------- |
-| forward  | Serialization function, when serializing in forward, it needs to judge whether it is the specified data, and return the converted data, otherwise return undefined or not return | (data: any) => any|undefined|void | required | -           |
-| backward | deserialization function, deserialization data directly                                                                                                                          | (data: any) => any|undefined|void | required | -           |
+| Name     | Description                                                                                                                                                                      | Type                                    | Default  | Versionthis |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- | ----------- |
+| forward  | Serialization function, when serializing in forward, it needs to judge whether it is the specified data, and return the converted data, otherwise return undefined or not return | (data: any) => any \| undefined \| void | required | -           |
+| backward | deserialization function, deserialization data directly                                                                                                                          | (data: any) => any \| undefined \| void | required | -           |
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](../learning/use-request#api).
+Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#api).
 
-| name       | description                                                                     | function parameters                                                              | return value | version |
-| ---------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------ | ------- |
-| updateForm | Update one or more form data                                                    | newForm: Partial\<F\> | (oldForm: F) => F)<br/> F is `initialForm` type | -            | -       |
-| reset      | Reset to initialized data, if there is persistent data, it will also be cleared | -                                                                                | -            | -       |
+| name       | description                                                                     | function parameters                                                      | return value | version |
+| ---------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------ | ------- |
+| updateForm | Update one or more form data                                                    | newForm: Partial\<F\> \| (oldForm: F) => F)<br/> F is `initialForm` type | -            | -       |
+| reset      | Reset to initialized data, if there is persistent data, it will also be cleared | -                                                                        | -            | -       |
 
 ### Event
 
-Inherit all events from [**useRequest**](../learning/use-request#api).
+Inherit all events from [**useRequest**](/tutorial/learning/use-request#api).
 
 | Name      | Description                                     | Callback Parameters | Version |
 | --------- | ----------------------------------------------- | ------------------- | ------- |

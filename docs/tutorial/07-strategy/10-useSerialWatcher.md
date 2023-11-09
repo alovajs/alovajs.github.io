@@ -29,7 +29,7 @@ Status update triggers a set of serial requests, which is more concise and easy 
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -130,16 +130,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations of [**useWatcher**](../learning/use-watcher#api).
+Inherit all configurations of [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 ### Responsive data
 
-Inherit all responsive data from [**useWatcher**](../learning/use-watcher#api).
+Inherit all responsive data from [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 ### Action function
 
-Inherit all action functions of [**useWatcher**](../learning/use-watcher#api).
+Inherit all action functions of [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 ### Event
 
-Inherit all events from [**useWatcher**](../learning/use-watcher#api).
+Inherit all events from [**useWatcher**](/tutorial/learning/use-watcher#api).

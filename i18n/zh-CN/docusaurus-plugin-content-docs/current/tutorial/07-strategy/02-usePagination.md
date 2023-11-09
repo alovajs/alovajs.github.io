@@ -37,7 +37,7 @@ use hook
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -78,7 +78,7 @@ yarn add @alova/scene-svelte
 ### 展示列表数据
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -394,7 +394,7 @@ const {
 例如通过学生姓名、学生年级进行筛选。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -501,7 +501,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-与`useWatcher`相同，你也可以通过指定`debounce`来实现请求防抖，具体可参考[useWatcher 的 debounce 参数设置](../learning/use-watcher)。
+与`useWatcher`相同，你也可以通过指定`debounce`来实现请求防抖，具体可参考[useWatcher 的 debounce 参数设置](/tutorial/learning/use-watcher)。
 
 ```javascript
 usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
@@ -512,7 +512,7 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-需要注意的是，`debounce`是通过 [**useWatcher**](../learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
+需要注意的是，`debounce`是通过 [**useWatcher**](/tutorial/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
 
 举例来说，当`watchingStates`设置了`[studentName, clsName]`，内部将会监听`[studentName, clsName, page, pageSize]`，因此如果需要对 page 和 pageSize 设置防抖时，可以指定为`[0, 0, 500, 500]`。
 
@@ -638,7 +638,7 @@ declare function refresh(pageOrItemPage?: number | LD[number]): void;
 
 ### 手动更新列表数据
 
-使用`update`函数更新响应式数据，这与[useRequest 的 update](../learning/use-request)相似，唯一不同的是，在调用`update`更新`data`时，更新的是列表数据，而非响应数据。这在手动清除列表数据，而不重新发起请求时很有用。
+使用`update`函数更新响应式数据，这与[useRequest 的 update](/tutorial/learning/use-request)相似，唯一不同的是，在调用`update`更新`data`时，更新的是列表数据，而非响应数据。这在手动清除列表数据，而不重新发起请求时很有用。
 
 ```typescript
 // 情况列表数据
@@ -666,14 +666,14 @@ declare function reload(): void;
 
 ### Hook 配置
 
-继承[**useWatcher**](../learning/use-watcher#api)所有配置。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有配置。
 
 | 名称                | 描述                                     | 类型                      | 默认值                     | 版本 |
 | ------------------- | ---------------------------------------- | ------------------------- | -------------------------- | ---- |
 | initialPage         | 初始页码                                 | number                    | 1                          | -    |
 | initialPageSize     | 初始每页数据条数                         | number                    | 10                         | -    |
 | watchingStates      | 状态监听触发请求，使用 useWatcher 实现   | any[]                     | [page, pageSize]           | -    |
-| debounce            | 状态监听的防抖参数，使用 useWatcher 实现 | number|number[]      | -                          | -    |
+| debounce            | 状态监听的防抖参数，使用 useWatcher 实现 | number \| number[]        | -                          | -    |
 | append              | 是否开启追加模式                         | boolean                   | false                      | -    |
 | data                | 指定分页的数组数据                       | (response: any) => any[]  | response => response.data  | -    |
 | total               | 指定数据总数量值                         | (response: any) => number | response => response.total | -    |
@@ -682,7 +682,7 @@ declare function reload(): void;
 
 ### 响应式数据
 
-继承[**useWatcher**](../learning/use-watcher#api)所有响应式数据。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有响应式数据。
 
 | 名称       | 描述                                                                                                               | 类型    | 版本 |
 | ---------- | ------------------------------------------------------------------------------------------------------------------ | ------- | ---- |
@@ -696,7 +696,7 @@ declare function reload(): void;
 
 ### 操作函数
 
-继承[**useWatcher**](../learning/use-watcher#api)所有操作函数。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有操作函数。
 
 | 名称    | 描述                                                                                                                                                   | 函数参数                                                                                | 返回值 | 版本 |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------ | ---- |
@@ -709,7 +709,7 @@ declare function reload(): void;
 
 ### 事件
 
-继承[**useWatcher**](../learning/use-watcher#api)所有事件。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有事件。
 
 | 名称            | 描述                     | 回调参数                  | 版本 |
 | --------------- | ------------------------ | ------------------------- | ---- |

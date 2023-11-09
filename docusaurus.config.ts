@@ -191,7 +191,7 @@ const config: Config = {
       darkTheme: darkCodeTheme,
 
       // https://github.com/facebook/docusaurus/discussions/9506#discussioncomment-7506183
-      additionalLanguages: ['javascript']
+      additionalLanguages: ['javascript', 'bash']
     },
 
     algolia: {

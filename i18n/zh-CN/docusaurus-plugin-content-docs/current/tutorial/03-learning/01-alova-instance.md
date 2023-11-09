@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip
 
-在 [快速入门](../get-started/quick-start) 中我们初步使用了 alova 实例，如果你还未阅读 [快速入门](../get-started/quick-start)，建议你先阅读它再继续阅读这部分内容。
+在 [快速入门](/tutorial/get-started/quick-start) 中我们初步使用了 alova 实例，如果你还未阅读 [快速入门](/tutorial/get-started/quick-start)，建议你先阅读它再继续阅读这部分内容。
 
 :::
 
@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
 一个 alova 实例是使用的开端，所有的请求都需要从它开始。它的写法类似`axios`，以下是一个最简单的 alova 实例的创建方法。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```javascript
 import { createAlova } from 'alova';
@@ -61,6 +61,21 @@ import SvelteHook from 'alova/svelte';
 const alovaInstance = createAlova({
   baseURL: 'https://api.alovajs.org',
   statesHook: SvelteHook,
+  requestAdapter: GlobalFetch()
+});
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```javascript
+import { createAlova } from 'alova';
+import GlobalFetch from 'alova/GlobalFetch';
+import { VueOptionsHook } from '@alova/vue-options'; // npm install @alova/vue-options
+
+const alovaInstance = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  statesHook: VueOptionsHook,
   requestAdapter: GlobalFetch()
 });
 ```
@@ -186,5 +201,5 @@ const alovaInstance = createAlova({
 
 在 alova 实例中，还可以设置以下配置：
 
-1. [响应数据的缓存模式](../learning/response-cache)，我们将在下面的章节中阐述；
+1. [响应数据的缓存模式](/tutorial/learning/response-cache)，我们将在下面的章节中阐述；
 2. [自定义存储适配器](../advanced/custom-storage-adapter)，它将用于持久化响应缓存，这将在高级章节中阐述；

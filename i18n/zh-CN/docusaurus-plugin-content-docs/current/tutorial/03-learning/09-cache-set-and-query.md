@@ -10,12 +10,12 @@ import TabItem from '@theme/TabItem';
 
 例如我们需要按日期获取 todo 列表数据，在初始化时一次请求获取了 5 月 1 日到 5 日，5 天的数据，然后用户在操作时又获取了一次 5 月 1 日的数据，此时不会命中初始化时的 5 月 1 日数据，因为初始化的 5 天数据是存放在一起的，而不是分开缓存的，此时我们就可以为这 5 天的数据相继手动创建单条的响应缓存，这样就可以解决单条数据请求时的缓存穿透的问题。
 
-在[缓存模式](../learning/response-cache)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在手动更新缓存时也将使用 method 实例来查找对应的缓存数据。
+在[缓存模式](/tutorial/learning/response-cache)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在手动更新缓存时也将使用 method 实例来查找对应的缓存数据。
 
 ## 更新静态缓存数据
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -37,7 +37,7 @@ import TabItem from '@theme/TabItem';
   } = useWatcher(() => getTodoListByDate(dates.value.join()), [dates], {
     immediate: true
   });
-  onSuccess(todoListDates => {
+  onSuccess(({ data: todoListDates }) => {
     if (todoListDates.length <= 1) {
       return;
     }
@@ -85,7 +85,7 @@ const App = () => {
   } = useWatcher(() => getTodoListByDate(dates.join()), [dates], {
     immediate: true
   });
-  onSuccess(todoListDates => {
+  onSuccess(({ data: todoListDates }) => {
     if (todoListDates.length <= 1) {
       return;
     }
@@ -133,7 +133,7 @@ const App = () => {
   } = useWatcher(() => getTodoListByDate($dates.join()), [dates], {
     immediate: true
   });
-  onSuccess(todoListDates => {
+  onSuccess(({ data: todoListDates }) => {
     if (todoListDates.length <= 1) {
       return;
     }
@@ -158,6 +158,67 @@ const App = () => {
   // highlight-end
 </script>
 <button on:click="{handleTodolistToggle}">切换日期，命中缓存</button>
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <button @click="handleTodolistToggle">切换日期，命中缓存</button>
+</template>
+<script>
+  import { setCache, useWatcher } from 'alova';
+  import { mapAlovaHook } from '@alova/vue-options';
+
+  const getTodoListByDate = dateList =>
+    alovaInstance.Get('/todo/list/dates', {
+      params: { dateList }
+    });
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      return {
+        todo: useWatcher(() => getTodoListByDate(this.dates.join()), ['dates'], {
+          immediate: true
+        })
+      };
+    }),
+    data() {
+      return {
+        // 初始化时批量获取5天的数据
+        dates: ['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']
+      };
+    },
+    mounted() {
+      this.todo$onSuccess(({ data: todoListDates }) => {
+        if (todoListDates.length <= 1) {
+          return;
+        }
+
+        // highlight-start
+        // 默认情况下，这5天的数据会一起缓存到一个key中
+        // 为了让后续请求某一天的数据时也能命中缓存，我们可以将5天的数据拆解为按天，并通过setCache相继手动设置响应缓存
+        todoListDates.forEach(todoDate => {
+          // setCache参数说明：
+          // 参数1：method实例对象，它用于指定缓存的key
+          // 参数2：缓存数据
+          setCache(getTodoListByDate(todoDate.date), [todoDate]);
+        });
+        // highlight-end
+      });
+    },
+    methods: {
+      // highlight-start
+      handleTodolistToggle() {
+        // 此时再在切换日期为5月1日时，它将会命中我们手动设置的响应缓存。
+        // dates值正在被useWatcher监听，因此改变它就可以自动触发请求
+        this.dates = ['2022-05-01'];
+      }
+      // highlight-end
+    }
+  };
+</script>
 ```
 
 </TabItem>

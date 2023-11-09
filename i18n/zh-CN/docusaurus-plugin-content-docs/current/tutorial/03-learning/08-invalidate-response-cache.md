@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 2. 手动更新缓存，这种方式将在下一个小节详细讲解；
 3. 让这个响应缓存失效，当再次请求时将会因缓存失效而重新请求数据。这也是本小节所要讲的内容。
 
-在[缓存模式](../learning/response-cache)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在失效缓存时也将使用 method 实例来失效对应的缓存数据。
+在[缓存模式](/tutorial/learning/response-cache)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在失效缓存时也将使用 method 实例来失效对应的缓存数据。
 
 现在我们尝试以缓存失效的方式实现本需求。
 
@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
 在 invalidateCache 函数中传入一个 method 实例，它将固定查找此实例下的缓存进行失效。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -122,10 +122,51 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <button @click="todo$send">发送请求</button>
+</template>
+
+<script>
+  import { invalidateCache, useRequest } from 'alova';
+  import { mapAlovaHook } from '@alova/vue-options';
+
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function() {
+      return {
+        todo: useRequest(createTodoPoster, { immediate: false })
+      }
+    })
+    mounted() {
+      // highlight-start
+      // 提交成功后，固定使第一页的todo数据缓存失效
+      this.todo$onSuccess(() => {
+        invalidateCache(getTodoList(1));
+      });
+      // highlight-end
+    }
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 :::info
+
 它的功能还远不止于此，我们还可以通过设置`Method`实例匹配器来实现任意多个，甚至全部缓存的失效。
+
 :::
 
 ## 动态查找失效缓存

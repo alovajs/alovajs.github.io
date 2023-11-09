@@ -37,7 +37,7 @@ A hook designed for paging scenarios, which can help you automatically manage pa
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -78,7 +78,7 @@ yarn add @alova/scene-svelte
 ### Display list data
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -394,7 +394,7 @@ In many cases, the list needs to be filtered by conditions. At this time, the re
 For example, filter by student name, student grade.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -501,7 +501,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-Same as `useWatcher`, you can also implement request debounce by specifying `debounce`, for details, please refer to [useWatcher's debounce parameter setting](../learning/use-watcher).
+Same as `useWatcher`, you can also implement request debounce by specifying `debounce`, for details, please refer to [useWatcher's debounce parameter setting](/tutorial/learning/use-watcher).
 
 ```javascript
 usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
@@ -512,7 +512,7 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-It should be noted that `debounce` is achieved by request debounce in [**useWatcher**](../learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
+It should be noted that `debounce` is achieved by request debounce in [**useWatcher**](/tutorial/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
 
 For example, when `watchingStates` is set to `[studentName, clsName]`, `[studentName, clsName, page, pageSize]` will be monitored internally, so if you need to set anti-shake for page and pageSize, you can specify ` [0, 0, 500, 500]`.
 
@@ -638,7 +638,7 @@ In append mode, you can specify the parameter of `refresh` as a list item. When 
 
 ### Manually update list data
 
-Use the `update` function to update responsive data, which is similar to [useRequest's update](../learning/use-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
+Use the `update` function to update responsive data, which is similar to [useRequest's update](/tutorial/learning/use-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
 
 ```typescript
 // case list data
@@ -660,20 +660,20 @@ declare function reload(): void;
 
 ## Limitation
 
-**Cache replaceholder mode** are temporarily disabled.
+**Cache placeholder mode** are temporarily disabled.
 
 ## API
 
 ### Hook configuration
 
-Inherit all configurations of [**useWatcher**](../learning/use-watcher#api).
+Inherit all configurations of [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 | Name                | Description                                                           | Type                      | Default                    | Version |
 | ------------------- | --------------------------------------------------------------------- | ------------------------- | -------------------------- | ------- |
 | initialPage         | initial page number                                                   | number                    | 1                          | -       |
 | initialPageSize     | Initial number of data items per page                                 | number                    | 10                         | -       |
 | watchingStates      | state monitoring trigger request, implemented using useWatcher        | any[]                     | [page, pageSize]           | -       |
-| debounce            | The debounce parameter of state monitoring, implemented by useWatcher | number|number[]      | -                          | -       |
+| debounce            | The debounce parameter of state monitoring, implemented by useWatcher | number \| number[]        | -                          | -       |
 | append              | Whether to enable append mode                                         | boolean                   | false                      | -       |
 | data                | Array data specifying pagination                                      | (response: any) => any[]  | response => response.data  | -       |
 | total               | specify the total amount of data                                      | (response: any) => number | response => response.total | -       |
@@ -682,7 +682,7 @@ Inherit all configurations of [**useWatcher**](../learning/use-watcher#api).
 
 ### Responsive data
 
-Inherit all responsive data from [**useWatcher**](../learning/use-watcher#api).
+Inherit all responsive data from [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 | Name       | Description                                                                                                                                                                                                         | Type    | Version |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
@@ -696,7 +696,7 @@ Inherit all responsive data from [**useWatcher**](../learning/use-watcher#api).
 
 ### Action function
 
-Inherit all action functions of [**useWatcher**](../learning/use-watcher#api).
+Inherit all action functions of [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 | name    | description                                                                                                                                                                                                                                                                                           | function parameters                                                                                                                                       | return value | version |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------- |
@@ -709,7 +709,7 @@ Inherit all action functions of [**useWatcher**](../learning/use-watcher#api).
 
 ### Event
 
-Inherit all events from [**useWatcher**](../learning/use-watcher#api).
+Inherit all events from [**useWatcher**](/tutorial/learning/use-watcher#api).
 
 | Name            | Description                                    | Callback Parameters                  | Version |
 | --------------- | ---------------------------------------------- | ------------------------------------ | ------- |

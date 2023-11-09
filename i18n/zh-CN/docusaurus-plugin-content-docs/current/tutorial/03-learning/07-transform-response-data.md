@@ -3,6 +3,8 @@ title: 转换响应数据
 sidebar_position: 70
 ---
 
+import ControlledCacheByIndexedDB from '@site/example-links/ControlledCacheByIndexedDB';
+
 当响应数据结构不能直接满足前端需求时，我们可以为 method 实例设置`transformData`钩子函数将响应数据转换成需要的结构，数据转换后将会作为`data`状态的值。
 
 ```javascript
@@ -56,3 +58,7 @@ const fileGetter = alovaInstance.Get('/file/file_name', {
   }
 });
 ```
+
+### IndexedDB 示例
+
+<ControlledCacheByIndexedDB></ControlledCacheByIndexedDB>

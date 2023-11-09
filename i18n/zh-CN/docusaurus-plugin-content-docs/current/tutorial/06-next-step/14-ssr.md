@@ -104,7 +104,7 @@ export async function load({ params }) {
 请看以下代码片段。
 
 <Tabs groupId="framework">
-<TabItem label="vue" value="1">
+<TabItem label="nuxt" value="1">
 
 ```html
 <template>
@@ -118,7 +118,7 @@ export async function load({ params }) {
 ```
 
 </TabItem>
-<TabItem label="react" value="2">
+<TabItem label="next" value="2">
 
 ```jsx
 function App(props) {
@@ -133,7 +133,7 @@ function App(props) {
 ```
 
 </TabItem>
-<TabItem label="svelte" value="3">
+<TabItem label="sveltekit" value="3">
 
 ```html
 <script>
@@ -161,7 +161,7 @@ function App(props) {
 3. 如果也需要缓存，你可以在服务端数据初始化函数中清除服务端的缓存，示例代码如下：
 
 <Tabs groupId="framework">
-<TabItem label="vue" value="1">
+<TabItem label="nuxt" value="1">
 
 ```html
 <template>
@@ -186,7 +186,7 @@ function App(props) {
 ```
 
 </TabItem>
-<TabItem label="react" value="2">
+<TabItem label="next" value="2">
 
 ```jsx
 import { invalidateCache } from 'alova';
@@ -211,7 +211,7 @@ export const getServerSideProps = async () => {
 ```
 
 </TabItem>
-<TabItem label="svelte" value="3">
+<TabItem label="sveltekit" value="3">
 
 ```javascript title=+page.server.js
 import { invalidateCache } from 'alova';

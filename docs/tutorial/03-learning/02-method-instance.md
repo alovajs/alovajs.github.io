@@ -78,7 +78,7 @@ In addition to setting request parameters, `method` instances can also set reque
 
 ## Set the parameters supported by the request adapter
 
-In the [Chapter about understanding alova instances](/tutorial/learning/alova-instance), we have built-in and recommended `GlobalFetch` as alova's request adapter. It will internally send requests through the `fetch` function. At this time, you can also Any parameter supported by `fetch` can be configured on the `method` instance, but we recommend setting request parameters using the fields mentioned above.
+Except the [10 common configuration items](/tutorial/next-step/method-details) of `method` instance, it also can config any parameters supported by the corresponding request adapter, for example, in the [Chapter about understanding the alova instance](/tutorial/learning/alova-instance), we have built-in and recommended `GlobalFetch` as alova's request adapter, which will internally send requests through the `fetch` function. At this time, you can also configure any parameters supported by `fetch` on the `method` instance, and these parameters will be passed to the `fetch` function when requesting.
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -91,7 +91,20 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-This is easy to understand, that is, in addition to unified parameters such as request parameters and request behavior parameters, you can also set any parameters supported by the request adapter. In the extension, we also provide [XMLHttpRequest Adapter](/tutorial/extension/alova-adapter-xhr), [axios Adapter](/tutorial/extension/alova-adapter-axios), [Uniapp Adapter](/tutorial/extension/alova-adapter-uniapp), [Taro adapter](/tutorial/extension/alova-adapter-taro) etc. Each adapter also has the parameters they support.
+When the above `method` instance sends a request, it will be requested through `fetch` with the following parameters.
+
+```javascript
+fetch('/todo/list', {
+  // ...
+  // highlight-start
+  credentials: 'same-origin',
+  referrerPolicy: 'no-referrer',
+  mode: 'cors'
+  // highlight-end
+});
+```
+
+In the extensions, we also provide [XMLHttpRequest Adapter](/tutorial/extension/alova-adapter-xhr), [axios Adapter](/tutorial/extension/alova-adapter-axios), [Uniapp Adapter](/tutorial/extension/alova-adapter-uniapp), [Taro adapter](/tutorial/extension/alova-adapter-taro) etc. Each adapter also has the parameters they support.
 
 ## Request method type
 

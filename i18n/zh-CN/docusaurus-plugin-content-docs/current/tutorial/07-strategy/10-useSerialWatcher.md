@@ -29,7 +29,7 @@ use hook
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -130,16 +130,16 @@ useSerialRequest([
 
 ### Hook 配置
 
-继承[**useWatcher**](../learning/use-watcher#api)所有配置。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有配置。
 
 ### 响应式数据
 
-继承[**useWatcher**](../learning/use-watcher#api)所有响应式数据。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有响应式数据。
 
 ### 操作函数
 
-继承[**useWatcher**](../learning/use-watcher#api)所有操作函数。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有操作函数。
 
 ### 事件
 
-继承[**useWatcher**](../learning/use-watcher#api)所有事件。
+继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有事件。

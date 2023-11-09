@@ -29,7 +29,7 @@ The verification code sending hook saves you the trouble of developing the verif
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -72,7 +72,7 @@ yarn add @alova/scene-svelte
 Demonstrates basic use of form hooks.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -186,7 +186,7 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 ### Hook configuration
 
-Inherit all configurations of [**useRequest**](../learning/use-request#api) except `immediate`, `immediate` in `useCaptcha` has been hard-coded to false.
+Inherit all configurations of [**useRequest**](/tutorial/learning/use-request#api) except `immediate`, `immediate` in `useCaptcha` has been hard-coded to false.
 
 | Name             | Description                                                                                                | Type   | Default | Version |
 | ---------------- | ---------------------------------------------------------------------------------------------------------- | ------ | ------- | ------- |
@@ -194,7 +194,7 @@ Inherit all configurations of [**useRequest**](../learning/use-request#api) exce
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](../learning/use-request#api).
+Inherit all responsive data from [**useRequest**](/tutorial/learning/use-request#api).
 
 | Name      | Description                                                                                                 | Type   | Version |
 | --------- | ----------------------------------------------------------------------------------------------------------- | ------ | ------- |
@@ -202,12 +202,12 @@ Inherit all responsive data from [**useRequest**](../learning/use-request#api).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](../learning/use-request#api).
+Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#api).
 
-| name | description                                                                  | function parameters             | return value            | version |
-| ---- | ---------------------------------------------------------------------------- | ------------------------------- | ----------------------- | ------- |
+| name | description                                                                  | function parameters             | return value        | version |
+| ---- | ---------------------------------------------------------------------------- | ------------------------------- | ------------------- | ------- |
 | send | Send a request, when the countdown is not over, the call will throw an error | Consistent with useRequest.send | Promise\<Response\> | -       |
 
 ### Event
 
-Inherit all events from [**useRequest**](../learning/use-request#api).
+Inherit all events from [**useRequest**](/tutorial/learning/use-request#api).

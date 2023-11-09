@@ -3,7 +3,7 @@ title: 跨页面/模块更新响应状态
 sidebar_position: 100
 ---
 
-在上一小节[主动失效响应缓存](../learning/invalidate-response-cache)的例子中，当用户点开 todo 列表中的某一项，进入 todo 详情页并对它执行了编辑，此时我们希望上一页中的 todo 列表数据也更新为编辑后的内容，使用`useFetcher`和`invalidateCache`的方式都会重新发起请求，那有没有不需要重新请求的方法呢？
+在上一小节[主动失效响应缓存](/tutorial/learning/invalidate-response-cache)的例子中，当用户点开 todo 列表中的某一项，进入 todo 详情页并对它执行了编辑，此时我们希望上一页中的 todo 列表数据也更新为编辑后的内容，使用`useFetcher`和`invalidateCache`的方式都会重新发起请求，那有没有不需要重新请求的方法呢？
 
 当然有！alova 提供了`updateState`来手动更新任意模块/页面下的已存在的响应状态。值得注意的是，不同的响应状态是以发送请求的 method 实例作为 key 进行保存的，因此在更新状态时也将使用 method 实例来查找对应的响应状态。
 
@@ -14,7 +14,7 @@ sidebar_position: 100
 这个问题常常出现在跨页面更新状态时，因为当页面跳转时我们容易忽略的是，默认情况下上一个页面已经被销毁了，因此，如果你希望跨页面更新状态，这边有两个建议：
 
 1. 将页面组件持久化，以保证被更新的状态还可以被查找到；
-2. 使用 [手动更新缓存（setCache）](../learning/cache-set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
+2. 使用 [手动更新缓存（setCache）](/tutorial/learning/cache-set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
 
 [这里有个`updateState`的 demo](../example/update-state)
 

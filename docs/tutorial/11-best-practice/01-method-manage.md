@@ -5,7 +5,7 @@ sidebar_position: 10
 
 In a project, we may need to use hundreds or thousands of request APIs, so managing these request APIs becomes particularly important.
 
-You may write the request sending code like the code snippet in [quick start](../get-started/quick-start), that is, call useRequest and create method instance with alova instance.
+You may write the request sending code like the code snippet in [quick start](/tutorial/get-started/quick-start), that is, call useRequest and create method instance with alova instance.
 
 ```javascript
 const { loading, data, error } = useRequest(

@@ -29,7 +29,7 @@ use hook
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -214,12 +214,12 @@ const handleStop = () => {
 
 ### Hook 配置
 
-继承[**useRequest**](../learning/use-request#api)所有配置。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有配置。
 
-| 名称    | 描述                                                                      | 类型                            | 默认值                                    | 版本 |
-| ------- | ------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------- | ---- | --- |
-| retry   | 最大重试次数，也可以设置为返回 boolean 值的函数，来动态判断是否继续重试。 | number                          | (error: Error, ...args: any[]) => boolean | 3    | -   |
-| backoff | 避让策略，设置重试延迟时间等                                              | [BackoffPolicy](#backoffpolicy) | -                                         | -    |
+| 名称    | 描述                                                                      | 类型                            | 默认值                                         | 版本 |
+| ------- | ------------------------------------------------------------------------- | ------------------------------- | ---------------------------------------------- | ---- |
+| retry   | 最大重试次数，也可以设置为返回 boolean 值的函数，来动态判断是否继续重试。 | number                          | (error: Error, ...args: any[]) => boolean \| 3 | -    |
+| backoff | 避让策略，设置重试延迟时间等                                              | [BackoffPolicy](#backoffpolicy) | -                                              | -    |
 
 #### BackoffPolicy
 
@@ -232,11 +232,11 @@ const handleStop = () => {
 
 ### 响应式数据
 
-继承[**useRequest**](../learning/use-request#api)所有响应式数据。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有响应式数据。
 
 ### 操作函数
 
-继承[**useRequest**](../learning/use-request#api)所有操作函数。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有操作函数。
 
 | 名称 | 描述                                                         | 函数参数 | 返回值 | 版本 |
 | ---- | ------------------------------------------------------------ | -------- | ------ | ---- |
@@ -244,7 +244,7 @@ const handleStop = () => {
 
 ### 事件
 
-继承[**useRequest**](../learning/use-request#api)所有事件。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有事件。
 
 | 名称    | 描述                                                                                                                                                                                                                                         | 回调参数                                                 | 版本 |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---- |

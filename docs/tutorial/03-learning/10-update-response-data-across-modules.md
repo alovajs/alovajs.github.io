@@ -3,7 +3,7 @@ title: Update response status across pages/modules
 sidebar_position: 100
 ---
 
-In the example of the previous section [Active Invalidation Response Cache](../learning/invalidate-response-cache), when the user clicks on an item in the todo list, enters the todo details page and executes Editing is done. At this time, we hope that the todo list data on the previous page will also be updated to the edited content. Using `useFetcher` and `invalidateCache` will re-initiate the request. Is there a method that does not need to re-request?
+In the example of the previous section [Active Invalidation Response Cache](/tutorial/learning/invalidate-response-cache), when the user clicks on an item in the todo list, enters the todo details page and executes Editing is done. At this time, we hope that the todo list data on the previous page will also be updated to the edited content. Using `useFetcher` and `invalidateCache` will re-initiate the request. Is there a method that does not need to re-request?
 
 Of course there is! alova provides `updateState` to manually update the existing responsive state under any module/page. It is worth noting that the different response states are stored with the method instance that sent the request as the key, so the method instance will also be used to find the corresponding response state when updating the state.
 
@@ -14,7 +14,7 @@ Of course there is! alova provides `updateState` to manually update the existing
 This problem often occurs when the state is updated across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update the state across pages, here are two suggestions :
 
 1. Persist the page components to ensure that the updated state can still be found.
-2. Use [manually update the cache(setCache)](../learning/cache-set-and-query) instead of `updateState`, the principle is that when the request for the previous page exists in the cache, update its cache to ensure that it is created again page, the triggered request can hit the updated cache to achieve the same effect.
+2. Use [manually update the cache(setCache)](/tutorial/learning/cache-set-and-query) instead of `updateState`, the principle is that when the request for the previous page exists in the cache, update its cache to ensure that it is created again page, the triggered request can hit the updated cache to achieve the same effect.
 
 [Here is a demo about `updateState`](../example/update-state)
 

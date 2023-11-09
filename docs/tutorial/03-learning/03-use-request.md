@@ -15,7 +15,7 @@ This time we first understand the first use hook, **useRequest**, which means se
 Let's get the page data for the todo list.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -131,6 +131,60 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <div v-if="todo.loading">Loading...</div>
+  <div
+    v-else-if="todo.error"
+    class="error">
+    {{ todo.error.message }}
+  </div>
+  <template v-else>
+    <div v-for="todoItem in todo.data">
+      <div class="todo-title">{{ todoItem.title }}</div>
+      <div class="todo-time">{{ todoItem.time }}</div>
+    </div>
+  </template>
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alova/vue-options';
+  import { useRequest } from 'alova';
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      const {
+        // loading is the loading status value, when it is loaded, its value is true, and it is automatically updated to false after the end
+        // It is a value of type Ref, you can access it through loading.value, or directly bind to the interface
+        loading,
+
+        // Response data, also Ref value
+        data,
+
+        // request error object, Ref value, there is a value when the request is wrong, otherwise it is undefined
+        error
+
+        // Directly pass in the Method instance to send the request
+      } = useRequest(todoListGetter, {
+        // Before the request responds, the initial value of data
+        initialData: []
+      });
+
+      return {
+        todo: {
+          loading,
+          data,
+          error
+        }
+      };
+    })
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 ## Binding request callback
@@ -180,7 +234,7 @@ Throwing an error in `onSuccess` will trigger `onError`
 
 ## Manually send request
 
-When you need to create a new todo item, you can turn off the default sending request first, switch to manually triggering the request, and receive the `send` function in useRequest to manually send the request, and the `send` function will return a Promise with response data Instance, it will change to resolve state after request response.
+When you need to submit a form such as create a new todo item, you can turn off the default sending request first, switch to manually triggering the request, and receive the `send` function in useRequest to manually send the request, and the `send` function will return a Promise with response data Instance, it will change to resolve state after request response.
 
 ```javascript
 const {
@@ -306,7 +360,7 @@ const {
 In alova, various states such as `data`, `loading`, and `error` returned by `useRequest` allow custom modification, which will become very convenient in some cases.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```javascript
 const { data, loading, error, update } = useRequest(todoListGetter);
@@ -347,7 +401,7 @@ In svelte, the status returned by `useRequest` is of type `writable`.
 const { data, loading, error, update } = useRequest(todoListGetter);
 
 //...
-// change the data value directly
+// update the data value directly
 $data = {};
 // or data.update(d => ({}));
 
@@ -358,12 +412,34 @@ update({
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```javascript
+export default {
+  mixins: mapAlovaHook(function () {
+    todo: useRequest(todoListGetter);
+  }),
+  methods: {
+    handleModifyTodo() {
+      // update the data value directly
+      this.todo.data = {};
+
+      // or use function update
+      this.todo.update({
+        data: {}
+      });
+    }
+  }
+};
+```
+
+</TabItem>
 </Tabs>
 
 :::warning Notes
 
 1. The custom modified value will be overwritten by the internal state management mechanism of `useRequest`, for example, when you modify the `data` value, the `data` value will be assigned the latest response data after requesting again;
-2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](../learning/update-response-data-across-modules)
+2. The state value modified directly will not modify the cached data synchronously. If you need to modify the cached data synchronously, it is recommended to use [updateState](/tutorial/learning/update-response-data-across-modules)
 
 :::
 
@@ -420,13 +496,13 @@ const alovaInst = createAlova({
 
 ### Hook configuration
 
-| Name          | Description                                                                                                   | Type                                                                                                                                  | Default | Version |
-| ------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
-| immediate     | Whether to initiate the request immediately                                                                   | boolean                                                                                                                               | true    | -       |
-| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set | any                                                                                                                                   | -       | -       |
-| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean | (...args: any[]) => boolean                                                                                            | false   | -       |
-| managedStates | Additional managed states, can be updated via updateState                                                     | Record\<string | number | symbol, any\>                                                                                 | -       | -       |
-| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                   | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -       | -       |
+| Name          | Description                                                                                                   | Type                                                                                                                              | Default                                   | Version |
+| ------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------- |
+| immediate     | Whether to initiate the request immediately                                                                   | boolean                                                                                                                           | true                                      | -       |
+| initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set | any                                                                                                                               | -                                         | -       |
+| force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean                                                                                                                           | (...args: any[]) => boolean \| false      | -       |
+| managedStates | Additional managed states, can be updated via updateState                                                     | Record\<string                                                                                                                    | Record\<string \| number \| symbol, any\> | -       |
+| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                   | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -                                         | -       |
 
 #### AlovaFrontMiddlewareContext
 
@@ -434,7 +510,7 @@ const alovaInst = createAlova({
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | method           | The method object of the current request                                                                                                                                                | Method                                                                                                                                                                                                        | -       |
 | cachedResponse   | hit cached data                                                                                                                                                                         | any                                                                                                                                                                                                           | -       |
-| config           | current use hook configuration                                                                                                                                                          | Record\<string, any\>                                                                                                                                                                                           | -       |
+| config           | current use hook configuration                                                                                                                                                          | Record\<string, any\>                                                                                                                                                                                         | -       |
 | sendArgs         | The parameters of the response processing callback, which are passed in by send of use hooks                                                                                            | any[]                                                                                                                                                                                                         | -       |
 | frontStates      | use hook front-end state collection, such as data, loading, error, etc.                                                                                                                 | [FrontRequestState](#frontrequeststate)                                                                                                                                                                       | -       |
 | send             | send request function                                                                                                                                                                   | (...args: any[]) => void                                                                                                                                                                                      | Promise |
@@ -458,13 +534,13 @@ type AlovaGuardNext = (guardNextConfig?: {
 
 The following attribute values will automatically infer the responsive data type corresponding to the UI framework according to `statesHook`, which is `Ref` type in vue3, normal value in react, and `Writable` type in svelte
 
-| Name        | Description                   | Type                   | Version |
-| ----------- | ----------------------------- | ---------------------- | ------- |
-| loading     | request loading status        | boolean                | -       |
-| data        | response data                 | any                    | -       |
-| error       | request error message         | Error | undefined | -       |
-| downloading | download progress information | Object                 | -       |
-| uploading   | upload progress information   | Object                 | -       |
+| Name        | Description                   | Type               | Version |
+| ----------- | ----------------------------- | ------------------ | ------- |
+| loading     | request loading status        | boolean            | -       |
+| data        | response data                 | any                | -       |
+| error       | request error message         | Error \| undefined | -       |
+| downloading | download progress information | Object             | -       |
+| uploading   | upload progress information   | Object             | -       |
 
 #### AlovaSuccessEvent
 
@@ -485,24 +561,24 @@ The following attribute values will automatically infer the responsive data type
 
 #### AlovaCompleteEvent
 
-| Name      | Description                                                                                  | Type                     | Version |
-| --------- | -------------------------------------------------------------------------------------------- | ------------------------ | ------- |
-| method    | The method object of the current request                                                     | Method                   | -       |
-| sendArgs  | The parameters of the response processing callback, which are passed in by send of use hooks | any[]                    | -       |
-| status    | Response status, success on success, error on failure                                        | 'success' | 'error' | -       |
-| data      | response data, value on success                                                              | any                      | -       |
-| fromCache | Whether the response data comes from the cache or not, it has a value when successful        | boolean                  | -       |
-| error     | response error instance, value on failure                                                    | Error                    | -       |
+| Name      | Description                                                                                  | Type                 | Version |
+| --------- | -------------------------------------------------------------------------------------------- | -------------------- | ------- |
+| method    | The method object of the current request                                                     | Method               | -       |
+| sendArgs  | The parameters of the response processing callback, which are passed in by send of use hooks | any[]                | -       |
+| status    | Response status, success on success, error on failure                                        | 'success' \| 'error' | -       |
+| data      | response data, value on success                                                              | any                  | -       |
+| fromCache | Whether the response data comes from the cache or not, it has a value when successful        | boolean              | -       |
+| error     | response error instance, value on failure                                                    | Error                | -       |
 
 ### Responsive data
 
-| Name        | Description                   | Type                   | Version |
-| ----------- | ----------------------------- | ---------------------- | ------- |
-| loading     | request loading status        | boolean                | -       |
-| data        | response data                 | any                    | -       |
-| error       | request error message         | Error | undefined | -       |
-| downloading | download progress information | Object                 | -       |
-| uploading   | upload progress information   | Object                 | -       |
+| Name        | Description                   | Type               | Version |
+| ----------- | ----------------------------- | ------------------ | ------- |
+| loading     | request loading status        | boolean            | -       |
+| data        | response data                 | any                | -       |
+| error       | request error message         | Error \| undefined | -       |
+| downloading | download progress information | Object             | -       |
+| uploading   | upload progress information   | Object             | -       |
 
 ### Action function
 

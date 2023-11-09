@@ -29,7 +29,7 @@ This use hook is more concise and easy to use than [alova's serial request metho
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -129,16 +129,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](../learning/use-request#api).
+Inherit all configurations from [**useRequest**](/tutorial/learning/use-request#api).
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](../learning/use-request#api).
+Inherit all responsive data from [**useRequest**](/tutorial/learning/use-request#api).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](../learning/use-request#api).
+Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#api).
 
 ### Event
 
-Inherit all events from [**useRequest**](../learning/use-request#api).
+Inherit all events from [**useRequest**](/tutorial/learning/use-request#api).

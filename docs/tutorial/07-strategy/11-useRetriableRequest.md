@@ -29,7 +29,7 @@ A use hook that can automatically retry a request failure, you can use it for im
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -214,14 +214,14 @@ const handleStop = () => {
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](../learning/use-request#api).
+Inherit all configurations from [**useRequest**](/tutorial/learning/use-request#api).
 
-| Name    | Description                                                                                                                                  | Type                                                  | Default | Version |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------- | ------- |
-| retry   | The maximum number of retries can also be set as a function returning a boolean value to dynamically determine whether to continue to retry. | number|(error: Error, ...args: any[]) => boolean | 3       | -       |
-| backoff | Backoff policy, set retry delay time, etc.                                                                                                   | [BackoffPolicy](#backoffpolicy)                       | -       | -       |
+| Name    | Description                                                                                                                                  | Type                            | Default                                   | Version |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------- | ------- | --- |
+| retry   | The maximum number of retries can also be set as a function returning a boolean value to dynamically determine whether to continue to retry. | number                          | (error: Error, ...args: any[]) => boolean | 3       | -   |
+| backoff | Backoff policy, set retry delay time, etc.                                                                                                   | [BackoffPolicy](#backoffpolicy) | -                                         | -       |
 
-####BackoffPolicy
+### BackoffPolicy
 
 | Name        | Description                                                                                                                                                                                                                                                                                                                                                       | Type   | Default | Version |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------- | ------- |
@@ -232,11 +232,11 @@ Inherit all configurations from [**useRequest**](../learning/use-request#api).
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](../learning/use-request#api).
+Inherit all responsive data from [**useRequest**](/tutorial/learning/use-request#api).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](../learning/use-request#api).
+Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#api).
 
 | name | description                                                                                                        | function parameters | return value | version |
 | ---- | ------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ | ------- |
@@ -244,7 +244,7 @@ Inherit all action functions of [**useRequest**](../learning/use-request#api).
 
 ### Event
 
-Inherit all events from [**useRequest**](../learning/use-request#api).
+Inherit all events from [**useRequest**](/tutorial/learning/use-request#api).
 
 | Name    | Description                                                                                                                                                                                                                                                                                                                                                                                                          | Callback Parameters                                              | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------- |

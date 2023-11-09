@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip
 
-In [Quick Start](../get-started/quick-start), we initially used the alova example. If you have not read [Quick Start](../get-started/quick-start), it is recommended that you read it before continuing Read this section.
+In [Quick Start](/tutorial/get-started/quick-start), we initially used the alova example. If you have not read [Quick Start](/tutorial/get-started/quick-start), it is recommended that you read it before continuing Read this section.
 
 :::
 
@@ -21,7 +21,7 @@ In the following getting started guide, we will take todos as an example, and ex
 An alova instance is used at the beginning, all requests need to start from it. It is written like `axios`, the following is the simplest way to create an alova instance.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```javascript
 import { createAlova } from 'alova';
@@ -61,6 +61,21 @@ import SvelteHook from 'alova/svelte';
 const alovaInstance = createAlova({
   baseURL: 'https://api.alovajs.org',
   statesHook: SvelteHook,
+  requestAdapter: GlobalFetch()
+});
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```javascript
+import { createAlova } from 'alova';
+import GlobalFetch from 'alova/GlobalFetch';
+import { VueOptionsHook } from '@alova/vue-options'; // npm install @alova/vue-options
+
+const alovaInstance = createAlova({
+  baseURL: 'https://api.alovajs.org',
+  statesHook: VueOptionsHook,
   requestAdapter: GlobalFetch()
 });
 ```
@@ -186,5 +201,5 @@ const alovaInstance = createAlova({
 
 In an alova instance, the following configuration can also be set:
 
-1. [Cache mode of response data](../learning/response-cache), we will elaborate in the following chapters;
+1. [Cache mode of response data](/tutorial/learning/response-cache), we will elaborate in the following chapters;
 2. [Custom storage adapter](../advanced/custom-storage-adapter), which will be used for persistent response cache, which will be explained in the advanced chapter;

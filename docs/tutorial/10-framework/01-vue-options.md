@@ -187,7 +187,7 @@ To add response data type in typescript, please read [alova documentation typesc
 </TabItem>
 </Tabs>
 
-## limited
+## Limitation
 
 1. [Manage extra states](/tutorial/next-step/manage-extra-states) is not supported yet.
 2. Currently, only alova’s 3 core useHooks of `useRequest/useWatcher/useFetcher` are supported, as well as the wrapped useHook based on the core useHook in your own project. The extended useHook in [@alova/scene](https://github.com/alova/scene) is not supported yet.

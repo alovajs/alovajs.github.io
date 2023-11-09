@@ -3,6 +3,10 @@ title: 缓存模式
 sidebar_position: 60
 ---
 
+import MemoryCache from '@site/example-links/MemoryCache';
+import StoragePlaceholder from '@site/example-links/StoragePlaceholder';
+import StorageRestore from '@site/example-links/StorageRestore';
+
 缓存模式可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。`alova`分别提供了 3 种缓存模式来满足不同的缓存场景，分别为内存模式、缓存占位模式、恢复模式。缓存模式可在全局或请求级等不同粒度下设置。全局设置时，所有由相同 alova 实例创建的`Method`实例都会继承该设置。
 
 :::info 注意
@@ -12,12 +16,6 @@ sidebar_position: 60
 :::
 
 ## 内存模式（默认）
-
-:::info 内存缓存模式示例
-
-[点此查看](../example/memory-cache)。
-
-:::
 
 内存模式将缓存放在内存中，这意味着刷新页面缓存即失效，是最常用的缓存模式。
 
@@ -54,13 +52,11 @@ alovaInstance.GET('/todo/list', {
 
 > 如果你需要全局统一设置缓存模式，见本节底部的 [全局设置缓存模式](#全局设置缓存模式)
 
+### 内存缓存模式示例
+
+<MemoryCache></MemoryCache>
+
 ## 缓存占位模式
-
-:::info 缓存占位模式示例
-
-[点此查看](../example/storage-placeholder)。
-
-:::
 
 这个缓存模式用于，当你不希望应用每次进入时都显示 Loading 图标，而希望使用旧数据替代时，你可以使用缓存占位模式，它的体验比 Loading 更好。
 
@@ -84,13 +80,11 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 > 如果你需要全局统一设置缓存模式，见本节底部的 [全局设置缓存模式](#全局设置缓存模式)
 
+### 缓存占位模式示例
+
+<StoragePlaceholder></StoragePlaceholder>
+
 ## 恢复模式
-
-:::info 恢复模式示例
-
-[点此查看](../example/storage-restore)。
-
-:::
 
 此模式下，服务端缓存数据将持久化，如果过期时间未到即使刷新页面缓存也不会失效，它一般用于一些需要服务端管理，但基本不变的数据，如每年的节假日具体日期有所不同，但不会再变动，这种场景下我们只需设置缓存过期时间为今年的最后一刻即可。
 
@@ -117,6 +111,10 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 :::
 
 > 如果你需要全局统一设置缓存模式，见本节底部的 [全局设置缓存模式](#全局设置缓存模式)
+
+### 恢复模式示例
+
+<StorageRestore></StorageRestore>
 
 ### 恢复模式下数据有变怎么办？
 
@@ -197,7 +195,7 @@ localCache: 60 * 10 * 1000;
 
 ```javascript
 localCache: {
-	expire: 60 * 10 * 1000,
+  expire: 60 * 10 * 1000,
 }
 ```
 

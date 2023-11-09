@@ -20,7 +20,7 @@ import TabItem from '@theme/TabItem';
 下面我们来实现修改某个 todo 数据，并重新拉取最新的 todo 列表数据，让视图更新。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -189,6 +189,72 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <!-- 渲染统一的拉取状态。 -->
+  <div v-if="fetcher.fetching">{{ 正在后台拉取数据... }}</div>
+
+  <!-- ... -->
+  <button @click="handleSubmit">修改todo项</button>
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alova/vue-options';
+  import { useFetcher } from 'alova';
+
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      // 注意：这边设置了name属性，用于在无法直接指定Method实例时，过滤出需要的Method实例
+      // 详见后续的《Method实例匹配器》章节
+      name: 'todoList',
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      const {
+        // fetching属性与loading相同，发送拉取请求时为true，请求结束后为false
+        fetching,
+        error,
+        onSuccess,
+        onError,
+        onComplete,
+
+        // 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
+        fetch
+      } = (fetcherStates = useFetcher());
+      return {
+        fetcher: fetcherStates
+      };
+    }),
+    methods: {
+      // 在事件中触发数据拉取
+      handleSubmit() {
+        // 开始拉取更新后的数据
+        // 情况1：当你明确知道拉取todoList第一页数据时，传入一个Method实例
+        this.fetcher$fetch(getTodoList(1));
+
+        // 情况2：当你只知道拉取todoList最后一次请求的数据时，通过Method实例匹配器来筛选
+        this.fetcher$fetch({
+          name: 'todoList',
+          filter: (method, index, ary) => {
+            // 返回true来指定需要拉取的Method实例
+            return index === ary.length - 1;
+          }
+        });
+      }
+    }
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 > 更多`Method`实例匹配器的使用方法见 [Method 实例匹配器](../next-step/method-instance-matcher)
@@ -198,7 +264,7 @@ const App = () => {
 以下实现 todo 列表分页场景下，下一页数据的预加载功能。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -300,6 +366,53 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <!-- ... -->
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alova/vue-options';
+  import { useFetcher, useWatcher } from 'alova';
+
+  // method实例创建函数
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      return {
+        fetcher: useFetcher(),
+        paging: useWatcher(() => getTodoList(this.currentPage), ['currentPage'], {
+          immediate: true
+        })
+      };
+    }),
+    data() {
+      return {
+        currentPage: 1
+      };
+    },
+    mounted() {
+      // 当前页请求成功时预拉取下一页的数据
+      // 实现当翻页到下一页时不需要等待请求
+      this.paging$onSuccess(() => {
+        this.fetcher$fetch(getTodoList(this.currentPage + 1));
+      });
+    }
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 :::warning 注意事项
@@ -381,47 +494,47 @@ fetch(getTodoList(10), true);
 
 ### Hook 配置
 
-| 名称       | 描述                                                    | 类型                                                                                                                                                          | 默认值                      | 版本  |
-| ---------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ----- | --- |
-| force      | 是否强制请求，可设置为函数动态返回 boolean 值           | boolean                                                                                                                                                       | (...args: any[]) => boolean | false | -   |
-| middleware | 中间件函数，[了解 alova 中间件](../advanced/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -                           | -     |
+| 名称       | 描述                                                    | 类型                                                                                                                                                                 | 默认值                               | 版本 |
+| ---------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---- |
+| force      | 是否强制请求，可设置为函数动态返回 boolean 值           | boolean                                                                                                                                                              | (...args: any[]) => boolean \| false | -    |
+| middleware | 中间件函数，[了解 alova 中间件](../advanced/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                    | -    |
 
 #### AlovaFetcherMiddlewareContext
 
-| 名称             | 描述                                                                                                     | 类型                                                                                                                                                                                                                                                         | 版本    |
-| ---------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| method           | 当前请求的 method 对象                                                                                   | Method                                                                                                                                                                                                                                                       | -       |
-| cachedResponse   | 命中的缓存数据                                                                                           | any                                                                                                                                                                                                                                                          | -       |
-| config           | 当前的 use hook 配置                                                                                     | Record\<string, any\>                                                                                                                                                                                                                                        | -       |
-| fetchArgs        | 响应处理回调的参数，该参数由 useFetcher 的 fetch 传入                                                    | any[]                                                                                                                                                                                                                                                        | -       |
-| fetchStates      | use hook 预加载状态集合，如 fetching、error 等                                                           | [FetchRequestState](#fetchrequeststate)                                                                                                                                                                                                                      | -       |
-| fetch            | 数据预加载函数                                                                                           | (method: Method, ...args: any[]) => void                                                                                                                                                                                                                     | Promise |
-| abort            | 中断函数                                                                                                 | () => void                                                                                                                                                                                                                                                   | -       |
-| decorateSuccess  | 装饰成功回调函数                                                                                         | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](../learning/use-request/#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](../learning/use-request/#alovasuccessevent), <br/>index: number, <br/>length: number<br/>) => void) => void     | -       |
-| decorateError    | 装饰失败回调函数                                                                                         | (decorator: (<br/>handler: (event: [AlovaErrorEvent](../learning/use-request/#alovaerrorevent)) => void, <br/>event: [AlovaErrorEvent](../learning/use-request/#alovaerrorevent), <br/>index: number, <br/>length: number<br/>) => void) => void             | -       |
-| decorateComplete | 装饰完成回调函数                                                                                         | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent), <br/>index: number, <br/>length: number<br/>) => void) => void | -       |
-| update           | 更新当前 use hook 预加载状态的函数，在 react 中较有用                                                    | (newFrontStates: [FetchRequestState](#fetchrequeststate)) => void;                                                                                                                                                                                           | -       |
-| controlFetching  | 调用后将自定义控制 fetching 的状态，内部不再触发 fetching 状态的变更，传入 control 为 false 时将取消控制 | (control?: boolean) => void                                                                                                                                                                                                                                  | -       |
+| 名称             | 描述                                                                                                     | 类型                                                                                                                                                                                                                                                                       | 版本    |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| method           | 当前请求的 method 对象                                                                                   | Method                                                                                                                                                                                                                                                                     | -       |
+| cachedResponse   | 命中的缓存数据                                                                                           | any                                                                                                                                                                                                                                                                        | -       |
+| config           | 当前的 use hook 配置                                                                                     | Record\<string, any\>                                                                                                                                                                                                                                                      | -       |
+| fetchArgs        | 响应处理回调的参数，该参数由 useFetcher 的 fetch 传入                                                    | any[]                                                                                                                                                                                                                                                                      | -       |
+| fetchStates      | use hook 预加载状态集合，如 fetching、error 等                                                           | [FetchRequestState](#fetchrequeststate)                                                                                                                                                                                                                                    | -       |
+| fetch            | 数据预加载函数                                                                                           | (method: Method, ...args: any[]) => void                                                                                                                                                                                                                                   | Promise |
+| abort            | 中断函数                                                                                                 | () => void                                                                                                                                                                                                                                                                 | -       |
+| decorateSuccess  | 装饰成功回调函数                                                                                         | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent), <br/>index: number, <br/>length: number<br/>) => void) => void     | -       |
+| decorateError    | 装饰失败回调函数                                                                                         | (decorator: (<br/>handler: (event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent)) => void, <br/>event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent), <br/>index: number, <br/>length: number<br/>) => void) => void             | -       |
+| decorateComplete | 装饰完成回调函数                                                                                         | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent), <br/>index: number, <br/>length: number<br/>) => void) => void | -       |
+| update           | 更新当前 use hook 预加载状态的函数，在 react 中较有用                                                    | (newFrontStates: [FetchRequestState](#fetchrequeststate)) => void;                                                                                                                                                                                                         | -       |
+| controlFetching  | 调用后将自定义控制 fetching 的状态，内部不再触发 fetching 状态的变更，传入 control 为 false 时将取消控制 | (control?: boolean) => void                                                                                                                                                                                                                                                | -       |
 
 #### FetchRequestState
 
 以下属性值将会根据`statesHook`自动推断出对应 UI 框架的响应式数据类型，在 vue3 中为`Ref`类型，在 react 中为普通值，在 svelte 中为`Writable`类型
 
-| 名称        | 描述           | 类型    | 版本      |
-| ----------- | -------------- | ------- | --------- | --- |
-| fetching    | 预加载请求状态 | boolean | -         |
-| error       | 请求错误信息   | Error   | undefined | -   |
-| downloading | 下载进度信息   | Object  | -         |
-| uploading   | 上传进度信息   | Object  | -         |
+| 名称        | 描述           | 类型               | 版本 |
+| ----------- | -------------- | ------------------ | ---- |
+| fetching    | 预加载请求状态 | boolean            | -    |
+| error       | 请求错误信息   | Error \| undefined | -    |
+| downloading | 下载进度信息   | Object             | -    |
+| uploading   | 上传进度信息   | Object             | -    |
 
 ### 响应式数据
 
-| 名称        | 描述           | 类型    | 版本      |
-| ----------- | -------------- | ------- | --------- | --- |
-| fetching    | 预加载请求状态 | boolean | -         |
-| error       | 请求错误信息   | Error   | undefined | -   |
-| downloading | 下载进度信息   | Object  | -         |
-| uploading   | 上传进度信息   | Object  | -         |
+| 名称        | 描述           | 类型               | 版本 |
+| ----------- | -------------- | ------------------ | ---- |
+| fetching    | 预加载请求状态 | boolean            | -    |
+| error       | 请求错误信息   | Error \| undefined | -    |
+| downloading | 下载进度信息   | Object             | -    |
+| uploading   | 上传进度信息   | Object             | -    |
 
 ### 操作函数
 
@@ -433,8 +546,8 @@ fetch(getTodoList(10), true);
 
 ### 事件
 
-| 名称       | 描述             | 回调参数                                                                                                                                                         | 版本 |
-| ---------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovasuccessevent)   | -    |
-| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovaerrorevent)       | -    |
-| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent) | -    |
+| 名称       | 描述             | 回调参数                                                                                                                                                                       | 版本 |
+| ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---- |
+| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovasuccessevent)   | -    |
+| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovaerrorevent)       | -    |
+| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent) | -    |

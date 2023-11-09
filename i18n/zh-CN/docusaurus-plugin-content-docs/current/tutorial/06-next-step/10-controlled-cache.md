@@ -52,5 +52,5 @@ const getFile = fileName =>
 
 ## 注意事项
 
-1. 你还可以配合 [transformData 的特殊用法](../learning/transform-response-data) 来实现自定义缓存的存储任务。
+1. 你还可以配合 [transformData 的特殊用法](/tutorial/learning/transform-response-data) 来实现自定义缓存的存储任务。
 2. 在 usehooks 中使用时，在`localCache`函数中抛出错误将会触发`onError`，使用 method 实例直接发起请求时，将会返回一个 reject 状态的 promise 实例。

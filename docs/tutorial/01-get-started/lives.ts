@@ -1,26 +1,31 @@
 export const quickStartVue = `<template>
   <div v-if="loading">Loading...</div>
-  <div v-else-if="error">{{ error.message }}</div>
+  <div v-else-if="error">{{ error. message }}</div>
   <span v-else>responseData: {{ data }}</span>
 </template>
 
 <script setup>
-import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import VueHook from 'alova/vue';
-// 1. 创建alova实例
-const alovaInstance = createAlova({
-  // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-  statesHook: VueHook,
-  // 请求适配器，推荐使用fetch请求适配器
-  requestAdapter: GlobalFetch(),
-  // 全局的响应拦截器
-  responded: response => response.json()
-});
-// 2. 使用alova实例创建method并传给useRequest即可发送请求
-const { loading, data, error } = useRequest(
-  alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
-);
+  import { createAlova, useRequest } from 'alova';
+  import GlobalFetch from 'alova/GlobalFetch';
+  import VueHook from 'alova/vue';
+
+  // 1. Create an alova instance
+  const alovaInstance = createAlova({
+    // VueHook is used to create ref status, including request status loading, response data data, request error object error, etc.
+    statesHook: VueHook,
+
+    // request adapter, it is recommended to use the fetch request adapter
+    requestAdapter: GlobalFetch(),
+
+    // adapter GlobalFetch will return a Response instance
+    // you can set a global response interception to return actual json data
+    responded: response => response.json()
+  });
+
+  // 2. Use the alova instance to create a method and pass it to useRequest to send the request
+  const { loading, data, error } = useRequest(
+    alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+  );
 </script>`;
 
 export const quickStartVueOptions = `<template>
@@ -35,20 +40,23 @@ import GlobalFetch from 'alova/GlobalFetch';
 import VueHook from 'alova/vue';
 import { mapAlovaHook } from '@alova/vue-options';
 
-// 1. 创建alova实例
+// 1. Create an alova instance
 const alovaInstance = createAlova({
-  // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
+  // VueHook is used to create ref status, including request status loading, response data data, request error object error, etc.
   statesHook: VueHook,
-  // 请求适配器，推荐使用fetch请求适配器
+
+  // request adapter, it is recommended to use the fetch request adapter
   requestAdapter: GlobalFetch(),
-  // 全局的响应拦截器
+
+  // adapter GlobalFetch will return a Response instance
+  // you can set a global response interception to return actual json data
   responded: response => response.json()
 });
 
 export default {
   mixins: mapAlovaHook(function () {
     return {
-      // 2. 使用alova实例创建method并传给useRequest即可发送请求
+      // 2. Use the alova instance to create a method and pass it to useRequest to send the request
       todo: useRequest(
         alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
       )
@@ -64,20 +72,19 @@ export const quickStartReact = `import { createAlova, useRequest } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
 import ReactHook from 'alova/react';
 
-// 1. 创建alova实例
+// 1. Create an alova instance
 const alovaInstance = createAlova({
-  // ReactHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
+  // ReactHook is used to create ref status, including request status loading, response data data, request error object error, etc.
   statesHook: ReactHook,
 
-  // 请求适配器，推荐使用fetch请求适配器
+  // request adapter, it is recommended to use the fetch request adapter
   requestAdapter: GlobalFetch(),
-
-  // 全局的响应拦截器
+  // you can set a global response interception to return actual json data
   responded: response => response.json()
 });
 
 const App = () => {
-  // 2. 使用alova实例创建method并传给useRequest即可发送请求
+  // 2. Use the alova instance to create a method and pass it to useRequest to send the request
   const { loading, data, error } = useRequest(
     alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
   );
@@ -88,7 +95,9 @@ const App = () => {
     return <div>{error.message}</div>;
   }
   return (
-    <span>responseData: {JSON.stringify(data)}</span>
+    <>
+      <span>responseData: {JSON.stringify(data)}</span>
+    </>
   );
 };
 export default App;`;

@@ -30,7 +30,7 @@ use hook
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -73,7 +73,7 @@ yarn add @alova/scene-svelte
 展示表单 hook 的基本使用。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -476,18 +476,18 @@ const { send: searchData } = useForm(queryCity, {
 
 ### Hook 配置
 
-继承[**useRequest**](../learning/use-request#api)所有配置。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有配置。
 
-| 名称                | 描述                                                                                                     | 类型                                                  | 默认值 | 版本 |
-| ------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------ | ---- |
-| initialForm         | 初始表单数据                                                                                             | any                                                   | -      | -    |
-| id                  | form id，相同 id 的 data 数据是同一份引用，可以用于在多页表单时共用同一份表单数据。单页表单不需要指定 id | string|number                                    | -      | -    |
-| store               | 是否持久化保存数据，设置为 true 后将实时持久化未提交的数据                                               | boolean| [StoreDetailConfig](#storedetailconfig) | false  | -    |
-| resetAfterSubmiting | 提交后重置数据                                                                                           | boolean                                               | false  | -    |
+| 名称                | 描述                                                                                                     | 类型                                               | 默认值 | 版本 |
+| ------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------ | ---- |
+| initialForm         | 初始表单数据                                                                                             | any                                                | -      | -    |
+| id                  | form id，相同 id 的 data 数据是同一份引用，可以用于在多页表单时共用同一份表单数据。单页表单不需要指定 id | string \| number                                   | -      | -    |
+| store               | 是否持久化保存数据，设置为 true 后将实时持久化未提交的数据                                               | boolean \| [StoreDetailConfig](#storedetailconfig) | false  | -    |
+| resetAfterSubmiting | 提交后重置数据                                                                                           | boolean                                            | false  | -    |
 
 ### 响应式数据
 
-继承[**useRequest**](../learning/use-request#api)所有响应式数据。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有响应式数据。
 
 | 名称 | 描述                          | 类型 | 版本 |
 | ---- | ----------------------------- | ---- | ---- |
@@ -498,27 +498,27 @@ const { send: searchData } = useForm(queryCity, {
 | 名称        | 描述                                                                                                                                                            | 类型                                                          | 默认值   | 版本 |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------- | ---- |
 | enable      | 是否启用持久化数据                                                                                                                                              | boolean                                                       | required | -    |
-| serializers | 自定义序列化器的集合，内置的序列化器：<br/>1. date 序列化器用于转换日期<br/>2. regexp 序列化器用于转化正则表达式<br/>可以通过设置同名序列化器来覆盖内置序列化器 | Record\<string|number, [DataSerializer](#dataserializer)\> | -        | -    |
+| serializers | 自定义序列化器的集合，内置的序列化器：<br/>1. date 序列化器用于转换日期<br/>2. regexp 序列化器用于转化正则表达式<br/>可以通过设置同名序列化器来覆盖内置序列化器 | Record\<string \| number, [DataSerializer](#dataserializer)\> | -        | -    |
 
 #### DataSerializer
 
-| 名称     | 描述                                                                                                  | 类型                                        | 默认值   | 版本 |
-| -------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------- | ---- |
-| forward  | 序列化函数，forward 中序列化时需判断是否为指定的数据，并返回转换后的数据，否则返回 undefined 或不返回 | (data: any) => any|undefined|void | required | -    |
-| backward | 反序列化函数，直接反序列化数据                                                                        | (data: any) => any|undefined|void | required | -    |
+| 名称     | 描述                                                                                                  | 类型                                    | 默认值   | 版本 |
+| -------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- | ---- |
+| forward  | 序列化函数，forward 中序列化时需判断是否为指定的数据，并返回转换后的数据，否则返回 undefined 或不返回 | (data: any) => any \| undefined \| void | required | -    |
+| backward | 反序列化函数，直接反序列化数据                                                                        | (data: any) => any \| undefined \| void | required | -    |
 
 ### 操作函数
 
-继承[**useRequest**](../learning/use-request#api)所有操作函数。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有操作函数。
 
-| 名称       | 描述                                       | 函数参数                                                                       | 返回值 | 版本 |
-| ---------- | ------------------------------------------ | ------------------------------------------------------------------------------ | ------ | ---- |
-| updateForm | 更新一项或多项表单数据                     | newForm: Partial\<F\> | (oldForm: F) => F)<br/> F 为`initialForm`类型 | -      | -    |
-| reset      | 重置为初始化数据，如果有持久化数据也会清空 | -                                                                              | -      | -    |
+| 名称       | 描述                                       | 函数参数                                                               | 返回值 | 版本 |
+| ---------- | ------------------------------------------ | ---------------------------------------------------------------------- | ------ | ---- |
+| updateForm | 更新一项或多项表单数据                     | newForm: Partial\<F\> \| (oldForm: F) => F)<br/> F 为`initialForm`类型 | -      | -    |
+| reset      | 重置为初始化数据，如果有持久化数据也会清空 | -                                                                      | -      | -    |
 
 ### 事件
 
-继承[**useRequest**](../learning/use-request#api)所有事件。
+继承[**useRequest**](/tutorial/learning/use-request#api)所有事件。
 
 | 名称      | 描述                 | 回调参数 | 版本 |
 | --------- | -------------------- | -------- | ---- |

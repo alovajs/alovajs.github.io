@@ -5,8 +5,8 @@ sidebar_position: 50
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import { Sandpack } from "@codesandbox/sandpack-react";
-import { quickStartVue, quickStartReact, quickStartSvelte } from './lives';
+import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import { quickStartVue, quickStartReact, quickStartVueOptions, quickStartStaticVue, quickStartStaticReact, quickStartStaticVueOptions } from './lives';
 
 :::tip 示例提示
 
@@ -47,49 +47,54 @@ alova 结合 UI 框架，让请求变得更简单，你可以使用 alova 提供
 首先创建一个 alova 实例，并使用这个实例创建对应的 method，把它传给 useRequest 即可。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
-<Sandpack template="vue" customSetup={{
-  dependencies: {
-    alova: 'latest'
-  }
-}} files={{
-  '/src/App.vue': quickStartVue['zh-CN']
-}} />
+<EmbedSandpack template="vue" mainFile={quickStartVue} editorHeight={600} defaultAlova={false} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-<Sandpack template="react" customSetup={{
-  dependencies: {
-    alova: 'latest'
-  }
-}} files={{
-  '/App.js': quickStartReact['zh-CN']
-}} />
+<EmbedSandpack template="react" mainFile={quickStartReact} editorHeight={600} defaultAlova={false} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
 
-<Sandpack template="svelte" customSetup={{
-  dependencies: {
-    alova: '^2.13.1'
-  }
-}} files={{
-'/App.svelte': `<script>
-import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-// import hook from 'alova/svelte';
-import { onDestroy } from'svelte';
-import { readable } from 'svelte/store';
+```html
+<script>
+  import { createAlova, useRequest } from 'alova';
+  import GlobalFetch from 'alova/GlobalFetch';
+  import SvelteHook from 'alova/svelte';
 
-onDestroy(() => {
-alert(123);
-})
+  // 1. 创建alova实例
+  const alovaInstance = createAlova({
+    // SvelteHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
+    statesHook: SvelteHook,
+
+    // 请求适配器，推荐使用fetch请求适配器
+    requestAdapter: GlobalFetch(),
+
+    // GlobalFetch适配器将会返回Response实例，
+    // 你可以设置一个全局的响应拦截器返回json数据
+    responded: response => response.json()
+  });
+
+  // 2. 使用alova实例创建method并传给useRequest即可发送请求
+  const { loading, data, error } = useRequest(alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1'));
 </script>
 
-  <div>abc</div>`
-}} />
+{#if $loading}
+<div>Loading...</div>
+{:else if $error}
+<div>{ $error.message }</div>
+{:else}
+<span>responseData: { data }</span>
+{/if}
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartVueOptions} editorHeight={600} defaultAlova={false} />
 
 </TabItem>
 </Tabs>
@@ -133,59 +138,14 @@ const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1')
 除了使用 esModule 的方式安装 alova 外，你还可以使用`<script>`标签的方式使用 alova。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
-    <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- vuehook依赖 vue，因此需先引入 vue -->
-    <script src="https://unpkg.com/alova/dist/hooks/vuehook.umd.min.js"></script>
-    <script>
-      const alovaInstance = window.alova.createAlova({
-        baseURL: 'https://api.alovajs.org',
-        statesHook: window.VueHook,
-        requestAdapter: window.GlobalFetch()
-      });
-      // ...
-    </script>
-  </head>
-  <body>
-    <!-- ... -->
-  </body>
-</html>
-```
+<EmbedSandpack template="static" mainFile={quickStartStaticVue} editorHeight={700} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
-    <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- reacthook依赖 react，因此需先引入 react 和 react-dom -->
-    <script src="https://unpkg.com/alova/dist/hooks/reacthook.umd.min.js"></script>
-    <script>
-      const alovaInstance = window.alova.createAlova({
-        baseURL: 'https://api.alovajs.org',
-        statesHook: window.ReactHook,
-        requestAdapter: window.GlobalFetch()
-      });
-      // ...
-    </script>
-  </head>
-  <body>
-    <!-- ... -->
-  </body>
-</html>
-```
+<EmbedSandpack template="static" mainFile={quickStartStaticReact} editorHeight={700} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
@@ -195,6 +155,11 @@ const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1')
 svelte 依赖于编译工具，不能通过 CDN 直接使用，详情见 [svelte.dev](https://svelte.dev/)
 
 :::
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+<EmbedSandpack template="static" deps="vue-options" mainFile={quickStartStaticVueOptions} editorHeight={700} />
 
 </TabItem>
 </Tabs>

@@ -76,6 +76,36 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <div>File size: {{ file.downloading.total }}B</div>
+  <div>Downloaded: {{ file.downloading.loaded }}B</div>
+  <div>Progress: {{ file.downloading.loaded / file.downloading.total * 100 }}%</div>
+</template>
+
+<script>
+  import { useRequest } from 'alova';
+  import { mapAlovaHook } from '@alova/vue-options';
+
+  const downloadGetter = alovaInstance.Get('/todo/downloadfile', {
+    // highlight-start
+    // enable download progress
+    enableDownload: true
+    // highlight-end
+  });
+  export default {
+    mixins: mapAlovaHook(function () {
+      return {
+        file: useRequest(downloadGetter)
+      };
+    })
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 ## Upload progress
@@ -93,13 +123,13 @@ The upload progress is used in the same way as the download progress. First, ena
 </template>
 
 <script setup>
-  const downloadGetter = alovaInstance.Get('/todo/uploadfile', {
+  const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
     // highlight-start
     // enable upload progress
     enableUpload: true
     // highlight-end
   });
-  const { uploading } = useRequest(downloadGetter);
+  const { uploading } = useRequest(uploadGetter);
 </script>
 ```
 
@@ -107,7 +137,7 @@ The upload progress is used in the same way as the download progress. First, ena
 <TabItem label="react" value="2">
 
 ```jsx
-const downloadGetter = alovaInstance.Get('/todo/uploadfile', {
+const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
   // highlight-start
   // enable upload progress
   enableUpload: true
@@ -115,7 +145,7 @@ const downloadGetter = alovaInstance.Get('/todo/uploadfile', {
 });
 
 const App = () => {
-  const { uploading } = useRequest(downloadGetter);
+  const { uploading } = useRequest(uploadGetter);
   return (
     <>
       <div>File size: {uploading.total}B</div>
@@ -131,18 +161,46 @@ const App = () => {
 
 ```html
 <script>
-  const downloadGetter = alovaInstance.Get('/todo/uploadfile', {
+  const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
     // highlight-start
     // enable upload progress
     enableUpload: true
     // highlight-end
   });
-  const { uploading } = useRequest(downloadGetter);
+  const { uploading } = useRequest(uploadGetter);
 </script>
 
 <div>File size: {$uploading.total}B</div>
 <div>Uploaded: {$uploading.loaded}B</div>
 <div>Progress: {$uploading.loaded / $uploading.total * 100}%</div>
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <div>File size: {{ file.uploading.total }}B</div>
+  <div>uploaded: {{ file.uploading.loaded }}B</div>
+  <div>Progress: {{ file.uploading.loaded / uploading.total * 100 }}%</div>
+</template>
+
+<script>
+  const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
+    // highlight-start
+    // enable upload progress
+    enableUpload: true
+    // highlight-end
+  });
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      return {
+        file: useRequest(uploadGetter)
+      };
+    })
+  };
+</script>
 ```
 
 </TabItem>

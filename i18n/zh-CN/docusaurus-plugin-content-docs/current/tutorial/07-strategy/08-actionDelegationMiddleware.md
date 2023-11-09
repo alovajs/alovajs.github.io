@@ -30,7 +30,7 @@ import TabItem from '@theme/TabItem';
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -178,11 +178,11 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useRequest
 
-| 名称   | 描述                                                 | 函数参数 | 返回值 | 版本 |
-| ------ | ---------------------------------------------------- | -------- | ------ | ---- |
-| send   | 与 [useRequset](../learning/use-request).send 相同   |          |        | -    |
-| abort  | 与 [useRequset](../learning/use-request).abort 相同  |          |        | -    |
-| update | 与 [useRequset](../learning/use-request).update 相同 |          |        | -    |
+| 名称   | 描述                                                        | 函数参数 | 返回值 | 版本 |
+| ------ | ----------------------------------------------------------- | -------- | ------ | ---- |
+| send   | 与 [useRequset](/tutorial/learning/use-request).send 相同   |          |        | -    |
+| abort  | 与 [useRequset](/tutorial/learning/use-request).abort 相同  |          |        | -    |
+| update | 与 [useRequset](/tutorial/learning/use-request).update 相同 |          |        | -    |
 
 ### useWatcher
 
@@ -190,23 +190,23 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useFetcher
 
-| 名称   | 描述                                                 | 函数参数 | 返回值 | 版本 |
-| ------ | ---------------------------------------------------- | -------- | ------ | ---- |
-| fetch  | 与 [useFetcher](../learning/use-fetcher).fetch 相同  |          |        | -    |
-| abort  | 与 [useFetcher](../learning/use-fetcher).abort 相同  |          |        | -    |
-| update | 与 [useFetcher](../learning/use-fetcher).update 相同 |          |        | -    |
+| 名称   | 描述                                                        | 函数参数 | 返回值 | 版本 |
+| ------ | ----------------------------------------------------------- | -------- | ------ | ---- |
+| fetch  | 与 [useFetcher](/tutorial/learning/use-fetcher).fetch 相同  |          |        | -    |
+| abort  | 与 [useFetcher](/tutorial/learning/use-fetcher).abort 相同  |          |        | -    |
+| update | 与 [useFetcher](/tutorial/learning/use-fetcher).update 相同 |          |        | -    |
 
 ### usePagination
 
-| 名称     | 描述                                                        | 函数参数                                                                                               | 返回值             | 版本 |
-| -------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------ | ---- |
-| refresh  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| insert   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| remove   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| replace  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| reload   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| update   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                                        |                    | -    |
-| getState | 按名称获取分页相关数据                                      | stateKey: 'page' | 'pageSize' | 'data' | 'pageCount' | 'total' | 'isLastPage' | 对应 statekey 的值 | -    |
+| 名称     | 描述                                                        | 函数参数                                                                           | 返回值             | 版本 |
+| -------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------ | ---- |
+| refresh  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
+| insert   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
+| remove   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
+| replace  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
+| reload   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
+| update   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
+| getState | 按名称获取分页相关数据                                      | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | 对应 statekey 的值 | -    |
 
 ### useSQRequest
 
@@ -214,13 +214,13 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useForm
 
-| 名称       | 描述                                                 | 函数参数 | 返回值 | 版本 |
-| ---------- | ---------------------------------------------------- | -------- | ------ | ---- |
-| updateForm | 详见[useForm 操作函数](../strategy/useForm#api)      |          |        | -    |
-| reset      | 详见[useForm 操作函数](../strategy/useForm#api)      |          |        | -    |
-| send       | 与 [useRequset](../learning/use-request).send 相同   |          |        | -    |
-| abort      | 与 [useRequset](../learning/use-request).abort 相同  |          |        | -    |
-| update     | 与 [useRequset](../learning/use-request).update 相同 |          |        | -    |
+| 名称       | 描述                                                        | 函数参数 | 返回值 | 版本 |
+| ---------- | ----------------------------------------------------------- | -------- | ------ | ---- |
+| updateForm | 详见[useForm 操作函数](../strategy/useForm#api)             |          |        | -    |
+| reset      | 详见[useForm 操作函数](../strategy/useForm#api)             |          |        | -    |
+| send       | 与 [useRequset](/tutorial/learning/use-request).send 相同   |          |        | -    |
+| abort      | 与 [useRequset](/tutorial/learning/use-request).abort 相同  |          |        | -    |
+| update     | 与 [useRequset](/tutorial/learning/use-request).update 相同 |          |        | -    |
 
 ### useCaptcha
 
@@ -231,9 +231,9 @@ accessAction(/^prefix_/, delegatedActions => {
 | 名称   | 描述                                                                    | 函数参数 | 返回值 | 版本 |
 | ------ | ----------------------------------------------------------------------- | -------- | ------ | ---- |
 | stop   | 详见[useRetriableRequest 操作函数](../strategy/useRetriableRequest#api) |          |        | -    |
-| send   | 与 [useRequset](../learning/use-request).send 相同                      |          |        | -    |
-| abort  | 与 [useRequset](../learning/use-request).abort 相同                     |          |        | -    |
-| update | 与 [useRequset](../learning/use-request).update 相同                    |          |        | -    |
+| send   | 与 [useRequset](/tutorial/learning/use-request).send 相同               |          |        | -    |
+| abort  | 与 [useRequset](/tutorial/learning/use-request).abort 相同              |          |        | -    |
+| update | 与 [useRequset](/tutorial/learning/use-request).update 相同             |          |        | -    |
 
 ### useSerialRequest
 

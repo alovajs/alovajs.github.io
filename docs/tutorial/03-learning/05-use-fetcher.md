@@ -20,7 +20,7 @@ You can use it to pre-fetch data and save it in the cache, or gracefully update 
 Next, let's modify a certain todo data, and re-fetch the latest todo list data to update the view.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -191,6 +191,74 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <!-- Render a unified fetch state -->
+  <div v-if="fetcher.fetching">{{ fetching data in background... }}</div>
+
+  <!-- ... -->
+  <button @click="handleSubmit">Modify todo items</button>
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alova/vue-options';
+  import { useFetcher } from 'alova';
+
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      // Note: The name attribute is set here to filter out the required Method instance when the Method instance cannot be specified directly
+      // For details, see the subsequent "Method Instance Matcher" chapter
+      name: 'todoList',
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      const {
+        // The fetching attribute is the same as loading, it is true when a fetch request is sent, and it is false after the request ends
+        fetching,
+        error,
+        onSuccess,
+        onError,
+        onComplete,
+
+        // After calling fetch, a request to fetch data will be sent, and fetch can be called repeatedly to fetch data from different interfaces
+        fetch
+      } = (fetcherStates = useFetcher());
+      return {
+        fetcher: fetcherStates
+      };
+    }),
+    methods: {
+      // Trigger the data fetch in the event
+      handleSubmit() {
+        // Assume the modification of the todo item has been completed...
+
+        // Start to fetch the updated data
+        // Situation 1: When you clearly know that the data on the first page of todoList is fetched, pass in a Method instance
+        this.fetcher$fetch(getTodoList(1));
+
+        // Situation 2: When you only know to fetch the last requested data of todoList, use the Method instance matcher to filter
+        this.fetcher$fetch({
+          name: 'todoList',
+          filter: (method, index, ary) => {
+            // Return true to specify the Method instance that needs to be fetched
+            return index === ary.length - 1;
+          }
+        });
+      }
+    }
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 > See [Method instance matcher](../next-step/method-instance-matcher) for more usage methods of `Method` instance matcher
@@ -200,7 +268,7 @@ const App = () => {
 The following implements the preloading function of the next page of data in the paging scenario of the todo list.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -302,6 +370,53 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <!-- ... -->
+</template>
+
+<script>
+  import { mapAlovaHook } from '@alova/vue-options';
+  import { useFetcher, useWatcher } from 'alova';
+
+  // method instance creation function
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function () {
+      return {
+        fetcher: useFetcher(),
+        paging: useWatcher(() => getTodoList(this.currentPage), ['currentPage'], {
+          immediate: true
+        })
+      };
+    }),
+    data() {
+      return {
+        currentPage: 1
+      };
+    },
+    mounted() {
+      // Pre-fetch the data of the next page when the current page request is successful
+      // Realize that there is no need to wait for the request when turning the page to the next page
+      this.paging$onSuccess(() => {
+        this.fetcher$fetch(getTodoList(this.currentPage + 1));
+      });
+    }
+  };
+</script>
+```
+
+</TabItem>
 </Tabs>
 
 :::warning Notes
@@ -383,47 +498,47 @@ fetch(getTodoList(10), true);
 
 ### Hook configuration
 
-| Name       | Description                                                                                     | Type                                                                                                                                                              | Default | Version |
-| ---------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
-| force      | Whether to force the request, it can be set as a function to dynamically return a boolean value | boolean | (...args: any[]) => boolean                                                                                                                        | false   | -       |
-| middleware | Middleware function, [Learn about alova middleware](../advanced/middleware)                     | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](../learning/use-request/#alovaguardnext)) => Promise\<any\> | -       | -       |
+| Name       | Description                                                                                     | Type                                                                                                                                                                 | Default                              | Version |
+| ---------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
+| force      | Whether to force the request, it can be set as a function to dynamically return a boolean value | boolean                                                                                                                                                              | (...args: any[]) => boolean \| false | -       |
+| middleware | Middleware function, [Learn about alova middleware](../advanced/middleware)                     | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                    | -       |
 
-####AlovaFetcherMiddlewareContext
+### AlovaFetcherMiddlewareContext
 
-| Name             | Description                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                         | Version |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| method           | The method object of the current request                                                                                                                                                                   | Method                                                                                                                                                                                                                                                       | -       |
-| cachedResponse   | hit cached data                                                                                                                                                                                            | any                                                                                                                                                                                                                                                          | -       |
-| config           | current use hook configuration                                                                                                                                                                             | Record\<string, any\>                                                                                                                                                                                                                                          | -       |
-| fetchArgs        | The parameters of the response processing callback, which are passed in by the fetch of useFetcher                                                                                                         | any[]                                                                                                                                                                                                                                                        | -       |
-| fetchStates      | use hook preload state collection, such as fetching, error, etc.                                                                                                                                           | [FetchRequestState](#fetchrequeststate)                                                                                                                                                                                                                      | -       |
-| fetch            | data preloading function                                                                                                                                                                                   | (method: Method, ...args: any[]) => void                                                                                                                                                                                                                     | Promise |
-| abort            | interrupt function                                                                                                                                                                                         | () => void                                                                                                                                                                                                                                                   | -       |
-| decorateSuccess  | Decorate success callback function                                                                                                                                                                         | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](../learning/use-request/#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](../learning/use-request/#alovasuccessevent), <br/>index: number, <br/>length: number<br/>) => void) => void     | -       |
-| decorateError    | Decoration failure callback function                                                                                                                                                                       | (decorator: (<br/>handler: (event: [AlovaErrorEvent](../learning/use-request/#alovaerrorevent) => void, <br/>event: [AlovaErrorEvent](../learning/use-request/#alovaerrorevent), <br/>index: number, <br/ >length: number<br/>) => void) => void             | -       |
-| decorateComplete | Decoration completion callback function                                                                                                                                                                    | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent), <br/>index: number, <br/>length: number<br/>) => void) => void | -       |
-| update           | A function to update the preloaded state of the current use hook, more useful in react                                                                                                                     | (newFrontStates: [FetchRequestState](#fetchrequeststate)) => void;                                                                                                                                                                                           | -       |
-| controlFetching  | After calling, it will control the state of fetching by itself, and the change of fetching state will no longer be triggered internally. When the passed in control is false, the control will be canceled | (control?: boolean) => void                                                                                                                                                                                                                                  | -       |
+| Name             | Description                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                       | Version |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| method           | The method object of the current request                                                                                                                                                                   | Method                                                                                                                                                                                                                                                                     | -       |
+| cachedResponse   | hit cached data                                                                                                                                                                                            | any                                                                                                                                                                                                                                                                        | -       |
+| config           | current use hook configuration                                                                                                                                                                             | Record\<string, any\>                                                                                                                                                                                                                                                      | -       |
+| fetchArgs        | The parameters of the response processing callback, which are passed in by the fetch of useFetcher                                                                                                         | any[]                                                                                                                                                                                                                                                                      | -       |
+| fetchStates      | use hook preload state collection, such as fetching, error, etc.                                                                                                                                           | [FetchRequestState](#fetchrequeststate)                                                                                                                                                                                                                                    | -       |
+| fetch            | data preloading function                                                                                                                                                                                   | (method: Method, ...args: any[]) => void                                                                                                                                                                                                                                   | Promise |
+| abort            | interrupt function                                                                                                                                                                                         | () => void                                                                                                                                                                                                                                                                 | -       |
+| decorateSuccess  | Decorate success callback function                                                                                                                                                                         | (decorator: (<br/>handler: (event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent)) => void, <br/>event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent), <br/>index: number, <br/>length: number<br/>) => void) => void     | -       |
+| decorateError    | Decoration failure callback function                                                                                                                                                                       | (decorator: (<br/>handler: (event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent) => void, <br/>event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent), <br/>index: number, <br/ >length: number<br/>) => void) => void             | -       |
+| decorateComplete | Decoration completion callback function                                                                                                                                                                    | (decorator: (<br/>handler: (event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent), <br/>index: number, <br/>length: number<br/>) => void) => void | -       |
+| update           | A function to update the preloaded state of the current use hook, more useful in react                                                                                                                     | (newFrontStates: [FetchRequestState](#fetchrequeststate)) => void;                                                                                                                                                                                                         | -       |
+| controlFetching  | After calling, it will control the state of fetching by itself, and the change of fetching state will no longer be triggered internally. When the passed in control is false, the control will be canceled | (control?: boolean) => void                                                                                                                                                                                                                                                | -       |
 
 #### FetchRequestState
 
 The following attribute values will automatically infer the responsive data type corresponding to the UI framework according to `statesHook`, which is `Ref` type in vue3, normal value in react, and `Writable` type in svelte
 
-| Name        | Description                   | Type                   | Version |
-| ----------- | ----------------------------- | ---------------------- | ------- |
-| fetching    | preload request status        | boolean                | -       |
-| error       | request error message         | Error | undefined | -       |
-| downloading | download progress information | Object                 | -       |
-| uploading   | upload progress information   | Object                 | -       |
+| Name        | Description                   | Type               | Version |
+| ----------- | ----------------------------- | ------------------ | ------- |
+| fetching    | preload request status        | boolean            | -       |
+| error       | request error message         | Error \| undefined | -       |
+| downloading | download progress information | Object             | -       |
+| uploading   | upload progress information   | Object             | -       |
 
 ### Responsive data
 
-| Name        | Description                   | Type                   | Version |
-| ----------- | ----------------------------- | ---------------------- | ------- |
-| fetching    | preload request status        | boolean                | -       |
-| error       | request error message         | Error | undefined | -       |
-| downloading | download progress information | Object                 | -       |
-| uploading   | upload progress information   | Object                 | -       |
+| Name        | Description                   | Type               | Version |
+| ----------- | ----------------------------- | ------------------ | ------- |
+| fetching    | preload request status        | boolean            | -       |
+| error       | request error message         | Error \| undefined | -       |
+| downloading | download progress information | Object             | -       |
+| uploading   | upload progress information   | Object             | -       |
 
 ### Action function
 
@@ -435,8 +550,8 @@ The following attribute values will automatically infer the responsive data type
 
 ### Event
 
-| Name       | Description                      | Callback Parameters                                                                                                                                              | Version |
-| ---------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| onSuccess  | Request success event binding    | event: [AlovaSuccessEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovasuccessevent)   | -       |
-| onError    | Request error event binding      | event: [AlovaErrorEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovaerrorevent)       | -       |
-| onComplete | Request completion event binding | event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](../learning/use-request/#alovacompleteevent) | -       |
+| Name       | Description                      | Callback Parameters                                                                                                                                                            | Version |
+| ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| onSuccess  | Request success event binding    | event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovasuccessevent)   | -       |
+| onError    | Request error event binding      | event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovaerrorevent)       | -       |
+| onComplete | Request completion event binding | event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent) | -       |

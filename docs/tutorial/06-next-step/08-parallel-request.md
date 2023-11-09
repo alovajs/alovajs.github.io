@@ -12,7 +12,7 @@ const { data: todoCounter } = useRequest(todoCountGetter);
 
 But this kind of request is only suitable for pure parallel requests. If you need to perform some operations after the parallel requests are completed, there are two ways to achieve it:
 
-## Way 1
+## Approach 1
 
 Create promise objects manually, and use `Promise.all` to complete the effect.
 
@@ -33,7 +33,7 @@ const [listEvent, countEvent] = await Promise.all([listPromise, countPromise]);
 // The parallel request is completed, continue to process the business...
 ```
 
-## Way 2
+## Approach 2
 
 Using the `send` function returned by the `useRequest` function, calling `send` will return an available promise object.
 

@@ -30,7 +30,7 @@ For example, after updating the menu data in a component, you can re-trigger the
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```bash
 # npm
@@ -178,11 +178,11 @@ Although the action functions delegated by most hooks are the same as the action
 
 ### useRequest
 
-| name   | description                                          | function parameters | return value | version |
-| ------ | ---------------------------------------------------- | ------------------- | ------------ | ------- |
-| send   | Same as [useRequset](../learning/use-request).send   |                     |              | -       |
-| abort  | Same as [useRequset](../learning/use-request).abort  |                     |              | -       |
-| update | Same as [useRequset](../learning/use-request).update |                     |              | -       |
+| name   | description                                                 | function parameters | return value | version |
+| ------ | ----------------------------------------------------------- | ------------------- | ------------ | ------- |
+| send   | Same as [useRequset](/tutorial/learning/use-request).send   |                     |              | -       |
+| abort  | Same as [useRequset](/tutorial/learning/use-request).abort  |                     |              | -       |
+| update | Same as [useRequset](/tutorial/learning/use-request).update |                     |              | -       |
 
 ### useWatcher
 
@@ -190,23 +190,23 @@ Same as [useRequest delegate list](#userequest).
 
 ### useFetcher
 
-| name   | description                                          | function parameters | return value | version |
-| ------ | ---------------------------------------------------- | ------------------- | ------------ | ------- |
-| fetch  | Same as [useFetcher](../learning/use-fetcher).fetch  |                     |              | -       |
-| abort  | Same as [useFetcher](../learning/use-fetcher).abort  |                     |              | -       |
-| update | Same as [useFetcher](../learning/use-fetcher).update |                     |              | -       |
+| name   | description                                                 | function parameters | return value | version |
+| ------ | ----------------------------------------------------------- | ------------------- | ------------ | ------- |
+| fetch  | Same as [useFetcher](/tutorial/learning/use-fetcher).fetch  |                     |              | -       |
+| abort  | Same as [useFetcher](/tutorial/learning/use-fetcher).abort  |                     |              | -       |
+| update | Same as [useFetcher](/tutorial/learning/use-fetcher).update |                     |              | -       |
 
 ### usePagination
 
-| name     | description                                                                     | function parameters                                                                                    | return value                               | version |
-| -------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------ | ------- |
-| refresh  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| insert   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| remove   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| replace  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| reload   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| update   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                                        |                                            | -       |
-| getState | Get paging related data by name                                                 | stateKey: 'page' | 'pageSize' | 'data' | 'pageCount' | 'total' | 'isLastPage' | Corresponding to the value of the statekey | -       |
+| name     | description                                                                     | function parameters                                                                | return value                               | version |
+| -------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ | ------- |
+| refresh  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
+| insert   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
+| remove   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
+| replace  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
+| reload   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
+| update   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
+| getState | Get paging related data by name                                                 | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | Corresponding to the value of the statekey | -       |
 
 ### useSQRequest
 
@@ -218,9 +218,9 @@ Same as [useRequest delegate list](#userequest).
 | ---------- | ------------------------------------------------------------------- | ------------------- | ------------ | ------- |
 | updateForm | For details, see [useForm action function](../strategy/useForm#api) |                     |              | -       |
 | reset      | For details, see [useForm action function](../strategy/useForm#api) |                     |              | -       |
-| send       | Same as [useRequset](../learning/use-request).send                  |                     |              | -       |
-| abort      | Same as [useRequset](../learning/use-request).abort                 |                     |              | -       |
-| update     | Same as [useRequset](../learning/use-request).update                |                     |              | -       |
+| send       | Same as [useRequset](/tutorial/learning/use-request).send           |                     |              | -       |
+| abort      | Same as [useRequset](/tutorial/learning/use-request).abort          |                     |              | -       |
+| update     | Same as [useRequset](/tutorial/learning/use-request).update         |                     |              | -       |
 
 ### useCaptcha
 
@@ -231,9 +231,9 @@ Same as [useRequest delegate list](#userequest).
 | name   | description                                                                                | function parameters | return value | version |
 | ------ | ------------------------------------------------------------------------------------------ | ------------------- | ------------ | ------- |
 | stop   | See [useRetriableRequest action function](../strategy/useRetriableRequest#api) for details |                     |              | -       |
-| send   | Same as [useRequset](../learning/use-request).send                                         |                     |              | -       |
-| abort  | Same as [useRequset](../learning/use-request).abort                                        |                     |              | -       |
-| update | Same as [useRequset](../learning/use-request).update                                       |                     |              | -       |
+| send   | Same as [useRequset](/tutorial/learning/use-request).send                                  |                     |              | -       |
+| abort  | Same as [useRequset](/tutorial/learning/use-request).abort                                 |                     |              | -       |
+| update | Same as [useRequset](/tutorial/learning/use-request).update                                |                     |              | -       |
 
 ### useSerialRequest
 

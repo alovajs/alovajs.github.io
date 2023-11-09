@@ -27,18 +27,18 @@ Parameter Description:
 
 The config object has a total of 10 common configuration items.
 
-| Name           | Description                                                                                                                   |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| name           | method instance name, it is generally used for [matching method instance](../next-step/method-instance-matcher)               |
-| params         | Set url parameters, see [Request Method Instance](../learning/method-instance) for details                                    |
-| headers        | Set request headers, see [Request Method Instance](../learning/method-instance) for details                                   |
-| transformData  | Set the response data transformation function, see [Transform Response Data](../learning/transform-response-data) for details |
-| localCache     | Set request-level cache mode, see [Cache Mode](../learning/response-cache) for details                                        |
-| timeout        | Set request-level timeout                                                                                                     |
-| enableDownload | Enable download progress information, see [Download/Upload Progress](../next-step/download-upload-progress) for details       |
-| enableUpload   | Enable upload progress information, see [Download/Upload Progress](../next-step/download-upload-progress) for details         |
-| hitSource      | Cache auto-invalidation setting, see [Auto-invalidate cache](../next-step/auto-invalidate-cache) for details                  |
-| shareRequest   | Share request, see [Share Request](../next-step/share-request) for details                                                    |
+| Name           | Description                                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| name           | method instance name, it is generally used for [matching method instance](../next-step/method-instance-matcher)                      |
+| params         | Set url parameters, see [Request Method Instance](/tutorial/learning/method-instance) for details                                    |
+| headers        | Set request headers, see [Request Method Instance](/tutorial/learning/method-instance) for details                                   |
+| transformData  | Set the response data transformation function, see [Transform Response Data](/tutorial/learning/transform-response-data) for details |
+| localCache     | Set request-level cache mode, see [Cache Mode](/tutorial/learning/response-cache) for details                                        |
+| timeout        | Set request-level timeout                                                                                                            |
+| enableDownload | Enable download progress information, see [Download/Upload Progress](../next-step/download-upload-progress) for details              |
+| enableUpload   | Enable upload progress information, see [Download/Upload Progress](../next-step/download-upload-progress) for details                |
+| hitSource      | Cache auto-invalidation setting, see [Auto-invalidate cache](../next-step/auto-invalidate-cache) for details                         |
+| shareRequest   | Share request, see [Share Request](../next-step/share-request) for details                                                           |
 
 ### Adapter configuration items
 

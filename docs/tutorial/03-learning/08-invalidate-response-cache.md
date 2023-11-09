@@ -12,7 +12,7 @@ There is such a scenario, when the user clicks on an item in the todo list, ente
 2. Manually update the cache, which will be explained in detail in the next section;
 3. Make the response cache invalid, and when the request is made again, the data will be re-requested due to the cache invalidation. This is what this section is about.
 
-As we mentioned in [cache mode](../learning/response-cache), each cached data is saved with the method instance that sent the request as the key, so the method instance will also be used when the cache is invalidated. Invalidate the corresponding cached data.
+As we mentioned in [cache mode](/tutorial/learning/response-cache), each cached data is saved with the method instance that sent the request as the key, so the method instance will also be used when the cache is invalidated. Invalidate the corresponding cached data.
 
 Now we try to achieve this requirement with cache invalidation.
 
@@ -21,7 +21,7 @@ Now we try to achieve this requirement with cache invalidation.
 In the invalidateCache function, a method instance is passed in, and it will always look for the cache under this instance to invalidate.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue">
+<TabItem value="1" label="vue composition">
 
 ```html
 <template>
@@ -119,6 +119,45 @@ const App = () => {
 </script>
 
 <button on:click="{send}">Send request</button>
+```
+
+</TabItem>
+<TabItem value="4" label="vue options">
+
+```html
+<template>
+  <button @click="todo$send">send request</button>
+</template>
+
+<script>
+  import { invalidateCache, useRequest } from 'alova';
+  import { mapAlovaHook } from '@alova/vue-options';
+
+  const getTodoList = currentPage => {
+    return alovaInstance.Get('/todo/list', {
+      params: {
+        currentPage,
+        pageSize: 10
+      }
+    });
+  };
+
+  export default {
+    mixins: mapAlovaHook(function() {
+      return {
+        todo: useRequest(createTodoPoster, { immediate: false })
+      }
+    })
+    mounted() {
+      // highlight-start
+      // After the submission is successful, the todo data cache on the first page will be invalidated
+      this.todo$onSuccess(() => {
+        invalidateCache(getTodoList(1));
+      });
+      // highlight-end
+    }
+  };
+</script>
 ```
 
 </TabItem>

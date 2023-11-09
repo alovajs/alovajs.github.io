@@ -27,18 +27,18 @@ alova 实例对象提供了七种请求方法的抽象对象，包括 GET、POST
 
 config 对象共有 10 项通用的配置项。
 
-| 名称           | 描述                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------ |
-| name           | method 实例 名称，它一般用于[匹配 method 实例](../next-step/method-instance-matcher) |
-| params         | 设置 url 参数，具体查看[请求方法实例](../learning/method-instance)                   |
-| headers        | 设置请求头，具体查看[请求方法实例](../learning/method-instance)                      |
-| transformData  | 设置响应数据转换函数，具体查看[转换响应数据](../learning/transform-response-data)    |
-| localCache     | 设置请求级的缓存模式，具体查看[缓存模式](../learning/response-cache)                 |
-| timeout        | 设置请求级的超时时间                                                                 |
-| enableDownload | 启用下载进度信息，具体查看[下载/上传进度](../next-step/download-upload-progress)     |
-| enableUpload   | 启用上传进度信息，具体查看[下载/上传进度](../next-step/download-upload-progress)     |
-| hitSource      | 缓存自动失效设置，具体查看[自动失效缓存](../next-step/auto-invalidate-cache)         |
-| shareRequest   | 共享请求，具体查看[共享请求](../next-step/share-request)                             |
+| 名称           | 描述                                                                                     |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| name           | method 实例 名称，它一般用于[匹配 method 实例](../next-step/method-instance-matcher)     |
+| params         | 设置 url 参数，具体查看[请求方法实例](/tutorial/learning/method-instance)                |
+| headers        | 设置请求头，具体查看[请求方法实例](/tutorial/learning/method-instance)                   |
+| transformData  | 设置响应数据转换函数，具体查看[转换响应数据](/tutorial/learning/transform-response-data) |
+| localCache     | 设置请求级的缓存模式，具体查看[缓存模式](/tutorial/learning/response-cache)              |
+| timeout        | 设置请求级的超时时间                                                                     |
+| enableDownload | 启用下载进度信息，具体查看[下载/上传进度](../next-step/download-upload-progress)         |
+| enableUpload   | 启用上传进度信息，具体查看[下载/上传进度](../next-step/download-upload-progress)         |
+| hitSource      | 缓存自动失效设置，具体查看[自动失效缓存](../next-step/auto-invalidate-cache)             |
+| shareRequest   | 共享请求，具体查看[共享请求](../next-step/share-request)                                 |
 
 ### 适配器配置项
 
