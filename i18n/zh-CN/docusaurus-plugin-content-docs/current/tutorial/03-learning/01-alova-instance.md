@@ -202,4 +202,4 @@ const alovaInstance = createAlova({
 在 alova 实例中，还可以设置以下配置：
 
 1. [响应数据的缓存模式](/tutorial/learning/response-cache)，我们将在下面的章节中阐述；
-2. [自定义存储适配器](../advanced/custom-storage-adapter)，它将用于持久化响应缓存，这将在高级章节中阐述；
+2. [自定义存储适配器](/tutorial/advanced/custom-storage-adapter)，它将用于持久化响应缓存，这将在高级章节中阐述；

@@ -111,7 +111,7 @@ onSuccess(({ data, silentMethod }) => {
 // highlight-end
 ```
 
-> updateStateEffect 的使用方法与[updateState](../../learning/update-response-data-across-modules)一致
+> updateStateEffect 的使用方法与[updateState](/tutorial/learning/update-response-data-across-modules)一致
 
 </TabItem>
 <TabItem value="2" label="列表页已销毁">

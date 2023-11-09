@@ -200,7 +200,7 @@ const alovaInst = createAlova({
 
 ## Mock request adapter compatible
 
-When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](../extension/alova-mock) is a `Response` instance, which is compatible with the `GlobalFetch` request adapter by default. When using the axios adapter, we The response data of the mock request adapter needs to be compatible with **AxiosResponse**, and the error instance is **AxiosError**, so you need to use `axiosMockResponse` exported from the **@alova/adapter-axios** package as the response adapter .
+When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/tutorial/extension/alova-mock) is a `Response` instance, which is compatible with the `GlobalFetch` request adapter by default. When using the axios adapter, we The response data of the mock request adapter needs to be compatible with **AxiosResponse**, and the error instance is **AxiosError**, so you need to use `axiosMockResponse` exported from the **@alova/adapter-axios** package as the response adapter .
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

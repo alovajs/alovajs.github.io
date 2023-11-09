@@ -198,7 +198,7 @@ const alovaInst = createAlova({
 
 ## 模拟请求适配器兼容
 
-在开发应用时，我们仍然可能需要用到模拟请求。只是默认情况下，[模拟请求适配器(@alova/mock)](../extension/alova-mock)的响应数据是一个`Response`实例，即默认兼容`GlobalFetch`请求适配器，当使用 axios 适配器时，我们需要让模拟请求适配器的响应数据是**AxiosResponse**兼容的，错误实例是**AxiosError**，因此你需要使用**@alova/adapter-axios**包中导出的`axiosMockResponse`作为响应适配器。
+在开发应用时，我们仍然可能需要用到模拟请求。只是默认情况下，[模拟请求适配器(@alova/mock)](/tutorial/extension/alova-mock)的响应数据是一个`Response`实例，即默认兼容`GlobalFetch`请求适配器，当使用 axios 适配器时，我们需要让模拟请求适配器的响应数据是**AxiosResponse**兼容的，错误实例是**AxiosError**，因此你需要使用**@alova/adapter-axios**包中导出的`axiosMockResponse`作为响应适配器。
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

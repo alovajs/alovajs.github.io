@@ -11,7 +11,7 @@ import { quickStartVue, quickStartReact, quickStartVueOptions, quickStartStaticV
 :::tip example tip
 
 1. If you don't know about alova yet, it is highly recommended that you read the [alova overview](./overview) first.
-2. Want to try it out first? You can [click here](../example/init-page) to try a simple example!
+2. Want to try it out first? You can [click here](/tutorial/example/init-page) to try a simple example!
 
 :::
 
@@ -128,9 +128,9 @@ The use hook can only be used to send requests within the component. Outside the
 const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1').send();
 ```
 
-For more information about method instance sending request, please go to [Use method instance to send request](../next-step/send-request-directly) to read.
+For more information about method instance sending request, please go to [Use method instance to send request](/tutorial/next-step/send-request-directly) to read.
 
-Regarding when to use useRequest to send a request and when to use a method instance to send a request, please read the [Best Practice](../best-practice/skills) here.
+Regarding when to use useRequest to send a request and when to use a method instance to send a request, please read the [Best Practice](/tutorial/best-practice/skills) here.
 
 ## Used in static html
 
@@ -167,4 +167,4 @@ svelte depends on compilation tools and cannot be used directly through CDN. For
 
 In fact, this is just the simplest sample code, but alova also includes rich functions such as request and response interceptors, cache and state management, multiple core use hooks, etc., which we will elaborate in subsequent chapters.
 
-If you want to better manage your request code, here is a best practice of [method management](../best-practice/method-manage), waiting for you to read it.
+If you want to better manage your request code, here is a best practice of [method management](/tutorial/best-practice/method-manage), waiting for you to read it.

@@ -16,7 +16,7 @@ This problem often occurs when the state is updated across pages, because what w
 1. Persist the page components to ensure that the updated state can still be found.
 2. Use [manually update the cache(setCache)](/tutorial/learning/cache-set-and-query) instead of `updateState`, the principle is that when the request for the previous page exists in the cache, update its cache to ensure that it is created again page, the triggered request can hit the updated cache to achieve the same effect.
 
-[Here is a demo about `updateState`](../example/update-state)
+[Here is a demo about `updateState`](/tutorial/example/update-state)
 
 ## Use the method instance to find the response status
 
@@ -61,7 +61,7 @@ onSuccess(() => {
 
 ## Dynamically update the response status
 
-Sometimes you may not be sure that you need to update the response status under the method, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](../next-step/method-instance-matcher) to dynamically find the corresponding method instance. The following example shows adding a piece of data to the list corresponding to the method instance named todoList.
+Sometimes you may not be sure that you need to update the response status under the method, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/next-step/method-instance-matcher) to dynamically find the corresponding method instance. The following example shows adding a piece of data to the list corresponding to the method instance named todoList.
 
 ```javascript
 updateState('todoList', todoListRaw => {

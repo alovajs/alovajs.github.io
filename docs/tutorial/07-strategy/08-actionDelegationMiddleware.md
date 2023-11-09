@@ -20,7 +20,7 @@ For example, after updating the menu data in a component, you can re-trigger the
 
 ## Example
 
-[Cross-component trigger request Demo](../example/action-delegation-middleware)
+[Cross-component trigger request Demo](/tutorial/example/action-delegation-middleware)
 
 ## Features
 
@@ -198,15 +198,15 @@ Same as [useRequest delegate list](#userequest).
 
 ### usePagination
 
-| name     | description                                                                     | function parameters                                                                | return value                               | version |
-| -------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ | ------- |
-| refresh  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
-| insert   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
-| remove   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
-| replace  | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
-| reload   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
-| update   | For details, see [usePagination action function](../strategy/usePagination#api) |                                                                                    |                                            | -       |
-| getState | Get paging related data by name                                                 | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | Corresponding to the value of the statekey | -       |
+| name     | description                                                                            | function parameters                                                                | return value                               | version |
+| -------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ | ------- |
+| refresh  | For details, see [usePagination action function](/tutorial/strategy/usePagination#api) |                                                                                    |                                            | -       |
+| insert   | For details, see [usePagination action function](/tutorial/strategy/usePagination#api) |                                                                                    |                                            | -       |
+| remove   | For details, see [usePagination action function](/tutorial/strategy/usePagination#api) |                                                                                    |                                            | -       |
+| replace  | For details, see [usePagination action function](/tutorial/strategy/usePagination#api) |                                                                                    |                                            | -       |
+| reload   | For details, see [usePagination action function](/tutorial/strategy/usePagination#api) |                                                                                    |                                            | -       |
+| update   | For details, see [usePagination action function](/tutorial/strategy/usePagination#api) |                                                                                    |                                            | -       |
+| getState | Get paging related data by name                                                        | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | Corresponding to the value of the statekey | -       |
 
 ### useSQRequest
 
@@ -214,13 +214,13 @@ Same as [useRequest delegate list](#userequest).
 
 ### useForm
 
-| name       | description                                                         | function parameters | return value | version |
-| ---------- | ------------------------------------------------------------------- | ------------------- | ------------ | ------- |
-| updateForm | For details, see [useForm action function](../strategy/useForm#api) |                     |              | -       |
-| reset      | For details, see [useForm action function](../strategy/useForm#api) |                     |              | -       |
-| send       | Same as [useRequset](/tutorial/learning/use-request).send           |                     |              | -       |
-| abort      | Same as [useRequset](/tutorial/learning/use-request).abort          |                     |              | -       |
-| update     | Same as [useRequset](/tutorial/learning/use-request).update         |                     |              | -       |
+| name       | description                                                                | function parameters | return value | version |
+| ---------- | -------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
+| updateForm | For details, see [useForm action function](/tutorial/strategy/useForm#api) |                     |              | -       |
+| reset      | For details, see [useForm action function](/tutorial/strategy/useForm#api) |                     |              | -       |
+| send       | Same as [useRequset](/tutorial/learning/use-request).send                  |                     |              | -       |
+| abort      | Same as [useRequset](/tutorial/learning/use-request).abort                 |                     |              | -       |
+| update     | Same as [useRequset](/tutorial/learning/use-request).update                |                     |              | -       |
 
 ### useCaptcha
 
@@ -228,12 +228,12 @@ Same as [useRequest delegate list](#userequest).
 
 ### useRetriableRequest
 
-| name   | description                                                                                | function parameters | return value | version |
-| ------ | ------------------------------------------------------------------------------------------ | ------------------- | ------------ | ------- |
-| stop   | See [useRetriableRequest action function](../strategy/useRetriableRequest#api) for details |                     |              | -       |
-| send   | Same as [useRequset](/tutorial/learning/use-request).send                                  |                     |              | -       |
-| abort  | Same as [useRequset](/tutorial/learning/use-request).abort                                 |                     |              | -       |
-| update | Same as [useRequset](/tutorial/learning/use-request).update                                |                     |              | -       |
+| name   | description                                                                                       | function parameters | return value | version |
+| ------ | ------------------------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
+| stop   | See [useRetriableRequest action function](/tutorial/strategy/useRetriableRequest#api) for details |                     |              | -       |
+| send   | Same as [useRequset](/tutorial/learning/use-request).send                                         |                     |              | -       |
+| abort  | Same as [useRequset](/tutorial/learning/use-request).abort                                        |                     |              | -       |
+| update | Same as [useRequset](/tutorial/learning/use-request).update                                       |                     |              | -       |
 
 ### useSerialRequest
 

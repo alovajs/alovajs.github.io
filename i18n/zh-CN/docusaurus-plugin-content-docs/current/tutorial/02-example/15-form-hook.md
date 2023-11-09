@@ -13,6 +13,6 @@ import FormHook from '@site/example-links/FormHook';
 
 本示例分别提供了表单数据持久化、表单编辑、多模块表单、表单筛选数据 4 个部分，可分别尝试体验。
 
-[表单提交策略文档](../strategy/useForm)
+[表单提交策略文档](/tutorial/strategy/useForm)
 
 :::

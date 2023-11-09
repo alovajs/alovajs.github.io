@@ -140,11 +140,11 @@ const handleClick = () => {
 
 ### Find silentMethod
 
-In the previous [data compensation](../../strategy/sensorless-data-interaction/data-compensation), we used [filterSilentMethods](../../strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) to find the silentMethod of the specified queue instance, it will return all matching silentMethod instances, here are two more ways to find the queue:
+In the previous [data compensation](/tutorial/strategy/sensorless-data-interaction/data-compensation), we used [filterSilentMethods](/tutorial/strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) to find the silentMethod of the specified queue instance, it will return all matching silentMethod instances, here are two more ways to find the queue:
 
 #### Find a silentMethod instance
 
-Use `getSilentMethod` to query the first matching silentMethod instance, the usage is the same as [filterSilentMethods](../../strategy/sensorless-data-interaction/data-compensation#filtersilentmethods).
+Use `getSilentMethod` to query the first matching silentMethod instance, the usage is the same as [filterSilentMethods](/tutorial/strategy/sensorless-data-interaction/data-compensation#filtersilentmethods).
 
 ```typescript
 function filterSilentMethods(

@@ -20,7 +20,7 @@ import TabItem from '@theme/TabItem';
 
 ## 示例
 
-[跨组件触发请求 Demo](../example/action-delegation-middleware)
+[跨组件触发请求 Demo](/tutorial/example/action-delegation-middleware)
 
 ## 特性
 
@@ -198,15 +198,15 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### usePagination
 
-| 名称     | 描述                                                        | 函数参数                                                                           | 返回值             | 版本 |
-| -------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------ | ---- |
-| refresh  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
-| insert   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
-| remove   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
-| replace  | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
-| reload   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
-| update   | 详见[usePagination 操作函数](../strategy/usePagination#api) |                                                                                    |                    | -    |
-| getState | 按名称获取分页相关数据                                      | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | 对应 statekey 的值 | -    |
+| 名称     | 描述                                                               | 函数参数                                                                           | 返回值             | 版本 |
+| -------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ------------------ | ---- |
+| refresh  | 详见[usePagination 操作函数](/tutorial/strategy/usePagination#api) |                                                                                    |                    | -    |
+| insert   | 详见[usePagination 操作函数](/tutorial/strategy/usePagination#api) |                                                                                    |                    | -    |
+| remove   | 详见[usePagination 操作函数](/tutorial/strategy/usePagination#api) |                                                                                    |                    | -    |
+| replace  | 详见[usePagination 操作函数](/tutorial/strategy/usePagination#api) |                                                                                    |                    | -    |
+| reload   | 详见[usePagination 操作函数](/tutorial/strategy/usePagination#api) |                                                                                    |                    | -    |
+| update   | 详见[usePagination 操作函数](/tutorial/strategy/usePagination#api) |                                                                                    |                    | -    |
+| getState | 按名称获取分页相关数据                                             | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | 对应 statekey 的值 | -    |
 
 ### useSQRequest
 
@@ -216,8 +216,8 @@ accessAction(/^prefix_/, delegatedActions => {
 
 | 名称       | 描述                                                        | 函数参数 | 返回值 | 版本 |
 | ---------- | ----------------------------------------------------------- | -------- | ------ | ---- |
-| updateForm | 详见[useForm 操作函数](../strategy/useForm#api)             |          |        | -    |
-| reset      | 详见[useForm 操作函数](../strategy/useForm#api)             |          |        | -    |
+| updateForm | 详见[useForm 操作函数](/tutorial/strategy/useForm#api)      |          |        | -    |
+| reset      | 详见[useForm 操作函数](/tutorial/strategy/useForm#api)      |          |        | -    |
 | send       | 与 [useRequset](/tutorial/learning/use-request).send 相同   |          |        | -    |
 | abort      | 与 [useRequset](/tutorial/learning/use-request).abort 相同  |          |        | -    |
 | update     | 与 [useRequset](/tutorial/learning/use-request).update 相同 |          |        | -    |
@@ -228,12 +228,12 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useRetriableRequest
 
-| 名称   | 描述                                                                    | 函数参数 | 返回值 | 版本 |
-| ------ | ----------------------------------------------------------------------- | -------- | ------ | ---- |
-| stop   | 详见[useRetriableRequest 操作函数](../strategy/useRetriableRequest#api) |          |        | -    |
-| send   | 与 [useRequset](/tutorial/learning/use-request).send 相同               |          |        | -    |
-| abort  | 与 [useRequset](/tutorial/learning/use-request).abort 相同              |          |        | -    |
-| update | 与 [useRequset](/tutorial/learning/use-request).update 相同             |          |        | -    |
+| 名称   | 描述                                                                           | 函数参数 | 返回值 | 版本 |
+| ------ | ------------------------------------------------------------------------------ | -------- | ------ | ---- |
+| stop   | 详见[useRetriableRequest 操作函数](/tutorial/strategy/useRetriableRequest#api) |          |        | -    |
+| send   | 与 [useRequset](/tutorial/learning/use-request).send 相同                      |          |        | -    |
+| abort  | 与 [useRequset](/tutorial/learning/use-request).abort 相同                     |          |        | -    |
+| update | 与 [useRequset](/tutorial/learning/use-request).update 相同                    |          |        | -    |
 
 ### useSerialRequest
 

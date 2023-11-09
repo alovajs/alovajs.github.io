@@ -37,7 +37,7 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 
 :::
 
-关于在何时使用 `useRequest` 发送请求，何时使用 method 实例发送请求，请移步阅读这边的[最佳实践](../best-practice/skills)。
+关于在何时使用 `useRequest` 发送请求，何时使用 method 实例发送请求，请移步阅读这边的[最佳实践](/tutorial/best-practice/skills)。
 
 ## 中断请求
 

@@ -98,4 +98,4 @@ If the library involved in statesHook is like `react`, the use hook of `alova` w
 
 ## statesHook type
 
-If you want it to support typescript when customizing statesHook, you can [click here to view](../advanced/typescript)
+If you want it to support typescript when customizing statesHook, you can [click here to view](/tutorial/advanced/typescript)

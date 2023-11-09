@@ -13,7 +13,7 @@ alova 具有很高的扩展性，它除了提供核心的缓存机制、请求�
 - [localStorage 存储适配器](https://github.com/alovajs/alova/blob/main/src/predefine/globalLocalStorage.ts)
 - [vue states hook](https://github.com/alovajs/alova/blob/main/src/predefine/VueHook.ts)
 
-你也可以将多个类型的适配器组成一个集合，例如[Uniapp 适配器](../extension/alova-adapter-uniapp)。
+你也可以将多个类型的适配器组成一个集合，例如[Uniapp 适配器](/tutorial/extension/alova-adapter-uniapp)。
 
 ## 编写请求策略
 

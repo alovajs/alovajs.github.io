@@ -18,6 +18,6 @@ _Operation guide:_
 1. After the initialization is completed, the next page of data will be preloaded, and there is no need to wait when turning to the next page;
 2. Adding, deleting, and modifying list items does not need to reset the list, it will be automatically processed into the same effect as the re-request;
 
-[usePagination documentation](../strategy/usePagination)
+[usePagination documentation](/tutorial/strategy/usePagination)
 
 :::

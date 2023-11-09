@@ -13,7 +13,7 @@ import SerialRequest from '@site/example-links/SerialRequest';
 
 本示例主要通过`useSerialRequest`展示更优雅地进行串行请求。
 
-[useSerialRequest](../strategy/useSerialRequest)
-[useSerialWatcher](../strategy/useSerialWatcher)
+[useSerialRequest](/tutorial/strategy/useSerialRequest)
+[useSerialWatcher](/tutorial/strategy/useSerialWatcher)
 
 :::

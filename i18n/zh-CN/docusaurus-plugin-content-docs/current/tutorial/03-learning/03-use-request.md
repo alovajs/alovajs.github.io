@@ -503,7 +503,7 @@ const alovaInst = createAlova({
 | initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined` | any                                                                                                                               | -      | -    |
 | force         | 是否强制请求，可设置为函数动态返回 boolean 值                       | boolean \| (...args: any[]) => boolean \| false                                                                                   | -      | -    |
 | managedStates | 额外的监管状态，可通过 updateState 更新                             | Record\<string \|number \| symbol, any\>                                                                                          | -      | -    |
-| middleware    | 中间件函数，[了解 alova 中间件](../advanced/middleware)             | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -      | -    |
+| middleware    | 中间件函数，[了解 alova 中间件](/tutorial/advanced/middleware)      | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -      | -    |
 
 #### AlovaFrontMiddlewareContext
 

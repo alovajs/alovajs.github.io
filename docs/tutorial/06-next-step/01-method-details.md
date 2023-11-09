@@ -29,16 +29,16 @@ The config object has a total of 10 common configuration items.
 
 | Name           | Description                                                                                                                          |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| name           | method instance name, it is generally used for [matching method instance](../next-step/method-instance-matcher)                      |
+| name           | method instance name, it is generally used for [matching method instance](/tutorial/next-step/method-instance-matcher)               |
 | params         | Set url parameters, see [Request Method Instance](/tutorial/learning/method-instance) for details                                    |
 | headers        | Set request headers, see [Request Method Instance](/tutorial/learning/method-instance) for details                                   |
 | transformData  | Set the response data transformation function, see [Transform Response Data](/tutorial/learning/transform-response-data) for details |
 | localCache     | Set request-level cache mode, see [Cache Mode](/tutorial/learning/response-cache) for details                                        |
 | timeout        | Set request-level timeout                                                                                                            |
-| enableDownload | Enable download progress information, see [Download/Upload Progress](../next-step/download-upload-progress) for details              |
-| enableUpload   | Enable upload progress information, see [Download/Upload Progress](../next-step/download-upload-progress) for details                |
-| hitSource      | Cache auto-invalidation setting, see [Auto-invalidate cache](../next-step/auto-invalidate-cache) for details                         |
-| shareRequest   | Share request, see [Share Request](../next-step/share-request) for details                                                           |
+| enableDownload | Enable download progress information, see [Download/Upload Progress](/tutorial/next-step/download-upload-progress) for details       |
+| enableUpload   | Enable upload progress information, see [Download/Upload Progress](/tutorial/next-step/download-upload-progress) for details         |
+| hitSource      | Cache auto-invalidation setting, see [Auto-invalidate cache](/tutorial/next-step/auto-invalidate-cache) for details                  |
+| shareRequest   | Share request, see [Share Request](/tutorial/next-step/share-request) for details                                                    |
 
 ### Adapter configuration items
 
@@ -48,7 +48,7 @@ It varies according to different requestAdapter configurations. For example, the
 
 | Name    | Description                                                                                                                                                                               |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| send    | Send a request directly, see [Send Request Directly](../next-step/send-request-directly) for details                                                                                      |
+| send    | Send a request directly, see [Send Request Directly](/tutorial/next-step/send-request-directly) for details                                                                               |
 | setName | Dynamically set the name of the method instance, which is generally used when the name needs to be set later, such as setting the name according to the response data after the response. |
 | abort   | abort the request sent by the current method instance, it can abort request sent by use hook and directly call send                                                                       |
 

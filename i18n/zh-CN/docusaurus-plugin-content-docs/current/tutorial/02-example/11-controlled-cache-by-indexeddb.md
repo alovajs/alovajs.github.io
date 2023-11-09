@@ -18,6 +18,6 @@ _操作引导：_
 1. 选择其中一张图片，图片会先请求网络加载，图片数据将会保存在本地 IndexedDB 中；
 2. 刷新页面，再次选择相同的图片，图片将在 IndexedDB 中获取数据，而不再发起网络请求；
 
-[受控缓存文档](../next-step/controlled-cache)
+[受控缓存文档](/tutorial/next-step/controlled-cache)
 
 :::

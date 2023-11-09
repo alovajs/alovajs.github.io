@@ -18,9 +18,9 @@ use hook
 
 ## 示例
 
-[页码列表](../example/paginated-list)
+[页码列表](/tutorial/example/paginated-list)
 
-[下拉加载更多](../example/load-more)
+[下拉加载更多](/tutorial/example/load-more)
 
 ## 特性
 

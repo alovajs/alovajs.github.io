@@ -140,11 +140,11 @@ const handleClick = () => {
 
 ### 查找 silentMethod
 
-在之前的[数据补偿](../../strategy/sensorless-data-interaction/data-compensation)中，我们使用了 [filterSilentMethods](../../strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) 查找指定队列的 silentMethod 实例，它将返回所有匹配的 silentMethod 实例，这里再介绍两种查找队列的方式：
+在之前的[数据补偿](/tutorial/strategy/sensorless-data-interaction/data-compensation)中，我们使用了 [filterSilentMethods](/tutorial/strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) 查找指定队列的 silentMethod 实例，它将返回所有匹配的 silentMethod 实例，这里再介绍两种查找队列的方式：
 
 #### 查找个 silentMethod 实例
 
-使用`getSilentMethod`查询匹配的第一个 silentMethod 实例，用法与 [filterSilentMethods](../../strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) 相同。
+使用`getSilentMethod`查询匹配的第一个 silentMethod 实例，用法与 [filterSilentMethods](/tutorial/strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) 相同。
 
 ```typescript
 function filterSilentMethods(

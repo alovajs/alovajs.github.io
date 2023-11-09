@@ -169,7 +169,7 @@ Its function is far more than that. We can also invalidate any number or even al
 
 ## Dynamic lookup invalidation cache
 
-Maybe sometimes you are not sure which cache data needs to be invalidated, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](../next-step/method-instance-matcher) To dynamically find the corresponding method instance. The following example shows how to invalidate the cache for the first 5 Method instances named todoList.
+Maybe sometimes you are not sure which cache data needs to be invalidated, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/next-step/method-instance-matcher) To dynamically find the corresponding method instance. The following example shows how to invalidate the cache for the first 5 Method instances named todoList.
 
 ```javascript
 const getTodoList = currentPage => {
@@ -204,7 +204,7 @@ onSuccess(() => {
 });
 ```
 
-> See [Method instance matcher](../next-step/method-instance-matcher) for more usage of `Method` instance matcher
+> See [Method instance matcher](/tutorial/next-step/method-instance-matcher) for more usage of `Method` instance matcher
 
 ## Invalidate all caches
 

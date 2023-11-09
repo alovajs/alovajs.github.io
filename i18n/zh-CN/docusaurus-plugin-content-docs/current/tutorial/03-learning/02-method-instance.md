@@ -64,7 +64,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 ## 请求方法类型
 
-`Alova`提供了包括 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 七种请求方法的抽象实例，具体的使用方式可以阅读 [请求方法详解](../next-step/method-details)。
+`Alova`提供了包括 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 七种请求方法的抽象实例，具体的使用方式可以阅读 [请求方法详解](/tutorial/next-step/method-details)。
 
 ## 请求行为参数
 

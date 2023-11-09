@@ -155,4 +155,4 @@ More complete request adapter details can be found in [GlobalFetch source code](
 
 ## request adapter type
 
-The parameters of the request adapter and the way it supports Typescript can be found in the [Typescript chapter](../advanced/typescript).
+The parameters of the request adapter and the way it supports Typescript can be found in the [Typescript chapter](/tutorial/advanced/typescript).

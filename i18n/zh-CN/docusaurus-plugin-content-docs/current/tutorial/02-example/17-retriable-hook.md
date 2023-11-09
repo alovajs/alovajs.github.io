@@ -13,6 +13,6 @@ import RetriableHook from '@site/example-links/RetriableHook';
 
 本示例分别提供了表单数据持久化、表单编辑、多模块表单、表单筛选数据 4 个部分，可分别尝试体验。
 
-[请求重试策略文档](../strategy/useRetriableRequest)
+[请求重试策略文档](/tutorial/strategy/useRetriableRequest)
 
 :::

@@ -261,7 +261,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-> See [Method instance matcher](../next-step/method-instance-matcher) for more usage methods of `Method` instance matcher
+> See [Method instance matcher](/tutorial/next-step/method-instance-matcher) for more usage methods of `Method` instance matcher
 
 ## preload data
 
@@ -501,7 +501,7 @@ fetch(getTodoList(10), true);
 | Name       | Description                                                                                     | Type                                                                                                                                                                 | Default                              | Version |
 | ---------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
 | force      | Whether to force the request, it can be set as a function to dynamically return a boolean value | boolean                                                                                                                                                              | (...args: any[]) => boolean \| false | -       |
-| middleware | Middleware function, [Learn about alova middleware](../advanced/middleware)                     | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                    | -       |
+| middleware | Middleware function, [Learn about alova middleware](/tutorial/advanced/middleware)              | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                    | -       |
 
 ### AlovaFetcherMiddlewareContext
 

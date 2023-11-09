@@ -18,6 +18,6 @@ _操作引导：_
 1. 初始化完成后会预加载下一页数据，翻页到下一页时无需等待；
 2. 添加、删除、修改列表项无需重置列表，它将自动处理成和重新请求一致的效果；
 
-[usePagination 文档](../strategy/usePagination)
+[usePagination 文档](/tutorial/strategy/usePagination)
 
 :::

@@ -238,7 +238,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-同样的，你也可以通过 [method 实例匹配器](../next-step/method-instance-matcher) 动态查找 method 实例。
+同样的，你也可以通过 [method 实例匹配器](/tutorial/next-step/method-instance-matcher) 动态查找 method 实例。
 
 ```javascript
 setCache(
@@ -276,7 +276,7 @@ import { queryCache } from 'alova';
 const cacheData = queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-你也可以通过 [method 实例匹配器](../next-step/method-instance-matcher) 动态查找 method 实例。
+你也可以通过 [method 实例匹配器](/tutorial/next-step/method-instance-matcher) 动态查找 method 实例。
 
 ```javascript
 const cacheData = queryCache({

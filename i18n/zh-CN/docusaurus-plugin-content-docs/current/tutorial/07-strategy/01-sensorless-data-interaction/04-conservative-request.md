@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 以 Todo 管理为示例，来实现 Todo 在无感交互模式下的创建、编辑、删除等功能，在接下来的章节中将提供请求相关的关键代码。
 
-> 这里的[简单列表页示例](../../example/silent-submit-simple-list)包含了完整的代码，你可以进入体验。
+> 这里的[简单列表页示例](/tutorial/example/silent-submit-simple-list)包含了完整的代码，你可以进入体验。
 
 在`@alova/scene-*`js 包中，将使用 **useSQRequest** 来替代 alova 提供的 **useRequest**，接下来先以最常见的保守请求模式来实现，再一步一步处理无感交互模式的兼容性。
 
@@ -41,7 +41,7 @@ const createOrEditTodo = (data, id) =>
 const deleteTodo = id => alovaInst.Delete('/todo', { id });
 ```
 
-这部分与[开始的章节](..//tutorial/get-started/quick-start)相同，不再重复说明。
+这部分与[开始的章节](/tutorial/get-started/quick-start)相同，不再重复说明。
 
 ## 启动静默工厂
 

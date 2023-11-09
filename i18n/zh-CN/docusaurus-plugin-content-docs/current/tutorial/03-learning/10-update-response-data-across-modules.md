@@ -16,7 +16,7 @@ sidebar_position: 100
 1. 将页面组件持久化，以保证被更新的状态还可以被查找到；
 2. 使用 [手动更新缓存（setCache）](/tutorial/learning/cache-set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
 
-[这里有个`updateState`的 demo](../example/update-state)
+[这里有个`updateState`的 demo](/tutorial/example/update-state)
 
 ## 使用 method 实例查找响应状态
 
@@ -61,7 +61,7 @@ onSuccess(() => {
 
 ## 动态更新响应状态
 
-可能有时候你并不确定需要更新 method 下的响应状态，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](../next-step/method-instance-matcher) 来动态查找对应的 method 实例。以下例子展示了为名称为 todoList 的 method 实例对应的列表添加一条数据。
+可能有时候你并不确定需要更新 method 下的响应状态，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](/tutorial/next-step/method-instance-matcher) 来动态查找对应的 method 实例。以下例子展示了为名称为 todoList 的 method 实例对应的列表添加一条数据。
 
 ```javascript
 updateState('todoList', todoListRaw => {

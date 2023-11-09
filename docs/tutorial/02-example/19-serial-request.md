@@ -13,7 +13,7 @@ import SerialRequest from '@site/example-links/SerialRequest';
 
 This example mainly demonstrates a more elegant serial request through `useSerialRequest`.
 
-[useSerialRequest](../strategy/useSerialRequest)
-[useSerialWatcher](../strategy/useSerialWatcher)
+[useSerialRequest](/tutorial/strategy/useSerialRequest)
+[useSerialWatcher](/tutorial/strategy/useSerialWatcher)
 
 :::

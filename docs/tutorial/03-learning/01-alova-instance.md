@@ -202,4 +202,4 @@ const alovaInstance = createAlova({
 In an alova instance, the following configuration can also be set:
 
 1. [Cache mode of response data](/tutorial/learning/response-cache), we will elaborate in the following chapters;
-2. [Custom storage adapter](../advanced/custom-storage-adapter), which will be used for persistent response cache, which will be explained in the advanced chapter;
+2. [Custom storage adapter](/tutorial/advanced/custom-storage-adapter), which will be used for persistent response cache, which will be explained in the advanced chapter;

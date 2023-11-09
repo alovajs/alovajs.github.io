@@ -18,7 +18,7 @@ use hook
 
 ## 示例
 
-[表单提交 Demo](../example/form-hook)
+[表单提交 Demo](/tutorial/example/form-hook)
 
 ## 特性
 
@@ -451,7 +451,7 @@ const returnStates = useForm(submitData, {
 
 这样无论先渲染哪个组件都可以对 id 为 testForm 的表单初始化，后面的组件在遇到 id 为 testForm 时将优先使用已初始化的表单数据，而不会再次初始化。这样你就可以在任意组件内初始化表单数据。
 
-> 更详细的多步骤表单也可以在[表单提交 Demo](../example/form-hook)中体验和查看。
+> 更详细的多步骤表单也可以在[表单提交 Demo](/tutorial/example/form-hook)中体验和查看。
 
 ### 条件筛选
 
@@ -468,7 +468,7 @@ const { send: searchData } = useForm(queryCity, {
 
 :::warning 条件限制
 
-在条件筛选场景下，`useForm`更适用于非分页的列表条件查询，如果你需要在分页列表中进行条件查询，建议使用 [分页请求策略(usePagination)](../strategy/usePagination)。
+在条件筛选场景下，`useForm`更适用于非分页的列表条件查询，如果你需要在分页列表中进行条件查询，建议使用 [分页请求策略(usePagination)](/tutorial/strategy/usePagination)。
 
 :::
 

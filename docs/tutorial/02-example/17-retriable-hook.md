@@ -13,6 +13,6 @@ import RetriableHook from '@site/example-links/RetriableHook';
 
 This example provides four parts: form data persistence, form editing, multi-module form, and form filtering data, which can be tried separately.
 
-[Request Retry Strategy Documentation](../strategy/useRetriableRequest)
+[Request Retry Strategy Documentation](/tutorial/strategy/useRetriableRequest)
 
 :::

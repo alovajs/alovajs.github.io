@@ -18,7 +18,7 @@ use hook
 
 ## 示例
 
-[发送验证码 Demo](../example/captcha-send)
+[发送验证码 Demo](/tutorial/example/captcha-send)
 
 ## 特性
 

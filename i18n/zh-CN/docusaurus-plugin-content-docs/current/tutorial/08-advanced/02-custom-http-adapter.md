@@ -155,4 +155,4 @@ function XMLHttpRequestAdapter(requestElements, methodInstance) {
 
 ## 请求适配器类型
 
-请求适配器的参数以及支持 Typescript 的写法，可以在 [Typescript 章节](../advanced/typescript)中找到。
+请求适配器的参数以及支持 Typescript 的写法，可以在 [Typescript 章节](/tutorial/advanced/typescript)中找到。

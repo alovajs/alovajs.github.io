@@ -502,7 +502,7 @@ const alovaInst = createAlova({
 | initialData   | The initial data value, the data value is the initial value before the first response, `undefined` if not set | any                                                                                                                               | -                                         | -       |
 | force         | Whether to force the request, it can be set as a function to dynamically return a boolean value               | boolean                                                                                                                           | (...args: any[]) => boolean \| false      | -       |
 | managedStates | Additional managed states, can be updated via updateState                                                     | Record\<string                                                                                                                    | Record\<string \| number \| symbol, any\> | -       |
-| middleware    | Middleware function, [Learn about alova middleware](../advanced/middleware)                                   | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -                                         | -       |
+| middleware    | Middleware function, [Learn about alova middleware](/tutorial/advanced/middleware)                            | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -                                         | -       |
 
 #### AlovaFrontMiddlewareContext
 

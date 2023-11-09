@@ -208,9 +208,9 @@ const App = () => {
 
 :::warning 使用`GlobalFetch`适配器需注意
 
-因 fetch api 限制，alova 提供的 **GlobalFetch** 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](../extension/alova-adapter-xhr)或[axios 适配器](../extension/alova-adapter-axios)。
+因 fetch api 限制，alova 提供的 **GlobalFetch** 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/tutorial/extension/alova-adapter-xhr)或[axios 适配器](/tutorial/extension/alova-adapter-axios)。
 
-页可以自行编写请求适配器，详见 [编写请求适配器](../advanced/custom-http-adapter)。
+页可以自行编写请求适配器，详见 [编写请求适配器](/tutorial/advanced/custom-http-adapter)。
 
 :::
 

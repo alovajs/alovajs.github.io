@@ -18,7 +18,7 @@ The verification code sending hook saves you the trouble of developing the verif
 
 ## Example
 
-[Send Captcha Demo](../example/captcha-send)
+[Send Captcha Demo](/tutorial/example/captcha-send)
 
 ## Features
 

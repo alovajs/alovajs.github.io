@@ -18,9 +18,9 @@ A hook designed for paging scenarios, which can help you automatically manage pa
 
 ## Example
 
-[page list](../example/paginated-list)
+[page list](/tutorial/example/paginated-list)
 
-[Pull down to load more](../example/load-more)
+[Pull down to load more](/tutorial/example/load-more)
 
 ## Features
 

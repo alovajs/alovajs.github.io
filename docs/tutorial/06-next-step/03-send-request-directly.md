@@ -39,7 +39,7 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 
 :::
 
-Regarding when to use `useRequest` to send a request and when to use a method instance to send a request, please read the [Best Practice](../best-practice/skills) here.
+Regarding when to use `useRequest` to send a request and when to use a method instance to send a request, please read the [Best Practice](/tutorial/best-practice/skills) here.
 
 ## abort request
 

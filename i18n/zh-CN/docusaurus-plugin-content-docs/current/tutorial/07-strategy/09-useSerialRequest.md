@@ -14,7 +14,7 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-这个 use hook 比[alova 的串行请求方式](../next-step/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
+这个 use hook 比[alova 的串行请求方式](/tutorial/next-step/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
 
 ## 特性
 
@@ -24,7 +24,7 @@ use hook
 
 ## 示例
 
-[串行请求](../example/serial-request)
+[串行请求](/tutorial/example/serial-request)
 
 ## 安装
 

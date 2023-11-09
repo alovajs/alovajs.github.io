@@ -13,6 +13,6 @@ import FormHook from '@site/example-links/FormHook';
 
 This example provides four parts: form data persistence, form editing, multi-module form, and form filtering data, which can be tried separately.
 
-[Form submit strategy document](../strategy/useForm)
+[Form submit strategy document](/tutorial/strategy/useForm)
 
 :::

@@ -108,4 +108,4 @@ In the extensions, we also provide [XMLHttpRequest Adapter](/tutorial/extension/
 
 ## Request method type
 
-`Alova` provides abstract instances of seven request methods including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. For specific usage methods, please read [Request Method Details](../next-step/method-details).
+`Alova` provides abstract instances of seven request methods including GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH. For specific usage methods, please read [Request Method Details](/tutorial/next-step/method-details).

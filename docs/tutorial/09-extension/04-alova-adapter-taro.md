@@ -302,7 +302,7 @@ const App = () => {
 
 ## Mock request adapter compatible
 
-When using Taro to develop applications, we may still need to use mock requests, but by default, the response data of [Mock Request Adapter (@alova/mock)](../extension/alova-mock) is a `Response` instance, That is, it is compatible with the `GlobalFetch` request adapter by default. When used in the Taro environment, we need to make the response data of the simulated request adapter compatible with the Taro adapter, so you need to use the **@alova/adapter-taro** package exported `taroMockResponse` as response adapter.
+When using Taro to develop applications, we may still need to use mock requests, but by default, the response data of [Mock Request Adapter (@alova/mock)](/tutorial/extension/alova-mock) is a `Response` instance, That is, it is compatible with the `GlobalFetch` request adapter by default. When used in the Taro environment, we need to make the response data of the simulated request adapter compatible with the Taro adapter, so you need to use the **@alova/adapter-taro** package exported `taroMockResponse` as response adapter.
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

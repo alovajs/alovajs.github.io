@@ -171,7 +171,7 @@ const App = () => {
 
 ## 动态查找失效缓存
 
-可能有时候你并不确定需要失效哪个缓存数据，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](../next-step/method-instance-matcher) 来动态查找对应的 method 实例。以下例子展示了如何让名称为 todoList 的前 5 个 Method 实例的缓存失效。
+可能有时候你并不确定需要失效哪个缓存数据，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](/tutorial/next-step/method-instance-matcher) 来动态查找对应的 method 实例。以下例子展示了如何让名称为 todoList 的前 5 个 Method 实例的缓存失效。
 
 ```javascript
 const getTodoList = currentPage => {
@@ -206,7 +206,7 @@ onSuccess(() => {
 });
 ```
 
-> 更多`Method`实例匹配器的使用方法见 [Method 实例匹配器](../next-step/method-instance-matcher)
+> 更多`Method`实例匹配器的使用方法见 [Method 实例匹配器](/tutorial/next-step/method-instance-matcher)
 
 ## 失效所有缓存
 

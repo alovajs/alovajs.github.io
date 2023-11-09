@@ -257,7 +257,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-> 更多`Method`实例匹配器的使用方法见 [Method 实例匹配器](../next-step/method-instance-matcher)
+> 更多`Method`实例匹配器的使用方法见 [Method 实例匹配器](/tutorial/next-step/method-instance-matcher)
 
 ## 预加载数据
 
@@ -494,10 +494,10 @@ fetch(getTodoList(10), true);
 
 ### Hook 配置
 
-| 名称       | 描述                                                    | 类型                                                                                                                                                                 | 默认值                               | 版本 |
-| ---------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---- |
-| force      | 是否强制请求，可设置为函数动态返回 boolean 值           | boolean                                                                                                                                                              | (...args: any[]) => boolean \| false | -    |
-| middleware | 中间件函数，[了解 alova 中间件](../advanced/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                    | -    |
+| 名称       | 描述                                                           | 类型                                                                                                                                                                 | 默认值                               | 版本 |
+| ---------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---- |
+| force      | 是否强制请求，可设置为函数动态返回 boolean 值                  | boolean                                                                                                                                                              | (...args: any[]) => boolean \| false | -    |
+| middleware | 中间件函数，[了解 alova 中间件](/tutorial/advanced/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -                                    | -    |
 
 #### AlovaFetcherMiddlewareContext
 

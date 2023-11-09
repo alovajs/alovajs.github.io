@@ -13,6 +13,6 @@ import CaptchaSend from '@site/example-links/CaptchaSend';
 
 本示例展示便捷地实现验证码发送功能。
 
-[验证码发送策略文档](../strategy/useCaptcha)
+[验证码发送策略文档](/tutorial/strategy/useCaptcha)
 
 :::

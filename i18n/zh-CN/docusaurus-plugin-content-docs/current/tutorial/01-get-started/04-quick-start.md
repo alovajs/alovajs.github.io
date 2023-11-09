@@ -11,7 +11,7 @@ import { quickStartVue, quickStartReact, quickStartVueOptions, quickStartStaticV
 :::tip 示例提示
 
 1. 如果你还未了解 alova，强烈推荐你先阅读 [alova 概述部分](/tutorial/get-started/overview)。
-2. 想先尝试一下吗？可以 [点此](../example/init-page) 尝试一个简单的示例！
+2. 想先尝试一下吗？可以 [点此](/tutorial/example/init-page) 尝试一个简单的示例！
 
 :::
 
@@ -129,9 +129,9 @@ use hook 只能用于组件内发送请求，在组件外，你可以通过 meth
 const response = await alovaInstance.Get('https://api.alovajs.org/profile?id=1').send();
 ```
 
-更多关于 method 实例发送请求的内容，请前往[使用 method 实例发送请求](../next-step/send-request-directly)阅读。
+更多关于 method 实例发送请求的内容，请前往[使用 method 实例发送请求](/tutorial/next-step/send-request-directly)阅读。
 
-关于在何时使用 useRequest 发送请求，何时使用 method 实例发送请求，请移步阅读这边的[最佳实践](../best-practice/skills)。
+关于在何时使用 useRequest 发送请求，何时使用 method 实例发送请求，请移步阅读这边的[最佳实践](/tutorial/best-practice/skills)。
 
 ## 在静态 html 中使用
 
@@ -168,4 +168,4 @@ svelte 依赖于编译工具，不能通过 CDN 直接使用，详情见 [svelte
 
 实际上，这只是一个最简单的示例代码，但 alova 还包括如请求和响应拦截器、缓存和状态管理、多个核心 use hook 等丰富的功能，我们将在后续的章节中阐述。
 
-如果你想要更好地管理你的请求代码，这里有一个 [method 管理](../best-practice/method-manage) 的最佳实践，待你移步去阅读。
+如果你想要更好地管理你的请求代码，这里有一个 [method 管理](/tutorial/best-practice/method-manage) 的最佳实践，待你移步去阅读。

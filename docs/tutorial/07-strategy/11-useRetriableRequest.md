@@ -18,7 +18,7 @@ A use hook that can automatically retry a request failure, you can use it for im
 
 ## Example
 
-[Request Retry Demo](../example/retriable-hook)
+[Request Retry Demo](/tutorial/example/retriable-hook)
 
 ## Features
 

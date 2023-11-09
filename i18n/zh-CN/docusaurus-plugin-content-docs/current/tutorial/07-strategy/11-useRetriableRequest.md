@@ -18,7 +18,7 @@ use hook
 
 ## 示例
 
-[请求重试 Demo](../example/retriable-hook)
+[请求重试 Demo](/tutorial/example/retriable-hook)
 
 ## 特性
 

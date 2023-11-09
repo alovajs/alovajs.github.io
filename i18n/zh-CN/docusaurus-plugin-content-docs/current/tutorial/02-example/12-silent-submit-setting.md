@@ -18,6 +18,6 @@ _操作引导：_
 1. 操作设置项，它将立即产生反馈，而不需要等待服务端响应；
 2. 切换请求模式和网络状态，体验它们的区别；
 
-[静默提交策略文档](../../category/sensorless-data-interaction)
+[静默提交策略文档](/category/sensorless-data-interaction)
 
 :::

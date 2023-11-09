@@ -238,7 +238,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-Similarly, you can also dynamically find method instances through [method instance matcher](../next-step/method-instance-matcher).
+Similarly, you can also dynamically find method instances through [method instance matcher](/tutorial/next-step/method-instance-matcher).
 
 ```javascript
 setCache(
@@ -276,7 +276,7 @@ import { queryCache } from 'alova';
 const cacheData = queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-You can also dynamically find method instances via [method instance matcher](../next-step/method-instance-matcher).
+You can also dynamically find method instances via [method instance matcher](/tutorial/next-step/method-instance-matcher).
 
 ```javascript
 const cacheData = queryCache({

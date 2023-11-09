@@ -13,6 +13,6 @@ import CaptchaSend from '@site/example-links/CaptchaSend';
 
 This example demonstrates the convenient implementation of the captcha sending function.
 
-[Captcha sending strategy document](../strategy/useCaptcha)
+[Captcha sending strategy document](/tutorial/strategy/useCaptcha)
 
 :::

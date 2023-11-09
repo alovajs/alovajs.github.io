@@ -7,7 +7,7 @@ If you are developing applications that require extensive use of local cache, su
 
 This feature is mainly due to alova's [Controlled Cache] (/next-step/controlled-cache) function, which can implement custom cache management. Let's take a look at the practical steps.
 
-Here is an [example of managed cache with IndexedDB](../example/controlled-cache-by-indexeddb)
+Here is an [example of managed cache with IndexedDB](/tutorial/example/controlled-cache-by-indexeddb)
 
 Let's take custom management of large image data as an example.
 
