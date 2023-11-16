@@ -367,6 +367,15 @@ usePagination((page, pageSize) => queryStudents(page, pageSize), {
 });
 ```
 
+:::warning preloading trigger conditions
+
+When preloading switch is turned on, the next page will not be loaded blindly. The following two conditions need to be met:
+
+1. Preloading is based on cache of alova. The method instance used for pagination must enable chache. By default, get requests will have 5 minutes of memory cache. If it is a non-get request or the cache is turned off globally, you also need to set the cache in this Method. In the instance, set `localCache` separately to enable cache.
+2. Based on the `total` and `pageSize` parameters, it is determined that there is still data on the next page.
+
+:::
+
 In addition to `onSuccess, onError, onComplete` request events, when preloading is triggered, you can also know the preloading status through `fetching`, and you can also listen to preloading request events through `onFetchSuccess, onFetchError, onFetchComplete`.
 
 ```javascript
