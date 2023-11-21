@@ -37,11 +37,13 @@ yarn add alova @alova/vue-options
 
 :::info alova 版本要求
 
-alova 版本 >= 2.13.1
+alova 版本 >= 2.13.2
 
 :::
 
 ## 用法
+
+### 映射 hook 状态和函数到 vue 实例上
 
 先使用`vueOptionHook`创建 alova 实例。
 
@@ -121,7 +123,110 @@ export const getData = () => alovaInst.Get('/todolist');
 </script>
 ```
 
-## mapAlovaHook 函数说明
+### 计算属性
+
+如果你需要定义依赖 hook 相关的请求状态的计算属性，只需要和平时一样编写即可。
+
+```javascript
+export default {
+  computed: {
+    todoRequestLoading() {
+      return this.todoRequest.loading;
+    },
+    todoRequestData() {
+      return this.todoRequest.data;
+    }
+  }
+};
+```
+
+### 监听 hook 状态变化
+
+由于 vue2 的限制，所有 hook 状态都是挂载在一个名叫`alovaHook$`的对象上，因此在监听时需要添加`alovaHook$`前缀。
+
+```javascript
+export default {
+  watch: {
+    // ❌无法监听
+    'todoRequest.loading'(newVal, oldVal) {
+      // ...
+    },
+    // ✅监听正常
+    'alovaHook$.todoRequest.loading'(newVal, oldVal) {
+      // ...
+    }
+  }
+};
+```
+
+但这样稍显麻烦，因此提供了一个`mapWatcher`辅助函数，不仅可以自动添加前缀、嵌套监听，还可以批量监听。
+
+#### 设置单个监听函数
+
+```javascript
+export default {
+  watch: mapWatcher({
+    // 用法1
+    'todoRequest.loading'(newVal, oldVal) {},
+
+    // 用法2
+    todoRequest: {
+      loading(newVal, oldVal) {},
+      data(newVal, oldVal) {}
+    }
+  })
+};
+```
+
+同时也支持监听器对象。
+
+```javascript
+export default {
+  watch: mapWatcher({
+    todoRequest: {
+      data: {
+        handler(newVal, oldVal) {},
+        deep: true
+      }
+    }
+  })
+};
+```
+
+#### 批量设置监听函数
+
+多个监听 key 使用`,`分隔。
+
+```javascript
+export default {
+  watch: mapWatcher({
+    // 用法1
+    'todoRequest1.data, todoRequest2.data'(newVal, oldVal) {},
+
+    // 用法2
+    'todoRequest1, todoRequest2': {
+      loading(newVal, oldVal) {},
+      data(newVal, oldVal) {}
+    },
+
+    // 用法3
+    todoRequest1: {
+      'loading, data'(newVal, oldVal) {}
+    },
+
+    // 用法4
+    'todoRequest1, todoRequest2': {
+      'loading, data'(newVal, oldVal) {}
+    }
+  })
+};
+```
+
+> 批量监听也同样支持监听器对象
+
+## 函数说明
+
+### mapAlovaHook
 
 `mapAlovaHook`是用于将 alova 的 use hook 返回的状态和函数集合，通过 mixins 映射到 vue 组件实例上。它接收一个回调函数并返回 use hook 的返回值集合。
 
@@ -144,6 +249,47 @@ mapAlovaHook(vm => {
     todoRequest: useRequest(getData)
   };
 });
+```
+
+### mapWatcher
+
+`mapWatcher`是用于快速定义 hook 状态变化的辅助函数，它接收一个对象，键为 hook 状态的 key 或嵌套值的字符串表示，值为监听函数或监听器对象。
+
+```javascript
+// 1. 监听单个状态
+mapWatcher({
+  'todoRequest.loading'(newVal, oldVal) {
+    //...
+  },
+  todoRequest: {
+    data(newVal, oldVal) {
+      //...
+    }
+  },
+  todoRequest: {
+    'loading, data'(newVal, oldVal) {
+      //...
+    }
+  }
+}
+```
+
+`mapWatcher`除了支持对 alova useHook 的监听辅助外，你还可以使用它批量设置普通状态值的监听。
+
+```javascript
+export default {
+  data() {
+    state1: '',
+    state2: 0
+  },
+
+  // 第二个参数传入false即可监听普通状态
+  watch: mapWatcher({
+   'state1, state2'(newVal, oldVal) {
+      //...
+    }
+  }, false)
+}
 ```
 
 ## 类型支持

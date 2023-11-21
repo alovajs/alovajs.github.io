@@ -19,7 +19,7 @@ Node.js 16+, npm 8+
 
 ## 3. 新建 pull request
 
-你可以先随便修改一些什么并提交，然后新建 pull request 并使用`close #xxx`来关联正在解决的 issue，这将表示你已占有该 issue，[如何通过 fork 仓库创建 pull request](https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)在这里。
+你可以在编写完代码后[通过 fork 仓库创建 pull request](https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)，也可以分为任意多次提交代码，而无需一次提交完整代码。
 
 ## 4. 在本地编码
 

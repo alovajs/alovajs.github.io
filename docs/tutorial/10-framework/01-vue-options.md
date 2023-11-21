@@ -6,7 +6,7 @@ sidebar_position: 10
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Usually, use hook can only be used in vue's setup, but through the auxiliary function provided by `@alova/vue-options`, you can also use alova's use hook in vue options style, which is perfectly compatible with almost all functions of alova.
+Usually, use hook can only be used in vue's setup, but through the helper function provided by `@alova/vue-options`, you can also use alova's use hook in vue's options, which is perfectly compatible with almost all functions of alova.
 
 > Available in both vue2 and vue3.
 
@@ -35,13 +35,15 @@ yarn add alova @alova/vue-options
 </TabItem>
 </Tabs>
 
-:::info alova version requirements
+:::info alova requirements
 
-alova version >= 2.13.1
+alova version >= 2.13.2
 
 :::
 
 ## Usage
+
+### Map hook status and functions to vue instances
 
 First use `vueOptionHook` to create an alova instance.
 
@@ -65,7 +67,7 @@ export const getData = () => alovaInst.Get('/todolist');
 Then use `mapAlovaHook` to map the return value set of use hook to the component instance. The following is how to access the reactive state and operation functions:
 
 1. You can access responsive status such as `loading/data/error` through the key of the collection, such as `this.key.loading`, `this.key.data`.
-2. You can access the operation function by adding the key of the collection and the function name, and use `$` to splice it, such as `this.key$send`, `this.key$onSuccess`.
+2. You can access the operation function through the key of the collection plus the function name, and use `$` to splice it, such as `this.key$send`, `this.key$onSuccess`.
 
 Below is a complete example.
 
@@ -121,7 +123,110 @@ Below is a complete example.
 </script>
 ```
 
-## mapAlovaHook function description
+### Computed properties
+
+If you need to define a computed property that depends on hook-related request status, just write it as usual.
+
+```javascript
+export default {
+  computed: {
+    todoRequestLoading() {
+      return this.todoRequest.loading;
+    },
+    todoRequestData() {
+      return this.todoRequest.data;
+    }
+  }
+};
+```
+
+### Watch hook status changes
+
+Due to the limitations of vue2, all hook states are mounted on an object named `alovaHook$`, so you need to add the `alovaHook$` prefix when listening.
+
+```javascript
+export default {
+  watch: {
+    // ❌Unable to watch
+    'todoRequest.loading'(newVal, oldVal) {
+      // ...
+    },
+    // ✅watching is work
+    'alovaHook$.todoRequest.loading'(newVal, oldVal) {
+      // ...
+    }
+  }
+};
+```
+
+But this is a bit troublesome, so a `mapWatcher` helper function is provided, which can not only automatically add prefixes, nested watching, but also batch watching.
+
+#### Define single watch handler
+
+```javascript
+export default {
+  watch: mapWatcher({
+    // Usage 1
+    'todoRequest.loading'(newVal, oldVal) {},
+
+    // Usage 2
+    todoRequest: {
+      loading(newVal, oldVal) {},
+      data(newVal, oldVal) {}
+    }
+  })
+};
+```
+
+Watching object is also supported.
+
+```javascript
+export default {
+  watch: mapWatcher({
+    todoRequest: {
+      data: {
+        handler(newVal, oldVal) {},
+        deep: true
+      }
+    }
+  })
+};
+```
+
+#### Batch define watch handlers
+
+Multiple watching keys are separated by `,`.
+
+```javascript
+export default {
+  watch: mapWatcher({
+    // Usage 1
+    'todoRequest1.data, todoRequest2.data'(newVal, oldVal) {},
+
+    // Usage 2
+    'todoRequest1, todoRequest2': {
+      loading(newVal, oldVal) {},
+      data(newVal, oldVal) {}
+    },
+
+    // Usage 3
+    todoRequest1: {
+      'loading, data'(newVal, oldVal) {}
+    },
+
+    // Usage 4
+    'todoRequest1, todoRequest2': {
+      'loading, data'(newVal, oldVal) {}
+    }
+  })
+};
+```
+
+> Batch watching also supports watching object.
+
+## Function description
+
+### mapAlovaHook
 
 `mapAlovaHook` is used to map the state and function collection returned by alova's use hook to the vue component instance through mixins. It receives a callback function and returns the return value collection of use hook.
 
@@ -146,6 +251,46 @@ mapAlovaHook(vm => {
 });
 ```
 
+### mapWatcher
+
+`mapWatcher` is an helper function used to quickly define the watching handlers of hook states. It receives an object whose key is the key of the hook state or a string representation of the nested value, and whose value is the watching handler or watching object.
+
+```javascript
+mapWatcher({
+   'todoRequest.loading'(newVal, oldVal) {
+     //...
+   },
+   todoRequest: {
+     data(newVal, oldVal) {
+       //...
+     }
+   },
+   todoRequest: {
+     'loading, data'(newVal, oldVal) {
+       //...
+     }
+   }
+}
+```
+
+In addition to supporting watching assistance for alova useHook, `mapWatcher` can also be used to batch set watching handlers of custom states.
+
+```javascript
+export default {
+   data() {
+     state1: '',
+     state2: 0
+   },
+
+   // pass false at the second parameter to watch the custom states
+   watch: mapWatcher({
+    'state1, state2'(newVal, oldVal) {
+       //...
+     }
+   }, false)
+}
+```
+
 ## Type support
 
 ### Automatic inference
@@ -167,8 +312,7 @@ this.todoRequest$onComplete; // (handler: CompleteHandler) => void
 
 Except for `this.todoRequest.data`, all other values have the correct type, so how to set the type for `data` too? In fact, it is the same as alova used in other environments.
 
-<Tabs>
-<TabItem value="1" label="javascript">
+**javascript**
 
 In javascript, you can use type annotations to add types. The first two generic parameters of Method are `unknown`, and the third generic parameter is the type of response data.
 
@@ -179,15 +323,11 @@ import { Method } from 'alova';
 export const getData = () => alovaInst.Get('/todolist');
 ```
 
-</TabItem>
-<TabItem value="2" label="typescript">
+**typescript**
 
-To add response data type in typescript, please read [alova documentation typescript](/tutorial/advanced/typescript/#the-type-of-response-data)
+To add response data type in typescript, please read [alova documentation typescript chapter](/tutorial/advanced/typescript/#the-type-of-response-data)
 
-</TabItem>
-</Tabs>
-
-## Limitation
+## limit
 
 1. [Manage extra states](/tutorial/next-step/manage-extra-states) is not supported yet.
-2. Currently, only alova’s 3 core useHooks of `useRequest/useWatcher/useFetcher` are supported, as well as the wrapped useHook based on the core useHook in your own project. The extended useHook in [@alova/scene](https://github.com/alova/scene) is not supported yet.
+2. Currently, only alova’s three core useHooks of `useRequest/useWatcher/useFetcher` are supported, as well as the encapsulation based on the core useHook in your own project. [@alova/scene](https://github.com/alovajs/scene) is not supported yet. extension useHook.

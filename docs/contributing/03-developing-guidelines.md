@@ -19,7 +19,7 @@ Use the `git clone` command line, or the `Github Desktop` application to clone f
 
 ## 3. New pull request
 
-You can first modify something and commit it, then create a new pull request and use `close #xxx` to associate with the issue you are solving, which will indicate that you have owned the issue, [How to create pull request through a forked repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)it's here.
+You can [create pull request through a forked repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) after writing code. You can also commit code in arbitrary batches, without commiting a complete code.
 
 ## 4. Code something in your computer
 
