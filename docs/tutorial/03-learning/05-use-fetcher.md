@@ -488,7 +488,7 @@ const { fetch } = useFetcher({
 fetch(getTodoList(10), true);
 ```
 
-## Compare with useRequest and useWatcher
+## Compare with useRequest and useFetcher
 
 1. useFetcher does not return the `data` field, the pre-fetched data will be saved in the cache, and the status data of the corresponding location will be updated;
 2. Rename `loading` to `fetching`;

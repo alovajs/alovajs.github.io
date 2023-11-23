@@ -484,7 +484,7 @@ const { fetch } = useFetcher({
 fetch(getTodoList(10), true);
 ```
 
-## 与 useRequest 和 useWatcher 的差异对比
+## 与 useRequest 和 useFetcher 的差异对比
 
 1. useFetcher 不返回`data`字段，预拉取的数据将保存在缓存中，以及更新对应位置的状态数据;
 2. 将`loading`改名为了`fetching`;
