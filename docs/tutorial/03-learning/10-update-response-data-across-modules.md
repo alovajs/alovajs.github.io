@@ -9,7 +9,7 @@ Of course there is! alova provides `updateState` to manually update the existing
 
 ## ⚠️ Please make sure the component is not destroyed
 
-`updateState` will look for the response state created by alova's use hooks by default, and the destruction of a component will also recycle all the state created inside it at the same time, so when using `updateState`, please make sure you want to update the response The container component corresponding to the status has not been destroyed, otherwise the corresponding response status will not be found and the update will fail.
+By default, `updateState` will search the response state created by alova's use hooks when sending a request. However, to prevent memory overflow, the destruction of a component will also recycle all the states created internally, so please make sure when using `updateState` You hope that the container component corresponding to the updated response states has not been destroyed, otherwise the corresponding response states will not be found and the update will fail.
 
 This problem often occurs when the state is updated across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update the state across pages, here are two suggestions :
 

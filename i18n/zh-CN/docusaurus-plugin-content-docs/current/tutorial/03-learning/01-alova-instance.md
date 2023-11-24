@@ -182,6 +182,27 @@ const alovaInstance = createAlova({
 
 :::
 
+## 设置全局完成拦截器
+
+当你需要在请求不论是成功、失败、还是命中缓存都需要执行的逻辑时，可以在创建`alova`实例时指定全局的`onComplete`拦截器，例如关闭请求 loading 状态。
+
+```javascript
+const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  responded: {
+    // ...
+
+    // 请求完成的拦截器
+    // 接收当前请求的method实例
+    onComplete: async method => {
+      // 处理请求完成逻辑
+    }
+  }
+  // highlight-end
+});
+```
+
 ## 设置全局请求超时时间
 
 以下为设置全局的请求超时时间。
