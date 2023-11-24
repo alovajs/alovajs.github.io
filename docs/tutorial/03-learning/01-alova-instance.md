@@ -182,6 +182,27 @@ const alovaInstance = createAlova({
 
 :::
 
+## Set global completion interceptor
+
+When you need logic that needs to be executed whether the request succeeds, fails, or hits the cache, you can specify a global `onComplete` interceptor when creating an `alova` instance, such as hiding request loading.
+
+```javascript
+const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  responded: {
+    // ...
+
+    // Interceptor for request completion
+    // Receive the method instance of the current request
+    onComplete: async method => {
+      // Process request completion logic
+    }
+  }
+  // highlight-end
+});
+```
+
 ## Set the global request timeout
 
 The following is to set the global request timeout.
