@@ -41,6 +41,35 @@ In Nuxt3.x, `useAsyncData` is provided to initialize page data on server, and `u
 </script>
 ```
 
+#### Nextjs v14.0
+Nextjs version 14.0 remove some function likes those `getStaticProps`, `getServerSideProps`. You can see the [Documents](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props).
+
+```jsx
+type Resp = {
+  title: string
+  time: number
+}
+
+const req = alovaInstance.Get<data: Resp[]>('/todo/list', {
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8'
+  }
+})
+
+const App = async() => {
+  const data = await req.send()
+  // then ...code
+  return data.map(item => (
+    <div>
+      <span>{item.title}</span>
+      <span>{item.time}</span>
+    </div>
+  ));
+}
+
+export default App
+```
+
 ### Nextjs
 
 Nextjs provides fixed server-side initialization page data functions, such as `getStaticProps`, `getServerSideProps`, etc., you can [directly use the method instance](/tutorial/next-step/send-request-directly) call apis in the function.
