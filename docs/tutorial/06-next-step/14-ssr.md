@@ -44,7 +44,7 @@ In Nuxt3.x, `useAsyncData` is provided to initialize page data on server, and `u
 #### Nextjs v14.0
 Nextjs version 14.0 remove some function likes those `getStaticProps`, `getServerSideProps`. You can see the [Documents](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props).
 
-```jsx
+```tsx
 type Resp = {
   title: string
   time: number
