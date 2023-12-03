@@ -162,7 +162,7 @@ Then, you can use the alova instance to send the request directly. The request p
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} />
+<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 </Tabs>
@@ -178,12 +178,12 @@ But the above is just the beginning. In enterprise-level projects, requests are 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">
 
-<EmbedSandpack template="vue" mainFile={quickStartVue} editorHeight={400} />
+<EmbedSandpack template="vue" mainFile={quickStartVue} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 <TabItem value="2" label="react">
 
-<EmbedSandpack template="react" mainFile={quickStartReact} editorHeight={400} />
+<EmbedSandpack template="react" mainFile={quickStartReact} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 <TabItem value="3" label="svelte">
