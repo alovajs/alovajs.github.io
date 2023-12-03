@@ -85,9 +85,9 @@ const alovaInstance = createAlova({
 
 在这个创建 alova 实例的代码中，分别指定了**baseURL、statesHook、requestAdapter**，现在我们来了解下它们：
 
-- **baseURL**：（可选）表示请求的根路径，通过这个 alova 实例发送的请求都会在前面拼接 baseURL，一般设置为域名；
-- **statesHook**：（必须）它用于确定在 use hook（例如 useRequest）应该如何返回状态化数据，目前提供了 VueHook、ReactHook、SvelteHook 分别用于支持 vue、react 和 svelte，statesHook 将会帮我们创建不同 UI 框架的请求相关的、可以被 Alova 管理的状态，包括请求状态 loading、响应数据 data、请求错误对象 error 等；
-- **requestAdapter**：（必须）请求适配器，请求适配器将用于所有请求的发送，请求发送模块和具体的请求信息是解耦的。在示例代码中使用了默认提供的 **GlobalFetch**，它由`window.fetch`提供请求支持。
+1. **baseURL**：（可选）表示请求的根路径，通过这个 alova 实例发送的请求都会在前面拼接 baseURL，一般设置为域名；
+2. **statesHook**：（必须）它用于确定在 use hook（例如 useRequest）应该如何返回状态化数据，目前提供了 VueHook、ReactHook、SvelteHook 分别用于支持 vue、react 和 svelte，statesHook 将会帮我们创建不同 UI 框架的请求相关的、可以被 Alova 管理的状态，包括请求状态 loading、响应数据 data、请求错误对象 error 等；
+3. **requestAdapter**：（必须）请求适配器，请求适配器将用于所有请求的发送，请求发送模块和具体的请求信息是解耦的。在示例代码中使用了默认提供的 **GlobalFetch**，它由`window.fetch`提供请求支持。
 
 ## 设置全局请求拦截器
 
@@ -125,7 +125,7 @@ const alovaInstance = createAlova({
 
 ## 设置全局响应拦截器
 
-当我们希望统一解析响应数据、统一处理错误时，此时可以在创建`alova`实例时指定全局的响应拦截器，这同样与`axios`相似。响应拦截器包括请求成功的拦截器和请求失败的拦截器。
+当我们希望统一解析响应数据、统一处理错误，以及统一处理请求完成时，此时可以在创建`alova`实例时指定全局的响应拦截器，这同样与`axios`相似。响应拦截器包括请求成功的拦截器、请求失败的拦截器，和请求完成的拦截器。
 
 ```javascript
 const alovaInstance = createAlova({
@@ -155,6 +155,13 @@ const alovaInstance = createAlova({
     // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
     onError: (err, method) => {
       alert(error.message);
+    },
+
+    // 请求完成的拦截器
+    // 当你需要在请求不论是成功、失败、还是命中缓存都需要执行的逻辑时，可以在创建`alova`实例时指定全局的`onComplete`拦截器，例如关闭请求 loading 状态。
+    // 接收当前请求的method实例
+    onComplete: async method => {
+      // 处理请求完成逻辑
     }
   }
   // highlight-end
@@ -174,34 +181,19 @@ const alovaInstance = createAlova({
 });
 ```
 
-:::warning 特别注意
+:::info 拦截器触发说明
 
-1. `onSuccess`和`onError`均可以设为同步函数和异步函数。
-2. onError 回调是请求错误的捕获函数，onSuccess 中抛出错误不会触发 onError。当捕获错误但没有抛出错误或返回 reject 状态的 Promise 实例，将认为请求是成功的，且不会获得响应数据。
-3. 在 2.0.x 及以前的版本中将`responded`错误地拼写为了`responsed`，在 2.1.0 中已将两者做了兼容处理，建议在后续版本中使用`responded`代替`responsed`。
+当你使用`GlobalFetch`请求适配器时，由于`window.fetch`的特点，只有在连接超时或连接中断时才会触发`onError`拦截器，其他情况均会触发`onSuccess`拦截器，[详情请查看这边](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::
 
-## 设置全局完成拦截器
+:::warning 特别注意
 
-当你需要在请求不论是成功、失败、还是命中缓存都需要执行的逻辑时，可以在创建`alova`实例时指定全局的`onComplete`拦截器，例如关闭请求 loading 状态。
+1. `onSuccess`、`onError`和`onComplete`均可以设为同步函数和异步函数。
+2. `onError` 回调是请求错误的捕获函数，`onSuccess` 中抛出错误不会触发 `onError`。当捕获错误但没有抛出错误或返回 reject 状态的 Promise 实例，将认为请求是成功的，且不会获得响应数据。
+3. 在 2.0.x 及以前的版本中将`responded`错误地拼写为了`responsed`，在 2.1.0 中已将两者做了兼容处理，建议在后续版本中使用`responded`代替`responsed`。
 
-```javascript
-const alovaInstance = createAlova({
-  // ...
-  // highlight-start
-  responded: {
-    // ...
-
-    // 请求完成的拦截器
-    // 接收当前请求的method实例
-    onComplete: async method => {
-      // 处理请求完成逻辑
-    }
-  }
-  // highlight-end
-});
-```
+:::
 
 ## 设置全局请求超时时间
 

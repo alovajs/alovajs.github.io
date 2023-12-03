@@ -5,19 +5,10 @@ export const quickStartVue = `<template>
 </template>
 
 <script setup>
-import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import VueHook from 'alova/vue';
-// 1. 创建alova实例
-const alovaInstance = createAlova({
-  // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-  statesHook: VueHook,
-  // 请求适配器，推荐使用fetch请求适配器
-  requestAdapter: GlobalFetch(),
-  // 全局的响应拦截器
-  responded: response => response.json()
-});
-// 2. 使用alova实例创建method并传给useRequest即可发送请求
+import { useRequest } from 'alova';
+import { alovaInstance } from './api';
+
+// 使用alova实例创建method并传给useRequest即可发送请求
 const { loading, data, error } = useRequest(
   alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
 );
@@ -30,25 +21,14 @@ export const quickStartVueOptions = `<template>
 </template>
 
 <script>
-import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import VueHook from 'alova/vue';
+import { useRequest } from 'alova';
+import { alovaInstance } from './api';
 import { mapAlovaHook } from '@alova/vue-options';
 
-// 1. 创建alova实例
-const alovaInstance = createAlova({
-  // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-  statesHook: VueHook,
-  // 请求适配器，推荐使用fetch请求适配器
-  requestAdapter: GlobalFetch(),
-  // 全局的响应拦截器
-  responded: response => response.json()
-});
-
 export default {
-  mixins: mapAlovaHook(function () {
+  mixins: mapAlovaHook(function() {
     return {
-      // 2. 使用alova实例创建method并传给useRequest即可发送请求
+      // 使用alova实例创建method并传给useRequest即可发送请求
       todo: useRequest(
         alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
       )
@@ -60,24 +40,11 @@ export default {
 }
 </script>`;
 
-export const quickStartReact = `import { createAlova, useRequest } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import ReactHook from 'alova/react';
-
-// 1. 创建alova实例
-const alovaInstance = createAlova({
-  // ReactHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
-  statesHook: ReactHook,
-
-  // 请求适配器，推荐使用fetch请求适配器
-  requestAdapter: GlobalFetch(),
-
-  // 全局的响应拦截器
-  responded: response => response.json()
-});
+export const quickStartReact = `import { useRequest } from 'alova';
+import { alovaInstance } from './api';
 
 const App = () => {
-  // 2. 使用alova实例创建method并传给useRequest即可发送请求
+  // 使用alova实例创建method并传给useRequest即可发送请求
   const { loading, data, error } = useRequest(
     alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
   );
@@ -92,6 +59,64 @@ const App = () => {
   );
 };
 export default App;`;
+
+export const quickStartMethodVue = `<template>
+  <span>responseData: {{ data }}</span>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { alovaInstance } from './api';
+
+const data = ref(null);
+alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+  .send()
+  .then(response => {
+    data.value = response;
+  });
+</script>`;
+
+export const quickStartMethodReact = `import { useState, useEffect } from'react';
+import { alovaInstance } from './api';
+
+const App = () => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+      .send()
+      .then(response => {
+        setData(response);
+      });
+  }, []);
+
+  return (
+    <span>responseData: {JSON.stringify(data)}</span>
+  );
+};
+export default App;`;
+
+export const quickStartMethodVueOptions = `<template>
+  <span>responseData: {{ response }}</span>
+</template>
+
+<script>
+import { alovaInstance } from './api';
+
+export default {
+  data() {
+    return {
+      response: null
+    }
+  },
+  created() {
+    alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+      .send()
+      .then(response => {
+        this.response = response;
+      });
+  }
+}
+</script>`;
 
 export const quickStartStaticVue = `<!DOCTYPE html>
 <html lang="en">

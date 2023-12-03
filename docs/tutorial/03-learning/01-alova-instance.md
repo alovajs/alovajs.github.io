@@ -85,9 +85,9 @@ const alovaInstance = createAlova({
 
 In the code for creating an alova instance, **baseURL, statesHook, and requestAdapter** are respectively specified. Now let's understand them:
 
-- **baseURL**: (optional) indicates the root path of the request. Requests sent through this alova instance will be spliced with baseURL in front, generally set to the domain name;
-- **statesHook**: (required) It is used to determine how to return stateful data in the use hook (such as useRequest). Currently, VueHook, ReactHook, and SvelteHook are provided to support vue, react, and svelte respectively. statesHook will help We create request-related states of different UI frameworks that can be managed by Alova, including request state loading, response data data, request error object error, etc.;
-- **requestAdapter**: (required) request adapter, the request adapter will be used to send all requests, the request sending module and the specific request information are decoupled. The example code uses the default provided **GlobalFetch**, which is supported by `window.fetch` for requests.
+1. **baseURL**: (optional) indicates the root path of the request. Requests sent through this alova instance will be spliced with baseURL in front, generally set to the domain name;
+2. **statesHook**: (required) It is used to determine how to return stateful data in the use hook (such as useRequest). Currently, VueHook, ReactHook, and SvelteHook are provided to support vue, react, and svelte respectively. statesHook will help We create request-related states of different UI frameworks that can be managed by Alova, including request state loading, response data data, request error object error, etc.;
+3. **requestAdapter**: (required) request adapter, the request adapter will be used to send all requests, the request sending module and the specific request information are decoupled. The example code uses the default provided **GlobalFetch**, which is supported by `window.fetch` for requests.
 
 ## Set global request interceptor
 
@@ -123,9 +123,9 @@ const alovaInstance = createAlova({
 
 > Detailed request method example introduction will be explained in the next section
 
-## Set global response interceptor
+## Set global response interceptors
 
-When we want to unify the parsing of response data and uniform handling of errors, we can specify a global response interceptor when creating an `alova` instance, which is also similar to `axios`. Response interceptors include interceptors for successful requests and interceptors for failed requests.
+When we want to unify the parsing of response data and uniform handling of errors, as well as handling the response completition, we can specify a global response interceptor when creating an `alova` instance, which is also similar to `axios`. Response interceptors include interceptors for successful requests, failed requests and completed requests.
 
 ```javascript
 const alovaInstance = createAlova({
@@ -155,6 +155,13 @@ const alovaInstance = createAlova({
     // The second parameter is the method instance of the current request, you can use it to synchronize the configuration information before and after the request
     onError: (err, method) => {
       alert(error.message);
+    },
+
+    // Interceptor for request completion
+    // When you need logic that needs to be executed whether the request succeeds, fails, or hits the cache, you can specify a global `onComplete` interceptor when creating an `alova` instance, such as hiding request loading.
+    // Receive the method instance of the current request
+    onComplete: async method => {
+      // Process request completion logic
     }
   }
   // highlight-end
@@ -174,34 +181,25 @@ const alovaInstance = createAlova({
 });
 ```
 
+:::info 拦截器触发说明
+
+当你使用`GlobalFetch`请求适配器时，由于`window.fetch`的特点，只有在连接超时或连接中断时才会触发`onError`拦截器，其他情况均会触发`onSuccess`拦截器，[详情请查看这边](https://developer.mozilla.org/docs/Web/API/fetch)
+
+:::
+
+:::info Instruction for interceptors triggering
+
+When you use the `GlobalFetch` as the requestAdapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or breaks, and other cases will trigger the `onSuccess` interceptor, [for more details here](https://developer.mozilla.org/docs/Web/API/fetch)
+
+:::
+
 :::warning special attention
 
-1. Both `onSuccess` and `onError` can be set as synchronous function or asynchronous function.
+1. `onSuccess`, `onError` and `onComplete` can be set as synchronous function or asynchronous function.
 2. The `onError` callback is a capture function for request errors. it will not emit `onError` when throw error in `onSuccess`. When an error is caught but no error is thrown or a Promise instance in the reject state is returned, the request will be considered successful and no response data will be obtained.
 3. In 2.0.x and previous versions, `responded` was misspelled as `responsed`, and the two have been made compatible in 2.1.0. It is recommended to use `responded` instead of `responsed` in subsequent versions.
 
 :::
-
-## Set global completion interceptor
-
-When you need logic that needs to be executed whether the request succeeds, fails, or hits the cache, you can specify a global `onComplete` interceptor when creating an `alova` instance, such as hiding request loading.
-
-```javascript
-const alovaInstance = createAlova({
-  // ...
-  // highlight-start
-  responded: {
-    // ...
-
-    // Interceptor for request completion
-    // Receive the method instance of the current request
-    onComplete: async method => {
-      // Process request completion logic
-    }
-  }
-  // highlight-end
-});
-```
 
 ## Set the global request timeout
 
