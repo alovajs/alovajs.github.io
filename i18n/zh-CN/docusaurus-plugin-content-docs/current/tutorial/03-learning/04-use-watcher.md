@@ -6,7 +6,9 @@ sidebar_position: 40
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
-import { useWatcherSearchVue, useWatcherSearchReact, useWatcherSearchVueOptions } from './lives';
+import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.zh.vue';
+import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.zh.jsx';
+import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueOptions-search.zh.vue';
 
 在一些需要随数据变化而重新请求的场景下，如分页、数据筛选、模糊搜索，可以使用`useWatcher` 来监听指定的状态变化时立即发送请求。
 

@@ -6,7 +6,9 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
-import { useWatcherSearchVue, useWatcherSearchReact, useWatcherSearchVueOptions } from './lives';
+import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.en.vue';
+import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.en.jsx';
+import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueOptions-search.en.vue';
 
 In some scenarios that need to be re-requested as the data changes, such as paging, data filtering, and fuzzy search, `useWatcher` can be used to watch the specified state change and send the request immediately.
 

@@ -6,7 +6,15 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
-import { quickStartVue, quickStartReact, quickStartVueOptions, quickStartStaticVue, quickStartStaticReact, quickStartStaticVueOptions, quickStartMethodVue, quickStartMethodReact, quickStartMethodVueOptions } from './lives';
+import quickStartVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-useRequest.en.vue';
+import quickStartReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-useRequest.en.jsx';
+import quickStartVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-useRequest.en.vue';
+import quickStartStaticVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-static.en.html';
+import quickStartStaticReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-static.en.html';
+import quickStartStaticVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-static.en.html';
+import quickStartMethodVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-method.en.vue';
+import quickStartMethodReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-method.en.jsx';
+import quickStartMethodVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-method.en.vue';
 
 :::tip Example tip
 

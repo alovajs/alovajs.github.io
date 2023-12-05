@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/adapter/globalfetch.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/hooks/reacthook.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script type="text/babel">
+    const alovaInstance = alova.createAlova({
+      statesHook: ReactHook,
+      requestAdapter: GlobalFetch(),
+      responded: response => response.json()
+    });
+
+    const App = () => {
+      const { loading, data, error } = alova.useRequest(
+        alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+      );
+
+      if (loading) {
+        return <div>Loading...</div>;
+      } else if (error) {
+        return <div>{error.message}</div>;
+      }
+      return <span>responseData: {JSON.stringify(data)}</span>;
+    };
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<App />);
+  </script>
+</html>

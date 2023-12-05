@@ -97,10 +97,6 @@ const EmbedSandpack = ({
     ...externalFiles
   };
 
-  if (deps) {
-    console.log(deps, files);
-  }
-
   const dependencies = {
     alova: 'latest',
     ...(deps && extraDeps[deps] ? extraDeps[deps] : {})
