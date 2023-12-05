@@ -1,73 +1,85 @@
+import alovaReact from '!!raw-loader!@site/codesandbox/00-create-alova/react';
+import alovaSvelte from '!!raw-loader!@site/codesandbox/00-create-alova/svelte';
+import alovaVueComposition from '!!raw-loader!@site/codesandbox/00-create-alova/vueComposition';
+import alovaVueOptions from '!!raw-loader!@site/codesandbox/00-create-alova/vueOptions';
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { SandpackPredefinedTemplate } from '@codesandbox/sandpack-react/unstyled';
 import { dracula, githubLight } from '@codesandbox/sandpack-themes';
 import { useColorMode } from '@docusaurus/theme-common';
 
-interface ApiFnParams {
-  deps: Props['deps'];
-  containBaseURL: Props['containBaseURL'];
-}
-
-const genAlovaInstance = (framework: string) => {
-  const fn = {
-    vue: (deps: ApiFnParams['deps']) => ({
-      apiFile: '/src/api.js',
-      import:
-        deps === 'vue-options'
-          ? `import { VueOptionsHook } from '@alova/vue-options';`
-          : `import VueHook from 'alova/vue';`,
-      hookName: deps === 'vue-options' ? 'VueOptionsHook' : 'VueHook'
-    }),
-    react: () => ({
-      apiFile: '/api.js',
-      import: `import ReactHook from 'alova/react';`,
-      hookName: 'ReactHook'
-    }),
-    svelte: () => ({
-      apiFile: '/api.js',
-      import: `import SvelteHook from 'alova/svelte';`,
-      hookName: 'SvelteHook'
-    })
-  }[framework];
-  return ({ deps, containBaseURL }: ApiFnParams) => ({
-    [fn?.(deps).apiFile]: `import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-${fn?.(deps).import}
-export const alovaInstance = createAlova({
-  ${
-    containBaseURL
-      ? `baseURL: 'https://jsonplaceholder.typicode.com',
-  `
-      : ''
-  }statesHook: ${fn?.(deps).hookName},
-  requestAdapter: GlobalFetch(),
-  responded: response => response.json()
-});`
-  });
-};
-
 const fileEntry = {
   vue: {
     root: '/src/App.vue',
-    api: genAlovaInstance('vue')
+    files: {
+      '/src/api.js': alovaVueComposition
+    }
+  },
+  vueOptions: {
+    root: '/src/App.vue',
+    files: {
+      '/src/api.js': alovaVueOptions
+    }
   },
   react: {
     root: '/App.js',
-    api: genAlovaInstance('react')
+    files: {
+      '/api.js': alovaReact
+    }
   },
   svelte: {
     root: '/App.svelte',
-    api: genAlovaInstance('svelte')
+    files: {
+      '/api.js': alovaSvelte
+    }
   },
   static: {
     root: '/index.html'
   }
 };
-
 const extraDeps = {
   'vue-options': {
     '@alova/vue-options': 'latest'
   }
+};
+const customSetup = {
+  svelte: (commonConfig: Record<string, any>) => ({
+    files: {
+      '/index.js': {
+        code: `import App from "./App.svelte";    
+  const app = new App({
+    target: document.body
+  });
+  export default app;
+        `,
+        hidden: true
+      },
+      '/public/index.html': {
+        code: `<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf8" />
+      <meta name="viewport" content="width=device-width" />
+      <title>Svelte app</title>
+      <link rel="stylesheet" href="public/bundle.css" />
+    </head>
+    <body>
+      <script src="bundle.js"></script>
+    </body>
+  </html>`,
+        hidden: true
+      },
+      ...commonConfig.files
+    },
+    customSetup: {
+      entry: '/index.js',
+      dependencies: {
+        svelte: '^3.59.2',
+        ...commonConfig.customSetup.dependencies
+      }
+    },
+    main: '/App.svelte',
+    environment: 'svelte'
+  })
 };
 
 interface Props {
@@ -93,27 +105,43 @@ const EmbedSandpack = ({
   const targetEntry = fileEntry[template];
   const files = {
     [targetEntry.root]: mainFile,
-    ...(typeof targetEntry.api === 'function' ? targetEntry.api({ deps, containBaseURL }) : {}),
+    ...(targetEntry.files ? targetEntry.files : {}),
     ...externalFiles
   };
+
+  // if need to contain baseURL, add it to api.js with replace of string.
+  if (containBaseURL) {
+    const apiFileKey = Object.keys(files).find(file => /api\.js$/.test(file));
+    let apiFileContent = files[apiFileKey];
+    if (apiFileContent) {
+      files[apiFileKey] = apiFileContent.replace(
+        'statesHook',
+        match => `baseURL: 'https://jsonplaceholder.typicode.com',\n  ${match}`
+      );
+    }
+  }
 
   const dependencies = {
     alova: 'latest',
     ...(deps && extraDeps[deps] ? extraDeps[deps] : {})
   };
   const { colorMode } = useColorMode();
+  let config = {
+    files,
+    template,
+    customSetup: {
+      dependencies
+    }
+  };
+  config = customSetup[template] ? customSetup[template](config) : config;
   return (
     <Sandpack
+      {...config}
       theme={themes[colorMode]}
-      template={template}
-      customSetup={{
-        dependencies
-      }}
       options={{
         editorWidthPercentage: 70,
         editorHeight
       }}
-      files={files}
     />
   );
 };

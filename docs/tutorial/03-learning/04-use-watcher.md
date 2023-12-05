@@ -6,8 +6,10 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import CodeBlock from '@theme/CodeBlock';
 import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.en.vue';
 import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.en.jsx';
+import useWatcherSearchSvelte from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/svelte-search.en.svelte';
 import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueOptions-search.en.vue';
 
 In some scenarios that need to be re-requested as the data changes, such as paging, data filtering, and fuzzy search, `useWatcher` can be used to watch the specified state change and send the request immediately.
@@ -28,40 +30,7 @@ Next, let's take searching for todo items as an example.
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { writable } from 'svelte/store';
-
-  //Create method instance
-  const filterTodoList = userId => {
-    return alovaInstance.Get(`/users/${userId}/todos`);
-  };
-  const userId = writable(0);
-  const { loading, data, error } = useWatcher(
-    // Parameters must be set to functions that return method instances
-    () => filterTodoList($userId),
-
-    // The monitored status array, these status changes will trigger a request
-    [userId]
-  );
-</script>
-<select bind:value="{$userId}">
-  <option value="{1}">User 1</option>
-  <option value="{2}">User 2</option>
-  <option value="{3}">User 3</option>
-</select>
-
-<!-- Render the filtered todo list -->
-{#if $loading}
-<div>Loading...</div>
-{:else}
-<ul>
-  {#each $data as todo}
-  <li class="todo-title">{{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}</li>
-  {/each}
-</ul>
-{/if}
-```
+<CodeBlock language="html">{useWatcherSearchSvelte}</CodeBlock>
 
 </TabItem>
 <TabItem value="4" label="vue options">
