@@ -612,5 +612,9 @@
   "ad.project collection": {
     "message": "alova用在项目里了吗？快来告诉我",
     "description": "description of ad.project collection"
+  },
+  "announcement.content": {
+    "message": "如果你也喜欢alova，请在Github为它点亮star",
+    "description": "description of announcement title"
   }
 }
