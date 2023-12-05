@@ -6,8 +6,11 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import CodeBlock from '@theme/CodeBlock';
+
 import quickStartVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-useRequest.zh.vue';
 import quickStartReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-useRequest.zh.jsx';
+import quickStartSvelte from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/svelte-useRequest.zh.svelte';
 import quickStartVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-useRequest.zh.vue';
 import quickStartStaticVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-static.zh.html';
 import quickStartStaticReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-static.zh.html';
@@ -15,6 +18,7 @@ import quickStartStaticVueOptions from '!!raw-loader!@site/codesandbox/01-get-st
 import quickStartMethodVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-method.zh.vue';
 import quickStartMethodReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-method.zh.jsx';
 import quickStartMethodVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-method.zh.vue';
+import quickStartMethodSvelte from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/svelte-method.zh.svelte';
 
 :::tip 示例提示
 
@@ -152,20 +156,7 @@ export const alovaInstance = createAlova({
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { alovaInstance } from './api';
-
-  let data = null;
-  alovaInstance
-    .Get('https://jsonplaceholder.typicode.com/todos/1')
-    .send()
-    .then(response => {
-      data = response;
-    });
-</script>
-<span>responseData: { data }</span>
-```
+<EmbedSandpack template="svelte" mainFile={quickStartMethodSvelte} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 <TabItem value="4" label="vue options">
@@ -196,23 +187,7 @@ export const alovaInstance = createAlova({
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { createAlova, useRequest } from 'alova';
-  import { alovaInstance } from './api';
-
-  // 使用alova实例创建method并传给useRequest即可发送请求
-  const { loading, data, error } = useRequest(alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1'));
-</script>
-
-{#if $loading}
-<div>Loading...</div>
-{:else if $error}
-<div>{ $error.message }</div>
-{:else}
-<span>responseData: { data }</span>
-{/if}
-```
+<CodeBlock language="html">{quickStartSvelte}</CodeBlock>
 
 </TabItem>
 <TabItem value="4" label="vue options">

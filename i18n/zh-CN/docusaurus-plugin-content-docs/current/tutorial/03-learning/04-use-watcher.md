@@ -6,8 +6,10 @@ sidebar_position: 40
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import CodeBlock from '@theme/CodeBlock';
 import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.zh.vue';
 import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.zh.jsx';
+import useWatcherSearchSvelte from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/svelte-search.zh.svelte';
 import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueOptions-search.zh.vue';
 
 在一些需要随数据变化而重新请求的场景下，如分页、数据筛选、模糊搜索，可以使用`useWatcher` 来监听指定的状态变化时立即发送请求。
@@ -28,40 +30,7 @@ import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learni
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { writable } from 'svelte/store';
-
-  // 创建method实例
-  const filterTodoList = userId => {
-    return alovaInstance.Get(`/users/${userId}/todos`);
-  };
-  const userId = writable(0);
-  const { loading, data, error } = useWatcher(
-    // 参数必须设置为返回method实例的函数
-    () => filterTodoList($userId),
-
-    // 被监听的状态数组，这些状态变化将会触发一次请求
-    [userId]
-  );
-</script>
-<select bind:value="{$userId}">
-  <option value="{1}">User 1</option>
-  <option value="{2}">User 2</option>
-  <option value="{3}">User 3</option>
-</select>
-
-<!-- 渲染筛选后的todo列表 -->
-{#if $loading}
-<div>Loading...</div>
-{:else}
-<ul>
-  {#each $data as todo}
-  <li class="todo-title">{{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}</li>
-  {/each}
-</ul>
-{/if}
-```
+<CodeBlock language="html">{useWatcherSearchSvelte}</CodeBlock>
 
 </TabItem>
 <TabItem value="4" label="vue options">

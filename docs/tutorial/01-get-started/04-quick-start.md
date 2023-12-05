@@ -6,8 +6,11 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import CodeBlock from '@theme/CodeBlock';
+
 import quickStartVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-useRequest.en.vue';
 import quickStartReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-useRequest.en.jsx';
+import quickStartSvelte from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/svelte-useRequest.en.svelte';
 import quickStartVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-useRequest.en.vue';
 import quickStartStaticVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-static.en.html';
 import quickStartStaticReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-static.en.html';
@@ -196,23 +199,7 @@ But the above is just the beginning. In enterprise-level projects, requests are 
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { createAlova, useRequest } from 'alova';
-  import { alovaInstance } from './api';
-
-  // Use the alova instance to create a method and pass it to useRequest to send the request
-  const { loading, data, error } = useRequest(alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1'));
-</script>
-
-{#if $loading}
-<div>Loading...</div>
-{:else if $error}
-<div>{ $error.message }</div>
-{:else}
-<span>responseData: { data }</span>
-{/if}
-```
+<CodeBlock language="html">{quickStartSvelte}</CodeBlock>
 
 </TabItem>
 <TabItem value="4" label="vue options">
