@@ -2,7 +2,6 @@ import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import IconFont from '@site/src/components/IconFont';
 import PageModule from '@site/src/components/PageModule';
-import React from 'react';
 import styles from './index.module.css';
 
 const buttons = [
@@ -33,18 +32,18 @@ const buttons = [
   {
     icon: (
       <IconFont
-        name="QQ"
+        name="weixin"
         size={30}></IconFont>
     ),
-    text: <Translate id="homepage.like.btnQQ">Join QQ channel</Translate>,
-    link: 'https://pd.qq.com/s/1cdjx0nnw'
+    text: <Translate id="homepage.like.btnWechat">Join Wechat group</Translate>,
+    link: '/img/wechat_qrcode.jpg'
   }
 ];
 
 export default function Like(): JSX.Element {
   return (
     <PageModule
-      text="If you like alova!!!"
+      text="If you like alova"
       textTransId="homepage.like.title"
       align="center">
       <div className={styles.btnWrapper}>

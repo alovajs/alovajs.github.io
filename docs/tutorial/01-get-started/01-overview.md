@@ -113,7 +113,7 @@ If you still have a specific and typical business request scenario, but we have 
 ## Join the channel community
 
 - [Join Discord community](https://discord.gg/S47QGJgkVb)
-- [Join QQ channel community](https://pd.qq.com/s/1cdjx0nnw)
+- [Join Wechat group](/img/wechat_qrcode.jpg)
 
 ## Library Stability
 
