@@ -604,9 +604,9 @@
     "message": "加入Discord",
     "description": "description of like btnDiscord"
   },
-  "homepage.like.btnQQ": {
-    "message": "加入QQ频道",
-    "description": "description of like btnQQ"
+  "homepage.like.btnWechat": {
+    "message": "加入微信群",
+    "description": "description of like btnWechat"
   },
 
   "ad.project collection": {
