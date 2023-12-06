@@ -6,18 +6,25 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6684308",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "7677921",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
       "icon_id": "8288959",
       "name": "爱心",
       "font_class": "aixin",
       "unicode": "e85c",
       "unicode_decimal": 59484
-    },
-    {
-      "icon_id": "9186714",
-      "name": "QQ",
-      "font_class": "QQ",
-      "unicode": "e667",
-      "unicode_decimal": 58983
     },
     {
       "icon_id": "27365027",
