@@ -23,17 +23,7 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## What is alova
 
-alova is a lightweight request strategy library that use and manage APIs easily. It is mainly divided into the following two parts:
-
-**Complete complex requests declaratively**
-
-It supports developers to use declarative way for various complex requests such as request sharing, paging requests, form submission, breakpoint resumption, etc., allowing developers to use little code to complete high availability and high fluency network interaction. This means that you no longer need to write the codes about request logic, and no longer need to maintain relevant data and states yourself. You only need to select and use the request useHook, alova will take over it for you. This will improve development efficiency, application operation efficiency, and reduces server pressure.
-
-**API automatic management and maintenance (developing)**
-
-It can automatically generate complete and fully described request functions with full typescript type. You no longer need to consult the API documentation. Instead, you can find the request functions you need through keywords in the IDE, and then use them like accessing `location.reload` , allowing seamless connection between client side and server side. Whether it is a js project or a ts project, you can enjoy type hints for response data.
-
-When the server updates the API, the front-end project will also receive a change notification and the project will be blocked from publishing.
+alova is a lightweight request strategy library. It supports developers to use declarative way for various complex requests such as request sharing, paging requests, form submission, breakpoint resumption, etc., allowing developers to use little code to complete high availability and high fluency network interaction. This means that you no longer need to write the codes about request logic, and no longer need to maintain relevant data and states yourself. You only need to select and use the request useHook, alova will take over it for you. This will improve development efficiency, application operation efficiency, and reduces server pressure.
 
 ## Breaking boundary of the usage of useHook
 
@@ -151,8 +141,6 @@ If you find any problems with alova, you can tell us by [submit an issue](https:
 | [![minzip](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova) | [![minzip](https://badgen.net/bundlephobia/minzip/axios)](https://bundlephobia.com/package/axios) | [![minzip](https://badgen.net/bundlephobia/minzip/react-query)](https://bundlephobia.com/package/react-query) | [![minzip](https://badgen.net/bundlephobia/minzip/vue-request)](https://bundlephobia.com/package/vue-request) | [![minzip](https://badgen.net/bundlephobia/minzip/vue)](https://bundlephobia.com/package/vue) | [![minzip](https://badgen.net/bundlephobia/minzip/react-dom)](https://bundlephobia.com/package/react-dom) |
 
 ## Welcome to contribute
-
-Since its official propaganda in April 2023, alova has received 1500+ stars within 3 months.
 
 We're honored to hear from developers around the world in Issues and Discussions.
 
