@@ -12,7 +12,8 @@ const buttons = [
         size={24}></IconFont>
     ),
     text: <Translate>Get Started</Translate>,
-    link: '/tutorial/get-started/overview'
+    link: '/tutorial/get-started/overview',
+    target: '_self'
   },
   {
     icon: <span className="header-github-link"></span>,
@@ -36,7 +37,8 @@ const buttons = [
         size={30}></IconFont>
     ),
     text: <Translate id="homepage.like.btnWechat">Join Wechat group</Translate>,
-    link: '/img/wechat_qrcode.jpg'
+    link: '/img/wechat_qrcode.jpg',
+    target: '_blank'
   }
 ];
 
@@ -47,11 +49,12 @@ export default function Like(): JSX.Element {
       textTransId="homepage.like.title"
       align="center">
       <div className={styles.btnWrapper}>
-        {buttons.map(({ icon, text, link }) => (
+        {buttons.map(({ icon, text, link, target }) => (
           <Link
             key={link}
             className="button button--outline button--secondary button--lg flex-row align-center justify-center"
-            to={link}>
+            to={link}
+            target={target || '_blank'}>
             {icon}
             <span className="margin-left--sm">{text}</span>
           </Link>
