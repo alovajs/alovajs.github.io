@@ -23,17 +23,7 @@ import Logo from '@site/static/img/logo-text.svg';
 
 ## alova 是什么
 
-alova 是一个轻量级的请求策略库，目标是**让接口的管理和使用变得非常简单**，主要分为以下两部分：
-
-**声明式实现复杂请求**
-
-支持开发者使用声明式实现例如请求共享、分页请求、表单提交、断点续传等各种较复杂的请求，让开发者使用非常少量的代码就可以实现高可用性和高流畅性的请求功能，这意味着，你再也不需要自己绞尽脑汁编写请求优化代码，再也不需要自己维护请求数据和相关状态，你只需要选择并使用请求模块，设置参数后，alova 帮你搞定。从而提升开发效率、应用运行效率，还能降低服务端压力。
-
-**API 自动管理和维护（开发中）**
-
-可自动生成 ts 类型完整的、描述完整的请求函数，你也不再需要查阅 API 文档，而是在 IDE 中通过关键字找到你想使用的请求函数，然后像访问`location.reload`一样使用它们，让客户端代码和服务器端无缝对接。无论是 js 项目还是 ts 项目，你都可以享受响应数据的类型提示。
-
-当服务端更新 API 时，前端项目还会收到变动通知，并且会阻止项目发布。
+alova 是一个轻量级的请求策略库，支持开发者使用声明式实现例如请求共享、分页请求、表单提交、断点续传等各种较复杂的请求，让开发者使用非常少量的代码就可以实现高可用性和高流畅性的请求功能，这意味着，你再也不需要自己绞尽脑汁编写请求优化代码，再也不需要自己维护请求数据和相关状态，你只需要选择并使用请求模块，设置参数后，alova 帮你搞定。从而提升开发效率、应用运行效率，还能降低服务端压力。
 
 ## 打破 useHook 使用边界
 
@@ -152,8 +142,6 @@ alova 从第一个版本的开发到现在已经过去一年左右的时间了�
 | [![minzip](https://badgen.net/bundlephobia/minzip/alova)](https://bundlephobia.com/package/alova) | [![minzip](https://badgen.net/bundlephobia/minzip/axios)](https://bundlephobia.com/package/axios) | [![minzip](https://badgen.net/bundlephobia/minzip/react-query)](https://bundlephobia.com/package/react-query) | [![minzip](https://badgen.net/bundlephobia/minzip/vue-request)](https://bundlephobia.com/package/vue-request) | [![minzip](https://badgen.net/bundlephobia/minzip/vue)](https://bundlephobia.com/package/vue) | [![minzip](https://badgen.net/bundlephobia/minzip/react-dom)](https://bundlephobia.com/package/react-dom) |
 
 ## 欢迎参与贡献
-
-alova 自从 2023 年 4 月份正式对外发布以来，在 3 个月内已收到了 1500+star。
 
 我们在 Issues 和 Disscussion 中收到了来自世界各地的开发者积极参与的信息，深感荣幸。
 
