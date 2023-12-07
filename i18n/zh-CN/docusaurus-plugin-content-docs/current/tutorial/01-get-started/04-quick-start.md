@@ -166,6 +166,16 @@ export const alovaInstance = createAlova({
 </TabItem>
 </Tabs>
 
+`[v2.16.0+]`为了提供与 axios 的一致使用体验，无需再调用`send`函数即可发送请求。
+
+```js
+alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
+  // ...
+});
+// 或者
+await alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1');
+```
+
 更多关于 method 实例发送请求的内容，请前往[使用 method 实例发送请求](/tutorial/next-step/send-request-directly)阅读。
 
 ## 使用 useRequest 发送一个请求

@@ -32,6 +32,16 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 // use data...
 ```
 
+`[v2.16.0+]` In order to provide a consistent usage experience with axios, there is no need to call the `send` function to send requests.
+
+```js
+alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
+  // ...
+});
+// or
+await alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1');
+```
+
 :::warning Note
 
 1. The returned response data will also be processed by the global responded and the `transformData` of the current `Method` instance in turn;

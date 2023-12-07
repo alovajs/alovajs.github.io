@@ -116,7 +116,7 @@ const EmbedSandpack = ({
     if (apiFileContent) {
       files[apiFileKey] = apiFileContent.replace(
         'statesHook',
-        match => `baseURL: 'https://jsonplaceholder.typicode.com',\n  ${match}`
+        (match: string) => `baseURL: 'https://jsonplaceholder.typicode.com',\n  ${match}`
       );
     }
   }
