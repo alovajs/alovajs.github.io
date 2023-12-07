@@ -17,6 +17,7 @@ import quickStartStaticReact from '!!raw-loader!@site/codesandbox/01-get-started
 import quickStartStaticVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-static.en.html';
 import quickStartMethodVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-method.en.vue';
 import quickStartMethodReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-method.en.jsx';
+import quickStartMethodSvelte from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/svelte-method.en.jsx';
 import quickStartMethodVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-method.en.vue';
 
 :::tip Example tip
@@ -155,20 +156,7 @@ Then, you can use the alova instance to send the request directly. The request p
 </TabItem>
 <TabItem value="3" label="svelte">
 
-```html
-<script>
-  import { alovaInstance } from './api';
-
-  let data = null;
-  alovaInstance
-    .Get('https://jsonplaceholder.typicode.com/todos/1')
-    .send()
-    .then(response => {
-      data = response;
-    });
-</script>
-<span>responseData: { data }</span>
-```
+<EmbedSandpack template="svelte" mainFile={quickStartMethodSvelte} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 <TabItem value="4" label="vue options">
@@ -177,6 +165,16 @@ Then, you can use the alova instance to send the request directly. The request p
 
 </TabItem>
 </Tabs>
+
+`[v2.16.0+]` In order to provide a consistent usage experience with axios, there is no need to call the `send` function to send requests.
+
+```js
+alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
+  // ...
+});
+// or
+await alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1');
+```
 
 For more information about using method instances to send requests, please go to [Use method instances to send requests](/tutorial/next-step/send-request-directly) to read.
 

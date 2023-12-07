@@ -30,6 +30,16 @@ const { data, respHeaders } = await globalUserGetter.send(true);
 // 使用数据...
 ```
 
+`[v2.16.0+]`为了提供与 axios 的一致使用体验，无需再调用`send`函数即可发送请求。
+
+```js
+alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
+  // ...
+});
+// 或者
+await alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1');
+```
+
 :::warning 注意
 
 1. 返回的响应数据也会依次被全局的 responded 拦截器和当前`Method`实例的`transformData`处理；
