@@ -17,7 +17,7 @@ import quickStartStaticReact from '!!raw-loader!@site/codesandbox/01-get-started
 import quickStartStaticVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-static.en.html';
 import quickStartMethodVue from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueComposition-method.en.vue';
 import quickStartMethodReact from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/react-method.en.jsx';
-import quickStartMethodSvelte from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/svelte-method.en.jsx';
+import quickStartMethodSvelte from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/svelte-method.en.svelte';
 import quickStartMethodVueOptions from '!!raw-loader!@site/codesandbox/01-get-started/04-quick-start/vueOptions-method.en.vue';
 
 :::tip Example tip
