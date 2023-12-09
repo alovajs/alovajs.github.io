@@ -87,6 +87,7 @@ interface Props {
   mainFile: string;
   externalFiles?: Record<string, string>;
   containBaseURL?: boolean;
+  containResponded?: boolean;
   editorHeight?: number;
   deps?: 'vue-options';
 }
@@ -95,6 +96,7 @@ const EmbedSandpack = ({
   mainFile,
   externalFiles = {},
   containBaseURL = true,
+  containResponded = true,
   editorHeight,
   deps
 }: Props) => {
@@ -109,15 +111,15 @@ const EmbedSandpack = ({
     ...externalFiles
   };
 
-  // if need to contain baseURL, add it to api.js with replace of string.
-  if (containBaseURL) {
-    const apiFileKey = Object.keys(files).find(file => /api\.js$/.test(file));
-    let apiFileContent = files[apiFileKey];
-    if (apiFileContent) {
-      files[apiFileKey] = apiFileContent.replace(
-        'statesHook',
-        (match: string) => `baseURL: 'https://jsonplaceholder.typicode.com',\n  ${match}`
-      );
+  const apiFileKey = Object.keys(files).find(file => /api\.js$/.test(file));
+  if (files[apiFileKey]) {
+    // if don't need to contain baseURL, remove it.
+    if (!containBaseURL) {
+      files[apiFileKey] = files[apiFileKey].replace(/baseURL.+?\s{4}/, '');
+    }
+    // if don't need to contain responded, remove it.
+    if (!containResponded) {
+      files[apiFileKey] = files[apiFileKey].replace(/,\s+responded.+json\(\)/, '');
     }
   }
 

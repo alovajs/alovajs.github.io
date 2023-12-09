@@ -66,7 +66,7 @@ const config: Config = {
       },
       items: [
         {
-          to: 'tutorial/get-started/overview',
+          to: 'tutorial/getting-started/overview',
           position: 'left',
           label: 'Docs'
         },
@@ -141,7 +141,7 @@ const config: Config = {
           items: [
             {
               label: 'Docs',
-              to: 'tutorial/get-started/overview'
+              to: 'tutorial/getting-started/overview'
             },
             {
               label: 'Example',
