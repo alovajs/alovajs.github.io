@@ -1,6 +1,6 @@
 ---
 title: 服务端渲染（SSR）
-sidebar_position: 140
+sidebar_position: 80
 ---
 
 import Tabs from '@theme/Tabs';

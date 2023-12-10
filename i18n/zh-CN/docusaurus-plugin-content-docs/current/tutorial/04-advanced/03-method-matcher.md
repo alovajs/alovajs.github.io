@@ -1,6 +1,6 @@
 ---
 title: method实例匹配器
-sidebar_position: 40
+sidebar_position: 30
 ---
 
 当我们在处理完一些业务时，需要调用`invalidateCache`、`setCache`、`updateState`和`fetch`来失效缓存、更新缓存、跨页面更新状态、或重新拉取数据，一般会有两种场景：

@@ -1,6 +1,6 @@
 ---
-title: Actively Invalidate Response Cache
-sidebar_position: 80
+title: Invalidate Response Cache manually
+sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

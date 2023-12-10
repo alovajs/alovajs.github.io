@@ -1,6 +1,6 @@
 ---
 title: 管理额外的状态
-sidebar_position: 60
+sidebar_position: 70
 ---
 
 import Tabs from '@theme/Tabs';

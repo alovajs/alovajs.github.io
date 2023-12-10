@@ -1,6 +1,6 @@
 ---
 title: 错误日志
-sidebar_position: 110
+sidebar_position: 50
 ---
 
 :::info 版本要求

@@ -1,6 +1,6 @@
 ---
 title: 缓存更新与查找
-sidebar_position: 90
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';

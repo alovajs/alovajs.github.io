@@ -187,6 +187,16 @@ alovaInstance
 
 在这个例子里，将`alovaInstance.Get`传入`useRequest`中，它将会帮我们发送请求并创建响应式数据`loading/error/data`，在视图中直接使用它们即可。
 
+为了让`data`接收到的值为响应数据，我们在`alovaInstance`添加了简单的全局响应拦截器，它可以接收到`Response`实例并返回转换后的数据。
+
+```javascript
+const alovaInstance = createAlova({
+  // highlight-start
+  responded: response => response.json()
+  // highlight-end
+});
+```
+
 你也可以修改`useRequest`创建的响应式数据。
 
 <Tabs groupId="framework">

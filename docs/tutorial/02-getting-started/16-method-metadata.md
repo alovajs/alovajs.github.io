@@ -1,9 +1,9 @@
 ---
 title: method metadata
-sidebar_position: 35
+sidebar_position: 160
 ---
 
-:::info version requirements
+:::info version required
 
 v2.7.0+
 

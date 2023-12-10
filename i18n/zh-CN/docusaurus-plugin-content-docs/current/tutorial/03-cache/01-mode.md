@@ -1,6 +1,6 @@
 ---
 title: 缓存模式
-sidebar_position: 60
+sidebar_position: 10
 ---
 
 import MemoryCache from '@site/example-links/MemoryCache';

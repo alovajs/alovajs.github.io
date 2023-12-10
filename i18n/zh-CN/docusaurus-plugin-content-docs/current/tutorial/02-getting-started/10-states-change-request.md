@@ -1,6 +1,6 @@
 ---
 title: 状态变化请求
-sidebar_position: 40
+sidebar_position: 100
 ---
 
 import Tabs from '@theme/Tabs';
@@ -205,147 +205,26 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## 手动发送请求
+## 设置初始数据
 
-有时候你希望在监听状态未变化时重新发送请求（如服务端数据已更新），你也可以通过`send`函数手动触发请求，用法和`useRequest`相同。
+`useWatcher`也可以设置初始数据，[前往初始数据章节阅读](/tutorial/initial-data)。
 
-```javascript
-const {
-  // ...
-  // highlight-start
-  send
-  // highlight-end
-} = useWatcher(
-  () => getTodoList($currentPage),
-  // 被监听的状态数组，这些状态变化将会触发一次请求
-  [currentPage],
-  {
-    immediate: true
-  }
-);
+## 设置立即发送请求
 
-// highlight-start
-send();
-// highlight-end
-```
+`useWatcher`也可以是否立即发送请求，[前往数据提交章节阅读](/tutorial/submit-form)，但需要注意的是`useWatcher`的`immediate`属性默认为`false`。
 
-> `[2.9.0+]`在 react 中，send 函数使用了`useCallback`包裹，同时它也不受闭包陷阱限制，你可以直接在事件中使用它，不用担心引起性能问题。
+## 绑定响应回调
 
-## 强制发送请求
-
-缓存数据可以很好地提升应用流畅性和减小服务端压力，但同时也存在着数据过期的问题，当你希望穿透缓存获取最新数据时，在 use hooks 的配置中设置`force`属性可以帮助你。
-
-### 设置静态值
-
-force 默认为 false，设置为 true 时将每次穿透缓存，并发送请求
-
-```javascript
-useWatcher(
-  () => alovaInstance.Get('/todo'),
-  [
-    /* watchingStates */
-  ],
-  {
-    force: true
-  }
-);
-```
-
-### 动态设置 force 值
-
-实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数，此函数可通过 send 函数传入。
-
-```javascript
-const { send } = useWatcher(
-  alovaInstance.Get('/todo'),
-  [
-    /* watchingStates */
-  ],
-  {
-    force: id => {
-      return !!id;
-    }
-  }
-);
-send(1);
-```
-
-## send 函数参数传递规则
-
-在上面的示例中，调用 send 函数手动触发请求，它可以接受任意多个参数，这些参数将分别被以下 4 个函数接收：
-
-### useWatcher 回调函数
-
-useWatcher 的回调函数可接收到，具体如下：
-
-```javascript
-const { send } = useWatcher(currentPage => getTodoList(currentPage));
-send(1); // 上面回调函数中的currentPage将接收到1
-```
-
-### 在 onSuccess、onError、onComplete 回调函数中接收
-
-onSuccess、onError、onComplete 回调函数中的`event.sendArgs`以数组形式接收
-
-```javascript
-const { send, onSuccess, onError, onComplete } = useWatcher(currentPage => getTodoList(currentPage));
-onSuccess(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
-});
-onError(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
-});
-onComplete(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
-});
-send(1);
-```
-
-### 在 force 函数中接收
-
-```javascript
-const { send } = useWatcher(
-  alovaInstance.Get('/todo'),
-  [
-    /* watchingStates */
-  ],
-  {
-    force: id => {
-      return !!id;
-    }
-  }
-);
-send(1);
-```
-
-## 设置初始响应数据
-
-一个页面在获取到初始数据前，不可避免地需要等待服务端响应，在响应前一般需要先将状态初始化为一个空数组或空对象，以免造成页面报错，我们可以在`useWatcher`中的第二个参数实现初始数据的设置。
-
-```javascript
-// 在useWatcher中同样可以设置data的初始值
-const {
-  // 响应前data的初始值为[]，而不是undefined
-  data
-} = useWatcher(
-  () => getTodoList(/* 参数 */),
-  [
-    /* 监听状态 */
-  ],
-  {
-    initialData: []
-  }
-);
-```
+`useWatcher`也具有与`useRequest`相同的响应回调绑定函数，[前往响应处理章节阅读](/tutorial/response)。
 
 ## 请求防抖
 
 通常我们都会在频繁触发的事件层面编写防抖代码，这次我们在请求层面实现了防抖功能，这意味着你再也不用在模糊搜索功能中自己实现防抖了，用法也非常简单。
+
 :::info Tips：什么是函数防抖
+
 函数防抖（debounce），就是指触发事件后，在 n 秒内函数只能执行一次，如果触发事件后在 n 秒内又触发了事件，则会重新计算函数延执行时间（在这里和函数节流区分一下，函数节流是在触发完事件之后的一段时间之内不能再次触发事件）
+
 :::
 
 ### 设置所有监听状态的防抖时间
@@ -373,123 +252,6 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
   // 也可以这么按如下设置:
   // debounce: [500],
   // highlight-end
-});
-```
-
-## 手动修改状态值
-
-在 alova 中，通过`useWatcher`返回的`data`、`loading`、`error`等各项状态是允许自定义修改的，这在一些情况下将变得很方便。
-
-<Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
-
-```javascript
-const watchingState = ref('');
-const { data, loading, error } = useWatcher(todoListGetter, [watchingState]);
-
-// ...
-// 直接修改data值
-data.value = {};
-```
-
-</TabItem>
-
-<TabItem value="2" label="react">
-
-在 react 中，返回的状态是直接可使用的数据，因此需通过`update`函数来修改。
-
-```javascript
-const [watchingState, setWatchingState] = useState('');
-const { data, loading, error, update } = useWatcher(todoListGetter, [watchingState]);
-
-// ...
-// 通过update修改data值
-update({
-  data: {}
-});
-```
-
-</TabItem>
-
-<TabItem value="3" label="svelte">
-
-在 svelte 中，`useWatcher`返回的状态为`writable`类型。
-
-```javascript
-const watchingState = writable('');
-const { data, loading, error } = useWatcher(todoListGetter, [watchingState]);
-
-// ...
-// 直接修改data值
-$data = {};
-// 或data.update(d => ({}));
-```
-
-</TabItem>
-<TabItem value="4" label="vue options">
-
-```javascript
-export default {
-  mixins: mapAlovaHook(function () {
-    todo: useWatcher(todoListGetter, ['watchingState']);
-  }),
-  methods: {
-    handleModifyTodo() {
-      // 直接修改data值
-      this.todo.data = {};
-
-      // 或者通过update函数修改
-      this.todo.update({
-        data: {}
-      });
-    }
-  }
-};
-```
-
-</TabItem>
-</Tabs>
-
-:::warning 注意事项
-
-1. 自定义修改的值将会被`useWatcher`内部的状态管理机制覆盖，如当你修改了`data`值，再次请求后`data`值将被赋值为最新的响应数据；
-2. 通过直接修改的状态值不会同步修改缓存数据，如需要同步修改缓存数据，建议使用[updateState](/tutorial/learning/update-response-data-across-modules)
-
-:::
-
-## 手动中断请求
-
-未设置`timeout`参数时请求是永不超时的，如果需要手动中断请求，可以在`useWatcher`函数被调用时接收`abort`方法。
-
-```javascript
-const {
-  // ...
-  // highlight-start
-  // abort函数用于中断请求
-  abort
-  // highlight-end
-} = useWatcher(() => filterTodoList(keyword), [keyword]);
-
-// highlight-start
-// 调用abort即可中断请求
-const handleCancel = () => {
-  abort();
-};
-// highlight-end
-```
-
-> `[2.9.0+]`在 react 中，abort 函数使用了`useCallback`包裹，同时它也不受闭包陷阱限制，你可以直接在事件中使用它，不用担心引起性能问题。
-
-`[2.6.2+]`另外，这个`abort`函数也会同时绑定到当前的 method 实例上，因此你还可以在`beforeRequest`中调用`abort`中断请求。
-
-```javascript
-const alovaInst = createAlova({
-  // ...
-  beforeRequest(method) {
-    if (someCondition) {
-      method.abort();
-    }
-  }
 });
 ```
 
@@ -539,44 +301,3 @@ useWatcher(
 `abortLast`默认为`true`，如果修改为`false`，可能会导致状态与响应不匹配的问题。
 
 :::
-
-## API
-
-### Hook 配置
-
-| 名称          | 描述                                                                       | 类型                                                                                                                                                                                            | 默认值     | 版本 |
-| ------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---- |
-| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                                                                                         | true       | -    |
-| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                                                                                             | -          | -    |
-| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean \| (...args: any[]) => boolean \| false                                                                                                                                                 |
-| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record\<string \| number \| symbol, any\>                                                                                                                                                       | -          |
-| debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number \| number[]                                                                                                                                                                              | -          |
-| middleware    | 中间件函数，[了解 alova 中间件](/tutorial/advanced/middleware)             | (context: [AlovaFrontMiddlewareContext](/tutorial/learning/use-request/#alovafrontmiddlewarecontext), next: [AlovaGuardNext](/tutorial/learning/use-request/#alovaguardnext)) => Promise\<any\> | -          | -    |
-| sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                                                                                         | () => true | -    |
-| abortLast     | 是否中断上一次的未响应请求                                                 | boolean                                                                                                                                                                                         | true       | -    |
-
-### 响应式数据
-
-| 名称        | 描述         | 类型               | 版本 |
-| ----------- | ------------ | ------------------ | ---- |
-| loading     | 请求加载状态 | boolean            | -    |
-| data        | 响应数据     | any                | -    |
-| error       | 请求错误信息 | Error \| undefined | -    |
-| downloading | 下载进度信息 | Object             | -    |
-| uploading   | 上传进度信息 | Object             | -    |
-
-### 操作函数
-
-| 名称   | 描述                                                | 函数参数                                                                               | 返回值  | 版本 |
-| ------ | --------------------------------------------------- | -------------------------------------------------------------------------------------- | ------- | ---- |
-| send   | 发送请求函数                                        | ...args: any[]                                                                         | Promise | -    |
-| abort  | 中断函数                                            | -                                                                                      | -       | -    |
-| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](/tutorial/learning/use-request/#frontrequeststate) | -       |
-
-### 事件
-
-| 名称       | 描述             | 回调参数                                                                        | 版本 |
-| ---------- | ---------------- | ------------------------------------------------------------------------------- | ---- |
-| onSuccess  | 请求成功事件绑定 | event: [AlovaSuccessEvent](/tutorial/learning/use-request/#alovasuccessevent)   | -    |
-| onError    | 请求错误事件绑定 | event: [AlovaErrorEvent](/tutorial/learning/use-request/#alovaerrorevent)       | -    |
-| onComplete | 请求完成事件绑定 | event: [AlovaCompleteEvent](/tutorial/learning/use-request/#alovacompleteevent) | -    |

@@ -1,6 +1,6 @@
 ---
 title: 跨页面/模块更新响应状态
-sidebar_position: 100
+sidebar_position: 20
 ---
 
 在上一小节[主动失效响应缓存](/tutorial/learning/invalidate-response-cache)的例子中，当用户点开 todo 列表中的某一项，进入 todo 详情页并对它执行了编辑，此时我们希望上一页中的 todo 列表数据也更新为编辑后的内容，使用`useFetcher`和`invalidateCache`的方式都会重新发起请求，那有没有不需要重新请求的方法呢？

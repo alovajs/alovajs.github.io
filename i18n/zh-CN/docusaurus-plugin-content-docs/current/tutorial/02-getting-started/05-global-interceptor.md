@@ -83,7 +83,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-如果不需要设置请求失败的拦截器，可以直接传入请求成功的拦截器函数，而不再需要通过对象来设置回调。
+如果不需要设置请求失败或完成的拦截器，可以直接传入请求成功的拦截器函数，而不再需要通过对象来设置回调。
 
 ```javascript
 const alovaInstance = createAlova({

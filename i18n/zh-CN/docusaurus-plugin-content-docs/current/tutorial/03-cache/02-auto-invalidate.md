@@ -1,6 +1,6 @@
 ---
 title: 自动失效缓存
-sidebar_position: 50
+sidebar_position: 20
 ---
 
 ## 主动失效缓存的使用场景

@@ -1,6 +1,6 @@
 ---
 title: 并行请求
-sidebar_position: 70
+sidebar_position: 120
 ---
 
 简单的并行请求，只需要同时调用多个 useRequest 即可。

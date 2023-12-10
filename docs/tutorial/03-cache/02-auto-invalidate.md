@@ -1,6 +1,6 @@
 ---
 title: Automatic cache invalidation
-sidebar_position: 50
+sidebar_position: 20
 ---
 
 ## Active invalidation cache usage scenarios

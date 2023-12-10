@@ -1,6 +1,6 @@
 ---
 title: Controlled Caching
-sidebar_position: 90
+sidebar_position: 50
 ---
 
 :::info version required

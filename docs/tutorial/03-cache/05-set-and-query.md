@@ -1,6 +1,6 @@
 ---
 title: Cache set and query
-sidebar_position: 90
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';

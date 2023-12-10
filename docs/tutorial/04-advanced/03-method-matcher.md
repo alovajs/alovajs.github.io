@@ -1,6 +1,6 @@
 ---
-title: Method instance matcher
-sidebar_position: 40
+title: Method matcher
+sidebar_position: 30
 ---
 
 When we finish processing some business, we need to call `invalidateCache`, `setCache`, `updateState` and `fetch` to invalidate cache, update cache, update state across pages, or re-pull data, there are generally two scenarios :

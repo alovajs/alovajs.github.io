@@ -1,6 +1,6 @@
 ---
 title: Share Request
-sidebar_position: 20
+sidebar_position: 110
 ---
 
 We always encounter this situation. When a request is sent but has not been responded to, the same request is initiated again, resulting in waste of requests, or repeated submission of problems, such as the following three scenarios:
@@ -10,7 +10,7 @@ We always encounter this situation. When a request is sent but has not been resp
 3. When the preloading page is entered before the preloading is completed, the same request will be initiated multiple times;
 4. Prevent dumplicate requesting in StrictMode of react;
 
-**Share Requests are here to solve those problems! **It can not only improve application fluency, but also reduce server pressure.
+Share Requests are here to solve those problems. It can not only improve application fluency, but also reduce server pressure.
 
 ## Globally close sharing requests
 

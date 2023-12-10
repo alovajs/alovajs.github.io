@@ -1,6 +1,6 @@
 ---
 title: Serial request
-sidebar_position: 80
+sidebar_position: 130
 ---
 
 Serial requests also have two ways

@@ -1,6 +1,6 @@
 ---
 title: 数据拉取
-sidebar_position: 50
+sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';

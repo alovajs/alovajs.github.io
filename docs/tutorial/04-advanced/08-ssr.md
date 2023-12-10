@@ -1,6 +1,6 @@
 ---
 title: Server-Side Rendering(SSR)
-sidebar_position: 140
+sidebar_position: 70
 ---
 
 import Tabs from '@theme/Tabs';

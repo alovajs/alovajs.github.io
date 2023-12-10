@@ -1,6 +1,6 @@
 ---
-title: About alova instance
-sidebar_position: 10
+title: Global interceptors
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
@@ -83,7 +83,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-If you don't need to set the interceptor for request failure, you can directly pass in the interceptor function for successful request instead of setting the callback through the object.
+If you don't need to set the interceptor for request error or complete, you can directly pass in the interceptor function for successful request instead of setting the callback through the object.
 
 ```javascript
 const alovaInstance = createAlova({

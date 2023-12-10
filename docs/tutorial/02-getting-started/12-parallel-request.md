@@ -1,6 +1,6 @@
 ---
 title: Parallel Requests
-sidebar_position: 70
+sidebar_position: 120
 ---
 
 Simple parallel requests only need to call multiple useRequest at the same time.

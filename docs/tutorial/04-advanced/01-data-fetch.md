@@ -1,6 +1,6 @@
 ---
 title: Data fetch
-sidebar_position: 50
+sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';

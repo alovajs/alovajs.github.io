@@ -254,6 +254,12 @@ const config: Config = {
     // }
   },
 
+  markdown: {
+    mermaid: true
+  },
+  // 主题
+  themes: ['@docusaurus/theme-mermaid'],
+
   // 插件
   plugins: [
     [

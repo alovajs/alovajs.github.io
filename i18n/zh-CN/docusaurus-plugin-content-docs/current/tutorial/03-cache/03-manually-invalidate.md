@@ -1,6 +1,6 @@
 ---
-title: 主动失效响应缓存
-sidebar_position: 80
+title: 手动失效缓存
+sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

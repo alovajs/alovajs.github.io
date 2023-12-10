@@ -1,6 +1,6 @@
 ---
 title: Error logger
-sidebar_position: 110
+sidebar_position: 50
 ---
 
 :::info version required
