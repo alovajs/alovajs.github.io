@@ -18,6 +18,6 @@ _Operation guidance:_
 1. Select one of the pictures, the picture will request the network to load first, and the picture data will be saved in the local IndexedDB;
 2. Refresh the page and select the same picture again, the picture will get data from IndexedDB instead of initiating a network request;
 
-[Controlled cache document](/tutorial/next-step/controlled-cache)
+[Controlled cache document](/tutorial/cache/controlled-cache)
 
 :::

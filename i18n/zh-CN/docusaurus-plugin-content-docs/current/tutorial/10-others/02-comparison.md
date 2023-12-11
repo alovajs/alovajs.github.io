@@ -1,6 +1,6 @@
 ---
 title: 与其他库比较
-sidebar_position: 30
+sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';

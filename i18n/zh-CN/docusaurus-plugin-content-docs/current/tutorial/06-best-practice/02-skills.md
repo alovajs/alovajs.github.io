@@ -241,4 +241,4 @@ export const alovaInst = createAlova({
 });
 ```
 
-并且推荐团队内不同的开发者可以根据每次迭代的版本号分别创建不同的模拟接口数据，以便于在团队中管理这些模拟数据，具体可参照 [模拟数据](/tutorial/extension/alova-mock) 章节。
+并且推荐团队内不同的开发者可以根据每次迭代的版本号分别创建不同的模拟接口数据，以便于在团队中管理这些模拟数据，具体可参照 [模拟数据](/tutorial/request-adapter/alova-mock) 章节。

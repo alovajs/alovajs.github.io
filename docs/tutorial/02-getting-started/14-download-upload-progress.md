@@ -208,9 +208,9 @@ const App = () => {
 
 :::warning Caution when using the `GlobalFetch` adapter
 
-Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload the progress, please use [XMLHttpRequest adapter](/tutorial/extension/alova-adapter-xhr) or [axios adapter](/tutorial/extension/alova-adapter-axios)。
+Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload the progress, please use [XMLHttpRequest adapter](/tutorial/request-adapter/alova-adapter-xhr) or [axios adapter](/tutorial/request-adapter/alova-adapter-axios)。
 
-And you also can code your own request adapter. For details, see [Write a Request Adapter](/tutorial/advanced/custom-http-adapter).
+And you also can code your own request adapter. For details, see [Write a Request Adapter](/tutorial/custom/custom-http-adapter).
 
 :::
 

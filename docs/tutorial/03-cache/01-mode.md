@@ -210,6 +210,6 @@ localCache: {
 }
 ```
 
-## Cache key automatic maintenance
+## Instruction for response automatic maintenance
 
 The key of the response data cache is uniquely identified by the combination of the request method (method), request address (url), request header parameters (headers), url parameters (params), and request body parameters (requestBody) of the method instance. Any information or Different positions will be treated as different keys.

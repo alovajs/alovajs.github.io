@@ -98,4 +98,4 @@ const VueHook = {
 
 ## statesHook 类型
 
-如果你在自定义 statesHook 时，也希望它可以支持 typescript，可以 [点此查看](/tutorial/advanced/typescript)
+如果你在自定义 statesHook 时，也希望它可以支持 typescript，可以 [点此查看](/tutorial/getting-started/typescript)

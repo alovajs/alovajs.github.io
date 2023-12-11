@@ -647,7 +647,7 @@ In append mode, you can specify the parameter of `refresh` as a list item. When 
 
 ### Manually update list data
 
-Use the `update` function to update responsive data, which is similar to [useRequest's update](/tutorial/learning/use-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
+Use the `update` function to update responsive data, which is similar to [useRequest's update](/tutorial/getting-started/first-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
 
 ```typescript
 // case list data

@@ -33,11 +33,10 @@ type MethodFilter =
 // 每次调用getTodoList时都会生成一个新的Method实例，它们的name是相同的
 const getTodoList = currentPage =>
   alova.Get('/todo/list', {
-    name: 'todoList',
-    params: {
-      currentPage,
-      pageSize: 10
-    }
+    // highlight-start
+    name: 'todoList'
+    // highlight-end
+    // ...
   });
 
 // 以下表示让name为'todoList'的所有Method实例的缓存失效
@@ -90,8 +89,18 @@ fetch({
 
 ## 在不同函数中使用的区别
 
-- invalidateCache：应用所有匹配的 Method 实例集合，即失效所有匹配的 Method 实例对应的缓存；
-- setCache：应用所有匹配的 Method 实例集合，当传入静态数据时所有的 Method 实例缓存设置为相同值，传入回调函数时将循环调用此函数，并将返回值作为缓存数据；
-- updateState：应用第一个匹配的 Method 实例
-- fetch：应用第一个匹配的 Method 实例，即只会拉取一次数据
-  `invalidateCache`会失效所有过滤出来的`Method`实例所对应的缓存，而`updateState`和`fetch`只会使用`Method`实例集合中的第一个项进行操作。
+### invalidateCache
+
+应用所有匹配的 Method 实例集合，即失效所有匹配的 Method 实例对应的缓存。
+
+### setCache
+
+应用所有匹配的 Method 实例集合，当传入静态数据时所有的 Method 实例缓存设置为相同值，传入回调函数时将循环调用此函数，并将返回值作为缓存数据。
+
+### updateState
+
+应用第一个匹配的 Method 实例。
+
+### fetch
+
+应用第一个匹配的 Method 实例，即只会拉取一次数据。

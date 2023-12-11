@@ -48,9 +48,36 @@ const getFile = fileName =>
   });
 ```
 
+## 不使用缓存
+
 如果你希望继续发送请求，可以在`localCache`中返回 undefined 或不返回任何数据，这在自定义管理缓存时未命中缓存的情况下很有用。
+
+## 使用 transformData 设置缓存
+
+由于 `transformData` 函数具有以下两个特性：
+
+- 只有在响应时才被触发，而命中响应缓存时不会触发；
+- 支持异步函数；
+
+因此，你还可以配合它保存自定义的缓存，例如以文件为响应数据的缓存场景下，可以配合 IndexedDB 进行文件数据的缓存。
+
+```javascript
+const fileGetter = alovaInstance.Get('/file/file_name', {
+  // 使用IndexedDB缓存文件
+  async transformData(fileBlob) {
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(['files'], 'readwrite');
+      const putRequest = tx.objectStore('files').put({
+        file: fileBlob
+      });
+      putRequest.onsuccess = resolve;
+      putRequest.onerror = reject;
+    });
+    return fileBlob;
+  }
+});
+```
 
 ## 注意事项
 
-1. 你还可以配合 [transformData 的特殊用法](/tutorial/learning/transform-response-data) 来实现自定义缓存的存储任务。
-2. 在 usehooks 中使用时，在`localCache`函数中抛出错误将会触发`onError`，使用 method 实例直接发起请求时，将会返回一个 reject 状态的 promise 实例。
+在 usehooks 中使用时，在`localCache`函数中抛出错误将会触发`onError`，使用 method 实例直接发起请求时，将会返回一个 reject 状态的 promise 实例。

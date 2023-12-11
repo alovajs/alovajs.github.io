@@ -10,7 +10,7 @@ Some service interfaces support batch request data, which means that it is alway
 
 For example, we need to obtain the todo list data by date. During initialization, a request obtains the data of 5 days from May 1 to 5, and then the user obtains the data of May 1 again during the operation. At this time, it will not Hit the data on May 1st when it was initialized, because the initialized data of 5 days is stored together instead of being cached separately. At this time, we can manually create a single response cache for the data of these 5 days, so that we can Solve the problem of cache penetration when a single data request is made.
 
-As we mentioned in [cache mode](/tutorial/learning/response-cache), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
+As we mentioned in [cache mode](/tutorial/cache/mode), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
 
 ## Update static cache data
 
@@ -238,7 +238,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-Similarly, you can also dynamically find method instances through [method instance matcher](/tutorial/next-step/method-instance-matcher).
+Similarly, you can also dynamically find method instances through [method instance matcher](/tutorial/advanced/method-matcher).
 
 ```javascript
 setCache(
@@ -276,7 +276,7 @@ import { queryCache } from 'alova';
 const cacheData = queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-You can also dynamically find method instances via [method instance matcher](/tutorial/next-step/method-instance-matcher).
+You can also dynamically find method instances via [method instance matcher](/tutorial/advanced/method-matcher).
 
 ```javascript
 const cacheData = queryCache({

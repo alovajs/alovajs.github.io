@@ -3,20 +3,20 @@ title: 跨页面/模块更新响应状态
 sidebar_position: 20
 ---
 
-在上一小节[主动失效响应缓存](/tutorial/learning/invalidate-response-cache)的例子中，当用户点开 todo 列表中的某一项，进入 todo 详情页并对它执行了编辑，此时我们希望上一页中的 todo 列表数据也更新为编辑后的内容，使用`useFetcher`和`invalidateCache`的方式都会重新发起请求，那有没有不需要重新请求的方法呢？
+有这个一个场景，当用户点开 todo 列表中的某一项，进入 todo 详情页并对它执行了编辑，此时我们希望上一页中的 todo 列表数据也更新为编辑后的内容，使用`useFetcher`和`invalidateCache`的方式都会重新发起请求。
 
-当然有！alova 提供了`updateState`来手动更新任意模块/页面下的已存在的响应状态。值得注意的是，不同的响应状态是以发送请求的 method 实例作为 key 进行保存的，因此在更新状态时也将使用 method 实例来查找对应的响应状态。
+此时可以使用`updateState`来更新任意模块/页面下的已存在的响应状态，在这种情况下不会重新发起请求。
 
 ## ⚠️ 请确保组件未销毁
 
-`updateState`默认会查找由 alova 的 use hooks 发送请求时所创建的响应状态，但由于防止内存溢出，一个组件的销毁同时也会回收它内部创建的所有状态，因此在使用`updateState`时请确保你希望更新的响应状态对应的容器组件未被销毁，否则将无法查找到对应的响应状态而导致更新失败。
+`updateState`默认会查找由 alova 的 useHooks 发送请求时所创建的响应状态，但由于防止内存溢出，一个组件的销毁同时也会回收它内部创建的所有状态，因此在使用`updateState`时请确保你希望更新的响应状态对应的容器组件未被销毁，否则将无法查找到对应的响应状态而导致更新失败。
 
 这个问题常常出现在跨页面更新状态时，因为当页面跳转时我们容易忽略的是，默认情况下上一个页面已经被销毁了，因此，如果你希望跨页面更新状态，这边有两个建议：
 
 1. 将页面组件持久化，以保证被更新的状态还可以被查找到；
-2. 使用 [手动更新缓存（setCache）](/tutorial/learning/cache-set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
+2. 使用 [setCache](/tutorial/cache/set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
 
-[这里有个`updateState`的 demo](/tutorial/example/update-state)
+[这里有个`updateState`的 示例](/tutorial/example/update-state)
 
 ## 使用 method 实例查找响应状态
 
@@ -61,7 +61,7 @@ onSuccess(() => {
 
 ## 动态更新响应状态
 
-可能有时候你并不确定需要更新 method 下的响应状态，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](/tutorial/next-step/method-instance-matcher) 来动态查找对应的 method 实例。以下例子展示了为名称为 todoList 的 method 实例对应的列表添加一条数据。
+可能有时候你并不确定需要更新 method 下的响应状态，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](/tutorial/advanced/method-matcher) 来动态查找对应的 method 实例。以下例子展示了为名称为 todoList 的 method 实例对应的列表添加一条数据。
 
 ```javascript
 updateState('todoList', todoListRaw => {
@@ -72,6 +72,8 @@ updateState('todoList', todoListRaw => {
   return todoListRaw;
 });
 ```
+
+关于 [Method 实例匹配器](/tutorial/advanced/method-matcher) 将在后面的章节中详细介绍。
 
 ## 监听匹配事件
 

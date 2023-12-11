@@ -207,15 +207,15 @@ const App = () => {
 
 ## Set initial data
 
-`useWatcher` can also set initial data, [Go to the initial data chapter to read](/tutorial/initial-data).
+`useWatcher` can also set initial data, [Go to the initial data chapter to read](/tutorial/getting-started/initial-data).
 
 ## Set to send request immediately
 
-`useWatcher` can also send the request immediately, [Go to the data submission chapter to read](/tutorial/submit-form), but it should be noted that the `immediate` attribute of `useWatcher` defaults to `false`.
+`useWatcher` can also send the request immediately, [Go to the data submission chapter to read](/tutorial/getting-started/submit-form), but it should be noted that the `immediate` attribute of `useWatcher` defaults to `false`.
 
 ## Bind response callback
 
-`useWatcher` also has the same response callback binding function as `useRequest`, [Go to the response processing chapter to read](/tutorial/response).
+`useWatcher` also has the same response callback binding function as `useRequest`, [Go to the response processing chapter to read](/tutorial/getting-started/response).
 
 ## Request anti-shake
 
@@ -281,7 +281,17 @@ useWatcher(
 Sometimes when the status monitored by `useWatcher` changes continuously resulting in the initiation of consecutive requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Resulting in getting a response that does not match the state; for example, if the state `state` changes, a request `1` is issued, and then when the request `1` has not responded, the value of `state` is changed and a request` is issued. 2`, if request `1` is returned after request `2`, the final response data will remain at request `1`.
 So we designed the `abortLast` parameter, which is used to mark whether to interrupt the last unresponsive request when the next request is issued. The default is `true`, so that the request issued by `useWatcher` is only valid for the last time.
 
-![tips](/img/abortLast.png)
+```mermaid
+sequenceDiagram
+   participant U as User
+   participant S as Server
+   U ->> U: watch state
+   U ->> S: state change to trigger request 1
+   U ->> S: state change to trigger request 2
+   S ->> U: Request 2 responded
+   S ->> U: Request 1 responded
+   U ->> U: Response of request 2 is overwritten
+```
 
 ```javascript
 useWatcher(

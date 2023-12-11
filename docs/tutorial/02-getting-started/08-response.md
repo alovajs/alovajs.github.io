@@ -9,24 +9,29 @@ import TabItem from '@theme/TabItem';
 After the request is completed, the response data will be processed through multiple processes before the final data is obtained at the location where the request was sent. The process is as follows:
 
 ```mermaid
-stateDiagram
-  direction LR
-  classDef condition fill:red
+flowchart LR
+   classDef condition fill:#a8bcff
 
+   Response successful --> alovaInstance.responded.onSuccess
+   alovaInstance.responded.onSuccess --> throw{throw error?}:::condition
+   throw -->|No| method.transformData
+   method.transformData --> useRequest.onSuccess
+   throw -->|Yes| useRequest.onError
 
-  Response successful --> alovaInstance.responded.onSuccess
-  alovaInstance.responded.onSuccess --> No error thrown:::condition
-  No error thrown --> method.transformData
-  method.transformData --> useRequest.onSuccess
-  useRequest.onSuccess --> Throws error
-  alovaInstance.responded.onSuccess --> Throws error:::condition
-  Throws error --> useRequest.onError
-  Response error --> alovaInstance.responded.onError
-  alovaInstance.responded.onError --> no error thrown
-  alovaInstance.responded.onError --> Throws error
+   method.transformData --> throw2{throw error?}:::condition
+   throw2 -->|No| useRequest.onSuccess
+   throw2 -->|Yes| useRequest.onError
+
+   useRequest.onSuccess --> throw3{throw error?}:::condition
+   throw3 -->|Yes| useRequest.onError
+
+   Response error --> alovaInstance.responded.onError
+   alovaInstance.responded.onError --> throw4{throw error?}:::condition
+   throw4 -->|Yes| useRequest.onError
+   throw4 -->|No| method.transformData
 ```
 
-When no error is thrown, the next node will receive the return value of the previous node. The global response interceptor has been explained in [Global Interceptor](/tutorial/global-interceptor). Next, let's take a look at `transformData` in method.
+When no error is thrown, the next node will receive the return value of the previous node. The global response interceptor has been explained in [Global Interceptor](/tutorial/getting-started/global-interceptor). Next, let's take a look at `transformData` in method.
 
 ## Transform response data
 

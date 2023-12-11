@@ -43,9 +43,9 @@
     "message": "自定义",
     "description": "The label for category custom in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Extensions": {
-    "message": "扩展",
-    "description": "The label for category Extensions in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Request adapter": {
+    "message": "请求适配器",
+    "description": "The label for category Request adapter in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.extend hooks": {
     "message": "扩展hooks",

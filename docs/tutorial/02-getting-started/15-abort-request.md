@@ -8,6 +8,7 @@ sidebar_position: 150
 When the `timeout` parameter is not set, the request will never time out. If you need to manually abort the request, you can receive the `abort` method when `useRequest/useWatcher` or the function is called.
 
 ```javascript
+// useRequest
 const {
   // ...
   // highlight-start
@@ -16,12 +17,22 @@ const {
   // highlight-end
 } = useRequest(todoListGetter);
 
-// highlight-start
-//Call abort to abort the request
+// useWatcher
+const {
+  // ...
+  // highlight-start
+  // abort function is used to abort requests
+  abort
+  // highlight-end
+} = useWatcher(todoListGetter, [page]);
+```
+
+Then you can call `abort` to cancel the request.
+
+```javascript
 const handleCancel = () => {
-  abort();
+  todoListGetter.abort();
 };
-// highlight-end
 ```
 
 > `[2.9.0+]` In react, the abort function is wrapped with `useCallback`, and it is not restricted by closure traps. You can use it directly in events without worrying about causing performance problems.

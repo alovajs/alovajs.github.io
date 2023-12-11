@@ -1,6 +1,6 @@
 ---
 title: 开发React-Native应用
-sidebar_position: 20
+sidebar_position: 50
 ---
 
 你同样可以使用 alova 开发 React-Native 应用，甚至可以直接使用 GlobalFetch 请求适配器来作为请求事件处理。

@@ -8,6 +8,7 @@ sidebar_position: 150
 未设置`timeout`参数时请求是永不超时的，如果需要手动中断请求，可以在`useRequest/useWatcher`或函数被调用时接收`abort`方法。
 
 ```javascript
+// useRequest
 const {
   // ...
   // highlight-start
@@ -16,12 +17,22 @@ const {
   // highlight-end
 } = useRequest(todoListGetter);
 
-// highlight-start
-// 调用abort即可中断请求
+// useWatcher
+const {
+  // ...
+  // highlight-start
+  // abort函数用于中断请求
+  abort
+  // highlight-end
+} = useRequest(todoListGetter, [page]);
+```
+
+然后再调用`abort`方法即可中断请求。
+
+```javascript
 const handleCancel = () => {
   abort();
 };
-// highlight-end
 ```
 
 > `[2.9.0+]`在 react 中，abort 函数使用了`useCallback`包裹，同时它也不受闭包陷阱限制，你可以直接在事件中使用它，不用担心引起性能问题。

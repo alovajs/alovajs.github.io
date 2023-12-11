@@ -12,7 +12,7 @@ There is such a scenario, when the user clicks on an item in the todo list, ente
 2. Manually update the cache, which will be explained in detail in the next section;
 3. Make the response cache invalid, and when the request is made again, the data will be re-requested due to the cache invalidation. This is what this section is about.
 
-As we mentioned in [cache mode](/tutorial/learning/response-cache), each cached data is saved with the method instance that sent the request as the key, so the method instance will also be used when the cache is invalidated. Invalidate the corresponding cached data.
+As we mentioned in [cache mode](/tutorial/cache/mode), each cached data is saved with the method instance that sent the request as the key, so the method instance will also be used when the cache is invalidated. Invalidate the corresponding cached data.
 
 Now we try to achieve this requirement with cache invalidation.
 
@@ -169,7 +169,7 @@ Its function is far more than that. We can also invalidate any number or even al
 
 ## Dynamic lookup invalidation cache
 
-Maybe sometimes you are not sure which cache data needs to be invalidated, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/next-step/method-instance-matcher) To dynamically find the corresponding method instance. The following example shows how to invalidate the cache for the first 5 Method instances named todoList.
+Maybe sometimes you are not sure which cache data needs to be invalidated, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/advanced/method-matcher) To dynamically find the corresponding method instance. The following example shows how to invalidate the cache for the first 5 Method instances named todoList.
 
 ```javascript
 const getTodoList = currentPage => {
@@ -204,7 +204,7 @@ onSuccess(() => {
 });
 ```
 
-> See [Method instance matcher](/tutorial/next-step/method-instance-matcher) for more usage of `Method` instance matcher
+> See [Method instance matcher](/tutorial/advanced/method-matcher) for more usage of `Method` instance matcher
 
 ## Invalidate all caches
 

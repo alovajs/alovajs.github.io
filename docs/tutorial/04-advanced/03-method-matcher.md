@@ -33,11 +33,10 @@ Match by passing in the full instance name, and its result is an array.
 // Each time getTodoList is called, a new Method instance is generated with the same name
 const getTodoList = currentPage =>
   alova.Get('/todo/list', {
-    name: 'todoList',
-    params: {
-      currentPage,
-      pageSize: 10
-    }
+    // highlight-start
+    name: 'todoList'
+    // highlight-end
+    // ...
   });
 
 // The following means to invalidate the cache of all Method instances whose name is 'todoList'
@@ -90,8 +89,18 @@ fetch({
 
 ## Differences used in different functions
 
-- invalidateCache: apply all matching Method instance sets, that is, invalidate the cache corresponding to all matching Method instances;
-- setCache: applies all matching Method instance sets. When static data is passed in, all Method instance caches are set to the same value. When the callback function is passed in, this function will be called cyclically, and the return value will be used as the cached data;
-- updateState: applies the first matching Method instance
-- fetch: apply the first matching Method instance, that is, only pull data once
-  `invalidateCache` will invalidate the cache corresponding to all filtered `Method` instances, while `updateState` and `fetch` will only operate on the first item in the set of `Method` instances.
+### invalidateCache
+
+apply all matching Method instance sets, that is, invalidate the cache corresponding to all matching Method instances.
+
+### setCache
+
+applies all matching Method instance sets. When static data is passed in, all Method instance caches are set to the same value. When the callback function is passed in, this function will be called cyclically, and the return value will be used as the cached data.
+
+### updateState
+
+applies the first matching Method instance.
+
+### fetch
+
+apply the first matching Method instance, that is, only fetch data once.

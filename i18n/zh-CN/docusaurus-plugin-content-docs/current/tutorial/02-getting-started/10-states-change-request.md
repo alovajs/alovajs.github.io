@@ -207,15 +207,42 @@ const App = () => {
 
 ## 设置初始数据
 
-`useWatcher`也可以设置初始数据，[前往初始数据章节阅读](/tutorial/initial-data)。
+```javascript
+// 在useWatcher中同样可以设置data的初始值
+const {
+  // 响应前data的初始值为[]，而不是undefined
+  data
+} = useWatcher(
+  () => getTodoList(/* 参数 */),
+  [
+    /* 监听状态 */
+  ],
+  {
+    initialData: []
+  }
+);
+```
 
-## 设置立即发送请求
-
-`useWatcher`也可以是否立即发送请求，[前往数据提交章节阅读](/tutorial/submit-form)，但需要注意的是`useWatcher`的`immediate`属性默认为`false`。
+详细使用请[前往初始数据章节](/tutorial/getting-started/initial-data)。
 
 ## 绑定响应回调
 
-`useWatcher`也具有与`useRequest`相同的响应回调绑定函数，[前往响应处理章节阅读](/tutorial/response)。
+`useWatcher`也具有与`useRequest`相同的响应回调绑定函数，[前往响应处理章节](/tutorial/getting-started/response)。
+
+## 设置立即发送请求
+
+```javascript
+const { send } = useWatcher(() => getTodoList(currentPage), [currentPage], {
+  // highlight-start
+  immediate: true
+  // highlight-end
+});
+send();
+```
+
+与`useRequest`不同的是，`useWatcher`的`immediate`属性默认是`false`，此外，send 函数参数传递规则与`useRequest`一致。
+
+详细使用请[前往数据提交章节](/tutorial/getting-started/submit-form)。
 
 ## 请求防抖
 
@@ -281,7 +308,17 @@ useWatcher(
 有时候当`useWatcher`监听的状态发生连续的改变导致连续的请求的发起时，后一次的请求先于前一次的请求获得响应，但是当前一次请求获得响应时，会覆盖后一次请求的响应，导致获取到与状态不匹配的响应；例如说有个状态`state`改变后发出了请求`1`，然后在请求`1`还未响应时又改变了`state`值，并发出了请求`2`，如果请求`1`后于请求`2`返回，最终的响应数据会维持在请求`1`。
 所以我们设计了`abortLast`参数，它用于标记当下一次请求发出时，是否中断上一次的未响应请求，默认为`true`，这样`useWatcher`所发出的请求只有最后一次有效。
 
-![tips](/img/abortLast.png)
+```mermaid
+sequenceDiagram
+  participant U as 用户
+  participant S as 服务器
+  U ->> U: 监听state状态
+  U ->> S: state改变发起请求1
+  U ->> S: state改变发起请求2
+  S ->> U: 请求2响应
+  S ->> U: 请求1响应
+  U ->> U: 请求2的响应被覆盖
+```
 
 ```javascript
 useWatcher(
@@ -298,6 +335,6 @@ useWatcher(
 
 :::warning 注意事项
 
-`abortLast`默认为`true`，如果修改为`false`，可能会导致状态与响应不匹配的问题。
+`abortLast`默认为`true`，在正常情况下你不需要关注这个参数，如果修改为`false`，可能会导致状态与响应不匹配的问题。
 
 :::

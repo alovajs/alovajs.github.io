@@ -9,24 +9,29 @@ import TabItem from '@theme/TabItem';
 请求完成后，响应数据会经过多个流程的处理，最终才会在发送请求的位置获得最终数据，流程如下：
 
 ```mermaid
-stateDiagram
-  direction LR
-  classDef condition fill:red
-
+flowchart LR
+  classDef condition fill:#a8bcff
 
   响应成功 --> alovaInstance.responded.onSuccess
-  alovaInstance.responded.onSuccess --> 未抛出错误:::condition
-  未抛出错误 --> method.transformData
+  alovaInstance.responded.onSuccess --> throw{是否抛出错误？}:::condition
+  throw -->|否| method.transformData
   method.transformData --> useRequest.onSuccess
-  useRequest.onSuccess --> 抛出错误
-  alovaInstance.responded.onSuccess --> 抛出错误:::condition
-  抛出错误 --> useRequest.onError
+  throw -->|是| useRequest.onError
+
+  method.transformData --> throw2{是否抛出错误？}:::condition
+  throw2 -->|否| useRequest.onSuccess
+  throw2 -->|是| useRequest.onError
+
+  useRequest.onSuccess --> throw3{是否抛出错误？}:::condition
+  throw3 -->|是| useRequest.onError
+
   响应错误 --> alovaInstance.responded.onError
-  alovaInstance.responded.onError --> 未抛出错误
-  alovaInstance.responded.onError --> 抛出错误
+  alovaInstance.responded.onError --> throw4{是否抛出错误？}:::condition
+  throw4 -->|是| useRequest.onError
+  throw4 -->|否| method.transformData
 ```
 
-当没有抛出错误时，下一个节点会接收到上一个节点的返回值。全局的响应拦截器已经在[全局拦截器](/tutorial/global-interceptor)中讲解过，接下来我们来看看在 method 中的`transformData`。
+当没有抛出错误时，下一个节点会接收到上一个节点的返回值。全局的响应拦截器已经在[全局拦截器](/tutorial/getting-started/global-interceptor)中讲解过，接下来我们来看看在 method 中的`transformData`。
 
 ## 转换响应数据
 

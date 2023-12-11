@@ -1,6 +1,6 @@
 ---
 title: Hide recommend Tips
-sidebar_position: 10
+sidebar_position: 60
 ---
 
 :::info version required

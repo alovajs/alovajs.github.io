@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 例如我们需要按日期获取 todo 列表数据，在初始化时一次请求获取了 5 月 1 日到 5 日，5 天的数据，然后用户在操作时又获取了一次 5 月 1 日的数据，此时不会命中初始化时的 5 月 1 日数据，因为初始化的 5 天数据是存放在一起的，而不是分开缓存的，此时我们就可以为这 5 天的数据相继手动创建单条的响应缓存，这样就可以解决单条数据请求时的缓存穿透的问题。
 
-在[缓存模式](/tutorial/learning/response-cache)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在手动更新缓存时也将使用 method 实例来查找对应的缓存数据。
+在[缓存模式](/tutorial/cache/mode)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在手动更新缓存时也将使用 method 实例来查找对应的缓存数据。
 
 ## 更新静态缓存数据
 
@@ -238,7 +238,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-同样的，你也可以通过 [method 实例匹配器](/tutorial/next-step/method-instance-matcher) 动态查找 method 实例。
+同样的，你也可以通过 [method 实例匹配器](/tutorial/advanced/method-matcher) 动态查找 method 实例。
 
 ```javascript
 setCache(
@@ -276,7 +276,7 @@ import { queryCache } from 'alova';
 const cacheData = queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-你也可以通过 [method 实例匹配器](/tutorial/next-step/method-instance-matcher) 动态查找 method 实例。
+你也可以通过 [method 实例匹配器](/tutorial/advanced/method-matcher) 动态查找 method 实例。
 
 ```javascript
 const cacheData = queryCache({
