@@ -8,7 +8,16 @@ import TabItem from '@theme/TabItem';
 
 ## 全局的请求拦截器
 
-通常，我们需要让所有请求都用上相同的配置，例如添加 token、timestamp 到请求头，alova 为我们提供了全局的请求拦截器，它将在请求前被触发，我们可以在此拦截器中统一设置请求参数。
+通常，我们需要让所有请求都用上相同的配置，例如添加 token、timestamp 到请求头，此时我们可以设置一个全局的请求拦截器，它将在所有请求前被触发，我们可以在此拦截器中统一设置请求参数。
+
+```mermaid
+flowchart LR
+  请求1 --> beforeRequest
+  请求2 --> beforeRequest
+  请求3 --> beforeRequest
+  请求N --> beforeRequest
+  beforeRequest --> 发送请求
+```
 
 ```javascript
 const alovaInstance = createAlova({
@@ -41,6 +50,17 @@ const alovaInstance = createAlova({
 ## 全局的响应拦截器
 
 当我们希望统一解析响应数据、统一处理错误，以及统一处理请求完成时，此时可以在创建 alova 实例时指定全局的响应拦截器，响应拦截器包括请求成功的拦截器、请求失败的拦截器，和请求完成的拦截器。
+
+```mermaid
+flowchart LR
+  请求1成功 --> responded.onSuccess
+  请求2成功 --> responded.onSuccess
+  请求N成功 --> responded.onSuccess
+  请求4失败 --> responded.onError
+  请求M失败 --> responded.onError
+  responded.onSuccess --> responded.onComplete
+  responded.onError --> responded.onComplete
+```
 
 ```javascript
 const alovaInstance = createAlova({

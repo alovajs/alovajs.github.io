@@ -34,7 +34,7 @@ useFetcher({
 
 ### Dynamically set force value
 
-In actual situations, we often need to set whether to force the request to be sent based on different situations. In this case, force can be set to a function, which will also receive parameters passed in from the `send` function. [Please read the Submit Form chapter for details](/tutorial/getting-started/submit-form)
+In actual situations, we often need to set whether to force the request to be sent based on different situations. In this case, force can be set to a function, which will also receive parameters passed in from the `send` function. [Please read the request manually chapter for details](/tutorial/getting-started/request-manually)
 
 ```javascript
 useRequest(todoListGetter, {

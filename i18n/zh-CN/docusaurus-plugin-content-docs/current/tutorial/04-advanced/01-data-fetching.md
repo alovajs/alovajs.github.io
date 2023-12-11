@@ -427,7 +427,7 @@ useFetcher 请求完成后只更新缓存，且如果发现该`Method`实例下�
 
 ## 绑定响应回调
 
-在上面的示例中，调用 fetch 函数触发数据拉取，fetch 函数还可以从第二个参数开始传入自定义的参数，这些参数也将分别被`onSuccess/onError/onComplete`的回调函数，以及`force`函数接收，具体请阅读[提交表单](/tutorial/getting-started/submit-form)中的 **send 函数参数传递规则**部分。
+在上面的示例中，调用 fetch 函数触发数据拉取，fetch 函数还可以从第二个参数开始传入自定义的参数，这些参数也将分别被`onSuccess/onError/onComplete`的回调函数，以及`force`函数接收，具体请阅读[手动发送请求](/tutorial/getting-started/request-manually)中的 **send 函数参数传递规则**部分。
 
 ## 与 useRequest 和 useFetcher 的差异对比
 

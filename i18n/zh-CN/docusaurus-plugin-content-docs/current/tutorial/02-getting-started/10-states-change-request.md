@@ -242,7 +242,7 @@ send();
 
 与`useRequest`不同的是，`useWatcher`的`immediate`属性默认是`false`，此外，send 函数参数传递规则与`useRequest`一致。
 
-详细使用请[前往数据提交章节](/tutorial/getting-started/submit-form)。
+详细使用请[前往手动发送请求章节](/tutorial/getting-started/request-manually)。
 
 ## 请求防抖
 

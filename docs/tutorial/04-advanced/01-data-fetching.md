@@ -428,7 +428,7 @@ Same as `useRequest` and `useWatcher`, please read [Force Request](/tutorial/cac
 
 ## Bind response callback
 
-In the above example, the fetch function is called to trigger data fetching. The fetch function can also pass in custom parameters starting from the second parameter. These parameters will also be used by the callback functions of `onSuccess/onError/onComplete` and ` force` function is received. For details, please read the **send function parameter passing rules** section in [Submit Form](/tutorial/getting-started/submit-form).
+In the above example, the fetch function is called to trigger data fetching. The fetch function can also pass in custom parameters starting from the second parameter. These parameters will also be used by the callback functions of `onSuccess/onError/onComplete` and ` force` function is received. For details, please read the **send function parameter passing rules** section in [request manually](/tutorial/getting-started/request-manually).
 
 ## Compare the differences between useRequest and useFetcher
 

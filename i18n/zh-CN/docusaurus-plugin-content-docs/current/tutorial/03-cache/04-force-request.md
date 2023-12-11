@@ -34,7 +34,7 @@ useFetcher({
 
 ### 动态设置 force 值
 
-实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数，此函数也将接收来自 `send` 函数传入的参数。[具体请阅读提交表单章节](/tutorial/getting-started/submit-form)
+实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数，此函数也将接收来自 `send` 函数传入的参数。[具体请阅读手动发送请求章节](/tutorial/getting-started/request-manually)
 
 ```javascript
 useRequest(todoListGetter, {

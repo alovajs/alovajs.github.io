@@ -1,5 +1,5 @@
 ---
-title: 提交表单
+title: 手动发送请求
 sidebar_position: 90
 ---
 
@@ -37,6 +37,8 @@ const handleAddTodo = () => {
     });
 };
 ```
+
+`send`函数可以让你自由地重复发起请求。
 
 > `[2.9.0+]`在 react 中，send 函数使用了`useCallback`包裹，同时它也不受闭包陷阱限制，你可以直接在事件中使用它，不用担心引起性能问题。
 

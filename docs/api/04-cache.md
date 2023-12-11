@@ -1,0 +1,4 @@
+invalidateCache
+
+setCache
+queryCache

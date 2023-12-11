@@ -1,5 +1,5 @@
 ---
-title: Submit form
+title: Request manually
 sidebar_position: 90
 ---
 
@@ -37,6 +37,8 @@ const handleAddTodo = () => {
     });
 };
 ```
+
+`send` function let you freely repeat the request.
 
 > `[2.9.0+]` In react, the send function is wrapped with `useCallback`, and it is not restricted by closure traps. You can use it directly in events without worrying about causing performance problems.
 

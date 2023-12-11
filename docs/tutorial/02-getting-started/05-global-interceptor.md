@@ -8,7 +8,16 @@ import TabItem from '@theme/TabItem';
 
 ## Set global request interceptor
 
-Usually, we need to use the same configuration for all requests, such as adding token and timestamp to the request header. `alova` provides us with a global request interceptor, which will be triggered before the request. We can use this interceptor Set the request parameters in a unified way, which is also similar to `axios`.
+Usually, we need to use the same configuration for all requests, such as adding token and timestamp to the request header. `alova` provides us with a global request interceptor, which will be triggered before the request. We can use this interceptor Set the request parameters in a unified way.
+
+```mermaid
+flowchart LR
+   Request 1 --> beforeRequest
+   Request 2 --> beforeRequest
+   Request 3 --> beforeRequest
+   Request N --> beforeRequest
+   beforeRequest --> send request
+```
 
 ```javascript
 const alovaInstance = createAlova({
@@ -40,7 +49,18 @@ const alovaInstance = createAlova({
 
 ## Set global response interceptors
 
-When we want to unify the parsing of response data and uniform handling of errors, as well as handling the response completition, we can specify a global response interceptor when creating an `alova` instance, which is also similar to `axios`. Response interceptors include interceptors for successful requests, failed requests and completed requests.
+When we want to uniformly parse response data, uniformly handle errors, and uniformly handle request completion, we can specify a global response interceptor when creating an alova instance. The response interceptor includes an interceptor for successful requests and an interceptor for error requests. and request completion interceptors.
+
+```mermaid
+flowchart LR
+  Request 1 successful --> responded.onSuccess
+  Request 2 successful --> responded.onSuccess
+  Request N was successful --> responded.onSuccess
+  Request 4 onError --> responded.onError
+  Request M onError --> responded.onError
+  responded.onSuccess --> responded.onComplete
+  responded.onError --> responded.onComplete
+```
 
 ```javascript
 const alovaInstance = createAlova({

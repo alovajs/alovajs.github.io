@@ -211,7 +211,7 @@ const App = () => {
 
 ## Set to send request immediately
 
-`useWatcher` can also send the request immediately, [Go to the data submission chapter to read](/tutorial/getting-started/submit-form), but it should be noted that the `immediate` attribute of `useWatcher` defaults to `false`.
+`useWatcher` can also send the request immediately, [Go to the request manually chapter to read](/tutorial/getting-started/request-manually), but it should be noted that the `immediate` attribute of `useWatcher` defaults to `false`.
 
 ## Bind response callback
 
