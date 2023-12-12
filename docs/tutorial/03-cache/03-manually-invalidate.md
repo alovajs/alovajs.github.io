@@ -6,15 +6,7 @@ sidebar_position: 30
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-There is such a scenario, when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated with the edited content, usually The approach is to trigger the content update of the previous page through events, which increases maintenance costs. And `alova` provides 3 ways to achieve this goal very elegantly:
-
-1. Use `useFetcher` to immediately re-request the latest data, which has been mentioned in the above section;
-2. Manually update the cache, which will be explained in detail in the next section;
-3. Make the response cache invalid, and when the request is made again, the data will be re-requested due to the cache invalidation. This is what this section is about.
-
-As we mentioned in [cache mode](/tutorial/cache/mode), each cached data is saved with the method instance that sent the request as the key, so the method instance will also be used when the cache is invalidated. Invalidate the corresponding cached data.
-
-Now we try to achieve this requirement with cache invalidation.
+Generally, automatic invalidation cache is more concise, and it is recommended to use it first to invalidate the cache. When the automatic invalidation cache does not meet the needs, you can also invalidate the cache by calling `invalidateCache`.
 
 ## Use method instance lookup cache
 

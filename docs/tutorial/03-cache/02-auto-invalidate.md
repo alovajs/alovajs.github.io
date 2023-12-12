@@ -3,17 +3,13 @@ title: Automatic cache invalidation
 sidebar_position: 20
 ---
 
-## Active invalidation cache usage scenarios
+There is a scenario where when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated with the edited content. Usually The approach is to trigger content updates on the previous page through events, which increases maintenance costs. And `alova` provides 3 ways to achieve this goal very elegantly:
 
-Usually we use `invalidateCache` to manually invalidate the cache, that is, call it to invalidate the cache after an operation is performed. This is actually a way to trace the target cache from the invalidation source, and it is more suitable for the case where the source of the target cache invalidation is single. .
+1. Use `useFetcher` to immediately re-request the latest data, which will be explained in the [Data Fetching](/tutorial/advanced/data-fetching) chapter;
+2. Update the cache. This method will be explained in detail in the [Cache set and query](/tutorial/cache/set-and-query) chapter later;
+3. Invalidate the response cache. When requested again, the data will be requested again due to cache invalidation. This is also what this chapter will explain.
 
-For example, when clicking on a list item, entering the edit page and submitting to modify this data, the detail cache data of this data needs to be cleared. In this example, the submit modification operation is the invalidation source, and the detail cache data is the target cache. The details cache of a piece of data will only be invalidated when the modification is submitted, and there is no other source of failure to invalidate it. At this time, it will be more convenient to use `invalidateCache` to manually clear the details cache.
-
-## Usage scenarios of automatic invalidation cache
-
-When there are multiple invalidation sources in a target cache, if we still use `invalidateCache`, we need to call it in multiple invalidation sources to invalidate the same target cache, which is not only cumbersome but also increases maintainability costs, at this time we can Uniformly set invalidation source rules in the target cache, as long as the rules match, the target cache can be automatically invalidated. It is actually another dimension of active cache invalidation.
-
-![](https://user-images.githubusercontent.com/29848971/218662359-d7b999ba-2203-40e0-8152-f4159a6fb8e3.png)
+Automatic cache invalidation is to set invalidation source rules in the target cache. As long as the rules match, the target cache can be automatically invalidated. This saves the trouble of manually clearing the cache in many cases.
 
 ## Set automatic invalidation rules
 
