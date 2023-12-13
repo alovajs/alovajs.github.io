@@ -118,7 +118,7 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 
 自定义各类适配器以满足不同环境下的运行要求，以下几个方向可供参考：
 
-1. 自定义 statesHook，满足在不同 UI 框架下执行，例如`solid/qwik`，目前内置支持`react/vue/svelte`，请阅读[自定义 statesHook](/tutorial/advanced/custom-stateshook)；
+1. 自定义 statesHook，满足在不同 UI 框架下执行，例如`solid/qwik`，目前内置支持`react/vue/svelte`，请阅读[自定义 statesHook](/tutorial/custom/custom-stateshook)；
 2. 自定义请求适配器，让 alova 可以与更多请求方案协作，例如`GraphQL/SSE`等；
 3. 自定义存储适配器，满足不同环境的存储，例如`react-native`；
 4. 以上任意的组合，例如官方的[uniapp 适配器](https://github.com/alovajs/adapter-uniapp)，其中包含了请求适配器、存储适配器。

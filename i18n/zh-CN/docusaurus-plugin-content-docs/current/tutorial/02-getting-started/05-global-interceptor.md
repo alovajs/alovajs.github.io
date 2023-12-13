@@ -12,11 +12,11 @@ import TabItem from '@theme/TabItem';
 
 ```mermaid
 flowchart LR
-  请求1 --> beforeRequest
-  请求2 --> beforeRequest
-  请求3 --> beforeRequest
-  请求N --> beforeRequest
-  beforeRequest --> 发送请求
+  R1[请求1] --> beforeRequest
+  R2[请求2] --> beforeRequest
+  R3[请求3] --> beforeRequest
+  RN[请求N] --> beforeRequest
+  beforeRequest --> S1[发送请求]
 ```
 
 ```javascript
@@ -53,11 +53,13 @@ const alovaInstance = createAlova({
 
 ```mermaid
 flowchart LR
-  请求1成功 --> responded.onSuccess
-  请求2成功 --> responded.onSuccess
-  请求N成功 --> responded.onSuccess
-  请求4失败 --> responded.onError
-  请求M失败 --> responded.onError
+  classDef error fill:#f96,stroke:#f00,stroke-width:2px;
+
+  R1[请求1成功] --> responded.onSuccess
+  R2[请求2成功] --> responded.onSuccess
+  RN[请求N成功] --> responded.onSuccess
+  R4[请求4失败]:::error --> responded.onError:::error
+  R5[请求M失败]:::error --> responded.onError:::error
   responded.onSuccess --> responded.onComplete
   responded.onError --> responded.onComplete
 ```
@@ -65,9 +67,9 @@ flowchart LR
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  // highlight-start
   // 使用数组的两个项，分别指定请求成功的拦截器和请求失败的拦截器
   responded: {
+    // highlight-start
     // 请求成功的拦截器
     // 当使用GlobalFetch请求适配器时，第一个参数接收Response对象
     // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
@@ -84,22 +86,26 @@ const alovaInstance = createAlova({
       // 解析的响应数据将传给method实例的transformData钩子函数，这些函数将在后续讲解
       return json.data;
     },
+    // highlight-end
 
+    // highlight-start
     // 请求失败的拦截器
     // 请求错误时将会进入该拦截器。
     // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
     onError: (err, method) => {
       alert(error.message);
     },
+    // highlight-end
 
+    // highlight-start
     // 请求完成的拦截器
     // 当你需要在请求不论是成功、失败、还是命中缓存都需要执行的逻辑时，可以在创建alova实例时指定全局的`onComplete`拦截器，例如关闭请求 loading 状态。
     // 接收当前请求的method实例
     onComplete: async method => {
       // 处理请求完成逻辑
     }
+    // highlight-end
   }
-  // highlight-end
 });
 ```
 

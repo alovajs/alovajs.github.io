@@ -214,7 +214,7 @@ const handleStop = () => {
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 
 | Name    | Description                                                                                                                                  | Type                            | Default                                   | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------- | ------- | --- |
@@ -232,11 +232,11 @@ Inherit all configurations from [**useRequest**](/tutorial/learning/use-request#
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all action functions of [**useRequest**](/api/core-hooks#userequest).
 
 | name | description                                                                                                        | function parameters | return value | version |
 | ---- | ------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ | ------- |
@@ -244,7 +244,7 @@ Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#
 
 ### Event
 
-Inherit all events from [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all events from [**useRequest**](/api/core-hooks#userequest).
 
 | Name    | Description                                                                                                                                                                                                                                                                                                                                                                                                          | Callback Parameters                                              | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------- |

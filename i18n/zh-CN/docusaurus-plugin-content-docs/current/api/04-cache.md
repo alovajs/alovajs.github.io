@@ -1,15 +1,15 @@
 ---
-title: Cache operation
+title: 缓存操作
 sidebar_position: 40
 ---
 
 ## invalidateCache()
 
-Active cache invalidation.
+主动失效缓存。
 
-> Go to [Manually invalidate cache](/tutorial/cache/manually-invalidate) for details.
+> 前往[手动失效缓存](/tutorial/cache/manually-invalidate)查看详情。
 
-- **type**
+- **类型**
 
 ```ts
 type MethodFilter =
@@ -23,15 +23,15 @@ type MethodFilter =
 function invalidateCache(matcher?: Method | Method[] | MethodFilter): void;
 ```
 
-- **Parameters**
+- **参数**
 
-1. `matcher`: Cache invalid matcher, the value is a method instance or array, or it can be set to [method instance matcher](/tutorial/advanced/method-matcher).
+1. `matcher`：缓存失效的匹配器，值为 method 实例或数组，也可以设置为[method 实例匹配器](/tutorial/advanced/method-matcher)。
 
-- **return**
+- **返回**
 
-none
+无
 
-- **Example**
+- **示例**
 
 ```ts
 import { invalidateCache } from 'alova';
@@ -46,11 +46,11 @@ invalidateCache({
 
 ## setCache()
 
-Set up response caching.
+设置响应缓存。
 
-> Go to [Cache Update and Query](/tutorial/cache/set-and-query) for details.
+> 前往[缓存更新与查找](/tutorial/cache/set-and-query)查看详情。
 
-- **type**
+- **类型**
 
 ```ts
 type MethodFilter =
@@ -67,16 +67,16 @@ function setCache(
 ): void;
 ```
 
-- **Parameters**
+- **参数**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher] (/tutorial/advanced/method-matcher), which will match all matching The method instance of the condition sets the cached data.
-2. `dataOrUpdater`: Cache data or update function. If it is a function, it needs to return new cached data. If it returns `undefined` or does not return, the update will be cancelled.
+1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 实例匹配器](/tutorial/advanced/method-matcher)，将会为所有符合条件的 method 实例设置缓存数据。
+2. `dataOrUpdater`：缓存数据或更新函数，如果为函数，则需要返回新的缓存数据，如果返回`undefined`或不返回则取消更新。
 
-- **return**
+- **返回**
 
-none
+无
 
-- **Example**
+- **示例**
 
 ```ts
 import { setCache } from 'alova';
@@ -94,11 +94,11 @@ setCache(
 
 ## queryCache()
 
-Query cache.
+查询缓存。
 
-> Go to [Cache Update and Query](/tutorial/cache/set-and-query) for details.
+> 前往[缓存更新与查找](/tutorial/cache/set-and-query)查看详情。
 
-- **type**
+- **类型**
 
 ```ts
 type MethodFilter =
@@ -112,15 +112,15 @@ type MethodFilter =
 function queryCache(matcher?: Method | MethodFilter): R | undefined;
 ```
 
-- **Parameters**
+- **参数**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher](/tutorial/advanced/method-matcher), which will meet the conditions. The first method instance queries cached data.
+1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 实例匹配器](/tutorial/advanced/method-matcher)，将会为符合条件的第一个 method 实例查询缓存数据。
 
-- **return**
+- **返回**
 
-Cache data, or return `undefined` if not cached.
+缓存数据，如果没有缓存则返回`undefined`。
 
-- **Example**
+- **示例**
 
 ```ts
 import { queryCache } from 'alova';

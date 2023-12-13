@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 flowchart LR
   classDef condition fill:#a8bcff
 
-  响应成功 --> alovaInstance.responded.onSuccess
+  R1[响应成功] --> alovaInstance.responded.onSuccess
   alovaInstance.responded.onSuccess --> throw{是否抛出错误？}:::condition
   throw -->|否| method.transformData
   method.transformData --> useRequest.onSuccess
@@ -25,7 +25,7 @@ flowchart LR
   useRequest.onSuccess --> throw3{是否抛出错误？}:::condition
   throw3 -->|是| useRequest.onError
 
-  响应错误 --> alovaInstance.responded.onError
+  R2[响应错误] --> alovaInstance.responded.onError
   alovaInstance.responded.onError --> throw4{是否抛出错误？}:::condition
   throw4 -->|是| useRequest.onError
   throw4 -->|否| method.transformData

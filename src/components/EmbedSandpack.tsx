@@ -14,10 +14,13 @@ const fileEntry = {
       '/src/api.js': alovaVueComposition
     }
   },
-  vueOptions: {
+  'vue-options': {
     root: '/src/App.vue',
     files: {
       '/src/api.js': alovaVueOptions
+    },
+    deps: {
+      '@alova/vue-options': 'latest'
     }
   },
   react: {
@@ -34,11 +37,6 @@ const fileEntry = {
   },
   static: {
     root: '/index.html'
-  }
-};
-const extraDeps = {
-  'vue-options': {
-    '@alova/vue-options': 'latest'
   }
 };
 const customSetup = {
@@ -89,7 +87,7 @@ interface Props {
   containBaseURL?: boolean;
   containResponded?: boolean;
   editorHeight?: number;
-  deps?: 'vue-options';
+  style?: 'options';
 }
 const EmbedSandpack = ({
   template,
@@ -98,13 +96,13 @@ const EmbedSandpack = ({
   containBaseURL = true,
   containResponded = true,
   editorHeight,
-  deps
+  style
 }: Props) => {
   const themes = {
     light: githubLight,
     dark: dracula
   };
-  const targetEntry = fileEntry[template];
+  const targetEntry = fileEntry[template + (style ? `-${style}` : '')];
   const files = {
     [targetEntry.root]: mainFile,
     ...(targetEntry.files ? targetEntry.files : {}),
@@ -125,7 +123,7 @@ const EmbedSandpack = ({
 
   const dependencies = {
     alova: 'latest',
-    ...(deps && extraDeps[deps] ? extraDeps[deps] : {})
+    ...(targetEntry.deps || {})
   };
   const { colorMode } = useColorMode();
   let config = {

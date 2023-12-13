@@ -35,7 +35,7 @@ import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learni
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" deps="vue-options" mainFile={useWatcherSearchVueOptions} editorHeight={800} />
+<EmbedSandpack template="vue" style="options" mainFile={useWatcherSearchVueOptions} editorHeight={800} />
 
 </TabItem>
 </Tabs>
@@ -282,7 +282,7 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 });
 ```
 
-## 状态改变时不发送请求
+## 状态改变时阻止请求
 
 有时候你希望在监听的状态改变时不发送请求，你可以通过 Hook 配置中的 sendable 属性来控制监听的状态改变时是否发送请求，sendable 属性为一个函数，它的参数为`AlovaEvent`事件对象，包含`send`函数传入的参数所组成的数组`sendArgs`，以及当前请求的`method`实例，并且该函数返回一个`truthy/falsy`值来判断本次状态改变时是否需要触发请求（默认为`true`），**抛出错误也表示不触发请求**。
 
@@ -303,7 +303,7 @@ useWatcher(
 );
 ```
 
-## 是否中断上一次的未响应请求
+## 请求时序
 
 有时候当`useWatcher`监听的状态发生连续的改变导致连续的请求的发起时，后一次的请求先于前一次的请求获得响应，但是当前一次请求获得响应时，会覆盖后一次请求的响应，导致获取到与状态不匹配的响应；例如说有个状态`state`改变后发出了请求`1`，然后在请求`1`还未响应时又改变了`state`值，并发出了请求`2`，如果请求`1`后于请求`2`返回，最终的响应数据会维持在请求`1`。
 所以我们设计了`abortLast`参数，它用于标记当下一次请求发出时，是否中断上一次的未响应请求，默认为`true`，这样`useWatcher`所发出的请求只有最后一次有效。

@@ -1,5 +1,5 @@
 ---
-title: Manage additional states
+title: Manage extra states
 sidebar_position: 70
 ---
 
@@ -15,8 +15,7 @@ Additional states can be managed via `managedStates` when called by the use hook
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">
 
-```javascript
-// a.vue
+```javascript title="A.vue"
 const todoList = page =>
   alova.Get('/todo', {
     name: 'todoList'
@@ -33,9 +32,9 @@ useRequest(todoList, {
   }
   // highlight-end
 });
+```
 
-// b.vue
-//...
+```javascript title="B.vue"
 const handleSuccess = () => {
   // highlight-start
   // Pass in an object and specify the state name to look up
@@ -57,8 +56,7 @@ const handleSuccess = () => {
 
 <TabItem value="2" label="react">
 
-```javascript
-// a.jsx
+```javascript title="A.jsx"
 const PageA = () => {
    const todoList = page =>
      alova.Get('/todo', {
@@ -81,8 +79,9 @@ const PageA = () => {
      //...
    );
 }
+```
 
-// b.jsx
+```javascript title="B.jsx"
 const PageB = () => {
    //...
    const handleSuccess = () => {
@@ -111,8 +110,7 @@ const PageB = () => {
 
 <TabItem value="3" label="svelte">
 
-```javascript
-// a. svelte
+```javascript title="A.svelte"
 const todoList = page =>
   alova.Get('/todo', {
     name: 'todoList'
@@ -129,9 +127,9 @@ useRequest(todoList, {
   }
   // highlight-end
 });
+```
 
-// b. svelte
-//...
+```javascript title="B.svelte"
 const handleSuccess = () => {
   // highlight-start
   // Pass in an object and specify the state name to look up

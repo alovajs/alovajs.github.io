@@ -12,6 +12,13 @@ We always encounter this situation. When a request is sent but has not been resp
 
 Share Requests are here to solve those problems. It can not only improve application fluency, but also reduce server pressure.
 
+```mermaid
+flowchart LR
+  classDef response fill:#a8bcff
+  R1[Request 1] --> S1[Send request] --> W1[Waiting for response]:::response --> RE1[Receive data 1]
+  R2[Same request as request 1] --> W1[Waiting for response]:::response --> RE2[Receive data 1]
+```
+
 ## Globally close sharing requests
 
 In most cases, you should need shared requests, so it is enabled by default, but if you encounter a special situation and want to disable it globally, you can do this:
@@ -25,7 +32,7 @@ const alovaInst = createAlova({
 });
 ```
 
-## Partially close the sharing request
+## Close sharing request in single request
 
 If you wish to turn off shared requests on specific requests, you can do this:
 

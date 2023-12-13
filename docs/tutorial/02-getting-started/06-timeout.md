@@ -1,5 +1,5 @@
 ---
-title: timeout
+title: Timeout
 sidebar_position: 60
 ---
 

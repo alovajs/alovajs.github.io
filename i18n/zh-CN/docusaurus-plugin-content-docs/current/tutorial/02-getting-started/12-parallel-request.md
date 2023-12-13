@@ -3,6 +3,16 @@ title: 并行请求
 sidebar_position: 120
 ---
 
+## 使用 method
+
+由于 method 是 PromiseLike 实例，通过 method 发送并行请求只需要使用`Promise.all`等待即可。
+
+```javascript
+const [todoList, todoCounter] = await Promise.all[(todoListGetter, todoCountGetter)];
+```
+
+## 使用 useRequest
+
 简单的并行请求，只需要同时调用多个 useRequest 即可。
 
 ```javascript
@@ -12,7 +22,7 @@ const { data: todoCounter } = useRequest(todoCountGetter);
 
 但这样的请求只适用于单纯的并行请求，如果你需要在并行请求都完成后再进行某些操作，有以下两种方式可以实现：
 
-## 方式 1
+### 方法 1
 
 手动创建 promise 对象，并使用`Promise.all`完成效果。
 
@@ -33,7 +43,7 @@ const [listEvent, countEvent] = await Promise.all([listPromise, countPromise]);
 // 并行请求完成，继续处理业务...
 ```
 
-## 方式 2
+### 方法 2
 
 使用`useRequest`函数返回的`send`函数，调用`send`将会返回一个可用的 promise 对象。
 

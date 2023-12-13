@@ -3,9 +3,20 @@ title: 串行请求
 sidebar_position: 130
 ---
 
-串行请求也具有两种方式
+## 使用 method
 
-## 方式 1
+由于 method 是 PromiseLike 实例，可以使用`await`等待请求成功。
+
+```javascript
+const todoList = await todoListGetter;
+const todoDetail = await todoDetailGetter(todoList[0].id);
+```
+
+## 使用 useRequest
+
+串行请求也具有两种方式。
+
+### 方法 1
 
 让第一个请求自动发出，第二个请求在第一个请求的`onSuccess`回调中触发，即可完成串行请求，可通过以下写法完成串行请求：
 
@@ -20,7 +31,7 @@ onSuccess(event => {
 });
 ```
 
-## 方式 2
+### 方法 2
 
 使用`useRequest`函数返回的`send`函数，调用`send`将会返回一个可用的 promise 对象。
 

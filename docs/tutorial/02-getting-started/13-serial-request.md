@@ -3,9 +3,20 @@ title: Serial request
 sidebar_position: 130
 ---
 
-Serial requests also have two ways
+## Use method
 
-## Approach 1
+Due to the method is a PromiseLike instance, you can use `await` to wait for the request to be successful.
+
+```javascript
+const todoList = await todoListGetter;
+const todoDetail = await todoDetailGetter(todoList[0].id);
+```
+
+## Use useRequest
+
+Serial requests also have two approachs.
+
+### Approach 1
 
 Let the first request be sent automatically, and the second request will be triggered in the `onSuccess` callback of the first request to complete the serial request. The serial request can be completed in the following way:
 
@@ -20,7 +31,7 @@ onSuccess(event => {
 });
 ```
 
-## Approach 2
+### Approach 2
 
 Using the `send` function returned by the `useRequest` function, calling `send` will return a usable promise object.
 

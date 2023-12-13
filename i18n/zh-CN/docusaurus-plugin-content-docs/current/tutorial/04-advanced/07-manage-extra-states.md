@@ -15,8 +15,7 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">
 
-```javascript
-// a.vue
+```javascript title="A.vue"
 const todoList = page =>
   alova.Get('/todo', {
     name: 'todoList'
@@ -33,9 +32,9 @@ useRequest(todoList, {
   }
   // highlight-end
 });
+```
 
-// b.vue
-// ...
+```javascript title="B.vue"
 const handleSuccess = () => {
   // highlight-start
   // 传入一个对象并指定状态名来查找
@@ -57,8 +56,7 @@ const handleSuccess = () => {
 
 <TabItem value="2" label="react">
 
-```javascript
-// a.jsx
+```javascript title="A.jsx"
 const PageA = () => {
   const todoList = page =>
     alova.Get('/todo', {
@@ -81,8 +79,9 @@ const PageA = () => {
     // ...
   );
 }
+```
 
-// b.jsx
+```javascript title="B.jsx"
 const PageB = () => {
   // ...
   const handleSuccess = () => {
@@ -111,7 +110,7 @@ const PageB = () => {
 
 <TabItem value="3" label="svelte">
 
-```javascript
+```javascript title="A.svelte"
 // a.svelte
 const todoList = page =>
   alova.Get('/todo', {
@@ -129,9 +128,9 @@ useRequest(todoList, {
   }
   // highlight-end
 });
+```
 
-// b.svelte
-// ...
+```javascript title="B.svelte"
 const handleSuccess = () => {
   // highlight-start
   // 传入一个对象并指定状态名来查找

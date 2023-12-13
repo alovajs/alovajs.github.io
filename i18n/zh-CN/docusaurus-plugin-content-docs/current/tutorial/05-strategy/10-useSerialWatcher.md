@@ -14,7 +14,7 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-状态更新触发一组串行请求，比[alova 的串行请求方式](/tutorial/next-step/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
+状态更新触发一组串行请求，比[alova 的串行请求方式](/tutorial/getting-started/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
 
 ## 特性
 
@@ -130,16 +130,16 @@ useSerialRequest([
 
 ### Hook 配置
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有配置。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有配置。
 
 ### 响应式数据
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有响应式数据。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有响应式数据。
 
 ### 操作函数
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有操作函数。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有操作函数。
 
 ### 事件
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有事件。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有事件。

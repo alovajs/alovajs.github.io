@@ -4,6 +4,7 @@ sidebar_position: 10
 ---
 
 import Logo from '@site/static/img/logo-text.svg';
+import NavCard from '@site/src/components/NavCard';
 
 <Logo style={{
   width: '50%',
@@ -72,4 +73,12 @@ Before participating in the contribution, please be sure to read the [Contributi
 
 ## Start
 
-Next let's [send the first request with alovajs](/tutorial/getting-started/first-request).
+Next, let's start to learn how to use alova.
+
+<NavCard list={[
+{
+title: 'First Request',
+desc: 'try to send the first request with alova',
+link: '/tutorial/getting-started/first-request',
+}
+]}></NavCard>

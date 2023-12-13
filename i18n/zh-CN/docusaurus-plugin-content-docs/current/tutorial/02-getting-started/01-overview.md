@@ -4,6 +4,7 @@ sidebar_position: 10
 ---
 
 import Logo from '@site/static/img/logo-text.svg';
+import NavCard from '@site/src/components/NavCard';
 
 <Logo style={{
   width: '50%',
@@ -73,4 +74,12 @@ alova 也致力于解决客户端网络请求的问题，但与其他请求库�
 
 ## 开始
 
-接下来让我们先[使用 alovajs 发送第一个请求](/tutorial/getting-started/first-request)。
+接下来让我们开始学习如何使用 alova 吧。
+
+<NavCard list={[
+{
+title: '尝试第一个请求',
+desc: '尝试使用 alova 发送第一个请求',
+link: '/tutorial/getting-started/first-request',
+}
+]}></NavCard>

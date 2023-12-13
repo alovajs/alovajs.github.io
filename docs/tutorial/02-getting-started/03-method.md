@@ -3,7 +3,7 @@ title: request type and parameters
 sidebar_position: 30
 ---
 
-In alova, each request corresponds to a method instance, which describes the URL, request headers, request parameters, and request behavior parameters of a request. It is a PromiseLike instance, so you can use `await alovaInstance.Get` to trigger the request.
+In alova, each request corresponds to a method instance, which describes the URL, request headers, request parameters, and request behavior parameters of a request. It is a PromiseLike instance, so you can use `await alovaInstance.Get(...)` to trigger the request.
 
 Next, let’s take a look at the request type.
 
@@ -11,15 +11,15 @@ Next, let’s take a look at the request type.
 
 alova provides 7 request types: GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH.
 
-| Instance creation function | Parameters                                  |
-| -------------------------- | ------------------------------------------- |
-| GET                        | `alovaInstance.Get(url[, config])`          |
-| POST                       | `alovaInstance.Post(url[, data[, config]])` |
-| PUT                        | `alova.Put(url[, data[, config]])`          |
-| DELETE                     | `alova.Delete(url[, data[, config]])`       |
-| HEAD                       | `alova.Head(url[, config])`                 |
-| OPTIONS                    | `alova.Options(url[, config])`              |
-| PATCH                      | `alova.Patch(url[, data[, config]])`        |
+| Instance creation function | Parameters                                    |
+| -------------------------- | --------------------------------------------- |
+| GET                        | `alovaInstance.Get(url[, config])`            |
+| POST                       | `alovaInstance.Post(url[, data[, config]])`   |
+| PUT                        | `alovaInstance.Put(url[, data[, config]])`    |
+| DELETE                     | `alovaInstance.Delete(url[, data[, config]])` |
+| HEAD                       | `alovaInstance.Head(url[, config])`           |
+| OPTIONS                    | `alovaInstance.Options(url[, config])`        |
+| PATCH                      | `alovaInstance.Patch(url[, data[, config]])`  |
 
 Parameter Description:
 

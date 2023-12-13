@@ -78,7 +78,7 @@ onComplete(event => {
 send(1);
 ```
 
-###Received in force function
+### Received in force function
 
 force is used to specify whether it is necessary to penetrate the response cache. The content of the response cache will be explained in the [Cache-force request](/tutorial/cache/force-request) later.
 

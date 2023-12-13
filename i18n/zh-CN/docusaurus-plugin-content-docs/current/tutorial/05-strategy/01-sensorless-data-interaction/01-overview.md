@@ -112,8 +112,7 @@ list.push(data);
 
 阅读前请确保已经掌握了以下章节内容
 
-- [基础学习](/category/learning)
-- [进阶学习](/category/next-step)
+- [基础学习](/category/getting-started)
 
 :::
 

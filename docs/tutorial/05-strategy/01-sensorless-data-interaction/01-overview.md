@@ -112,7 +112,7 @@ In the technical solution of non-inductive data interaction, alova has implement
 
 Please make sure you have mastered the following chapters before reading
 
-- [Basic Learning](/tutorial/getting-started)
+- [Basic Learning](/category/getting-started)
 
 :::
 

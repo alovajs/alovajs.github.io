@@ -6,11 +6,7 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Some service interfaces support batch request data, which means that it is always composed of uncertain sets of response data. When we want to batch request data when initializing the page, and then only request a single piece of data in the interaction, it will cause caching Penetration problem.
-
-For example, we need to obtain the todo list data by date. During initialization, a request obtains the data of 5 days from May 1 to 5, and then the user obtains the data of May 1 again during the operation. At this time, it will not Hit the data on May 1st when it was initialized, because the initialized data of 5 days is stored together instead of being cached separately. At this time, we can manually create a single response cache for the data of these 5 days, so that we can Solve the problem of cache penetration when a single data request is made.
-
-As we mentioned in [cache mode](/tutorial/cache/mode), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
+The cache also supports updating and querying, As we mentioned in [cache mode](/tutorial/cache/mode), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
 
 ## Update static cache data
 

@@ -11,6 +11,18 @@ There is a scenario where when the user clicks on an item in the todo list, ente
 
 Automatic cache invalidation is to set invalidation source rules in the target cache. As long as the rules match, the target cache can be automatically invalidated. This saves the trouble of manually clearing the cache in many cases.
 
+## scenes to be used
+
+Setting up automatic invalidation rules is convenient when the target cache is one-to-one or one-to-many with the invalidation source.
+
+```mermaid
+flowchart
+   M1[method1 invalidation source points to] --> T1[target cache]
+   M11[method1 invalidation source points to] --> T2[target cache]
+   M2[method2 invalidation source points to] --> T2[target cache]
+   MN[methodN invalidation source points to] --> T2[target cache]
+```
+
 ## Set automatic invalidation rules
 
 Setting this rule is very simple, you can set the `hitSource` parameter for it when creating a Method instance with caching.

@@ -14,7 +14,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-This use hook is more concise and easy to use than [alova's serial request method](/tutorial/next-step/serial-request), with unified loading status, error, and callback functions.
+This use hook is more concise and easy to use than [alova's serial request method](/tutorial/getting-started/serial-request), with unified loading status, error, and callback functions.
 
 ## Features
 
@@ -129,16 +129,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all action functions of [**useRequest**](/api/core-hooks#userequest).
 
 ### Event
 
-Inherit all events from [**useRequest**](/tutorial/learning/use-request#api).
+Inherit all events from [**useRequest**](/api/core-hooks#userequest).

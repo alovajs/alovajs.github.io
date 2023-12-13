@@ -510,7 +510,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-Same as `useWatcher`, you can also implement request debounce by specifying `debounce`, for details, please refer to [useWatcher's debounce parameter setting](/tutorial/learning/use-watcher).
+Same as `useWatcher`, you can also implement request debounce by specifying `debounce`, for details, please refer to [useWatcher's debounce parameter setting](/api/core-hooks#usewatcher).
 
 ```javascript
 usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
@@ -521,7 +521,7 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-It should be noted that `debounce` is achieved by request debounce in [**useWatcher**](/tutorial/learning/use-watcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
+It should be noted that `debounce` is achieved by request debounce in [**useWatcher**](/api/core-hooks#usewatcher). **At the end of the monitoring state, there are two hidden monitoring states of page and pageSize, which can also be set by debounce. **
 
 For example, when `watchingStates` is set to `[studentName, clsName]`, `[studentName, clsName, page, pageSize]` will be monitored internally, so if you need to set anti-shake for page and pageSize, you can specify ` [0, 0, 500, 500]`.
 
@@ -675,7 +675,7 @@ declare function reload(): void;
 
 ### Hook configuration
 
-Inherit all configurations of [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all configurations of [**useWatcher**](/api/core-hooks#usewatcher).
 
 | Name                | Description                                                           | Type                      | Default                    | Version |
 | ------------------- | --------------------------------------------------------------------- | ------------------------- | -------------------------- | ------- |
@@ -691,7 +691,7 @@ Inherit all configurations of [**useWatcher**](/tutorial/learning/use-watcher#ap
 
 ### Responsive data
 
-Inherit all responsive data from [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all responsive data from [**useWatcher**](/api/core-hooks#usewatcher).
 
 | Name       | Description                                                                                                                                                                                                         | Type    | Version |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- |
@@ -705,7 +705,7 @@ Inherit all responsive data from [**useWatcher**](/tutorial/learning/use-watcher
 
 ### Action function
 
-Inherit all action functions of [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all action functions of [**useWatcher**](/api/core-hooks#usewatcher).
 
 | name    | description                                                                                                                                                                                                                                                                                           | function parameters                                                                                                                                       | return value | version |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------- |
@@ -718,7 +718,7 @@ Inherit all action functions of [**useWatcher**](/tutorial/learning/use-watcher#
 
 ### Event
 
-Inherit all events from [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all events from [**useWatcher**](/api/core-hooks#usewatcher).
 
 | Name            | Description                                    | Callback Parameters                  | Version |
 | --------------- | ---------------------------------------------- | ------------------------------------ | ------- |

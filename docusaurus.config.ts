@@ -76,6 +76,11 @@ const config: Config = {
           label: 'Example'
         },
         {
+          to: 'api/alova',
+          position: 'left',
+          label: 'API'
+        },
+        {
           type: 'dropdown',
           label: 'Contributing',
           position: 'left',

@@ -178,11 +178,11 @@ Although the action functions delegated by most hooks are the same as the action
 
 ### useRequest
 
-| name   | description                                                 | function parameters | return value | version |
-| ------ | ----------------------------------------------------------- | ------------------- | ------------ | ------- |
-| send   | Same as [useRequset](/tutorial/learning/use-request).send   |                     |              | -       |
-| abort  | Same as [useRequset](/tutorial/learning/use-request).abort  |                     |              | -       |
-| update | Same as [useRequset](/tutorial/learning/use-request).update |                     |              | -       |
+| name   | description                                             | function parameters | return value | version |
+| ------ | ------------------------------------------------------- | ------------------- | ------------ | ------- |
+| send   | Same as [useRequset](/api/core-hooks#userequest).send   |                     |              | -       |
+| abort  | Same as [useRequset](/api/core-hooks#userequest).abort  |                     |              | -       |
+| update | Same as [useRequset](/api/core-hooks#userequest).update |                     |              | -       |
 
 ### useWatcher
 
@@ -190,11 +190,11 @@ Same as [useRequest delegate list](#userequest).
 
 ### useFetcher
 
-| name   | description                                                 | function parameters | return value | version |
-| ------ | ----------------------------------------------------------- | ------------------- | ------------ | ------- |
-| fetch  | Same as [useFetcher](/tutorial/learning/use-fetcher).fetch  |                     |              | -       |
-| abort  | Same as [useFetcher](/tutorial/learning/use-fetcher).abort  |                     |              | -       |
-| update | Same as [useFetcher](/tutorial/learning/use-fetcher).update |                     |              | -       |
+| name   | description                                             | function parameters | return value | version |
+| ------ | ------------------------------------------------------- | ------------------- | ------------ | ------- |
+| fetch  | Same as [useFetcher](/api/core-hooks#usefetcher).fetch  |                     |              | -       |
+| abort  | Same as [useFetcher](/api/core-hooks#usefetcher).abort  |                     |              | -       |
+| update | Same as [useFetcher](/api/core-hooks#usefetcher).update |                     |              | -       |
 
 ### usePagination
 
@@ -218,9 +218,9 @@ Same as [useRequest delegate list](#userequest).
 | ---------- | -------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
 | updateForm | For details, see [useForm action function](/tutorial/strategy/useForm#api) |                     |              | -       |
 | reset      | For details, see [useForm action function](/tutorial/strategy/useForm#api) |                     |              | -       |
-| send       | Same as [useRequset](/tutorial/learning/use-request).send                  |                     |              | -       |
-| abort      | Same as [useRequset](/tutorial/learning/use-request).abort                 |                     |              | -       |
-| update     | Same as [useRequset](/tutorial/learning/use-request).update                |                     |              | -       |
+| send       | Same as [useRequset](/api/core-hooks#userequest).send                      |                     |              | -       |
+| abort      | Same as [useRequset](/api/core-hooks#userequest).abort                     |                     |              | -       |
+| update     | Same as [useRequset](/api/core-hooks#userequest).update                    |                     |              | -       |
 
 ### useCaptcha
 
@@ -231,9 +231,9 @@ Same as [useRequest delegate list](#userequest).
 | name   | description                                                                                       | function parameters | return value | version |
 | ------ | ------------------------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
 | stop   | See [useRetriableRequest action function](/tutorial/strategy/useRetriableRequest#api) for details |                     |              | -       |
-| send   | Same as [useRequset](/tutorial/learning/use-request).send                                         |                     |              | -       |
-| abort  | Same as [useRequset](/tutorial/learning/use-request).abort                                        |                     |              | -       |
-| update | Same as [useRequset](/tutorial/learning/use-request).update                                       |                     |              | -       |
+| send   | Same as [useRequset](/api/core-hooks#userequest).send                                             |                     |              | -       |
+| abort  | Same as [useRequset](/api/core-hooks#userequest).abort                                            |                     |              | -       |
+| update | Same as [useRequset](/api/core-hooks#userequest).update                                           |                     |              | -       |
 
 ### useSerialRequest
 

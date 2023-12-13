@@ -214,7 +214,7 @@ And you also can code your own request adapter. For details, see [Write a Reques
 
 :::
 
-## upload/download status type
+## upload/download states type
 
 ```typescript
 type Progress = {

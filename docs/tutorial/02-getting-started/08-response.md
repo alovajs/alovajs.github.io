@@ -12,7 +12,7 @@ After the request is completed, the response data will be processed through mult
 flowchart LR
    classDef condition fill:#a8bcff
 
-   Response successful --> alovaInstance.responded.onSuccess
+   R1[Response successful] --> alovaInstance.responded.onSuccess
    alovaInstance.responded.onSuccess --> throw{throw error?}:::condition
    throw -->|No| method.transformData
    method.transformData --> useRequest.onSuccess
@@ -25,7 +25,7 @@ flowchart LR
    useRequest.onSuccess --> throw3{throw error?}:::condition
    throw3 -->|Yes| useRequest.onError
 
-   Response error --> alovaInstance.responded.onError
+   R2[Response error] --> alovaInstance.responded.onError
    alovaInstance.responded.onError --> throw4{throw error?}:::condition
    throw4 -->|Yes| useRequest.onError
    throw4 -->|No| method.transformData

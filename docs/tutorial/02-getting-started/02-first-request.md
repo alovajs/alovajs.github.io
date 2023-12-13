@@ -136,7 +136,7 @@ You can send a request through `alovaInstance.Get` and pass the url. Since the `
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} containResponded={false} />
+<EmbedSandpack template="vue" style="options" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} containResponded={false} />
 
 </TabItem>
 </Tabs>
@@ -180,14 +180,13 @@ The above is just the beginning. In enterprise-level projects, requests are ofte
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartVueOptions} editorHeight={400} containBaseURL={false} />
+<EmbedSandpack template="vue" style="options" mainFile={quickStartVueOptions} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 </Tabs>
 
 In this example, pass `alovaInstance.Get` into `useRequest`, which will help us send the request and create responsive data `loading/error/data`, and use them directly in the view.
 
-为了让`data`接收到的值为响应数据，我们在`alovaInstance`添加了简单的全局响应拦截器，它可以接收到`Response`实例并返回转换后的数据。
 In order to receive the response data and assign to state `data`, there is a simple global response interceptor added to `alovaInstance`.
 
 ```javascript
@@ -197,6 +196,8 @@ const alovaInstance = createAlova({
   // highlight-end
 });
 ```
+
+### Update state value
 
 You can also change the states created by `useRequest`.
 
@@ -327,7 +328,7 @@ svelte relies on compilation tools and cannot be used directly through CDN. For 
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="static" deps="vue-options" mainFile={quickStartStaticVueOptions} editorHeight={700} />
+<EmbedSandpack template="static" mainFile={quickStartStaticVueOptions} editorHeight={700} />
 
 </TabItem>
 </Tabs>

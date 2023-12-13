@@ -3,7 +3,7 @@ title: 请求类型和参数
 sidebar_position: 30
 ---
 
-在 alova 中，每个请求都对应一个 method 实例，它描述了一次请求的 url、请求头、请求参数，以及请求行为参数等，它是一个 PromiseLike 实例，所以在上一个章节中可以使用 `await alovaInstance.Get` 来触发请求。
+在 alova 中，每个请求都对应一个 method 实例，它描述了一次请求的 url、请求头、请求参数，以及请求行为参数等，它是一个 PromiseLike 实例，所以可以使用 `await alovaInstance.Get(...)` 来触发请求。
 
 接下来我们先来看下请求类型。
 
@@ -11,15 +11,15 @@ sidebar_position: 30
 
 alova 提供了 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 7 种请求类型。
 
-| 实例创建函数 | 参数                                        |
-| ------------ | ------------------------------------------- |
-| GET          | `alovaInstance.Get(url[, config])`          |
-| POST         | `alovaInstance.Post(url[, data[, config]])` |
-| PUT          | `alova.Put(url[, data[, config]])`          |
-| DELETE       | `alova.Delete(url[, data[, config]])`       |
-| HEAD         | `alova.Head(url[, config])`                 |
-| OPTIONS      | `alova.Options(url[, config])`              |
-| PATCH        | `alova.Patch(url[, data[, config]])`        |
+| 实例创建函数 | 参数                                          |
+| ------------ | --------------------------------------------- |
+| GET          | `alovaInstance.Get(url[, config])`            |
+| POST         | `alovaInstance.Post(url[, data[, config]])`   |
+| PUT          | `alovaInstance.Put(url[, data[, config]])`    |
+| DELETE       | `alovaInstance.Delete(url[, data[, config]])` |
+| HEAD         | `alovaInstance.Head(url[, config])`           |
+| OPTIONS      | `alovaInstance.Options(url[, config])`        |
+| PATCH        | `alovaInstance.Patch(url[, data[, config]])`  |
 
 参数说明：
 

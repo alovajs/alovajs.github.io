@@ -1,5 +1,5 @@
 ---
-title: Status change request
+title: states change request
 sidebar_position: 100
 ---
 
@@ -7,12 +7,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import CodeBlock from '@theme/CodeBlock';
-import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.zh.vue';
-import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.zh.jsx';
-import useWatcherSearchSvelte from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/svelte-search.zh.svelte';
-import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueOptions-search.zh.vue';
+import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.en.vue';
+import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.en.jsx';
+import useWatcherSearchSvelte from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/svelte-search.en.svelte';
+import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueOptions-search.en.vue';
 
-In some scenarios that require re-requesting as data changes, such as paging, data filtering, and fuzzy search, you can use `useWatcher` to monitor the specified status change and send a request immediately.
+In some scenarios that require re-requesting as data changes, such as paging, data filtering, and fuzzy search, you can use `useWatcher` to monitor the specified states change and send a request immediately.
 
 ## Keyword search
 
@@ -35,7 +35,7 @@ Next we take searching for todo items as an example.
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" deps="vue-options" mainFile={useWatcherSearchVueOptions} editorHeight={800} />
+<EmbedSandpack template="vue" style="options" mainFile={useWatcherSearchVueOptions} editorHeight={800} />
 
 </TabItem>
 </Tabs>
@@ -67,7 +67,7 @@ Taking the todo list pagination request as an example, you can do this.
   const { loading, data, error } = useWatcher(
     // The first parameter is the function that returns the method instance, not the method instance itself
     () => getTodoList(currentPage.value),
-    // The monitored status array, these status changes will trigger a request
+    // The watched states array, these states changes will trigger a request
     [currentPage],
     {
       // ⚠️Calling useWatcher is not triggered by default. Please note the difference from useRequest.
@@ -104,7 +104,7 @@ const App = () => {
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList(currentPage),
-    // The monitored status array, these status changes will trigger a request
+    // The watched states array, these states changes will trigger a request
     [currentPage],
     {
       // ⚠️Calling useWatcher is not triggered by default. Please note the difference from useRequest.
@@ -145,7 +145,7 @@ const App = () => {
     // The first parameter is the function that returns the method instance, not the method instance itself
   } = useWatcher(
     () => getTodoList($currentPage),
-    // The monitored status array, these status changes will trigger a request
+    // The watched states array, these states changes will trigger a request
     [currentPage],
     {
       // ⚠️Calling useWatcher is not triggered by default. Please note the difference from useRequest.
@@ -184,7 +184,7 @@ const App = () => {
       paging: useWatcher(
         () => getTodoList(this.currentPage),
 
-        // The monitored status array, these status changes will trigger a request
+        // The watched states array, these states changes will trigger a request
         ['currentPage'],
         {
           // ⚠️Calling useWatcher is not triggered by default. Please note the difference from useRequest.
@@ -217,37 +217,37 @@ const App = () => {
 
 `useWatcher` also has the same response callback binding function as `useRequest`, [Go to the response processing chapter to read](/tutorial/getting-started/response).
 
-## Request anti-shake
+## Request debounce
 
-Usually we write anti-shake code at the level of frequently triggered events. This time we implemented the anti-shake function at the request level, which means you no longer have to implement anti-shake yourself in the fuzzy search function, and the usage is also very simple.
+Usually we write debounce code at the level of frequently triggered events. This time we implemented the debounce function at the request level, which means you no longer have to implement debounce yourself in the fuzzy search function, and the usage is also very simple.
 
-:::info Tips: What is function anti-shake?
+:::info Tips: What is function debounce?
 
 Function debounce (debounce) means that after an event is triggered, the function can only be executed once within n seconds. If an event is triggered again within n seconds after the event is triggered, the function delay execution time will be recalculated (here and in the function section To distinguish between streams, function throttling means that the event cannot be triggered again within a period of time after the event is triggered)
 
 :::
 
-### Set the anti-shake time of all monitoring states
+### Set debounce time of all watching states
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // When debounce is set to a number, it represents the anti-bounce time of all monitoring states, in milliseconds.
-  // This means that when one or more of the status keyword and date change, the request will be sent after 500ms.beg
-  Debounce: 500
+  // When debounce is set to a number, it represents the anti-bounce time of all watching states, in milliseconds.
+  // This means that when one or more of the states keyword and date change, the request will be sent after 500ms.beg
+  debounce: 500
   // highlight-end
 });
 ```
 
-### Set the anti-shake time for a single monitoring state
+### Set debounce time for a single watching state
 
-In many scenarios, we only need to anti-shake certain frequently changing monitoring states, such as state changes triggered by `onInput` of a text box. You can do this:
+In many scenarios, we only need to debounce certain frequently changing watching states, such as state changes triggered by `onInput` of a text box. You can do this:
 
 ```javascript
 const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
   // highlight-start
-  // Set the anti-shake time in the order of the array of monitoring status. 0 or not passed means no anti-shake.
-  // The order of the monitoring status here is [keyword, date], and the anti-shake array setting is [500, 0], which means that only the anti-shake is set separately for the keyword.
+  // Set debounce time in the order of the array of watching states. 0 or not passed means no debounce.
+  // The order of the watching states here is [keyword, date], and the debounce array setting is [500, 0], which means that only the debounce is set separately for the keyword.
   Debounce: [500, 0]
   // You can also set it as follows:
   // debounce: [500],
@@ -255,14 +255,14 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 });
 ```
 
-## Do not send a request when the status changes
+## Block request when the states changes
 
-Sometimes you want not to send a request when the monitored state changes. You can use the sendable attribute in the Hook configuration to control whether to send a request when the monitored state changes. The sendable attribute is a function whose parameter is the `AlovaEvent` event object. Contains the array `sendArgs` composed of the parameters passed in by the `send` function, and the `method` instance of the current request, and the function returns a `truthy/falsy` value to determine whether the request needs to be triggered when the status changes (default is `true`), **throwing an error also means not triggering the request**.
+Sometimes you want not to send a request when the watched state changes. You can use the sendable attribute in the Hook configuration to control whether to send a request when the watched state changes. The sendable attribute is a function whose parameter is the `AlovaEvent` event object. Contains the array `sendArgs` composed of the parameters passed in by the `send` function, and the `method` instance of the current request, and the function returns a `truthy/falsy` value to determine whether the request needs to be triggered when the states changes (default is `true`), **throwing an error also means not triggering the request**.
 
 ```javascript
 useWatcher(
   () => getTodoList($currentPage),
-  // The monitored status array, these status changes will trigger a request
+  // The watched states array, these states changes will trigger a request
   [state],
   {
     // highlight-start
@@ -276,10 +276,10 @@ useWatcher(
 );
 ```
 
-## Whether to interrupt the last unresponsive request
+## Request timing
 
-Sometimes when the status monitored by `useWatcher` changes continuously resulting in the initiation of consecutive requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Resulting in getting a response that does not match the state; for example, if the state `state` changes, a request `1` is issued, and then when the request `1` has not responded, the value of `state` is changed and a request` is issued. 2`, if request `1` is returned after request `2`, the final response data will remain at request `1`.
-So we designed the `abortLast` parameter, which is used to mark whether to interrupt the last unresponsive request when the next request is issued. The default is `true`, so that the request issued by `useWatcher` is only valid for the last time.
+Sometimes when the states watched by `useWatcher` changes continuously resulting in the initiation of consecutive requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Resulting in getting a response that does not match the state; for example, if the state `state` changes, a request `1` is issued, and then when the request `1` has not responded, the value of `state` is changed and a request` is issued. 2`, if request `1` is returned after request `2`, the final response data will remain at request `1`.
+So we designed the `abortLast` parameter, which is used to mark whether to abort the last unresponsive request when the next request is issued. The default is `true`, so that the request issued by `useWatcher` is only valid for the last time.
 
 ```mermaid
 sequenceDiagram
@@ -296,11 +296,11 @@ sequenceDiagram
 ```javascript
 useWatcher(
   () => getTodoList($currentPage),
-  // The monitored status array, these status changes will trigger a request
+  // The watched states array, these states changes will trigger a request
   [state],
   {
     // highlight-start
-    abortLast: true // Whether to interrupt the last unresponsive request, the default is true
+    abortLast: true // Whether to abort the last unresponsive request, the default is true
     // highlight-end
   }
 );
@@ -308,6 +308,6 @@ useWatcher(
 
 :::warning Notes
 
-`abortLast` defaults to `true`. If it is changed to `false`, it may cause the problem of status and response mismatch.
+`abortLast` defaults to `true`. If it is changed to `false`, it may cause the problem of states and response mismatch.
 
 :::

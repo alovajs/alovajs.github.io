@@ -13,7 +13,7 @@ In order to facilitate debugging when using the interface cache, when the reques
 
 If you don't want to print cache information or custom control print cache information in some cases (such as production environment), alova also provides support for them.
 
-## Turn off printing cache logger
+## Close cache logger printing
 
 Console printing can be turned off by setting `cacheLogger` to `false or null` when creating an alova instance.
 

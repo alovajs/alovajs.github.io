@@ -136,7 +136,7 @@ export const alovaInstance = createAlova({
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} containResponded={false} />
+<EmbedSandpack template="vue" style="options" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} containResponded={false} />
 
 </TabItem>
 </Tabs>
@@ -180,7 +180,7 @@ alovaInstance
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="vue" deps="vue-options" mainFile={quickStartVueOptions} editorHeight={400} containBaseURL={false} />
+<EmbedSandpack template="vue" style="options" mainFile={quickStartVueOptions} editorHeight={400} containBaseURL={false} />
 
 </TabItem>
 </Tabs>
@@ -196,6 +196,8 @@ const alovaInstance = createAlova({
   // highlight-end
 });
 ```
+
+### 修改响应式数据
 
 你也可以修改`useRequest`创建的响应式数据。
 
@@ -326,7 +328,7 @@ svelte 依赖于编译工具，不能通过 CDN 直接使用，详情见 [svelte
 </TabItem>
 <TabItem value="4" label="vue options">
 
-<EmbedSandpack template="static" deps="vue-options" mainFile={quickStartStaticVueOptions} editorHeight={700} />
+<EmbedSandpack template="static" mainFile={quickStartStaticVueOptions} editorHeight={700} />
 
 </TabItem>
 </Tabs>

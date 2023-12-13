@@ -186,7 +186,7 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 ### Hook 配置
 
-继承[**useRequest**](/tutorial/learning/use-request#api)除`immediate`外的所有配置，`useCaptcha`中`immediate`已硬编码为 false。
+继承[**useRequest**](/api/core-hooks#userequest)除`immediate`外的所有配置，`useCaptcha`中`immediate`已硬编码为 false。
 
 | 名称             | 描述                                                   | 类型   | 默认值 | 版本 |
 | ---------------- | ------------------------------------------------------ | ------ | ------ | ---- |
@@ -194,7 +194,7 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 ### 响应式数据
 
-继承[**useRequest**](/tutorial/learning/use-request#api)所有响应式数据。
+继承[**useRequest**](/api/core-hooks#userequest)所有响应式数据。
 
 | 名称      | 描述                                                   | 类型   | 版本 |
 | --------- | ------------------------------------------------------ | ------ | ---- |
@@ -202,7 +202,7 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 ### 操作函数
 
-继承[**useRequest**](/tutorial/learning/use-request#api)所有操作函数。
+继承[**useRequest**](/api/core-hooks#userequest)所有操作函数。
 
 | 名称 | 描述                                     | 函数参数                | 返回值              | 版本 |
 | ---- | ---------------------------------------- | ----------------------- | ------------------- | ---- |
@@ -210,4 +210,4 @@ useCaptcha(() => apiSendCaptcha(mobile.value), {
 
 ### 事件
 
-继承[**useRequest**](/tutorial/learning/use-request#api)所有事件。
+继承[**useRequest**](/api/core-hooks#userequest)所有事件。

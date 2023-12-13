@@ -510,7 +510,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-与`useWatcher`相同，你也可以通过指定`debounce`来实现请求防抖，具体可参考[useWatcher 的 debounce 参数设置](/tutorial/learning/use-watcher)。
+与`useWatcher`相同，你也可以通过指定`debounce`来实现请求防抖，具体可参考[useWatcher 的 debounce 参数设置](/api/core-hooks#usewatcher)。
 
 ```javascript
 usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, clsName), {
@@ -521,7 +521,7 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-需要注意的是，`debounce`是通过 [**useWatcher**](/tutorial/learning/use-watcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
+需要注意的是，`debounce`是通过 [**useWatcher**](/api/core-hooks#usewatcher) 中的请求防抖实现的。**监听状态末尾分别还有 page 和 pageSize 两个隐藏的监听状态，也可以通过 debounce 来设置。**
 
 举例来说，当`watchingStates`设置了`[studentName, clsName]`，内部将会监听`[studentName, clsName, page, pageSize]`，因此如果需要对 page 和 pageSize 设置防抖时，可以指定为`[0, 0, 500, 500]`。
 
@@ -675,7 +675,7 @@ declare function reload(): void;
 
 ### Hook 配置
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有配置。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有配置。
 
 | 名称                | 描述                                     | 类型                      | 默认值                     | 版本 |
 | ------------------- | ---------------------------------------- | ------------------------- | -------------------------- | ---- |
@@ -691,7 +691,7 @@ declare function reload(): void;
 
 ### 响应式数据
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有响应式数据。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有响应式数据。
 
 | 名称       | 描述                                                                                                               | 类型    | 版本 |
 | ---------- | ------------------------------------------------------------------------------------------------------------------ | ------- | ---- |
@@ -705,7 +705,7 @@ declare function reload(): void;
 
 ### 操作函数
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有操作函数。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有操作函数。
 
 | 名称    | 描述                                                                                                                                                   | 函数参数                                                                                | 返回值 | 版本 |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------ | ---- |
@@ -718,7 +718,7 @@ declare function reload(): void;
 
 ### 事件
 
-继承[**useWatcher**](/tutorial/learning/use-watcher#api)所有事件。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有事件。
 
 | 名称            | 描述                     | 回调参数                  | 版本 |
 | --------------- | ------------------------ | ------------------------- | ---- |

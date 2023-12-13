@@ -14,7 +14,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-Status update triggers a set of serial requests, which is more concise and easy to use than [alova's serial request method](/tutorial/next-step/serial-request), with unified loading status, error, and callback functions.
+Status update triggers a set of serial requests, which is more concise and easy to use than [alova's serial request method](/tutorial/getting-started/serial-request), with unified loading status, error, and callback functions.
 
 ## Features
 
@@ -130,16 +130,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations of [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all configurations of [**useWatcher**](/api/core-hooks#usewatcher).
 
 ### Responsive data
 
-Inherit all responsive data from [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all responsive data from [**useWatcher**](/api/core-hooks#usewatcher).
 
 ### Action function
 
-Inherit all action functions of [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all action functions of [**useWatcher**](/api/core-hooks#usewatcher).
 
 ### Event
 
-Inherit all events from [**useWatcher**](/tutorial/learning/use-watcher#api).
+Inherit all events from [**useWatcher**](/api/core-hooks#usewatcher).

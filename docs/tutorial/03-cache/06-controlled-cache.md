@@ -50,7 +50,7 @@ const getFile = fileName =>
 
 ## Do not use caching
 
-If you wish to continue sending the request, you can return undefined or return no data in `localCache`, which is useful in the case of cache misses when customizing the cache.
+If you wish to continue sending the request, you can return `undefined` or `void` in `localCache`, which is useful in the case of cache misses when customizing the cache.
 
 ## Use transformData to set up cache
 
@@ -81,3 +81,27 @@ const fileGetter = alovaInstance.Get('/file/file_name', {
 ## Notes
 
 When used in usehooks, throwing an error in the `localCache` function will trigger `onError`. When a request is made directly using a method instance, a promise instance with a reject status will be returned.
+
+## 🎉Basic usage has completed
+
+congratulations! Until now, you have completed the basic usage of alova, and can meet daily project practice. You can choose what to study next.
+
+import NavCard from '@site/src/components/NavCard';
+
+<NavCard list={[
+{
+title: 'Advanced usage',
+desc: 'Use alova more deeply to help you solve more difficult problems quickly',
+link: '/category/advanced'
+},
+{
+title: 'Request strategy modules',
+desc: 'Learn how to use alova\'s request strategy module, let you easily deal with various request scenarios',
+link: '/category/strategy'
+},
+{
+title: 'Best practice',
+desc: 'Alova usage tips summarized through practice',
+link: '/category/best-practice'
+}
+]}></NavCard>
