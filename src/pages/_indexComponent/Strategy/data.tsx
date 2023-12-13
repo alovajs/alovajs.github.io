@@ -49,7 +49,7 @@ const {
     sendable: () => keyword !== ''
   }
 );`,
-    link: 'tutorial/learning/use-watcher'
+    link: 'tutorial/getting-started/states-change-request'
   },
   {
     title: <Translate id="homepage.strategy.useFetcher">Prefetch data</Translate>,
@@ -67,7 +67,7 @@ const {
   fetch
 } = useFetcher();
 fetch(todoDetail);`,
-    link: 'tutorial/learning/use-fetcher'
+    link: 'tutorial/advanced/data-fetching'
   },
   {
     title: <Translate id="homepage.strategy.Pagination">Pagination request</Translate>,
