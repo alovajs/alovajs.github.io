@@ -1,0 +1,37 @@
+.cardWrapper {
+  display: flex;
+}
+.cardItem {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 2rem;
+  border-radius: 6px;
+  border: solid 1px var(--ifm-color-primary);
+  background: rgba(var(--ifm-color-primary-rgb), 0.1);
+  text-decoration: none;
+  transition: all 0.3s;
+  flex: 1;
+}
+.cardItem:hover {
+  text-decoration: none;
+  box-shadow: 2px 2px 8px var(--ifm-color-emphasis-300);
+}
+.cardItem:not(:last-child) {
+  margin-right: 1rem;
+}
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 996px) {
+  .cardWrapper {
+    flex-direction: column;
+  }
+  .cardItem:not(:last-child) {
+    margin-bottom: 1rem;
+    margin-right: 0;
+  }
+}

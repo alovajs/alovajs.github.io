@@ -66,7 +66,7 @@ const config: Config = {
       },
       items: [
         {
-          to: 'tutorial/get-started/overview',
+          to: 'tutorial/getting-started/overview',
           position: 'left',
           label: 'Docs'
         },
@@ -74,6 +74,11 @@ const config: Config = {
           to: 'tutorial/example/init-page',
           position: 'left',
           label: 'Example'
+        },
+        {
+          to: 'api/alova',
+          position: 'left',
+          label: 'API'
         },
         {
           type: 'dropdown',
@@ -141,7 +146,7 @@ const config: Config = {
           items: [
             {
               label: 'Docs',
-              to: 'tutorial/get-started/overview'
+              to: 'tutorial/getting-started/overview'
             },
             {
               label: 'Example',
@@ -253,6 +258,12 @@ const config: Config = {
     //   //... other Algolia params
     // }
   },
+
+  markdown: {
+    mermaid: true
+  },
+  // 主题
+  themes: ['@docusaurus/theme-mermaid'],
 
   // 插件
   plugins: [

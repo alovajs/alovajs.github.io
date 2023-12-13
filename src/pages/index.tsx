@@ -5,7 +5,6 @@ import PageModule from '@site/src/components/PageModule';
 import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import React from 'react';
 import AvailableScope from './_indexComponent/AvailableScope';
 import Features from './_indexComponent/Features';
 import Like from './_indexComponent/Like';
@@ -18,7 +17,7 @@ function HomepageHeader() {
     {
       text: <Translate id="homepage.Get Started">Get Started</Translate>,
       type: 'primary',
-      link: '/tutorial/get-started/overview'
+      link: '/tutorial/getting-started/overview'
     },
     {
       text: <Translate id="homepage.Examples">Examples</Translate>,

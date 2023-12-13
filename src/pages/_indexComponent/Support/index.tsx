@@ -35,17 +35,17 @@ const jsEnvList: SupportItem[] = [
   {
     id: 'Next',
     Image: require('@site/static/img/next.svg').default,
-    link: 'tutorial/next-step/ssr#nextjs'
+    link: 'tutorial/advanced/ssr#nextjs'
   },
   {
     id: 'Nuxt',
     Image: require('@site/static/img/nuxt.svg').default,
-    link: 'tutorial/next-step/ssr#nuxt3x'
+    link: 'tutorial/advanced/ssr#nuxt3x'
   },
   {
     id: 'Sveltekit',
     Image: require('@site/static/img/svelte.svg').default,
-    link: 'tutorial/next-step/ssr#sveltekit'
+    link: 'tutorial/advanced/ssr#sveltekit'
   },
   {
     id: 'Solid',
@@ -65,7 +65,7 @@ const jsEnvList: SupportItem[] = [
         className={className}
       />
     ),
-    link: 'tutorial/extension/alova-adapter-uniapp'
+    link: 'tutorial/request-adapter/alova-adapter-uniapp'
   },
   {
     id: 'Taro',
@@ -75,7 +75,7 @@ const jsEnvList: SupportItem[] = [
         className={className}
       />
     ),
-    link: 'tutorial/extension/alova-adapter-taro'
+    link: 'tutorial/request-adapter/alova-adapter-taro'
   },
   {
     id: 'Angular',
@@ -108,17 +108,17 @@ const requestTools: SupportItem[] = [
   {
     id: 'Fetch Api',
     Image: require('@site/static/img/fetchapi.svg').default,
-    link: 'tutorial/learning/method-instance/#set-the-parameters-supported-by-the-request-adapter'
+    link: 'tutorial/getting-started/method/#set-the-parameters-supported-by-the-request-adapter'
   },
   {
     id: 'Axios',
     Image: require('@site/static/img/axios.svg').default,
-    link: 'tutorial/extension/alova-adapter-axios'
+    link: 'tutorial/request-adapter/alova-adapter-axios'
   },
   {
     id: 'XMLHttpRequest',
     Image: require('@site/static/img/xhr.svg').default,
-    link: 'tutorial/extension/alova-adapter-xhr'
+    link: 'tutorial/request-adapter/alova-adapter-xhr'
   },
   {
     id: 'GraphQL',

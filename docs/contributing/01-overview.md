@@ -118,7 +118,7 @@ alova provides high-extensibility features, and you can write your own js librar
 
 Customize various adapters to meet the operating requirements in different environments. The following directions are available for reference:
 
-1. Customize statesHook, which can be executed under different UI frameworks, such as `solid/qwik`, currently supports `react/vue/svelte`, please read [Custom statesHook](/tutorial/advanced/custom-stateshook);
+1. Customize statesHook, which can be executed under different UI frameworks, such as `solid/qwik`, currently supports `react/vue/svelte`, please read [Custom statesHook](/tutorial/custom/custom-stateshook);
 2. Customize the request adapter, so that alova can cooperate with more request schemes, such as `GraphQL/SSE`, etc.;
 3. Customize the storage adapter to meet the storage requirements of different environments, such as `react-native`;
 4. Any combination of the above, such as the official [uniapp adapter](https://github.com/alovajs/adapter-uniapp), which includes request adapters and storage adapters.
