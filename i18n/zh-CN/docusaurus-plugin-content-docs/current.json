@@ -36,7 +36,7 @@
     "description": "The label for category Sensorless data interaction in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Advanced": {
-    "message": "高级",
+    "message": "进阶",
     "description": "The label for category Advanced in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Custom": {
