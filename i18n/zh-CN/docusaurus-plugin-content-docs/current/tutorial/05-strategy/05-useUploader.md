@@ -1,6 +1,6 @@
 ---
 title: 通用的上传策略
-sidebar_position: 40
+sidebar_position: 50
 ---
 
 :::warning

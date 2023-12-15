@@ -466,6 +466,34 @@
     "message": "自由切换无感请求和正常网络请求",
     "description": "description of Sensorless interact strategy desc"
   },
+  "homepage.strategy.Token authentication": {
+    "message": "Token身份认证",
+    "description": "description of Token authentication request strategy"
+  },
+  "homepage.strategy.Token authentication.desc": {
+    "message": "统一管理token认证代码，支持无感刷新 token。",
+    "description": "description of Token authentication desc"
+  },
+  "homepage.strategy.Token authentication.feature1": {
+    "message": "支持在客户端和服务端无感刷新 token",
+    "description": "description of Token authentication desc"
+  },
+  "homepage.strategy.Token authentication.feature2": {
+    "message": "自动等待 token 刷新完成",
+    "description": "description of Token authentication desc"
+  },
+  "homepage.strategy.Token authentication.feature3": {
+    "message": "统一维护 Token 身份认证的所有代码",
+    "description": "description of Token authentication desc"
+  },
+  "homepage.strategy.Token authentication.feature4": {
+    "message": "使用元数据设置请求身份",
+    "description": "description of Token authentication desc"
+  },
+  "homepage.strategy.Token authentication.feature5": {
+    "message": "放行访客请求",
+    "description": "description of Token authentication desc"
+  },
   "homepage.strategy.Cross-component request": {
     "message": "跨组件请求策略",
     "description": "description of Pagination request strategy"

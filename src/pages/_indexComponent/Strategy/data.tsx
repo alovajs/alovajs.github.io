@@ -27,7 +27,7 @@ const {
     link: 'tutorial/getting-started/first-request'
   },
   {
-    title: <Translate id="homepage.strategy.useWatcher">Request via states changed</Translate>,
+    title: <Translate id="homepage.strategy.useWatcher">Request when states changed</Translate>,
     describe: (
       <Translate id="homepage.strategy.useWatcher.desc">
         When developing functions such as paging, data filtering, and fuzzy search, send requests immediately by
@@ -94,6 +94,43 @@ fetch(todoDetail);`,
   initialPageSize: 10
 });`,
     link: 'tutorial/strategy/usePagination'
+  },
+  {
+    title: <Translate id="homepage.strategy.Token authentication">Token authentication</Translate>,
+    describe: (
+      <Translate id="homepage.strategy.Token authentication.desc">
+        Automatically manage form data, it allow you implement quickly various of forms.
+      </Translate>
+    ),
+    features: [
+      <Translate id="homepage.strategy.Token authentication.feature1">
+        Supports silent refresh token on client and server
+      </Translate>,
+      <Translate id="homepage.strategy.Token authentication.feature2">
+        Automatically wait for token refresh to complete
+      </Translate>,
+      <Translate id="homepage.strategy.Token authentication.feature3">
+        Maintain all codes for Token identity authentication in a unified manner
+      </Translate>,
+      <Translate id="homepage.strategy.Token authentication.feature4">set request ID with metadata</Translate>,
+      <Translate id="homepage.strategy.Token authentication.feature5">Release visitor requests</Translate>
+    ],
+    code: `const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
+  refreshTokenOnError: {
+    isExpire: response => response.status === 401,
+    refreshToken: async () => {
+      const { token, refresh_token } = await refreshToken();
+      localStorage.setItem('token', token);
+      localStorage.setItem('refresh_token', refresh_token);
+    }
+  }
+});
+
+const alovaInstance = createAlova({
+  beforeRequest: onAuthRequired(),
+  responded: onResponseRefreshToken()
+});`,
+    link: 'tutorial/strategy/tokenAuthentication'
   },
   {
     title: (

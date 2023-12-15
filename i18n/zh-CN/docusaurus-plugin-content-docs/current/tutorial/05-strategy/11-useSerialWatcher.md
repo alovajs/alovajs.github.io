@@ -1,6 +1,6 @@
 ---
-title: 串行请求的useRequest
-sidebar_position: 90
+title: 串行请求的useWatcher
+sidebar_position: 110
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,13 +14,13 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-这个 use hook 比[alova 的串行请求方式](/tutorial/getting-started/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
+状态更新触发一组串行请求，比[alova 的串行请求方式](/tutorial/getting-started/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
 
 ## 特性
 
 - ✨ 更加简洁易用的串行方式；
 - ✨ 统一的请求状态和回调函数；
-- ✨ send 函数可触发多个请求串行执行；
+- ✨ 状态更新触发多个请求串行执行；
 
 ## 示例
 
@@ -69,7 +69,7 @@ yarn add @alova/scene-svelte
 
 ### 基本用法
 
-和`useRequest`的用法一样，只是第一个参数改变成了一个串行执行的 handler 数组，每个 handler 将接收上一个请求的响应数据。
+和`useWatcher`的用法一样，只是第一个参数改变成了一个串行执行的 handler 数组，每个 handler 将接收上一个请求的响应数据。
 
 ```javascript
 const {
@@ -93,7 +93,7 @@ const {
 
   // 串行请求完成回调绑定函数
   onComplete
-} = useSerialRequest(
+} = useSerialWatcher(
   [
     // args为send函数传入的参数
     (...args) => request1(args),
@@ -102,8 +102,9 @@ const {
     (response1, ...args) => request2(response1, args),
     (response2, ...args) => request3(response2, args)
   ],
+  [watchedState1, watchedState2],
   {
-    immediate: false
+    immediate: true
   }
 );
 
@@ -129,16 +130,16 @@ useSerialRequest([
 
 ### Hook 配置
 
-继承[**useRequest**](/api/core-hooks#userequest)所有配置。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有配置。
 
 ### 响应式数据
 
-继承[**useRequest**](/api/core-hooks#userequest)所有响应式数据。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有响应式数据。
 
 ### 操作函数
 
-继承[**useRequest**](/api/core-hooks#userequest)所有操作函数。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有操作函数。
 
 ### 事件
 
-继承[**useRequest**](/api/core-hooks#userequest)所有事件。
+继承[**useWatcher**](/api/core-hooks#usewatcher)所有事件。

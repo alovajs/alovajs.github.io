@@ -1,6 +1,6 @@
 ---
 title: 自动刷新数据
-sidebar_position: 50
+sidebar_position: 60
 ---
 
 :::warning
