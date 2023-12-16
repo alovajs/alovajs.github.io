@@ -1,5 +1,5 @@
 ---
-title: 页码列表
+title: (vue)页码列表
 sidebar_position: 100
 ---
 

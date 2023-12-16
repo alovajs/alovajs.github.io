@@ -1,5 +1,5 @@
 ---
-title: Load more
+title: (vue)Load more
 sidebar_position: 90
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Silent submit - Notebook
+title: (react)Silent submit - Notebook
 sidebar_position: 140
 ---
 

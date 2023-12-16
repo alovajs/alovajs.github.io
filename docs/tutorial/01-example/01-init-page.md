@@ -1,5 +1,5 @@
 ---
-title: page initialization request
+title: (vue)page initialization request
 sidebar_position: 10
 ---
 

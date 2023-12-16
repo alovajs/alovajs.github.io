@@ -1,5 +1,5 @@
 ---
-title: form submission
+title: (vue)form submission
 sidebar_position: 20
 ---
 

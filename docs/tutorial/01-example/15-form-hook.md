@@ -1,5 +1,5 @@
 ---
-title: Form submit strategy
+title: (react)Form submit strategy
 sidebar_position: 150
 ---
 

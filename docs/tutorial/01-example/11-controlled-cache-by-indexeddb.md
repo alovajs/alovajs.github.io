@@ -1,5 +1,5 @@
 ---
-title: Manage Cache with IndexedDB
+title: (vue)Manage Cache with IndexedDB
 sidebar_position: 110
 ---
 

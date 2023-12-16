@@ -1,5 +1,5 @@
 ---
-title: Paginated list
+title: (vue)Paginated list
 sidebar_position: 100
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 跨组件/页面更新状态
+title: (vue)跨组件/页面更新状态
 sidebar_position: 70
 ---
 

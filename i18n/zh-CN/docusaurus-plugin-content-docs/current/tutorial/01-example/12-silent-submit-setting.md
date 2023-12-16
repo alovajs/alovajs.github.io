@@ -1,5 +1,5 @@
 ---
-title: 静默提交-设置页
+title: (svelte)静默提交-设置页
 sidebar_position: 120
 ---
 

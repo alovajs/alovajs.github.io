@@ -1,5 +1,5 @@
 ---
-title: 请求重试/轮询请求
+title: (react)请求重试/轮询请求
 sidebar_position: 170
 ---
 
