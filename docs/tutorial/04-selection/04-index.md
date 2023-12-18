@@ -15,7 +15,7 @@ link: '/category/advanced'
 },
 {
 title: 'Request Strategy Module',
-desc: 'Learn how to use alova's request strategy module, allowing you to easily deal with various request scenarios',
+desc: 'Learn how to use alova\'s request strategy module, allowing you to easily deal with various request scenarios',
 link: '/category/strategy'
 },
 {
@@ -27,5 +27,5 @@ link: '/category/best-practice'
 title: 'alova adapter',
 desc: 'Use alova in different JS environments',
 link: '/category/request-adapter'
-},
+}
 ]}></NavCard>
