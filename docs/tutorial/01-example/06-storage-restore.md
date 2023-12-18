@@ -1,5 +1,5 @@
 ---
-title: Response Caching - Restore Mode
+title: (vue)Response Caching - Restore Mode
 sidebar_position: 60
 ---
 

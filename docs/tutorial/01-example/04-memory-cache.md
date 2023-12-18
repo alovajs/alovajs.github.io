@@ -1,5 +1,5 @@
 ---
-title: Response Cache - Memory Mode
+title: (vue)Response Cache - Memory Mode
 sidebar_position: 40
 ---
 

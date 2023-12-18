@@ -1,5 +1,5 @@
 ---
-title: Silent Submit - Settings Page
+title: (svelte)Silent Submit - Settings Page
 sidebar_position: 120
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Data Prefetch
+title: (vue)Data Prefetch
 sidebar_position: 80
 ---
 

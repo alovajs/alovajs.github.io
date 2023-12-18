@@ -1,5 +1,5 @@
 ---
-title: Response Cache - Cache Placeholder Mode
+title: (vue)Response Cache - Cache Placeholder Mode
 sidebar_position: 50
 ---
 

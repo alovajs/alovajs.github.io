@@ -1,5 +1,5 @@
 ---
-title: serial request hook
+title: (vue)serial request hook
 sidebar_position: 190
 ---
 

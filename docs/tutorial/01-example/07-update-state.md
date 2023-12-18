@@ -1,5 +1,5 @@
 ---
-title: Update state across components/pages
+title: (vue)Update state across components/pages
 sidebar_position: 70
 ---
 

@@ -476,3 +476,60 @@ export const logout = () => {
 ```
 
 > `createServerTokenAuthentication`的登录拦截器用法相同。
+
+## Typescript
+
+默认情况下，`createClientServerTokenAuthentication`和`createServerTokenAuthentication`适配了`GlobalFetch`请求适配器，如下：
+
+```javascript
+const alovaInstance = createAlova({
+  // ...
+  beforeRequest: onAuthRequired(method => {
+    // method的类型为 Method<any, any, any, any, RequestInit, Response, Headers>
+  }),
+  responded: onResponseRefreshToken((response, method) => {
+    // response的类型为Response
+    return response.json();
+  })
+});
+```
+
+如果你使用的不是`GlobalFetch`请求适配器，那么默认的类型就不再适用了，在这种情况下，需要指定请求适配器的类型，这也很简单。
+
+以下为 axios 请求适配器为例，在`createClientTokenAuthentication`中指定请求适配器类型。
+
+```typescript
+import { axiosRequestAdapter } from '@alova/adapter-axios';
+
+// highlight-start
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof axiosRequestAdapter>({
+  // highlight-end
+  //...
+});
+const alovaInstance = createAlova({
+  //...
+  // highlight-start
+  beforeRequest: onAuthRequired(method => {
+    // method的类型为 Method<any, any, any, any, AlovaAxiosRequestConfig, AxiosResponse, AxiosResponseHeaders>
+    // highlight-end
+  }),
+  // highlight-start
+  responded: onResponseRefreshToken((response, method) => {
+    // response的类型为AxiosResponse
+    // highlight-end
+    return response.data;
+  })
+});
+```
+
+基于服务端的 Token 认证拦截器的用法相同。
+
+```typescript
+import { axiosRequestAdapter } from '@alova/adapter-axios';
+
+// highlight-start
+createServerTokenAuthentication<typeof axiosRequestAdapter>({
+  // highlight-end
+  //...
+});
+```

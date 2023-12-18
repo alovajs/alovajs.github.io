@@ -1,5 +1,5 @@
 ---
-title: Conditional Search
+title: (vue)Conditional Search
 sidebar_position: 30
 ---
 

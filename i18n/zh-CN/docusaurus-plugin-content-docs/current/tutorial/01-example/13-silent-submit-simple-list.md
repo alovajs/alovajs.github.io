@@ -1,5 +1,5 @@
 ---
-title: 静默提交-简单列表
+title: (vue)静默提交-简单列表
 sidebar_position: 130
 ---
 

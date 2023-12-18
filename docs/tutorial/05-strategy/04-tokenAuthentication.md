@@ -476,3 +476,60 @@ export const logout = () => {
 ```
 
 > The login interceptor usage of `createServerTokenAuthentication` is the same.
+
+## Typescript
+
+By default, `createClientServerTokenAuthentication` and `createServerTokenAuthentication` are adapted to the `GlobalFetch` request adapter, as follows:
+
+```javascript
+const alovaInstance = createAlova({
+  // ...
+  beforeRequest: onAuthRequired(method => {
+    // The type of method is Method<any, any, any, any, RequestInit, Response, Headers>
+  }),
+  responded: onResponseRefreshToken((response, method) => {
+    //The response type is Response
+    return response.json();
+  })
+});
+```
+
+If you are not using the `GlobalFetch` request adapter, then the default type no longer applies. In this case, you need to specify the type of the request adapter, which is also simple.
+
+The following is an example of the axios request adapter. Specify the request adapter type in `createClientTokenAuthentication`.
+
+```typescript
+import { axiosRequestAdapter } from '@alova/adapter-axios';
+
+// highlight-start
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof axiosRequestAdapter>({
+  // highlight-end
+  //...
+});
+const alovaInstance = createAlova({
+  //...
+  // highlight-start
+  beforeRequest: onAuthRequired(method => {
+    // The type of method is Method<any, any, any, any, AlovaAxiosRequestConfig, AxiosResponse, AxiosResponseHeaders>
+    // highlight-end
+  }),
+  // highlight-start
+  responded: onResponseRefreshToken((response, method) => {
+    //The response type is AxiosResponse
+    // highlight-end
+    return response.data;
+  })
+});
+```
+
+The server-based Token authentication interceptor is used in the same way.
+
+```typescript
+import { axiosRequestAdapter } from '@alova/adapter-axios';
+
+// highlight-start
+createServerTokenAuthentication<typeof axiosRequestAdapter>({
+  // highlight-end
+  //...
+});
+```

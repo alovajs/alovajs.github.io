@@ -1,5 +1,5 @@
 ---
-title: 发送验证码
+title: (react)发送验证码
 sidebar_position: 160
 ---
 

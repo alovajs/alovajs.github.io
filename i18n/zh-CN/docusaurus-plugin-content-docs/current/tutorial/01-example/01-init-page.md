@@ -1,5 +1,5 @@
 ---
-title: 页面初始化请求
+title: (vue)页面初始化请求
 sidebar_position: 10
 ---
 

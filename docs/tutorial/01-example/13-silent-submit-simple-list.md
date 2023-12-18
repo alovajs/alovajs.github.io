@@ -1,5 +1,5 @@
 ---
-title: Silent submit - Simple List
+title: (vue)Silent submit - Simple List
 sidebar_position: 130
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Send captcha
+title: (react)Send captcha
 sidebar_position: 160
 ---
 
