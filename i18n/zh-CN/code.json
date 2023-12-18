@@ -559,11 +559,11 @@
     "description": "description of Form submit feature1"
   },
   "homepage.strategy.Auto refetch": {
-    "message": "自动重新拉取数据",
+    "message": "自动拉取数据",
     "description": "description of Auto refetch strategy"
   },
   "homepage.strategy.Auto refetch.desc": {
-    "message": "在一定条件下自动重新拉取数据，保证始终展示最新数据",
+    "message": "通过浏览器事件或轮询自动拉取数据，保证始终展示最新数据",
     "description": "description of Auto refetch desc"
   },
   "homepage.strategy.Auto refetch.feature1": {
@@ -572,6 +572,10 @@
   },
   "homepage.strategy.Auto refetch.feature2": {
     "message": "自定义拉取触发规则",
+    "description": "description of Form submit feature2"
+  },
+  "homepage.strategy.Auto refetch.feature3": {
+    "message": "支持请求节流",
     "description": "description of Form submit feature2"
   },
   "homepage.strategy.Request retry strategy": {

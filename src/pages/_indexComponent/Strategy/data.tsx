@@ -198,6 +198,27 @@ const alovaInstance = createAlova({
     link: 'tutorial/strategy/useForm'
   },
   {
+    title: <Translate id="homepage.strategy.Auto refetch">Auto refetch data</Translate>,
+    describe: (
+      <Translate id="homepage.strategy.Auto refetch.desc">
+        Automatically refetch data through the events of browser, ensure that the newest data is always displayed.
+      </Translate>
+    ),
+    features: [
+      <Translate id="homepage.strategy.Auto refetch.feature1">Freely select in 4 refetch rules.</Translate>,
+      <Translate id="homepage.strategy.Auto refetch.feature2">Custom your refetch triggering rule.</Translate>,
+      <Translate id="homepage.strategy.Auto refetch.feature3">Support request throttling.</Translate>
+    ],
+    code: `useAutoRequest(todoDetail, {
+  pollingTime: 2000,
+  enableVisibility: true,
+  enableFocus: true,
+  enableNetwork: true,
+  throttle: 1000
+}`,
+    link: 'tutorial/strategy/useAutoRequest'
+  },
+  {
     title: <Translate id="homepage.strategy.Upload">File upload strategy</Translate>,
     describe: (
       <Translate id="homepage.strategy.Upload.desc">
@@ -238,26 +259,6 @@ const alovaInstance = createAlova({
   initialCountdown: 60
 });`,
     link: 'tutorial/strategy/useCaptcha'
-  },
-  {
-    title: <Translate id="homepage.strategy.Auto refetch">Auto refetch data</Translate>,
-    describe: (
-      <Translate id="homepage.strategy.Auto refetch.desc">
-        Automatically refetch data in certain conditions to ensure that the newest data is always displayed.
-      </Translate>
-    ),
-    features: [
-      <Translate id="homepage.strategy.Auto refetch.feature1">Freely select in 4 refetch rules.</Translate>,
-      <Translate id="homepage.strategy.Auto refetch.feature2">Custom your refetch triggering rule.</Translate>
-    ],
-    code: `useAutoRequest(todoDetail, {
-  enablePolling: 2000,
-  enableVisibility: true,
-  enableFocus: true,
-  enableNetwork: true,
-  throttle: 1000
-}`,
-    link: 'tutorial/strategy/useAutoRequest'
   },
   {
     title: <Translate id="homepage.strategy.Cross-component request">Cross-component request strategy</Translate>,
