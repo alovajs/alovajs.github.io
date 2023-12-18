@@ -81,27 +81,3 @@ const fileGetter = alovaInstance.Get('/file/file_name', {
 ## 注意事项
 
 在 usehooks 中使用时，在`localCache`函数中抛出错误将会触发`onError`，使用 method 实例直接发起请求时，将会返回一个 reject 状态的 promise 实例。
-
-## 🎉 已完成基础使用
-
-恭喜你！至此，你已完成了 alova 的基础使用，可以满足日常的项目实践。你可以选择接下来的学习内容。
-
-import NavCard from '@site/src/components/NavCard';
-
-<NavCard list={[
-{
-title: '进阶教程',
-desc: '更深入地使用 alova，可以帮你快速解决更多棘手问题',
-link: '/category/advanced'
-},
-{
-title: '请求策略模块',
-desc: '学习如何使用 alova 的请求策略模块，让你轻松应对各种请求场景',
-link: '/category/strategy'
-},
-{
-title: '最佳实践',
-desc: '经过实践总结出的 alova 使用技巧',
-link: '/category/best-practice'
-}
-]}></NavCard>

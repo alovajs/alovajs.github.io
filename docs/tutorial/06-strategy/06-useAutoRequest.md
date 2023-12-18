@@ -14,7 +14,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic use of alova.
 
-Automatically fetch data through browser events or polling, allowing the interface to display the newest data. Usage scenarios include:
+Automatically fetch data through browser events or polling, allowing the interface to display the newest data.
 
 ## Features
 

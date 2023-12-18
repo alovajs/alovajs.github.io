@@ -35,6 +35,10 @@
     "message": "无感数据交互",
     "description": "The label for category Sensorless data interaction in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Basics completed": {
+    "message": "🎉你已完成基础",
+    "description": "The label for category Basics completed in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Advanced": {
     "message": "进阶",
     "description": "The label for category Advanced in sidebar tutorialSidebar"
