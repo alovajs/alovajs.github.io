@@ -648,5 +648,9 @@
   "announcement.content": {
     "message": "如果你也喜欢alova，请在Github为它点亮star",
     "description": "description of announcement title"
+  },
+  "example.open in new tab": {
+    "message": "遇到问题？点此在新页面中打开示例",
+    "description": "description of example open in new tab"
   }
 }
