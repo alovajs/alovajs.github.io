@@ -30,3 +30,7 @@ In the future, alovajs is also committed to solving front-end API problems and f
 2. Since the automatically generated request function has a complete description and type hint, develop a vscode plug-in to quickly retrieve the API you need to use through keywords, and you no longer need to consult the API documentation.
 
 3. Solve the problem of front-end and back-end collaboration fault. Any changes in the interface are known to the front-end and can be notified when starting the project. If changes are found when building the project, an error will be thrown to stop the build. If it is a ts project, it will also be compiled. When an error is thrown, you can also view the change record through the vscode plugin.
+
+## Development checklist
+
+[Click here to view all the development checklist](/contributing/become-core-member/#list-of-participating-repositories)
