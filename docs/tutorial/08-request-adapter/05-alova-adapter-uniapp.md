@@ -68,6 +68,18 @@ The usage method of the request is exactly the same as that used in the web envi
 </script>
 ```
 
+When using `useRequest/useWatcher` to send a request immediately, it will be executed asynchronously in the `onLoad` hook, so you can access the options data in `methodHandler` as follows:
+
+```javascript
+import { onLoad } from '@dcloudio/uni-app';
+
+let options = {};
+onLoad(opt => {
+  options = opt;
+});
+const { loading, data } = useRequest(() => getDetail(options.id));
+```
+
 ### Upload
 
 When `requestType: 'upload'` is set in the _config_ of the method instance, it means to upload the file, the request adapter will call `uni.uploadFile`, and the uploaded file data is placed in the data of the method instance, you need to specify in the data `name`, `filePath or files`, and `file` (if necessary), these 4 parameters will be passed to `uni.uploadFile`, at the same time, you can also specify other parameters besides these 4 parameters in data , the request adapter will pass them into the `formData` parameter.

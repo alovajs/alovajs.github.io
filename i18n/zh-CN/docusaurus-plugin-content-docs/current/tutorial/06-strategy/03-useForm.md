@@ -115,7 +115,7 @@ yarn add @alova/scene-svelte
   } = useForm(
     formData => {
       // 可以在此转换表单数据并提交
-      return submitData(formData);
+      return formSubmit(formData);
     },
     {
       // 初始化表单数据
@@ -166,7 +166,7 @@ const App = () => {
   } = useForm(
     formData => {
       // 可以在此转换表单数据并提交
-      return submitData(formData);
+      return formSubmit(formData);
     },
     {
       // 初始化表单数据
@@ -235,7 +235,7 @@ const App = () => {
   } = useForm(
     formData => {
       // 可以在此转换表单数据并提交
-      return submitData(formData);
+      return formSubmit(formData);
     },
     {
       // 初始化表单数据

@@ -115,7 +115,7 @@ Demonstrates basic use of form hooks.
   } = useForm(
     formData => {
       // Form data can be converted and submitted here
-      return submitData(formData);
+      return formSubmit(formData);
     },
     {
       // Initialize form data
@@ -166,7 +166,7 @@ const App = () => {
   } = useForm(
     formData => {
       // Form data can be converted and submitted here
-      return submitData(formData);
+      return formSubmit(formData);
     },
     {
       // Initialize form data
@@ -235,7 +235,7 @@ const App = () => {
   } = useForm(
     formData => {
       // Form data can be converted and submitted here
-      return submitData(formData);
+      return formSubmit(formData);
     },
     {
       // Initialize form data
