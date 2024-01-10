@@ -41,7 +41,7 @@ mounted(request);
 
 ```javascript
 // Use axios as alova's request adapter
-const { loading, data, error } = useRequest(alova.Get('/xxx'));
+const { loading, data, error } = useRequest(axios.Get('/xxx'));
 ```
 
 </TabItem>
