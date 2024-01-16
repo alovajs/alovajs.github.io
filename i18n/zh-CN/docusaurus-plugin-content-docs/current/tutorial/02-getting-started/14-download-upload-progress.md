@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 
 ## 下载进度
 
-先将`enableDownload`设置为`true`，即表示开启了下载进度，然后在`useRequest`、`useWatcher`、`useFetcher`三个 use hook 中接收`downloading`响应式状态，下载过程中将持续更新这个状态。
+### 使用进度状态
+
+`useRequest/useWatcher/useFetcher`提供了`downloading`状态，可以直接在视图中使用。为了性能考虑，默认情况下`downloading`中没有进度信息，需要将 method 实例的`enableDownload`设置为`true`，就会在下载过程中持续更新`downloading`状态。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">
@@ -108,9 +110,25 @@ const App = () => {
 </TabItem>
 </Tabs>
 
+### 监听下载进度事件
+
+`[v2.17.0+]`通过 method 实例的`onDownload`绑定下载进度事件，它将返回解绑函数。
+
+```javascript
+const downloadGetter = alovaInstance.Get('/todo/downloadfile');
+const offEvent = downloadGetter.onDownload(event => {
+  console.log('文件大小：'，event.total);
+  console.log('已下载：'，event.loaded);
+});
+
+offEvent(); // 解绑下载回调
+```
+
 ## 上传进度
 
-上传进度与下载进度使用方法相同，先通过`enableUpload`开启上传进度信息，再通过接收`uploading`响应式状态接收。
+## 使用进度状态
+
+使用上传进度状态与下载进度使用方法相同，先通过`enableUpload`开启上传进度信息，再通过接收`uploading`响应式状态接收。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -205,6 +223,20 @@ const App = () => {
 
 </TabItem>
 </Tabs>
+
+### 监听上传进度事件
+
+`[v2.17.0+]`通过 method 实例的`onUpload`绑定上传进度事件，它将返回解绑函数。
+
+```javascript
+const uploadGetter = alovaInstance.Get('/todo/uploadfile');
+const offEvent = uploadGetter.onUpload(event => {
+  console.log('文件大小：'，event.total);
+  console.log('已上传：'，event.loaded);
+});
+
+offEvent(); // 解绑上传回调
+```
 
 :::warning 使用`GlobalFetch`适配器需注意
 

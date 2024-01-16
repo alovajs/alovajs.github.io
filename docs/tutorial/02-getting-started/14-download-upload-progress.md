@@ -10,7 +10,9 @@ By default, upload and download progress is turned off. You need to enable uploa
 
 ## Download progress
 
-First set `enableDownload` to `true`, which means that the download progress is enabled, and then receive the `downloading` responsive state in the three use hooks `useRequest`, `useWatcher`, and `useFetcher`, which will be continuously updated during the download process. this state.
+### Use the progress state
+
+`useRequest/useWatcher/useFetcher` provides the `downloading` state, which can be used directly in the view. For performance reasons, there is no progress information in `downloading` by default. You need to set `enableDownload` of method instance to `true`, which will continuously update the `downloading` state during the download process.
 
 <Tabs groupId="framework">
 <TabItem label="vue" value="1">
@@ -108,9 +110,25 @@ const App = () => {
 </TabItem>
 </Tabs>
 
+### Listen download progress event
+
+`[v2.17.0+]` bind download progress event through `onDownload` of the method instance, which will return the unbinding function.
+
+```javascript
+const downloadGetter = alovaInstance.Get('/todo/downloadfile');
+const offEvent = downloadGetter.onDownload(event => {
+  console.log('File size:'，event.total);
+  console.log('Downloaded:'，event.loaded);
+});
+
+offEvent(); // Unbind download callback
+```
+
 ## Upload progress
 
-The upload progress is used in the same way as the download progress. First, enable the upload progress information through `enableUpload`, and then receive it through the `uploading` response status.
+### Use the progress state
+
+Using the upload progress state is the same as the usage of download progress. Enable the upload progress information through `enableUpload`, and then receive it through the `uploading` state.
 
 <Tabs groupId="framework">
 <TabItem label="vue" value="1">
@@ -213,6 +231,20 @@ Due to the limitation of fetch api, the **GlobalFetch** adapter provided by alov
 And you also can code your own request adapter. For details, see [Write a Request Adapter](/tutorial/custom/custom-http-adapter).
 
 :::
+
+### Listen to upload progress events
+
+`[v2.17.0+]` binds upload progress event through `onUpload` of the method instance, which will return the unbinding function.
+
+```javascript
+const uploadGetter = alovaInstance.Get('/todo/uploadfile');
+const offEvent = uploadGetter.onUpload(event => {
+  console.log('File size:', event.total);
+  console.log('Uploaded:', event.loaded);
+});
+
+offEvent(); // Unbind upload callback
+```
 
 ## upload/download states type
 
