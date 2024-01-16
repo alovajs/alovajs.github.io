@@ -20,7 +20,7 @@ function createAlova(options?: AlovaOptions): Alova;
 | 参数名         | 类型                        | 说明                                                                                      |
 | -------------- | --------------------------- | ----------------------------------------------------------------------------------------- |
 | baseURL        | string                      | 基础路径，默认为空，[查看详情](/tutorial/getting-started/base-url)                        |
-| statesHook     | object                      | 状态管理钩子，必填，[查看详情](/tutorial/getting-started/first-request)                   |
+| statesHook     | object                      | 状态管理钩子，选填，[查看详情](/tutorial/getting-started/first-request)                   |
 | requestAdapter | object                      | 请求适配器，必填，[查看详情](/tutorial/custom/custom-http-adapter)                        |
 | timeout        | number                      | 超时时间，默认不超时，[查看详情](/tutorial/getting-started/timeout)                       |
 | localCache     | object                      | 本地缓存配置，默认 GET 有 5000ms 缓存，[查看详情](/tutorial/cache/mode)                   |

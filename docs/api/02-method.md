@@ -205,6 +205,18 @@ interface Method {
 }
 ```
 
+## method.fromCache
+
+Is the response of current request from cache.
+
+- **type**
+
+```ts
+interface Method {
+  fromCache: boolean;
+}
+```
+
 ## method.send()
 
 Use this method instance to send the request directly. If you send the request after `[v2.16.0]`, you can omit calling this method.
@@ -333,6 +345,70 @@ const method = alova.Get('/api/users');
 const response = await method.finally(() => {
   console.log('Request completed');
 });
+```
+
+## method.onDownload()
+
+Bind the download event to obtain download progress information.
+
+- **type**
+
+```ts
+interface Method {
+  onDownload(handler: ProgressHandler): () => void;
+}
+```
+
+- **Parameters**
+
+1. `handler` download event callback function
+
+- **return**
+
+unbind function
+
+- **Example**
+
+```ts
+const method = alova.Get('/api/download_file');
+const offEvent = method.onDownload(event => {
+  console.log('File size:', event.total);
+  console.log('Downloaded:', event.loaded);
+});
+
+offEvent();
+```
+
+## method.onUpload()
+
+Bind the upload event to obtain upload progress information.
+
+- **type**
+
+```ts
+interface Method {
+  onUpload(handler: ProgressHandler): () => void;
+}
+```
+
+- **Parameters**
+
+1. `handler` upload event callback function
+
+- **return**
+
+unbind function
+
+- **Example**
+
+```ts
+const method = alova.Get('/api/upload_file', formData);
+const offEvent = method.onUpload(event => {
+  console.log('File size:', event.total);
+  console.log('Uploaded:', event.loaded);
+});
+
+offEvent();
 ```
 
 ## method.setName()

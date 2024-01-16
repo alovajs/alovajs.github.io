@@ -205,6 +205,18 @@ interface Method {
 }
 ```
 
+## method.fromCache
+
+当前请求的数据是否来自缓存。
+
+- **类型**
+
+```ts
+interface Method {
+  fromCache: boolean;
+}
+```
+
 ## method.send()
 
 使用此 method 实例直接发送请求，在`[v2.16.0]`之后发送请求可省略调用此方法。
@@ -333,6 +345,70 @@ const method = alova.Get('/api/users');
 const response = await method.finally(() => {
   console.log('请求完成');
 });
+```
+
+## method.onDownload()
+
+绑定下载事件，可获得下载进度信息。
+
+- **类型**
+
+```ts
+interface Method {
+  onDownload(handler: ProgressHandler): () => void;
+}
+```
+
+- **参数**
+
+1. `handler`下载事件回调函数
+
+- **返回**
+
+解绑函数
+
+- **示例**
+
+```ts
+const method = alova.Get('/api/download_file');
+const offEvent = method.onDownload(event => {
+  console.log('文件大小：', event.total);
+  console.log('已下载：', event.loaded);
+});
+
+offEvent();
+```
+
+## method.onUpload()
+
+绑定上传事件，可获得上传进度信息。
+
+- **类型**
+
+```ts
+interface Method {
+  onUpload(handler: ProgressHandler): () => void;
+}
+```
+
+- **参数**
+
+1. `handler`上传事件回调函数
+
+- **返回**
+
+解绑函数
+
+- **示例**
+
+```ts
+const method = alova.Get('/api/upload_file', formData);
+const offEvent = method.onUpload(event => {
+  console.log('文件大小：', event.total);
+  console.log('已上传：', event.loaded);
+});
+
+offEvent();
 ```
 
 ## method.setName()

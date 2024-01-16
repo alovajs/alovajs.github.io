@@ -20,7 +20,7 @@ function createAlova(options?: AlovaOptions): Alova;
 | Parameter name | Type                        | Description                                                                                               |
 | -------------- | --------------------------- | --------------------------------------------------------------------------------------------------------- |
 | baseURL        | string                      | Base path, empty by default, [View details](/tutorial/getting-started/base-url)                           |
-| statesHook     | object                      | State management hook, required, [View details](/tutorial/getting-started/first-request)                  |
+| statesHook     | object                      | State management hook, optional, [View details](/tutorial/getting-started/first-request)                  |
 | requestAdapter | object                      | Request adapter, required, [View details](/tutorial/custom/custom-http-adapter)                           |
 | timeout        | number                      | Timeout time, no timeout by default, [View details](/tutorial/getting-started/timeout)                    |
 | localCache     | object                      | Local cache configuration, default GET has 5000ms cache, [View details](/tutorial/cache/mode)             |
