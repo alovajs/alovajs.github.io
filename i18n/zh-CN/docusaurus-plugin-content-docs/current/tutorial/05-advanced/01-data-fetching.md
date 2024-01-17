@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 
 ## 跨模块/组件更新视图
 
-下面我们来实现修改某个 todo 数据，并重新拉取最新的 todo 列表数据，让视图更新。p
+下面我们来实现修改某个 todo 数据，并重新拉取最新的 todo 列表数据，让视图更新。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">

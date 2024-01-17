@@ -51,12 +51,13 @@ For comparison with other request libraries, please [click here for more detail]
 6. 🔋 3 data cache modes to improve request performance and reduce server pressure
 7. 🔌 Rich extension functions, you can customize request adapter, storage adapter, middleware, and states hook
 8. 🖥️ [2.2.0+]Server-side rendering(SSR)
-9. 💕 Request sharing to avoid sending the same request at the same time
-10. 🪑 Data pre-fetching, which means users can see information faster without waiting
-11. 🦾 Real-time automatic status management
-12. 🎪 Interactive documentation and examples
-13. 🎈Typescript support
-14. ⚡ Support tree shaking, which means that the production volume of alova is often less than 4kb
+9. 🖥️ [2.17.0+]Commonjs support
+10. 💕 Request sharing to avoid sending the same request at the same time
+11. 🪑 Data pre-fetching, which means users can see information faster without waiting
+12. 🦾 Real-time automatic status management
+13. 🎪 Interactive documentation and examples
+14. 🎈Typescript support
+15. ⚡ Support tree shaking, which means that the production volume of alova is often less than 4kb
 
 ## Online trial
 

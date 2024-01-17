@@ -17,7 +17,7 @@ You can use it to pre-fetch data and save it to the cache, or elegantly update t
 
 ## Update views across modules/components
 
-Next, we will modify a certain todo data and re-fetch the latest todo list data to update the view. p
+Next, we will modify a certain todo data and re-fetch the latest todo list data to update the view.
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">

@@ -9,7 +9,7 @@ v2.17.0+
 
 :::
 
-alova supports the commonjs specification. When using alova on the server side, there is no need to use useHooks, so there is no need to set `statesHook`.
+alova supports the commonjs specification. When using alova on the server side, there is no need to use useHooks, so there is no need to set `statesHook`. In addition, you can still enjoy all other features such as request sharing and response cache.
 
 A simple usage example is as follows:
 
@@ -20,6 +20,8 @@ const GlobalFetch = require('alova/GlobalFetch');
 const alova = createAlova({
    requestAdapter: GlobalFetch();
 });
+
+await alova.Get('/user/1');
 ```
 
 When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/alova-adapter-axios/).
