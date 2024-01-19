@@ -150,7 +150,7 @@ const alovaInstance = createAlova({
   beforeRequest: onAuthRequired(method => {
     // ...interceptor before original request
   }),
-  afterResponse: onResponseRefreshToken((response, method) => {
+  responded: onResponseRefreshToken((response, method) => {
     //...original response success interceptor
     return response.json();
   })

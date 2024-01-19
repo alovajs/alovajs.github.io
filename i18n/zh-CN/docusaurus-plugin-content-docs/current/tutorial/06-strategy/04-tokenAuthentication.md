@@ -150,7 +150,7 @@ const alovaInstance = createAlova({
   beforeRequest: onAuthRequired(method => {
     // ...原请求前拦截器
   }),
-  afterResponse: onResponseRefreshToken((response, method) => {
+  responded: onResponseRefreshToken((response, method) => {
     //...原响应成功拦截器
     return response.json();
   })
