@@ -202,13 +202,13 @@ const getData1 = id => alovaInstance.Get('/data1', {
      id
    }
 });
-const getData2 = alovaInstance.Get('/data2', {
+const getData2 = id => alovaInstance.Get('/data2', {
    name: `data-${id}-2`,
    params: {
      id
    }
 });
-const getData3 = alovaInstance.Get('/data3', {
+const getData3 = id => alovaInstance.Get('/data3', {
    name: `data-${id}-3`,
    params: {
      id
