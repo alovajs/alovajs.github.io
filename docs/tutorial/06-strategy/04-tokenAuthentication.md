@@ -479,9 +479,15 @@ export const logout = () => {
 
 ## Typescript
 
-By default, `createClientServerTokenAuthentication` and `createServerTokenAuthentication` are adapted to the `GlobalFetch` request adapter, as follows:
+By default, `createClientServerTokenAuthentication` and `createServerTokenAuthentication` are adapted to the `GlobalFetch` request adapter, you can only specify the type of `StatesHook`, as follows:
 
-```javascript
+```typescript
+// highlight-start
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof VueHook>({
+  // highlight-end
+  //...
+});
+
 const alovaInstance = createAlova({
   // ...
   beforeRequest: onAuthRequired(method => {
@@ -494,7 +500,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-If you are not using the `GlobalFetch` request adapter, then the default type no longer applies. In this case, you need to specify the type of the request adapter, which is also simple.
+If you are not using the `GlobalFetch` request adapter, You also need to specify the type of request adapter, which is also simple.
 
 The following is an example of the axios request adapter. Specify the request adapter type in `createClientTokenAuthentication`.
 
@@ -502,7 +508,10 @@ The following is an example of the axios request adapter. Specify the request ad
 import { axiosRequestAdapter } from '@alova/adapter-axios';
 
 // highlight-start
-const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof axiosRequestAdapter>({
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<
+  typeof ReactHook,
+  typeof axiosRequestAdapter
+>({
   // highlight-end
   //...
 });
@@ -528,7 +537,7 @@ The server-based Token authentication interceptor is used in the same way.
 import { axiosRequestAdapter } from '@alova/adapter-axios';
 
 // highlight-start
-createServerTokenAuthentication<typeof axiosRequestAdapter>({
+createServerTokenAuthentication<typeof ReactHook, typeof axiosRequestAdapter>({
   // highlight-end
   //...
 });

@@ -479,11 +479,18 @@ export const logout = () => {
 
 ## Typescript
 
-默认情况下，`createClientServerTokenAuthentication`和`createServerTokenAuthentication`适配了`GlobalFetch`请求适配器，如下：
+默认情况下，`createClientServerTokenAuthentication`和`createServerTokenAuthentication`适配了`GlobalFetch`请求适配器，你只需要指定`statesHook`的类型，如下：
 
-```javascript
+```typescript
+// highlight-start
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof VueHook>({
+  // highlight-end
+  //...
+});
+
 const alovaInstance = createAlova({
   // ...
+  statesHook: VueHook,
   beforeRequest: onAuthRequired(method => {
     // method的类型为 Method<any, any, any, any, RequestInit, Response, Headers>
   }),
@@ -494,7 +501,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-如果你使用的不是`GlobalFetch`请求适配器，那么默认的类型就不再适用了，在这种情况下，需要指定请求适配器的类型，这也很简单。
+如果你使用的不是`GlobalFetch`请求适配器，你还需要指定请求适配器的类型，这也很简单。
 
 以下为 axios 请求适配器为例，在`createClientTokenAuthentication`中指定请求适配器类型。
 
@@ -502,12 +509,16 @@ const alovaInstance = createAlova({
 import { axiosRequestAdapter } from '@alova/adapter-axios';
 
 // highlight-start
-const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof axiosRequestAdapter>({
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<
+  typeof VueHook,
+  typeof axiosRequestAdapter
+>({
   // highlight-end
   //...
 });
 const alovaInstance = createAlova({
   //...
+  statesHook: VueHook,
   // highlight-start
   beforeRequest: onAuthRequired(method => {
     // method的类型为 Method<any, any, any, any, AlovaAxiosRequestConfig, AxiosResponse, AxiosResponseHeaders>
@@ -528,7 +539,7 @@ const alovaInstance = createAlova({
 import { axiosRequestAdapter } from '@alova/adapter-axios';
 
 // highlight-start
-createServerTokenAuthentication<typeof axiosRequestAdapter>({
+createServerTokenAuthentication<typeof VueHook, typeof axiosRequestAdapter>({
   // highlight-end
   //...
 });

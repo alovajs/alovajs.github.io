@@ -13,7 +13,7 @@ const customStorageAdapter = {
     // 保存数据，value为结构化数据，可调用JSON.stringify转换为字符串
   },
   get(key) {
-    // 获取数据
+    // 获取数据，需要返回结构化数据，可调用JSON.parse转换为对象
   },
   remove(key) {
     // 移除数据
@@ -38,7 +38,8 @@ const sessionStorageAdapter = {
     sessionStorage.setItem(key, JSON.stringify(value));
   },
   get(key) {
-    return sessionStorage.getItem(key);
+    const data = sessionStorage.getItem(key);
+    return data ? JSON.parse(data) : data;
   },
   remove(key) {
     sessionStorage.removeItem(key);

@@ -13,7 +13,7 @@ const customStorageAdapter = {
     // Save the data, value is structured data, which can be converted to a string by calling JSON.stringify
   },
   get(key) {
-    // retrieve data
+    // get data, return structured data, which can be converted by calling JSON.parse
   },
   remove(key) {
     // remove data
@@ -38,7 +38,8 @@ const sessionStorageAdapter = {
     sessionStorage.setItem(key, JSON.stringify(value));
   },
   get(key) {
-    return sessionStorage.getItem(key);
+    const data = sessionStorage.getItem(key);
+    return data ? JSON.parse(data) : data;
   },
   remove(key) {
     sessionStorage.removeItem(key);
