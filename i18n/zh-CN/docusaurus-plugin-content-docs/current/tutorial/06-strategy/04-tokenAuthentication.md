@@ -157,6 +157,12 @@ const alovaInstance = createAlova({
 });
 ```
 
+:::warning
+
+当你使用`GlobalFetch`适配器时，你可能会遇到`TypeError: Failed to execute 'json' on 'Response': body stream already read`这个问题，这是因为`Response`的`body stream`只能访问一次，你可以`response.clone().json()`来解决它。
+
+:::
+
 ## 在客户端无感刷新 Token
 
 设置`refreshToken`并指定 token 是否过期，以及调用刷新 token 的函数就可以了。当 token 刷新完成前，所有依赖 token 的请求都将会等待 token 刷新完成。
