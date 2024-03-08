@@ -1,8 +1,8 @@
 import Link from '@docusaurus/Link';
 import PageModule from '@site/src/components/PageModule';
+import styles from '@site/src/components/SupportList/style.module.css';
 import clsx from 'clsx';
 import React from 'react';
-import styles from '../Support/style.module.css';
 
 type AvailableItem = {
   id: string;

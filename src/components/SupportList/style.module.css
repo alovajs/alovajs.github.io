@@ -1,6 +1,4 @@
 .wrapper {
-  width: 80%;
-  margin: 0 auto;
   --ifm-spacing-horizontal: 0;
 }
 .framework {
@@ -13,10 +11,18 @@
   margin-right: 0.8rem;
   margin-bottom: 0.8rem;
   background: var(--ifm-color-emphasis-0);
+  text-decoration: none;
 }
 [data-theme='dark'] .framework {
   background: var(--ifm-color-emphasis-200);
 }
+.unavailableWrapper {
+  background: var(--ifm-color-emphasis-200);
+}
+[data-theme='dark'] .unavailableWrapper {
+  background: var(--ifm-color-emphasis-100);
+}
+
 .framework:hover {
   text-decoration: none;
   color: var(--ifm-font-color-secondary);
@@ -30,6 +36,9 @@
   padding: 0 1rem;
   transition: all 0.3s;
   margin-bottom: 0.2rem;
+}
+.iconUnavailable {
+  filter: grayscale(100%);
 }
 
 @media screen and (max-width: 996px) {

@@ -115,6 +115,16 @@ const config: Config = {
           label: 'Releases'
         },
         {
+          href: 'https://x.com/alovajs',
+          className: 'header-x-link',
+          position: 'right'
+        },
+        {
+          href: 'https://discord.gg/S47QGJgkVb',
+          className: 'header-discord-link',
+          position: 'right'
+        },
+        {
           href: 'https://github.com/alovajs/alova',
           className: 'header-github-link',
           position: 'right'

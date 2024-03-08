@@ -15,10 +15,7 @@ import quickStartVueOptions from '!!raw-loader!@site/codesandbox/01-getting-star
 import quickStartStaticVue from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/vueComposition-static.zh.html';
 import quickStartStaticReact from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/react-static.zh.html';
 import quickStartStaticVueOptions from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/vueOptions-static.zh.html';
-import quickStartMethodVue from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/vueComposition-method.zh.vue';
-import quickStartMethodReact from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/react-method.zh.jsx';
-import quickStartMethodVueOptions from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/vueOptions-method.zh.vue';
-import quickStartMethodSvelte from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/svelte-method.zh.svelte';
+import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 
 :::tip 示例提示
 
@@ -43,120 +40,52 @@ yarn add alova
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="3" label="pnpm">
 
-## 先创建一个 alova 实例
-
-<Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
-
-```js
-import { createAlova } from 'alova';
-import VueHook from 'alova/vue';
-import GlobalFetch from 'alova/GlobalFetch';
-
-export const alovaInstance = createAlova({
-  statesHook: VueHook,
-  requestAdapter: GlobalFetch()
-});
+```bash
+pnpm add alova
 ```
 
 </TabItem>
-<TabItem value="2" label="react">
+<TabItem value="4" label="bun">
 
-```js
-import { createAlova } from 'alova';
-import ReactHook from 'alova/react';
-import GlobalFetch from 'alova/GlobalFetch';
-
-export const alovaInstance = createAlova({
-  statesHook: ReactHook,
-  requestAdapter: GlobalFetch()
-});
+```bash
+pnpm add alova
 ```
 
 </TabItem>
-<TabItem value="3" label="svelte">
+<TabItem value="5" label="deno">
 
-```js
-import { createAlova } from 'alova';
-import SvelteHook from 'alova/svelte';
-import GlobalFetch from 'alova/GlobalFetch';
-
-export const alovaInstance = createAlova({
-  statesHook: SvelteHook,
-  requestAdapter: GlobalFetch()
-});
-```
-
-</TabItem>
-<TabItem value="4" label="vue options">
-
-在 vue options 风格中使用，需要额外安装`@alova/vue-options`包。
-
-```js
-import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
-import { VueOptionsHook } from '@alova/vue-options';
-
-export const alovaInstance = createAlova({
-  statesHook: VueOptionsHook,
-  requestAdapter: GlobalFetch()
-});
+```javascript
+// 在deno中无需安装
+import * from 'npm:alova@^2';
 ```
 
 </TabItem>
 </Tabs>
 
-在创建 alova 实例时，指定了两个参数：
+## 创建 alova 实例
 
-1. statesHook：决定使用 useHook 请求时，返回哪个 UI 库的状态，可以根据项目中所使用的 UI 框架决定选择哪个 statesHook。
-2. requestAdapter：alova 实例使用的请求适配器，在这里推荐使用`GlobalFetch`请求适配器， 它是基于`fetch API`的封装。
+在 alova 中需要通过 alova 实例发起请求，我们先创建一个。
 
-## 直接发送请求
+```javascript
+import { createAlova } from 'alova';
+import GlobalFetch from 'alova/GlobalFetch';
+
+const alovaInstance = createAlova({
+  requestAdapter: GlobalFetch()
+});
+```
+
+在创建 alova 实例时需要指定请求适配器，在这里推荐使用`GlobalFetch`请求适配器， 它是基于`fetch API`的封装。
+
+## 发送 GET 请求
 
 通过 `alovaInstance.Get` 并传入 url 即可发送一个请求，由于使用了`GlobalFetch`请求适配器，将会接收到一个`Response`实例，这很简单。
 
-<Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<EmbedSandpack template="vanilla" mainFile={quickStartGET} editorHeight={400} containBaseURL={false} />
 
-<EmbedSandpack template="vue" mainFile={quickStartMethodVue} editorHeight={400} containBaseURL={false} containResponded={false} />
-
-</TabItem>
-
-<TabItem value="2" label="react">
-
-<EmbedSandpack template="react" mainFile={quickStartMethodReact} editorHeight={400} containBaseURL={false} containResponded={false} />
-
-</TabItem>
-<TabItem value="3" label="svelte">
-
-<EmbedSandpack template="svelte" mainFile={quickStartMethodSvelte} editorHeight={400} containBaseURL={false} containResponded={false} />
-
-</TabItem>
-<TabItem value="4" label="vue options">
-
-<EmbedSandpack template="vue" style="options" mainFile={quickStartMethodVueOptions} editorHeight={400} containBaseURL={false} containResponded={false} />
-
-</TabItem>
-</Tabs>
-
-你也可以使用`await alovaInstance.Get`等待响应。
-
-:::info 版本差别
-
-在`[v2.16.0]`之前的版本中，需要调用`send`函数才可以发送请求，如果是`[v2.16.0]`之后的版本可以忽略这个提醒。
-
-```js
-alovaInstance
-  .Get('https://jsonplaceholder.typicode.com/todos/1')
-  .send()
-  .then(response => {
-    // ...
-  });
-```
-
-:::
+在异步函数中，你也可以使用`await alovaInstance.Get`等待响应。
 
 ## 使用 useRequest 发送请求
 

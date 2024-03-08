@@ -37,6 +37,9 @@ const fileEntry = {
   },
   static: {
     root: '/index.html'
+  },
+  vanilla: {
+    root: '/index.js'
   }
 };
 const customSetup = {
