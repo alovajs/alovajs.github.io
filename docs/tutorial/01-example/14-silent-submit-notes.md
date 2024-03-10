@@ -5,7 +5,7 @@ sidebar_position: 140
 
 import NoteSilentReact from '@site/example-links/NoteSilentReact';
 
-> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/tutorial/getting-started/overview) for details;
+> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/tutorial/getting-started) for details;
 
 <NoteSilentReact></NoteSilentReact>
 

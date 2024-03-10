@@ -1,137 +1,137 @@
 ---
-title: Global interceptors
+title: 全局拦截器
 sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Global before request interceptor
+## 全局的请求拦截器
 
-Usually, we need to use the same configuration for all requests, such as adding token and timestamp to the request header. `alova` provides us with a global request interceptor, which will be triggered before the request. We can use this interceptor Set the request parameters in a unified way.
+通常，我们需要让所有请求都用上相同的配置，例如添加 token、timestamp 到请求头，此时我们可以设置一个全局的请求拦截器，它将在所有请求前被触发，我们可以在此拦截器中统一设置请求参数。
 
 ```mermaid
 flowchart LR
-  R1[Request 1] --> beforeRequest
-  R2[Request 2] --> beforeRequest
-  R3[Request 3] --> beforeRequest
-  R4[Request N] --> beforeRequest
-  beforeRequest --> S1[send request]
+  R1[请求1] --> beforeRequest
+  R2[请求2] --> beforeRequest
+  R3[请求3] --> beforeRequest
+  RN[请求N] --> beforeRequest
+  beforeRequest --> S1[发送请求]
 ```
 
 ```javascript
 const alovaInstance = createAlova({
-  //...
-  // The function parameter is a method instance, including request data such as url, params, data, headers, etc.
-  // You are free to modify these data
+  // ...
+  // 函数参数为一个method实例，包含如url、params、data、headers等请求数据
+  // 你可以自由修改这些数据
   // highlight-start
   beforeRequest(method) {
-    // Suppose we need to add token to the request header
+    // 假设我们需要添加token到请求头
     method.config.headers.token = 'token';
   }
   // highlight-end
 });
 ```
 
-You can also make beforeRequest an async function.
+你也可以将 beforeRequest 设置为异步函数。
 
 ```javascript
 const alovaInstance = createAlova({
-  //...
+  // ...
   // highlight-start
   async beforeRequest(method) {
-    // perform some asynchronous tasks
-    //...
+    // 执行一些异步任务
+    // ...
   }
   // highlight-end
 });
 ```
 
-## Global response interceptor
+## 全局的响应拦截器
 
-When we want to uniformly parse response data, uniformly handle errors, and uniformly handle request completion, we can specify a global response interceptor when creating an alova instance. The response interceptor includes an interceptor for successful requests and an interceptor for error requests. and request completion interceptors.
+当我们希望统一解析响应数据、统一处理错误，以及统一处理请求完成时，此时可以在创建 alova 实例时指定全局的响应拦截器，响应拦截器包括请求成功的拦截器、请求失败的拦截器，和请求完成的拦截器。
 
 ```mermaid
 flowchart LR
   classDef error fill:#f96,stroke:#f00,stroke-width:2px;
 
-  R1[Request 1 successful] --> responded.onSuccess
-  R2[Request 2 successful] --> responded.onSuccess
-  RN[Request N successful] --> responded.onSuccess
-  R4[Request 4 error]:::error --> responded.onError
-  RM[Request M error]:::error --> responded.onError
+  R1[请求1成功] --> responded.onSuccess
+  R2[请求2成功] --> responded.onSuccess
+  RN[请求N成功] --> responded.onSuccess
+  R4[请求4失败]:::error --> responded.onError:::error
+  R5[请求M失败]:::error --> responded.onError:::error
   responded.onSuccess --> responded.onComplete
   responded.onError --> responded.onComplete
 ```
 
 ```javascript
 const alovaInstance = createAlova({
-  //...
-  // Use two items of the array to specify the interceptor for successful request and the interceptor for failed request
+  // ...
+  // 使用数组的两个项，分别指定请求成功的拦截器和请求失败的拦截器
   responded: {
     // highlight-start
-    // request success interceptor
-    // When using the GlobalFetch request adapter, the first parameter receives the Response object
-    // The second parameter is the method instance of the current request, you can use it to synchronize the configuration information before and after the request
+    // 请求成功的拦截器
+    // 当使用GlobalFetch请求适配器时，第一个参数接收Response对象
+    // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
     onSuccess: async (response, method) => {
       if (response.status >= 400) {
         throw new Error(response.statusText);
       }
       const json = await response.json();
       if (json.code !== 200) {
-        // This request will throw an error when an error is thrown or a Promise instance in the reject state is returned
+        // 抛出错误或返回reject状态的Promise实例时，此请求将抛出错误
         throw new Error(json.message);
       }
 
-      // The parsed response data will be passed to the transformData hook function of the method instance, and these functions will be explained later
+      // 解析的响应数据将传给method实例的transformData钩子函数，这些函数将在后续讲解
       return json.data;
     },
     // highlight-end
 
     // highlight-start
-    // Interceptor for request failure
-    // This interceptor will be entered when the request is wrong.
-    // The second parameter is the method instance of the current request, you can use it to synchronize the configuration information before and after the request
+    // 请求失败的拦截器
+    // 请求错误时将会进入该拦截器。
+    // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
     onError: (err, method) => {
       alert(error.message);
     },
     // highlight-end
 
     // highlight-start
-    // Interceptor for request completion
-    // When you need logic that needs to be executed whether the request succeeds, fails, or hits the cache, you can specify a global `onComplete` interceptor when creating an `alova` instance, such as hiding request loading.
-    // Receive the method instance of the current request
+    // 请求完成的拦截器
+    // 当你需要在请求不论是成功、失败、还是命中缓存都需要执行的逻辑时，可以在创建alova实例时指定全局的`onComplete`拦截器，例如关闭请求 loading 状态。
+    // 接收当前请求的method实例
     onComplete: async method => {
-      // Process request completion logic
+      // 处理请求完成逻辑
     }
     // highlight-end
   }
 });
 ```
 
-If you don't need to set the interceptor for request error or complete, you can directly pass in the interceptor function for successful request instead of setting the callback through the object.
+如果不需要设置请求失败或完成的拦截器，可以直接传入请求成功的拦截器函数，而不再需要通过对象来设置回调。
 
 ```javascript
 const alovaInstance = createAlova({
-  //...
+  // ...
   // highlight-start
   async responded(response, method) {
-    // request success interceptor
+    // 请求成功的拦截器
   }
   // highlight-end
 });
 ```
 
-:::info Instruction for interceptors triggering
+:::info 拦截器触发说明
 
-When you use the `GlobalFetch` as the requestAdapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or breaks, and other cases will trigger the `onSuccess` interceptor, [for more details here](https://developer.mozilla.org/docs/Web/API/fetch)
+当你使用`GlobalFetch`请求适配器时，由于`window.fetch`的特点，只有在连接超时或连接中断时才会触发`onError`拦截器，其他情况均会触发`onSuccess`拦截器，[详情请查看这边](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::
 
-:::warning special attention
+:::warning 特别注意
 
-1. `onSuccess`, `onError` and `onComplete` can be set as synchronous function or asynchronous function.
-2. The `onError` callback is a capture function for request errors. it will not emit `onError` when throw error in `onSuccess`. When an error is caught but no error is thrown or a Promise instance in the reject state is returned, the request will be considered successful and no response data will be obtained.
-3. In 2.0.x and previous versions, `responded` was misspelled as `responsed`, and the two have been made compatible in 2.1.0. It is recommended to use `responded` instead of `responsed` in subsequent versions.
+1. `onSuccess`、`onError`和`onComplete`均可以设为同步函数和异步函数。
+2. `onError` 回调是请求错误的捕获函数，`onSuccess` 中抛出错误不会触发 `onError`。当捕获错误但没有抛出错误或返回 reject 状态的 Promise 实例，将认为请求是成功的，且不会获得响应数据。
+3. 在 2.0.x 及以前的版本中将`responded`错误地拼写为了`responsed`，在 2.1.0 中已将两者做了兼容处理，建议在后续版本中使用`responded`代替`responsed`。
 
 :::

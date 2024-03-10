@@ -155,4 +155,39 @@ function XMLHttpRequestAdapter(requestElements, methodInstance) {
 
 ## 请求适配器类型
 
-请求适配器的参数以及支持 Typescript 的写法，可以在 [Typescript 章节](/tutorial/getting-started/typescript)中找到。
+全局的`beforeRequest`、`responded`拦截器，以及`Method`实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，以下是 GlobalFetch 的类型。
+
+```javascript
+import type { RequestElements, Method, ProgressUpdater } from 'alova';
+
+export type GlobalFetch = () => (
+  elements: RequestElements,
+  method: Method<any, any, any, any, RequestInit, Response, Headers>
+) => {
+  response: () => Promise<Response>,
+  headers: () => Promise<Headers>,
+  onDownload: (handler: ProgressUpdater) => void,
+  abort: () => void
+};
+```
+
+在这个类型中分别指定了`RC`、`RE`和`RH`三个类型的值，因此在全局的拦截器中、method 实例配置中等地方将自动推断为请求适配器给定的类型。
+
+它们分别表示为：
+
+- **RC**：*RequestConfig*的缩写，请求配置对象类型
+- **RH**：*ResponseHeader*的缩写，响应头对象类型
+- **RE**：*Response*的缩写，响应类型
+
+如果你正在使用 **GlobalFetch**，他们的类型分别会被推断为：
+
+- **RC**：fetch api 的请求配置对象`RequestInit`;
+- **RH**：响应头对象`Headers`;
+- **RE**：响应对象`Response`;
+
+为了方便定义请求适配器的类型，alova 中也提供了一个适配器类型，你只需要根据需要传入`RC/RE/RH`泛型参数即可。
+
+```typescript
+import type { AlovaRequestAdapter } from 'alova';
+type CustomRequestAdpater = AlovaRequestAdapter<any, any, RequestInit, Response, Headers>;
+```

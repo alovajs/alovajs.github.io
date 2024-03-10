@@ -12,7 +12,7 @@ const buttons = [
         size={24}></IconFont>
     ),
     text: <Translate>Get Started</Translate>,
-    link: '/tutorial/getting-started/overview',
+    link: '/tutorial/getting-started',
     target: '_self'
   },
   {

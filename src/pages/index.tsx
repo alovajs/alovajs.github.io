@@ -17,7 +17,7 @@ function HomepageHeader() {
     {
       text: <Translate id="homepage.Get Started">Get Started</Translate>,
       type: 'primary',
-      link: '/tutorial/getting-started/overview'
+      link: '/tutorial/getting-started'
     },
     {
       text: <Translate id="homepage.Examples">Examples</Translate>,

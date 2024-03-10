@@ -38,42 +38,6 @@
   --ifm-color-primary-rgb: 76, 109, 214;
 }
 
-/* common */
-
-/* flex */
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.align-center {
-  align-items: center;
-}
-.align-start {
-  align-items: flex-start;
-}
-.align-end {
-  align-items: flex-end;
-}
-.justify-center {
-  justify-content: center;
-}
-.justify-end {
-  justify-content: flex-end;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-.flex-1 {
-  flex: 1;
-}
-
 /* GitHub */
 .header-github-link:hover {
   opacity: 0.6;
@@ -121,9 +85,8 @@ html[data-theme='dark'] .header-x-link:before {
 .menu__link--active {
   color: var(--ifm-menu-color-active) !important;
 }
+.menu__link:after,
 .menu__caret:before {
-  width: 0.7rem;
-  height: 0.7rem;
   background-size: 1.4rem 1.4rem;
 }
 
@@ -133,7 +96,7 @@ code {
   border: none;
   padding: 0.0625rem 0.25rem;
 }
-article a {
+article a:not([class]) {
   text-decoration: underline;
   text-decoration-color: var(--ifm-color-primary-lightest);
   text-underline-offset: 0.0625em;
@@ -150,9 +113,11 @@ table thead tr {
   box-shadow: none !important;
   border: solid 1px var(--ifm-color-emphasis-200);
 }
-
 strong {
   color: var(--ifm-color-primary);
+}
+.navbar {
+  border-bottom: 1px solid var(--ifm-toc-border-color);
 }
 
 /* //////// 自定义类 //////// */

@@ -5,7 +5,7 @@ sidebar_position: 120
 
 import SettingSilentSvelte from '@site/example-links/SettingSilentSvelte';
 
-> The example uses svelte as an example, but you can also use alova in react and vue, please read the [Getting Started Guide](/tutorial/getting-started/overview) for details;
+> The example uses svelte as an example, but you can also use alova in react and vue, please read the [Getting Started Guide](/tutorial/getting-started) for details;
 
 <SettingSilentSvelte></SettingSilentSvelte>
 

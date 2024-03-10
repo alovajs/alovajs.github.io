@@ -5,7 +5,7 @@ sidebar_position: 160
 
 import CaptchaSend from '@site/example-links/CaptchaSend';
 
-> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/tutorial/getting-started/overview) for details;
+> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/tutorial/getting-started) for details;
 
 <CaptchaSend></CaptchaSend>
 
