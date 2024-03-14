@@ -57,7 +57,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-以[method 实例匹配器](/tutorial/advanced/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
+以[method 匹配器](/tutorial/advanced/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
 
 - **类型**
 
@@ -75,7 +75,7 @@ function matchSnapshotMethod(matcher: MethodFilter, matchAll?: boolean): Method[
 
 - **参数**
 
-1. `matcher`：method 实例匹配器
+1. `matcher`：method 匹配器
 2. `matchAll`：是否匹配全部，默认为 true
 
 - **返回**

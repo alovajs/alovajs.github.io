@@ -4,7 +4,7 @@ import alovaVueComposition from '!!raw-loader!@site/codesandbox/00-create-alova/
 import alovaVueOptions from '!!raw-loader!@site/codesandbox/00-create-alova/vueOptions';
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { SandpackPredefinedTemplate } from '@codesandbox/sandpack-react/unstyled';
-import { dracula, githubLight } from '@codesandbox/sandpack-themes';
+import { amethyst, monokaiPro } from '@codesandbox/sandpack-themes';
 import { useColorMode } from '@docusaurus/theme-common';
 
 const fileEntry = {
@@ -37,6 +37,9 @@ const fileEntry = {
   },
   static: {
     root: '/index.html'
+  },
+  vanilla: {
+    root: '/index.js'
   }
 };
 const customSetup = {
@@ -99,8 +102,8 @@ const EmbedSandpack = ({
   style
 }: Props) => {
   const themes = {
-    light: githubLight,
-    dark: dracula
+    light: amethyst,
+    dark: monokaiPro
   };
   const targetEntry = fileEntry[template + (style ? `-${style}` : '')];
   const files = {

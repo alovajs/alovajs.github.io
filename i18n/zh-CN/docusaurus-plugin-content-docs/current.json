@@ -16,16 +16,16 @@
     "description": "The generated-index page description for category Examples in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Getting Started": {
-    "message": "入门",
+    "message": "开始",
     "description": "The label for category Get Started in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Response Cache": {
     "message": "响应缓存",
     "description": "The label for category Learn in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Response data management": {
-    "message": "响应数据管理",
-    "description": "The label for category Response data management in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Combine framework": {
+    "message": "结合框架",
+    "description": "The label for category Combine framework in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Strategy": {
     "message": "请求策略",

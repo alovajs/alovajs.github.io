@@ -7,7 +7,7 @@ sidebar_position: 30
 
 Represents the sending of a request. When executing useRequest, a request will be sent by default, and stateful request-related data will be created and maintained, such as `loading/data/error`, etc. It is the most commonly used method when obtaining initial data on the page. It also supports turning off its default request sending, which is very useful in request scenarios triggered by click events such as submitting data.
 
-> Go to [Send Request](/tutorial/getting-started/first-request) for details.
+> Go to [Send Request](/tutorial/combine-framework/use-request) for details.
 
 ### type
 
@@ -131,7 +131,7 @@ The following attribute values will automatically infer the responsive data type
 
 Monitor the status and initiate a request after the status changes. In some scenarios that require re-requesting as the data changes, such as paging, data filtering, and fuzzy search.
 
-> Go to [State Change Request](/tutorial/getting-started/states-change-request) for details.
+> Go to [State Change Request](/tutorial/combine-framework/use-watcher) for details.
 
 ### type
 
@@ -193,7 +193,7 @@ function useWatcher(
 
 It is used to pull data through `useFetcher`, which is useful when preloading data and updating status across modules.
 
-> Go to [Data Fetching](/tutorial/advanced/data-fetching) to view details.
+> Go to [Data Fetching](/tutorial/advanced/use-fetcher) to view details.
 
 ### type
 

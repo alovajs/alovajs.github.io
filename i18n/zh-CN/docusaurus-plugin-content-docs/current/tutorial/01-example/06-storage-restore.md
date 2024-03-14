@@ -5,7 +5,7 @@ sidebar_position: 60
 
 import StorageRestore from '@site/example-links/StorageRestore';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started/overview);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started);
 
 <StorageRestore></StorageRestore>
 

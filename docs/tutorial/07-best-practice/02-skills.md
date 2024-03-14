@@ -221,9 +221,9 @@ const handleInvalidateCache = id => {
 }
 ```
 
-## Simulation data practice
+## Mock data practice
 
-If your project needs to use simulated data to simulate some or all interfaces in the development environment, and switch back to real network requests in production, you can control it through environment variables.
+If your project needs to use mock data to simulate some or all interfaces in the development environment, and switch back to real network requests in production, you can control it through environment variables.
 
 ```javascript
 const globalFetch = GlobalFetch();
@@ -242,3 +242,89 @@ export const alovaInst = createAlova({
 ```
 
 And it is recommended that different developers in the team can create different mock interface data according to the version number of each iteration, so as to manage these mock data in the team. For details, please refer to the chapter of [mock Data](/tutorial/request-adapter/alova-mock) .
+
+## Use useRequest to make parallel requests
+
+For simple parallel requests, you only need to call multiple useRequest at the same time.
+
+```javascript
+const { data: todoList } = useRequest(todoListGetter);
+const { data: todoCounter } = useRequest(todoCountGetter);
+```
+
+But such a request only applies to simple parallel requests. If you need to perform certain operations after all parallel requests are completed, there are two ways to achieve it:
+
+### method 1
+
+Manually create a promise object and use `Promise.all` to complete the effect.
+
+```javascript
+const { data: todoList, onSuccess: onListSuccess, onError: onListError } = useRequest(todoListGetter);
+const { data: todoCounter, onSuccess: onCountSuccess, onError: onCountError } = useRequest(todoCountGetter);
+
+// Manually create promise object
+const listPromise = new Promise((resolve, reject) => {
+  onListSuccess(resolve);
+  onListError(reject);
+});
+const countPromise = new Promise((resolve, reject) => {
+  onCountSuccess(resolve);
+  onCountError(reject);
+});
+const [listEvent, countEvent] = await Promise.all([listPromise, countPromise]);
+// Parallel request is completed, continue processing business...
+```
+
+### Method 2
+
+Using the `send` function returned by the `useRequest` function, calling `send` will return a usable promise object.
+
+```javascript
+// Let them not automatically send requests first
+const { send: sendList } = useRequest(todoListGetter, { immediate: false });
+const { send: sendCount } = useRequest(todoCountGetter, { immediate: false });
+
+//Use the promise object returned by the send function
+const parallelRequest = async () => {
+  const [listResponse, countResponse] = await Promise.all([sendList(), sendCount()]);
+  // Parallel request is completed, continue processing business...
+};
+```
+
+## Use useRequest serial request
+
+Serial requests also have two modes.
+
+### method 1
+
+Let the first request be sent automatically, and the second request be triggered in the `onSuccess` callback of the first request to complete the serial request. The serial request can be completed by the following writing method:
+
+```javascript
+//
+const { data: todoList, onSuccess } = useRequest(todoListGetter);
+const { data: todoDetail, send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), { immediate: false });
+
+// Get the list first, then get the details of the first todo
+onSuccess(event => {
+  sendTodoDetail(event.todoList[0].id);
+});
+```
+
+### Method 2
+
+Using the `send` function returned by the `useRequest` function, calling `send` will return a usable promise object.
+
+```javascript
+// Let them not automatically send requests first
+const { send: sendList } = useRequest(todoListGetter, { immediate: false });
+const { send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), { immediate: false });
+
+//Use the promise object returned by the send function
+const serialRequest = async () => {
+  const todoList = await sendList();
+  const todoDetail = await sendTodoDetail(todoList[0].id);
+  // The serial request is completed, continue processing business...
+};
+```
+
+> For serial requests, it is recommended to use [useSerialRequest](/tutorial/strategy/useSerialRequest) and [useSerialWatcher](/tutorial/strategy/useSerialWatcher) directly.

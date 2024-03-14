@@ -3,8 +3,8 @@
 import type { Config } from '@docusaurus/types';
 import { themes } from 'prism-react-renderer';
 
-const lightCodeTheme = themes.github;
-const darkCodeTheme = themes.dracula;
+const lightCodeTheme = themes.duotoneLight;
+const darkCodeTheme = themes.oceanicNext;
 const config: Config = {
   title: 'Alova.JS',
   tagline:
@@ -68,7 +68,7 @@ const config: Config = {
       },
       items: [
         {
-          to: 'tutorial/getting-started/overview',
+          to: 'tutorial/getting-started',
           position: 'left',
           label: 'Docs'
         },
@@ -115,6 +115,16 @@ const config: Config = {
           label: 'Releases'
         },
         {
+          href: 'https://x.com/alovajs',
+          className: 'header-x-link',
+          position: 'right'
+        },
+        {
+          href: 'https://discord.gg/S47QGJgkVb',
+          className: 'header-discord-link',
+          position: 'right'
+        },
+        {
           href: 'https://github.com/alovajs/alova',
           className: 'header-github-link',
           position: 'right'
@@ -142,13 +152,22 @@ const config: Config = {
     },
     footer: {
       style: 'light',
+
+      logo: {
+        alt: 'Meta Open Source Logo',
+        src: 'img/logo.svg',
+        href: 'https://opensource.fb.com',
+        width: 160,
+        height: 51
+      },
+
       links: [
         {
           title: 'Nav',
           items: [
             {
               label: 'Docs',
-              to: 'tutorial/getting-started/overview'
+              to: 'tutorial/getting-started'
             },
             {
               label: 'Example',
@@ -156,23 +175,26 @@ const config: Config = {
             }
           ]
         },
-        // {
-        //   title: 'Community',
-        //   items: [
-        //     {
-        //       label: 'Stack Overflow',
-        //       to: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //     },
-        //     {
-        //       label: 'Discord',
-        //       to: 'https://discordapp.com/invite/docusaurus',
-        //     },
-        //     {
-        //       label: 'Twitter',
-        //       to: 'https://twitter.com/docusaurus',
-        //     },
-        //   ],
-        // },
+        {
+          title: 'Community',
+          items: [
+            // {
+            //   label: 'Stack Overflow',
+            //   to: 'https://stackoverflow.com/questions/tagged/docusaurus',
+            // },
+            {
+              label: 'Discord',
+              to: 'https://discord.gg/S47QGJgkVb'
+            },
+            {
+              label: 'X',
+              to: 'https://x.com/alovajs'
+            },
+            {
+              html: '<a href="/img/wechat_qrcode.jpg" target="_blank" class="footer__link-item" rel="noreferrer noopener">Wechat Group</a>'
+            }
+          ]
+        },
         {
           title: 'More',
           items: [

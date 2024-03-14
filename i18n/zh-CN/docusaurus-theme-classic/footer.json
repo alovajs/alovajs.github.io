@@ -1,7 +1,11 @@
 {
   "link.title.Nav": {
     "message": "导航",
-    "description": "The title of the footer links column with title=Docs in the footer"
+    "description": "The title of the footer links column with title=Nav in the footer"
+  },
+  "link.title.Community": {
+    "message": "社区",
+    "description": "The title of the footer links column with title=Community in the footer"
   },
   "link.title.More": {
     "message": "更多",
@@ -9,7 +13,7 @@
   },
   "link.item.label.Docs": {
     "message": "文档",
-    "description": "The label of footer link with label=Guide linking to /tutorial/getting-started/overview"
+    "description": "The label of footer link with label=Guide linking to /tutorial/getting-started"
   },
   "link.item.label.Example": {
     "message": "示例",
@@ -26,9 +30,5 @@
   "link.item.label.Pull request": {
     "message": "Pull request",
     "description": "The label of footer link with label=Pull request linking to https://github.com/alovajs/alova/pulls"
-  },
-  "copyright": {
-    "message": "Copyright © 2023 alova.js Team",
-    "description": "The footer copyright"
   }
 }

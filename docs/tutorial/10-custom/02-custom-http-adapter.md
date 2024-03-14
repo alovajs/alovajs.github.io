@@ -81,7 +81,7 @@ An asynchronous function, the response header object returned by the function wi
 
 **abort (required)**
 
-An ordinary function, which is used for interrupt request. When the `abort` function is called in the [Manual Interrupt Request](#Manual Interrupt Request) chapter, the function that actually triggers the interrupt request is this interrupt function;
+A common function, which is used for aborting request. All aborting requests will eventually call this function to execute;
 
 **onDownload (optional)**
 
@@ -153,6 +153,41 @@ More complete request adapter details can be found in [GlobalFetch source code](
 
 :::
 
-## request adapter type
+## Request adapter type
 
-The parameters of the request adapter and the way it supports Typescript can be found in the [Typescript chapter](/tutorial/getting-started/typescript).
+The types of the global `beforeRequest`, `responded` interceptors, and the configuration object when the `Method` instance is created will be automatically inferred based on the type provided by the request adapter. The following are the types of GlobalFetch.
+
+```javascript
+import type { RequestElements, Method, ProgressUpdater } from 'alova';
+
+export type GlobalFetch = () => (
+  elements: RequestElements,
+  method: Method<any, any, any, any, RequestInit, Response, Headers>
+) => {
+  response: () => Promise<Response>,
+  headers: () => Promise<Headers>,
+  onDownload: (handler: ProgressUpdater) => void,
+  abort: () => void
+};
+```
+
+Three types of values ​​of `RC`, `RE` and `RH` are specified in this type, so the type given by the request adapter will be automatically inferred in the global interceptor, method instance configuration and other places.
+
+They are expressed as:
+
+- **RC**: Abbreviation of _RequestConfig_, request configuration object type
+- **RH**: Abbreviation of _ResponseHeader_, response header object type
+- **RE**: Abbreviation of _Response_, response type
+
+If you are using **GlobalFetch**, their types will be inferred as:
+
+- **RC**: fetch api's request configuration object `RequestInit`;
+- **RH**: Response header object `Headers`;
+- **RE**: response object `Response`;
+
+In order to facilitate the definition of the request adapter type, alova also provides an adapter type. You only need to pass in the `RC/RE/RH` generic parameters as needed.
+
+```typescript
+import type { AlovaRequestAdapter } from 'alova';
+type CustomRequestAdpater = AlovaRequestAdapter<any, any, RequestInit, Response, Headers>;
+```

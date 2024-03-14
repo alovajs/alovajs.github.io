@@ -276,7 +276,7 @@
     "description": "The title of web page"
   },
   "homepage.tagline": {
-    "message": "以声明的方式完成各种复杂场景的网络请求，这意味着使用非常少量的代码就可以实现更高的流畅性和可用性的网络请求，让你的应用如智者一般具备卓越的策略思维",
+    "message": "一行代码完成各种复杂场景的网络请求，别再花时间在请求这件小事上了，交给我们",
     "description": "网站tagline"
   },
   "homepage.relationTitle": {
@@ -624,12 +624,25 @@
     "description": "description of support subtitle"
   },
 
+  "homepage.contributors.title": {
+    "message": "感谢有你们",
+    "description": "description of contributors title"
+  },
+  "homepage.contributors.subtitle": {
+    "message": "alova贡献者们的智慧和力量，正在让alova变得越来越完美",
+    "description": "description of contributors subtitle"
+  },
+
   "homepage.like.title": {
     "message": "如果你也喜欢alova",
     "description": "description of support title"
   },
   "homepage.like.btnGithub": {
-    "message": "在Github star alova",
+    "message": "在Github点星",
+    "description": "description of like btnGithub"
+  },
+  "homepage.like.btnX": {
+    "message": "在X关注我们",
     "description": "description of like btnGithub"
   },
   "homepage.like.btnDiscord": {

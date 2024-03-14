@@ -16,7 +16,7 @@ This problem often occurs when updating status across pages, because what we ten
 1. Persist the page components to ensure that the updated status can still be found;
 2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
 
-> Go to [Cross-page/module update response states](/tutorial/advanced/update-states-across-modules) for details.
+> Go to [Cross-page/module update response states](/tutorial/advanced/update-across-components) for details.
 
 > To use updateState to manage extra states, please refer to [Extra State Management](/tutorial/advanced/manage-extra-states).
 
@@ -40,7 +40,7 @@ function updateState(
 
 - **Parameters**
 
-- `matcher`: The value is method instance, method name string, method name regular expression, it can also be set to [method instance matcher] (/tutorial/advanced/method-matcher), if it matches the qualified method, `handleUpdate` will be called.
+- `matcher`: The value is method instance, method name string, method name regular expression, it can also be set to [method instance matcher](/tutorial/advanced/method-matcher), if it matches the qualified method, `handleUpdate` will be called.
 - `handleUpdate`: update function or update function collection. If it is a function collection, the corresponding update function on the collection will be called and the return value will be used as the update result.
 - `options`: optional options.
 

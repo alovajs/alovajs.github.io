@@ -8,25 +8,26 @@ const buttons = [
   {
     icon: (
       <IconFont
-        name="youjiantou"
+        name="kaishi"
+        style={{ color: 'var(--ifm-color-primary)' }}
         size={24}></IconFont>
     ),
     text: <Translate>Get Started</Translate>,
-    link: '/tutorial/getting-started/overview',
+    link: '/tutorial/getting-started',
     target: '_self'
   },
   {
+    icon: <span className="header-x-link"></span>,
+    text: <Translate id="homepage.like.btnX">Follow on X</Translate>,
+    link: 'https://x.com/alovajs'
+  },
+  {
     icon: <span className="header-github-link"></span>,
-    text: <Translate id="homepage.like.btnGithub">Star alova on Github</Translate>,
+    text: <Translate id="homepage.like.btnGithub">Star on Github</Translate>,
     link: 'https://github.com/alovajs/alova'
   },
   {
-    icon: (
-      <IconFont
-        name="discord"
-        style={{ color: '#5865f2' }}
-        size={30}></IconFont>
-    ),
+    icon: <span className="header-discord-link"></span>,
     text: <Translate id="homepage.like.btnDiscord">Say "Hi" on Discord</Translate>,
     link: 'https://discord.gg/S47QGJgkVb'
   },

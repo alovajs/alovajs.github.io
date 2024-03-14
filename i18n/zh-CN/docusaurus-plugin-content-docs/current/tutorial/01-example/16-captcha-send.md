@@ -5,7 +5,7 @@ sidebar_position: 160
 
 import CaptchaSend from '@site/example-links/CaptchaSend';
 
-> 示例以 react 为例，但你还可以在 vue3、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started/overview);
+> 示例以 react 为例，但你还可以在 vue3、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started);
 
 <CaptchaSend></CaptchaSend>
 

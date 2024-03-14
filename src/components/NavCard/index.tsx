@@ -4,9 +4,11 @@ import clsx from 'clsx';
 import styles from './style.module.css';
 
 interface Card {
+  Image: React.JSX.Element;
   title: string;
-  desc: string;
+  desc?: string;
   link: string;
+  target?: string;
 }
 interface IProps {
   list: Card[];
@@ -14,18 +16,22 @@ interface IProps {
 const NavCard = ({ list }: IProps) => {
   return (
     <div className={styles.cardWrapper}>
-      {list.map(({ title, desc, link }) => (
+      {list.map(({ Image, target, title, desc, link }) => (
         <Link
           to={link}
           key={title}
+          target={target}
           className={clsx(styles.cardItem)}>
           <div className={styles.cardTitle}>
-            <strong>{title}</strong>
+            <div className="flex-row align-center">
+              {Image ? <div className={styles.image}>{Image}</div> : null}
+              <strong>{title}</strong>
+            </div>
             <IconFont
               name="youjiantou"
               width={18}></IconFont>
           </div>
-          <span>{desc}</span>
+          {desc ? <span className={styles.cardDesc}>{desc}</span> : null}
         </Link>
       ))}
     </div>
