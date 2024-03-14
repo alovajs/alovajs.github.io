@@ -81,7 +81,7 @@ An asynchronous function, the response header object returned by the function wi
 
 **abort (required)**
 
-An ordinary function, which is used for interrupt request. When the `abort` function is called in the [Manual Interrupt Request](#Manual Interrupt Request) chapter, the function that actually triggers the interrupt request is this interrupt function;
+A common function, which is used for aborting request. All aborting requests will eventually call this function to execute;
 
 **onDownload (optional)**
 

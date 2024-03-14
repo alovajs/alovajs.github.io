@@ -1,5 +1,5 @@
 ---
-title: Combine framework
+title: Combine Framework
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 Next, we'll learn how to use it with UI frameworks, which allows alova to unleash its true power.
 
-In [RSM](/tutorial/others/rsm), the request timing describes when the request should be sent. When used in the UI framework, it not only allows alova to automatically manage the responsive request status, but also automatically manages it through certain rules. Control when requests should be sent.
+In [RSM](/tutorial/others/RSM), the request timing describes when the request should be sent. When used in the UI framework, it not only allows alova to automatically manage the responsive request status, but also automatically manages it through certain rules. Control when requests should be sent.
 
 `alova` provides three core useHook implementation request timings: `useRequest`, `useWatcher`, and `useFetcher`. They control when requests should be issued, and at the same time they will create and maintain the responsive status of the request for us, such as` loading/data/error`, etc., you can use these reactive states directly in the view, and when they change, the view will also change accordingly.
 

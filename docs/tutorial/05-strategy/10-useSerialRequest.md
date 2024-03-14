@@ -14,7 +14,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-This use hook is more concise and easy to use than [alova's serial request method](/tutorial/getting-started/serial-request), with unified loading status, error, and callback functions.
+This use hook is more concise and easy to use than [serial request in best practice](/tutorial/best-practice/skills), with unified loading status, error, and callback functions.
 
 ## Features
 

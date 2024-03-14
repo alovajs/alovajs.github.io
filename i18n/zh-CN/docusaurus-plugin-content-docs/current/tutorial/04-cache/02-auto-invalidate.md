@@ -1,11 +1,11 @@
 ---
-title: 自动失效缓存
+title: 自动失效
 sidebar_position: 20
 ---
 
 有这样一个场景，当用户点开 todo 列表中的某一项，进入 todo 详情页并对它执行了编辑，此时我们希望上一页中的 todo 列表数据也更新为编辑后的内容，通常的做法是通过事件来触发上一页的内容更新，这样增加了维护成本。而`alova`提供了 3 种方式，可以很优雅地达到这个目的：
 
-1. 使用`useFetcher`立即重新请求最新的数据，它将在[数据拉取](/tutorial/advanced/data-fetching)章节中讲解；
+1. 使用`useFetcher`立即重新请求最新的数据，它将在[数据拉取](/tutorial/advanced/use-fetcher)章节中讲解；
 2. 更新缓存，这种方式将在后面的[缓存设置与查询](/tutorial/cache/set-and-query)章节中详细讲解；
 3. 让这个响应缓存失效，当再次请求时将会因缓存失效而重新请求数据。这也是这个章节要讲解的内容。
 
@@ -40,7 +40,7 @@ alova.Get('/todo/1', {
 
 ### 通过 method 名称匹配失效源
 
-和 method 实例匹配器一样，你可以在 hitSource 中指定 method 的名称来匹配失效源，多个失效源可以设置为同一个名称，带有这个名称的 method 实例请求成功时，目标缓存将被自动清除。
+和 method 匹配器一样，你可以在 hitSource 中指定 method 的名称来匹配失效源，多个失效源可以设置为同一个名称，带有这个名称的 method 实例请求成功时，目标缓存将被自动清除。
 
 ```javascript
 const methodSubmitTodo = data =>

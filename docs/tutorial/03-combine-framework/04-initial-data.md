@@ -1,5 +1,5 @@
 ---
-title: Set initial data
+title: Initial Data
 sidebar_position: 40
 ---
 

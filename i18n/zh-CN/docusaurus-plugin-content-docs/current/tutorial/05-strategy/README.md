@@ -4,7 +4,7 @@ title: 选择下一阶段
 
 import NavCard from '@site/src/components/NavCard';
 
-🎉 恭喜你！至此，你已完成了 alova 的基础使用，可以满足日常的项目实践。你可以根据自己的兴趣自由选择接下来的学习内容。
+🎉 恭喜你！至此，你已可以使用 alova 来满足日常的项目开发了，接下来的内容你可以根据自己的兴趣自由选择接下来的学习内容。
 
 <NavCard list={[
 {
@@ -28,6 +28,6 @@ link: '/category/request-adapter'
 
 import DocCardList from '@theme/DocCardList';
 
-选择你想要使用的请求策略了解就可以了，像使用组件库一样。
+像使用组件库一样，在你需要特定请求策略的时候学习如何使用它就可以了。
 
 <DocCardList />

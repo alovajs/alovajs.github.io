@@ -1,5 +1,5 @@
 ---
-title: 快速开始
+title: Quick Start
 sidebar_position: 20
 ---
 
@@ -10,13 +10,13 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
 
-:::tip 示例提示
+:::tip Example tip
 
-如果你还未了解 alova，推荐你先阅读 [alova 概述](/tutorial/getting-started)。
+If you haven’t learned about alova yet, it is recommended that you read [alova overview](/tutorial/getting-started) first.
 
 :::
 
-## 安装
+## Install
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -43,15 +43,17 @@ pnpm add alova
 <TabItem value="4" label="bun">
 
 ```bash
-pnpm add alova
+bun add alova
 ```
 
 </TabItem>
 </Tabs>
 
-## 创建 alova 实例
+> You can also [use alova through CDN](/tutorial/others/use-in-static)
 
-在 alova 中需要通过 alova 实例发起请求，我们先创建一个。在创建 alova 实例时需要指定请求适配器，在这里推荐使用`GlobalFetch`请求适配器， 它是基于`fetch API`的封装。
+## Create alova instance
+
+In alova, a request needs to be made through an alova instance. Let's create one first. When creating an alova instance, you need to specify a request adapter. It is recommended to use the `GlobalFetch` request adapter here, which is a package based on the `fetch API`.
 
 <Tabs>
 <TabItem value="1" label="esModule">
@@ -73,11 +75,11 @@ const { createAlova } = require('alova');
 const GlobalFetch = require('alova/GlobalFetch');
 
 const alova = createAlova({
-  requestAdapter: GlobalFetch();
+   requestAdapter: GlobalFetch();
 });
 ```
 
-> 在 nodejs 中使用 GlobalFetch 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/tutorial/request-adapter/alova-adapter-axios/)。
+> When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/alova-adapter-axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">
@@ -87,27 +89,27 @@ import { createAlova } from 'npm:alova';
 import GlobalFetch from 'npm:alova/GlobalFetch';
 
 const alova = createAlova({
-  requestAdapter: GlobalFetch();
+   requestAdapter: GlobalFetch();
 });
 ```
 
 </TabItem>
 </Tabs>
 
-## 发送 GET 请求
+## GET request
 
-通过 `alovaInstance.Get` 发送一个请求，由于使用了`GlobalFetch`请求适配器，将会接收到一个`Response`实例，这很简单。
+Sending a request via `alovaInstance.Get` will receive a `Response` instance thanks to the `GlobalFetch` request adapter, which is simple.
 
 <EmbedSandpack template="vanilla" mainFile={quickStartGET} editorHeight={400} containBaseURL={false} />
 
-在异步函数中，你也可以使用`await alovaInstance.Get`等待响应。
+In an asynchronous function, you can also use `await alovaInstance.Get` to wait for a response.
 
-## 发送 POST 请求
+## POST request
 
-通过 `alovaInstance.Post`提交数据，这同样很简单。
+Submitting data via `alovaInstance.Post` is also easy.
 
 <EmbedSandpack template="vanilla" mainFile={quickStartPOST} editorHeight={400} containBaseURL={false} />
 
-## 接下来要做什么？
+## What’s next?
 
-实际上，这只是一个最简单的请求示例，在接下来的章节中将会了解更多功能，让我们开始学习吧。
+In fact, this is just the simplest request example. We will learn more about the features in the next chapters, so let's start learning.

@@ -1,5 +1,5 @@
 ---
-title: 状态变化请求
+title: 监听请求
 sidebar_position: 30
 ---
 
@@ -264,7 +264,7 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 
 ## 状态改变时阻止请求
 
-有时候你希望在监听的状态改变时不发送请求，你可以通过 Hook 配置中的 sendable 属性来控制监听的状态改变时是否发送请求，sendable 属性为一个函数，它的参数为`AlovaEvent`事件对象，包含`send`函数传入的参数所组成的数组`sendArgs`，以及当前请求的`method`实例，并且该函数返回一个`truthy/falsy`值来判断本次状态改变时是否需要触发请求（默认为`true`），**抛出错误也表示不触发请求**。
+有时候你希望在监听的状态改变时不发送请求，你可以通过 Hook 配置中的 sendable 属性来控制监听的状态改变时是否发送请求，sendable 属性为一个函数，它的参数为`AlovaEvent`事件对象，包含`send`函数传入的参数所组成的数组`sendArgs`，以及当前请求的 method 实例，并且该函数返回一个`truthy/falsy`值来判断本次状态改变时是否需要触发请求（默认为`true`），**抛出错误也表示不触发请求**。
 
 ```javascript
 useWatcher(
@@ -273,7 +273,7 @@ useWatcher(
   [state],
   {
     // highlight-start
-    sendable: methodInstance => {
+    sendable: ({ sendArgs, method }) => {
       // do something
       // 仅当 state 为 1 时发送请求
       return state === 1;
@@ -295,8 +295,8 @@ sequenceDiagram
   U ->> U: 监听state状态
   U ->> S: state改变发起请求1
   U ->> S: state改变发起请求2
-  S ->> U: 请求2响应
-  S ->> U: 请求1响应
+  S ->> U: 请求2先响应
+  S ->> U: 请求1后响应
   U ->> U: 请求2的响应被覆盖
 ```
 

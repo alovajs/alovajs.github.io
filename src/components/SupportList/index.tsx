@@ -143,7 +143,7 @@ const requestTools: SupportItem[] = [
     id: 'Fetch Api',
     available: true,
     Image: require('@site/static/img/fetchapi.svg').default,
-    link: '/tutorial/getting-started/method/#set-the-parameters-supported-by-the-request-adapter'
+    link: '/tutorial/getting-started/method/#other-parameters-supported-by-the-request-adapter'
   },
   {
     id: 'Axios',

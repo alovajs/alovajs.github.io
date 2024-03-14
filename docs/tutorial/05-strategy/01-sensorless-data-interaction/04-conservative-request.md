@@ -41,8 +41,6 @@ const createOrEditTodo = (data, id) =>
 const deleteTodo = id => alovaInst.Delete('/todo', { id });
 ```
 
-This part is the same as the [first request chapter](/tutorial/getting-started/first-request), and will not be repeated.
-
 ## Start the silent factory
 
 ```javascript title="main.js"

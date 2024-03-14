@@ -49,7 +49,7 @@ const { loading, data, error } = useRequest(alova.Get('/xxx'));
 
 ### alova 提供开箱即用的高性能请求策略
 
-alova 为你提供了[多个高性能的请求策略模块](/category/strategy)，你可以根据不同请求场景使用不同的模块，这是 axios 不具备的。
+alova 为你提供了[多个高性能的请求策略模块](/tutorial/strategy)，你可以根据不同请求场景使用不同的模块，这是 axios 不具备的。
 
 ### alova 为 axios 提供响应数据缓存
 
@@ -81,8 +81,8 @@ react-query 和 swr 都是在 use hook 中直接使用`axios`或`fetch api`发�
 
 1. 统一的使用体验，不会因平台或 UI 框架不同而存在不同的使用方式。
 2. `axios`和`fetch api`等请求库以请求适配器的方式，与每个 api 解耦，这让 alova 提供了统一的开发体验和完美的代码迁移。
-3. 每个`Method`实例都代表不同的 api，你可以将同一个 api 的请求参数与请求行为参数聚合到同一个`Method`实例中，而不会分散开，更适合管理大量的 api。
-4. alova 通过对`Method`实例上的请求参数序列化，实现了自动化管理响应数据缓存，你不需要指定缓存 key，而 react-query 和 swr 都需要自定义设置`queryKey`来管理缓存。
+3. 每个 method 实例都代表不同的 api，你可以将同一个 api 的请求参数与请求行为参数聚合到同一个 method 实例中，而不会分散开，更适合管理大量的 api。
+4. alova 通过对 method 实例上的请求参数序列化，实现了自动化管理响应数据缓存，你不需要指定缓存 key，而 react-query 和 swr 都需要自定义设置`queryKey`来管理缓存。
 
 ### 高灵活性
 

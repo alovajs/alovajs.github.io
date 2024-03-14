@@ -325,7 +325,7 @@ export const getData = () => alovaInst.Get('/todolist');
 
 **typescript**
 
-To add response data type in typescript, please read [alova documentation typescript chapter](/tutorial/getting-started/typescript/#the-type-of-response-data)
+To add response data type in typescript, please read [alova documentation typescript chapter](/tutorial/combine-framework/typescript)
 
 ## limit
 

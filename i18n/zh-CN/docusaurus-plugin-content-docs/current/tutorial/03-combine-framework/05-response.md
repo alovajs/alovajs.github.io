@@ -1,5 +1,5 @@
 ---
-title: 响应处理
+title: 处理响应
 sidebar_position: 50
 ---
 
@@ -37,7 +37,7 @@ flowchart LR
 
 ## 转换响应数据
 
-在[method 详解](/tutorial/getting-started/method)中，我们已经了解过`transformData`了，这在 useHook 中使用也非常有用。
+在[method 详解](/tutorial/getting-started/method)中，我们已经了解过`transformData`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -53,12 +53,8 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 ```
 
 ```javascript
-// 通过useHook请求
 const { data } = useRequest(todoListGetter);
 const { data } = useWatcher(() => todoListGetter, [userInfo]);
-
-// 通过method实例请求
-const data = await todoListGetter;
 ```
 
 data 值将接收到转换后的数据格式。
@@ -78,7 +74,7 @@ type data = {
 
 ## 绑定响应回调
 
-如需设置请求回调，你还可以在 useRequest 的返回参数中接收回调的设置函数，如下：
+如需设置请求回调，你还可以在 useHooks 的返回参数中接收回调的设置函数，如下：
 
 ```javascript
 const {
@@ -92,7 +88,7 @@ const {
 
   // 完成回调绑定，回调在成功或失败都会调用
   onComplete
-} = useRequest(todoListGetter);
+} = useRequest(todoListGetter); // 也适用useWatcher
 onSuccess(event => {
   console.log('请求成功，响应数据为:', event.data);
   console.log('本次请求的method实例为:', event.method);
@@ -116,7 +112,6 @@ onComplete(event => {
 ```
 
 :::warning 注意
-
 在`onSuccess`中抛出错误将会触发`onError`。
 
 :::

@@ -1,5 +1,5 @@
 ---
-title: states change request
+title: Watching Request
 sidebar_position: 30
 ---
 
@@ -268,7 +268,7 @@ useWatcher(
   [state],
   {
     // highlight-start
-    sendable: methodInstance => {
+    sendable: ({ sendArgs, method }) => {
       // do something
       // Only send request when state is 1
       return state === 1;
@@ -290,8 +290,8 @@ sequenceDiagram
    U ->> U: watch state
    U ->> S: state change to trigger request 1
    U ->> S: state change to trigger request 2
-   S ->> U: Request 2 responded
-   S ->> U: Request 1 responded
+   S ->> U: Request 2 responded first
+   S ->> U: Then request 1 responded
    U ->> U: Response of request 2 is overwritten
 ```
 

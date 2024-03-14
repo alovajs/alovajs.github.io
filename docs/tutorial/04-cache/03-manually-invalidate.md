@@ -1,13 +1,13 @@
 ---
-title: Invalidate Response Cache manually
+title: Manually Invalidate
 sidebar_position: 30
 ---
 
-Generally, automatic invalidation cache is more concise, and it is recommended to use it first to invalidate the cache. When the automatic invalidation cache does not meet the needs, you can also invalidate the cache by calling `invalidateCache`.
+Generally, automatic invalidate cache is more concise, and it is recommended to use it first to invalidate the cache. When the automatic invalidate cache does not meet the needs, you can also invalidate the cache by calling `invalidateCache`.
 
-## Invalidate cache with method instance
+## Use method instance invalidate cache
 
-In the invalidateCache function, a method instance is passed in, and it will always look for the cache under this instance to invalidate.
+Pass in a method instance in the `invalidateCache` function, it will look for the cache under this instance to invalidate it.
 
 In the following example, when the submission is successful, the todo details data cache will be invalidated.
 
@@ -43,21 +43,27 @@ const handleSubmit = () => {
 };
 ```
 
-:::info
+## Batch invalidate cache
 
-Its function is far more than that. We can also invalidate any number or even all caches by setting `Method` instance matchers.
+In the following example, we invalidate caches in batches by specifying the name of the cache or a regular expression of the name.
 
-:::
+```javascript
+//The cache of the method named todoList will be invalidated
+invalidateCache('todoList');
 
-## Invalidate cache dynamically
+// The cache of methods whose names match the following regular expression will be invalidated
+invalidateCache(/^todoList/);
+```
 
-Maybe sometimes you are not sure which cache data needs to be invalidated, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/advanced/method-matcher) To dynamically find the corresponding method instance. The following example shows how to invalidate the cache for the first 5 Method instances named todoList.
+## Dynamic invalidate cache
+
+Maybe sometimes you are not sure which cached data needs to be invalidated. We can use [Method instance matcher](/tutorial/advanced/method-matcher) to dynamically find the corresponding method instance. The following example shows how to invalidate the cache of the first 5 method instances named todoList.
 
 ```javascript
 const getTodoList = currentPage => {
   return alovaInstance.Get('/todo/list', {
     // highlight-start
-    // First set the name for the method instance, which is used to filter out the required Method instance when the Method instance cannot be specified directly
+    // First set the name for the method instance, which is used to filter out the required Method instance when the Method instance cannot be specified directly.
     name: 'todoList',
     // highlight-end
     params: {
@@ -68,14 +74,14 @@ const getTodoList = currentPage => {
 };
 
 const {
-  //...
+  // ...
   send,
   onSuccess
 } = useRequest(createTodoPoster, { immediate: false });
-// After the submission is successful, the todo data cache on the first page will be invalidated
+// After successful submission, the todo data cache of the first page will be invalidated.
 onSuccess(() => {
   // highlight-start
-  // Invalidate the cache of the first 5 Method instances named todoList
+  //The cache of the first 5 Method instances whose invalid name is todoList
   invalidateCache({
     name: 'todoList',
     filter: (method, index, ary) => {
@@ -86,11 +92,11 @@ onSuccess(() => {
 });
 ```
 
-> See [Method instance matcher](/tutorial/advanced/method-matcher) for more usage of `Method` instance matcher
+> For more methods of using method instance matcher, see [Method instance matcher](/tutorial/advanced/method-matcher)
 
 ## Invalidate all caches
 
 ```javascript
-// When no parameters are passed, invalidate all response caches
+// When no parameters are passed, all response caches are invalidated
 invalidateCache();
 ```

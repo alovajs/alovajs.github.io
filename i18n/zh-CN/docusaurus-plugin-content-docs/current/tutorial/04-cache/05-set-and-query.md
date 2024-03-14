@@ -1,5 +1,5 @@
 ---
-title: 缓存更新与查找
+title: 更新与查找缓存
 sidebar_position: 50
 ---
 
@@ -234,7 +234,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-同样的，你也可以通过 [method 实例匹配器](/tutorial/advanced/method-matcher) 动态查找 method 实例。
+同样的，你也可以通过 [method 匹配器](/tutorial/advanced/method-matcher) 动态查找 method 实例。
 
 ```javascript
 setCache(
@@ -262,7 +262,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-## 缓存查询
+## 查询缓存
 
 同时，我们也提供了缓存查询方法。
 
@@ -272,7 +272,7 @@ import { queryCache } from 'alova';
 const cacheData = queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-你也可以通过 [method 实例匹配器](/tutorial/advanced/method-matcher) 动态查找 method 实例。
+你也可以通过 [method 匹配器](/tutorial/advanced/method-matcher) 动态查找 method 实例。
 
 ```javascript
 const cacheData = queryCache({

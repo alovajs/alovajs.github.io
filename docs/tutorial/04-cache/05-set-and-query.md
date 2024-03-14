@@ -1,5 +1,5 @@
 ---
-title: Cache set and query
+title: Set & Query Cache
 sidebar_position: 50
 ---
 
@@ -262,7 +262,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-## cache query
+## Cache query
 
 At the same time, we also provide a cache query method.
 

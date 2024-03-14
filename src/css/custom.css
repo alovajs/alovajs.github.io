@@ -13,16 +13,16 @@
   --ifm-color-primary-light: #2353f2;
   --ifm-color-primary-lighter: #2f5cf3;
   --ifm-color-primary-lightest: #5378f5;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-blockquote-color: var(--ifm-color-gray-600);
   --ifm-font-family-base: Inter, system-ui, sans-serif;
   --ifm-heading-font-family: Inter, system-ui, sans-serif;
   --ifm-font-family-monospace: JetBrains Mono, ui-monospace, monospace;
-  --ifm-font-weight-bold: 600;
+  --ifm-font-weight-bold: 700;
   --ifm-alert-shadow: none;
   --ifm-menu-link-padding-vertical: 0.3rem;
   --ifm-navbar-shadow: none;
   --ifm-color-primary-rgb: 14, 66, 238;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 217, 120, 0.2);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -34,7 +34,6 @@
   --ifm-color-primary-light: #6480db;
   --ifm-color-primary-lighter: #6f8ade;
   --ifm-color-primary-lightest: #93a7e6;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-color-primary-rgb: 76, 109, 214;
 }
 
@@ -76,21 +75,94 @@ html[data-theme='dark'] .header-x-link:before {
 }
 
 /* sidebar */
+:root {
+  --ifm-navbar-height: 82px;
+}
+.navbar {
+  padding: 0;
+  background-color: transparent;
+}
+.navbar__inner {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.4);
+  padding: var(--ifm-navbar-padding-vertical) var(--ifm-navbar-padding-horizontal);
+}
+html[data-theme='dark'] .navbar__inner {
+  background: rgba(24, 24, 24, 0.4);
+}
+
+.theme-doc-sidebar-container {
+  border-right: none !important;
+  background: var(--ifm-color-emphasis-100);
+}
 .menu__link {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  line-height: 2.4;
+  border-left: solid 1px var(--ifm-color-emphasis-300);
+  border-radius: 0;
 }
 .menu__link--sublist {
-  font-weight: var(--ifm-font-weight-bold);
+  border-left: none;
 }
 .menu__link--active {
-  color: var(--ifm-menu-color-active) !important;
+  border-left-color: var(--ifm-color-emphasis-700);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: 0.9rem;
+}
+.menu__list-item:not(:first-child) {
+  margin-top: 0;
+}
+.menu__list {
+  --ifm-menu-color-background-active: none;
+  --ifm-menu-color-background-hover: none;
+  --ifm-menu-color-active: none;
+  --ifm-menu-color: var(--ifm-color-emphasis-600);
+  font-weight: normal;
+}
+.menu__link:hover {
+  border-left-color: var(--ifm-color-emphasis-700);
 }
 .menu__link:after,
 .menu__caret:before {
-  background-size: 1.4rem 1.4rem;
+  background-size: 1rem 1rem;
+}
+
+/* pagination nav */
+.pagination-nav__label {
+  margin-top: 1rem;
+}
+.pagination-nav__link:hover .pagination-nav__label::before {
+  transform: translateX(-0.3rem);
+}
+.pagination-nav__link:hover .pagination-nav__label::after {
+  transform: translateX(0.3rem);
+}
+.pagination-nav__link--prev .pagination-nav__label::before {
+  content: '<-';
+  transition: all 0.3s;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: '->';
+  transition: all 0.3s;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+/* toc(table of content) */
+.table-of-contents__link:hover {
+  font-weight: 700;
 }
 
 /* article */
+.theme-doc-breadcrumbs {
+  margin-bottom: 3rem !important;
+}
+.markdown h2 {
+  border-top: solid 1px var(--ifm-color-emphasis-300);
+  padding-top: 2rem;
+}
 code {
   vertical-align: baseline;
   border: none;
@@ -102,6 +174,15 @@ article a:not([class]) {
   text-underline-offset: 0.0625em;
   text-decoration-thickness: auto;
 }
+article section .card {
+  box-shadow: none;
+  background: var(--ifm-color-emphasis-100);
+}
+article section .card:hover {
+  border-color: transparent;
+  background: none;
+}
+
 table th,
 table td {
   border: none;
@@ -116,8 +197,25 @@ table thead tr {
 strong {
   color: var(--ifm-color-primary);
 }
-.navbar {
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+.tabs {
+  border-bottom: solid 1px var(--ifm-color-emphasis-300);
+  background: var(--ifm-color-emphasis-100);
+}
+.tabs .tabs__item {
+  border-radius: 0;
+}
+/* footer */
+:root {
+  --ifm-footer-background-color: var(--ifm-color-emphasis-0);
+  --ifm-footer-title-color: var(--ifm-color-emphasis-500);
+  --ifm-footer-link-color: var(--ifm-color-emphasis-900);
+  --ifm-footer-padding-vertical: 4rem;
+}
+.footer__title {
+  font-size: 0.9rem;
+}
+.footer__link-item:hover {
+  text-decoration: none;
 }
 
 /* //////// 自定义类 //////// */

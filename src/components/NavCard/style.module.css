@@ -6,15 +6,16 @@
   flex-direction: column;
   padding: 1.4rem 2rem;
   border-radius: 6px;
-  border: solid 1px transparent;
-  background: rgba(var(--ifm-color-primary-rgb), 0.1);
+  border: solid 1px var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-100);
   text-decoration: none;
   transition: all 0.3s;
   flex: 1;
 }
 .cardItem:hover {
   text-decoration: none;
-  border-color: var(--ifm-color-primary);
+  border-color: transparent;
+  background: transparent;
   box-shadow: 2px 2px 8px var(--ifm-color-emphasis-300);
 }
 .cardItem:not(:last-child) {
@@ -25,12 +26,14 @@
   align-items: center;
   justify-content: space-between;
 }
+.cardTitle,
 .cardTitle strong {
   color: var(--ifm-color-emphasis-900);
 }
 .cardDesc {
   margin-top: 0.6rem;
   font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
 }
 .image {
   width: 1.8rem;

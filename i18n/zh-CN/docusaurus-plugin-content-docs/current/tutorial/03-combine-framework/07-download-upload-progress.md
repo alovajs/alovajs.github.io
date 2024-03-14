@@ -6,11 +6,11 @@ sidebar_position: 70
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-默认情况下，上传和下载进度是关闭的，你需要在在指定的 method 实例上开启上传和下载进度信息，具体如下：
+useHook 提供了`downloading`和`uploading`用于直接在视图中展示进度信息。
 
 ## 下载进度
 
-`useRequest/useWatcher/useFetcher`提供了`downloading`状态，可以直接在视图中使用。为了性能考虑，默认情况下`downloading`中没有进度信息，需要将 method 实例的`enableDownload`设置为`true`，就会在下载过程中持续更新`downloading`状态。
+为了性能考虑，默认情况下`downloading`中没有进度信息，需要将 method 实例的`enableDownload`设置为`true`，就会在下载过程中持续更新`downloading`状态。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue composition">
@@ -123,13 +123,13 @@ const App = () => {
 </template>
 
 <script setup>
-  const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
+  const uploadPoster = alovaInstance.Post('/todo/uploadfile', formData, {
     // highlight-start
     // 开启上传进度
     enableUpload: true
     // highlight-end
   });
-  const { uploading } = useRequest(uploadGetter);
+  const { uploading } = useRequest(uploadPoster);
 </script>
 ```
 
@@ -137,7 +137,7 @@ const App = () => {
 <TabItem value="2" label="react">
 
 ```jsx
-const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
+const uploadPoster = alovaInstance.Post('/todo/uploadfile', formData, {
   // highlight-start
   // 开启上传进度
   enableUpload: true
@@ -145,7 +145,7 @@ const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
 });
 
 const App = () => {
-  const { uploading } = useRequest(uploadGetter);
+  const { uploading } = useRequest(uploadPoster);
   return (
     <>
       <div>文件大小：{uploading.total}B</div>
@@ -161,13 +161,13 @@ const App = () => {
 
 ```html
 <script>
-  const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
+  const uploadPoster = alovaInstance.Post('/todo/uploadfile', formData, {
     // highlight-start
     // 开启上传进度
     enableUpload: true
     // highlight-end
   });
-  const { uploading } = useRequest(uploadGetter);
+  const { uploading } = useRequest(uploadPoster);
 </script>
 
 <div>文件大小：{$uploading.total}B</div>
@@ -186,7 +186,7 @@ const App = () => {
 </template>
 
 <script>
-  const uploadGetter = alovaInstance.Get('/todo/uploadfile', {
+  const uploadPoster = alovaInstance.Post('/todo/uploadfile', formData, {
     // highlight-start
     // 开启上传进度
     enableUpload: true
@@ -196,7 +196,7 @@ const App = () => {
   export default {
     mixins: mapAlovaHook(function () {
       return {
-        file: useRequest(uploadGetter)
+        file: useRequest(uploadPoster)
       };
     })
   };

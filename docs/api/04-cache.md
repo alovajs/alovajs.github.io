@@ -69,7 +69,7 @@ function setCache(
 
 - **Parameters**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher] (/tutorial/advanced/method-matcher), which will match all matching The method instance of the condition sets the cached data.
+1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher](/tutorial/advanced/method-matcher), which will match all matching The method instance of the condition sets the cached data.
 2. `dataOrUpdater`: Cache data or update function. If it is a function, it needs to return new cached data. If it returns `undefined` or does not return, the update will be cancelled.
 
 - **return**

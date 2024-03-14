@@ -1,16 +1,15 @@
 ---
-title: Method matcher
+title: Method Matcher
 sidebar_position: 30
 ---
 
-When we finish processing some business, we need to call `invalidateCache`, `setCache`, `updateState` and `fetch` to invalidate cache, update cache, update state across pages, or re-pull data, there are generally two scenarios :
+A method matcher is a method that dynamically finds a method instance in a list of requested method snapshots. It is generally used. When developers are not sure which method to use, they can use the method matcher to search according to certain rules.
 
-1. The developer knows which request data needs to be manipulated. At this time, when calling the above function, a `Method` instance can be directly passed in;
-2. The developer only knows the request that needs to operate a certain order bit, but is not sure which one. At this time, we can use the method of `Method` instance matcher to filter out.
+## Matching rules
 
-The `Method` instance matcher is filtered according to the `name` attribute set by the `Method` instance. Multiple matchers are allowed to set the same `name`, so first you need to set the `name` attribute for the `Method` instance that needs to be filtered. .
+When a request is made using a method instance, it will be saved as a snapshot. The method matcher looks in these method snapshots based on the `name` attribute set by the method instance. Multiple matchers are allowed to set the same `name`.
 
-Method instance matching types are as follows
+Method instance matching types are as follows:
 
 ```typescript
 type MethodFilter =
@@ -20,17 +19,25 @@ type MethodFilter =
       name: string | RegExp;
       filter: (method: Method, index: number, methods: Method[]) => boolean;
 
-      // Optional parameter, if an alova object is passed in, only the Method instance created by this alova is matched, otherwise it matches the Method instance of all alova instances
-      alova?: alova;
+      // Optional parameter, if the alova object is passed in, it will only match the Method instance created by this alova, otherwise it will match the Method instances of all alova instances.
+      alova?: Alova;
     };
 ```
 
-## match by name attribute
+The method instance matcher can be used in the following functions.
 
-Match by passing in the full instance name, and its result is an array.
+- [setCache](/tutorial/cache/set-and-query)
+- [queryCache](/tutorial/cache/set-and-query)
+- [invalidateCache](/tutorial/cache/manually-invalidate)
+- [updateState](/tutorial/advanced/update-across-components)
+- [useFetcher.fetch](/tutorial/advanced/use-fetcher)
+
+## Match by name attribute
+
+Matching is performed by passing in the complete instance name, and its matching result is an array.
 
 ```javascript
-// Each time getTodoList is called, a new Method instance is generated with the same name
+// Each time getTodoList is called, a new method instance will be generated, and their names are the same.
 const getTodoList = currentPage =>
   alova.Get('/todo/list', {
     // highlight-start
@@ -39,45 +46,52 @@ const getTodoList = currentPage =>
     // ...
   });
 
-// The following means to invalidate the cache of all Method instances whose name is 'todoList'
+//The following means invalidating the cache of all Method instances with name 'todoList'
 invalidateCache('todoList');
 ```
 
-## match by regular expression
+## Match by regular expression
 
-By passing in the regular expression to match, the name of the Method instance that matches the regular expression will be matched, and its result is also an array.
+By passing in a regular expression for matching, any method instance whose name matches the regular expression will be matched, and its result is also an array.
 
 ```javascript
-// The following means to invalidate the cache of all Method instances whose name starts with 'todo'
+// The following means invalidating the cache of all Method instances whose names start with 'todo'
 invalidateCache(/^todo/);
 ```
 
-## More complex matching methods
+## Filter matching results
 
-You can also specify `filter` to further filter `Method` instances that do not meet the conditions. The filter function is used in the same way as Array.prototype.filter. Returning true means the match is successful, and returning false means failure. For details, see the type declaration above.
+Further filter method instances that do not meet the conditions by specifying `filter`. The filter function is used in the same way as Array.prototype.filter. Returning true indicates successful matching, and returning false indicates failure. See the type declaration above for details.
 
 Let's look at a few examples.
 
+**Invalidate the cache of the last method instance with a specific name**
+
 ```javascript
-// invalidate the cache of the last Method instance whose name is todoList
 invalidateCache({
   name: 'todoList',
   filter: (method, index, methods) => index === methods.length - 1
 });
+```
 
-// Set the cache for the last Method instance whose name starts with todo
+**Set the cache of the last method instance of a specific name created by `alovaInst`**
+
+```javascript
 setCache(
   {
     name: /^todo/,
     filter: (method, index, methods) => index === methods.length - 1,
 
-    // If the alova parameter is passed, only the Method instance created by this alova instance will be matched, otherwise it will be matched in all Method instances
+    // If the alova parameter is passed, only the Method instances created by this alova instance will be matched, otherwise it will be matched in all Method instances.
     alova: alovaInst
   },
   newCache
 );
+```
 
-// Re-pull the data of the last request of the todo list
+**Repulse the last requested data from the todo list**
+
+```javascript
 const { fetch } = useFetcher();
 fetch({
   name: 'todoList',
@@ -85,22 +99,22 @@ fetch({
 });
 ```
 
-> alova parameter to further narrow the match.
+> The alova parameter can further narrow the matching scope.
 
-## Differences used in different functions
+## Differences in use in different functions
 
 ### invalidateCache
 
-apply all matching Method instance sets, that is, invalidate the cache corresponding to all matching Method instances.
+Apply the set of all matching Method instances, that is, invalidate the cache corresponding to all matching Method instances.
 
 ### setCache
 
-applies all matching Method instance sets. When static data is passed in, all Method instance caches are set to the same value. When the callback function is passed in, this function will be called cyclically, and the return value will be used as the cached data.
+All matching Method instance collections are applied. When static data is passed in, all Method instance caches are set to the same value. When the callback function is passed in, this function will be called cyclically and the return value will be used as cache data.
 
 ### updateState
 
-applies the first matching Method instance.
+The first matching Method instance is applied.
 
 ### fetch
 
-apply the first matching Method instance, that is, only fetch data once.
+The first matching Method instance is applied, i.e. the data will only be pulled once.

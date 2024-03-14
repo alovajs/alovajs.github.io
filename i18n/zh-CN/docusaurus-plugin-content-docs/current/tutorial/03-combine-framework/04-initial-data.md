@@ -1,5 +1,5 @@
 ---
-title: 设置初始数据
+title: 初始数据
 sidebar_position: 40
 ---
 

@@ -12,6 +12,8 @@ In terms of Typescript, we have indeed spent a lot of effort on optimization in 
 
 When createAlova creates an alova instance, the state types created by `useRequest`, `useWatcher`, and `useFetcher` will be automatically inferred based on the passed `statesHook`. Currently only Vue, React, and Svelte are supported.
 
+> `useFetcher` is a useHook used for data fetching. For details, please read [Advanced-Data fetching chapter](/tutorial/advanced/use-fetcher).
+
 The following are the status types returned by useHooks by default.
 
 <Tabs groupId="framework">

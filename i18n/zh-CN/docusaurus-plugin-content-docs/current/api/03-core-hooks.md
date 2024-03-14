@@ -7,7 +7,7 @@ sidebar_position: 30
 
 表示一次请求的发送，执行 useRequest 时默认会发送一次请求，并创建和维护状态化的请求相关数据，如`loading/data/error`等。在页面获取初始数据时是最常用的方法，同时也支持关闭它的默认的请求发送，这在提交数据等通过点击事件触发的请求场景非常有用。
 
-> 前往[发送请求](/tutorial/getting-started/first-request)查看详情。
+> 前往[useRequest](/tutorial/combine-framework/use-request)查看详情。
 
 ### 类型
 
@@ -131,7 +131,7 @@ type AlovaGuardNext = (guardNextConfig?: {
 
 监听状态，并在状态变化后发起请求，在一些需要随数据变化而重新请求的场景下，如分页、数据筛选、模糊搜索使用。
 
-> 前往[状态变化请求](/tutorial/getting-started/states-change-request)查看详情。
+> 前往[状态变化请求](/tutorial/combine-framework/use-watcher)查看详情。
 
 ### 类型
 
@@ -193,7 +193,7 @@ function useWatcher(
 
 通过`useFetcher`用来拉取数据，在预加载数据和跨模块更新状态时很有用。
 
-> 前往[数据拉取](/tutorial/advanced/data-fetching)查看详情。
+> 前往[数据拉取](/tutorial/advanced/use-fetcher)查看详情。
 
 ### 类型
 

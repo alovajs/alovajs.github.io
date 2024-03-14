@@ -49,7 +49,7 @@ const { loading, data, error } = useRequest(alova.Get('/xxx'));
 
 ### alova provides high-performance request strategies out of the box
 
-alova provides you with [multiple high-performance request strategy modules](/category/strategy). You can use different modules according to different request scenarios, which axios does not have.
+alova provides you with [multiple high-performance request strategy modules](/tutorial/strategy). You can use different modules according to different request scenarios, which axios does not have.
 
 ### alova provides response data cache for axios
 

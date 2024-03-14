@@ -43,13 +43,13 @@ pnpm add alova
 <TabItem value="4" label="bun">
 
 ```bash
-pnpm add alova
+bun add alova
 ```
 
 </TabItem>
 </Tabs>
 
-> 你也可以[通过 CDN 引入 alova](/tutorial/others/use-in-static)
+> 你也可以[通过 CDN 使用 alova](/tutorial/others/use-in-static)
 
 ## 创建 alova 实例
 
@@ -96,7 +96,7 @@ const alova = createAlova({
 </TabItem>
 </Tabs>
 
-## 发送 GET 请求
+## GET 请求
 
 通过 `alovaInstance.Get` 发送一个请求，由于使用了`GlobalFetch`请求适配器，将会接收到一个`Response`实例，这很简单。
 
@@ -104,7 +104,7 @@ const alova = createAlova({
 
 在异步函数中，你也可以使用`await alovaInstance.Get`等待响应。
 
-## 发送 POST 请求
+## POST 请求
 
 通过 `alovaInstance.Post`提交数据，这同样很简单。
 

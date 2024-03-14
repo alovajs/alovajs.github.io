@@ -1,9 +1,9 @@
 ---
-title: method详解
+title: Method Instance
 sidebar_position: 30
 ---
 
-在上一个章节中我们尝试发送了请求，获取响应数据。实际上，`alovaInstance.Get(...)`并不是一个发起请求的函数，而是创建了一个 method 实例，它是一个 PromiseLike 实例，你可以通过`then、catch、finally`方法或`await`发送请求，就像 Promise 对象一样。
+In the previous chapter we tried to send a request and obtain the response data. In fact, `alovaInstance.Get(...)` is not a function that initiates a request, but creates a method instance, which is a PromiseLike instance. You can use `then, catch, finally` methods or `await` Send the request just like a Promise object.
 
 ```javascript
 const userMethodInstance = alovaInstance.Get('/api/user');
@@ -29,69 +29,69 @@ try {
 }
 ```
 
-简便写法：
+Simple way to write:
 
 ```javascript
 const response = await alovaInstance.Get('/api/user');
 ```
 
-每个 method 实例描述了每个请求的类型、请求 url、请求头、请求参数等。此外，你还可以在 method 实例上定义请求行为，来控制 method 以什么方式处理请求。
+Each method instance describes the type of each request, request url, request headers, request parameters, etc. In addition, you can define request behavior on the method instance to control how the method handles the request.
 
-## 请求类型
+## Request type
 
-alova 共提供了 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 7 种请求类型。
+alova provides a total of 7 request types: GET, POST, PUT, DELETE, HEAD, OPTIONS, and PATCH.
 
-| 实例创建函数 | 参数                                          |
-| ------------ | --------------------------------------------- |
-| GET          | `alovaInstance.Get(url[, config])`            |
-| POST         | `alovaInstance.Post(url[, data[, config]])`   |
-| PUT          | `alovaInstance.Put(url[, data[, config]])`    |
-| DELETE       | `alovaInstance.Delete(url[, data[, config]])` |
-| HEAD         | `alovaInstance.Head(url[, config])`           |
-| OPTIONS      | `alovaInstance.Options(url[, config])`        |
-| PATCH        | `alovaInstance.Patch(url[, data[, config]])`  |
+| Instance creation function | Parameters                                    |
+| -------------------------- | --------------------------------------------- |
+| GET                        | `alovaInstance.Get(url[, config])`            |
+| POST                       | `alovaInstance.Post(url[, data[, config]])`   |
+| PUT                        | `alovaInstance.Put(url[, data[, config]])`    |
+| DELETE                     | `alovaInstance.Delete(url[, data[, config]])` |
+| HEAD                       | `alovaInstance.Head(url[, config])`           |
+| OPTIONS                    | `alovaInstance.Options(url[, config])`        |
+| PATCH                      | `alovaInstance.Patch(url[, data[, config]])`  |
 
-参数说明：
+Parameter Description:
 
-- `url`是请求路径；
-- `data`为请求体数据；
-- `config`为请求配置对象，其中包含了请求头、params 参数等、请求行为参数等配置；
+- `url` is the request path;
+- `data` is the request body data;
+- `config` is the request configuration object, which includes configurations such as request headers, params parameters, request behavior parameters, etc.;
 
-接下来我们先来看下如何定义请求参数，你应该会觉得很熟悉。
+Next, let’s take a look at how to define request parameters, which should seem familiar to you.
 
-## 请求参数
+## Request parameters
 
-### URL 参数
+### URL parameters
 
-通过 params 传入 URL 参数，params 参数会在 url 后面以?的形式拼接。
+Pass in the URL parameters through params, and the params parameters will be spliced in the form of ? after the url.
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/todo/list', {
+alovaInstance.Get('/todo/list', {
   params: {
     userId: 1
   }
 });
 ```
 
-当然，你也可以直接拼接在 url 后面，效果是相同的。
+Of course, you can also directly splice it behind the url, and the effect will be the same.
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/todo/list?userId=1');
+alovaInstance.Get('/todo/list?userId=1');
 ```
 
-### 请求体
+### Request body
 
-当发送 **POST、PUT、DELETE、PATCH 请求** 时可以通过请求体发送数据，此时第二个参数传入的是请求体，值得注意的是，POST 请求也可以传入 params 参数。
+When sending **POST, PUT, DELETE, PATCH request**, you can send data through the request body. At this time, the second parameter is passed in the request body. It is worth noting that the POST request can also pass in the params parameter.
 
 ```javascript
-const createTodoPoster = alovaInstance.Post(
+alovaInstance.Post(
   '/todo',
-  // 第二个参数是请求体
+  //The second parameter is the request body
   {
     title: 'test todo',
     time: '12:00'
   },
-  // 第三个参数是配置
+  // The third parameter is configuration
   {
     params: {
       userId: 1
@@ -100,24 +100,24 @@ const createTodoPoster = alovaInstance.Post(
 );
 ```
 
-### 请求头
+### Request header
 
-通过 headers 指定请求头。
+Specify request headers via headers.
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/user', {
+alovaInstance.Get('/user', {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'
   }
 });
 ```
 
-### 其他请求适配器支持的参数
+### Other parameters supported by the request adapter
 
-除了请求头、params 参数等外，还支持配置对应请求适配器支持的参数，当使用`GlobalFetch`作为 alova 的请求适配器时，就可以在`method`实例上配置任何`fetch API`支持的参数，这些参数会在请求时传给`fetch`函数。
+In addition to request headers, params parameters, etc., it also supports configuring parameters supported by the corresponding request adapter. When using `GlobalFetch` as the request adapter of alova, you can configure any `fetch API` supported parameters on the `method` instance. These Parameters will be passed to the `fetch` function during request.
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/todo/list', {
+alovaInstance.Get('/todo/list', {
   // ...
   // highlight-start
   credentials: 'same-origin',
@@ -127,7 +127,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-以上`method`实例在通过`fetch`发送请求时，将会以以下参数请求。
+When the above `method` instance sends a request through `fetch`, it will be requested with the following parameters.
 
 ```javascript
 fetch('/todo/list', {
@@ -140,19 +140,21 @@ fetch('/todo/list', {
 });
 ```
 
-如果你使用了其他的请求适配器，也可以传递它们支持的参数。
+> In addition to passing Object, the request body can also pass request body parameters supported by the request adapter. For example, GlobalFetch supports passing `string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream` parameters.
 
-## 请求行为
+If you use other request adapters, you can also pass the parameters they support.
 
-在[RSM](/other/rsm)中，请求行为用于描述将以怎样的方式处理请求。
+## Request behavior
 
-### 超时时间
+In [RSM](/tutorial/others/RSM), request behavior is used to describe how the request will be handled.
 
-设置请求超时时间。
+### overtime time
+
+Set request timeout.
 
 ```javascript
-// 请求级别的请求超时时间
-const todoListGetter = alovaInstance.Get('/todo/list', {
+// Request timeout at request level
+alovaInstance.Get('/todo/list', {
   // ...
   // highlight-start
   timeout: 10000
@@ -160,25 +162,25 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 });
 ```
 
-### 请求共享
+### Request sharing
 
-我们总会遇到这种情况，当一个请求发出但还未响应时，又发起了相同请求，就造成了请求浪费，或者重复提交问题，例如以下三种场景：
+We will always encounter this situation. When a request is issued but has not yet been responded to, the same request is issued again, resulting in a waste of requests or repeated submission of problems, such as the following three scenarios:
 
-1. 一个组件在创建时会获取初始化数据，当一个页面同时渲染多个此组件时，将会同时发出多次相同请求；
-2. 提交按钮未被禁用，用户点击了多次提交按钮；
-3. 当预加载还未完成时进入了预加载页面，将会发起多次相同请求；
-4. 在 react 的 StrictMode 下防止重复发送请求；
+1. A component will obtain initialization data when it is created. When a page renders multiple components at the same time, multiple identical requests will be issued at the same time;
+2. The submit button is not disabled and the user clicks the submit button multiple times;
+3. When the preloading page is entered before preloading is completed, multiple identical requests will be initiated;
+4. Prevent repeated requests from being sent under react’s StrictMode;
 
-共享请求就是用来解决这些问题的，它不仅可以提升应用流畅性，还能降低服务端压力。
+Shared requests are used to solve these problems. It can not only improve application fluency, but also reduce server pressure.
 
 ```mermaid
 flowchart LR
-  classDef response fill:#a8bcff
-  R1[请求1] --> S1[发送请求] --> W1[等待响应]:::response --> RE1[接收数据1]
-  R2[与请求1相同的请求] --> W1[等待响应]:::response --> RE2[接收数据1]
+   classDef response fill:#a8bcff
+   R1[Request 1] --> S1[Send request] --> W1[Waiting for response]:::response --> RE1[Receive data 1]
+   R2[Same request as request 1] --> W1[Waiting for response]:::response --> RE2[Receive data 1]
 ```
 
-请求共享默认开启，如果你希望在特定请求上关闭共享请求，可以这样做：
+Request sharing is enabled by default. If you wish to turn off request sharing on a specific request, you can do this:
 
 ```javascript
 alovaInst.Get('/todo', {
@@ -189,44 +191,43 @@ alovaInst.Get('/todo', {
 });
 ```
 
-:::warning 如何识别相同请求
+:::warning How to identify identical requests
 
-通过 method 实例的请求方法、请求 url、请求头、url 参数、请求体组合作为唯一标识，标识相同即表示为相同请求，而不是对比 method 实例的引用地址。
+The request method, request URL, request header, URL parameters, and request body of the method instance are used as a unique identifier. If the identifier is the same, it means the same request, instead of comparing the reference address of the method instance.
 
 :::
 
-### 转换响应数据
+### Convert response data
 
-有时候我们需要统一转换响应数据，我们可以为 method 实例设置`transformData`函数将响应数据转换成需要的结构。
+Sometimes we need to uniformly transform the response data. We can set the `transformData` function for the method instance to convert the response data into the required structure.
 
 ```javascript
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  params: {
-    page: 1
-  },
-
-  // 函数接受响应数据和响应头数据，并要求将转换后的数据返回。
+alovaInstance.Get('/todo/list', {
+  // The function accepts response data and response header data, and requires the converted data to be returned.
   transformData(rawData, headers) {
     return rawData.list.map(item => {
       return {
         ...item,
-        statusText: item.done ? '已完成' : '进行中'
+        statusText: item.done ? 'Completed' : 'In progress'
       };
     });
   }
 });
 ```
 
-### 响应缓存
+### Response cache
 
-响应缓存让你可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。GET 请求将默认设置 5 分钟的内存缓存时间，我们将在后面的[响应缓存](/cache/mode)章节中详细说明。
+Response caching allows you to better utilize server-side data multiple times without having to send a request to obtain the data every time it is requested. GET requests will set a memory cache time of 5 minutes by default, which we will explain in detail in the [Response Caching](/tutorial/cache/mode) section later.
 
-## 中断请求
+## Interrupt request
 
-`[2.6.2+]` 调用 method 实例的`abort`中断请求。
+`[2.6.2+]` calls the `abort` of the method instance to abort the request.
 
 ```javascript
 const userMethod = alovaInstance.Get('/api/user');
+userMethod.then(res => {
+  // ...
+});
 
 const handleCancel = () => {
   // highlight-start
@@ -235,22 +236,22 @@ const handleCancel = () => {
 };
 ```
 
-## 监听上传下载进度
+## Monitor upload and download progress
 
-**[v2.17.0+]** 通过 method 实例的`onUpload`绑定上传进度事件，`onDownload`绑定下载进度事件，它将返回解绑函数。
+**[v2.17.0+]** Bind the upload progress event through `onUpload` of the method instance, and bind the download progress event through `onDownload`, which will return the unbinding function.
 
 ```javascript
-const uploadMethod = alovaInstance.Get('/todo/uploadfile');
+const uploadMethod = alovaInstance.Post('/todo/uploadfile', formData);
 const offUploadEvent = uploadMethod.onUpload(event => {
-  console.log('文件大小：'，event.total);
-  console.log('已上传：'，event.loaded);
+  console.log('File size:', event.total);
+  console.log('Uploaded:', event.loaded);
 });
 
 uploadMethod.then(res => {
   // ...
 });
 
-// 解绑上传回调
+// Unbind upload callback
 const handleOffEvent = () => {
   offUploadEvent();
 };
@@ -259,35 +260,35 @@ const handleOffEvent = () => {
 ```javascript
 const downloadMethod = alovaInstance.Get('/todo/downloadfile');
 const offDownloadEvent = downloadMethod.onDownload(event => {
-  console.log('文件大小：'，event.total);
-  console.log('已下载：'，event.loaded);
+  console.log('File size:', event.total);
+  console.log('Downloaded:', event.loaded);
 });
 
 downloadMethod.then(res => {
   // ...
 });
 
-// 解绑下载回调
+// Unbind download callback
 const handleOffEvent = () => {
   offDownloadEvent();
 };
 ```
 
-:::warning 使用`GlobalFetch`适配器需注意
+:::warning Things to note when using the `GlobalFetch` adapter
 
-因 fetch api 限制，alova 提供的 **GlobalFetch** 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/tutorial/request-adapter/alova-adapter-xhr)或[axios 适配器](/tutorial/request-adapter/alova-adapter-axios)。
+Due to fetch api limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/tutorial/request-adapter/alova-adapter-xhr) or [axios Adapter](/tutorial/request-adapter/alova-adapter-axios).
 
-也可以自行编写请求适配器，详见 [编写请求适配器](/tutorial/custom/custom-http-adapter)。
+You can also write your own request adapter, see [Writing Request Adapter](/tutorial/custom/custom-http-adapter) for details.
 
 :::
 
-**上传/下载状态类型**
+**Upload/Download Status Type**
 
 ```typescript
 type Progress = {
-  /** 上传或下载的数据总数据量 */
+  /** Total amount of data uploaded or downloaded */
   total: number;
-  /** 已完成的数据 */
+  /** Completed data */
   loaded: number;
 };
 ```

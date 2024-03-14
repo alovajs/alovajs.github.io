@@ -41,8 +41,6 @@ const createOrEditTodo = (data, id) =>
 const deleteTodo = id => alovaInst.Delete('/todo', { id });
 ```
 
-这部分与[第一个请求](/tutorial/getting-started/first-request)相同，不再重复说明。
-
 ## 启动静默工厂
 
 ```javascript title="main.js"

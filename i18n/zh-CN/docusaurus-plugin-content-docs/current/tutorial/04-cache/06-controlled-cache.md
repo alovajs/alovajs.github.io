@@ -31,7 +31,7 @@ const getFile = fileName => {
 2. IndexedDB 是异步接口，如果匹配缓存的步骤发生在 IndexedDB 触发 onsuccess 之前，那么就不会匹配到缓存数据，它们的顺序是不可预知的；
 3. 自定义的缓存管理任务和 method 是分开的，但实际上它们应该聚合在一起；
 
-在这种情况下，你可以使用受控的缓存来解决上面的问题，使用受控缓存也很简单，可以在 method 中的 localCache 设置为异步或同步函数，在这个函数中返回自定义数据作为命中的缓存数据进行返回。
+在这种情况下，你可以使用受控的缓存来解决上面的问题，使用受控缓存也很简单，可以在 method 中的 localCache 设置为异步或同步函数，在这个函数中返回自定义数据作为命中的缓存数据。
 
 ```javascript
 const getFile = fileName =>

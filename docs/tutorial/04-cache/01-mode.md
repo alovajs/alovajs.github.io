@@ -1,5 +1,5 @@
 ---
-title: Cache mode
+title: Cache Mode
 sidebar_position: 10
 ---
 
@@ -7,7 +7,7 @@ import MemoryCache from '@site/example-links/MemoryCache';
 import StoragePlaceholder from '@site/example-links/StoragePlaceholder';
 import StorageRestore from '@site/example-links/StorageRestore';
 
-The cache mode can make better use of server-side data multiple times without sending a request to get data every time a request is made. `alova` provides three cache modes to meet different cache scenarios, namely memory mode, cache placeholder mode, and restore mode. The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
+The cache mode can be set at different granularities such as global or request level. When set globally, all Method instances created from the same alova instance will inherit the setting.
 
 :::info note
 

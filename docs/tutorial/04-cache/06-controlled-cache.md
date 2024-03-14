@@ -31,7 +31,7 @@ const getFile = fileName => {
 2. IndexedDB is an asynchronous interface. If the cache matching step occurs before IndexedDB triggers onsuccess, then the cached data will not be matched, and their order is unpredictable;
 3. Custom cache management tasks and methods are separated, but in fact they should be brought together;
 
-In this case, you can use controlled caching to solve the above problem. Using controlled caching is also very simple. You can set the localCache in the method to an asynchronous or synchronous function, and return custom data as a hit in this function. The cached data is returned.
+In this case, you can use controlled caching to solve the above problem. Using controlled caching is also very simple. You can set the localCache in the method to an asynchronous or synchronous function, and return custom data as a hit response.
 
 ```javascript
 const getFile = fileName =>

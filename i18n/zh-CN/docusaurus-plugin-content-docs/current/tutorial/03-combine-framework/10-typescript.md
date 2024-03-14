@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 
 ## 自动推断 alova useHooks 状态类型
 
-在 createAlova 创建 alova 实例时会根据传入的`statesHook`自动推断出`useRequest`、`useWatcher`、`useFetcher`所创建的状态类型。目前只支持 Vue、React、Svelte。
+在 createAlova 创建 alova 实例时会根据传入的`statesHook`自动推断出`useRequest`、`useWatcher`、`useFetcher`所创建的状态类型。
+
+> `useFetcher`是一个用于数据拉取的 useHook，详情请阅读[进阶-数据拉取章节](/tutorial/advanced/use-fetcher)。
 
 以下为预设中，useHooks 返回的状态类型。
 
@@ -64,7 +66,7 @@ const {
 
 data 的类型将会根据不同的 Method 实例中指定的响应数据类型而不同，我们继续往下看。
 
-## 响应数据的类型
+## 设置响应数据的类型
 
 当你为一个数据接口指定类型时，需要分为两种情况。
 
@@ -119,7 +121,7 @@ const { data } = useRequest(Get);
 
 ## 根据请求适配器推断的类型
 
-因为 alova 支持自定义请求适配器，而不同的适配器的请求配置对象、响应对象、响应头都可能不同，因此全局的`beforeRequest`、`responded`拦截器，以及`Method`实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，我们先来看这几个类型。
+因为 alova 支持自定义请求适配器，而不同的适配器的请求配置对象、响应对象、响应头都可能不同，因此全局的`beforeRequest`、`responded`拦截器，以及 method 实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，我们先来看这几个类型。
 
 如果你正在使用 [**GlobalFetch**](https://github.com/alovajs/alova/blob/main/src/predefine/GlobalFetch.ts)，alova 将会使用`fetch api`的类型自动推断，fetch api 的类型如下。
 

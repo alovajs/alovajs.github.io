@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 接下来，我们将学习如何与 UI 框架结合使用，这可以让 alova 发挥出真正的力量。
 
-在[RSM](/tutorial/others/rsm)中，请求时机描述了请求应该在什么时候发送，在 UI 框架中使用时，不仅可以让 alova 自动管理响应式的请求状态，还能通过一定规则自动控制什么时候应该发送请求。
+在[RSM](/tutorial/others/RSM)中，请求时机描述了请求应该在什么时候发送，在 UI 框架中使用时，不仅可以让 alova 自动管理响应式的请求状态，还能通过一定规则自动控制什么时候应该发送请求。
 
 `alova`中提供了`useRequest`、`useWatcher`、`useFetcher`三个核心 useHook 实现请求时机，由它们控制何时应该发出请求，同时将会为我们创建和维护请求的响应式状态，如`loading/data/error`等，你可以直接在视图中使用这些响应式状态，当它们更改时，视图也将随之变化。
 

@@ -24,7 +24,7 @@ const {
   onSuccess, onError, onComplete,
   send, abort, update
 } = useRequest(todoDetail);`,
-    link: 'tutorial/getting-started/first-request'
+    link: 'tutorial/combine-framework/use-request'
   },
   {
     title: <Translate id="homepage.strategy.useWatcher">Request when states changed</Translate>,

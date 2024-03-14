@@ -1,11 +1,9 @@
 ---
-title: Abort request
+title: Abort Request
 sidebar_position: 60
 ---
 
-## Abort the request through useHook function
-
-When the `timeout` parameter is not set, the request will never time out. If you need to manually abort the request, you can receive the `abort` method when `useRequest/useWatcher` or the function is called.
+Receive `abort` for manual abort request via useHook.
 
 ```javascript
 // useRequest
@@ -27,25 +25,22 @@ const {
 } = useWatcher(todoListGetter, [page]);
 ```
 
-Then you can call `abort` to cancel the request.
+Then call the `abort` method to abort the request.
 
 ```javascript
 const handleCancel = () => {
-  todoListGetter.abort();
+  abort();
 };
 ```
 
-> `[2.9.0+]` In react, the abort function is wrapped with `useCallback`, and it is not restricted by closure traps. You can use it directly in events without worrying about causing performance problems.
+> **[2.9.0+]** In react, the abort function is wrapped using `useCallback`, and it is not restricted by closure traps. You can use it directly in events without worrying about causing performance problems.
 
-## Abort requests through method instances
-
-`[2.6.2+]` In addition, this `abort` function will also be bound to the current method instance, so whether it is a request sent through `useRequest/useWatcher` or `await alovaInstance.Get`, it can also be like this to abort the request.
+**[2.6.2+]** In addition, this `abort` function will also be bound to the current method instance, so requests sent through `useRequest/useWatcher` can also be aborted in this way.
 
 ```javascript
 const todoListGetter = alovaInstance.Get('todo/list');
 useRequest(todoListGetter);
 useWatcher(() => todoListGetter);
-await todoListGetter;
 
 // highlight-start
 // Calling abort on the method can also abort the request

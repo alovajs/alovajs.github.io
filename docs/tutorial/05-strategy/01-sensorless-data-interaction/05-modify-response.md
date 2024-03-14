@@ -111,7 +111,7 @@ onSuccess(({ data, silentMethod }) => {
 // highlight-end
 ```
 
-> updateStateEffect is used in the same way as [updateState](/tutorial/advanced/update-states-across-modules)
+> updateStateEffect is used in the same way as [updateState](/tutorial/advanced/update-across-components)
 
 </TabItem>
 <TabItem value="2" label="Page has been destroyed">

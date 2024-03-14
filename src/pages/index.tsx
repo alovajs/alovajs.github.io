@@ -5,7 +5,8 @@ import PageModule from '@site/src/components/PageModule';
 import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import AvailableScope from './_indexComponent/AvailableScope';
+import IconFont from '../components/IconFont';
+import Contributors from './_indexComponent/Contributors';
 import Features from './_indexComponent/Features';
 import Like from './_indexComponent/Like';
 import Strategy from './_indexComponent/Strategy';
@@ -15,7 +16,15 @@ import styles from './_indexComponent/index.module.css';
 function HomepageHeader() {
   const buttons = [
     {
-      text: <Translate id="homepage.Get Started">Get Started</Translate>,
+      text: (
+        <div className="flex-row align-center">
+          <IconFont
+            name="kaishi"
+            style={{ color: '#fff', marginRight: '0.6rem' }}
+            size={24}></IconFont>
+          <Translate id="homepage.Get Started">Get Started</Translate>
+        </div>
+      ),
       type: 'primary',
       link: '/tutorial/getting-started'
     },
@@ -29,46 +38,30 @@ function HomepageHeader() {
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
         <div className={styles.heroContent}>
-          <div className={styles.left}>
-            <h1>
-              <Translate id="homepage.title">A lightweight request strategy library</Translate>
-            </h1>
-            <p>
-              <Translate id="homepage.tagline">
-                Choose the request strategy you want, the declarative implementation of complex network requests with
-                minimal code can greatly enhance the fluidity and availability of your application, making it appear as
-                if it has exceptional strategic thinking, much like a wise man.
-              </Translate>
-            </p>
-            <div className={clsx(styles.buttons, 'margin-bottom--md')}>
-              {buttons.map(({ text, type, link }, i) => (
-                <Link
-                  key={link}
-                  className={clsx(
-                    'button button--lg',
-                    i === buttons.length - 1 ? '' : 'margin-right--md',
-                    `button--${type}`
-                  )}
-                  to={link}>
-                  {text}
-                </Link>
-              ))}
-            </div>
-            <CodeBlock language="bash">$ npm install alova</CodeBlock>
+          <h1 className="title">
+            <Translate id="homepage.title">Lightweight request strategy library</Translate>
+          </h1>
+          <p className="tagline">
+            <Translate id="homepage.tagline">
+              One line of code completes network requests in various complex scenarios. Don’t spend time on the small
+              matter of requesting. Leave it to us.
+            </Translate>
+          </p>
+          <div className={clsx(styles.buttons, 'margin-bottom--md')}>
+            {buttons.map(({ text, type, link }, i) => (
+              <Link
+                key={link}
+                className={clsx(
+                  'button button--lg',
+                  i === buttons.length - 1 ? '' : 'margin-right--md',
+                  `button--${type}`
+                )}
+                to={link}>
+                {text}
+              </Link>
+            ))}
           </div>
-          <CodeBlock
-            language="javascript"
-            className={styles.codeExample}>{`const todo = alova.Get('/todo', {
-  params: {
-    id: 1
-  }
-});
-const { loading, data, error } = useRequest(todo);`}</CodeBlock>
-          {/* <img
-            src={require('@site/static/img/logo.svg').default}
-            className={styles.logo}
-            alt="logo"
-          /> */}
+          <CodeBlock language="bash">npm install alova</CodeBlock>
         </div>
       </div>
     </header>
@@ -91,12 +84,12 @@ export default function Home(): JSX.Element {
       <HomepageHeader></HomepageHeader>
       <main>
         <Features></Features>
-        <AvailableScope></AvailableScope>
         <PageModule
           text="Relationship between alova and request library"
           textTransId="homepage.relationTitle"
           desc="Traditional promised request library solves the problem of request sending very well, but They are simply
           request sending tools"
+          align="center"
           descTransId="homepage.relationDesc">
           <div className={styles.relationContent}>
             <span className={styles.quota}>“</span>
@@ -109,6 +102,7 @@ export default function Home(): JSX.Element {
         </PageModule>
         <Strategy></Strategy>
         <Support></Support>
+        <Contributors></Contributors>
         <Like></Like>
       </main>
     </Layout>

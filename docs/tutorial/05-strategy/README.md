@@ -4,7 +4,7 @@ title: Select next stage
 
 import NavCard from '@site/src/components/NavCard';
 
-🎉 Congratulations! At this point, you have completed the basic use of alova and can meet daily project practice. You are free to choose what to study next based on your interests.
+🎉 Congratulations! At this point, you can use alova to meet your daily project development. You can freely choose the next learning content according to your own interests.
 
 <NavCard list={[
 {
@@ -28,6 +28,6 @@ link: '/category/request-adapter'
 
 import DocCardList from '@theme/DocCardList';
 
-Just choose the request strategy you want to use and learn about it, just like using a component library.
+Just like using a component library, just learn how to use it when you need a specific request strategy.
 
 <DocCardList />

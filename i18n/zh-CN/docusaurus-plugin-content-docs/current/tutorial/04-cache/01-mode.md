@@ -7,7 +7,7 @@ import MemoryCache from '@site/example-links/MemoryCache';
 import StoragePlaceholder from '@site/example-links/StoragePlaceholder';
 import StorageRestore from '@site/example-links/StorageRestore';
 
-缓存模式可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。`alova`分别提供了 3 种缓存模式来满足不同的缓存场景，分别为内存模式、缓存占位模式、恢复模式。缓存模式可在全局或请求级等不同粒度下设置。全局设置时，所有由相同 alova 实例创建的`Method`实例都会继承该设置。
+缓存模式可在全局或请求级等不同粒度下设置。全局设置时，所有由相同 alova 实例创建的 method 实例都会继承该设置。
 
 :::info 注意
 
@@ -19,7 +19,7 @@ import StorageRestore from '@site/example-links/StorageRestore';
 
 内存模式将缓存放在内存中，这意味着刷新页面缓存即失效，是最常用的缓存模式。
 
-内存模式一般用于解决短时间内（几分钟或几秒钟）频繁请求相同数据带来的性能消耗，例如当你在写 todo 详情页的时候，你可能会想到用户会频繁在 todo 列表中点击查看详情，如果用户重复查看某条详情时不再重复请求接口，并且能立即返回数据，提升了响应速度的同时也减小了服务器压力。此时我们就可以为某个 todo 详情`Method`实例设置响应数据缓存。
+内存模式一般用于解决短时间内（几分钟或几秒钟）频繁请求相同数据带来的性能消耗，例如当你在写 todo 详情页的时候，你可能会想到用户会频繁在 todo 列表中点击查看详情，如果用户重复查看某条详情时不再重复请求接口，并且能立即返回数据，提升了响应速度的同时也减小了服务器压力。此时我们就可以为某个 todo 详情 method 实例设置响应数据缓存。
 
 ```javascript
 alovaInstance.GET('/todo/list', {
@@ -62,7 +62,7 @@ alovaInstance.GET('/todo/list', {
 
 缓存占位模式下，`data`将立即被赋值为上次缓存的旧数据，你可以判断如果有旧数据则使用它替代 Loading 展示，同时它将发送请求获取最新数据并更新缓存，这样就达到了既快速展示实际数据，又获取了最新的数据。
 
-在`Method`实例上设置：
+在 method 实例上设置：
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -88,7 +88,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 此模式下，服务端缓存数据将持久化，如果过期时间未到即使刷新页面缓存也不会失效，它一般用于一些需要服务端管理，但基本不变的数据，如每年的节假日具体日期有所不同，但不会再变动，这种场景下我们只需设置缓存过期时间为今年的最后一刻即可。
 
-在`Method`实例上设置：
+在 method 实例上设置：
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -118,7 +118,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 
 ### 恢复模式下数据有变怎么办？
 
-当设置了恢复模式的`Method`实例，可能由于接口数据变动，或前端处理响应数据的逻辑变动，此时需要在发布应用后让用户重新缓存变动后的数据，此时你可以通过`tag`属性设置缓存标签，每一份持久化数据都包含一个`tag`标识，当`tag`改变后原有的持久化数据将会失效，并重新获取新的数据，并用新的`tag`进行标识。
+当设置了恢复模式的 method 实例，可能由于接口数据变动，或前端处理响应数据的逻辑变动，此时需要在发布应用后让用户重新缓存变动后的数据，此时你可以通过`tag`属性设置缓存标签，每一份持久化数据都包含一个`tag`标识，当`tag`改变后原有的持久化数据将会失效，并重新获取新的数据，并用新的`tag`进行标识。
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -163,13 +163,13 @@ const alovaInstance = createAlova({
 });
 ```
 
-此后，通过`alovaInstance`实例创建的`Method`实例，都将默认使用这份缓存设置，同时也可以在`Method`实例中覆盖它。
+此后，通过`alovaInstance`实例创建的 method 实例，都将默认使用这份缓存设置，同时也可以在 method 实例中覆盖它。
 
 > 注意：当全局设置了缓存模式后，原有的 5 分钟 GET 缓存模式将被覆盖。
 
 ## 全局关闭缓存模式
 
-如果在你的项目中不希望使用任何请求缓存，可以在全局将它关闭，如果希望只在特定的几个请求中使用，也可以全局关闭它，并在指定的`Method`实例中设置即可。
+如果在你的项目中不希望使用任何请求缓存，可以在全局将它关闭，如果希望只在特定的几个请求中使用，也可以全局关闭它，并在指定的 method 实例中设置即可。
 
 ```javascript
 const alovaInstance = createAlova({

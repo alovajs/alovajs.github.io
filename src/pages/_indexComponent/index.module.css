@@ -11,15 +11,23 @@
 
 .heroContent {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  --ifm-button-padding-horizontal: 1rem;
+}
+.heroContent > h1 {
+  font-size: 4rem;
+}
+.heroContent > p {
+  font-size: 1.2rem;
 }
 
-.left {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  align-items: flex-start;
+.heroContent code {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .buttons {
@@ -41,17 +49,18 @@
 .relationContent {
   background: var(--ifm-color-emphasis-100);
   border-radius: 0.5rem;
-  padding: 2rem 3rem;
-  font-weight: bolder;
-  color: var(--ifm-color-emphasis-600);
+  padding: 3rem 3rem;
+  color: var(--ifm-color-emphasis-700);
+  width: 56%;
+  margin: 0 auto;
 }
 [data-theme='dark'] .relationContent {
   background: var(--ifm-color-emphasis-200);
 }
 
 .quota {
-  font-size: 3rem;
-  line-height: 3rem;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 
 @media screen and (max-width: 996px) {
@@ -59,13 +68,10 @@
     padding: 1rem;
   }
   .heroContent {
-    flex-direction: column;
+    width: 90%;
   }
-  .left {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .heroContent > h1 {
+    font-size: 3.4rem;
   }
   .logo {
     display: none;
@@ -78,5 +84,6 @@
   }
   .relationContent {
     padding: 1rem 2rem;
+    width: auto;
   }
 }

@@ -14,7 +14,7 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-状态更新触发一组串行请求，比[alova 的串行请求方式](/tutorial/getting-started/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
+状态更新触发一组串行请求，比[在最佳实践中的串行请求](/tutorial/best-practice/skills)更加简洁易用，统一的 loading 状态、error、回调函数。
 
 ## 特性
 

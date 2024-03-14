@@ -1,5 +1,5 @@
 ---
-title: 手动失效缓存
+title: 手动失效
 sidebar_position: 30
 ---
 
@@ -7,7 +7,7 @@ sidebar_position: 30
 
 ## 使用 method 实例失效缓存
 
-在 invalidateCache 函数中传入一个 method 实例，它将固定查找此实例下的缓存进行失效。
+在 `invalidateCache` 函数中传入一个 method 实例，它将查找此实例下的缓存进行失效。
 
 在下面的例子中，当提交成功后，将使这条 todo 详情数据缓存失效。
 
@@ -43,15 +43,21 @@ const handleSubmit = () => {
 }；
 ```
 
-:::info
+## 批量失效缓存
 
-它的功能还远不止于此，我们还可以通过设置`Method`实例匹配器来实现任意多个，甚至全部缓存的失效。
+在下面的例子中，我们通过指定缓存的名称或名称的正则表达式来批量失效缓存。
 
-:::
+```javascript
+// 名称为todoList的method的缓存将失效
+invalidateCache('todoList');
+
+// 名称符合以下正则表达式的method的缓存将失效
+invalidateCache(/^todoList/);
+```
 
 ## 动态失效缓存
 
-可能有时候你并不确定需要失效哪个缓存数据，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [Method 实例匹配器](/tutorial/advanced/method-matcher) 来动态查找对应的 method 实例。以下例子展示了如何让名称为 todoList 的前 5 个 Method 实例的缓存失效。
+可能有时候你并不确定需要失效哪个缓存数据，我们可以使用 [method 匹配器](/tutorial/advanced/method-matcher) 来动态查找对应的 method 实例。以下例子展示了如何让名称为 todoList 的前 5 个 method 实例的缓存失效。
 
 ```javascript
 const getTodoList = currentPage => {
@@ -86,7 +92,7 @@ onSuccess(() => {
 });
 ```
 
-> 更多`Method`实例匹配器的使用方法见 [Method 实例匹配器](/tutorial/advanced/method-matcher)
+> 更多 method 匹配器的使用方法见 [method 匹配器](/tutorial/advanced/method-matcher)
 
 ## 失效所有缓存
 

@@ -43,7 +43,7 @@ In Nuxt3.x, `useAsyncData` is provided to initialize page data on server, and `u
 
 ### Nextjs
 
-Nextjs provides fixed server-side initialization page data functions, such as `getStaticProps`, `getServerSideProps`, etc., you can [directly use the method instance](/tutorial/getting-started/first-request) call apis in the function.
+Nextjs provides fixed server-side initialization page data functions, such as `getStaticProps`, `getServerSideProps`, etc., you can [directly use the method instance](/tutorial/getting-started/quick-start) call apis in the function.
 
 ```jsx
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -72,7 +72,7 @@ export default function App(props) {
 
 ### Sveltekit
 
-Sveltekit also provides the `load` function to initialize the page data on server, and you can also [directly use the method instance](/tutorial/getting-started/first-request) call apis in the function. For example, call apis in `+page.server.js`.
+Sveltekit also provides the `load` function to initialize the page data on server, and you can also [directly use the method instance](/tutorial/getting-started/quick-start) call apis in the function. For example, call apis in `+page.server.js`.
 
 ```javascript title=+page.server.js
 const todoListGetter = alovaInstance.Get('/todo/list', {

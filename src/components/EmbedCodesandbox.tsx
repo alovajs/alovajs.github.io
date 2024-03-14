@@ -7,7 +7,7 @@ const EmbedCodesandbox = ({ src }) => (
       src={src}
       style={{
         width: '100%',
-        height: '500px',
+        height: '1000px',
         border: '0',
         borderRadius: '4px',
         overflow: 'hidden'

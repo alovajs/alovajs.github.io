@@ -81,7 +81,7 @@ interface RequestElements {
 
 **abort（必填）**
 
-一个普通函数，它用于中断请求，在 [手动中断请求](#手动中断请求) 章节中调用`abort`函数时，实际上触发中断请求的函数就是这个中断函数；
+一个普通函数，它用于中断请求，所有的中断请求最终都将会调用此函数来执行；
 
 **onDownload（可选）**
 
@@ -155,7 +155,7 @@ function XMLHttpRequestAdapter(requestElements, methodInstance) {
 
 ## 请求适配器类型
 
-全局的`beforeRequest`、`responded`拦截器，以及`Method`实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，以下是 GlobalFetch 的类型。
+全局的`beforeRequest`、`responded`拦截器，以及 method 实例创建时的配置对象的类型，都会根据请求适配器提供的类型自动推断，以下是 GlobalFetch 的类型。
 
 ```javascript
 import type { RequestElements, Method, ProgressUpdater } from 'alova';

@@ -125,7 +125,7 @@ Customize various adapters to meet the operating requirements in different envir
 
 #### Custom request strategy
 
-Request strategies can help developers write high-performance functions more efficiently. Although the official [@alova/scene](/category/strategy) provides some common request strategies, it is not enough It is a good choice to customize your own reusable request strategy based on alova to meet the business scenarios related to various requests of developers, and you can also publish them on npm for everyone to use.
+Request strategies can help developers write high-performance functions more efficiently. Although the official [@alova/scene](/tutorial/strategy) provides some common request strategies, it is not enough It is a good choice to customize your own reusable request strategy based on alova to meet the business scenarios related to various requests of developers, and you can also publish them on npm for everyone to use.
 
 :::tip Submit your project
 

@@ -47,6 +47,6 @@ sidebar_position: 20
 
 ### 开发工具
 
-- [**@alova/openapi**](https://github.com/alovajs/openapi)：根据 openapi 配置文件自动生成对应的`Method`集合，免去开发者自行编写`Method`实例，同时支持响应数据类型，和 api 变更提醒等。
+- [**@alova/openapi**](https://github.com/alovajs/openapi)：根据 openapi 配置文件自动生成对应的`Method`集合，免去开发者自行编写 method 实例，同时支持响应数据类型，和 api 变更提醒等。
 
 - [**@alova/api-vscode**](https://github.com/alovajs/api-vscode)：vscode 插件，它将根据当前项目自动生成 api 列表，方便查阅和管理项目中的 api 定义，并提供变更提醒。

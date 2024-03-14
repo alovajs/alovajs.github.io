@@ -157,7 +157,7 @@ const handleClick = () => {
 
 当你需要创建一条新的 todo 项时，可以先关闭默认发送请求，转为手动触发请求，并在 useRequest 中接收`send`函数用于手动发送请求，`send`函数将返回带响应数据的 Promise 实例，它将在请求响应后改为 resolve 状态。
 
-此时为了接收`send`函数传入参数，可以将`useRequest`的第一个参数设置为函数。
+此时为了接收`send`函数传入参数，可以将`useRequest`的第一个参数设置为函数，我们称这个函数为 **method handler**。
 
 ```javascript
 const {
