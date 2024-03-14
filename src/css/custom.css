@@ -159,7 +159,7 @@ html[data-theme='dark'] .navbar__inner {
 .theme-doc-breadcrumbs {
   margin-bottom: 3rem !important;
 }
-.markdown h2 {
+.markdown h2:not(.text--truncate) {
   border-top: solid 1px var(--ifm-color-emphasis-300);
   padding-top: 2rem;
 }

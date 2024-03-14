@@ -23,9 +23,9 @@
     "message": "响应缓存",
     "description": "The label for category Learn in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Combine framework": {
+  "sidebar.tutorialSidebar.category.Combine Framework": {
     "message": "结合框架",
-    "description": "The label for category Combine framework in sidebar tutorialSidebar"
+    "description": "The label for category Combine Framework in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Strategy": {
     "message": "请求策略",
