@@ -17,10 +17,10 @@
   background: var(--ifm-color-emphasis-200);
 }
 .unavailableWrapper {
-  background: var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-200) !important;
 }
 [data-theme='dark'] .unavailableWrapper {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-emphasis-100) !important;
 }
 
 .framework:hover {
