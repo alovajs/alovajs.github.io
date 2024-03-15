@@ -219,7 +219,7 @@ alovaInstance.Get('/todo/list', {
 
 Response caching allows you to better utilize server-side data multiple times without having to send a request to obtain the data every time it is requested. GET requests will set a memory cache time of 5 minutes by default, which we will explain in detail in the [Response Caching](/tutorial/cache/mode) section later.
 
-## Interrupt request
+## Abort request
 
 `[2.6.2+]` calls the `abort` of the method instance to abort the request.
 

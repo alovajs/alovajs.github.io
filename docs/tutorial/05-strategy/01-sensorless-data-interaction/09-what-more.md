@@ -202,7 +202,7 @@ silentQueueMap.default.forEach(silentMethodItem => {
 
 ## Queue request delay
 
-Some applications need to submit data frequently, such as editor-type applications, which are saved in real time during the editing process without interrupting the user's use. When using silent submission in this type of application, more request information will be generated, not only It will fill up the front-end cache and make the server receive too many requests. At this time, we may no longer need to synchronize all save operations, but send an operation within a period of time. There will be the following two solutions:
+Some applications need to submit data frequently, such as editor-type applications, which are saved in real time during the editing process without aborting the user's use. When using silent submission in this type of application, more request information will be generated, not only It will fill up the front-end cache and make the server receive too many requests. At this time, we may no longer need to synchronize all save operations, but send an operation within a period of time. There will be the following two solutions:
 
 1. Throttle the editing operation, and only initiate one submission within n seconds. This solution may lose the operation records during the delay period, resulting in only the status of the last submission being obtained when refreshing;
 2. Delay the save request in the queue, and only keep the latest request information during the delay time, so that you can reduce the request while retaining the latest editing status;
