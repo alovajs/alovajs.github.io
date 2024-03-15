@@ -124,7 +124,7 @@ const alovaInstance = createAlova({
 
 :::info Interceptor triggering instructions
 
-When you use `GlobalFetch` to request the adapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or the connection is interrupted. In other cases, the `onSuccess` interceptor will be triggered. [For details, please Check here](https://developer.mozilla.org/docs/Web/API/fetch)
+When you use `GlobalFetch` to request the adapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or the connection is aborted. In other cases, the `onSuccess` interceptor will be triggered. [For details, please Check here](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::
 

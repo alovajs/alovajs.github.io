@@ -31,7 +31,7 @@ function CustomRequestAdapter(requestElements, methodInstance) {
       // Asynchronous function that returns response headers
     },
     abort() {
-      // Interrupt request, this function will be triggered when abort is called externally
+      // Abort request, this function will be triggered when abort is called externally
     },
     onDownload(updateDownloadProgress) {
       // Download progress information, internally call updateDownloadProgress continuously to update the download progress
