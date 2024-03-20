@@ -56,6 +56,25 @@ const loginAPI = (username, password) => {
 };
 ```
 
+**[2.18.0+]** 你也可以直接在 config 中传入 meta 数据
+
+```javascript
+const loginAPI = (username, password) => {
+  return alovaInst.Post(
+    '/login',
+    {
+      username,
+      password
+    },
+    {
+      meta: {
+        ignoreToken: true
+      }
+    }
+  );
+};
+```
+
 **第二步：在`beforeRequest`中通过元数据作为判断依据**
 
 ```javascript
