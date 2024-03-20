@@ -56,6 +56,25 @@ const loginAPI = (username, password) => {
 };
 ```
 
+**[2.18.0+]** And you can also directly define metadata in config
+
+```javascript
+const loginAPI = (username, password) => {
+  return alovaInst.Post(
+    '/login',
+    {
+      username,
+      password
+    },
+    {
+      meta: {
+        ignoreToken: true
+      }
+    }
+  );
+};
+```
+
 **Step 2: Use metadata as the basis for judgment in `beforeRequest`**
 
 ```javascript
