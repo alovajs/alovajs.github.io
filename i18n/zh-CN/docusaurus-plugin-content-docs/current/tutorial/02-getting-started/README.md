@@ -32,6 +32,8 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 
 alova 提供了 10+个基于[RSM](/tutorial/others/RSM)规范的请求策略模块，它们以 useHook 的形式实现。
 
+![](/img/live.jpg)
+
 ## 核心 useHook
 
 <Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-request">useRequest</Link>

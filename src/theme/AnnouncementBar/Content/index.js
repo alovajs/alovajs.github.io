@@ -1,7 +1,9 @@
 import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import pngLive from '@site/static/img/live.jpg';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+
 export default function AnnouncementBarContent(props) {
   const { i18n } = useDocusaurusContext();
   i18n.currentLocale;
@@ -14,7 +16,7 @@ export default function AnnouncementBarContent(props) {
     >
       ⭐️
       <a
-        href="https://github.com/alovajs/alova"
+        href={pngLive}
         target="_blank">
         <Translate id="announcement.content">If you also like alova, star it on GitHub!</Translate>
       </a>
