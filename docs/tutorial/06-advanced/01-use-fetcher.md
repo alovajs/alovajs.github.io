@@ -48,7 +48,9 @@ Let's implement a paging list to automatically preload the next page of data. Be
 
     // Only after calling fetch will a request be sent to fetch data. You can call fetch repeatedly to fetch data from different interfaces.
     fetch
-  } = useFetcher();
+  } = useFetcher({
+    updateState: false
+  });
 
   const currentPage = ref(1);
   const { data, onSuccess } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
@@ -90,7 +92,9 @@ const App = () => {
 
     // Only after calling fetch will a request be sent to fetch data. You can call fetch repeatedly to fetch data from different interfaces.
     fetch
-  } = useFetcher();
+  } = useFetcher({
+    updateState: false
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const { data, onSuccess } = useWatcher(() => getTodoList(currentPage), [currentPage], {
     immediate: true
@@ -138,7 +142,9 @@ const App = () => {
 
     // Only after calling fetch will a request be sent to fetch data. You can call fetch repeatedly to fetch data from different interfaces.
     fetch
-  } = useFetcher();
+  } = useFetcher({
+    updateState: false
+  });
   const currentPage = writable(1);
   const { data, onSuccess } = useWatcher(() => getTodoList($currentPage), [currentPage], {
     immediate: true
@@ -185,7 +191,9 @@ const App = () => {
   export default {
     mixins: mapAlovaHook(function () {
       return {
-        fetcher: useFetcher(),
+        fetcher: useFetcher({
+          updateState: false
+        }),
         paging: useWatcher(() => getTodoList(this.currentPage), ['currentPage'], {
           immediate: true
         })
@@ -208,6 +216,12 @@ const App = () => {
 
 </TabItem>
 </Tabs>
+
+:::warning
+
+The above example is set `updateState` to false when calling `useFetcher`. This is because the data fetching will automatically trigger a states cross-component updating by default, causing the view to be re-rendered. When preload data is the same as the currently requested data. You can set it to false to avoid affecting view errors.
+
+:::
 
 ## Update views across modules/components
 
