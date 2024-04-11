@@ -48,7 +48,9 @@ import TabItem from '@theme/TabItem';
 
     // 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
     fetch
-  } = useFetcher();
+  } = useFetcher({
+    updateState: false
+  });
 
   const currentPage = ref(1);
   const { data, onSuccess } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
@@ -90,7 +92,9 @@ const App = () => {
 
     // 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
     fetch
-  } = useFetcher();
+  } = useFetcher({
+    updateState: false
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const { data, onSuccess } = useWatcher(() => getTodoList(currentPage), [currentPage], {
     immediate: true
@@ -138,7 +142,9 @@ const App = () => {
 
     // 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
     fetch
-  } = useFetcher();
+  } = useFetcher({
+    updateState: false
+  });
   const currentPage = writable(1);
   const { data, onSuccess } = useWatcher(() => getTodoList($currentPage), [currentPage], {
     immediate: true
@@ -185,7 +191,9 @@ const App = () => {
   export default {
     mixins: mapAlovaHook(function () {
       return {
-        fetcher: useFetcher(),
+        fetcher: useFetcher({
+          updateState: false
+        }),
         paging: useWatcher(() => getTodoList(this.currentPage), ['currentPage'], {
           immediate: true
         })
@@ -208,6 +216,12 @@ const App = () => {
 
 </TabItem>
 </Tabs>
+
+:::warning
+
+以上示例在调用`useFetcher`时设置了`updateState`为 false，这是因为默认情况下 fetch 时会自动触发跨组件更新状态，导致视图重新渲染，在预拉取的数据与当前请求的数据为同一份`data`时可以关闭它，以免影响视图错误。
+
+:::
 
 ## 跨模块/组件更新视图
 
