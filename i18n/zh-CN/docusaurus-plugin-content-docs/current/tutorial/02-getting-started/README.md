@@ -32,8 +32,6 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 
 alova 提供了 10+个基于[RSM](/tutorial/others/RSM)规范的请求策略模块，它们以 useHook 的形式实现。
 
-![](/img/live.jpg)
-
 ## 核心 useHook
 
 <Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-request">useRequest</Link>
@@ -87,6 +85,18 @@ alova 提供了 10+个基于[RSM](/tutorial/others/RSM)规范的请求策略模�
 ## 在线试用
 
 你可以通过 Codesandbox [在线可编辑示例尝试 alovajs](/category/examples)直接在浏览器中运行项目，因此它与本地开发几乎无差别，同时无需在你的机器上安装任何东西。
+
+## 脚手架推荐
+
+<NavCard list={[
+{
+Image: <img src="https://codercup.github.io/unibest-docs/logo.svg"/>,
+title: 'Uniapp 脚手架 - unibest',
+desc: '集成了最新前端技术栈的跨端解决方案',
+link: 'https://codercup.github.io/unibest-docs/',
+target: '__blank'
+}
+]}></NavCard>
 
 ## 加入 alova 社区
 
