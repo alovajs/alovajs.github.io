@@ -17,7 +17,7 @@ use hook
 通过 Server-sent Events(SSE)请求，内部使用`EventSource`实现。
 
 ## 特性
-1
+
 - ✨ 更加简洁易用的使用方式；
 - ✨ 自动管理连接；
 
