@@ -3,9 +3,12 @@ title: Server-sent events发送请求
 sidebar_position: 130
 ---
 
-:::warning
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-此策略暂未实现，以下为设计文档
+:::info 策略类型
+
+use hook
 
 :::
 
@@ -13,69 +16,274 @@ sidebar_position: 130
 
 通过 Server-sent Events(SSE)请求，内部使用`EventSource`实现。
 
-## useSSE 的全部参数一览
+## 特性
+1
+- ✨ 更加简洁易用的使用方式；
+- ✨ 自动管理连接；
 
-```javascript
-const {
-  readyState, // 响应式的状态，0 — connecting、1 — open、2 — closed
-  data, // eventSource实例每次响应的数据
-  eventSource, // eventSource实例
-  onMessage, // 对应实例的onmessage事件
-  onError, // 对应实例的onerror事件
-  onOpen, // 对应实例的onopen事件
-  on // 对应实例的onmessage的addEventListener，它将返回解绑函数
-} = useSSE(() => method(), {
-  withCredentials: true, // 会传给new EventSource
-  interceptByGlobalResponded: true // 是否经过alova实例的responded拦截，默认为true
-  initialData: {}, // 初始化数据，在响应前设置到data状态上
+
+## 安装
+
+<Tabs groupId="framework">
+<TabItem value="1" label="vue composition">
+
+```bash
+# npm
+npm install @alova/scene-vue --save
+# yarn
+yarn add @alova/scene-vue
+
+```
+
+</TabItem>
+<TabItem value="2" label="react">
+
+```bash
+# npm
+npm install @alova/scene-react --save
+# yarn
+yarn add @alova/scene-react
+
+```
+
+</TabItem>
+
+<TabItem value="3" label="svelte">
+
+```bash
+# npm
+npm install @alova/scene-svelte --save
+# yarn
+yarn add @alova/scene-svelte
+
+```
+
+</TabItem>
+</Tabs>
+
+## 用法
+
+<Tabs groupId="framework">
+<TabItem value="1" label="vue composition">
+
+```typescript
+import { useSSE } from '@alova/scene-vue';
+
+const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
+  initialData: 'initial-data' // 初始时 data 中的数据
+});
+
+// connect
+send('value');
+
+console.log(data.value); // data 在接收到事件后更新，默认是 initialData
+
+// 对应 eventsource 的 message 事件
+const unbindMessage = onMessage(({ data }) => {
+  console.log(data);
+});
+
+const unbindError = onError(({ error }) => {
+  console.error('sse error', error);
+  close();
+})
+
+// 在需要的时候解绑
+unbindMessage();
+unbindError();
+```
+
+</TabItem>
+<TabItem value="2" label="react">
+
+```typescript
+import { useSSE } from '@alova/scene-react';
+
+const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
+  initialData: 'initial-data' // 初始时 data 中的数据
+});
+
+// connect
+send('value');
+
+console.log(data); // data 在接收到事件后更新，默认是 initialData
+
+// 对应 eventsource 的 message 事件
+const unbindMessage = onMessage(({ data }) => {
+  console.log(data);
+});
+
+const unbindError = onError(({ error }) => {
+  console.error('sse error', error);
+  close();
+})
+
+// 在需要的时候解绑
+unbindMessage();
+unbindError();
+```
+
+</TabItem>
+<TabItem value="3" label="svelte">
+
+
+```typescript
+import { useSSE } from '@alova/scene-svelte';
+
+const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
+  initialData: 'initial-data' // 初始时 data 中的数据
+});
+
+// connect
+send('value');
+
+console.log(data); // data 在接收到事件后更新，默认是 initialData
+
+// 对应 eventsource 的 message 事件
+const unbindMessage = onMessage(({ data }) => {
+  console.log(data);
+});
+
+const unbindError = onError(({ error }) => {
+  console.error('sse error', error);
+  close();
+})
+
+// 在需要的时候解绑
+unbindMessage();
+unbindError();
+```
+
+</TabItem>
+</Tabs>
+
+:::warning
+
+`useSSE` 目前只能连接到一个源。也就是说，当试图连接多个目标时，上一个连接总会被断开。
+
+:::
+
+``` typescript
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method);
+
+send('value1');
+// highlight-start
+send('value2'); // 这会断开上一个连接
+send('value3'); // 这也会断开上一个连接
+// highlight-end
+```
+
+默认情况下，不会发送请求。当然，通过设置`immediate = true`，可以省去手动 send 的一步。
+
+```typescript
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
+  // highlight-start
+  immediate: true
+  // highlight-end
+});
+
+// codes here...
+```
+
+### 绑定自定义事件
+
+```typescript
+const { data, readyState, onMessage, on } = useSSE(method);
+
+on('event-name', ({ data }) => {
+  console.log(data);
 });
 ```
 
-## useSSE 参数的详细格式及解释
+### 全局响应拦截
 
-### 返回的响应式状态
-
-以下都是响应式的值
+默认情况下，响应数据受到[全局响应拦截器的捕获](/tutorial/combine-framework/response)。如果这不是你预期的行为，可以手动关闭。
 
 ```typescript
-type readyState = 0 | 1 | 2; // 响应式的状态，0 — connecting、1 — open、2 — closed
-type eventSource = EventSource; // eventSource实例，内部需要使用useFlag$包裹，保证在react下每次也能获取到同一个实例
-type data = T; // eventSource实例每次响应的数据，其数据类型由method实例上的T决定
+const { data, readyState, onMessage, on } = useSSE(method, {
+  // highlight-start
+  interceptByGlobalResponded: false // 现在数据不会被响应拦截
+  // highlight-end
+});
 ```
 
-### 事件绑定函数
+## 类型声明
 
-每个事件绑定的回调函数都会接收一个事件对象，格式如下
+``` typescript
+const enum SSEHookReadyState {
+  CONNECTING = 0,
+  OPEN = 1,
+  CLOSED = 2
+};
 
-```typescript
-// 对应eventSourcee的onopen事件
-type onOpen = (handler: (event: AlovaSSEOpenEvent) => void) => void;
-interface AlovaSSEErrorEvent {
-  method: Method; // alova的method实例
-  eventSource: EventSource; // eventSource实例
-}
+type SSEHookConfig = {
+  /**
+   * 会传给new EventSource
+   */
+  withCredentials?: boolean;
 
-// 对应eventSourcee的onmessage事件，其data为转换后的数据
-type onMessage = (handler: (event: AlovaSSEMessageEvent) => void) => void;
-interface AlovaSSEMessageEvent extends AlovaSSEErrorEvent {
-  data: T; // 每次响应的，经过拦截器转换后的数据
-}
+  /**
+   * 是否经过alova实例的responded拦截
+   * @default true
+   */
+  interceptByGlobalResponded?: boolean;
 
-// 对应eventSourcee的onerror事件
-type onError = (handler: (event: AlovaSSEErrorEvent) => void) => void;
-interface AlovaSSEErrorEvent extends AlovaSSEErrorEvent {
-  error: Error; // 错误对象
-}
+  /**
+   * 初始数据
+   */
+  initialData?: any;
+
+  /**
+   * 是否立即发起请求
+   * @default false
+   */
+  immediate?: boolean;
+};
+
+type SSEReturnType<S, Data> = {
+  readyState: ExportedType<SSEHookReadyState, S>;
+  data: ExportedType<Data | undefined, S>;
+  eventSource: ExportedType<EventSource | undefined, S>;
+  /**
+   * 手动发起请求。在使用 `immediate: true` 时该方法会自动触发
+   * @param sendArgs 请求参数，会传递给 method
+   */
+  send: (...sendArgs: any[]) => Promise<void>;
+  /**
+   * 关闭连接
+   */
+  close: () => void;
+  /**
+   * 注册 EventSource open 的回调函数
+   * @param callback 回调函数
+   * @returns 取消注册函数
+   */
+  onOpen(callback: SSEOnOpenTrigger): () => void;
+
+  /**
+   * 注册 EventSource message 的回调函数
+   * @param callback 回调函数
+   * @returns 取消注册函数
+   */
+  onMessage<T = Data>(callback: SSEOnMessageTrigger<T>): () => void;
+
+  /**
+   * 注册 EventSource error 的回调函数
+   * @param callback 回调函数
+   * @returns 取消注册函数
+   */
+  onError(callback: SSEOnErrorTrigger): () => void;
+
+  /**
+   * @param eventName 事件名称，默认存在 `open` | `error` | `message`
+   * @param handler 事件处理器
+   */
+  on(
+    eventName: string,
+    handler: (event: AlovaSSEMessageEvent<S, E, R, T, RC, RE, RH>) => void
+  ) => () => void;
+};
 ```
-
-### 返回的操作函数
-
-```typescript
-// 绑定自定义的事件，sse会根据响应数据内的event字段触发对应的自定义事件
-// 绑定事件时将返回这个事件的解绑函数，调用即可解绑
-type on = (eventName: string, handler: (event: AlovaSSEMessageEvent) => void) => () => void;
-```
-
-## 内部实现建议
-
-`EventSource`属于请求层面的内容，但属于多次响应的形式，因此无法通过`alova`的请求适配器支持。所以在开发时建议在`useSSE`中读取 method 实例的请求信息并创建`EventSource`实例来发送请求，这可能会带来一个问题 —— 响应数据无法被 alova 的全局响应钩子和 method 实例的`transformData`钩子拦截，对于这两个拦截器需要在`useSSE`中自行调用，全局响应钩子会被`interceptByGlobalResponded`参数影响，将转换后的数据通过`onMessage`事件通知外部，同时更新到`data`状态中。
