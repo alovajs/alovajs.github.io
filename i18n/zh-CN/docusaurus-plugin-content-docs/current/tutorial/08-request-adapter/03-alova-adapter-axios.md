@@ -45,7 +45,7 @@ const alovaInst = createAlova({
 适配器内部将会使用默认的 axios 实例进行请求，如果你为 axios 设置了一些全局参数，你可能需要注意以下两点：
 
 1. 优先使用 axios 实例内的`baseURL`和`timeout`参数，因此如果你在 axios 实例上设置了这些参数，那么就可以不需要在`createAlova`时设置了；
-2. alova 实例的`beforeRequest`钩子将会早于 axios 的`interceptor.request`触发，axios 实例的`responded`钩子将会晚于 axios 实例的`interceptor.response`触发；
+2. alova 实例的`beforeRequest`钩子将会早于 axios 的`interceptor.request`触发，alova 实例的`responded`钩子将会晚于 axios 实例的`interceptor.response`触发；
 
 > 你也可以[使用自定义的 axios 实例](#使用自定义的-axios-实例)
 

@@ -118,3 +118,24 @@ The first matching Method instance is applied.
 ### fetch
 
 The first matching Method instance is applied, i.e. the data will only be pulled once.
+
+## Limit instance snapshots
+
+`[v2.20.0+]` By default, 1000 method instance snapshots will be saved, otherwise memory overflow may occur in frequent request scenarios. You can also adjust the limit as needed.
+
+```js
+import { globalConfig } from 'alova';
+
+globalConfig({
+  // Limit saving to 500 instance snapshots
+  limitSnapshots: 500
+});
+```
+
+When set to 0, instance snapshots are no longer saved and the method matcher cannot be used.
+
+```js
+globalConfig({
+  limitSnapshots: 0
+});
+```
