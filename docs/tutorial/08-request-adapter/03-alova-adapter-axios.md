@@ -45,7 +45,7 @@ const alovaInst = createAlova({
 The adapter will use the default axios instance to make requests internally. If you set some global parameters for axios, you may need to pay attention to the following two points:
 
 1. Priority is given to using the `baseURL` and `timeout` parameters in the axios instance, so if you set these parameters on the axios instance, you do not need to set them in `createAlova`;
-2. The `beforeRequest` hook of the alova instance will be triggered earlier than the `interceptor.request` of the axios instance, and the `responded` hook of the axios instance will be triggered later than the `interceptor.response` of the axios instance;
+2. The `beforeRequest` hook of the alova instance will be triggered earlier than the `interceptor.request` of the axios instance, and the `responded` hook of the alova will be triggered later than the `interceptor.response` of the axios instance;
 
 > You can also [use custom axios instance](#use-custom-axios-instance)
 

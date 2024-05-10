@@ -34,6 +34,8 @@ function HomepageHeader() {
       link: '/category/examples'
     }
   ];
+  const { i18n } = useDocusaurusContext();
+
   return (
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
@@ -62,6 +64,17 @@ function HomepageHeader() {
             ))}
           </div>
           <CodeBlock language="bash">npm install alova</CodeBlock>
+
+          <a
+            className={styles.announcement}
+            target="_blank"
+            href={
+              i18n.currentLocale === 'en'
+                ? 'https://maple-mastodon-428.notion.site/Alova-Product-White-Paper-and-3-0-Update-Overview-02f0a713bf7d46e1be5a69db4981217c?pvs=4'
+                : 'https://wilhgi5u21.feishu.cn/docx/ZJzSdX05woIcUux2hlXc31EmnPd'
+            }>
+            🥳🥳🥳 <Translate id="homepage.release.announce">alvoa3.0 is under development, details here</Translate> →
+          </a>
         </div>
       </div>
     </header>

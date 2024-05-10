@@ -653,6 +653,10 @@
     "message": "加入微信群",
     "description": "description of like btnWechat"
   },
+  "homepage.release.announce": {
+    "message": "alvoa3.0正在密锣紧鼓中，查看详情",
+    "description": "description of release announce"
+  },
 
   "ad.project collection": {
     "message": "alova用在项目里了吗？快来告诉我",

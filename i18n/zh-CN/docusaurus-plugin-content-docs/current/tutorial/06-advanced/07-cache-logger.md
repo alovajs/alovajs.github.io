@@ -1,6 +1,6 @@
 ---
 title: 缓存命中日志
-sidebar_position: 60
+sidebar_position: 70
 ---
 
 :::info 版本要求

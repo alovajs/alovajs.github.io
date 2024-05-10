@@ -118,3 +118,24 @@ fetch({
 ### fetch
 
 应用第一个匹配的 Method 实例，即只会拉取一次数据。
+
+## 限制实例快照
+
+`[v2.20.0+]`默认情况下，会保存 1000 个 method 实例快照，否则在频繁的请求场景下可能导致内存溢出，你也可以根据需要调整限制数量。
+
+```js
+import { globalConfig } from 'alova';
+
+globalConfig({
+  // 限制保存500个实例快照
+  limitSnapshots: 500
+});
+```
+
+当设置为 0 时将不再保存实例快照，此时也将无法使用 method 匹配器。
+
+```js
+globalConfig({
+  limitSnapshots: 0
+});
+```
