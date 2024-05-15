@@ -15,7 +15,7 @@ function createAlova(options?: AlovaOptions): Alova;
 
 - **参数**
 
-1. options: 配置参数
+1. config: 配置参数
 
 | 参数名         | 类型                        | 说明                                                                                      |
 | -------------- | --------------------------- | ----------------------------------------------------------------------------------------- |
@@ -99,14 +99,14 @@ interface AlovaStorageAdapter {
 
 ```ts
 interface Alova {
-  Get(url: string, options?: AlovaMethodCreateConfig): Method;
+  Get(url: string, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
 - **参数**
 
 1. url: 请求地址
-2. options: 配置参数
+2. config: 配置参数
 
 | 参数名         | 类型             | 说明                                                                                                                                                                                                                                                                           |
 | -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -146,7 +146,7 @@ const getUsers = alovaInstance.Get('/users', {
 
 ```ts
 interface Alova {
-  Post(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Post(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -154,7 +154,7 @@ interface Alova {
 
 1. url: 请求地址
 2. data: 请求 body
-3. options: 配置参数，参数类型同[alova.Get](#alovaget)
+3. config: 配置参数，参数类型同[alova.Get](#alovaget)
 
 - **返回**
 
@@ -184,7 +184,7 @@ const postUsers = alovaInstance.Post(
 
 ```ts
 interface Alova {
-  Delete(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Delete(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -192,7 +192,7 @@ interface Alova {
 
 1. url: 请求地址
 2. data: 请求 body
-3. options: 配置参数，参数类型同[alova.Get](#alovaget)
+3. config: 配置参数，参数类型同[alova.Get](#alovaget)
 
 - **返回**
 
@@ -220,7 +220,7 @@ const deleteUsers = alovaInstance.Delete(
 
 ```ts
 interface Alova {
-  Put(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Put(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -228,7 +228,7 @@ interface Alova {
 
 1. url: 请求地址
 2. data: 请求 body
-3. options: 配置参数，参数类型同[alova.Get](#alovaget)
+3. config: 配置参数，参数类型同[alova.Get](#alovaget)
 
 - **返回**
 
@@ -257,14 +257,14 @@ const putUsers = alovaInstance.Put(
 
 ```ts
 interface Alova {
-  Head(url: string, options?: AlovaMethodCreateConfig): Method;
+  Head(url: string, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
 - **参数**
 
 1. url: 请求地址
-2. options: 配置参数，参数类型同[alova.Get](#alovaget)
+2. config: 配置参数，参数类型同[alova.Get](#alovaget)
 
 - **返回**
 
@@ -278,7 +278,7 @@ method 实例
 
 ```ts
 interface Alova {
-  Patch(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Patch(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -286,7 +286,7 @@ interface Alova {
 
 1. url: 请求地址
 2. data: 请求 body
-3. options: 配置参数，参数类型同[alova.Get](#alovaget)
+3. config: 配置参数，参数类型同[alova.Get](#alovaget)
 
 - **返回**
 
@@ -300,14 +300,14 @@ method 实例
 
 ```ts
 interface Alova {
-  Options(url: string, options?: AlovaMethodCreateConfig): Method;
+  Options(url: string, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
 - **参数**
 
 1. url: 请求地址
-2. options: 配置参数，参数类型同[alova.Get](#alovaget)
+2. config: 配置参数，参数类型同[alova.Get](#alovaget)
 
 - **返回**
 

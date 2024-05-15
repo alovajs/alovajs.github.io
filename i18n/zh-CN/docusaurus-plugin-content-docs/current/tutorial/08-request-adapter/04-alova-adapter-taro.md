@@ -31,11 +31,36 @@ yarn add @alova/adapter-taro
 </TabItem>
 </Tabs>
 
-:::warning 注意
+:::warning React-Native 应用
 
 如果你正在使用 Taro 开发 React-Native 应用，请确保`metro >= 0.76.0`，并在`metro.config.js`中开启`resolver.unstable_enablePackageExports`
 
 [关于 metro 的 unstable_enablePackageExports 参数](https://facebook.github.io/metro/docs/configuration/#unstable_enablepackageexports-experimental)
+
+:::
+
+:::warning 依赖预编译问题
+
+在 Taro v3.5 beta 中新增了[依赖预编译功能](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91)并在开发模式下默认开启，当你正在 Taro 中同时使用`alova`库和`@alova/scene-react(vue)`时可能导致报 `` [alova]can not call useHooks until set the `statesHook` at alova instance.``的错误，这是由于 prebundle 功能重复打包了两份不同的`alova`包导致，此时关闭 prebundle 功能即可解决此问题。
+
+```js
+// config/dev.ts
+export default {
+  // ...
+  compiler: {
+    type: 'webpack5',
+    prebundle: {
+      // 关闭prebundle
+      enable: false
+    }
+  }
+} satisfies UserConfigExport
+
+```
+
+感谢[LBinin 的 issue](https://github.com/alovajs/scene/issues/63)。
+
+此问题已向 Taro 团队提交[issue](https://github.com/NervJS/taro/issues/15728)，期待解决此问题。
 
 :::
 

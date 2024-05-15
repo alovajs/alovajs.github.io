@@ -28,6 +28,46 @@ method.finally(() => {
 
 In addition, requests can also be sent through the `await method`.
 
+## new Method()
+
+Create a custom method instance.
+
+- **type**
+
+```ts
+interface MethodConstructor {
+  new (
+    type: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH',
+    context: Alova,
+    url: string,
+    config?: AlovaMethodCreateConfig,
+    data?: Arg | string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream
+  ): Method;
+  readonly prototype: Method;
+}
+```
+
+- **Parameters**
+
+1. `type`: request type
+2. `context`: alova instance
+3. `url`: request url
+4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/api/alova#alovaget)
+5. `data`: request body data
+
+- **Example**
+
+```ts
+import { Method } from 'alova';
+import { alovaInstance } from './api';
+
+const method = new Method('GET', alovaInstance, '/api/users', {
+  params: {
+    ID: 1
+  }
+});
+```
+
 ## getMethodKey()
 
 Get the key value of method. This key value is used as alova internal cache key.
