@@ -57,6 +57,18 @@ Parameter Description:
 - `data` is the request body data;
 - `config` is the request configuration object, which includes configurations such as request headers, params parameters, request behavior parameters, etc.;
 
+you can also create a method instance customly. This is useful when you need to dynamically specify the request type.
+
+```javascript
+import { Method } from 'alova';
+
+const method = new Method('GET', alovaInstance, '/api/users', {
+  params: {
+    ID: 1
+  }
+});
+```
+
 Next, let’s take a look at how to define request parameters, which should seem familiar to you.
 
 ## Request parameters

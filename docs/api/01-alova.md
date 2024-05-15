@@ -15,7 +15,7 @@ function createAlova(options?: AlovaOptions): Alova;
 
 - **Parameters**
 
-1. options: configuration parameters
+1. config: configuration parameters
 
 | Parameter name | Type                        | Description                                                                                               |
 | -------------- | --------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -99,14 +99,14 @@ Create a method instance for the GET request.
 
 ```ts
 interface Alova {
-  Get(url: string, options?: AlovaMethodCreateConfig): Method;
+  Get(url: string, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
 - **Parameters**
 
 1. url: request address
-2. options: configuration parameters
+2. config: configuration parameters
 
 | Parameter name | Type             | Description                                                                                                                                                                                                                                                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -146,7 +146,7 @@ Create a method instance for the POST request.
 
 ```ts
 interface Alova {
-  Post(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Post(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -154,7 +154,7 @@ interface Alova {
 
 1. url: request address
 2. data: request body
-3. options: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
 - **return**
 
@@ -184,7 +184,7 @@ Create a method instance for the DELETE request.
 
 ```ts
 interface Alova {
-  Delete(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Delete(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -192,7 +192,7 @@ interface Alova {
 
 1. url: request address
 2. data: request body
-3. options: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
 - **return**
 
@@ -220,7 +220,7 @@ Create a method instance for the PUT request.
 
 ```ts
 interface Alova {
-  Put(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Put(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -228,7 +228,7 @@ interface Alova {
 
 1. url: request address
 2. data: request body
-3. options: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
 - **return**
 
@@ -257,14 +257,14 @@ Create a method instance of the HEAD request.
 
 ```ts
 interface Alova {
-  Head(url: string, options?: AlovaMethodCreateConfig): Method;
+  Head(url: string, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
 - **Parameters**
 
 1. url: request address
-2. options: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+2. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
 - **return**
 
@@ -278,7 +278,7 @@ Create a method instance for the PATCH request.
 
 ```ts
 interface Alova {
-  Patch(url: string, data?: object | FormData | string | null, options?: AlovaMethodCreateConfig): Method;
+  Patch(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
@@ -286,7 +286,7 @@ interface Alova {
 
 1. url: request address
 2. data: request body
-3. options: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
 - **return**
 
@@ -300,14 +300,14 @@ Create a method instance of the OPTIONS request.
 
 ```ts
 interface Alova {
-  Options(url: string, options?: AlovaMethodCreateConfig): Method;
+  Options(url: string, config?: AlovaMethodCreateConfig): Method;
 }
 ```
 
 - **Parameters**
 
 1. url: request address
-2. options: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+2. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
 - **return**
 

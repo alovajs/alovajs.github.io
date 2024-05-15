@@ -28,6 +28,46 @@ method.finally(() => {
 
 此外，也可以通过`await method`来发送请求。
 
+## new Method()
+
+自定义创建 method 实例。
+
+- **类型**
+
+```ts
+interface MethodConstructor {
+  new (
+    type: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PATCH',
+    context: Alova,
+    url: string,
+    config?: AlovaMethodCreateConfig,
+    data?: Arg | string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream
+  ): Method;
+  readonly prototype: Method;
+}
+```
+
+- **参数**
+
+1. `type`：请求类型
+2. `context`：alova 实例
+3. `url`：请求 url
+4. `config`：配置参数, 类型与[alova.Get](/api/alova#alovaget)的 config 参数类型一致
+5. `data`：请求体数据
+
+- **示例**
+
+```ts
+import { Method } from 'alova';
+import { alovaInstance } from './api';
+
+const method = new Method('GET', alovaInstance, '/api/users', {
+  params: {
+    id: 1
+  }
+});
+```
+
 ## getMethodKey()
 
 获取 method 的 key 值，此 key 值作为 alova 内部缓存 key 使用。
