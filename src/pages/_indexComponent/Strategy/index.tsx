@@ -12,7 +12,7 @@ const StrategySelect = ({ active, setActive }) => {
   const ulRef = useRef(null);
   const [isMouseEnter, setIsMouseEnter] = useState(false);
 
-  const handleItemClick = (i) => {
+  const handleItemClick = (i: number) => {
     setActive(i);
     if (ulRef.current) {
       const ulWidth = ulRef.current.offsetWidth;
@@ -22,24 +22,25 @@ const StrategySelect = ({ active, setActive }) => {
     }
   };
 
-  return <ul
-    ref={ulRef}
-    className={clsx(styles.tabs, isMouseEnter ? styles.tabsHover : null)}
-    onMouseEnter={() => setIsMouseEnter(true)}
-    onMouseLeave={() => setIsMouseEnter(false)}
-    style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
-    {strategyList.map(({ title, link }, i) => (
-      <li
-        key={link}
-        className={i === active ? styles.activeTabs : ''}
-        onClick={() => handleItemClick(i)}
-        style={{ display: 'inline-block', cursor: 'pointer' }}>
-        {title}
-      </li>
-    ))}
-  </ul>
-
-}
+  return (
+    <ul
+      ref={ulRef}
+      className={clsx(styles.tabs, isMouseEnter ? styles.tabsHover : null)}
+      onMouseEnter={() => setIsMouseEnter(true)}
+      onMouseLeave={() => setIsMouseEnter(false)}
+      style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+      {strategyList.map(({ title, link }, i) => (
+        <li
+          key={link}
+          className={i === active ? styles.activeTabs : ''}
+          onClick={() => handleItemClick(i)}
+          style={{ display: 'inline-block', cursor: 'pointer' }}>
+          {title}
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 export default function Strategy() {
   const [active, setActive] = useState(0);
