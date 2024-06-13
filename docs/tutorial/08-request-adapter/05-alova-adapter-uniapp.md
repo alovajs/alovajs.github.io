@@ -181,7 +181,7 @@ const mocks = defineMock({
 });
 
 // mock data request adapter
-export default createAlovaMockAdapter([mocks], {
+export const mockAdapter = createAlovaMockAdapter([mocks], {
   // After specifying the uniapp request adapter, requests that do not match the simulated interface will use this adapter to send requests
   httpAdapter: uniappRequestAdapter,
 
