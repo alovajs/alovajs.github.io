@@ -181,7 +181,7 @@ const mocks = defineMock({
 });
 
 // 模拟数据请求适配器
-export default createAlovaMockAdapter([mocks], {
+export const mockAdapter = createAlovaMockAdapter([mocks], {
   // 指定uniapp请求适配器后，未匹配模拟接口的请求将使用这个适配器发送请求
   httpAdapter: uniappRequestAdapter,
 
