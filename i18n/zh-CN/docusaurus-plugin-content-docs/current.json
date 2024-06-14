@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "最新版本",
+    "message": "3.0-beta",
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.Overview": {
@@ -26,6 +26,14 @@
   "sidebar.tutorialSidebar.category.Combine Framework": {
     "message": "结合框架",
     "description": "The label for category Combine Framework in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Client Strategy": {
+    "message": "客户端策略",
+    "description": "The label for category Client Strategy in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Server Strategy": {
+    "message": "服务端策略",
+    "description": "The label for category Server Strategy in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Strategy": {
     "message": "请求策略",

@@ -53,15 +53,15 @@ When we want to uniformly parse response data, uniformly handle errors, and unif
 
 ```mermaid
 flowchart LR
-   classDef error fill:#f96,stroke:#f00,stroke-width:2px;
+  classDef error fill:#f96,stroke:#f00,stroke-width:2px;
 
-   R1[Request 1 successful] --> responded.onSuccess
-   R2[Request 2 successful] --> responded.onSuccess
-   RN[Request N successful] --> responded.onSuccess
-   R4[Request 4 failed]:::error --> responded.onError:::error
-   R5[Request M failed]:::error --> responded.onError:::error
-   responded.onSuccess --> responded.onComplete
-   responded.onError --> responded.onComplete
+  R1[Request 1 successful] --> responded.onSuccess
+  R2[Request 2 successful] --> responded.onSuccess
+  RN[Request N successful] --> responded.onSuccess
+  R4[Request 4 failed]:::error --> responded.onError:::error
+  R5[Request M failed]:::error --> responded.onError:::error
+  responded.onSuccess --> responded.onComplete
+  responded.onError --> responded.onComplete
 ```
 
 ```javascript
@@ -124,7 +124,7 @@ const alovaInstance = createAlova({
 
 :::info Interceptor triggering instructions
 
-When you use `GlobalFetch` to request the adapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or the connection is aborted. In other cases, the `onSuccess` interceptor will be triggered. [For details, please Check here](https://developer.mozilla.org/docs/Web/API/fetch)
+When you use `alova/fetch` to request the adapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or the connection is aborted. In other cases, the `onSuccess` interceptor will be triggered. [For details, please Check here](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::
 
@@ -132,6 +132,5 @@ When you use `GlobalFetch` to request the adapter, due to the characteristics of
 
 1. `onSuccess`, `onError` and `onComplete` can be set as synchronous functions and asynchronous functions.
 2. The `onError` callback is a capture function for request errors. An error thrown in `onSuccess` will not trigger `onError`. When an error is caught but no error is thrown or a Promise instance that returns reject status is used, the request will be considered successful and no response data will be obtained.
-3. In 2.0.x and previous versions, `responded` was incorrectly spelled as `responsed`. In 2.1.0, the two have been made compatible. It is recommended to use `responded` instead of `responsed` in subsequent versions. .
 
 :::

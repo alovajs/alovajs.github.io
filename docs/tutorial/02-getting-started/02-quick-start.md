@@ -10,13 +10,13 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
 
-:::tip Example tip
+:::tip Example Tips
 
-If you haven’t learned about alova yet, it is recommended that you read [alova overview](/tutorial/getting-started) first.
+If you haven't learned about alova yet, it is recommended that you read [alova overview](/tutorial/getting-started) first.
 
 :::
 
-## Install
+## Installation
 
 <Tabs>
 <TabItem value="1" label="npm">
@@ -51,19 +51,19 @@ bun add alova
 
 > You can also [use alova through CDN](/tutorial/others/use-in-static)
 
-## Create alova instance
+## Create an alova instance
 
-In alova, a request needs to be made through an alova instance. Let's create one first. When creating an alova instance, you need to specify a request adapter. It is recommended to use the `GlobalFetch` request adapter here, which is a package based on the `fetch API`.
+In alova, you need to initiate a request through an alova instance. Let's create one first. When creating an alova instance, you need to specify a request adapter. Here we recommend using the `alova/fetch` request adapter, which is a wrapper based on the `fetch API` and is very concise.
 
 <Tabs>
 <TabItem value="1" label="esModule">
 
 ```javascript
 import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import fetchAdapter from 'alova/fetch';
 
 const alovaInstance = createAlova({
-  requestAdapter: GlobalFetch()
+  requestAdapter: fetchAdapter()
 });
 ```
 
@@ -72,24 +72,24 @@ const alovaInstance = createAlova({
 
 ```javascript
 const { createAlova } = require('alova');
-const GlobalFetch = require('alova/GlobalFetch');
+const fetchAdapter = require('alova/fetch');
 
 const alova = createAlova({
-   requestAdapter: GlobalFetch();
+requestAdapter: fetchAdapter();
 });
 ```
 
-> When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/alova-adapter-axios/).
+> When using fetchAdapter in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/alova-adapter-axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">
 
 ```javascript
 import { createAlova } from 'npm:alova';
-import GlobalFetch from 'npm:alova/GlobalFetch';
+import fetchAdapter from 'npm:alova/fetch';
 
 const alova = createAlova({
-   requestAdapter: GlobalFetch();
+requestAdapter: fetchAdapter();
 });
 ```
 
@@ -98,18 +98,30 @@ const alova = createAlova({
 
 ## GET request
 
-Sending a request via `alovaInstance.Get` will receive a `Response` instance thanks to the `GlobalFetch` request adapter, which is simple.
+Send a request through `alovaInstance.Get`. Since the `fetchAdapter` request adapter is used, a `Response` instance will be received. This is very simple.
 
-<EmbedSandpack template="vanilla" mainFile={quickStartGET} editorHeight={400} containBaseURL={false} />
+```js
+const response = await alovaInstance
+  .Get('https://alovajs.dev/user/profile')
+  .then(response => response.json());
+```
 
-In an asynchronous function, you can also use `await alovaInstance.Get` to wait for a response.
+In an asynchronous function, you can also use `await alovaInstance.Get` to wait for the response.
 
 ## POST request
 
-Submitting data via `alovaInstance.Post` is also easy.
+Submit data through `alovaInstance.Post`. This is also very simple.
 
-<EmbedSandpack template="vanilla" mainFile={quickStartPOST} editorHeight={400} containBaseURL={false} />
+```js
+const response = alovaInstance
+  .Post('https://alovajs.dev/posts', {
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+  .then(response => response.json());
+```
 
-## What’s next?
+## What to do next?
 
-In fact, this is just the simplest request example. We will learn more about the features in the next chapters, so let's start learning.
+In fact, this is just a simple request example. You will learn more functions in the next chapter. Let's start learning.

@@ -54,7 +54,7 @@ const alovaInstance = createAlova({
 
 ## Request adapter
 
-In the previous chapter we have configured the `GlobalFetch` request adapter, which will be used to send requests initiated by this alova instance. In fact, we also provide various request adapters for different JS environments.
+In the previous chapter we have configured the `alova/fetch` request adapter, which will be used to send requests initiated by this alova instance. In fact, we also provide various request adapters for different JS environments.
 
 - [Mock request adapter](/tutorial/request-adapter/alova-mock)
 - [XMLHttpRequest Adapter](/tutorial/request-adapter/alova-adapter-xhr)
@@ -64,4 +64,16 @@ In the previous chapter we have configured the `GlobalFetch` request adapter, wh
 
 ## Global response cache
 
-You can also set the response cache globally, which we will explain in detail in the [Response Cache](/tutorial/cache/mode) chapter later.
+You can also set the response cache globally:
+
+```ts
+const alovaInstance = createAlova({
+  // ...
+  cacheFor: {
+    GET: 0, // Close all GET caches
+    POST: 60 * 60 * 1000 // Set all POST caches for 1 hour
+  }
+});
+```
+
+For more details, please refer to [Response Cache](/tutorial/cache/mode)

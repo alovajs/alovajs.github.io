@@ -126,7 +126,7 @@ alovaInstance.Get('/user', {
 
 ### 其他请求适配器支持的参数
 
-除了请求头、params 参数等外，还支持配置对应请求适配器支持的参数，当使用`GlobalFetch`作为 alova 的请求适配器时，就可以在 method 实例上配置任何`fetch API`支持的参数，这些参数会在请求时传给`fetch`函数。
+除了请求头、params 参数等外，还支持配置对应请求适配器支持的参数，当使用`alova/fetch`作为 alova 的请求适配器时，就可以在 method 实例上配置任何`fetch API`支持的参数，这些参数会在请求时传给`fetch`函数。
 
 ```javascript
 alovaInstance.Get('/todo/list', {
@@ -152,7 +152,7 @@ fetch('/todo/list', {
 });
 ```
 
-> 请求体除了可以传递 Object，还能传递请求适配器支持的请求体参数，例如 GlobalFetch 支持传递`string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream`参数。
+> 请求体除了可以传递 Object，还能传递请求适配器支持的请求体参数，例如 `alova/fetch` 支持传递`string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream`参数。
 
 如果你使用了其他的请求适配器，也可以传递它们支持的参数。
 
@@ -229,11 +229,20 @@ alovaInstance.Get('/todo/list', {
 
 ### 响应缓存
 
-响应缓存让你可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。GET 请求将默认设置 5 分钟的内存缓存时间，我们将在后面的[响应缓存](/tutorial/cache/mode)章节中详细说明。
+响应缓存让你可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。GET 请求将默认设置 5 分钟的内存缓存时间，如果你不需要可以通过以下方式关闭当前请求的缓存。
+
+```ts
+alovaInstance.Get('/todo/list', {
+  // 设置为0或者null关闭默认的响应缓存
+  cacheFor: 0
+});
+```
+
+详细内容可参考[响应缓存](/tutorial/cache/mode)
 
 ## 中断请求
 
-`[2.6.2+]` 调用 method 实例的`abort`中断请求。
+调用 method 实例的`abort`中断请求。
 
 ```javascript
 const userMethod = alovaInstance.Get('/api/user');
@@ -250,7 +259,7 @@ const handleCancel = () => {
 
 ## 监听上传下载进度
 
-**[v2.17.0+]** 通过 method 实例的`onUpload`绑定上传进度事件，`onDownload`绑定下载进度事件，它将返回解绑函数。
+通过 method 实例的`onUpload`绑定上传进度事件，`onDownload`绑定下载进度事件，它将返回解绑函数。
 
 ```javascript
 const uploadMethod = alovaInstance.Post('/todo/uploadfile', formData);
@@ -286,9 +295,9 @@ const handleOffEvent = () => {
 };
 ```
 
-:::warning 使用`GlobalFetch`适配器需注意
+:::warning 使用`alova/fetch`适配器需注意
 
-因 fetch api 限制，alova 提供的 **GlobalFetch** 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/tutorial/request-adapter/alova-adapter-xhr)或[axios 适配器](/tutorial/request-adapter/alova-adapter-axios)。
+因 fetch api 限制，alova 提供的 `alova/fetch` 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/tutorial/request-adapter/alova-adapter-xhr)或[axios 适配器](/tutorial/request-adapter/alova-adapter-axios)。
 
 也可以自行编写请求适配器，详见 [编写请求适配器](/tutorial/custom/custom-http-adapter)。
 

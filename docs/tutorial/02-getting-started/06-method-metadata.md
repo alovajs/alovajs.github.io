@@ -3,12 +3,6 @@ title: Method Metadata
 sidebar_position: 60
 ---
 
-:::info version requirements
-
-v2.7.0+
-
-:::
-
 Method instances run through the entire request life cycle of alova, and there will be a large number of different method instances in the project. Sometimes we need to add additional information to specific method instances to facilitate their identification or additional information transfer. Wait, at this point, we need to use method metadata.
 
 ## Use metadata to identify identities
@@ -56,7 +50,7 @@ const loginAPI = (username, password) => {
 };
 ```
 
-**[2.18.0+]** And you can also directly define metadata in config
+And you can also directly define metadata in config
 
 ```javascript
 const loginAPI = (username, password) => {

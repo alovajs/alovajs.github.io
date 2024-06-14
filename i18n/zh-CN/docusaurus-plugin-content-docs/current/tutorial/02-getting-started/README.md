@@ -6,21 +6,25 @@ import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
 
-alova 是一个轻量级的请求策略库，它提供了一套完整的应对复杂请求场景的方案，我们称之为**请求策略**，只需一行代码就能快速实现各种复杂的请求逻辑，不仅能帮你提升开发效率，还能帮你提升 App 的运行效率，降低服务端压力。
+alova.js 是一个创新的下一代请求工具，它可以帮你在请求方面省去大部分的工作，解决前后端协作问题，让网络请求变得非常简单。我们来看看 alova 是如何帮你的简化工作的。
 
-这是一个最简单的请求示例：
+![](/img/overview_flow_cn.png)
 
-```javascript
-const response = await alova.Get('/api/user');
-```
+它可以将 API 的消费从 7 步简化为 1 步，你只需要选择使用的 API 就可以了。
 
-平平无奇吧？让我们再看一个自动管理请求状态的示例，**loading、error、data 是响应式的数据**，在 react、vue、svelte 等 UI 框架中可以直接在视图中绑定它们，而且会根据请求状态自动维护它这些响应式数据。
+## 如何做的？
+
+### 请求策略
+
+在实际项目中，前端请求总是需要根据不同场景考虑应该什么时候发出请求、什么时候不能发出请求、如何处理响应数据等才能满足项目的表现、性能的提高，这将导致开发人员时间成本和代码维护成本的增加，在 alova 中提供了一套完整的应对复杂请求场景的方案，我们称之为**请求策略**，只需一行代码就能快速实现各种复杂的请求逻辑，不仅能帮你提升开发效率，还能帮你提升 App 的运行效率，降低服务端压力。
+
+例如，`useRequest`可以自动管理请求状态，**`loading/error/data` 是响应式的数据**，在 react、vue、svelte 等 UI 框架中可以直接在视图中绑定它们，而且会根据请求状态自动维护它这些响应式数据。
 
 ```javascript
 const { loading, error, data } = useRequest(alova.Get('/api/user'));
 ```
 
-以下是一个分页请求策略的示例，**当 page、pageSize 等发生变化时会自动以不同参数触发请求**。
+再来一个分页请求策略，**当`page/pageSize`等发生变化时会自动以不同参数触发请求**。
 
 ```javascript
 const { loading, error, data, page, pageSize, total } = usePagination((page, size) =>
@@ -32,55 +36,37 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 
 alova 提供了 10+个基于[RSM](/tutorial/others/RSM)规范的请求策略模块，它们以 useHook 的形式实现。
 
-## 核心 useHook
+### alova 编辑器扩展
 
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-request">useRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-watcher">useWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/advanced/use-fetcher">useFetcher</Link>
+在 vscode 中使用 alova 扩展可以帮你自动生成包含完整的 API 文档标注，响应类型的请求代码。在过去，你需要先查询 API 文档，并不断地在 API 文档与编辑器切换来编写请求代码，使用 alova 插件后，你可以不再需要离开编辑器，直接在编辑器中边查边使用 API，感受不一样的 API 使用体验。
 
-## 场景化请求策略
-
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/usePagination">usePagination</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useForm">useForm</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useAutoRequest">useAutoRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useCaptcha">useCaptcha</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/actionDelegationMiddleware">actionDelegationMiddleware</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialRequest">useSerialRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialWatcher">useSerialWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useRetriableRequest">useRetriableRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useUploader">useUploader</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSSE">useSSE</Link>
-
-## 高灵活性
-
-得益于 alova 的高灵活性，你可以在以下不同 JS 环境下搭配不同的请求库使用（灰色部分将在未来逐渐支持）。
-
-<SupportList showStatus></SupportList>
+> 关于 alova 插件的详细介绍，请参考 [集成 IDE 插件](/tutorial/getting-started/plugin-integration)。
 
 ## 有什么不同吗？
 
-与其他请求库不同的是，alova 的目标是让请求变得更简单并保持更高效的数据交互。
+与其他请求库不同的是，alova 的目标是让请求变得非常简单，并且保持更高效的数据交互。
 
-我们为开发者和 App 使用者双方考虑，对于开发者来说，alova 为他们提供了简单的请求 api，和开箱即用的高性能请求策略模块，对于应用的用户来说，他们可以享受到 alova 的高性能数据交互带来的流畅体验。
+我们为开发者和 App 使用者双方考虑，对于开发者来说，alova 为他们提供了极致的使用体验，对于应用的用户来说，他们可以享受到 alova 的高性能数据交互带来的流畅体验。
 
 此外，再从具体的特性来看看：
 
 - 与 axios 相似的 api 设计，让使用者学习成本更低；
-- 10+个开箱即用的高性能请求策略，让应用更流畅；
-- alova 是轻量级的，只有 4kb+，是 axios 的 30%+；
-- 灵活性高，alova 的适配器可以让 alova 在任何 js 环境下，与任何 UI 框架协作使用（内置支持的 UI 框架为`vue/react/svelte`），并且提供了统一的使用体验和完美的代码迁移；
-- 3 种缓存模式和请求共享机制，提升请求性能并降低服务端压力；
+- 高性能的客户端和服务端请求策略，让应用更流畅；
+- 灵活性高，alova 的适配器可以让 alova 在任何 js 环境下，与任何 UI 框架协作使用，并且提供了统一的使用体验和完美的代码迁移；
+- 2 种缓存模式和请求共享机制，提升请求性能并降低服务端压力；
 - api 代码的高聚合组织，每个 api 的请求参数、缓存行为、响应数据转换等都将聚集在相同的代码块中，这对于管理大量的 api 有很大的优势；
 
-在[alova 的未来](/tutorial/others/future)中，将实现更进一步的请求简单化。
-
-:::info 与其他请求库的对比
+:::info 对比
 
 你还可以查看请[与其他请求库比较](/tutorial/others/comparison)详细了解 alova 的不同之处。
 
 :::
+
+## 在任何 JS 环境下运行
+
+不仅如此，alova 的灵活性非常高，你可以在以下任意的 JS 环境下，配合不同的请求工具使用（灰色部分将在未来逐渐支持）。
+
+<SupportList showStatus></SupportList>
 
 ## 在线试用
 

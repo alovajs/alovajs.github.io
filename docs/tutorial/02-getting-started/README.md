@@ -6,21 +6,25 @@ import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
 
-alova is a lightweight request strategy library. It provides a complete set of solutions to deal with complex request scenarios. We call it **Request Strategy**. It only takes one line of code to quickly implement various complex request logics. , not only can help you improve development efficiency, but also help you improve the operating efficiency of the App and reduce the pressure on the server.
+alova.js is an innovative next-generation request tool that can help you save most of the work in request, solve the problem of front-end and back-end collaboration, and make network requests very simple. Let's see how alova can help you simplify your work.
 
-Here is the simplest request example:
+![](/img/overview_flow_en.png)
 
-```javascript
-const response = await alova.Get('/api/user');
-```
+It can simplify API consumption from 7 steps to 1 step. You only need to choose the API to use.
 
-Ordinary? Let's look at another example of automatically managing request status. **loading, error, and data are responsive data**. In UI frameworks such as react, vue, svelte, etc., they can be bound directly in the view and will be processed according to the request. State automatically maintains this responsive data.
+## How to do it?
+
+### Request strategy
+
+In actual projects, front-end requests always need to consider when to make requests, when not to make requests, how to process response data, etc. according to different scenarios to meet the performance and performance improvement of the project. This will lead to an increase in the developer's time cost and code maintenance cost. In alova, a complete set of solutions for complex request scenarios is provided, which we call **request strategy**. Only one line of code can quickly implement various complex request logics, which can not only help you improve development efficiency, but also help you improve the running efficiency of the App and reduce the pressure on the server.
+
+For example, `useRequest` can automatically manage the request status, **`loading/error/data` is responsive data**, which can be directly bound in the view in UI frameworks such as react, vue, and svelte, and these responsive data will be automatically maintained according to the request status.
 
 ```javascript
 const { loading, error, data } = useRequest(alova.Get('/api/user'));
 ```
 
-The following is an example of a paging request strategy that automatically triggers requests with different parameters when page, pageSize, etc. change.
+Another paging request strategy, **when `page/pageSize` changes, it will automatically trigger requests with different parameters**.
 
 ```javascript
 const { loading, error, data, page, pageSize, total } = usePagination((page, size) =>
@@ -32,55 +36,37 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 
 alova provides 10+ request strategy modules based on the [RSM](/tutorial/others/RSM) specification, which are implemented in the form of useHook.
 
-## Core useHook
+### Alova editor extension
 
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-request">useRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-watcher">useWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/advanced/use-fetcher">useFetcher</Link>
+Using the alova plugin in vscode can help you automatically generate request code with complete API document annotations and response types. In the past, you needed to query the API documentation first and constantly switch between the API documentation and the editor to write request code. After using the alova plugin, you no longer need to leave the editor, and you can directly use the API while checking in the editor to experience a different API usage experience.
 
-## Scenario-based request strategy
-
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/usePagination">usePagination</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useForm">useForm</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useAutoRequest">useAutoRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useCaptcha">useCaptcha</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/actionDelegationMiddleware">actionDelegationMiddleware</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialRequest">useSerialRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialWatcher">useSerialWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useRetriableRequest">useRetriableRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useUploader">useUploader</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSSE">useSSE</Link>
-
-## High flexibility
-
-Thanks to the high flexibility of alova, you can use it with different request libraries in the following different JS environments (the gray part will be gradually supported in the future).
-
-<SupportList showStatus></SupportList>
+> For a detailed introduction to the alova plugin, please refer to [Integrated IDE plugin](/tutorial/getting-started/plugin-integration).
 
 ## Is there any difference?
 
-Unlike other request libraries, alova's goal is to make requests simpler and maintain more efficient data interaction.
+Unlike other request libraries, alova aims to make requests very simple and maintain more efficient data interaction.
 
-We consider both developers and App users. For developers, alova provides them with a simple request API and an out-of-the-box high-performance request strategy module. For application users, they can enjoy Alova's high-performance data interaction brings a smooth experience.
+We consider both developers and App users. For developers, alova provides them with the ultimate user experience, and for application users, they can enjoy the smooth experience brought by alova's high-performance data interaction.
 
-In addition, let’s take a look at the specific features:
+In addition, let's take a look at the specific features:
 
-- API design similar to axios, allowing users to learn at a lower cost;
-- 10+ out-of-the-box high-performance request strategies to make applications smoother;
-- alova is lightweight, only 4kb+, which is 30%+ of axios;
-- High flexibility, alova's adapter allows alova to be used in any js environment and with any UI framework (the built-in supported UI framework is `vue/react/svelte`), and provides a unified experience and perfect code migrate;
-- 3 caching modes and request sharing mechanism to improve request performance and reduce server pressure;
-- Highly aggregated organization of API code. The request parameters, cache behavior, response data conversion, etc. of each API will be gathered in the same code block, which has great advantages for managing a large number of APIs;
+- Similar API design to Axios, which makes the user's learning cost lower;
+- High-performance client and server request strategies make the application smoother;
+- High flexibility, Alova's adapter allows Alova to work with any UI framework in any JS environment, and provides a unified user experience and perfect code migration;
+- 2 cache modes and request sharing mechanisms to improve request performance and reduce server pressure;
+- High aggregation organization of API code, each API's request parameters, cache behavior, response data conversion, etc. will be gathered in the same code block, which is a great advantage for managing a large number of APIs;
 
-In [alova's future](/tutorial/others/future), further request simplification will be implemented.
+:::info comparison
 
-:::info compared to other request libraries
-
-You can also check out [Comparison with other request libraries](/tutorial/others/comparison) to learn more about how alova is different.
+You can also check [Comparison with other request libraries](/tutorial/others/comparison) to learn more about the differences of Alova.
 
 :::
+
+## Run in any JS environment
+
+Not only that, Alova is very flexible, you can use it with different request tools in any of the following JS environments (the gray part will be gradually supported in the future).
+
+<SupportList showStatus></SupportList>
 
 ## Online trial
 

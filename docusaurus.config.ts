@@ -42,7 +42,12 @@ const config: Config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/alovajs/alovajs.github.io/blob/main/'
+          editUrl: 'https://github.com/alovajs/alovajs.github.io/blob/main/',
+          versions: {
+            current: {
+              label: '3.0-beta'
+            }
+          }
         },
         // disable blog
         blog: false,
@@ -104,6 +109,11 @@ const config: Config = {
               to: 'contributing/code-of-conduct'
             }
           ]
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true
         },
         {
           type: 'localeDropdown',

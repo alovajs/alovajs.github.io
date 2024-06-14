@@ -3,12 +3,6 @@ title: method元数据
 sidebar_position: 60
 ---
 
-:::info 版本要求
-
-v2.7.0+
-
-:::
-
 method 实例是贯穿 alova 的整个请求生命周期的，并且，在项目中会大量存在不同的 method 实例，有时候我们需要对特定的 method 实例添加附加信息，以便于对它们进行身份标识或额外的信息传递等，此时，我们就需要使用 method 元数据。
 
 ## 使用元数据标识身份
@@ -56,7 +50,7 @@ const loginAPI = (username, password) => {
 };
 ```
 
-**[2.18.0+]** 你也可以直接在 config 中传入 meta 数据
+你也可以直接在 config 中传入 meta 数据
 
 ```javascript
 const loginAPI = (username, password) => {

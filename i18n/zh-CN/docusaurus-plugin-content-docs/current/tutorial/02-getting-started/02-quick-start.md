@@ -53,17 +53,17 @@ bun add alova
 
 ## 创建 alova 实例
 
-在 alova 中需要通过 alova 实例发起请求，我们先创建一个。在创建 alova 实例时需要指定请求适配器，在这里推荐使用`GlobalFetch`请求适配器， 它是基于`fetch API`的封装。
+在 alova 中需要通过 alova 实例发起请求，我们先创建一个。在创建 alova 实例时需要指定请求适配器，在这里推荐使用`alova/fetch`请求适配器，它是基于`fetch API`的封装，非常简洁。
 
 <Tabs>
 <TabItem value="1" label="esModule">
 
 ```javascript
 import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import fetchAdapter from 'alova/fetch';
 
 const alovaInstance = createAlova({
-  requestAdapter: GlobalFetch()
+  requestAdapter: fetchAdapter()
 });
 ```
 
@@ -72,24 +72,24 @@ const alovaInstance = createAlova({
 
 ```javascript
 const { createAlova } = require('alova');
-const GlobalFetch = require('alova/GlobalFetch');
+const fetchAdapter = require('alova/fetch');
 
 const alova = createAlova({
-  requestAdapter: GlobalFetch();
+  requestAdapter: fetchAdapter();
 });
 ```
 
-> 在 nodejs 中使用 GlobalFetch 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/tutorial/request-adapter/alova-adapter-axios/)。
+> 在 nodejs 中使用 fetchAdapter 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/tutorial/request-adapter/alova-adapter-axios/)。
 
 </TabItem>
 <TabItem value="3" label="deno">
 
 ```javascript
 import { createAlova } from 'npm:alova';
-import GlobalFetch from 'npm:alova/GlobalFetch';
+import fetchAdapter from 'npm:alova/fetch';
 
 const alova = createAlova({
-  requestAdapter: GlobalFetch();
+  requestAdapter: fetchAdapter();
 });
 ```
 
@@ -98,9 +98,13 @@ const alova = createAlova({
 
 ## GET 请求
 
-通过 `alovaInstance.Get` 发送一个请求，由于使用了`GlobalFetch`请求适配器，将会接收到一个`Response`实例，这很简单。
+通过 `alovaInstance.Get` 发送一个请求，由于使用了`fetchAdapter`请求适配器，将会接收到一个`Response`实例，这很简单。
 
-<EmbedSandpack template="vanilla" mainFile={quickStartGET} editorHeight={400} containBaseURL={false} />
+```js
+const response = await alovaInstance
+  .Get('https://alovajs.dev/user/profile')
+  .then(response => response.json());
+```
 
 在异步函数中，你也可以使用`await alovaInstance.Get`等待响应。
 
@@ -108,7 +112,15 @@ const alova = createAlova({
 
 通过 `alovaInstance.Post`提交数据，这同样很简单。
 
-<EmbedSandpack template="vanilla" mainFile={quickStartPOST} editorHeight={400} containBaseURL={false} />
+```js
+const response = alovaInstance
+  .Post('https://alovajs.dev/posts', {
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+  .then(response => response.json());
+```
 
 ## 接下来要做什么？
 
