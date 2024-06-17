@@ -10,10 +10,10 @@ This mock plug-in is an alova request adapter. Different from the traditional Pr
 
 ## Features
 
-- ✨Works seamlessly with alova
-- ✨Arbitrary grouping of simulation requests to control global, group, and individual simulation interface enable and disable
-- ✨Works with mockjs
-- ✨Do not pollute the production environment
+- Works seamlessly with alova
+- Arbitrary grouping of simulation requests to control global, group, and individual simulation interface enable and disable
+- Works with mockjs
+- Do not pollute the production environment
 
 ## Install
 

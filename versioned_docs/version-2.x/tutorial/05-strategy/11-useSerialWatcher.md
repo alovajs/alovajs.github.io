@@ -18,9 +18,9 @@ Status update triggers a set of serial requests, which is more concise and easy 
 
 ## Features
 
-- ✨ A more concise and easy-to-use serial method;
-- ✨Unified request status and callback function;
-- ✨Status update triggers serial execution of multiple requests;
+- A more concise and easy-to-use serial method;
+- Unified request status and callback function;
+- Status update triggers serial execution of multiple requests;
 
 ## Example
 

@@ -13,9 +13,9 @@ Request retry strategy, you can use it for important requests.
 
 ## Features
 
-- ✨ Customize the number of retries or determine whether to retry based on conditions;
+- Customize the number of retries or determine whether to retry based on conditions;
 
-- ✨ Retry delay mechanism;
+- Retry delay mechanism;
 
 ## Usage
 

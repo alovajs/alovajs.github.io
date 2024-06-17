@@ -24,8 +24,8 @@ import TabItem from '@theme/TabItem';
 
 ## 特性
 
-- ✨ 委托任意 alova 中的 use hook 的操作函数；
-- ✨ 任意位置触发已委托的操作函数；
+- 委托任意 alova 中的 use hook 的操作函数；
+- 任意位置触发已委托的操作函数；
 
 ## 安装
 

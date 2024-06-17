@@ -6,7 +6,7 @@ import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
 
-alova.js is an innovative next-generation request tool that can help you save most of the work in request, solve the problem of front-end and back-end collaboration, and make network requests very simple. Let's see how alova can help you simplify your work.
+Alova is an creative next-generation request tool that takes front-end and back-end collaboration and API consumption as its starting point, simplifies API consumption from 7 steps to only 1, saving you most of the work in requesting and making network requests very simple. Let's see how Alova can help you simplify your work.
 
 ![](/img/overview_flow_en.png)
 

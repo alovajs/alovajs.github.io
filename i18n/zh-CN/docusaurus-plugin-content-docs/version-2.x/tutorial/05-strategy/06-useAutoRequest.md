@@ -18,9 +18,9 @@ use hook
 
 ## 特性
 
-- ✨ 支持浏览器聚焦、tab 切换、网络重连、轮询请求等场景下拉取最新数据，可自定义配置监听类型；
-- ✨ 支持请求节流，在短时间内多次触发只会发送 1 次请求；
-- ✨ 支持自定义事件的监听函数，以适应非浏览器环境下的使用场景；
+- 支持浏览器聚焦、tab 切换、网络重连、轮询请求等场景下拉取最新数据，可自定义配置监听类型；
+- 支持请求节流，在短时间内多次触发只会发送 1 次请求；
+- 支持自定义事件的监听函数，以适应非浏览器环境下的使用场景；
 
 ## 安装
 
@@ -76,39 +76,42 @@ const { loading, data, error } = useAutoRequest(() => method());
 除了支持[useRequest](/api/core-hooks#userequest)的所有配置参数外，还支持自动拉取的配置参数，你可以通过以下配置开启或关闭一些事件，或修改请求节流事件。
 
 ```javascript
-const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(() => method(), {
-  /**
-   * 浏览器显示隐藏触发
-   * @default true
-   */
-  enableVisibility: true,
+const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
+  () => method(),
+  {
+    /**
+     * 浏览器显示隐藏触发
+     * @default true
+     */
+    enableVisibility: true,
 
-  /**
-   * 浏览器聚焦触发
-   * @default true
-   */
-  enableFocus: true,
+    /**
+     * 浏览器聚焦触发
+     * @default true
+     */
+    enableFocus: true,
 
-  /**
-   * 网络重连触发
-   * @default true
-   */
-  enableNetwork: true,
+    /**
+     * 网络重连触发
+     * @default true
+     */
+    enableNetwork: true,
 
-  /**
-   * 节流时间，在一定时间内多次触发只会发送1次请求，单位ms
-   * @default 1000
-   */
-  throttle: 1000,
+    /**
+     * 节流时间，在一定时间内多次触发只会发送1次请求，单位ms
+     * @default 1000
+     */
+    throttle: 1000,
 
-  /**
-   * 轮询请求的时间，设置大于0时有效，单位ms
-   * @default 0
-   */
-  pollingTime: 2000
+    /**
+     * 轮询请求的时间，设置大于0时有效，单位ms
+     * @default 0
+     */
+    pollingTime: 2000
 
-  // 其他参数同useRequest...
-});
+    // 其他参数同useRequest...
+  }
+);
 ```
 
 :::warning 缓存建议

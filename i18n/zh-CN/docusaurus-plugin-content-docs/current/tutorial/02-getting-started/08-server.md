@@ -147,4 +147,4 @@ const alovaInstance = createAlova({
 });
 ```
 
-> 深入了解响应缓存，请移步[深入响应缓存](/xxx)。
+> 深入了解响应缓存，请移步[缓存详解](/turorial/cache/mode)。

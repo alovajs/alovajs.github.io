@@ -24,15 +24,15 @@ use hook
 
 ## 特性
 
-- ✨ 丰富全面的分页状态；
-- ✨ 丰富全面的分页事件；
-- ✨ 更改 page、pageSize 自动获取指定分页数据；
-- ✨ 数据缓存，无需重复请求相同参数的列表数据；
-- ✨ 前后页预加载，翻页不再等待；
-- ✨ 搜索条件监听自动重新获取页数；
-- ✨ 支持列表数据的新增、编辑、删除；
-- ✨ 支持刷新指定页的数据，无需重置；
-- ✨ 请求级搜索防抖，无需自行维护；
+- 丰富全面的分页状态；
+- 丰富全面的分页事件；
+- 更改 page、pageSize 自动获取指定分页数据；
+- 数据缓存，无需重复请求相同参数的列表数据；
+- 前后页预加载，翻页不再等待；
+- 搜索条件监听自动重新获取页数；
+- 支持列表数据的新增、编辑、删除；
+- 支持刷新指定页的数据，无需重置；
+- 请求级搜索防抖，无需自行维护；
 
 ## 安装
 
@@ -428,12 +428,15 @@ const {
   const clsName = ref('');
   const {
     // ...
-  } = usePagination((page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value), {
-    // ...
-    // highlight-start
-    watchingStates: [studentName, clsName]
-    // highlight-end
-  });
+  } = usePagination(
+    (page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value),
+    {
+      // ...
+      // highlight-start
+      watchingStates: [studentName, clsName]
+      // highlight-end
+    }
+  );
 </script>
 ```
 
@@ -624,7 +627,10 @@ declare function remove(position: number | LD[number]): void;
  * @param item 替换项
  * @param position 替换位置（索引）或列表项
  */
-declare function replace(item: LD extends any[] ? LD[number] : any, position: number | LD[number]): void;
+declare function replace(
+  item: LD extends any[] ? LD[number] : any,
+  position: number | LD[number]
+): void;
 ```
 
 你也可以将`replace`的第二个参数指定为列表项，当查找到这个列表项的相同引用时，将会替换此列表项。

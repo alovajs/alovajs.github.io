@@ -18,8 +18,8 @@ A use hook that can automatically retry a request failure, you can use it for im
 
 ## Features
 
-- ✨ Simpler and easier-to-use usage.
-- ✨ Automatic connection management.
+- Simpler and easier-to-use usage.
+- Automatic connection management.
 
 ## Install
 
@@ -59,7 +59,6 @@ yarn add @alova/scene-svelte
 
 </TabItem>
 </Tabs>
-
 
 ## Usage
 
@@ -128,7 +127,6 @@ unbindError();
 </TabItem>
 <TabItem value="3" label="svelte">
 
-
 ```typescript
 import { useSSE } from '@alova/scene-svelte';
 
@@ -166,7 +164,7 @@ Currently, `useSSE` can only connect to one source. This means that when attempt
 
 :::
 
-``` typescript
+```typescript
 const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method);
 
 send('value1');
@@ -212,7 +210,7 @@ const { data, readyState, onMessage, on } = useSSE(method, {
 
 ## Type Declaration
 
-``` typescript
+```typescript
 const enum SSEHookReadyState {
   CONNECTING = 0,
   OPEN = 1,

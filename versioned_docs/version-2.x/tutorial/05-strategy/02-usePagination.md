@@ -24,15 +24,15 @@ A hook designed for paging scenarios, which can help you automatically manage pa
 
 ## Features
 
-- ✨ Rich and comprehensive paging status;
-- ✨ Rich and comprehensive pagination events;
-- ✨ Change page, pageSize to automatically get specified paging data;
-- ✨Data caching, no need to repeatedly request list data of the same parameters;
-- ✨ Front and back pages are preloaded, no waiting for page turning;
-- ✨Search condition monitoring automatically reacquires pages;
-- ✨ Support adding, editing and deleting list data;
-- ✨ Support refreshing the data of the specified page without reset;
-- ✨ Request-level search anti-shake, no need to maintain by yourself;
+- Rich and comprehensive paging status;
+- Rich and comprehensive pagination events;
+- Change page, pageSize to automatically get specified paging data;
+- Data caching, no need to repeatedly request list data of the same parameters;
+- Front and back pages are preloaded, no waiting for page turning;
+- Search condition monitoring automatically reacquires pages;
+- Support adding, editing and deleting list data;
+- Support refreshing the data of the specified page without reset;
+- Request-level search anti-shake, no need to maintain by yourself;
 
 ## Install
 
@@ -428,12 +428,15 @@ For example, filter by student name, student grade.
   const clsName = ref('');
   const {
     //...
-  } = usePagination((page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value), {
-    //...
-    // highlight-start
-    watchingStates: [studentName, clsName]
-    // highlight-end
-  });
+  } = usePagination(
+    (page, pageSize) => queryStudents(page, pageSize, studentName.value, clsName.value),
+    {
+      //...
+      // highlight-start
+      watchingStates: [studentName, clsName]
+      // highlight-end
+    }
+  );
 </script>
 ```
 
@@ -624,7 +627,10 @@ Use this function when you want to update list items.
  * @param item replacement item
  * @param position replacement position (index) or list item
  */
-declare function replace(item: LD extends any[] ? LD[number] : any, position: number | LD[number]): void;
+declare function replace(
+  item: LD extends any[] ? LD[number] : any,
+  position: number | LD[number]
+): void;
 ```
 
 You can also specify the second parameter of `replace` as a list item, which will be replaced when an identical reference to the list item is found.

@@ -22,10 +22,10 @@ A hook designed for form submission. Through this hook, you can easily implement
 
 ## Features
 
-- ✨ draft form;
-- ✨ Multi-page (multi-step) forms;
-- ✨ Form submission automatically resets data;
-- ✨Reset form data manually;
+- draft form;
+- Multi-page (multi-step) forms;
+- Form submission automatically resets data;
+- Reset form data manually;
 
 ## Install
 

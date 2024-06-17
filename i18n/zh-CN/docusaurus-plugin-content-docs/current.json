@@ -19,9 +19,9 @@
     "message": "开始",
     "description": "The label for category Get Started in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Response Cache": {
-    "message": "响应缓存",
-    "description": "The label for category Learn in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Cache Details": {
+    "message": "缓存详解",
+    "description": "The label for category Cache Details in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Combine Framework": {
     "message": "结合框架",

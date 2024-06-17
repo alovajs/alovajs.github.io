@@ -6,11 +6,9 @@ import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
 
-alova.js 是一个创新的下一代请求工具，它可以帮你在请求方面省去大部分的工作，解决前后端协作问题，让网络请求变得非常简单。我们来看看 alova 是如何帮你的简化工作的。
+alova 是一个创新的下一代请求工具，从前后端协作和 API 消费作为出发点，将 API 的消费从 7 步简化为只有 1 步，帮你在请求方面省去大部分的工作，让网络请求变得非常简单。我们来看看 alova 是如何帮你的简化工作的。
 
 ![](/img/overview_flow_cn.png)
-
-它可以将 API 的消费从 7 步简化为 1 步，你只需要选择使用的 API 就可以了。
 
 ## 如何做的？
 

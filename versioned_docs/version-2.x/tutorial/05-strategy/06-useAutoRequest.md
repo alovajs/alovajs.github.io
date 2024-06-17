@@ -18,9 +18,9 @@ Automatically fetch data through browser events or polling, allowing the interfa
 
 ## Features
 
-- ✨ Supports refetching the newest data in scenarios such as browser focus, tab switching, network reconnection, polling requests, etc;
-- ✨ Supports request throttling, only one request will be sent if triggered multiple times in a short period of time;
-- ✨ Support custom event listening functions to adapt to usage scenarios in non-browser environments;
+- Supports refetching the newest data in scenarios such as browser focus, tab switching, network reconnection, polling requests, etc;
+- Supports request throttling, only one request will be sent if triggered multiple times in a short period of time;
+- Support custom event listening functions to adapt to usage scenarios in non-browser environments;
 
 ## Install
 
@@ -76,39 +76,42 @@ The return value of `useAutoRequest` is the same as [useRequest](/api/core-hooks
 In addition to supporting all configuration parameters of [useRequest](/api/core-hooks#userequest), it also supports automatically fetched configuration parameters. You can turn on or off some events through the following configuration, or modify request throttling events.
 
 ```javascript
-const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(() => method(), {
-  /**
-   * Browser display hide trigger
-   * @default true
-   */
-  enableVisibility: true,
+const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
+  () => method(),
+  {
+    /**
+     * Browser display hide trigger
+     * @default true
+     */
+    enableVisibility: true,
 
-  /**
-   * Triggered by browser focus
-   * @default true
-   */
-  enableFocus: true,
+    /**
+     * Triggered by browser focus
+     * @default true
+     */
+    enableFocus: true,
 
-  /**
-   * Triggered by network reconnection
-   * @default true
-   */
-  enableNetwork: true,
+    /**
+     * Triggered by network reconnection
+     * @default true
+     */
+    enableNetwork: true,
 
-  /**
-   *Throttling time, only one request will be sent if triggered multiple times within a certain period, unit ms
-   * @default 1000
-   */
-  throttle: 1000,
+    /**
+     *Throttling time, only one request will be sent if triggered multiple times within a certain period, unit ms
+     * @default 1000
+     */
+    throttle: 1000,
 
-  /**
-   * The time of polling request, effective when set greater than 0, unit ms
-   * @default 0
-   */
-  pollingTime: 2000
+    /**
+     * The time of polling request, effective when set greater than 0, unit ms
+     * @default 0
+     */
+    pollingTime: 2000
 
-  //Other parameters are the same as useRequest...
-});
+    //Other parameters are the same as useRequest...
+  }
+);
 ```
 
 :::warning caching advice

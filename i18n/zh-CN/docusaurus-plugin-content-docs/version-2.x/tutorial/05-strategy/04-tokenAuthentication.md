@@ -20,11 +20,11 @@ Token 认证拦截器，对基于 token 的登录、登出、token 附带、toke
 
 ## 特性
 
-- ✨ 统一维护 Token 身份认证的所有代码，包括登录、登出、token 附带、token 刷新等；
-- ✨ 支持在客户端和服务端验证 token 过期，并无感刷新 token；
-- ✨ 依赖 token 的请求自动等待 token 刷新完成再请求；
-- ✨ 使用元数据设置请求身份；
-- ✨ 自动放行不依赖 token 的访客请求；
+- 统一维护 Token 身份认证的所有代码，包括登录、登出、token 附带、token 刷新等；
+- 支持在客户端和服务端验证 token 过期，并无感刷新 token；
+- 依赖 token 的请求自动等待 token 刷新完成再请求；
+- 使用元数据设置请求身份；
+- 自动放行不依赖 token 的访客请求；
 
 ## 安装
 
@@ -177,15 +177,27 @@ createClientTokenAuthentication({
 
     // 当token过期时触发，在此函数中触发刷新token
     handler: async method => {
-      const { token, refresh_token } = await refreshToken();
-      localStorage.setItem('token', token);
-      localStorage.setItem('refresh_token', refresh_token);
+      try {
+        const { token, refresh_token } = await refreshToken();
+        localStorage.setItem('token', token);
+        localStorage.setItem('refresh_token', refresh_token);
+      } catch (error) {
+        // token刷新失败，跳转回登录页
+        location.href = '/login';
+        // 并抛出错误
+        throw error;
+      }
     }
   }
 });
 ```
 
-为了让`refreshToken`请求顺利通过，需要通过元数据标识`authRole`为`refreshToken`。
+:::warning 注意
+
+1. 为了让`refreshToken`请求顺利通过，需要通过元数据标识`authRole`为`refreshToken`。
+2. 如果 token 刷新失败必须抛出错误，阻止失败接口重试和等待接口继续请求。
+
+:::
 
 > 了解更多元数据的信息，请前往[method 元数据](/tutorial/getting-started/method-metadata)。
 
@@ -218,9 +230,16 @@ createServerTokenAuthentication({
 
     // 当token过期时触发，在此函数中触发刷新token
     handler: async (response, method) => {
-      const { token, refresh_token } = await refreshToken();
-      localStorage.setItem('token', token);
-      localStorage.setItem('refresh_token', refresh_token);
+      try {
+        const { token, refresh_token } = await refreshToken();
+        localStorage.setItem('token', token);
+        localStorage.setItem('refresh_token', refresh_token);
+      } catch (error) {
+        // token刷新失败，跳转回登录页
+        location.href = '/login';
+        // 并抛出错误
+        throw error;
+      }
     }
   }
 });
@@ -241,15 +260,27 @@ createServerTokenAuthentication({
 
     // 当token过期时触发，在此函数中触发刷新token
     handler: async (error, method) => {
-      const { token, refresh_token } = await refreshToken();
-      localStorage.setItem('token', token);
-      localStorage.setItem('refresh_token', refresh_token);
+      try {
+        const { token, refresh_token } = await refreshToken();
+        localStorage.setItem('token', token);
+        localStorage.setItem('refresh_token', refresh_token);
+      } catch (error) {
+        // token刷新失败，跳转回登录页
+        location.href = '/login';
+        // 并抛出错误
+        throw error;
+      }
     }
   }
 });
 ```
 
-为了让`refreshToken`请求顺利通过，需要通过元数据标识`authRole`为`refreshToken`。
+:::warning 注意
+
+1. 为了让`refreshToken`请求顺利通过，需要通过元数据标识`authRole`为`refreshToken`。
+2. 如果 token 刷新失败必须抛出错误，阻止失败接口重试和等待接口继续请求。
+
+:::
 
 > 了解更多元数据的信息，请前往[method 元数据](/tutorial/getting-started/method-metadata)。
 
@@ -489,7 +520,9 @@ export const logout = () => {
 
 ```typescript
 // highlight-start
-const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<typeof VueHook>({
+const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication<
+  typeof VueHook
+>({
   // highlight-end
   //...
 });

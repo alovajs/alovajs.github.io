@@ -18,9 +18,9 @@ This use hook is more concise and easy to use than [serial request in best pract
 
 ## Features
 
-- ✨ A more concise and easy-to-use serial method;
-- ✨Unified request status and callback function;
-- ✨ send function can trigger serial execution of multiple requests;
+- A more concise and easy-to-use serial method;
+- Unified request status and callback function;
+- send function can trigger serial execution of multiple requests;
 
 ## Example
 

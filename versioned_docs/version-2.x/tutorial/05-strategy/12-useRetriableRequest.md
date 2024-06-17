@@ -22,9 +22,9 @@ A use hook that can automatically retry a request failure, you can use it for im
 
 ## Features
 
-- ✨Customize the number of retries or judge whether retry is required according to the conditions;
-- ✨ Retry delay mechanism;
-- ✨ Manually stop retrying;
+- Customize the number of retries or judge whether retry is required according to the conditions;
+- Retry delay mechanism;
+- Manually stop retrying;
 
 ## Install
 

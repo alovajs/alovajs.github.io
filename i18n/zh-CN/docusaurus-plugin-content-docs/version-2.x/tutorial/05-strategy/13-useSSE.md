@@ -18,9 +18,8 @@ use hook
 
 ## 特性
 
-- ✨ 更加简洁易用的使用方式；
-- ✨ 自动管理连接；
-
+- 更加简洁易用的使用方式；
+- 自动管理连接；
 
 ## 安装
 
@@ -87,7 +86,7 @@ const unbindMessage = onMessage(({ data }) => {
 const unbindError = onError(({ error }) => {
   console.error('sse error', error);
   close();
-})
+});
 
 // 在需要的时候解绑
 unbindMessage();
@@ -118,7 +117,7 @@ const unbindMessage = onMessage(({ data }) => {
 const unbindError = onError(({ error }) => {
   console.error('sse error', error);
   close();
-})
+});
 
 // 在需要的时候解绑
 unbindMessage();
@@ -127,7 +126,6 @@ unbindError();
 
 </TabItem>
 <TabItem value="3" label="svelte">
-
 
 ```typescript
 import { useSSE } from '@alova/scene-svelte';
@@ -150,7 +148,7 @@ const unbindMessage = onMessage(({ data }) => {
 const unbindError = onError(({ error }) => {
   console.error('sse error', error);
   close();
-})
+});
 
 // 在需要的时候解绑
 unbindMessage();
@@ -166,7 +164,7 @@ unbindError();
 
 :::
 
-``` typescript
+```typescript
 const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method);
 
 send('value1');
@@ -212,7 +210,7 @@ const { data, readyState, onMessage, on } = useSSE(method, {
 
 ## 类型声明
 
-``` typescript
+```typescript
 const enum SSEHookReadyState {
   CONNECTING = 0,
   OPEN = 1,

@@ -24,8 +24,8 @@ For example, after updating the menu data in a component, you can re-trigger the
 
 ## Features
 
-- ✨Delegate the action function of any use hook in alova;
-- ✨ Trigger the delegated action function anywhere;
+- Delegate the action function of any use hook in alova;
+- Trigger the delegated action function anywhere;
 
 ## Install
 

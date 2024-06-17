@@ -22,9 +22,9 @@ The verification code sending hook saves you the trouble of developing the verif
 
 ## Features
 
-- ✨ The countdown will start automatically after the verification code is sent;
-- ✨ Custom countdown seconds;
-- ✨ Verification code sending limit;
+- The countdown will start automatically after the verification code is sent;
+- Custom countdown seconds;
+- Verification code sending limit;
 
 ## Install
 
@@ -81,7 +81,8 @@ Demonstrates basic use of form hooks.
     @click="sendCaptcha"
     :loading="sending"
     :disabled="sending || countdown > 0">
-    {{ loading ? 'Sending...' : countdown > 0 ? `${countdown} can be resent` : 'Send verification code' }}
+    {{ loading ? 'Sending...' : countdown > 0 ? `${countdown} can be resent` : 'Send
+    verification code' }}
   </button>
 </template>
 
@@ -129,7 +130,11 @@ const App = () => {
         onClick={sendCaptcha}
         loading={sending}
         disabled={sending || countdown > 0}>
-        {loading ? 'Sending...' : countdown > 0 ? `${countdown} can be resent` : 'Send verification code'}
+        {loading
+          ? 'Sending...'
+          : countdown > 0
+          ? `${countdown} can be resent`
+          : 'Send verification code'}
       </button>
     </div>
   );
@@ -159,7 +164,8 @@ const App = () => {
   on:click="{sendCaptcha}"
   loading="{$sending}"
   disabled="{$sending || $countdown > 0}">
-  { $loading ? 'Sending...' : $countdown > 0 ? `after ${$countdown} seconds can be resent` : 'Send captcha' }
+  { $loading ? 'Sending...' : $countdown > 0 ? `after ${$countdown} seconds can be resent` :
+  'Send captcha' }
 </button>
 ```
 
