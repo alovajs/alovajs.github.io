@@ -177,15 +177,27 @@ createClientTokenAuthentication({
 
     // Triggered when the token expires, trigger the refresh token in this function
     handler: async method => {
-      const { token, refresh_token } = await refreshToken();
-      localStorage.setItem('token', token);
-      localStorage.setItem('refresh_token', refresh_token);
+      try {
+        const { token, refresh_token } = await refreshToken();
+        localStorage.setItem('token', token);
+        localStorage.setItem('refresh_token', refresh_token);
+      } catch (error) {
+        // redirect to login page once token refresh failed.
+        location.href = '/login';
+        // and must throw error.
+        throw error;
+      }
     }
   }
 });
 ```
 
-In order for the `refreshToken` request to pass smoothly, the `authRole` needs to be identified as `refreshToken` through metadata.
+:::warning Attention
+
+1. In order for the `refreshToken` request to pass smoothly, the `authRole` needs to be marked as `refreshToken` through metadata.
+2. If the token refresh fails, an error must be thrown to prevent the failed API from retrying and the waiting APIs from continuing the request.
+
+:::
 
 > For more information about metadata, go to [method metadata](/tutorial/getting-started/method-metadata).
 
@@ -218,13 +230,27 @@ createServerTokenAuthentication({
 
     // Triggered when the token expires, trigger the refresh token in this function
     handler: async (response, method) => {
-      const { token, refresh_token } = await refreshToken();
-      localStorage.setItem('token', token);
-      localStorage.setItem('refresh_token', refresh_token);
+      try {
+        const { token, refresh_token } = await refreshToken();
+        localStorage.setItem('token', token);
+        localStorage.setItem('refresh_token', refresh_token);
+      } catch (error) {
+        // redirect to login page once token refresh failed.
+        location.href = '/login';
+        // and must throw error.
+        throw error;
+      }
     }
   }
 });
 ```
+
+:::warning Special attention
+
+1. In order for the `refreshToken` request to pass smoothly, the `authRole` needs to be marked as `refreshToken` through metadata.
+2. If the token refresh fails, an error must be thrown to prevent the failed interface from retrying and the waiting interface from continuing the request.
+
+:::
 
 ### Handled in request error interceptor
 
@@ -241,15 +267,27 @@ createServerTokenAuthentication({
 
     // Triggered when the token expires, trigger the refresh token in this function
     handler: async (error, method) => {
-      const { token, refresh_token } = await refreshToken();
-      localStorage.setItem('token', token);
-      localStorage.setItem('refresh_token', refresh_token);
+      try {
+        const { token, refresh_token } = await refreshToken();
+        localStorage.setItem('token', token);
+        localStorage.setItem('refresh_token', refresh_token);
+      } catch (error) {
+        // redirect to login page once token refresh failed.
+        location.href = '/login';
+        // and must throw error.
+        throw error;
+      }
     }
   }
 });
 ```
 
-In order for the `refreshToken` request to pass smoothly, the `authRole` needs to be identified as `refreshToken` through metadata.
+:::warning Attention
+
+1. In order for the `refreshToken` request to pass smoothly, the `authRole` needs to be marked as `refreshToken` through metadata.
+2. If the token refresh fails, an error must be thrown to prevent the failed API from retrying and the waiting APIs from continuing the request.
+
+:::
 
 > For more information about metadata, please go to [method metadata](/tutorial/getting-started/method-metadata).
 
