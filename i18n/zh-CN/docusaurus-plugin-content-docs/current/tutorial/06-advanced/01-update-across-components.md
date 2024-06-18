@@ -70,7 +70,7 @@ updateState('todoList', todoListRaw => {
 });
 ```
 
-关于 [method 匹配器](/tutorial/advanced/method-matcher) 将在后面的章节中详细介绍。
+关于 [method 快照匹配器](/tutorial/advanced/method-matcher) 将在后面的章节中详细介绍。
 
 ## 监听匹配事件
 

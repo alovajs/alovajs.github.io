@@ -3,76 +3,84 @@
     "message": "3.0-beta",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Overview": {
+  "sidebar.tutorial.category.Overview": {
     "message": "概览",
-    "description": "The label for category Overview in sidebar tutorialSidebar"
+    "description": "The label for category Overview in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Examples": {
+  "sidebar.tutorial.category.Examples": {
     "message": "示例",
-    "description": "The label for category Examples in sidebar tutorialSidebar"
+    "description": "The label for category Examples in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Examples.link.generated-index.description": {
+  "sidebar.tutorial.category.Examples.link.generated-index.description": {
     "message": "这里有丰富的示例，来展示alova在不同请求场景下的表现。",
-    "description": "The generated-index page description for category Examples in sidebar tutorialSidebar"
+    "description": "The generated-index page description for category Examples in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Getting Started": {
+  "sidebar.tutorial.category.Getting Started": {
     "message": "开始",
-    "description": "The label for category Get Started in sidebar tutorialSidebar"
+    "description": "The label for category Get Started in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Cache Details": {
+  "sidebar.tutorial.category.Cache Details": {
     "message": "缓存详解",
-    "description": "The label for category Cache Details in sidebar tutorialSidebar"
+    "description": "The label for category Cache Details in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Combine Framework": {
+  "sidebar.tutorial.category.Combine Framework": {
     "message": "结合框架",
-    "description": "The label for category Combine Framework in sidebar tutorialSidebar"
+    "description": "The label for category Combine Framework in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Client Strategy": {
+  "sidebar.tutorial.category.Client Strategy": {
     "message": "客户端策略",
-    "description": "The label for category Client Strategy in sidebar tutorialSidebar"
+    "description": "The label for category Client Strategy in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Server Strategy": {
+  "sidebar.tutorial.category.Server Strategy": {
     "message": "服务端策略",
-    "description": "The label for category Server Strategy in sidebar tutorialSidebar"
+    "description": "The label for category Server Strategy in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Strategy": {
+  "sidebar.tutorial.category.Strategy": {
     "message": "请求策略",
-    "description": "The label for category Strategy in sidebar tutorialSidebar"
+    "description": "The label for category Strategy in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Sensorless data interaction": {
+  "sidebar.tutorial.category.Sensorless data interaction": {
     "message": "无感数据交互",
-    "description": "The label for category Sensorless data interaction in sidebar tutorialSidebar"
+    "description": "The label for category Sensorless data interaction in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Basics completed": {
+  "sidebar.tutorial.category.Basics completed": {
     "message": "🎉你已完成基础",
-    "description": "The label for category Basics completed in sidebar tutorialSidebar"
+    "description": "The label for category Basics completed in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Advanced": {
+  "sidebar.tutorial.category.Advanced": {
     "message": "进阶",
-    "description": "The label for category Advanced in sidebar tutorialSidebar"
+    "description": "The label for category Advanced in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Custom": {
+  "sidebar.tutorial.category.Custom": {
     "message": "自定义",
-    "description": "The label for category custom in sidebar tutorialSidebar"
+    "description": "The label for category custom in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.Request adapter": {
+  "sidebar.tutorial.category.Migration": {
+    "message": "迁移指南",
+    "description": "The label for category Migration in sidebar tutorial"
+  },
+  "sidebar.resource.category.Request Adapter": {
     "message": "请求适配器",
-    "description": "The label for category Request adapter in sidebar tutorialSidebar"
+    "description": "The label for category Request Adapter in sidebar resource"
   },
-  "sidebar.tutorialSidebar.category.extend hooks": {
-    "message": "扩展hooks",
-    "description": "The label for category extend hooks in sidebar tutorialSidebar"
+  "sidebar.resource.category.Storage Adapter": {
+    "message": "存储适配器",
+    "description": "The label for category Request Adapter in sidebar resource"
   },
-  "sidebar.tutorialSidebar.category.Best practice": {
-    "message": "最佳实践",
-    "description": "The label for category best practice in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Framework": {
+  "sidebar.resource.category.Framework": {
     "message": "UI框架",
-    "description": "The label for category Framework in sidebar tutorialSidebar"
+    "description": "The label for category Framework in sidebar resource"
   },
-  "sidebar.tutorialSidebar.category.Others": {
+  "sidebar.tutorial.category.Best practice": {
+    "message": "最佳实践",
+    "description": "The label for category best practice in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Framework": {
+    "message": "UI框架",
+    "description": "The label for category Framework in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Others": {
     "message": "其他",
-    "description": "The label for category Others in sidebar tutorialSidebar"
+    "description": "The label for category Others in sidebar tutorial"
   }
 }

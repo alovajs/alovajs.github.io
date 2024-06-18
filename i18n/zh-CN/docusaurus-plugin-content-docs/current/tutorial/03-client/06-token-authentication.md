@@ -6,9 +6,9 @@ sidebar_position: 60
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info
+:::info 策略类型
 
-策略类型：拦截器
+拦截器
 
 :::
 

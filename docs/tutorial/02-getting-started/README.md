@@ -38,9 +38,11 @@ alova provides 10+ request strategy modules based on the [RSM](/tutorial/others/
 
 ### Alova editor extension
 
-Using the alova plugin in vscode can help you automatically generate request code with complete API document annotations and response types. In the past, you needed to query the API documentation first and constantly switch between the API documentation and the editor to write request code. After using the alova plugin, you no longer need to leave the editor, and you can directly use the API while checking in the editor to experience a different API usage experience.
+Using the alova extension in vscode can help you automatically generate request codes with complete API document annotations and response types. Whether it is a ts project or a js project, you can get complete interface queries, interface details, and smart prompts for response data types.
 
-> For a detailed introduction to the alova plugin, please refer to [Integrated IDE plugin](/tutorial/getting-started/plugin-integration).
+This extension also optimizes the API consumption process and gives you a different API usage experience. In the past, you needed to query the API document first and constantly switch between the API document and the editor to write request codes. With the alova plug-in, you no longer need to leave the editor and can directly use the API in the editor while checking.
+
+> For a detailed introduction to the alova plug-in, please refer to [Integrated Editor Extension](/tutorial/getting-started/extension-integration).
 
 ## Is there any difference?
 

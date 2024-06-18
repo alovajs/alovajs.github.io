@@ -73,9 +73,31 @@ const config: Config = {
       },
       items: [
         {
-          to: 'tutorial/getting-started',
+          type: 'dropdown',
+          label: 'Docs',
           position: 'left',
-          label: 'Docs'
+          items: [
+            {
+              label: 'Getting Started',
+              to: 'tutorial/getting-started'
+            },
+            {
+              label: 'Request Adapter',
+              to: 'next/resource/request-adapter'
+            },
+            {
+              label: 'Storage Adapter',
+              to: 'next/resource/storage-adapter'
+            },
+            {
+              label: 'UI Frameworks',
+              to: 'next/resource/framework'
+            },
+            {
+              label: 'Error Reference',
+              to: 'next/error'
+            }
+          ]
         },
         {
           to: 'tutorial/example/init-page',
@@ -86,6 +108,25 @@ const config: Config = {
           to: 'api/alova',
           position: 'left',
           label: 'API'
+        },
+        {
+          type: 'dropdown',
+          label: 'About',
+          position: 'left',
+          items: [
+            {
+              label: 'Request Scene Model',
+              to: 'next/about/rsm'
+            },
+            {
+              label: 'Comparison',
+              to: 'next/about/comparison'
+            },
+            {
+              label: 'Q&A',
+              to: 'next/about/q&a'
+            }
+          ]
         },
         {
           type: 'dropdown',

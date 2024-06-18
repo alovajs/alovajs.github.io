@@ -6,12 +6,6 @@ sidebar_position: 90
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info version required
-
-2.8.0+
-
-:::
-
 ## Overview
 
 Although the positioning of alova is not to make requests in nodejs, we have also adapted it in order to combine the server-side rendering([Nuxt3.x](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/)) of the UI framework. Although built-in request functionality is provided in e.g. `Nuxt3.x`, `Sveltekit`, if you choose to use alova, you can use alova to manage requests in both server and client, instead of server and client separately. Use different request schemes to manage them.
@@ -46,14 +40,12 @@ In Nuxt3.x, `useAsyncData` is provided to initialize page data on server, and `u
 Nextjs provides fixed server-side initialization page data functions, such as `getStaticProps`, `getServerSideProps`, etc., you can [directly use the method instance](/tutorial/getting-started/quick-start) call apis in the function.
 
 ```jsx
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
-  }
-});
-
 export const getServerSideProps = async ctx => {
-  const list = await todoListGetter.send();
+  const list = await alovaInstance.Get('/todo/list', {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
   return {
     props: {
       list
@@ -84,7 +76,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   return {
-    list: todoListGetter.send()
+    list: todoListGetter
   };
 }
 ```

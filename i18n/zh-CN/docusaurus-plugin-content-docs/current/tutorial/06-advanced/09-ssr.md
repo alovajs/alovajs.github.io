@@ -6,12 +6,6 @@ sidebar_position: 90
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info 版本要求
-
-2.8.0+
-
-:::
-
 ## 概述
 
 尽管 alova 的定位并不是在 nodejs 中进行请求，但为了可以结合 UI 框架的服务端渲染（[Nuxt3.x](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/)），我们也对它做了适配。尽管例如`Nuxt3.x`、`Sveltekit`中提供了内置的请求功能，但如果你选择使用 alova 的话，你可以同时在服务端和客户端中使用 alova 管理请求，而不是服务端和客户端分别使用不同的请求方案来管理它们。
@@ -46,14 +40,12 @@ SSR 中经常需要在服务端获取数据并渲染成 HTML，这种情况下�
 Nextjs 提供了固定的服务端初始化页面数据的函数，如`getStaticProps`、`getServerSideProps`等，可以在函数中[直接使用 method 实例](/tutorial/getting-started/quick-start)调用接口。
 
 ```jsx
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
-  }
-});
-
 export const getServerSideProps = async ctx => {
-  const list = await todoListGetter.send();
+  const list = await alovaInstance.Get('/todo/list', {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
   return {
     props: {
       list
@@ -84,7 +76,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   return {
-    list: todoListGetter.send()
+    list: todoListGetter
   };
 }
 ```

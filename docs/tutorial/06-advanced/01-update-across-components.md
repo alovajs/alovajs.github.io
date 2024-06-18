@@ -5,7 +5,7 @@ sidebar_position: 20
 
 :::info usage scope
 
-client useHook
+Client useHook
 
 :::
 

@@ -79,6 +79,26 @@ alova.Get('/todo/1', {
 });
 ```
 
+## 自动失效范围
+
+自动失效默认会查找所有 alova 实例下的缓存，太多的失效目标目标可能会导致性能降低，你希望控制自动失效的查找范围或关闭它，你可以按以下方式设置。
+
+```js
+import { globalConfig } from 'alova';
+
+globalConfig({
+  /**
+   * 自动命中缓存开关。
+   * 这里有三个选项：
+   * - global：跨 alova 实例使缓存无效。
+   * - self：仅使来自同一 alova 实例的缓存无效。
+   * - close：不再自动使缓存无效。
+   * 默认为'global'
+   */
+  autoHitCache: 'self'
+});
+```
+
 ## hitSource 数据类型
 
 ```typescript

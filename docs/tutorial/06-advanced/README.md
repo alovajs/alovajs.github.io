@@ -1,9 +1,9 @@
 ---
-title: 进阶
+title: Advanced
 ---
 
 import DocCardList from '@theme/DocCardList';
 
-进阶教程可以让你更深入地了解 alova 的一些特性，它们可能并不是常用功能，但可以帮你快速解决更多特殊的请求问题。
+The advanced tutorial allows you to have a deeper understanding of some features of alova. They may not be commonly used functions, but can help you quickly solve more special request problems.
 
 <DocCardList />

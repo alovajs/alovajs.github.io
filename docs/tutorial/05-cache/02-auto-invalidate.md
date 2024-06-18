@@ -79,6 +79,26 @@ alova.Get('/todo/1', {
 });
 ```
 
+## Automatic invalidation scope
+
+Automatic invalidation will search for caches under all alova instances by default. Too many invalidation targets may lead to poor performance. If you want to control the scope of automatic invalidation or turn it off, you can set it as follows.
+
+```js
+import { globalConfig } from 'alova';
+
+globalConfig({
+  /**
+   * Automatic hit cache switch.
+   * There are three options here:
+   * - global: invalidate cache across alova instances.
+   * - self: only invalidate caches from the same alova instance.
+   * - close: no longer automatically invalidate cache.
+   * Defaults to 'global'
+   */
+  autoHitCache: 'self'
+});
+```
+
 ## hitSource data type
 
 ```typescript

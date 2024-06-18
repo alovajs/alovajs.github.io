@@ -1,21 +1,21 @@
 ---
-title: cache logger
+title: Cache Logger
 sidebar_position: 70
 ---
 
-:::info version required
+:::info Usage scope
 
-v2.8.0+
+Fully
 
 :::
 
 In order to facilitate debugging when using the interface cache, when the request hits the cache without sending a network request, the hit cache information will be printed on the console by default, which can solve some confusion when using the cache.
 
-If you don't want to print cache information or custom control print cache information in some cases (such as production environment), alova also provides support for them.
+If you don't want to print cache information or custom control print cache information in some cases (such as production environment), you can also close it.
 
 ## Close cache logger printing
 
-Console printing can be turned off by setting `cacheLogger` to `false or null` when creating an alova instance.
+Console printing can be turned off by setting `cacheLogger` to `false/null` when creating an alova instance.
 
 ```javascript
 const alovaInstance = createAlova({

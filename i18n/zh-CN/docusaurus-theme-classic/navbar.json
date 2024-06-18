@@ -15,6 +15,10 @@
     "message": "社区贡献",
     "description": "Navbar item with label Contributing"
   },
+  "item.label.About": {
+    "message": "关于",
+    "description": "Navbar item with label About"
+  },
   "item.label.Contributing Guidelines": {
     "message": "贡献指南",
     "description": "Navbar item with label Contributing Guidelines"

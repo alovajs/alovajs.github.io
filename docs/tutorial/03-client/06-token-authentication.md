@@ -6,9 +6,9 @@ sidebar_position: 60
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info
+:::info strategy type
 
-Policy type: Interceptor
+Interceptor
 
 Version requirements: v1.3.0+
 
