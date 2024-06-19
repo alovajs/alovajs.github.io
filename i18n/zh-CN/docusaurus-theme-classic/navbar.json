@@ -62,5 +62,17 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Request Scene Model": {
+    "message": "请求场景模型",
+    "description": "Navbar item with label Request Scene Model"
+  },
+  "item.label.Comparison": {
+    "message": "请求库对比",
+    "description": "Navbar item with label Comparison"
+  },
+  "item.label.Q&A": {
+    "message": "提问&回答",
+    "description": "Navbar item with label Q&A"
   }
 }

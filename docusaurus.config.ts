@@ -123,7 +123,7 @@ const config: Config = {
               to: 'about/comparison'
             },
             {
-              label: 'QA',
+              label: 'Q&A',
               to: 'about/qa'
             }
           ]

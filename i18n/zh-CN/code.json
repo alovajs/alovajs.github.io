@@ -664,7 +664,23 @@
   },
   "announcement.content": {
     "message": "如果你也喜欢alova，请为它点个star吧！",
+    "description": "description of announcement content"
+  },
+  "announcement.title": {
+    "message": "alova v3.0.0-beta已发布",
     "description": "description of announcement title"
+  },
+  "announcement.desc": {
+    "message": "更简单，更强大，支持客户端和服务端",
+    "description": "description of announcement description"
+  },
+  "announcement.btn1": {
+    "message": "新特性",
+    "description": "description of announcement btn1"
+  },
+  "announcement.btn2": {
+    "message": "v3.0指南",
+    "description": "description of announcement btn2"
   },
   "example.open in new tab": {
     "message": "遇到问题？点此在新页面中打开示例",

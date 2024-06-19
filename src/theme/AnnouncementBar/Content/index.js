@@ -14,10 +14,10 @@ export default function AnnouncementBarContent(props) {
       {...props}
       className={clsx(styles.content, props.className, 'flex-col align-center')}>
       <strong className={styles.announceTitle}>
-        <Translate id="announcement.content">alova v3.0.0-beta is HERE!</Translate>
+        <Translate id="announcement.title">alova v3.0.0-beta is HERE!</Translate>
       </strong>
       <span>
-        <Translate id="announcement.content">
+        <Translate id="announcement.desc">
           More simple, more powerful, support both client & server
         </Translate>
       </span>
@@ -25,12 +25,12 @@ export default function AnnouncementBarContent(props) {
         <Link
           className={styles.announceButton}
           to="">
-          What's New
+          <Translate id="announcement.btn1">What's New</Translate>
         </Link>
         <Link
           className={styles.announceButton}
           to="/next/tutorial/getting-started/introduce">
-          v3.0 Tutorial
+          <Translate id="announcement.btn2">v3.0 Tutorial</Translate>
         </Link>
       </div>
     </div>
