@@ -1,6 +1,5 @@
 ---
 title: alova详解
-sidebar_position: 40
 ---
 
 alova 实例不但可以创建不同类型的 method 实例，还可以设置全局参数，创建的 method 实例都会继承这个 alova 实例的参数。当 alova 实例的参数与 method 实例设置了相同的参数时，例如 `timeout`、`shareRequest`等，将优先使用 method 实例的参数。

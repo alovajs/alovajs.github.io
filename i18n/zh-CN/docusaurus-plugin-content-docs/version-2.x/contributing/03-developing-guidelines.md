@@ -1,6 +1,5 @@
 ---
 title: 开发指南
-sidebar_position: 30
 ---
 
 :::info 版本要求

@@ -1,6 +1,5 @@
 ---
 title: Boot silent factory
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

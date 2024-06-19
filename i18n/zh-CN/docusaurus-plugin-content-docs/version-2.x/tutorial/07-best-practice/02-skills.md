@@ -1,6 +1,5 @@
 ---
 title: 使用技巧
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
@@ -259,8 +258,16 @@ const { data: todoCounter } = useRequest(todoCountGetter);
 手动创建 promise 对象，并使用`Promise.all`完成效果。
 
 ```javascript
-const { data: todoList, onSuccess: onListSuccess, onError: onListError } = useRequest(todoListGetter);
-const { data: todoCounter, onSuccess: onCountSuccess, onError: onCountError } = useRequest(todoCountGetter);
+const {
+  data: todoList,
+  onSuccess: onListSuccess,
+  onError: onListError
+} = useRequest(todoListGetter);
+const {
+  data: todoCounter,
+  onSuccess: onCountSuccess,
+  onError: onCountError
+} = useRequest(todoCountGetter);
 
 // 手动创建promise对象
 const listPromise = new Promise((resolve, reject) => {
@@ -302,7 +309,10 @@ const parallelRequest = async () => {
 ```javascript
 //
 const { data: todoList, onSuccess } = useRequest(todoListGetter);
-const { data: todoDetail, send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), { immediate: false });
+const { data: todoDetail, send: sendTodoDetail } = useRequest(
+  todoId => todoDetailGetter(todoId),
+  { immediate: false }
+);
 
 // 先获取列表，再获取第一个todo的详情
 onSuccess(event => {
@@ -317,7 +327,9 @@ onSuccess(event => {
 ```javascript
 // 先让它们不自动发送请求
 const { send: sendList } = useRequest(todoListGetter, { immediate: false });
-const { send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), { immediate: false });
+const { send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), {
+  immediate: false
+});
 
 // 利用send函数返回的promise对象
 const serialRequest = async () => {

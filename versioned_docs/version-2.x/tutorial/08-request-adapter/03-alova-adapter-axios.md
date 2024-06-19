@@ -1,6 +1,5 @@
 ---
 title: axios adapter
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

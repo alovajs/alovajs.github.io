@@ -1,6 +1,5 @@
 ---
 title: Manually Invalidate
-sidebar_position: 30
 ---
 
 Generally, automatic invalidate cache is more concise, and it is recommended to use it first to invalidate the cache. When the automatic invalidate cache does not meet the needs, you can also invalidate the cache by calling `invalidateCache`.

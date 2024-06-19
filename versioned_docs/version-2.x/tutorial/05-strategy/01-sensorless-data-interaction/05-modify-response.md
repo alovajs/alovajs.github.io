@@ -1,6 +1,5 @@
 ---
 title: Step 2 - Adjust Response Handling
-sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
@@ -184,7 +183,9 @@ const { loading, data, send, onSuccess } = useSQRequest(deleteTodo, {
 });
 
 onSuccess(({ sendArgs: [deletingId] }) => {
-  updateStateEffect(todoList(), todoListRaw => todoListRaw.filter(item => item.id !== deletingId));
+  updateStateEffect(todoList(), todoListRaw =>
+    todoListRaw.filter(item => item.id !== deletingId)
+  );
 });
 
 // Event callback triggers delete request

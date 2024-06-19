@@ -1,6 +1,5 @@
 ---
 title: Future of alova
-sidebar_position: 40
 ---
 
 alovajs is positioned as a lightweight request strategy library. It currently provides good support in terms of request functions and request strategies, but the future of alovajs does not stop there.

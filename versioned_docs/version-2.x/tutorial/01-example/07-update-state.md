@@ -1,6 +1,5 @@
 ---
-title: (vue)Update state across components/pages
-sidebar_position: 70
+title: Update state across components/pages
 ---
 
 import UpdateState from '@site/example-links/UpdateState';

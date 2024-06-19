@@ -1,6 +1,5 @@
 ---
-title: (react)Request Retry/Poll Request
-sidebar_position: 170
+title: Request Retry/Poll Request
 ---
 
 import RetriableHook from '@site/example-links/RetriableHook';

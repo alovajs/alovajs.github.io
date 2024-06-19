@@ -1,6 +1,5 @@
 ---
 title: alova的未来
-sidebar_position: 40
 ---
 
 alovajs 的定位是轻量级的请求策略库，目前在请求功能和请求策略方面提供了较好的支持，但 alovajs 的未来不止于此。

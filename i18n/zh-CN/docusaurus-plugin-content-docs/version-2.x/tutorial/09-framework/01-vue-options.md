@@ -1,6 +1,5 @@
 ---
 title: vue2/3 options
-sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';

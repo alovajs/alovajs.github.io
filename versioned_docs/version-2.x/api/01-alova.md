@@ -1,6 +1,5 @@
 ---
 title: alova instance
-sidebar_position: 10
 ---
 
 ## createAlova()
@@ -146,7 +145,11 @@ Create a method instance for the POST request.
 
 ```ts
 interface Alova {
-  Post(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Post(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 
@@ -184,7 +187,11 @@ Create a method instance for the DELETE request.
 
 ```ts
 interface Alova {
-  Delete(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Delete(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 
@@ -220,7 +227,11 @@ Create a method instance for the PUT request.
 
 ```ts
 interface Alova {
-  Put(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Put(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 
@@ -278,7 +289,11 @@ Create a method instance for the PATCH request.
 
 ```ts
 interface Alova {
-  Patch(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Patch(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 

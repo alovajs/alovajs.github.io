@@ -1,6 +1,5 @@
 ---
-title: (vue)页码列表
-sidebar_position: 100
+title: 页码列表
 ---
 
 import Pagination from '@site/example-links/Pagination';

@@ -1,6 +1,5 @@
 ---
 title: XMLHttpRequest Adapter
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
@@ -244,7 +243,7 @@ const handleImageDownload = () => {
 
 ## Mock request adapter compatible
 
-When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/tutorial/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `GlobalFetch` request adapter by default. When using the XMLHttpRequest adapter, we You need to adapt the response data of the mock request adapter to the XMLHttpRequest adapter. In this case, you need to use the `xhrMockResponse` exported in the **@alova/adapter-xhr** package as the response adapter.
+When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/next/resource/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `alova/fetch` request adapter by default. When using the XMLHttpRequest adapter, we You need to adapt the response data of the mock request adapter to the XMLHttpRequest adapter. In this case, you need to use the `xhrMockResponse` exported in the **@alova/adapter-xhr** package as the response adapter.
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

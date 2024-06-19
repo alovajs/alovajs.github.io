@@ -1,6 +1,5 @@
 ---
 title: 表单提交策略
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

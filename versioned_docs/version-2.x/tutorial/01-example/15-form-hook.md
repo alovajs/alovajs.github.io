@@ -1,6 +1,5 @@
 ---
-title: (react)Form submit strategy
-sidebar_position: 150
+title: Form submit strategy
 ---
 
 import FormHook from '@site/example-links/FormHook';

@@ -1,6 +1,5 @@
 ---
 title: What more?
-sidebar_position: 90
 ---
 
 ## Description of the role of virtual data
@@ -316,7 +315,9 @@ function onBeforeSilentSubmit(handler: (event: GlobalSQEvent)): OffEventCallback
 Fired when a silentMethod request with `behavior=silent` succeeds.
 
 ```typescript
-function onSilentSubmitSuccess(handler: (event: GlobalSQSuccessEvent) => void): OffEventCallback;
+function onSilentSubmitSuccess(
+  handler: (event: GlobalSQSuccessEvent) => void
+): OffEventCallback;
 ```
 
 ### onSilentSubmitError

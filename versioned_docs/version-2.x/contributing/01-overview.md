@@ -1,6 +1,5 @@
 ---
 title: Contribution Guidelines
-sidebar_position: 10
 ---
 
 # alova Contribution Guidelines

@@ -1,6 +1,5 @@
 ---
 title: Server-sent events发送请求
-sidebar_position: 130
 ---
 
 import Tabs from '@theme/Tabs';

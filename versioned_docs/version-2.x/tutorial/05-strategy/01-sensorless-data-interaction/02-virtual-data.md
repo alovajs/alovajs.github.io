@@ -1,6 +1,5 @@
 ---
 title: Virtual data
-sidebar_position: 20
 ---
 
 In fact, virtual data is a reference object with a unique id, and its tracking mechanism is realized by first generating a mapping between virtual data id and response data, and then finding and replacing it with the actual value through virtual data id.

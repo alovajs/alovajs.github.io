@@ -1,6 +1,5 @@
 ---
 title: alova实例
-sidebar_position: 10
 ---
 
 ## createAlova()
@@ -146,7 +145,11 @@ const getUsers = alovaInstance.Get('/users', {
 
 ```ts
 interface Alova {
-  Post(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Post(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 
@@ -184,7 +187,11 @@ const postUsers = alovaInstance.Post(
 
 ```ts
 interface Alova {
-  Delete(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Delete(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 
@@ -220,7 +227,11 @@ const deleteUsers = alovaInstance.Delete(
 
 ```ts
 interface Alova {
-  Put(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Put(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 
@@ -278,7 +289,11 @@ method 实例
 
 ```ts
 interface Alova {
-  Patch(url: string, data?: object | FormData | string | null, config?: AlovaMethodCreateConfig): Method;
+  Patch(
+    url: string,
+    data?: object | FormData | string | null,
+    config?: AlovaMethodCreateConfig
+  ): Method;
 }
 ```
 

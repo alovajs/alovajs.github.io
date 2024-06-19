@@ -1,6 +1,5 @@
 ---
 title: Middleware
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';

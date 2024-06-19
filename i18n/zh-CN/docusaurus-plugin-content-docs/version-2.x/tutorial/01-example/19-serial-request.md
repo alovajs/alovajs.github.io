@@ -1,6 +1,5 @@
 ---
-title: (vue)串行请求hook
-sidebar_position: 190
+title: 串行请求hook
 ---
 
 import SerialRequest from '@site/example-links/SerialRequest';

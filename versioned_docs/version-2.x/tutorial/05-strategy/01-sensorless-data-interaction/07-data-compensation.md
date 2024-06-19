@@ -1,6 +1,5 @@
 ---
 title: Step 4 - Data Compensation
-sidebar_position: 70
 ---
 
 The user may perform some data operations in a disconnected environment. At this time, the silent queue will be full of unsubmitted requests. When the network is restored, due to the limitation of the timing mechanism, it will take a little time to complete these requests. The list loaded at this time The data does not include unsubmitted requests, which can cause some confusion for users:

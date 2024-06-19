@@ -1,7 +1,11 @@
 {
-  "link.title.Nav": {
-    "message": "导航",
-    "description": "The title of the footer links column with title=Nav in the footer"
+  "link.title.Document": {
+    "message": "文档",
+    "description": "The title of the footer links column with title=Document in the footer"
+  },
+  "link.title.Resource": {
+    "message": "资源",
+    "description": "The title of the footer links column with title=Resource in the footer"
   },
   "link.title.Community": {
     "message": "社区",
@@ -14,6 +18,22 @@
   "link.item.label.Docs": {
     "message": "文档",
     "description": "The label of footer link with label=Guide linking to /tutorial/getting-started"
+  },
+  "link.item.label.Contributing": {
+    "message": "贡献指南",
+    "description": "The label of the footer links column with label=Contributing in the footer"
+  },
+  "link.item.label.Request Adapter": {
+    "message": "请求适配器",
+    "description": "The label of the footer links column with label=Request Adapter in the footer"
+  },
+  "link.item.label.Storage Adapter": {
+    "message": "存储适配器",
+    "description": "The label of the footer links column with label=Storage Adapter in the footer"
+  },
+  "link.item.label.Framework Support": {
+    "message": "框架支持",
+    "description": "The label of the footer links column with label=Framework Support in the footer"
   },
   "link.item.label.Example": {
     "message": "示例",

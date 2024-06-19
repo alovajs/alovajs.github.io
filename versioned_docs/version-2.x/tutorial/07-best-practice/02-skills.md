@@ -1,6 +1,5 @@
 ---
 title: Skills
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
@@ -259,8 +258,16 @@ But such a request only applies to simple parallel requests. If you need to perf
 Manually create a promise object and use `Promise.all` to complete the effect.
 
 ```javascript
-const { data: todoList, onSuccess: onListSuccess, onError: onListError } = useRequest(todoListGetter);
-const { data: todoCounter, onSuccess: onCountSuccess, onError: onCountError } = useRequest(todoCountGetter);
+const {
+  data: todoList,
+  onSuccess: onListSuccess,
+  onError: onListError
+} = useRequest(todoListGetter);
+const {
+  data: todoCounter,
+  onSuccess: onCountSuccess,
+  onError: onCountError
+} = useRequest(todoCountGetter);
 
 // Manually create promise object
 const listPromise = new Promise((resolve, reject) => {
@@ -302,7 +309,10 @@ Let the first request be sent automatically, and the second request be triggered
 ```javascript
 //
 const { data: todoList, onSuccess } = useRequest(todoListGetter);
-const { data: todoDetail, send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), { immediate: false });
+const { data: todoDetail, send: sendTodoDetail } = useRequest(
+  todoId => todoDetailGetter(todoId),
+  { immediate: false }
+);
 
 // Get the list first, then get the details of the first todo
 onSuccess(event => {
@@ -317,7 +327,9 @@ Using the `send` function returned by the `useRequest` function, calling `send` 
 ```javascript
 // Let them not automatically send requests first
 const { send: sendList } = useRequest(todoListGetter, { immediate: false });
-const { send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), { immediate: false });
+const { send: sendTodoDetail } = useRequest(todoId => todoDetailGetter(todoId), {
+  immediate: false
+});
 
 //Use the promise object returned by the send function
 const serialRequest = async () => {

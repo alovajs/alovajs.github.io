@@ -1,6 +1,5 @@
 ---
 title: Receive Params
-sidebar_position: 80
 ---
 
 In both `useRequest` and `useWatcher` we can call the `send` function to manually trigger the request. When the send function triggers the request, any number of parameters can be passed in. These parameters can actually be received by the following three locations.
@@ -32,7 +31,9 @@ send(2);
 Received through `event.sendArgs` in the event callback function, which is an array containing all parameters of the send function.
 
 ```javascript
-const { send, onSuccess, onError, onComplete } = useRequest(newTodo => alovaInstance.Post('/todo', newTodo));
+const { send, onSuccess, onError, onComplete } = useRequest(newTodo =>
+  alovaInstance.Post('/todo', newTodo)
+);
 onSuccess(event => {
   //The value of sendArgs is [1]
   console.log(event.sendArgs);

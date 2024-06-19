@@ -1,6 +1,5 @@
 ---
 title: 模拟数据
-sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
@@ -101,7 +100,7 @@ export default defineMock(
 在调用`createAlova`时创建一个模拟请求适配器，并将 mock 接口传入即可完成。
 
 ```javascript
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import { createAlovaMockAdapter } from '@alova/mock';
 import mockGroup1 from './mockGroup1';
 
@@ -111,7 +110,7 @@ const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
   enable: true,
 
   // 非模拟请求适配器，用于未匹配mock接口时发送请求
-  httpAdapter: GlobalFetch(),
+  httpAdapter: adapterFetch(),
 
   // mock接口响应延迟，单位毫秒
   delay: 1000,
@@ -120,7 +119,7 @@ const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
   mockRequestLogger: true,
 
   // 模拟接口回调，data为返回的模拟数据，你可以用它构造任何你想要的对象返回给alova
-  // 以下为默认的回调函数，它适用于使用GlobalFetch请求适配器
+  // 以下为默认的回调函数，它适用于使用 `alova/fetch` 请求适配器
   // 如果你使用的是其他请求适配器，在模拟接口回调中请自定义返回适合适配器的数据结构
   onMockResponse: data => new Response(JSON.stringify(data))
 });
@@ -223,7 +222,7 @@ import Augustv1_1 from './August-v1.1';
 import kevinv1_1 from './kevin-v1.1';
 
 const mockAdapter = createAlovaMockAdapter([Augustv1_1, kevinv1_1], {
-  httpAdapter: GlobalFetch(),
+  httpAdapter: adapterFetch(),
   delay: 1000
 });
 export const alovaInst = createAlova({
@@ -238,9 +237,9 @@ export const alovaInst = createAlova({
 mock 数据一般只作用于开发环境，在生产环境下将会切换到实际的接口中，因此这段 mock 代码在生产环境就变得没有作用，此时我们可以通过环境变量的判断来排除这块代码，你只需要这样做：
 
 ```javascript
-const globalFetch = GlobalFetch();
+const fetchAdapter = adapterFetch();
 const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
-  httpAdapter: globalFetch,
+  httpAdapter: fetchAdapter,
   delay: 1000,
 });
 
@@ -273,7 +272,7 @@ export default defineMock({
 
 ## 转换模拟数据
 
-**@alova/mock** 默认将响应数据包装为 Response 实例，将响应头默认包装为 Headers 实例，这是针对`GlobalFetch`进行适配的，但如果使用其他的请求适配器，就需要将模拟数据转换为相应的格式。
+**@alova/mock** 默认将响应数据包装为 Response 实例，将响应头默认包装为 Headers 实例，这是针对`alova/fetch`进行适配的，但如果使用其他的请求适配器，就需要将模拟数据转换为相应的格式。
 
 ### 转换响应数据
 

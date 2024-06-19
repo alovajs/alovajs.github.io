@@ -1,6 +1,5 @@
 ---
 title: Step 1 - Implement features with conservative requests
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';

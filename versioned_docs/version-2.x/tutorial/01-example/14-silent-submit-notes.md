@@ -1,6 +1,5 @@
 ---
-title: (react)Silent submit - Notebook
-sidebar_position: 140
+title: Silent submit - Notebook
 ---
 
 import NoteSilentReact from '@site/example-links/NoteSilentReact';

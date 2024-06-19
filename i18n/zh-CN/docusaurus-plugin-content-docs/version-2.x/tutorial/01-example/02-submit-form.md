@@ -1,6 +1,5 @@
 ---
-title: (vue)表单提交
-sidebar_position: 20
+title: 表单提交
 ---
 
 import SubmitForm from '@site/example-links/SubmitForm';

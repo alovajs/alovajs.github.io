@@ -1,6 +1,5 @@
 ---
 title: 接收参数
-sidebar_position: 80
 ---
 
 在`useRequest`和`useWatcher`中我们都可以调用`send`函数手动触发请求，send 函数触发请求时候，可以传入任意多个参数，这些参数其实可以分别被以下 3 个位置接收。
@@ -32,7 +31,9 @@ send(2);
 在事件回调函数中通过`event.sendArgs`接收，它是一个包含了 send 函数的所有参数的数组。
 
 ```javascript
-const { send, onSuccess, onError, onComplete } = useRequest(newTodo => alovaInstance.Post('/todo', newTodo));
+const { send, onSuccess, onError, onComplete } = useRequest(newTodo =>
+  alovaInstance.Post('/todo', newTodo)
+);
 onSuccess(event => {
   // sendArgs的值为[1]
   console.log(event.sendArgs);

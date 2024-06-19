@@ -1,6 +1,5 @@
 ---
 title: Process Shared Adapter
-sidebar_position: 10
 ---
 
 Process shared storage adapter allows you to share cache in multi-process environment.
@@ -64,16 +63,17 @@ createAlova({
 Of course, you can share both l1Cache and l2Cache at the same time! Just use the scope option and create different shared storage adapters.
 
 ```javascript
-const createScopedPSCAdapter = (scope: string) => createPSCAdapter(
-  NodeSyncAdapter(stopIPC => {
-    process.on('SIGTERM', stopIPC);
-  }),
-  // This parameter is used to specify the storage adapter. We will introduce this later
-  undefined,
-  // highlight-start
-  { scope }
-  // highlight-end
-);
+const createScopedPSCAdapter = (scope: string) =>
+  createPSCAdapter(
+    NodeSyncAdapter(stopIPC => {
+      process.on('SIGTERM', stopIPC);
+    }),
+    // This parameter is used to specify the storage adapter. We will introduce this later
+    undefined,
+    // highlight-start
+    { scope }
+    // highlight-end
+  );
 ```
 
 ## Use in Electron
@@ -138,25 +138,27 @@ When using multiple Alova instances, there is no need to create multiple `PSCAda
 
 :::
 
-
 ## Custom Storage Adapter
 
 By passing the second parameter to createPSCAdapter, you can specify the storage adapter to use.
 
 ```typescript
-const pscAdapter = createPSCAdapter(ElectronSyncAdapter(
-  ipcRenderer,
-  // highlight-start
-  // Same as passing to l1Cache in createAlova. Use default implementation if passing undefined.
-  MyStorageAdapter()
-  // highlight-end
-));
+const pscAdapter = createPSCAdapter(
+  ElectronSyncAdapter(
+    ipcRenderer,
+    // highlight-start
+    // Same as passing to l1Cache in createAlova. Use default implementation if passing undefined.
+    MyStorageAdapter()
+    // highlight-end
+  )
+);
 
 createAlova({
   // ...
   l1Cache: pscAdapter
 });
 ```
+
 > You can also use [lru-cache](https://www.npmjs.com/package/lru-cache) as a cache adapter.
 
 ## Custom SharedAdapter

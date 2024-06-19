@@ -52,7 +52,7 @@ const config: Config = {
         // disable blog
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css')
+          customCss: require.resolve('./src/css/custom.scss')
         }
       }
     ]
@@ -116,15 +116,15 @@ const config: Config = {
           items: [
             {
               label: 'Request Scene Model',
-              to: 'next/about/rsm'
+              to: 'about/RSM'
             },
             {
               label: 'Comparison',
-              to: 'next/about/comparison'
+              to: 'about/comparison'
             },
             {
-              label: 'Q&A',
-              to: 'next/about/q&a'
+              label: 'QA',
+              to: 'about/qa'
             }
           ]
         },
@@ -203,7 +203,6 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-
       logo: {
         alt: 'Meta Open Source Logo',
         src: 'img/logo.svg',
@@ -214,7 +213,7 @@ const config: Config = {
 
       links: [
         {
-          title: 'Nav',
+          title: 'Document',
           items: [
             {
               label: 'Docs',
@@ -223,6 +222,31 @@ const config: Config = {
             {
               label: 'Example',
               to: 'tutorial/example/init-page'
+            },
+            {
+              label: 'API',
+              to: 'api/alova'
+            },
+            {
+              label: 'Contributing',
+              to: 'contributing/overview'
+            }
+          ]
+        },
+        {
+          title: 'Resource',
+          items: [
+            {
+              label: 'Request Adapter',
+              to: 'next/resource/request-adapter'
+            },
+            {
+              label: 'Storage Adapter',
+              to: 'next/resource/storage-adapter'
+            },
+            {
+              label: 'Framework Support',
+              to: 'next/category/framework'
             }
           ]
         },
@@ -301,37 +325,6 @@ const config: Config = {
       // Optional: path for search page that enabled by default (`false` to disable it)
       searchPagePath: 'search'
     }
-
-    // algolia搜索
-    // algolia: {
-    //   // The application ID provided by Algolia
-    //   appId: 'LGEFHNJ1SI',
-
-    //   // Public API key: it is safe to commit it
-    //   apiKey: '4c4f6078174a5ae66234de817e75e0a8',
-
-    //   indexName: 'YOUR_INDEX_NAME',
-
-    //   // Optional: see doc section below
-    //   contextualSearch: true,
-
-    //   // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-    //   externalUrlRegex: 'external\\.com|domain\\.com',
-
-    //   // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
-    //   replaceSearchResultPathname: {
-    //     from: '/docs/', // or as RegExp: /\/docs\//
-    //     to: '/'
-    //   },
-
-    //   // Optional: Algolia search parameters
-    //   searchParameters: {},
-
-    //   // Optional: path for search page that enabled by default (`false` to disable it)
-    //   searchPagePath: 'search'
-
-    //   //... other Algolia params
-    // }
   },
 
   markdown: {
@@ -342,6 +335,7 @@ const config: Config = {
 
   // 插件
   plugins: [
+    'docusaurus-plugin-sass',
     [
       './plugin/baiduStatistics',
       {

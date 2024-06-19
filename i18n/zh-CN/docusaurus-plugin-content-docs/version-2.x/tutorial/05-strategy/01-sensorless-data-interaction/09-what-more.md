@@ -1,6 +1,5 @@
 ---
 title: 还有什么？
-sidebar_position: 90
 ---
 
 ## 虚拟数据的作用说明
@@ -316,7 +315,9 @@ function onBeforeSilentSubmit(handler: (event: GlobalSQEvent)): OffEventCallback
 `behavior=silent`的 silentMethod 请求成功时触发。
 
 ```typescript
-function onSilentSubmitSuccess(handler: (event: GlobalSQSuccessEvent) => void): OffEventCallback;
+function onSilentSubmitSuccess(
+  handler: (event: GlobalSQSuccessEvent) => void
+): OffEventCallback;
 ```
 
 ### onSilentSubmitError

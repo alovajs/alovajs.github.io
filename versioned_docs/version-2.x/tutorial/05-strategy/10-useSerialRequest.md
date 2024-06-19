@@ -1,6 +1,5 @@
 ---
 title: useRequest with serial
-sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';

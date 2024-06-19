@@ -1,6 +1,5 @@
 ---
 title: 串行请求的useRequest
-sidebar_position: 100
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,6 +1,5 @@
 ---
 title: Controlled Cache
-sidebar_position: 60
 ---
 
 :::info version requirements

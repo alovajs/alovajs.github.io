@@ -1,6 +1,5 @@
 ---
-title: (vue)条件搜索
-sidebar_position: 30
+title: 条件搜索
 ---
 
 import ConditionSearch from '@site/example-links/ConditionSearch';

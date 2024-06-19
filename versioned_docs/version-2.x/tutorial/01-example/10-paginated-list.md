@@ -1,6 +1,5 @@
 ---
-title: (vue)Paginated list
-sidebar_position: 100
+title: Paginated list
 ---
 
 import Pagination from '@site/example-links/Pagination';

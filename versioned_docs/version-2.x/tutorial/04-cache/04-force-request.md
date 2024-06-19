@@ -1,6 +1,5 @@
 ---
 title: Force Request
-sidebar_position: 40
 ---
 
 Forced request refers to a mechanism that bypasses the cache check and triggers a request. It is useful when the latest data needs to be obtained under certain conditions.

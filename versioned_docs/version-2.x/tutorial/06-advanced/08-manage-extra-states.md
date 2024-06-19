@@ -1,6 +1,5 @@
 ---
 title: Manage extra states
-sidebar_position: 80
 ---
 
 import Tabs from '@theme/Tabs';

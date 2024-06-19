@@ -1,6 +1,5 @@
 ---
-title: (vue)Conditional Search
-sidebar_position: 30
+title: Conditional Search
 ---
 
 import ConditionSearch from '@site/example-links/ConditionSearch';

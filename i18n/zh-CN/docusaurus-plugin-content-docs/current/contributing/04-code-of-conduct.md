@@ -1,6 +1,5 @@
 ---
 title: 行为准则
-sidebar_position: 40
 ---
 
 ## 我们的承诺

@@ -1,6 +1,5 @@
 ---
 title: Auto Invalidate
-sidebar_position: 20
 ---
 
 There is a scenario where when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated with the edited content. Usually The approach is to trigger content updates on the previous page through events, which increases maintenance costs. And `alova` provides 3 ways to achieve this goal very elegantly:

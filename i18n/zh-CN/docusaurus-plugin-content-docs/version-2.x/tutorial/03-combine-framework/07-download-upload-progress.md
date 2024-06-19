@@ -1,6 +1,5 @@
 ---
 title: 下载和上传进度
-sidebar_position: 70
 ---
 
 import Tabs from '@theme/Tabs';

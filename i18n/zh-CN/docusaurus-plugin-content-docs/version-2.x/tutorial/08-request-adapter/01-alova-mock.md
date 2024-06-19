@@ -1,6 +1,5 @@
 ---
 title: 模拟数据
-sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,6 +1,5 @@
 ---
 title: Method Matcher
-sidebar_position: 30
 ---
 
 A method matcher is a method that dynamically finds a method instance in a list of requested method snapshots. It is generally used. When developers are not sure which method to use, they can use the method matcher to search according to certain rules.

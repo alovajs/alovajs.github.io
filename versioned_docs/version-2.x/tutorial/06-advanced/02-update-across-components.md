@@ -1,6 +1,5 @@
 ---
 title: Update states across components
-sidebar_position: 20
 ---
 
 There is a scenario where when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated without resetting the situation. For edited content, `useFetcher` is no longer applicable.

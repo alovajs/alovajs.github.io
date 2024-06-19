@@ -1,6 +1,5 @@
 ---
-title: (vue)使用IndexedDB管理缓存
-sidebar_position: 110
+title: 使用IndexedDB管理缓存
 ---
 
 import ControlledCacheByIndexedDB from '@site/example-links/ControlledCacheByIndexedDB';

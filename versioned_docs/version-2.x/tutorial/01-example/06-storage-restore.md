@@ -1,6 +1,5 @@
 ---
-title: (vue)Response Caching - Restore Mode
-sidebar_position: 60
+title: Response Caching - Restore Mode
 ---
 
 import StorageRestore from '@site/example-links/StorageRestore';

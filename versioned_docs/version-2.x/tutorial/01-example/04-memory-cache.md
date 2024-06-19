@@ -1,6 +1,5 @@
 ---
-title: (vue)Response Cache - Memory Mode
-sidebar_position: 40
+title: Response Cache - Memory Mode
 ---
 
 import MemoryCache from '@site/example-links/MemoryCache';

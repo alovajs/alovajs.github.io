@@ -1,6 +1,5 @@
 ---
 title: 受控的缓存
-sidebar_position: 60
 ---
 
 :::info 版本要求

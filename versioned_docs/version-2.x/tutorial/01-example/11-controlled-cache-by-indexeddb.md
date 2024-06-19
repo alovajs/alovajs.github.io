@@ -1,6 +1,5 @@
 ---
-title: (vue)Manage Cache with IndexedDB
-sidebar_position: 110
+title: Manage Cache with IndexedDB
 ---
 
 import ControlledCacheByIndexedDB from '@site/example-links/ControlledCacheByIndexedDB';

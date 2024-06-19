@@ -1,6 +1,5 @@
 ---
 title: Process Response
-sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';

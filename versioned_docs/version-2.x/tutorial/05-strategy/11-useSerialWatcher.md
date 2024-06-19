@@ -1,6 +1,5 @@
 ---
 title: useWatcher with serial
-sidebar_position: 70
 ---
 
 import Tabs from '@theme/Tabs';

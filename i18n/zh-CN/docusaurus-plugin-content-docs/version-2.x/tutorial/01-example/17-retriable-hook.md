@@ -1,6 +1,5 @@
 ---
-title: (react)请求重试/轮询请求
-sidebar_position: 170
+title: 请求重试/轮询请求
 ---
 
 import RetriableHook from '@site/example-links/RetriableHook';

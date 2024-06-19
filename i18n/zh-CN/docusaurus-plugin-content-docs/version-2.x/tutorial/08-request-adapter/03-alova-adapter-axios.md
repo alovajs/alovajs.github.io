@@ -1,6 +1,5 @@
 ---
 title: axios适配器
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

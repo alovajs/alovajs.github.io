@@ -1,6 +1,5 @@
 ---
 title: Global configuration
-sidebar_position: 60
 ---
 
 ## globalConfig()

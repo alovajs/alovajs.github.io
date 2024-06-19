@@ -1,6 +1,5 @@
 ---
 title: Automatically refetch data
-sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';

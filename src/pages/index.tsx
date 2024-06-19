@@ -45,8 +45,8 @@ function HomepageHeader() {
           </h1>
           <p className="tagline">
             <Translate id="homepage.tagline">
-              One line of code completes network requests in various complex scenarios. Don’t spend time on the small
-              matter of requesting. Leave it to us.
+              One line of code completes network requests in various complex scenarios. Don’t
+              spend time on the small matter of requesting. Leave it to us.
             </Translate>
           </p>
           <div className={clsx(styles.buttons, 'margin-bottom--md')}>
@@ -65,16 +65,12 @@ function HomepageHeader() {
           </div>
           <CodeBlock language="bash">npm install alova</CodeBlock>
 
-          <a
+          <Link
             className={styles.announcement}
-            target="_blank"
-            href={
-              i18n.currentLocale === 'en'
-                ? 'https://maple-mastodon-428.notion.site/Alova-Product-White-Paper-and-3-0-Update-Overview-02f0a713bf7d46e1be5a69db4981217c?pvs=4'
-                : 'https://wilhgi5u21.feishu.cn/docx/ZJzSdX05woIcUux2hlXc31EmnPd'
-            }>
-            🥳🥳🥳 <Translate id="homepage.release.announce">alvoa3.0 is under development, details here</Translate> →
-          </a>
+            to="next/tutorial/getting-started/introduce">
+            🎉
+            <Translate id="homepage.release.announce">alvoa v3.0.b-beta is here</Translate> →
+          </Link>
         </div>
       </div>
     </header>
@@ -107,8 +103,9 @@ export default function Home(): JSX.Element {
           <div className={styles.relationContent}>
             <span className={styles.quota}>“</span>
             <Translate id="homepage.relationAuxi">
-              Just like their weapon arsenal, alova grants them enhanced capabilities. Whether you prefer using axios,
-              superagent, or the browser's fetch API, alova seamlessly integrates with all of them.
+              Just like their weapon arsenal, alova grants them enhanced capabilities. Whether
+              you prefer using axios, superagent, or the browser's fetch API, alova seamlessly
+              integrates with all of them.
             </Translate>
             <span className={styles.quota}>”</span>
           </div>

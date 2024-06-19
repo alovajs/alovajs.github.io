@@ -1,6 +1,5 @@
 ---
-title: (vue)Load more
-sidebar_position: 90
+title: Load more
 ---
 
 import LoadMore from '@site/example-links/LoadMore';

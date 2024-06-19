@@ -1,6 +1,5 @@
 ---
 title: Become a core team member
-sidebar_position: 20
 ---
 
 🤝🤝🤝 If you also agree with alovajs’ philosophy, then let us create the next generation request library together!

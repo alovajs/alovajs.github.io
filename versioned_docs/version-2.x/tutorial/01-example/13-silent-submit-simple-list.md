@@ -1,6 +1,5 @@
 ---
-title: (vue)Silent submit - Simple List
-sidebar_position: 130
+title: Silent submit - Simple List
 ---
 
 import SimpleListSilentVue from '@site/example-links/SimpleListSilentVue';

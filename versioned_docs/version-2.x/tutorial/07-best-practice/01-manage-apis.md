@@ -1,6 +1,5 @@
 ---
 title: Manage APIs
-sidebar_position: 10
 ---
 
 In a project, we may need to use hundreds or thousands of request APIs, so managing these request APIs becomes particularly important.

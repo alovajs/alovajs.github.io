@@ -1,6 +1,5 @@
 ---
 title: 进程共享适配器
-sidebar_position: 10
 ---
 
 进程共享存储适配器可以在多进程环境中共享 Alova 的缓存。
@@ -64,16 +63,17 @@ createAlova({
 当然，同时共享 `l1Cache` 和 `l2Cache` 也完全没有问题！使用 `scope` 选项，并创建不同的共享储存适配器即可。
 
 ```javascript
-const createScopedPSCAdapter = (scope: string) => createPSCAdapter(
-  NodeSyncAdapter(stopIPC => {
-    process.on('SIGTERM', stopIPC);
-  }),
-  // 这个参数用于指定储存适配器，我们稍后会介绍
-  undefined,
-  // highlight-start
-  { scope }
-  // highlight-end
-);
+const createScopedPSCAdapter = (scope: string) =>
+  createPSCAdapter(
+    NodeSyncAdapter(stopIPC => {
+      process.on('SIGTERM', stopIPC);
+    }),
+    // 这个参数用于指定储存适配器，我们稍后会介绍
+    undefined,
+    // highlight-start
+    { scope }
+    // highlight-end
+  );
 
 createAlova({
   // ...
@@ -149,19 +149,22 @@ declare global {
 通过传入 `createPSCAdapter` 的第二个参数，可指定使用的储存适配器。
 
 ```typescript
-const pscAdapter = createPSCAdapter(ElectronSyncAdapter(
-  ipcRenderer,
-  // highlight-start
-  // 用法与 createAlova 时传入到 l1Cache 一致。如果传入 undefined，那么将使用默认实现
-  MyStorageAdapter()
-  // highlight-end
-));
+const pscAdapter = createPSCAdapter(
+  ElectronSyncAdapter(
+    ipcRenderer,
+    // highlight-start
+    // 用法与 createAlova 时传入到 l1Cache 一致。如果传入 undefined，那么将使用默认实现
+    MyStorageAdapter()
+    // highlight-end
+  )
+);
 
 createAlova({
   // ...
   l1Cache: pscAdapter
 });
 ```
+
 > 你还可以使用 [lru-cache](https://www.npmjs.com/package/lru-cache) 作为缓存适配器。
 
 ## 自定义共享适配器

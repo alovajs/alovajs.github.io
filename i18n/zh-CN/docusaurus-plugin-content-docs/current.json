@@ -19,6 +19,10 @@
     "message": "开始",
     "description": "The label for category Get Started in sidebar tutorial"
   },
+  "sidebar.tutorial.category.Basic": {
+    "message": "基础",
+    "description": "The label for category Get Started in sidebar tutorial"
+  },
   "sidebar.tutorial.category.Cache Details": {
     "message": "缓存详解",
     "description": "The label for category Cache Details in sidebar tutorial"
@@ -27,17 +31,29 @@
     "message": "结合框架",
     "description": "The label for category Combine Framework in sidebar tutorial"
   },
-  "sidebar.tutorial.category.Client Strategy": {
-    "message": "客户端策略",
-    "description": "The label for category Client Strategy in sidebar tutorial"
+  "sidebar.tutorial.category.Client": {
+    "message": "客户端",
+    "description": "The label for category Client in sidebar tutorial"
   },
-  "sidebar.tutorial.category.Server Strategy": {
-    "message": "服务端策略",
-    "description": "The label for category Server Strategy in sidebar tutorial"
-  },
-  "sidebar.tutorial.category.Strategy": {
+  "sidebar.tutorial.category.Request Strategy": {
     "message": "请求策略",
-    "description": "The label for category Strategy in sidebar tutorial"
+    "description": "The label for category Request Strategy in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Server": {
+    "message": "服务端",
+    "description": "The label for category Server in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.In-Depth": {
+    "message": "深入指南",
+    "description": "The label for category In-Depth in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.alova In-Depth": {
+    "message": "深入alova",
+    "description": "The label for category alova In-Depth in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Project": {
+    "message": "项目",
+    "description": "The label for category Project in sidebar tutorial"
   },
   "sidebar.tutorial.category.Sensorless data interaction": {
     "message": "无感数据交互",

@@ -1,6 +1,5 @@
 ---
 title: Custom Storage Adapter
-sidebar_position: 30
 ---
 
 Alova involves multiple functions that require data persistence, such as persistent cache, silent submission, and offline submission. **By default, alova will use `localStorage` to store persistent data**, but considering the non-browser environment, it also supports customization.

@@ -1,6 +1,5 @@
 ---
 title: 贡献指南
-sidebar_position: 10
 ---
 
 # alova 贡献指南

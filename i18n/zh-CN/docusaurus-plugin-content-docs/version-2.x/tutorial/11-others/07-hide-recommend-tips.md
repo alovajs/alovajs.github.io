@@ -1,6 +1,5 @@
 ---
 title: 隐藏推荐提示
-sidebar_position: 70
 ---
 
 :::info 版本要求

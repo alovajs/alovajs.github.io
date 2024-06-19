@@ -1,6 +1,5 @@
 ---
 title: Taro适配器
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';
@@ -327,7 +326,7 @@ const App = () => {
 
 ## 模拟请求适配器兼容
 
-在使用 Taro 开发应用时，我们仍然可能需要用到模拟请求，只是默认情况下，[模拟请求适配器(@alova/mock)](/tutorial/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`GlobalFetch`请求适配器，当在 Taro 环境下使用时，我们需要让模拟请求适配器的响应数据是兼容 Taro 适配器的，因此你需要使用**@alova/adapter-taro**包中导出的`taroMockResponse`作为响应适配器。
+在使用 Taro 开发应用时，我们仍然可能需要用到模拟请求，只是默认情况下，[模拟请求适配器(@alova/mock)](/next/resource/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`alova/fetch`请求适配器，当在 Taro 环境下使用时，我们需要让模拟请求适配器的响应数据是兼容 Taro 适配器的，因此你需要使用**@alova/adapter-taro**包中导出的`taroMockResponse`作为响应适配器。
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';
@@ -379,7 +378,15 @@ export type TaroRequestConfig = Omit<
  */
 export type TaroUploadConfig = Omit<
   Taro.uploadFile.Option,
-  'url' | 'filePath' | 'name' | 'header' | 'formData' | 'timeout' | 'success' | 'fail' | 'complete'
+  | 'url'
+  | 'filePath'
+  | 'name'
+  | 'header'
+  | 'formData'
+  | 'timeout'
+  | 'success'
+  | 'fail'
+  | 'complete'
 >;
 
 /**

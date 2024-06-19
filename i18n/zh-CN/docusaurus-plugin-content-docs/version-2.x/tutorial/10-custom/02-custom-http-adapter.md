@@ -1,6 +1,5 @@
 ---
 title: 自定义请求适配器
-sidebar_position: 20
 ---
 
 还记得如何创建一个 Alova 实例吗？

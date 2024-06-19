@@ -1,6 +1,5 @@
 ---
 title: 响应状态操作
-sidebar_position: 50
 ---
 
 ## updateState
@@ -14,11 +13,11 @@ sidebar_position: 50
 这个问题常常出现在跨页面更新状态时，因为当页面跳转时我们容易忽略的是，默认情况下上一个页面已经被销毁了，因此，如果你希望跨页面更新状态，这边有两个建议：
 
 1. 将页面组件持久化，以保证被更新的状态还可以被查找到；
-2. 使用 [setCache](/tutorial/cache/set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
+2. 使用 [setCache](/next/tutorial/cache/set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
 
-> 前往[跨页面/模块更新响应状态](/tutorial/advanced/update-across-components)查看详情。
+> 前往[跨页面/模块更新响应状态](/next/tutorial/client/in-depth/update-across-components)查看详情。
 
-> 使用 updateState 管理额外状态请参考[额外状态管理](/tutorial/advanced/manage-extra-states)。
+> 使用 updateState 管理额外状态请参考[额外状态管理](/next/tutorial/client/in-depth/manage-extra-states)。
 
 - **类型**
 
@@ -40,7 +39,7 @@ function updateState(
 
 - **参数**
 
-- `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/tutorial/advanced/method-matcher)，如果匹配到符合条件的 method，将会调用`handleUpdate`。
+- `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/next/tutorial/client/in-depth/method-matcher)，如果匹配到符合条件的 method，将会调用`handleUpdate`。
 - `handleUpdate`：更新函数或更新函数集合，如果是函数集合，将会调用集合上对应的更新函数，并将返回值作为更新结果。
 - `options`：可选项。
 

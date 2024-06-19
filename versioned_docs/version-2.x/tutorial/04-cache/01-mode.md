@@ -1,6 +1,5 @@
 ---
 title: Cache Mode
-sidebar_position: 10
 ---
 
 import MemoryCache from '@site/example-links/MemoryCache';

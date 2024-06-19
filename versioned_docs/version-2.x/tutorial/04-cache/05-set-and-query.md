@@ -1,6 +1,5 @@
 ---
 title: Set & Query Cache
-sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
@@ -74,7 +73,13 @@ const getTodoListByDate = dateList =>
 
 const App = () => {
   // Get 5 days of data in batches during initialization
-  const [dates, setDates] = useState(['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']);
+  const [dates, setDates] = useState([
+    '2022-05-01',
+    '2022-05-02',
+    '2022-05-03',
+    '2022-05-04',
+    '2022-05-05'
+  ]);
   const {
     //...
     onSuccess
@@ -122,7 +127,13 @@ const App = () => {
       params: { dateList }
     });
   // Get 5 days of data in batches during initialization
-  const dates = writable(['2022-05-01', '2022-05-02', '2022-05-03', '2022-05-04', '2022-05-05']);
+  const dates = writable([
+    '2022-05-01',
+    '2022-05-02',
+    '2022-05-03',
+    '2022-05-04',
+    '2022-05-05'
+  ]);
   const {
     //...
     onSuccess

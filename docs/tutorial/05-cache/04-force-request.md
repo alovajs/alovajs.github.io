@@ -1,6 +1,5 @@
 ---
 title: Forced Request
-sidebar_position: 40
 ---
 
 Forced request is a mechanism that bypasses cache checks to trigger request sending. It is useful when you need to get the latest data under certain conditions.
@@ -15,4 +14,4 @@ const response = await alovaInstance.Get('/api/user').send(true);
 
 ## Forced request in useHook
 
-Please go to [Automatically manage request status-Forced request](/tutorial/client/use-request) for details.
+Please go to [Automatically manage request status-Forced request](/next/tutorial/client/strategy/use-request) for details.

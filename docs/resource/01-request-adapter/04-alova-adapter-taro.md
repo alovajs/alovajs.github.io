@@ -1,6 +1,5 @@
 ---
 title: Taro Adapter
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';
@@ -327,7 +326,7 @@ const App = () => {
 
 ## Mock request adapter compatible
 
-When using Taro to develop applications, we may still need to use mock requests, but by default, the response data of [Mock Request Adapter (@alova/mock)](/tutorial/request-adapter/alova-mock) is a `Response` instance, That is, it is compatible with the `GlobalFetch` request adapter by default. When used in the Taro environment, we need to make the response data of the simulated request adapter compatible with the Taro adapter, so you need to use the **@alova/adapter-taro** package exported `taroMockResponse` as response adapter.
+When using Taro to develop applications, we may still need to use mock requests, but by default, the response data of [Mock Request Adapter (@alova/mock)](/next/resource/request-adapter/alova-mock) is a `Response` instance, That is, it is compatible with the `alova/fetch` request adapter by default. When used in the Taro environment, we need to make the response data of the simulated request adapter compatible with the Taro adapter, so you need to use the **@alova/adapter-taro** package exported `taroMockResponse` as response adapter.
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';
@@ -379,7 +378,15 @@ export type TaroRequestConfig = Omit<
  */
 export type TaroUploadConfig = Omit<
   Taro.uploadFile.Option,
-  'url' | 'filePath' | 'name' | 'header' | 'formData' | 'timeout' | 'success' | 'fail' | 'complete'
+  | 'url'
+  | 'filePath'
+  | 'name'
+  | 'header'
+  | 'formData'
+  | 'timeout'
+  | 'success'
+  | 'fail'
+  | 'complete'
 >;
 
 /**

@@ -1,6 +1,5 @@
 ---
 title: 处理响应
-sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';

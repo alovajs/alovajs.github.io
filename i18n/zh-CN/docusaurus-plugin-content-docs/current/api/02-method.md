@@ -1,6 +1,5 @@
 ---
 title: method实例
-sidebar_position: 20
 ---
 
 一个 method 实例对应一个请求信息描述，它拥有一次请求的 url、请求头、请求参数，以及响应数据处理、缓存数据处理等请求行为参数。通过 method 实例，你可以在任意的 js 环境下感受到统一的使用体验，只需要非常少的改动就可以正常运行起来，此外，method 实例将请求参数和请求行为参数放在了一起，更便于 api 的管理，而不是分散在多个代码文件中。
@@ -52,7 +51,7 @@ interface MethodConstructor {
 1. `type`：请求类型
 2. `context`：alova 实例
 3. `url`：请求 url
-4. `config`：配置参数, 类型与[alova.Get](/api/alova#alovaget)的 config 参数类型一致
+4. `config`：配置参数, 类型与[alova.Get](/next/api/alova#alovaget)的 config 参数类型一致
 5. `data`：请求体数据
 
 - **示例**
@@ -97,7 +96,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-以[method 匹配器](/tutorial/advanced/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
+以[method 匹配器](/next/tutorial/client/in-depth/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
 
 - **类型**
 
@@ -110,7 +109,10 @@ type MethodFilter =
       filter?: MethodFilterHandler;
       alova?: Alova;
     };
-function matchSnapshotMethod(matcher: MethodFilter, matchAll?: boolean): Method[] | Method | undefined;
+function matchSnapshotMethod(
+  matcher: MethodFilter,
+  matchAll?: boolean
+): Method[] | Method | undefined;
 ```
 
 - **参数**
@@ -151,7 +153,7 @@ interface Method {
 
 ## method.baseURL
 
-请求的基础路径，继承于[alova 实例](/api/alova)。
+请求的基础路径，继承于[alova 实例](/next/api/alova)。
 
 - **类型**
 
@@ -223,7 +225,7 @@ interface Method {
 
 ## method.meta
 
-method 的 元数据，用于记录请求特性信息，[详情查看](/tutorial/getting-started/method-metadata)。
+method 的 元数据，用于记录请求特性信息，[详情查看](/next/tutorial/getting-started/basic/method-metadata)。
 
 - **类型**
 
@@ -235,7 +237,7 @@ interface Method {
 
 ## method.config
 
-通过`alova.Get/alova.Post`等方法创建 method 时的配置信息，[详情查看](/api/alova#alovaget)。
+通过`alova.Get/alova.Post`等方法创建 method 时的配置信息，[详情查看](/next/api/alova#alovaget)。
 
 - **类型**
 
@@ -311,7 +313,10 @@ method.abort();
 
 ```ts
 interface Method {
-  then(onFulfilled?: (value: Response) => any, onRejected?: (reason: any) => any): Promise<Response>;
+  then(
+    onFulfilled?: (value: Response) => any,
+    onRejected?: (reason: any) => any
+  ): Promise<Response>;
 }
 ```
 

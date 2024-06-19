@@ -19,6 +19,26 @@
     "message": "关于",
     "description": "Navbar item with label About"
   },
+  "item.label.Getting Started": {
+    "message": "开始",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Request Adapter": {
+    "message": "请求适配器",
+    "description": "Navbar item with label Request Adapter"
+  },
+  "item.label.Storage Adapter": {
+    "message": "存储适配器",
+    "description": "Navbar item with label Storage Adapter"
+  },
+  "item.label.UI Frameworks": {
+    "message": "框架支持",
+    "description": "Navbar item with label UI Frameworks"
+  },
+  "item.label.Error Reference": {
+    "message": "错误码对照",
+    "description": "Navbar item with label Error Reference"
+  },
   "item.label.Contributing Guidelines": {
     "message": "贡献指南",
     "description": "Navbar item with label Contributing Guidelines"

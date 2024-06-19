@@ -1,6 +1,5 @@
 ---
 title: Alova Instance
-sidebar_position: 40
 ---
 
 Alova instances can not only create method instances of different types, but also set global parameters. The created method instances will inherit the parameters of this alova instance. When the parameters of the alova instance are set to the same parameters as the method instance, such as `timeout`, `shareRequest`, etc., the parameters of the method instance will be used first.

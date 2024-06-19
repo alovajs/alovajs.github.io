@@ -1,6 +1,5 @@
 ---
-title: (vue)page initialization request
-sidebar_position: 10
+title: page initialization request
 ---
 
 import InitPage from '@site/example-links/InitPage';

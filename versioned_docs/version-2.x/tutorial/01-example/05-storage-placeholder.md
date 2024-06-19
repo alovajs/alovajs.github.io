@@ -1,6 +1,5 @@
 ---
-title: (vue)Response Cache - Cache Placeholder Mode
-sidebar_position: 50
+title: Response Cache - Cache Placeholder Mode
 ---
 
 import StoragePlaceholder from '@site/example-links/StoragePlaceholder';

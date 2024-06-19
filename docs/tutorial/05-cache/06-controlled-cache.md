@@ -1,6 +1,5 @@
 ---
 title: Controlled Cache
-sidebar_position: 60
 ---
 
 When sending a request, the default response cache will be matched first. In some cases, you may need to use `IndexedDB` as a cache management solution and use a custom `IndexedDB` adapter, but this will make all requests use it as a storage solution, while controlled cache allows you to control the custom cache from a single request.

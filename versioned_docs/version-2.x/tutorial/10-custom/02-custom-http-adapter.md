@@ -1,6 +1,5 @@
 ---
 title: Custom Request Adapter
-sidebar_position: 20
 ---
 
 Remember how to create an Alova instance?

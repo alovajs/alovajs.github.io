@@ -1,6 +1,5 @@
 ---
 title: 管理APIs
-sidebar_position: 10
 ---
 
 在一个项目中，我们可能需要使用到成百上千个请求 api，因此管理这些请求 api 变得尤为重要。

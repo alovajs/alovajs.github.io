@@ -1,6 +1,5 @@
 ---
 title: Use in static html
-sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';
@@ -36,7 +35,9 @@ You can also use alova via importing from CDN.
 
     Vue.createApp({
       setup() {
-        return alova.useRequest(alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1'));
+        return alova.useRequest(
+          alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+        );
       }
     }).mount('#app');
   </script>
@@ -124,7 +125,9 @@ svelte 依赖于编译工具，不能通过 CDN 直接使用，详情见 [svelte
       el: '#app',
       mixins: AlovaVueOptions.mapAlovaHook(function () {
         return {
-          todo: alova.useRequest(alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1'))
+          todo: alova.useRequest(
+            alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+          )
         };
       }),
       data() {

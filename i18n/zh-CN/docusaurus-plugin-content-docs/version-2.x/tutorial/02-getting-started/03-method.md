@@ -1,6 +1,5 @@
 ---
 title: method详解
-sidebar_position: 30
 ---
 
 在上一个章节中我们尝试发送了请求，获取响应数据。实际上，`alovaInstance.Get(...)`并不是一个发起请求的函数，而是创建了一个 method 实例，它是一个 PromiseLike 实例，你可以通过`then、catch、finally`方法或`await`发送请求，就像 Promise 对象一样。

@@ -1,6 +1,5 @@
 ---
 title: Custom States Hook
-sidebar_position: 50
 ---
 
 Remember how to create an Alova instance?

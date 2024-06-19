@@ -1,6 +1,5 @@
 ---
 title: 监听请求
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
@@ -237,13 +236,17 @@ send();
 ### 设置所有监听状态的防抖时间
 
 ```javascript
-const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
-  // highlight-start
-  // 设置debounce为数字时表示为所有监听状态的防抖时间，单位为毫秒
-  // 如这边表示当状态keyword、date的一个或多个变化时，将在500ms后才发送请求
-  debounce: 500
-  // highlight-end
-});
+const { loading, data, error } = useWatcher(
+  () => filterTodoList(keyword, date),
+  [keyword, date],
+  {
+    // highlight-start
+    // 设置debounce为数字时表示为所有监听状态的防抖时间，单位为毫秒
+    // 如这边表示当状态keyword、date的一个或多个变化时，将在500ms后才发送请求
+    debounce: 500
+    // highlight-end
+  }
+);
 ```
 
 ### 为单个监听状态设置防抖时间
@@ -251,15 +254,19 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 很多场景下，我们只需要对某几个频繁变化的监听状态进行防抖，如文本框的`onInput`触发的状态变化，可以这样做：
 
 ```javascript
-const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
-  // highlight-start
-  // 以监听状态的数组顺序分别设置防抖时间，0或不传表示不防抖
-  // 这边监听状态的顺序是[keyword, date]，防抖数组设置的是[500, 0]，表示只对keyword单独设置防抖
-  debounce: [500, 0]
-  // 也可以这么按如下设置:
-  // debounce: [500],
-  // highlight-end
-});
+const { loading, data, error } = useWatcher(
+  () => filterTodoList(keyword, date),
+  [keyword, date],
+  {
+    // highlight-start
+    // 以监听状态的数组顺序分别设置防抖时间，0或不传表示不防抖
+    // 这边监听状态的顺序是[keyword, date]，防抖数组设置的是[500, 0]，表示只对keyword单独设置防抖
+    debounce: [500, 0]
+    // 也可以这么按如下设置:
+    // debounce: [500],
+    // highlight-end
+  }
+);
 ```
 
 ## 状态改变时阻止请求

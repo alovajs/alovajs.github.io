@@ -1,6 +1,5 @@
 ---
 title: Form submit strategy
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';

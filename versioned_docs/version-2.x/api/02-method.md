@@ -1,6 +1,5 @@
 ---
 title: method instance
-sidebar_position: 20
 ---
 
 A method instance corresponds to a request information description, which has the URL, request headers, request parameters of a request, as well as request behavior parameters such as response data processing and cache data processing. Through method instances, you can feel a unified usage experience in any js environment, and it can run normally with very few changes. In addition, method instances put request parameters and request behavior parameters together, making it easier for APIs management instead of spreading it across multiple code files.
@@ -110,7 +109,10 @@ type MethodFilter =
       filter?: MethodFilterHandler;
       alova?: Alova;
     };
-function matchSnapshotMethod(matcher: MethodFilter, matchAll?: boolean): Method[] | Method | undefined;
+function matchSnapshotMethod(
+  matcher: MethodFilter,
+  matchAll?: boolean
+): Method[] | Method | undefined;
 ```
 
 - **Parameters**
@@ -311,7 +313,10 @@ After `[v2.16.0]`, the method instance is a PromiseLike instance. You can direct
 
 ```ts
 interface Method {
-  then(onFulfilled?: (value: Response) => any, onRejected?: (reason: any) => any): Promise<Response>;
+  then(
+    onFulfilled?: (value: Response) => any,
+    onRejected?: (reason: any) => any
+  ): Promise<Response>;
 }
 ```
 

@@ -1,6 +1,5 @@
 ---
 title: Extension integration
-sidebar_position: 90
 ---
 
 Integrating Alova's editor extension can make it more powerful.

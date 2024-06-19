@@ -1,6 +1,5 @@
 ---
 title: 自动拉取数据
-sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';

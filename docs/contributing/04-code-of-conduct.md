@@ -1,6 +1,5 @@
 ---
 title: Code of Conduct
-sidebar_position: 40
 ---
 
 # Contributor Covenant Code of Conduct

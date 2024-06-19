@@ -1,6 +1,5 @@
 ---
 title: vue2/3 options
-sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
@@ -49,14 +48,14 @@ alova 版本 >= 2.13.2
 
 ```javascript
 import { createAlova, Method } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import { VueOptionsHook } from '@alova/vue-options';
 
 // api.js
 const alovaInst = createAlova({
   baseURL: 'http://example.com',
   statesHook: VueOptionsHook,
-  requestAdapter: GlobalFetch(),
+  requestAdapter: adapterFetch(),
   responded: response => response.json()
 });
 
@@ -326,9 +325,9 @@ export const getData = () => alovaInst.Get('/todolist');
 
 **typescript**
 
-在 typescript 中添加响应数据类型，请阅读 [alova 文档 typescript 章节](/tutorial/combine-framework/typescript)
+在 typescript 中添加响应数据类型，请阅读 [alova 文档 typescript 章节](/next/tutorial/advanced/in-depth/typescript)
 
 ## 限制
 
-1. 暂不支持[管理额外的状态](/tutorial/advanced/manage-extra-states)。
+1. 暂不支持[管理额外的状态](/next/tutorial/client/in-depth/manage-extra-states)。
 2. 目前只支持 alova 的`useRequest/useWatcher/useFetcher`三个核心 useHook，以及你在自己项目中基于核心 useHook 的封装，暂不支持[@alova/scene](https://github.com/alovajs/scene)内的扩展 useHook。

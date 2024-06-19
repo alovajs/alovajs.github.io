@@ -1,6 +1,5 @@
 ---
-title: (vue)form submission
-sidebar_position: 20
+title: form submission
 ---
 
 import SubmitForm from '@site/example-links/SubmitForm';

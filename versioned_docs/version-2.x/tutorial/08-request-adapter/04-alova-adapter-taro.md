@@ -1,6 +1,5 @@
 ---
 title: Taro Adapter
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';
@@ -379,7 +378,15 @@ export type TaroRequestConfig = Omit<
  */
 export type TaroUploadConfig = Omit<
   Taro.uploadFile.Option,
-  'url' | 'filePath' | 'name' | 'header' | 'formData' | 'timeout' | 'success' | 'fail' | 'complete'
+  | 'url'
+  | 'filePath'
+  | 'name'
+  | 'header'
+  | 'formData'
+  | 'timeout'
+  | 'success'
+  | 'fail'
+  | 'complete'
 >;
 
 /**

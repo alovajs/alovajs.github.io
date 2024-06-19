@@ -1,6 +1,5 @@
 ---
 title: XMLHttpRequest适配器
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
@@ -244,7 +243,7 @@ const handleImageDownload = () => {
 
 ## 模拟请求适配器兼容
 
-在开发应用时，我们仍然可能需要用到模拟请求。只是默认情况下，[模拟请求适配器(@alova/mock)](/tutorial/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`GlobalFetch`请求适配器，当使用 XMLHttpRequest 适配器时，我们需要让模拟请求适配器的响应数据适配 XMLHttpRequest 适配器，此时你需要使用**@alova/adapter-xhr**包中导出的`xhrMockResponse`作为响应适配器。
+在开发应用时，我们仍然可能需要用到模拟请求。只是默认情况下，[模拟请求适配器(@alova/mock)](/next/resource/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`alova/fetch`请求适配器，当使用 XMLHttpRequest 适配器时，我们需要让模拟请求适配器的响应数据适配 XMLHttpRequest 适配器，此时你需要使用**@alova/adapter-xhr**包中导出的`xhrMockResponse`作为响应适配器。
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

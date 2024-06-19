@@ -1,6 +1,5 @@
 ---
 title: XMLHttpRequest适配器
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';

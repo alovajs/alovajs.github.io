@@ -1,6 +1,5 @@
 ---
 title: 贡献指南
-sidebar_position: 10
 ---
 
 # alova 贡献指南
@@ -118,14 +117,14 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 
 自定义各类适配器以满足不同环境下的运行要求，以下几个方向可供参考：
 
-1. 自定义 statesHook，满足在不同 UI 框架下执行，例如`solid/qwik`，目前内置支持`react/vue/svelte`，请阅读[自定义 statesHook](/tutorial/custom/custom-stateshook)；
+1. 自定义 statesHook，满足在不同 UI 框架下执行，例如`solid/qwik`，目前内置支持`react/vue/svelte`，请阅读[自定义 statesHook](/next/tutorial/advanced/custom/stateshook)；
 2. 自定义请求适配器，让 alova 可以与更多请求方案协作，例如`GraphQL/SSE`等；
 3. 自定义存储适配器，满足不同环境的存储，例如`react-native`；
 4. 以上任意的组合，例如官方的[uniapp 适配器](https://github.com/alovajs/adapter-uniapp)，其中包含了请求适配器、存储适配器。
 
 #### 自定义请求策略
 
-请求策略可以帮助开发者更高效地编写出高性能功能，虽然官方的 [alova/scene](/tutorial/strategy) 提供了一些常用的请求策略，但还不足以满足广大开发者各种请求相关的业务场景，基于 alova 自定义你自己的可复用请求策略是一个不错的选择，也可以将它们发布到 npm 上给大家使用。
+请求策略可以帮助开发者更高效地编写出高性能功能，虽然官方的 [alova/scene](/next/tutorial/client/strategy) 提供了一些常用的请求策略，但还不足以满足广大开发者各种请求相关的业务场景，基于 alova 自定义你自己的可复用请求策略是一个不错的选择，也可以将它们发布到 npm 上给大家使用。
 
 :::tip 提交你的项目
 

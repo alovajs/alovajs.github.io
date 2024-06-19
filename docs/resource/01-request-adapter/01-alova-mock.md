@@ -1,12 +1,11 @@
 ---
 title: Mock data
-sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This mock plug-in is an alova request adapter. Different from the traditional Proxy form, you can control the scope of use of mock data. You can control the global scope, a group of interface scopes, and even the enabling and use of a certain interface. Disabled, which is very useful in our actual business scenarios. Each iteration will add or modify a set of interfaces. We hope that the previous functions will still follow the developed interfaces, and let the new or modified interfaces Taking the simulation data, at this time, each developer can group the interfaces involved in this iteration into a group, and turn them on or off.
+This mock plug-in is an alova request adapter. Different from the traditional Proxy form, you can control the Scope of usage of mock data. You can control the global scope, a group of interface scopes, and even the enabling and use of a certain interface. Disabled, which is very useful in our actual business scenarios. Each iteration will add or modify a set of interfaces. We hope that the previous functions will still follow the developed interfaces, and let the new or modified interfaces Taking the simulation data, at this time, each developer can group the interfaces involved in this iteration into a group, and turn them on or off.
 
 ## Features
 
@@ -101,7 +100,7 @@ export default defineMock(
 Create a mock request adapter when calling `createAlova`, and pass in the mock interface to complete.
 
 ```javascript
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import { createAlovaMockAdapter } from '@alova/mock';
 import mockGroup1 from './mockGroup1';
 
@@ -111,7 +110,7 @@ const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
   enable: true,
 
   // Non-mock request adapter, used to send requests when the mock interface is not matched
-  httpAdapter: GlobalFetch(),
+  httpAdapter: adapterFetch(),
 
   // mock interface response delay, in milliseconds
   delay: 1000,
@@ -120,7 +119,7 @@ const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
   mockRequestLogger: true,
 
   // Simulation interface callback, data is the returned simulation data, you can use it to construct any object you want and return it to alova
-  // The following is the default callback function, which is suitable for requesting the adapter using GlobalFetch
+  // The following is the default callback function, which is suitable for requesting the adapter using adapterFetch
   // If you are using other request adapters, please customize the return data structure suitable for the adapter in the mock interface callback
   onMockResponse: data => new Response(JSON.stringify(data))
 });
@@ -223,7 +222,7 @@ import Augustv1_1 from './August-v1.1';
 import Keevenv1_1 from './kevin-v1.1';
 
 const mockAdapter = createAlovaMockAdapter([Augustv1_1, kevinv1_1], {
-  httpAdapter: GlobalFetch(),
+  httpAdapter: adapterFetch(),
   delay: 1000
 });
 export const alovaInst = createAlova({
@@ -238,9 +237,9 @@ export const alovaInst = createAlova({
 The mock data is generally only used in the development environment, and will be switched to the actual interface in the production environment, so this mock code becomes useless in the production environment. At this time, we can exclude this code by judging the environment variables. , you just need to do:
 
 ```javascript
-const globalFetch = GlobalFetch();
+const alovaFetch = adapterFetch();
 const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
-  httpAdapter: globalFetch,
+  httpAdapter: alovaFetch,
   delay: 1000,
 });
 
@@ -249,7 +248,7 @@ export const alovaInst = createAlova({
 
   // highlight-start
   // In the production environment controlled by environment variables, the mock-related code will not be packaged in
-  requestAdapter: process.env.NODE_ENV === 'development' ? mockAdapter : globalFetch,
+  requestAdapter: process.env.NODE_ENV === 'development' ? mockAdapter : adapterFetch,
   // highlight-end
 
   statesHook: /** ... */
@@ -273,7 +272,7 @@ export default defineMock({
 
 ## Convert mock data
 
-**@alova/mock** By default, the response data is packaged as a Response instance, and the response header is packaged as a Headers instance by default, which is adapted for `GlobalFetch`, but if you use other request adapters, you need to mock the data Convert to the corresponding format.
+**@alova/mock** By default, the response data is packaged as a Response instance, and the response header is packaged as a Headers instance by default, which is adapted for `adapterFetch`, but if you use other request adapters, you need to mock the data Convert to the corresponding format.
 
 ### Convert response data
 

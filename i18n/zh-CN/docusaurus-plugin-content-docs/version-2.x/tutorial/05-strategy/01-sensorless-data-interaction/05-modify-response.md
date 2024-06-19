@@ -1,6 +1,5 @@
 ---
 title: 步骤2-调整响应处理
-sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
@@ -184,7 +183,9 @@ const { loading, data, send, onSuccess } = useSQRequest(deleteTodo, {
 });
 
 onSuccess(({ sendArgs: [deletingId] }) => {
-  updateStateEffect(todoList(), todoListRaw => todoListRaw.filter(item => item.id !== deletingId));
+  updateStateEffect(todoList(), todoListRaw =>
+    todoListRaw.filter(item => item.id !== deletingId)
+  );
 });
 
 // 事件回调触发删除请求

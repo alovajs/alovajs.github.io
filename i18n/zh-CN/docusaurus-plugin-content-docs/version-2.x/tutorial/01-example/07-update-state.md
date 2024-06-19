@@ -1,6 +1,5 @@
 ---
-title: (vue)跨组件/页面更新状态
-sidebar_position: 70
+title: 跨组件/页面更新状态
 ---
 
 import UpdateState from '@site/example-links/UpdateState';

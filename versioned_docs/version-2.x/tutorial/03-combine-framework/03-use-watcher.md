@@ -1,6 +1,5 @@
 ---
 title: Watching Request
-sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
@@ -232,13 +231,17 @@ Debounce means that after an event is triggered, the function can only be execut
 ### Set debounce time of all watching states
 
 ```javascript
-const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
-  // highlight-start
-  // When debounce is set to a number, it represents the anti-bounce time of all watching states, in milliseconds.
-  // This means that when one or more of the states keyword and date change, the request will be sent after 500ms.beg
-  debounce: 500
-  // highlight-end
-});
+const { loading, data, error } = useWatcher(
+  () => filterTodoList(keyword, date),
+  [keyword, date],
+  {
+    // highlight-start
+    // When debounce is set to a number, it represents the anti-bounce time of all watching states, in milliseconds.
+    // This means that when one or more of the states keyword and date change, the request will be sent after 500ms.beg
+    debounce: 500
+    // highlight-end
+  }
+);
 ```
 
 ### Set debounce time for a single watching state
@@ -246,15 +249,19 @@ const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date),
 In many scenarios, we only need to debounce certain frequently changing watching states, such as state changes triggered by `onInput` of a text box. You can do this:
 
 ```javascript
-const { loading, data, error } = useWatcher(() => filterTodoList(keyword, date), [keyword, date], {
-  // highlight-start
-  // Set debounce time in the order of the array of watching states. 0 or not passed means no debounce.
-  // The order of the watching states here is [keyword, date], and the debounce array setting is [500, 0], which means that only the debounce is set separately for the keyword.
-  Debounce: [500, 0]
-  // You can also set it as follows:
-  // debounce: [500],
-  // highlight-end
-});
+const { loading, data, error } = useWatcher(
+  () => filterTodoList(keyword, date),
+  [keyword, date],
+  {
+    // highlight-start
+    // Set debounce time in the order of the array of watching states. 0 or not passed means no debounce.
+    // The order of the watching states here is [keyword, date], and the debounce array setting is [500, 0], which means that only the debounce is set separately for the keyword.
+    Debounce: [500, 0]
+    // You can also set it as follows:
+    // debounce: [500],
+    // highlight-end
+  }
+);
 ```
 
 ## Block request when the states changes

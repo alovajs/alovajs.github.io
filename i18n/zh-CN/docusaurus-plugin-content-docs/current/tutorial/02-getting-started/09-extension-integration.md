@@ -1,6 +1,5 @@
 ---
 title: 编辑器扩展集成
-sidebar_position: 90
 ---
 
 集成 alova 的编辑器扩展可以让它展现出它更强大的力量。

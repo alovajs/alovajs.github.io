@@ -1,6 +1,5 @@
 ---
 title: Method Metadata
-sidebar_position: 60
 ---
 
 :::info version requirements

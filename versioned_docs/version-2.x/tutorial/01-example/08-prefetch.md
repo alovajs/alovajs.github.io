@@ -1,6 +1,5 @@
 ---
-title: (vue)Data Prefetch
-sidebar_position: 80
+title: Data Prefetch
 ---
 
 import Prefetch from '@site/example-links/Prefetch';

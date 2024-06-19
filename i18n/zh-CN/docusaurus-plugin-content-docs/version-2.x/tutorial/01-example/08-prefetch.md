@@ -1,6 +1,5 @@
 ---
-title: (vue)数据预拉取
-sidebar_position: 90
+title: 数据预拉取
 ---
 
 import Prefetch from '@site/example-links/Prefetch';

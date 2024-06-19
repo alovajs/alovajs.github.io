@@ -1,6 +1,5 @@
 ---
 title: Auto Invalidate
-sidebar_position: 20
 ---
 
 Automatic invalidation cache is to set the matching rules of the invalidation source method in the target cache. When the source method is successfully requested, the target cache will be automatically matched and invalidated, and there is no need to manually clear the cache. When the target cache and the invalidation source are one-to-one or one-to-many, it is very convenient to set the automatic invalidation rule.

@@ -1,6 +1,5 @@
 ---
 title: Abort Request
-sidebar_position: 60
 ---
 
 Receive `abort` for manual abort request via useHook.

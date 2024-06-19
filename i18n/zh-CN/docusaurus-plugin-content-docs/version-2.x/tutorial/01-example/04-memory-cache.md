@@ -1,6 +1,5 @@
 ---
-title: (vue)响应缓存-内存模式
-sidebar_position: 40
+title: 响应缓存-内存模式
 ---
 
 import MemoryCache from '@site/example-links/MemoryCache';

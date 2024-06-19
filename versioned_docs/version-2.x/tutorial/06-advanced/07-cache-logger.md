@@ -1,6 +1,5 @@
 ---
 title: cache logger
-sidebar_position: 70
 ---
 
 :::info version required

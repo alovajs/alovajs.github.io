@@ -1,6 +1,5 @@
 ---
 title: 缓存操作
-sidebar_position: 40
 ---
 
 ## invalidateCache()

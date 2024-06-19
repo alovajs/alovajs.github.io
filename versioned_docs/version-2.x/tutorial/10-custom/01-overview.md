@@ -1,6 +1,5 @@
 ---
 title: Overview
-sidebar_position: 10
 ---
 
 Alova has high scalability. In addition to providing common features such as core caching mechanism, request sharing mechanism, and state management, it also provides various customization functions and middleware mechanisms, which can adapt to different js environments and customize requests. Strategy.

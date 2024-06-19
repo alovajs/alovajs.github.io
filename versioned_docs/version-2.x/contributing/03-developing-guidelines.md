@@ -1,6 +1,5 @@
 ---
 title: Developing Guidelines
-sidebar_position: 30
 ---
 
 :::info version required

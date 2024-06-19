@@ -1,6 +1,5 @@
 ---
-title: (react)表单提交策略
-sidebar_position: 150
+title: 表单提交策略
 ---
 
 import FormHook from '@site/example-links/FormHook';

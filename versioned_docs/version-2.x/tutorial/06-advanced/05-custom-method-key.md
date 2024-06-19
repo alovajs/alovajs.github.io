@@ -1,6 +1,5 @@
 ---
 title: custom method key
-sidebar_position: 50
 ---
 
 :::info version required

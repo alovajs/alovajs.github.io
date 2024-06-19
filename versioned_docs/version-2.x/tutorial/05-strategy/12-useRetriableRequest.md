@@ -1,6 +1,5 @@
 ---
 title: retriable request
-sidebar_position: 80
 ---
 
 import Tabs from '@theme/Tabs';

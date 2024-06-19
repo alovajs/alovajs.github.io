@@ -1,6 +1,5 @@
 ---
-title: (vue)serial request hook
-sidebar_position: 190
+title: serial request hook
 ---
 
 import SerialRequest from '@site/example-links/SerialRequest';

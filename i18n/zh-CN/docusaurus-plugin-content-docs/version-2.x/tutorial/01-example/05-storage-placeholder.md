@@ -1,6 +1,5 @@
 ---
-title: (vue)响应缓存-缓存占位模式
-sidebar_position: 50
+title: 响应缓存-缓存占位模式
 ---
 
 import StoragePlaceholder from '@site/example-links/StoragePlaceholder';

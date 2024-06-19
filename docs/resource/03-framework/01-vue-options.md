@@ -1,6 +1,5 @@
 ---
 title: vue2/3 options
-sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
@@ -49,14 +48,14 @@ First use `vueOptionHook` to create an alova instance.
 
 ```javascript
 import { createAlova, Method } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import { VueOptionsHook } from '@alova/vue-options';
 
 // api.js
 const alovaInst = createAlova({
   baseURL: 'http://example.com',
   statesHook: VueOptionsHook,
-  requestAdapter: GlobalFetch(),
+  requestAdapter: adapterFetch(),
   responded: response => response.json()
 });
 
@@ -325,9 +324,9 @@ export const getData = () => alovaInst.Get('/todolist');
 
 **typescript**
 
-To add response data type in typescript, please read [alova documentation typescript chapter](/tutorial/combine-framework/typescript)
+To add response data type in typescript, please read [alova documentation typescript chapter](/next/tutorial/advanced/in-depth/typescript)
 
 ## limit
 
-1. [Manage extra states](/tutorial/advanced/manage-extra-states) is not supported yet.
+1. [Manage extra states](/next/tutorial/client/in-depth/manage-extra-states) is not supported yet.
 2. Currently, only alova’s three core useHooks of `useRequest/useWatcher/useFetcher` are supported, as well as the encapsulation based on the core useHook in your own project. [@alova/scene](https://github.com/alovajs/scene) is not supported yet. extension useHook.

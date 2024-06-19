@@ -1,6 +1,5 @@
 ---
-title: (vue)页面初始化请求
-sidebar_position: 10
+title: 页面初始化请求
 ---
 
 import InitPage from '@site/example-links/InitPage';

@@ -1,6 +1,5 @@
 ---
 title: Quick Start
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,7 +11,7 @@ import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02
 
 :::tip Example Tips
 
-If you haven't learned about alova yet, it is recommended that you read [alova overview](/tutorial/getting-started) first.
+If you haven't learned about alova yet, it is recommended that you read [introduce alova](/next/tutorial/getting-started/introduce) first.
 
 :::
 
@@ -49,8 +48,6 @@ bun add alova
 </TabItem>
 </Tabs>
 
-> You can also [use alova through CDN](/tutorial/others/use-in-static)
-
 ## Create an alova instance
 
 In alova, you need to initiate a request through an alova instance. Let's create one first. When creating an alova instance, you need to specify a request adapter. Here we recommend using the `alova/fetch` request adapter, which is a wrapper based on the `fetch API` and is very concise.
@@ -79,7 +76,7 @@ requestAdapter: fetchAdapter();
 });
 ```
 
-> When using fetchAdapter in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/alova-adapter-axios/).
+> When using fetchAdapter in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/next/resource/request-adapter/alova-adapter-axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">

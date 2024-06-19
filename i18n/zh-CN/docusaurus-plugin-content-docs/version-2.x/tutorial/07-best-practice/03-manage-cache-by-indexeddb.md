@@ -1,6 +1,5 @@
 ---
 title: 使用IndexedDB管理缓存
-sidebar_position: 30
 ---
 
 如果你正在开发需要大量使用本地缓存的应用，如图形编辑类应用、文件管理类应用等，低容量的 localStorage 已经无法满足开发需求，此时你可以使用 IndexedDB 配合 alova 进行大容量的本地缓存管理。

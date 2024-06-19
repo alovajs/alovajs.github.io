@@ -1,6 +1,5 @@
 ---
 title: 分页请求策略
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';

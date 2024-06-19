@@ -1,6 +1,5 @@
 ---
 title: Conclusion
-sidebar_position: 100
 ---
 
 import NavCard from '@site/src/components/NavCard';
@@ -11,16 +10,16 @@ import NavCard from '@site/src/components/NavCard';
 {
 title: 'Client Strategy',
 desc: 'Select the strategy module you need to quickly implement complex requests',
-link: '/category/request-adapter'
+link: '/next/tutorial/client/strategy'
 },
 {
 title: 'Server Strategy',
 desc: 'Select the strategy module you need to quickly implement complex requests',
-link: '/category/request-adapter'
+link: '/next/tutorial/server/strategy'
 },
 {
 title: 'Best Practices',
 desc: 'Use Alova skills summarized in practice in projects',
-link: '/category/best-practice'
+link: '/next/tutorial/project/best-practice'
 }
 ]}></NavCard>

@@ -1,6 +1,5 @@
 ---
 title: 发送验证码
-sidebar_position: 80
 ---
 
 import Tabs from '@theme/Tabs';

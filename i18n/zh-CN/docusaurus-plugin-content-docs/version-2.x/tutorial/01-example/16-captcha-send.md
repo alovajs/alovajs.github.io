@@ -1,6 +1,5 @@
 ---
-title: (react)发送验证码
-sidebar_position: 160
+title: 发送验证码
 ---
 
 import CaptchaSend from '@site/example-links/CaptchaSend';

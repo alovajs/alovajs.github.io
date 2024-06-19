@@ -1,6 +1,5 @@
 ---
 title: Method Instance
-sidebar_position: 30
 ---
 
 In the previous chapter we tried to send a request and obtain the response data. In fact, `alovaInstance.Get(...)` is not a function that initiates a request, but creates a method instance, which is a PromiseLike instance. You can use `then, catch, finally` methods or `await` Send the request just like a Promise object.

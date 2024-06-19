@@ -1,6 +1,5 @@
 ---
 title: Token认证拦截器
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';

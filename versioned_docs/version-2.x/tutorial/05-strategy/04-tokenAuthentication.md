@@ -1,6 +1,5 @@
 ---
 title: Token authentication interceptor
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';

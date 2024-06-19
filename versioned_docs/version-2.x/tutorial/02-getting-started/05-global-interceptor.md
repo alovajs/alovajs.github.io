@@ -1,6 +1,5 @@
 ---
 title: Global Interceptor
-sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';

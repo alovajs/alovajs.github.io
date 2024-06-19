@@ -1,6 +1,5 @@
 ---
 title: Cache operation
-sidebar_position: 40
 ---
 
 ## invalidateCache()

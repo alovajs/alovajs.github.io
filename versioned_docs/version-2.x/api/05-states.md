@@ -1,6 +1,5 @@
 ---
 title: Response states operation
-sidebar_position: 50
 ---
 
 ## updateState

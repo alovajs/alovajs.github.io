@@ -1,6 +1,5 @@
 ---
 title: 全局配置
-sidebar_position: 60
 ---
 
 ## globalConfig()

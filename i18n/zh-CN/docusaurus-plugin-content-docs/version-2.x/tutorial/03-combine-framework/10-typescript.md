@@ -1,6 +1,5 @@
 ---
 title: Typescript
-sidebar_position: 100
 ---
 
 import Tabs from '@theme/Tabs';

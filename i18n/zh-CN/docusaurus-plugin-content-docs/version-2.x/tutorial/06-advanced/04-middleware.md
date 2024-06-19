@@ -1,6 +1,5 @@
 ---
 title: 请求中间件
-sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';

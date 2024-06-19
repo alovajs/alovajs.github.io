@@ -1,6 +1,5 @@
 ---
 title: 中断请求
-sidebar_position: 60
 ---
 
 通过 useHook 接收`abort`用于手动中断请求。

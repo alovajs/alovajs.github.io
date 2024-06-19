@@ -1,6 +1,5 @@
 ---
 title: Core useHooks
-sidebar_position: 30
 ---
 
 ## useRequest

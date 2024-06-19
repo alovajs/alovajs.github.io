@@ -1,6 +1,5 @@
 ---
-title: (svelte)静默提交-设置页
-sidebar_position: 120
+title: 静默提交-设置页
 ---
 
 import SettingSilentSvelte from '@site/example-links/SettingSilentSvelte';

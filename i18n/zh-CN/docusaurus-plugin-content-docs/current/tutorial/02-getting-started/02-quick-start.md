@@ -1,6 +1,5 @@
 ---
 title: 快速开始
-sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,7 +11,7 @@ import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02
 
 :::tip 示例提示
 
-如果你还未了解 alova，推荐你先阅读 [alova 概述](/tutorial/getting-started)。
+如果你还未了解 alova，推荐你先阅读 [alova 介绍](/next/tutorial/getting-started/introduce)。
 
 :::
 
@@ -49,8 +48,6 @@ bun add alova
 </TabItem>
 </Tabs>
 
-> 你也可以[通过 CDN 使用 alova](/tutorial/others/use-in-static)
-
 ## 创建 alova 实例
 
 在 alova 中需要通过 alova 实例发起请求，我们先创建一个。在创建 alova 实例时需要指定请求适配器，在这里推荐使用`alova/fetch`请求适配器，它是基于`fetch API`的封装，非常简洁。
@@ -79,7 +76,7 @@ const alova = createAlova({
 });
 ```
 
-> 在 nodejs 中使用 fetchAdapter 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/tutorial/request-adapter/alova-adapter-axios/)。
+> 在 nodejs 中使用 fetchAdapter 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/next/resource/request-adapter/alova-adapter-axios/)。
 
 </TabItem>
 <TabItem value="3" label="deno">

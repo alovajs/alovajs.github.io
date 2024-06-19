@@ -1,6 +1,5 @@
 ---
 title: 结语
-sidebar_position: 100
 ---
 
 import NavCard from '@site/src/components/NavCard';
@@ -11,16 +10,16 @@ import NavCard from '@site/src/components/NavCard';
 {
 title: '客户端策略',
 desc: '选择你需要的策略模块，快速实现复杂请求',
-link: '/category/request-adapter'
+link: '/next/tutorial/client/strategy'
 },
 {
 title: '服务端策略',
 desc: '选择你需要的策略模块，快速实现复杂请求',
-link: '/category/request-adapter'
+link: '/next/tutorial/server/strategy'
 },
 {
 title: '最佳实践',
 desc: '在项目中使用实践总结的 alova 技巧',
-link: '/category/best-practice'
+link: '/next/tutorial/project/best-practice'
 }
 ]}></NavCard>

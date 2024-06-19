@@ -1,6 +1,5 @@
 ---
 title: Step 5 - Edit Data
-sidebar_position: 80
 ---
 
 > What should I do when the user needs to edit data when the network is disconnected?

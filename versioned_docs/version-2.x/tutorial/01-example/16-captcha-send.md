@@ -1,6 +1,5 @@
 ---
-title: (react)Send captcha
-sidebar_position: 160
+title: Send captcha
 ---
 
 import CaptchaSend from '@site/example-links/CaptchaSend';
