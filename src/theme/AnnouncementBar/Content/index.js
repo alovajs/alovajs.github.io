@@ -24,7 +24,7 @@ export default function AnnouncementBarContent(props) {
       <div className="flex-row">
         <Link
           className={styles.announceButton}
-          to="">
+          to="/next/release-notes-v3">
           <Translate id="announcement.btn1">What's New</Translate>
         </Link>
         <Link

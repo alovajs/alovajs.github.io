@@ -8,7 +8,13 @@ Integrating Alova's editor extension can make it more powerful.
 2. Embed api documents in the code to experience the effect of checking and using APIs.
 3. Update api regularly and actively notify front-end development, no longer relying on server-side developers to notify.
 
-<a className="button button--primary">Install VS Code extension</a>
+<!-- <a className="button button--primary">Install VS Code extension</a> -->
+
+:::info
+
+The extension will be released soon...
+
+:::
 
 > Automatically generate support for swagger-v2 and openapi-v3 specifications.
 
@@ -89,4 +95,36 @@ module.exports = {
   }
   */
 };
+```
+
+## Usage
+
+The generated API code is accessed through the global `Apis` by default. You can enjoy the smart prompts provided by the editor to quickly preview the API information, allowing you to use the API while checking.
+
+API parameters will be specified through parameters such as `params/pathParams/data/headers`, and you can also specify the config parameters of the method instance.
+
+```js
+Apis.user.changeProfile({
+  // (optional)query parameters
+  params: {
+    id: 12
+  },
+  // (optional)path parameters
+  pathParams: {
+    id2: 20
+  },
+  // (optional)body parameters
+  data: {
+    name: 'alova',
+    age: 18
+  },
+  // (optional)header parameters
+  headers: {
+    'Content-Type': 'application/json'
+  },
+
+  // config configuration items supported by other methods
+  cacheFor: 100 * 1000,
+  transform: response => response.detail
+});
 ```

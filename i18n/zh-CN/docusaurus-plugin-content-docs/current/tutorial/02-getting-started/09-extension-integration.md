@@ -8,7 +8,13 @@ title: 编辑器扩展集成
 2. 将 api 文档嵌入代码中，带你体验边查边用 API 的效果。
 3. 定时更新 api 并主动通知前端开发，不再依赖服务端开发人员通知。
 
-<a className="button button--primary">安装 VS Code 扩展</a>
+<!-- <a className="button button--primary">安装 VS Code 扩展</a> -->
+
+:::info
+
+插件将在近期发布，敬请期待...
+
+:::
 
 > 自动生成支持 swagger-v2 和 openapi-v3 规范。
 
@@ -88,4 +94,36 @@ module.exports = {
   */
 }
 
+```
+
+## 用法
+
+生成的 API 代码默认通过全局的`Apis`访问，你可以享受编辑器为你带来的智能提示来快速预览 API 信息，让你可以边查边使用 API。
+
+API 参数将通过`params/pathParams/data/headers`等参数来指定，同时你还可以指定 method 实例的 config 参数。
+
+```js
+Apis.user.changeProfile({
+  // （可选）query参数
+  params: {
+    id: 12
+  },
+  // （可选）path参数
+  pathParams: {
+    id2: 20
+  },
+  // （可选）body参数
+  data: {
+    name: 'alova',
+    age: 18
+  },
+  // （可选）header参数
+  headers: {
+    'Content-Type': 'application/json'
+  },
+
+  // 其他method支持的config配置项
+  cacheFor: 100 * 1000,
+  transform: response => response.detail
+});
 ```
