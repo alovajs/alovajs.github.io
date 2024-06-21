@@ -186,7 +186,12 @@ export default function Support({ showStatus = false }: Props): JSX.Element {
             styles.framework,
             !available && showStatus ? styles.unavailableWrapper : ''
           )}>
-          <Image className={clsx(styles.icon, !available && showStatus ? styles.iconUnavailable : '')} />
+          <Image
+            className={clsx(
+              styles.icon,
+              !available && showStatus ? styles.iconUnavailable : ''
+            )}
+          />
           <span>{id}</span>
         </Link>
       ))}

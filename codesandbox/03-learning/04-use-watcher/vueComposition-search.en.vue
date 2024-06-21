@@ -8,7 +8,11 @@
   <!-- Render the filtered todo list -->
   <div v-if="loading">Loading...</div>
   <ul v-else>
-    <li v-for="todo in data" :key="todo.id">{{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}</li>
+    <li
+      v-for="todo in data"
+      :key="todo.id">
+      {{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}
+    </li>
   </ul>
 </template>
 
@@ -22,12 +26,7 @@ const filterTodoList = userId => {
   return alovaInstance.Get(`/users/${userId}/todos`);
 };
 const userId = ref(1);
-const {
-  loading,
-  data,
-  error
-} = useWatcher(
-
+const { loading, data, error } = useWatcher(
   // Must be set to a function that returns a method instance
   () => filterTodoList(userId.value),
 

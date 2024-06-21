@@ -8,7 +8,11 @@
   <!-- Render the filtered todo list -->
   <div v-if="todo.loading">Loading...</div>
   <ul v-else>
-    <li v-for="todoItem in todo.data" :key="todoItem.id">{{ todoItem.completed ? '(Completed)' : '' }}{{ todoItem.title }}</li>
+    <li
+      v-for="todoItem in todo.data"
+      :key="todoItem.id">
+      {{ todoItem.completed ? '(Completed)' : '' }}{{ todoItem.title }}
+    </li>
   </ul>
 </template>
 
@@ -23,13 +27,12 @@ const filterTodoList = userId => {
 };
 
 export default {
-  mixins: mapAlovaHook(function() {
+  mixins: mapAlovaHook(function () {
     return {
       todo: useWatcher(
-
         // Must be set to a function that returns a method instance
         () => filterTodoList(this.userId),
-      
+
         // The monitored status array, these status changes will trigger a request
         ['userId']
       )

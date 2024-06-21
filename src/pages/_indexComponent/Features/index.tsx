@@ -13,18 +13,22 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: (
-      <Translate id="homepage.features.High performance request strategy">High performance request strategy</Translate>
+      <Translate id="homepage.features.High performance request strategy">
+        High performance request strategy
+      </Translate>
     ),
     icon: 'shandian',
     description: (
       <Translate id="homepage.features.High performance request strategy.desc">
-        10+ request strategy modules that can be used directly, just choose the one you want to use, and it can also
-        reduce performance problems caused by requests.
+        10+ request strategy modules that can be used directly, just choose the one you want to
+        use, and it can also reduce performance problems caused by requests.
       </Translate>
     )
   },
   {
-    title: <Translate id="homepage.features.Simple and familiar">Simple and familiar</Translate>,
+    title: (
+      <Translate id="homepage.features.Simple and familiar">Simple and familiar</Translate>
+    ),
     icon: 'check',
     description: (
       <Translate id="homepage.features.Simple and familiar.desc">
@@ -33,12 +37,14 @@ const FeatureList: FeatureItem[] = [
     )
   },
   {
-    title: <Translate id="homepage.features.Request-level cache">Request-level cache</Translate>,
+    title: (
+      <Translate id="homepage.features.Request-level cache">Request-level cache</Translate>
+    ),
     icon: 'shujuku',
     description: (
       <Translate id="homepage.features.Request-level cache.desc">
-        Provides various server-side data cache modes such as memory mode and persistence mode to improve user
-        experience and reduce server pressure
+        Provides various server-side data cache modes such as memory mode and persistence mode
+        to improve user experience and reduce server pressure
       </Translate>
     )
   },
@@ -46,7 +52,9 @@ const FeatureList: FeatureItem[] = [
     title: <Translate id="homepage.features.Lightweight">Lightweight</Translate>,
     icon: 'box',
     description: (
-      <Translate id="homepage.features.Lightweight.desc">compressed version is only 4kb+, only 30% of axios</Translate>
+      <Translate id="homepage.features.Lightweight.desc">
+        compressed version is only 4kb+, only 30% of axios
+      </Translate>
     )
   }
 ];

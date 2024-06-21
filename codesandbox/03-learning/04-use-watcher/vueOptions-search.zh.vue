@@ -8,7 +8,11 @@
   <!-- 渲染筛选后的todo列表 -->
   <div v-if="todo.loading">Loading...</div>
   <ul v-else>
-    <li v-for="todoItem in todo.data" :key="todoItem.id">{{ todoItem.completed ? '(Completed)' : '' }}{{ todoItem.title }}</li>
+    <li
+      v-for="todoItem in todo.data"
+      :key="todoItem.id">
+      {{ todoItem.completed ? '(Completed)' : '' }}{{ todoItem.title }}
+    </li>
   </ul>
 </template>
 
@@ -23,13 +27,12 @@ const filterTodoList = userId => {
 };
 
 export default {
-  mixins: mapAlovaHook(function() {
+  mixins: mapAlovaHook(function () {
     return {
       todo: useWatcher(
-
         // 必须设置为返回method实例的函数
         () => filterTodoList(this.userId),
-      
+
         // 被监听的状态数组，这些状态变化将会触发一次请求
         ['userId']
       )

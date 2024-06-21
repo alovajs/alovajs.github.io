@@ -33,7 +33,7 @@ const { data } = useRequest(todoListGetter, {
 You can also set `initialData` to a function to dynamically set the initial value. For example, if you don't want the Loading icon to be displayed every time the app is entered and want to use old data instead, you can return the old data as the initial value, which provides a better experience than Loading.
 
 ```js
-const { onSuccess } = useRequest(todoListGetter, {
+const { data, loading, error } = useRequest(todoListGetter, {
   initialData() {
     // Set the last response data
     const storedData = localStorage.getItem('placeholder-data');
@@ -42,8 +42,7 @@ const { onSuccess } = useRequest(todoListGetter, {
     // Also use alova's level2 storage adapter
     // return alovaInst.l2cache.get('placeholder-data');
   }
-});
-onSuccess(({ data, method }) => {
+}).onSuccess(({ data, method }) => {
   // Save response data
   localStorage.setItem('placeholder-data', JSON.stringify(data));
 

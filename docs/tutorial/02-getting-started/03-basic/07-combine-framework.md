@@ -169,11 +169,11 @@ flowchart LR
    R1[Response successfully] --> global.onSuccess
    global.onSuccess --> global.onComplete
    global.onSuccess --> throw{Is an error thrown? }:::condition
-   throw -->|No| method.transformData
-   method.transformData --> useHook.onSuccess
+   throw -->|No| method.transform
+   method.transform --> useHook.onSuccess
    throw -->|Yes| useHook.onError
 
-   method.transformData --> throw2{Is an error thrown? }:::condition
+   method.transform --> throw2{Is an error thrown? }:::condition
    throw2 -->|No| useHook.onSuccess
    throw2 -->|Yes| useHook.onError
 
@@ -184,20 +184,20 @@ flowchart LR
    global.onError --> global.onComplete
    global.onError --> throw4{Is an error thrown? }:::condition
    throw4 -->|Yes| useHook.onError
-   throw4 -->|No| method.transformData
+   throw4 -->|No| method.transform
 ```
 
 When no error is thrown, the next node receives the return value of the previous node.
 
 ### Transform response data
 
-In [method detailed explanation](/next/tutorial/getting-started/basic/method), we have already learned about `transformData`, which is also very useful when used in useHook. It allows useHook's data to receive the transformed data without transform again.
+In [method detailed explanation](/next/tutorial/getting-started/basic/method), we have already learned about `transform`, which is also very useful when used in useHook. It allows useHook's data to receive the transformed data without transform again.
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
    // The function accepts raw data and response header objects, and requires the transformed data to be returned, which will be assigned to the data state.
    // Note: rawData is the data filtered by the global response interceptor (if it is set). For the configuration of the response interceptor, please refer to the [Setting the Global Response Interceptor] chapter.
-   transformData(rawData, headers) {
+   transform(rawData, headers) {
      return rawData.list.map(item => ({
        ...item,
        statusText: item.done ? 'Completed' : 'In progress'
@@ -222,7 +222,7 @@ type data = {
 
 :::warning note
 
-When used in usehooks, throwing an error in `transformData` will also trigger `onError`;
+When used in usehooks, throwing an error in `transform` will also trigger `onError`;
 
 :::
 
@@ -242,7 +242,7 @@ const {
 
   // Complete the callback binding, the callback will be called on success or failure
   onComplete
-} = useRequest(todoListGetter); // Also applicable to useWatcher
+} = useRequest(todoListGetter);
 onSuccess(event => {
   console.log('The request was successful, the response data is:', event.data);
   console.log('The method instance of this request is:', event.method);
@@ -263,6 +263,21 @@ onComplete(event => {
     console.log('Error message:', event.error);
   }
 });
+```
+
+We also support the chain call of binding functions in all useHooks。
+
+```js
+const { data, loading, error, onSuccess, onError, onComplete } = useRequest(todoListGetter)
+  .onSuccess(event => {
+    // ...
+  })
+  .onError(event => {
+    // ...
+  })
+  .onComplete(event => {
+    // ...
+  });
 ```
 
 :::note Hint

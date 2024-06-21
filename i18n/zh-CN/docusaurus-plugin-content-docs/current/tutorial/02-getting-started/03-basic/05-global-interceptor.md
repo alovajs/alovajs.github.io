@@ -82,7 +82,7 @@ const alovaInstance = createAlova({
         throw new Error(json.message);
       }
 
-      // 解析的响应数据将传给method实例的transformData钩子函数，这些函数将在后续讲解
+      // 解析的响应数据将传给method实例的transform钩子函数，这些函数将在后续讲解
       return json.data;
     },
     // highlight-end

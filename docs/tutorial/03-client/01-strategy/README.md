@@ -14,6 +14,8 @@ All client use hooks have the following in common:
 
 3. For performance under react, all operation functions such as `send`, `update`, `abort`, etc. are wrapped with `useCallback`.
 
+4. All binding functions starting with `on` can be chained.
+
 ## Table of contents
 
 <DocCardList />

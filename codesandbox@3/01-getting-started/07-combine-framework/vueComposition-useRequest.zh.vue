@@ -37,5 +37,5 @@ const handleUpdate = () => {
 
   // 也可以直接修改data值
   // data.value = { title: 'new title' };
-}
+};
 </script>

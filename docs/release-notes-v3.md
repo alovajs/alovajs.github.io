@@ -268,6 +268,10 @@ useWatcher(() => method, [xxx], {
 
 These two parameters are no longer needed in method. They will be changed to automatically determine whether to enable or not. Getter will be used to determine whether uploading and downloading are used externally.
 
+### Deprecate `placeholder` mode of method
+
+We have mentioned in "redesign cache mode", `placeholder` mode has been replaced by other ways.
+
 ### Remove deprecated responsed
 
 It is recommended to use the `responded` field uniformly in createAlova.
@@ -502,7 +506,7 @@ useRequest(Getter, {
 
 ## Field name modification
 
-### `method.key` is simplified to `method.key`
+### `method.__key__` is simplified to `method.key`
 
 ```js
 // 2.x

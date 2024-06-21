@@ -210,12 +210,12 @@ alovaInst.Get('/todo', {
 
 ### 转换响应数据
 
-有时候我们需要统一转换响应数据，我们可以为 method 实例设置`transformData`函数将响应数据转换成需要的结构。
+有时候我们需要统一转换响应数据，我们可以为 method 实例设置`transform`函数将响应数据转换成需要的结构。
 
 ```javascript
 alovaInstance.Get('/todo/list', {
   // 函数接受响应数据和响应头数据，并要求将转换后的数据返回。
-  transformData(rawData, headers) {
+  transform(rawData, headers) {
     return rawData.list.map(item => {
       return {
         ...item,

@@ -167,11 +167,11 @@ flowchart LR
   R1[响应成功] --> global.onSuccess
   global.onSuccess --> global.onComplete
   global.onSuccess --> throw{是否抛出错误？}:::condition
-  throw -->|否| method.transformData
-  method.transformData --> useHook.onSuccess
+  throw -->|否| method.transform
+  method.transform --> useHook.onSuccess
   throw -->|是| useHook.onError
 
-  method.transformData --> throw2{是否抛出错误？}:::condition
+  method.transform --> throw2{是否抛出错误？}:::condition
   throw2 -->|否| useHook.onSuccess
   throw2 -->|是| useHook.onError
 
@@ -182,20 +182,20 @@ flowchart LR
   global.onError --> global.onComplete
   global.onError --> throw4{是否抛出错误？}:::condition
   throw4 -->|是| useHook.onError
-  throw4 -->|否| method.transformData
+  throw4 -->|否| method.transform
 ```
 
 当没有抛出错误时，下一个节点会接收到上一个节点的返回值。
 
 ### 转换响应数据
 
-在[method 详解](/next/tutorial/getting-started/basic/method)中，我们已经了解过`transformData`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
+在[method 详解](/next/tutorial/getting-started/basic/method)中，我们已经了解过`transform`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
   // 函数接受未加工的数据和响应头对象，并要求将转换后的数据返回，它将会被赋值给data状态。
   // 注意：rawData是全局响应拦截器（如果有设置）过滤后的数据，响应拦截器的配置可以参考[设置全局响应拦截器]章节。
-  transformData(rawData, headers) {
+  transform(rawData, headers) {
     return rawData.list.map(item => ({
       ...item,
       statusText: item.done ? '已完成' : '进行中'
@@ -219,7 +219,7 @@ type data = {
 
 :::warning 注意
 
-在 usehooks 中使用时，在`transformData`中抛出错误也会触发`onError`；
+在 usehooks 中使用时，在`transform`中抛出错误也会触发`onError`；
 
 :::
 
@@ -239,7 +239,7 @@ const {
 
   // 完成回调绑定，回调在成功或失败都会调用
   onComplete
-} = useRequest(todoListGetter); // 也适用useWatcher
+} = useRequest(todoListGetter);
 onSuccess(event => {
   console.log('请求成功，响应数据为:', event.data);
   console.log('本次请求的method实例为:', event.method);
@@ -260,6 +260,21 @@ onComplete(event => {
     console.log('错误信息：'，event.error)
   }
 });
+```
+
+我们在所有的 useHooks 中都支持了绑定函数的链式调用方式。
+
+```js
+const { data, loading, error, onSuccess, onError, onComplete } = useRequest(todoListGetter)
+  .onSuccess(event => {
+    // ...
+  })
+  .onError(event => {
+    // ...
+  })
+  .onComplete(event => {
+    // ...
+  });
 ```
 
 :::warning 注意

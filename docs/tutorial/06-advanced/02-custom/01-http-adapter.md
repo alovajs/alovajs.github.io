@@ -79,7 +79,7 @@ An asynchronous function, the function returns a response value, which will be p
 
 **headers (required)**
 
-An asynchronous function, the response header object returned by the function will be passed to the transformData of the Method instance Conversion hook function;
+An asynchronous function, the response header object returned by the function will be passed to the transform of the Method instance Conversion hook function;
 
 **abort (required)**
 

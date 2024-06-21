@@ -23,9 +23,9 @@ const getFile = fileName =>
 
 你也可以在`cacheFor`中返回 `undefined` 或不返回任何数据，继续发送请求，这在自定义管理缓存时未命中缓存的情况下很有用。
 
-## 使用 transformData 设置缓存
+## 使用 transform 设置缓存
 
-由于 `transformData` 函数具有以下两个特性：
+由于 `transform` 函数具有以下两个特性：
 
 - 只有在响应时才被触发，而命中响应缓存时不会触发；
 - 支持异步函数；
@@ -35,7 +35,7 @@ const getFile = fileName =>
 ```javascript
 const fileGetter = alovaInstance.Get('/file/file_name', {
   // 使用IndexedDB缓存文件
-  async transformData(fileBlob) {
+  async transform(fileBlob) {
     await new Promise((resolve, reject) => {
       const tx = db.transaction(['files'], 'readwrite');
       const putRequest = tx.objectStore('files').put({

@@ -68,7 +68,7 @@ export const getImageFromCache = async fileName => {
 
 ## save data
 
-When saving data, we can save the cache in the `transformData` of the method, because `transformData` will only be triggered when the network request responds, but will not be triggered when the cache is hit. In the sample code, convert the image blob instance to base64 data, cache and return this base64 data.
+When saving data, we can save the cache in the `transform` of the method, because `transform` will only be triggered when the network request responds, but will not be triggered when the cache is hit. In the sample code, convert the image blob instance to base64 data, cache and return this base64 data.
 
 ```javascript-api.js
 import { addImage2Cache } from './db';
@@ -76,7 +76,7 @@ import { addImage2Cache } from './db';
 export const image = fileName =>
    alovaInst.Get(`/image/${fileName}`, {
      // highlight-start
-     async transformData(imgBlob) {
+     async transform(imgBlob) {
        // Asynchronously convert the blob to base64
        const reader = new FileReader();
        reader.readAsDataURL(imgBlob);
@@ -96,19 +96,19 @@ export const image = fileName =>
 
 ## retrieve data
 
-Specify `localCache` of this method instance as an asynchronous function to change the cache into a controlled state, match the cache in IndexedDB in this function, and return it if it matches, otherwise return `undefined` and continue to initiate a request to obtain data.
+Specify `cacheFor` of this method instance as an asynchronous function to change the cache into a controlled state, match the cache in IndexedDB in this function, and return it if it matches, otherwise return `undefined` and continue to initiate a request to obtain data.
 
 ```javascript title=api.js
 import { getImageFromCache } from './db';
 
 export const image = fileName =>
   alovaInst.Get(`/image/${fileName}`, {
-    async transformData(imgBlob) {
+    async transform(imgBlob) {
       //...
     },
 
     // highlight-start
-    async localCache() {
+    async cacheFor() {
       // get cache
       const cache = await getImageFromCache(fileName);
       return cache && cache.data;
@@ -117,6 +117,6 @@ export const image = fileName =>
   });
 ```
 
-In this way, a basic custom cache management is basically completed. You can also save the expiration time of the cache, and judge whether it has expired when the cache is matched in `localCache`, so as to realize the cache expiration function.
+In this way, a basic custom cache management is basically completed. You can also save the expiration time of the cache, and judge whether it has expired when the cache is matched in `cacheFor`, so as to realize the cache expiration function.
 
 IndexedDB is just one example of managing caches asynchronously, you can also connect to your cache servers to manage them.

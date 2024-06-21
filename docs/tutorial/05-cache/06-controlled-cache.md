@@ -23,9 +23,9 @@ const getFile = fileName =>
 
 You can also return `undefined` or no data in `cacheFor` and continue to send the request, which is useful in the case of cache misses when customizing cache management.
 
-## Use transformData to set cache
+## Use transform to set cache
 
-Because the `transformData` function has the following two features:
+Because the `transform` function has the following two features:
 
 - It is triggered only when responding, and will not be triggered when hitting the response cache;
 
@@ -36,7 +36,7 @@ Therefore, you can also use it to save custom caches. For example, in the scenar
 ```javascript
 const fileGetter = alovaInstance.Get('/file/file_name', {
   // Use IndexedDB to cache files
-  async transformData(fileBlob) {
+  async transform(fileBlob) {
     await new Promise((resolve, reject) => {
       const tx = db.transaction(['files'], 'readwrite');
       const putRequest = tx.objectStore('files').put({

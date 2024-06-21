@@ -37,7 +37,7 @@ Let's implement a paging list to automatically preload the next page of data. Be
   //method instance creation function
   const getTodoList = currentPage => {
     return alovaInstance.Get('/todo/list', {
-      localCache: 60000,
+      cacheFor: 60000,
       params: {
         currentPage,
         pageSize: 10
@@ -60,12 +60,10 @@ Let's implement a paging list to automatically preload the next page of data. Be
   });
 
   const currentPage = ref(1);
-  const { data, onSuccess } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
+  const { data } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
     immediate: true
-  });
-
-  // After the current page is loaded successfully, pass in the method instance of the next page to pre-fetch the data of the next page.
-  onSuccess(() => {
+  }).onSuccess(() => {
+    // After the current page is loaded successfully, pass in the method instance of the next page to pre-fetch the data of the next page.
     fetch(getTodoList(currentPage.value + 1));
   });
 </script>
@@ -81,7 +79,7 @@ import { useFetcher } from 'alova/client';
 //method instance creation function
 const getTodoList = currentPage => {
   return alovaInstance.Get('/todo/list', {
-    localCache: 60000,
+    cacheFor: 60000,
     params: {
       currentPage,
       pageSize: 10
@@ -106,10 +104,8 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, onSuccess } = useWatcher(() => getTodoList(currentPage), [currentPage], {
     immediate: true
-  });
-
-  // After the current page is loaded successfully, pass in the method instance of the next page to pre-fetch the data of the next page.
-  onSuccess(() => {
+  }).onSuccess(() => {
+    // After the current page is loaded successfully, pass in the method instance of the next page to pre-fetch the data of the next page.
     fetch(getTodoList(currentPage + 1));
   });
 
@@ -133,7 +129,7 @@ const App = () => {
   //method instance creation function
   const getTodoList = currentPage => {
     return alovaInstance.Get('/todo/list', {
-      localCache: 60000,
+      cacheFor: 60000,
       params: {
         currentPage,
         pageSize: 10
@@ -157,10 +153,8 @@ const App = () => {
   const currentPage = writable(1);
   const { data, onSuccess } = useWatcher(() => getTodoList($currentPage), [currentPage], {
     immediate: true
-  });
-
-  // After the current page is loaded successfully, pass in the method instance of the next page to pre-fetch the data of the next page.
-  onSuccess(() => {
+  }).onSuccess(() => {
+    // After the current page is loaded successfully, pass in the method instance of the next page to pre-fetch the data of the next page.
     fetch(getTodoList($currentPage + 1));
   });
 </script>

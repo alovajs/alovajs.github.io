@@ -82,7 +82,7 @@ const alovaInstance = createAlova({
         throw new Error(json.message);
       }
 
-      //The parsed response data will be passed to the transformData hook function of the method instance. These functions will be explained later.
+      //The parsed response data will be passed to the transform hook function of the method instance. These functions will be explained later.
       return json.data;
     },
     // highlight-end

@@ -33,7 +33,7 @@ const { data } = useRequest(todoListGetter, {
 也可以将`initialData`设置成函数动态设置初始值，例如，当你不希望应用每次进入时都显示 Loading 图标，而希望使用旧数据替代时，你可以返回旧数据作为初始值，它的体验比 Loading 更好。
 
 ```js
-const { onSuccess } = useRequest(todoListGetter, {
+const { data, loading, error } = useRequest(todoListGetter, {
   initialData() {
     // 设置上一次的响应数据
     const storedData = localStorage.getItem('placeholder-data');
@@ -42,8 +42,7 @@ const { onSuccess } = useRequest(todoListGetter, {
     // 也使用alova的level2存储适配器
     // return alovaInst.l2cache.get('placeholder-data');
   }
-});
-onSuccess(({ data, method }) => {
+}).onSuccess(({ data, method }) => {
   // 保存响应数据
   localStorage.setItem('placeholder-data', JSON.stringify(data));
 

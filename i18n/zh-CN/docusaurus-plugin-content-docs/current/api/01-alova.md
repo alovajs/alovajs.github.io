@@ -22,7 +22,7 @@ function createAlova(options?: AlovaOptions): Alova;
 | statesHook     | object                      | 状态管理钩子，选填，[查看详情](/next/tutorial/getting-started/basic/combine-framework)           |
 | requestAdapter | object                      | 请求适配器，必填，[查看详情](/next/tutorial/advanced/custom/http-adapter)                        |
 | timeout        | number                      | 超时时间，默认不超时，[查看详情](/next/tutorial/getting-started/basic/alova)                     |
-| localCache     | object                      | 本地缓存配置，默认 GET 有 5000ms 缓存，[查看详情](/next/tutorial/cache/mode)                     |
+| cacheFor       | object                      | 本地缓存配置，默认 GET 有 5000ms 缓存，[查看详情](/next/tutorial/cache/mode)                     |
 | storageAdapter | object                      | 本地存储适配器，默认为`localStorage`，[查看详情](/next/tutorial/advanced/custom/storage-adapter) |
 | beforeRequest  | function                    | 请求前钩子，[查看详情](/next/tutorial/getting-started/basic/global-interceptor)                  |
 | responded      | object \| function          | 请求响应钩子，[查看详情](/next/tutorial/getting-started/basic/global-interceptor)                |
@@ -67,7 +67,7 @@ interface AlovaOptions {
   requestAdapter: AlovaRequestAdapter;
   baseURL?: string;
   timeout?: number;
-  localCache?: GlobalLocalCacheConfig;
+  cacheFor?: GlobalcacheForConfig;
   storageAdapter?: AlovaStorageAdapter;
   beforeRequest?: Function;
   responded?: Function | ResponsedHandlerRecord;
@@ -108,16 +108,16 @@ interface Alova {
 1. url: 请求地址
 2. config: 配置参数
 
-| 参数名        | 类型             | 说明                                                                                                                                                                                                                                                                                                             |
-| ------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| headers       | object           | 请求头，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                  |
-| params        | object           | 请求参数，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                |
-| name          | string           | method 对象名称，在 [updateState](/next/tutorial/client/in-depth/update-across-components)、[invalidateCache](/next/tutorial/cache/manually-invalidate)、[setCache](/next/tutorial/cache/set-and-query)、以及 [fetch 函数](/next/tutorial/client/strategy/use-fetcher)中可以通过名称或通配符获取对应 method 实例 |
-| timeout       | number           | 请求超时时间，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                            |
-| localCache    | LocalCacheConfig | 响应缓存时间，[查看详情](/next/tutorial/cache/mode)                                                                                                                                                                                                                                                              |
-| hitSource     | string           | 打击源方法实例，当源方法实例请求成功时，当前方法实例的缓存将被失效，[查看详情](/next/tutorial/cache/auto-invalidate)                                                                                                                                                                                             |
-| transformData | function         | 转换响应数据，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                            |
-| shareRequest  | boolean          | 请求级共享请求开关，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                      |
+| 参数名       | 类型           | 说明                                                                                                                                                                                                                                                                                                             |
+| ------------ | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| headers      | object         | 请求头，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                  |
+| params       | object         | 请求参数，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                |
+| name         | string         | method 对象名称，在 [updateState](/next/tutorial/client/in-depth/update-across-components)、[invalidateCache](/next/tutorial/cache/manually-invalidate)、[setCache](/next/tutorial/cache/set-and-query)、以及 [fetch 函数](/next/tutorial/client/strategy/use-fetcher)中可以通过名称或通配符获取对应 method 实例 |
+| timeout      | number         | 请求超时时间，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                            |
+| cacheFor     | cacheForConfig | 响应缓存时间，[查看详情](/next/tutorial/cache/mode)                                                                                                                                                                                                                                                              |
+| hitSource    | string         | 打击源方法实例，当源方法实例请求成功时，当前方法实例的缓存将被失效，[查看详情](/next/tutorial/cache/auto-invalidate)                                                                                                                                                                                             |
+| transform    | function       | 转换响应数据，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                            |
+| shareRequest | boolean        | 请求级共享请求开关，[查看详情](/next/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                      |
 
 > 除了可配置上面的参数外，还支持请求适配器支持的其他参数。
 

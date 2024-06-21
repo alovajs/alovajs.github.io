@@ -21,9 +21,9 @@ method key 用来标识一切与 method 实例关联的数据，有很大的作�
 ## 自定义 method 实例 key
 
 ```javascript
-// method key在创建时生成，可以通过__key__自定义它
+// method key在创建时生成，可以通过key自定义它
 const methodInst = alovaInstance.Get('/api/user', {});
-methodInst.__key__ = 'my-custom-method-key';
+methodInst.key = 'my-custom-method-key';
 ```
 
 ## 自定义全部 method 实例 key

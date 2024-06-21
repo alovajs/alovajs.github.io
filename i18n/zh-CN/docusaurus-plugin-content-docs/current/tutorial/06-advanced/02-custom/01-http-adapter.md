@@ -79,7 +79,7 @@ interface RequestElements {
 
 **headers（必填）**
 
-一个异步函数，函数返回的响应头对象将传递给 Method 实例的 transformData 转换钩子函数；
+一个异步函数，函数返回的响应头对象将传递给 Method 实例的 transform 转换钩子函数；
 
 **abort（必填）**
 

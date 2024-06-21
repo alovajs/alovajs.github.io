@@ -91,7 +91,7 @@ const config: Config = {
             },
             {
               label: 'UI Frameworks',
-              to: 'next/resource/framework'
+              to: 'next/category/framework'
             },
             {
               label: 'Error Reference',

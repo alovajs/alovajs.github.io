@@ -340,7 +340,7 @@ usePagination((page, pageSize) => queryStudents(page, pageSize), {
 
 在开启预加载时，并不会一味地加载下一页，需要满足以下两个条件：
 
-1. 预加载是基于缓存的，用于分页加载的 Method 实例必须开启缓存，默认情况下 get 请求会有 5 分钟的 memory 缓存，如果是非 get 请求或者全局关闭了缓存，你还需要在这个 Method 实例中单独设置`localCache`开启缓存。
+1. 预加载是基于缓存的，用于分页加载的 Method 实例必须开启缓存，默认情况下 get 请求会有 5 分钟的 memory 缓存，如果是非 get 请求或者全局关闭了缓存，你还需要在这个 Method 实例中单独设置`cacheFor`开启缓存。
 2. 根据`total`和`pageSize`参数判断出下一页还有数据。
 
 :::

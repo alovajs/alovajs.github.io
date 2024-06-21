@@ -37,7 +37,7 @@ use hook
   // method实例创建函数
   const getTodoList = currentPage => {
     return alovaInstance.Get('/todo/list', {
-      localCache: 60000,
+      cacheFor: 60000,
       params: {
         currentPage,
         pageSize: 10
@@ -60,12 +60,10 @@ use hook
   });
 
   const currentPage = ref(1);
-  const { data, onSuccess } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
+  const { data } = useWatcher(() => getTodoList(currentPage.value), [currentPage], {
     immediate: true
-  });
-
-  // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
-  onSuccess(() => {
+  }).onSuccess(() => {
+    // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
     fetch(getTodoList(currentPage.value + 1));
   });
 </script>
@@ -81,7 +79,7 @@ import { useFetcher } from 'alova/client';
 // method实例创建函数
 const getTodoList = currentPage => {
   return alovaInstance.Get('/todo/list', {
-    localCache: 60000,
+    cacheFor: 60000,
     params: {
       currentPage,
       pageSize: 10
@@ -104,12 +102,10 @@ const App = () => {
     updateState: false
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, onSuccess } = useWatcher(() => getTodoList(currentPage), [currentPage], {
+  const { data } = useWatcher(() => getTodoList(currentPage), [currentPage], {
     immediate: true
-  });
-
-  // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
-  onSuccess(() => {
+  }).onSuccess(() => {
+    // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
     fetch(getTodoList(currentPage + 1));
   });
 
@@ -133,7 +129,7 @@ const App = () => {
   // method实例创建函数
   const getTodoList = currentPage => {
     return alovaInstance.Get('/todo/list', {
-      localCache: 60000,
+      cacheFor: 60000,
       params: {
         currentPage,
         pageSize: 10
@@ -155,12 +151,10 @@ const App = () => {
     updateState: false
   });
   const currentPage = writable(1);
-  const { data, onSuccess } = useWatcher(() => getTodoList($currentPage), [currentPage], {
+  const { data } = useWatcher(() => getTodoList($currentPage), [currentPage], {
     immediate: true
-  });
-
-  // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
-  onSuccess(() => {
+  }).onSuccess(() => {
+    // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
     fetch(getTodoList($currentPage + 1));
   });
 </script>

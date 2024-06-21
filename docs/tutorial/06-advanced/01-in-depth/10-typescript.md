@@ -69,7 +69,7 @@ When you specify a type for a data interface, you need to divide it into two sit
 
 ### Case 1
 
-When the response data does not need to be converted by calling `transformData`, the type can be specified directly through generics.
+When the response data does not need to be converted by calling `transform`, the type can be specified directly through generics.
 
 ```typescript
 interface Todo {
@@ -86,7 +86,7 @@ const { data } = useRequest(Get);
 
 ### Case 2
 
-When the response data needs to be converted by calling `transformData`, the type needs to be specified in the conversion function parameter, and then its return value type will be used as the response data type.
+When the response data needs to be converted by calling `transform`, the type needs to be specified in the conversion function parameter, and then its return value type will be used as the response data type.
 
 ```typescript
 interface Todo {
@@ -96,7 +96,7 @@ interface Todo {
 }
 const Get = alovaInstance.Get('/todo/list', {
   //Write the type into the data parameter, and the headers will be automatically inferred, so you don’t need to specify the type.
-  transformData(data: Todo[], headers) {
+  transform(data: Todo[], headers) {
     return data.map(item => ({
       ...item,
       status: item.done ? 'Completed' : 'Not completed'

@@ -213,12 +213,12 @@ The request method, request url, request header, url parameter, and request body
 
 ### Transform response data
 
-Sometimes we need to uniformly transform response data. We can set the `transformData` function for the method instance to transform the response data into the required structure.
+Sometimes we need to uniformly transform response data. We can set the `transform` function for the method instance to transform the response data into the required structure.
 
 ```javascript
 alovaInstance.Get('/todo/list', {
   // The function accepts the response data and response header data, and requires the transformed data to be returned.
-  transformData(rawData, headers) {
+  transform(rawData, headers) {
     return rawData.list.map(item => {
       return {
         ...item,

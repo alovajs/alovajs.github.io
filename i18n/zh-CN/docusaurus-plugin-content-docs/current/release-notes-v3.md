@@ -265,6 +265,10 @@ useWatcher(() => method, [xxx], {
 
 在 method 中不再需要这两个参数，将改为自动判断是否开启，通过 getter 判断外部是否使用了 uploading 和 downloading。
 
+### 废弃 method 的 `placeholder`缓存模式
+
+正如在“重新设计缓存模式”中所说，`placeholder`模式已使用其他方式替代实现。
+
 ### 移除废弃的 responsed
 
 在 createAlova 中推荐统一使用`responded`字段。
@@ -497,7 +501,7 @@ useRequest(Getter, {
 
 ## 字段修改
 
-### `method.key` 简化为 `method.key`
+### `method.__key__` 简化为 `method.key`
 
 ```js
 // 2.x

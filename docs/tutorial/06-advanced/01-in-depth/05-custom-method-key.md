@@ -21,9 +21,9 @@ But sometimes you want to change it so that the above three situations can be re
 ## Customize method instance key
 
 ```javascript
-// Method key is generated when it is created, you can customize it through __key__
+// Method key is generated when it is created, you can customize it through key
 const methodInst = alovaInstance.Get('/api/user', {});
-methodInst.__key__ = 'my-custom-method-key';
+methodInst.key = 'my-custom-method-key';
 ```
 
 ## Customize all method instance keys
