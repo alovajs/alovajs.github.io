@@ -21,7 +21,9 @@ export default function TOCWrapper(props) {
         img={require('@site/static/img/collect.jpg').default}
         className="margin-bottom--sm"
         href="https://github.com/alovajs/alova/issues/165">
-        <Translate id="ad.project collection">Is using alova in your project? please tell me!</Translate>
+        <Translate id="ad.project collection">
+          Is using alova in your project? please tell me!
+        </Translate>
       </AdCard>
       <TOC {...props} />
     </div>

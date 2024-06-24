@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4123843 */
+  font-family: 'iconfont'; /* Project id 4123843 */
   src: url('iconfont.woff2?t=1710246562126') format('woff2'),
-       url('iconfont.woff?t=1710246562126') format('woff'),
-       url('iconfont.ttf?t=1710246562126') format('truetype');
+    url('iconfont.woff?t=1710246562126') format('woff'),
+    url('iconfont.ttf?t=1710246562126') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -14,54 +14,53 @@
 }
 
 .icon-kaishi:before {
-  content: "\e63e";
+  content: '\e63e';
 }
 
 .icon-weixin:before {
-  content: "\e637";
+  content: '\e637';
 }
 
 .icon-aixin:before {
-  content: "\e85c";
+  content: '\e85c';
 }
 
 .icon-discord:before {
-  content: "\ebf8";
+  content: '\ebf8';
 }
 
 .icon-a-logoline1:before {
-  content: "\e62b";
+  content: '\e62b';
 }
 
 .icon-a-logoline:before {
-  content: "\e62c";
+  content: '\e62c';
 }
 
 .icon-plus:before {
-  content: "\e62d";
+  content: '\e62d';
 }
 
 .icon-uf_check:before {
-  content: "\e626";
+  content: '\e626';
 }
 
 .icon-youjiantou:before {
-  content: "\e62a";
+  content: '\e62a';
 }
 
 .icon-shandian:before {
-  content: "\e628";
+  content: '\e628';
 }
 
 .icon-shujuku:before {
-  content: "\e629";
+  content: '\e629';
 }
 
 .icon-check:before {
-  content: "\e73c";
+  content: '\e73c';
 }
 
 .icon-box:before {
-  content: "\e8c6";
+  content: '\e8c6';
 }
-

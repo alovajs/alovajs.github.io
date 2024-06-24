@@ -8,7 +8,14 @@ interface IconFontProps {
   height?: number | string;
   size?: number | string;
 }
-export default function IconFont({ className, width, size = 20, name, height, style }: IconFontProps) {
+export default function IconFont({
+  className,
+  width,
+  size = 20,
+  name,
+  height,
+  style
+}: IconFontProps) {
   return (
     <svg
       style={{

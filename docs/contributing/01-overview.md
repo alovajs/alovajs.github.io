@@ -1,6 +1,5 @@
 ---
 title: Contribution Guidelines
-sidebar_position: 10
 ---
 
 # alova Contribution Guidelines
@@ -56,7 +55,7 @@ The design principles points out how it should be designed, the following is the
 
 1. `Method` proxy design, high aggregation, platform-independent design, throughout the request, you should be able to access it in any request function, from another perspective, the information related to the request should also be placed in the method instance ;
 2. Lightweight, try to keep the source code concise in coding, such as avoiding repeated code, merging variable declarations, prototype chain function encapsulation, no similar API, tree shaking, but long variable names are allowed, because it will be used when compiling will be replaced by a single letter;
-3. Highly scalable design. First, the design of alova uses a large number of adapter patterns and hook functions. For example, adapters include `requestAdapter`, `storageAdapter`, etc., and hook functions include `beforeRequest`, `responded`, `transformData`, `localCache`, etc., and most of them have default behaviors, which are designed to be easy to use while retaining high scalability; second, global request parameters can be overwritten, such as `timeout`, `shareRequest`, etc., for These parameters can be set individually for special requests.
+3. Highly scalable design. First, the design of alova uses a large number of adapter patterns and hook functions. For example, adapters include `requestAdapter`, `storageAdapter`, etc., and hook functions include `beforeRequest`, `responded`, `transform`, `cacheFor`, etc., and most of them have default behaviors, which are designed to be easy to use while retaining high scalability; second, global request parameters can be overwritten, such as `timeout`, `shareRequest`, etc., for These parameters can be set individually for special requests.
 4. The api design is universal. First, it means that the function of this api has a high level of abstraction, rather than a specific business. Second, the api design is scalable to adapt to the needs of the api iteration
 
 > The api universal design is only applicable to the alova library. If you are conceiving a request strategy, you can design it according to the specific business.
@@ -118,14 +117,14 @@ alova provides high-extensibility features, and you can write your own js librar
 
 Customize various adapters to meet the operating requirements in different environments. The following directions are available for reference:
 
-1. Customize statesHook, which can be executed under different UI frameworks, such as `solid/qwik`, currently supports `react/vue/svelte`, please read [Custom statesHook](/tutorial/custom/custom-stateshook);
+1. Customize statesHook, which can be executed under different UI frameworks, such as `solid/qwik`, currently supports `react/vue/svelte`, please read [Custom statesHook](/next/tutorial/advanced/custom/stateshook);
 2. Customize the request adapter, so that alova can cooperate with more request schemes, such as `GraphQL/SSE`, etc.;
 3. Customize the storage adapter to meet the storage requirements of different environments, such as `react-native`;
 4. Any combination of the above, such as the official [uniapp adapter](https://github.com/alovajs/adapter-uniapp), which includes request adapters and storage adapters.
 
 #### Custom request strategy
 
-Request strategies can help developers write high-performance functions more efficiently. Although the official [@alova/scene](/tutorial/strategy) provides some common request strategies, it is not enough It is a good choice to customize your own reusable request strategy based on alova to meet the business scenarios related to various requests of developers, and you can also publish them on npm for everyone to use.
+Request strategies can help developers write high-performance functions more efficiently. Although the official [@alova/scene](/next/tutorial/client/strategy) provides some common request strategies, it is not enough It is a good choice to customize your own reusable request strategy based on alova to meet the business scenarios related to various requests of developers, and you can also publish them on npm for everyone to use.
 
 :::tip Submit your project
 

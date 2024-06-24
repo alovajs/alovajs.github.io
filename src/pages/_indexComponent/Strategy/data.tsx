@@ -5,14 +5,19 @@ export const strategyList = [
     title: <Translate id="homepage.strategy.useRequest">Basic request</Translate>,
     describe: (
       <Translate id="homepage.strategy.useRequest.desc">
-        Send request with useRequest, it will automatically maintain the states related to this request.
+        Send request with useRequest, it will automatically maintain the states related to this
+        request.
       </Translate>
     ),
     features: [
       <Translate id="homepage.strategy.useRequest.feature1">Similar to axios.</Translate>,
-      <Translate id="homepage.strategy.useRequest.feature2">Maintains the states automatically.</Translate>,
+      <Translate id="homepage.strategy.useRequest.feature2">
+        Maintains the states automatically.
+      </Translate>,
       <Translate id="homepage.strategy.useRequest.feature3">Response cache.</Translate>,
-      <Translate id="homepage.strategy.useRequest.feature4">Share the same request sent at the same time.</Translate>
+      <Translate id="homepage.strategy.useRequest.feature4">
+        Share the same request sent at the same time.
+      </Translate>
     ],
     code: `const todoDetail = alova.Get('/todo', {
   params: {
@@ -30,8 +35,8 @@ const {
     title: <Translate id="homepage.strategy.useWatcher">Request when states changed</Translate>,
     describe: (
       <Translate id="homepage.strategy.useWatcher.desc">
-        When developing functions such as paging, data filtering, and fuzzy search, send requests immediately by
-        watching states changes.
+        When developing functions such as paging, data filtering, and fuzzy search, send
+        requests immediately by watching states changes.
       </Translate>
     ),
     features: [
@@ -49,7 +54,7 @@ const {
     sendable: () => keyword !== ''
   }
 );`,
-    link: 'tutorial/getting-started/states-change-request'
+    link: 'tutorial/combine-framework/use-watcher'
   },
   {
     title: <Translate id="homepage.strategy.useFetcher">Prefetch data</Translate>,
@@ -59,7 +64,9 @@ const {
       </Translate>
     ),
     features: [
-      <Translate id="homepage.strategy.useFetcher.feature1">Update view cross modules/components.</Translate>,
+      <Translate id="homepage.strategy.useFetcher.feature1">
+        Update view cross modules/components.
+      </Translate>,
       <Translate id="homepage.strategy.useFetcher.feature2">Preload data.</Translate>
     ],
     code: `const {
@@ -67,23 +74,27 @@ const {
   fetch
 } = useFetcher();
 fetch(todoDetail);`,
-    link: 'tutorial/advanced/data-fetching'
+    link: 'tutorial/advanced/use-fetcher'
   },
   {
     title: <Translate id="homepage.strategy.Pagination">Pagination request</Translate>,
     describe: (
       <Translate id="homepage.strategy.Pagination.desc">
-        Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, and
-        reduce coding difficulty by 50%
+        Automatically manage paging data, data preloading, reduce unnecessary data refresh,
+        improve fluency by 300%, and reduce coding difficulty by 50%
       </Translate>
     ),
     features: [
-      <Translate id="homepage.strategy.Pagination.feature1">Rich pagination states and events.</Translate>,
+      <Translate id="homepage.strategy.Pagination.feature1">
+        Rich pagination states and events.
+      </Translate>,
       <Translate id="homepage.strategy.Pagination.feature2">
         Automatically fetch specified page data when watching state changes.
       </Translate>,
       <Translate id="homepage.strategy.Pagination.feature3">Preload next page data.</Translate>,
-      <Translate id="homepage.strategy.Pagination.feature4">High-performance list manipulation functions.</Translate>
+      <Translate id="homepage.strategy.Pagination.feature4">
+        High-performance list manipulation functions.
+      </Translate>
     ],
     code: `usePagination((page, size) => todoList(page, size), {
   initialData: {
@@ -96,7 +107,9 @@ fetch(todoDetail);`,
     link: 'tutorial/strategy/usePagination'
   },
   {
-    title: <Translate id="homepage.strategy.Token authentication">Token authentication</Translate>,
+    title: (
+      <Translate id="homepage.strategy.Token authentication">Token authentication</Translate>
+    ),
     describe: (
       <Translate id="homepage.strategy.Token authentication.desc">
         Automatically manage form data, it allow you implement quickly various of forms.
@@ -112,8 +125,12 @@ fetch(todoDetail);`,
       <Translate id="homepage.strategy.Token authentication.feature3">
         Maintain all codes for Token identity authentication in a unified manner
       </Translate>,
-      <Translate id="homepage.strategy.Token authentication.feature4">set request ID with metadata</Translate>,
-      <Translate id="homepage.strategy.Token authentication.feature5">Release visitor requests</Translate>
+      <Translate id="homepage.strategy.Token authentication.feature4">
+        set request ID with metadata
+      </Translate>,
+      <Translate id="homepage.strategy.Token authentication.feature5">
+        Release visitor requests
+      </Translate>
     ],
     code: `const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
   refreshTokenOnError: {
@@ -134,12 +151,15 @@ const alovaInstance = createAlova({
   },
   {
     title: (
-      <Translate id="homepage.strategy.Sensorless interact strategy">Sensorless data interaction strategy</Translate>
+      <Translate id="homepage.strategy.Sensorless interact strategy">
+        Sensorless data interaction strategy
+      </Translate>
     ),
     describe: (
       <Translate id="homepage.strategy.Sensorless interact strategy.desc">
-        A new interactive experience, submitting and responding, greatly reducing the impact of network fluctuations,
-        allowing your application to remain available even when the network is unstable or even disconnected
+        A new interactive experience, submitting and responding, greatly reducing the impact of
+        network fluctuations, allowing your application to remain available even when the
+        network is unstable or even disconnected
       </Translate>
     ),
     features: [
@@ -181,7 +201,9 @@ const alovaInstance = createAlova({
     features: [
       <Translate id="homepage.strategy.Form submit.feature1">Saving Form draft</Translate>,
       <Translate id="homepage.strategy.Form submit.feature2">Manage multi-step form</Translate>,
-      <Translate id="homepage.strategy.Form submit.feature3">Automatically reset form data after submiting</Translate>
+      <Translate id="homepage.strategy.Form submit.feature3">
+        Automatically reset form data after submiting
+      </Translate>
     ],
     code: `const {
   form,
@@ -201,13 +223,20 @@ const alovaInstance = createAlova({
     title: <Translate id="homepage.strategy.Auto refetch">Auto refetch data</Translate>,
     describe: (
       <Translate id="homepage.strategy.Auto refetch.desc">
-        Automatically refetch data through the events of browser, ensure that the newest data is always displayed.
+        Automatically refetch data through the events of browser, ensure that the newest data is
+        always displayed.
       </Translate>
     ),
     features: [
-      <Translate id="homepage.strategy.Auto refetch.feature1">Freely select in 4 refetch rules.</Translate>,
-      <Translate id="homepage.strategy.Auto refetch.feature2">Custom your refetch triggering rule.</Translate>,
-      <Translate id="homepage.strategy.Auto refetch.feature3">Support request throttling.</Translate>
+      <Translate id="homepage.strategy.Auto refetch.feature1">
+        Freely select in 4 refetch rules.
+      </Translate>,
+      <Translate id="homepage.strategy.Auto refetch.feature2">
+        Custom your refetch triggering rule.
+      </Translate>,
+      <Translate id="homepage.strategy.Auto refetch.feature3">
+        Support request throttling.
+      </Translate>
     ],
     code: `useAutoRequest(todoDetail, {
   pollingTime: 2000,
@@ -222,15 +251,17 @@ const alovaInstance = createAlova({
     title: <Translate id="homepage.strategy.Upload">File upload strategy</Translate>,
     describe: (
       <Translate id="homepage.strategy.Upload.desc">
-        Simplified file upload strategy that supports automatic recognition and conversion of base64, Blob, ArrayBuffer,
-        and Canvas.
+        Simplified file upload strategy that supports automatic recognition and conversion of
+        base64, Blob, ArrayBuffer, and Canvas.
       </Translate>
     ),
     features: [
       <Translate id="homepage.strategy.Upload.feature1">
         Automatically recognize and convert file data to File instance
       </Translate>,
-      <Translate id="homepage.strategy.Upload.feature2">Upload multiple files simultaneously</Translate>,
+      <Translate id="homepage.strategy.Upload.feature2">
+        Upload multiple files simultaneously
+      </Translate>,
       <Translate id="homepage.strategy.Upload.feature3">Image preview generation</Translate>
     ],
     code: `const {
@@ -251,7 +282,11 @@ const alovaInstance = createAlova({
         Reduce your tediousness when developing the verification code sending function
       </Translate>
     ),
-    features: [<Translate id="homepage.strategy.Send captcha.feature1">Automatically countdown.</Translate>],
+    features: [
+      <Translate id="homepage.strategy.Send captcha.feature1">
+        Automatically countdown.
+      </Translate>
+    ],
     code: `const {
   loading: sending,
   send: sendCaptcha
@@ -261,11 +296,15 @@ const alovaInstance = createAlova({
     link: 'tutorial/strategy/useCaptcha'
   },
   {
-    title: <Translate id="homepage.strategy.Cross-component request">Cross-component request strategy</Translate>,
+    title: (
+      <Translate id="homepage.strategy.Cross-component request">
+        Cross-component request strategy
+      </Translate>
+    ),
     describe: (
       <Translate id="homepage.strategy.Cross-component request.desc">
-        Eliminate the limitation of component hierarchy, and quickly trigger the operation function of any request in
-        any component
+        Eliminate the limitation of component hierarchy, and quickly trigger the operation
+        function of any request in any component
       </Translate>
     ),
     features: [
@@ -279,17 +318,24 @@ const alovaInstance = createAlova({
     link: 'tutorial/strategy/actionDelegationMiddleware'
   },
   {
-    title: <Translate id="homepage.strategy.Request retry strategy">Request retry strategy</Translate>,
+    title: (
+      <Translate id="homepage.strategy.Request retry strategy">
+        Request retry strategy
+      </Translate>
+    ),
     describe: (
       <Translate id="homepage.strategy.Request retry strategy.desc">
-        Request failure automatic retry, it plays an important role on important requests and polling requests
+        Request failure automatic retry, it plays an important role on important requests and
+        polling requests
       </Translate>
     ),
     features: [
       <Translate id="homepage.strategy.Request retry strategy.feature1">
         Custom the retry or not, and the retry delay time.
       </Translate>,
-      <Translate id="homepage.strategy.Request retry strategy.feature2">Manually stop retry.</Translate>
+      <Translate id="homepage.strategy.Request retry strategy.feature2">
+        Manually stop retry.
+      </Translate>
     ],
     code: `const {
   onRetry,
@@ -307,10 +353,13 @@ const alovaInstance = createAlova({
   },
   {
     title: <Translate id="homepage.strategy.SSE">SSE</Translate>,
-    describe: <Translate id="homepage.strategy.SSE.desc">Request with Server-sent Events.</Translate>,
+    describe: (
+      <Translate id="homepage.strategy.SSE.desc">Request with Server-sent Events.</Translate>
+    ),
     features: [
       <Translate id="homepage.strategy.SSE.feature1">
-        Automatically transform data via global responded and function transformData of method instance.
+        Automatically transform data via global responded and function transformData of method
+        instance.
       </Translate>,
       <Translate id="homepage.strategy.SSE.feature2">All control of EventSource.</Translate>
     ],

@@ -15,7 +15,9 @@ const EmbedCodesandbox = ({ src }) => (
       allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
       sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
     <Link to={src}>
-      <Translate id="example.open in new tab">Encounter troubles? Click to open this in new page.</Translate>
+      <Translate id="example.open in new tab">
+        Encounter troubles? Click to open this in new page.
+      </Translate>
     </Link>
   </div>
 );

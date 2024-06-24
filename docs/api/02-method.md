@@ -1,6 +1,5 @@
 ---
 title: method instance
-sidebar_position: 20
 ---
 
 A method instance corresponds to a request information description, which has the URL, request headers, request parameters of a request, as well as request behavior parameters such as response data processing and cache data processing. Through method instances, you can feel a unified usage experience in any js environment, and it can run normally with very few changes. In addition, method instances put request parameters and request behavior parameters together, making it easier for APIs management instead of spreading it across multiple code files.
@@ -52,7 +51,7 @@ interface MethodConstructor {
 1. `type`: request type
 2. `context`: alova instance
 3. `url`: request url
-4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/api/alova#alovaget)
+4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/next/api/alova#alovaget)
 5. `data`: request body data
 
 - **Example**
@@ -97,7 +96,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-Obtain the requested method instance snapshot using the matching method of [method instance matcher](/tutorial/advanced/method-matcher) and return the matching result.
+Obtain the requested method instance snapshot using the matching method of [method instance matcher](/next/tutorial/client/in-depth/method-matcher) and return the matching result.
 
 - **type**
 
@@ -110,7 +109,10 @@ type MethodFilter =
       filter?: MethodFilterHandler;
       alova?: Alova;
     };
-function matchSnapshotMethod(matcher: MethodFilter, matchAll?: boolean): Method[] | Method | undefined;
+function matchSnapshotMethod(
+  matcher: MethodFilter,
+  matchAll?: boolean
+): Method[] | Method | undefined;
 ```
 
 - **Parameters**
@@ -151,7 +153,7 @@ interface Method {
 
 ## method.baseURL
 
-The base path of the request, inherited from [alova instance](/api/alova).
+The base path of the request, inherited from [alova instance](/next/api/alova).
 
 - **type**
 
@@ -223,7 +225,7 @@ interface Method {
 
 ## method.meta
 
-The metadata of method is used to record request feature information, [View details](/tutorial/getting-started/method-metadata).
+The metadata of method is used to record request feature information, [View details](/next/tutorial/getting-started/basic/method-metadata).
 
 - **type**
 
@@ -235,7 +237,7 @@ interface Method {
 
 ## method.config
 
-Configuration information when creating a method through `alova.Get/alova.Post` and other methods, [View details](/api/alova#alovaget).
+Configuration information when creating a method through `alova.Get/alova.Post` and other methods, [View details](/next/api/alova#alovaget).
 
 - **type**
 
@@ -311,7 +313,10 @@ After `[v2.16.0]`, the method instance is a PromiseLike instance. You can direct
 
 ```ts
 interface Method {
-  then(onFulfilled?: (value: Response) => any, onRejected?: (reason: any) => any): Promise<Response>;
+  then(
+    onFulfilled?: (value: Response) => any,
+    onRejected?: (reason: any) => any
+  ): Promise<Response>;
 }
 ```
 

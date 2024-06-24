@@ -33,7 +33,10 @@ const extract = async targetPath => {
     let stats = fs.statSync(filesrc);
     if (stats.isFile()) {
       const docLink = buildLink(filesrc);
-      distFileContent += replaceTargetContent(fs.readFileSync(filesrc, { encoding: 'utf8' }), docLink);
+      distFileContent += replaceTargetContent(
+        fs.readFileSync(filesrc, { encoding: 'utf8' }),
+        docLink
+      );
       distFileContent += '\n\n\n';
     } else {
       distFileContent += await extract(filesrc);

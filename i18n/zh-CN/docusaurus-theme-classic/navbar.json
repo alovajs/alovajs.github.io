@@ -15,6 +15,30 @@
     "message": "社区贡献",
     "description": "Navbar item with label Contributing"
   },
+  "item.label.About": {
+    "message": "关于",
+    "description": "Navbar item with label About"
+  },
+  "item.label.Getting Started": {
+    "message": "开始",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Request Adapter": {
+    "message": "请求适配器",
+    "description": "Navbar item with label Request Adapter"
+  },
+  "item.label.Storage Adapter": {
+    "message": "存储适配器",
+    "description": "Navbar item with label Storage Adapter"
+  },
+  "item.label.UI Frameworks": {
+    "message": "框架支持",
+    "description": "Navbar item with label UI Frameworks"
+  },
+  "item.label.Error Reference": {
+    "message": "错误码对照",
+    "description": "Navbar item with label Error Reference"
+  },
   "item.label.Contributing Guidelines": {
     "message": "贡献指南",
     "description": "Navbar item with label Contributing Guidelines"
@@ -38,5 +62,17 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Request Scene Model": {
+    "message": "请求场景模型",
+    "description": "Navbar item with label Request Scene Model"
+  },
+  "item.label.Comparison": {
+    "message": "请求库对比",
+    "description": "Navbar item with label Comparison"
+  },
+  "item.label.Q&A": {
+    "message": "提问&回答",
+    "description": "Navbar item with label Q&A"
   }
 }

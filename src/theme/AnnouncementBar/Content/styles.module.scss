@@ -1,0 +1,32 @@
+.content {
+  font-size: 85%;
+  text-align: center;
+  padding: 5px 0;
+  background: url(/static/img/announcement_bg.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.announce {
+  &Title {
+    font-size: 1.1rem;
+  }
+  &Button {
+    border: solid 1px #fff;
+    border-radius: 10rem;
+    padding: 0 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba($color: #000000, $alpha: 0.3);
+
+    &:hover {
+      color: var(--ifm-color-primary);
+      border-color: var(--ifm-color-primary);
+      text-decoration: none;
+    }
+  }
+}
+
+.content a {
+  color: inherit;
+}

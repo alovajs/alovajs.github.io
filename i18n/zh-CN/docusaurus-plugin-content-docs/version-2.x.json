@@ -1,0 +1,70 @@
+{
+  "version.label": {
+    "message": "2.x",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorial.category.Overview": {
+    "message": "概览",
+    "description": "The label for category Overview in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Examples": {
+    "message": "示例",
+    "description": "The label for category Examples in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Examples.link.generated-index.description": {
+    "message": "这里有丰富的示例，来展示alova在不同请求场景下的表现。",
+    "description": "The generated-index page description for category Examples in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Getting Started": {
+    "message": "开始",
+    "description": "The label for category Get Started in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Response Cache": {
+    "message": "响应缓存",
+    "description": "The label for category Learn in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Combine Framework": {
+    "message": "结合框架",
+    "description": "The label for category Combine Framework in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Strategy": {
+    "message": "请求策略",
+    "description": "The label for category Strategy in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Sensorless data interaction": {
+    "message": "无感数据交互",
+    "description": "The label for category Sensorless data interaction in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Basics completed": {
+    "message": "🎉你已完成基础",
+    "description": "The label for category Basics completed in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Advanced": {
+    "message": "进阶",
+    "description": "The label for category Advanced in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Custom": {
+    "message": "自定义",
+    "description": "The label for category custom in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Request adapter": {
+    "message": "请求适配器",
+    "description": "The label for category Request adapter in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.extend hooks": {
+    "message": "扩展hooks",
+    "description": "The label for category extend hooks in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Best practice": {
+    "message": "最佳实践",
+    "description": "The label for category best practice in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Framework": {
+    "message": "UI框架",
+    "description": "The label for category Framework in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.Others": {
+    "message": "其他",
+    "description": "The label for category Others in sidebar tutorial"
+  }
+}
