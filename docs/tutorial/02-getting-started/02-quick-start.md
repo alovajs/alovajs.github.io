@@ -9,6 +9,12 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
 
+:::warning beta reminder
+
+alova@3.0 is currently in the beta stage, and some functions may be changed. If you find a bug, please let us know in [Github issues](https://github.com/alovajs/alova/issues/new/choose), and we will solve it as soon as possible.
+
+:::
+
 :::tip Example Tips
 
 If you haven't learned about alova yet, it is recommended that you read [introduce alova](/next/tutorial/getting-started/introduce) first.
@@ -21,28 +27,28 @@ If you haven't learned about alova yet, it is recommended that you read [introdu
 <TabItem value="1" label="npm">
 
 ```bash
-npm install alova --save
+npm install alova@beta --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add alova
+yarn add alova@beta
 ```
 
 </TabItem>
 <TabItem value="3" label="pnpm">
 
 ```bash
-pnpm add alova
+pnpm add alova@beta
 ```
 
 </TabItem>
 <TabItem value="4" label="bun">
 
 ```bash
-bun add alova
+bun add alova@beta
 ```
 
 </TabItem>

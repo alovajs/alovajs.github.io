@@ -15,7 +15,7 @@ Only supports Alova 3.0 and above.
 ## Install
 
 ```bash
-npm install @alova/psc --save
+npm install @alova/psc@beta --save
 ```
 
 ## Use in Node.js

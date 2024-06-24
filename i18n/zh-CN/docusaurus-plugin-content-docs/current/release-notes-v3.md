@@ -1,10 +1,10 @@
 ---
-title: 'alova v3.0 Release Notes'
+title: alova v3.0 发布日志
 ---
 
 :::warning beta 提醒
 
-alova@3.0 的发布日志，目前处于 beta 阶段，后续可能有所改动，请谨慎使用。
+alova@3.0 目前处于 beta 阶段，小部分功能可能会有所改动，如果发现 bug 请在[Github issues](https://github.com/alovajs/alova/issues/new/choose)中告诉我们，我们会在第一时间解决。
 
 :::
 

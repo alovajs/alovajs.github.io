@@ -1,10 +1,10 @@
 ---
-title: 'alova v3.0 Release Notes'
+title: alova v3.0 Release Notes
 ---
 
 :::warning beta reminder
 
-The release log of alova@3.0 is currently in the beta stage and may be changed later. Please use it with caution.
+alova@3.0 is currently in the beta stage, and some functions may be changed. If you find a bug, please let us know in [Github issues](https://github.com/alovajs/alova/issues/new/choose), and we will solve it as soon as possible.
 
 :::
 

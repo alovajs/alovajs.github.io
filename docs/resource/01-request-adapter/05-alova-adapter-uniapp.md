@@ -17,14 +17,14 @@ This plugin only supports vue3 version of uniapp application.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-uniapp --save
+npm install @alova/adapter-uniapp@beta --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-uniapp
+yarn add @alova/adapter-uniapp@beta
 ```
 
 </TabItem>

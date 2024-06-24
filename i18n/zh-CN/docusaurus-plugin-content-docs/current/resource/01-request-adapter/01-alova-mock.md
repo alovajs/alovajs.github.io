@@ -20,14 +20,14 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/mock --save
+npm install @alova/mock@beta --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/mock
+yarn add @alova/mock@beta
 ```
 
 </TabItem>

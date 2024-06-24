@@ -21,14 +21,14 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install alova @alova/vue-options --save
+npm install alova @alova/vue-options@beta --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add alova @alova/vue-options
+yarn add alova @alova/vue-options@beta
 ```
 
 </TabItem>
