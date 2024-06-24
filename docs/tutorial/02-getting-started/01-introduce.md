@@ -16,9 +16,13 @@ It can simplify API consumption from 7 steps to 1 step. You only need to choose 
 
 ## How to do it?
 
+### Core functions
+
+alova provides basic request capabilities similar to axios. You can use it with any request library such as axios and fetch to get out-of-the-box features such as response caching and request sharing.
+
 ### Request strategy
 
-In actual projects, front-end requests always need to consider when to make requests, when not to make requests, how to process response data, etc. according to different scenarios to meet the performance and performance improvement of the project. This will lead to an increase in the developer's time cost and code maintenance cost. In alova, a complete set of solutions for complex request scenarios is provided, which we call **request strategy**. Only one line of code can quickly implement various complex request logics, which can not only help you improve development efficiency, but also help you improve the running efficiency of the App and reduce the pressure on the server.
+Based on the core functions of alova, it also provides a complete solution for complex request scenarios, which we call **request strategy**. With only one line of code, you can quickly implement various complex request logics, which can not only help you improve development efficiency, but also help you improve the running efficiency of the App and reduce the pressure on the server.
 
 For example, `useRequest` can automatically manage the request status, **`loading/error/data` is responsive data**, which can be directly bound in the view in UI frameworks such as react, vue, and svelte, and these responsive data will be automatically maintained according to the request status.
 
