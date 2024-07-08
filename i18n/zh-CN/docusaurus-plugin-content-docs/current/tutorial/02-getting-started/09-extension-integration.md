@@ -12,6 +12,12 @@ title: 编辑器扩展集成
 
 > 自动生成支持 swagger-v2 和 openapi-v3 规范。
 
+以下是一个扩展演示视频
+
+import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
+
+<video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
+
 ## 配置
 
 使用扩展时，你需要指定从 openapi 文件的输入源和输出目录等，你可以在项目根目录下创建配置文件，它支持以下格式：
@@ -216,3 +222,19 @@ export const $$userConfigMap = withConfigType({
 ```
 
 user 为 tag，profile 为 operationId，具体你可以打开`${output}/apiDefinitions.[js/ts]`中查看所有的 api 接口路径。
+
+## 旧项目迁移
+
+如果你希望在已经使用了 alova 的项目中集成 vscode 扩展，你需要按以下步骤进行：
+
+1. 先根据 openapi 规范文件生成代码。
+
+2. 将`${output}/index.[js/ts]`中的 alova 实例用原 alova 实例代码替换。
+
+3. 在项目中已经定义好的 api 调用函数中，修改 alova 实例的引入路径为`${output}/index.[js/ts]`。
+
+这样，你可以在不改变原始代码的情况下集成自动生成的代码。
+
+## 注意事项
+
+1. 在 ts 项目中，如果发现 vscode 无法正确智能提示，请在`tsconfig.json`中设置`"strictNullChecks": true`。
