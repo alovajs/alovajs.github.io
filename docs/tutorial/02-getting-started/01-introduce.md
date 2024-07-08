@@ -8,7 +8,7 @@ import SupportList from '@site/src/components/SupportList';
 
 ## What is alova?
 
-Alova is an creative next-generation request tool that takes front-end and back-end collaboration and API consumption as its starting point, simplifies API consumption from 7 steps to only 1, saving you most of the work in requesting and making network requests very simple. Let's see how Alova can help you simplify your work.
+Alova is an creative next-generation request tool that helps you maximize API usage efficiency and save brainpower. Integrating the server-side APIs into the front-end project is simplified to only one step.
 
 ![](/img/overview_flow_en.png)
 
@@ -19,6 +19,10 @@ It can simplify API consumption from 7 steps to 1 step. You only need to choose 
 ### Core functions
 
 alova provides basic request capabilities similar to axios. You can use it with any request library such as axios and fetch to get out-of-the-box features such as response caching and request sharing.
+
+```js
+const response = await alova.Get('/api/user');
+```
 
 ### Request strategy
 
@@ -40,13 +44,13 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 );
 ```
 
-alova provides 10+ request strategy modules based on the [RSM](/about/RSM) specification, which are implemented in the form of useHook.
+alova provides 15+ request strategy modules based on the [RSM](/about/RSM) specification, which are implemented in the form of useHook.
 
 ### Alova editor extension
 
 Using the alova extension in vscode can help you automatically generate request codes with complete API document annotations and response types. Whether it is a ts project or a js project, you can get complete interface queries, interface details, and smart prompts for response data types.
 
-This extension also optimizes the API consumption process and gives you a different API usage experience. In the past, you needed to query the API document first and constantly switch between the API document and the editor to write request codes. With the alova plug-in, you no longer need to leave the editor and can directly use the API in the editor while checking.
+This extension also optimizes the API usage process, allowing you to experience a different API integration experience. In the past, you needed to query the API documentation first, and constantly switch between the API documentation and the editor to write request code. After using the alova plug-in, you no longer need to leave the editor and can directly use the API in the editor while checking.
 
 > For a detailed introduction to the alova plug-in, please refer to [Integrated Editor Extension](/next/tutorial/getting-started/extension-integration).
 

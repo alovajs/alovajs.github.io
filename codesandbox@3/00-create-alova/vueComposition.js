@@ -1,9 +1,9 @@
 import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import VueHook from 'alova/vue';
 export const alovaInstance = createAlova({
   baseURL: 'https://jsonplaceholder.typicode.com',
   statesHook: VueHook,
-  requestAdapter: GlobalFetch(),
+  requestAdapter: adapterFetch(),
   responded: response => response.json()
 });

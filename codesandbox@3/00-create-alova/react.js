@@ -1,9 +1,9 @@
 import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import ReactHook from 'alova/react';
 export const alovaInstance = createAlova({
   baseURL: 'https://jsonplaceholder.typicode.com',
   statesHook: ReactHook,
-  requestAdapter: GlobalFetch(),
+  requestAdapter: adapterFetch(),
   responded: response => response.json()
 });
