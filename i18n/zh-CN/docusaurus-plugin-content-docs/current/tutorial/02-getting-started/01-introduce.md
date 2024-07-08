@@ -8,7 +8,7 @@ import SupportList from '@site/src/components/SupportList';
 
 ## alova 是什么？
 
-alova 是一个创新的下一代请求工具，从前后端协作和 API 消费作为出发点，将 API 的消费从 7 步简化为只有 1 步，帮你在请求方面省去大部分的工作，让网络请求变得非常简单。我们来看看 alova 是如何帮你的简化工作的。
+alova 是一个创新的下一代请求工具，帮你极致地提升 API 使用效率，节约大脑。将服务端接口集成到前端项目简化为只有 1 步。
 
 ![](/img/overview_flow_cn.png)
 
@@ -16,7 +16,11 @@ alova 是一个创新的下一代请求工具，从前后端协作和 API 消费
 
 ### 核心功能
 
-alova 提供了基础的，与 axios 相似的基础请求能力，你可以配合 axios、fetch 等任何请求库使用，获得响应缓存、请求共享等开箱即用的特性。
+alova 提供了基础的，与 axios 相似的基础请求能力，你可以配合 axios、fetch 等任何请求库使用，获得响应缓存、请求共享等开箱即用的特性，一个最简单的请求示例如下。
+
+```js
+const response = await alova.Get('/api/user');
+```
 
 ### 请求策略
 
@@ -38,13 +42,13 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 );
 ```
 
-alova 提供了 10+个基于[RSM](/about/RSM)规范的请求策略模块，它们以 useHook 的形式实现。
+alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它们以 useHook 或 function 的形式实现。
 
 ### alova 编辑器扩展
 
 在 vscode 中使用 alova 扩展可以帮你自动生成包含完整的 API 文档标注，响应类型的请求代码，无论是 ts 项目还是 js 项目，你都可以获得完整的接口查询、接口详细信息，以及响应数据类型的智能提示。
 
-这个扩展也优化了 API 的消费流程，感受不一样的 API 使用体验，在过去，你需要先查询 API 文档，并不断地在 API 文档与编辑器切换来编写请求代码，使用 alova 插件后，你可以不再需要离开编辑器，直接在编辑器中边查边使用 API。
+这个扩展也优化了 API 的使用流程，让你感受不一样的 API 集成体验，在过去，你需要先查询 API 文档，并不断地在 API 文档与编辑器切换来编写请求代码，使用 alova 插件后，你可以不再需要离开编辑器，直接在编辑器中边查边使用 API。
 
 > 关于 alova 插件的详细介绍，请参考 [集成编辑器扩展](/next/tutorial/getting-started/extension-integration)。
 

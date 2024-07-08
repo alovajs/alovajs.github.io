@@ -125,7 +125,7 @@ const EmbedSandpack = ({
   }
 
   const dependencies = {
-    alova: 'latest',
+    alova: 'beta',
     ...(targetEntry.deps || {})
   };
   const { colorMode } = useColorMode();

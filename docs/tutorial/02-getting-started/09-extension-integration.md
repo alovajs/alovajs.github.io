@@ -1,26 +1,28 @@
 ---
-title: Extension integration
+title: Editor extension integration
 ---
 
 Integrating Alova's editor extension can make it more powerful.
 
 1. Automatically generate request code and response data types, and experience smart prompts for interface data in js projects.
-2. Embed api documents in the code to experience the effect of checking and using APIs.
-3. Update api regularly and actively notify front-end development, no longer relying on server-side developers to notify.
+2. Embed API documents in the code to experience the effect of checking and using APIs.
+3. Update APIs regularly and actively notify front-end developers, no longer relying on server-side developers to notify.
 
-<!-- <a className="button button--primary">Install VS Code extension</a> -->
-
-:::info
-
-The extension will be released soon...
-
-:::
+<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">Install VS Code extension</a>
 
 > Automatically generate support for swagger-v2 and openapi-v3 specifications.
 
 ## Configuration
 
-When using the extension, you need to specify the input source and output directory from the openapi file, etc. Create `alova.config.js` in the project root directory. The specific configuration is as follows:
+When using the extension, you need to specify the input source and output directory from the openapi file, etc. You can create a configuration file in the project root directory, which supports the following formats:
+
+1. `alova.config.cjs`: a configuration file of the commonjs specification, using `module.exports` to export the configuration.
+
+2. `alova.config.js`: a configuration file of the ESModule specification, using `export default` to export the configuration.
+
+3. `alova.config.ts`: a configuration file in typescript format, using `export default` to export the configuration.
+
+The specific configuration parameters are as follows, taking commonjs as an example.
 
 ```js
 // alova.config.js
@@ -39,28 +41,31 @@ module.exports = {
       // input: 'http://192.168.5.123:8080'
 
       // (Optional) platform is a platform that supports openapi. Currently only swagger is supported. The default is empty
-      // When this parameter is specified, the input field only needs to specify the address of the document without specifying the openapi file
+      // When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
       platform: 'swagger',
 
-      // Output path of interface file and type file. Multiple generators cannot have the same address, otherwise the generated code will overwrite each other
+      // Output path of interface file and type file. Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
       output: 'src/api',
 
-      // (Optional) Specify the mediaType of the generated response data. Use this data type to generate the response ts format of the 200 status code. The default is application/json
+      // (Optional) Specify the mediaType of the generated response data. Use this data type to generate the ts format of the response with a 200 status code. The default is application/json.
       responseMediaType: 'application/json',
 
-      // (Optional) Specify the bodyMediaType of the generated request body data. Use this data type to generate the ts format of the request body. The default is application/json
+      // (Optional) Specify the bodyMediaType of the generated request body data. Use this data type to generate the ts format of the request body. The default is application/json.
       bodyMediaType: 'application/json',
+
+      // (Optional) Specify the generated api version. The default is auto. The version of the current project will be determined by the alova version installed in the current project. If the generation is incorrect, you can also customize the specified version.
+      version: 'auto',
 
       /**
        * (Optional) The type of generated code. The optional values ​​are auto/ts/typescript/module/commonjs. The default is auto. The type of the current project will be determined by certain rules. If the generation is incorrect, you can also customize the specified type:
        * ts/typescript: The same meaning, indicating the generation of ts type files
-       * module: Generate esModule specification files
-       * commonjs: Indicates the generation of commonjs specification files
+       * module: Generate esModule specification file
+       * commonjs: Generate commonjs specification file
        */
       type: 'auto',
 
       /**
-       * (Optional) Filter or convert the generated api interface function, return a new apiDescriptor to generate the api call function, if this function is not specified, the apiDescripor object is not converted
+       * (Optional) Filter or convert the generated api interface function, return a new apiDescriptor to generate the api call function, and do not convert the apiDescripor object when this function is not specified
        */
       handleApi: apiDescriptor => {
         // Returning a falsy value means filtering this api
@@ -88,43 +93,128 @@ module.exports = {
 
   /* You can also configure more detailed parameters
   autoUpdate: {
-    // Update when the editor is opened, false by default
-    launchEditor: true,
-    // Automatic update interval, in milliseconds
-    interval: 5 * 60 * 1000
+  // Update when the editor is opened, false by default
+  launchEditor: true,
+  // Automatic update interval, in milliseconds
+  interval: 5 * 60 * 1000
   }
   */
 };
 ```
 
-## Usage
+## Call API
 
-The generated API code is accessed through the global `Apis` by default. You can enjoy the smart prompts provided by the editor to quickly preview the API information, allowing you to use the API while checking.
+The generated API code is accessed by the global `Apis` variable by default. You can enjoy the smart prompts provided by the editor to quickly preview the API information, allowing you to check and use the API at the same time.
 
-API parameters will be specified through parameters such as `params/pathParams/data/headers`, and you can also specify the config parameters of the method instance.
+![Display detailed information of the interface](/img/vscode-api-doc.png)
+
+Where `pet` is the tag of the API, and the API name corresponds to `operationId`.
+
+![](/img/vscode-namespace-operationid.png)
+
+When using the interface, you can specify the request parameters through `params/pathParams/data/headers`, which will intelligently prompt the parameters required by this interface. In addition, you can also specify other config parameters of the method instance.
 
 ```js
-Apis.user.changeProfile({
-  // (optional)query parameters
-  params: {
-    id: 12
-  },
-  // (optional)path parameters
-  pathParams: {
-    id2: 20
-  },
-  // (optional)body parameters
-  data: {
-    name: 'alova',
-    age: 18
-  },
-  // (optional)header parameters
-  headers: {
-    'Content-Type': 'application/json'
-  },
+useRequest(() =>
+  Apis.user.changeProfile({
+    // (optional) query parameters
+    params: {
+      id: 12
+    },
+    // (optional) path parameters
+    pathParams: {
+      id2: 20
+    },
+    // (optional) body parameters
+    data: {
+      name: 'alova',
+      age: 18
+    },
+    // (optional) header parameters
+    headers: {
+      'Content-Type': 'application/json'
+    },
 
-  // config configuration items supported by other methods
-  cacheFor: 100 * 1000,
-  transform: response => response.detail
+    // config items supported by other methods
+    cacheFor: 100 * 1000,
+    transform: response => response.detail
+  })
+);
+```
+
+## Quick access to API
+
+Usually, we cannot know the tag and operationId of each API. In order to quickly access different APIs, you can quickly locate the corresponding API through the description of the target API or the url keyword. API, trigger quick positioning through the trigger word `a->`.
+
+### Search by url
+
+![](/img/vscode-query-with-url.png)
+
+### Search by description
+
+![](/img/vscode-query-with-description.png)
+
+## Set alova parameters
+
+Usually we will set global parameters in `createAlova`. In the automatically generated code, you can go to `${output}/index.[js/ts]` to set it. `${output}` is the `output` directory you specified in the configuration file. When regenerating the code, this file will not be overwritten.
+
+The contents of the `index` file are as follows:
+
+```js
+import { createAlova } from 'alova';
+import GlobalFetch from 'alova/GlobalFetch';
+import vueHook from 'alova/vue';
+import { createApis, withConfigType } from './createApis';
+
+// The alova instance corresponding to the current api, you can modify the parameters here.
+export const alovaInstance = createAlova({
+  baseURL: 'server parameter in openapi file',
+  statesHook: vueHook,
+  requestAdapter: GlobalFetch(),
+  beforeRequest: method => {},
+  responded: res => {
+    return res.json();
+  }
+});
+
+// Reusable method parameter configuration
+export const $$userConfigMap = withConfigType({});
+
+/**
+ * @type {APIS}
+ */
+const Apis = createApis(alovaInstance, $$userConfigMap);
+globalThis.Apis = Apis;
+export default Apis;
+```
+
+You can write interceptors and replace request adapters as usual in `createAlova`.
+
+One thing to note is that since method instances are automatically generated, you cannot directly set method parameters such as `transform/cacheFor` when creating a method. To achieve the same effect, you can specify the corresponding parameters in `withConfigType({})`.
+
+The following is a comparison example.
+
+```js
+// Manually define the calling function
+export const useProfile = () =>
+  alovaInstance.Get('/user/profile', {
+    cacheFor: 100 * 1000,
+    transform(data) {
+      return data.detail;
+    }
+  });
+```
+
+```js
+// Set method parameters for automatically generated code
+export const $$userConfigMap = withConfigType({
+  'user.profile': {
+    cacheFor: 100 * 1000,
+    transform(data) {
+      return data.detail;
+    }
+  }
 });
 ```
+
+user is tag, profile is operationId, you can open `${output}/apiDefinitions.[js/ts]` to view all api interface paths.
