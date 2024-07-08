@@ -55,7 +55,7 @@ The adapter will use the default axios instance to make requests internally. If 
 The usage of request is exactly the same as that used in the web environment. Already fully compatible with **axios**, you can specify [all configuration items](https://axios-http.com/docs/req_config) supported by `axios` in _config_ of method instance creation.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <tempate>

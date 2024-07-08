@@ -32,7 +32,7 @@ The verification code sending hook saves you the trouble of developing the verif
 Demonstrates basic use of form hooks.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

@@ -29,7 +29,7 @@ For example, after updating the menu data in a component, you can re-trigger the
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm

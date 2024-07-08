@@ -95,12 +95,12 @@ flowchart LR
 3. 整合多个下游服务器的数据合并和处理，多个串行请求可能导致更长的响应时间，也可能因复杂的数据转换消耗性能，可将转换后的数据进行缓存。
 4. API 速率限制和计费，天气预报服务 API 每小时更新一次天气信息，地理位置数据 API 等。
 
-以下是一个使用使用进程间内存共享适配器加 lru cache 作为一级缓存，redis 作为二级缓存的示例：
+默认情况下，alova 的一级缓存是简单的 object 以 key-value 的方式缓存，没有二级缓存，你可以自行为它配置，以下是一个使用使用进程间内存共享适配器加 lru cache 作为一级缓存，redis 作为二级缓存的示例：
 
 ```js
 const { createPSCAdapter, NodeSyncAdapter } = require('@alova/psc');
 const { LRUCache } = require('lru-cache');
-const { createRedisAdapter } = require('@alova/redis');
+const RedisStorageAdapter = require('./adapter-redis');
 
 function lRUCache(options = {}) {
   const cache = new LRUCache(options);
@@ -136,7 +136,7 @@ const alovaInstance = createAlova({
   ),
 
   // redis缓存适配器
-  l2Cache: createRedisAdapter({
+  l2Cache: new RedisStorageAdapter({
     host: 'localhost',
     port: 6379,
     username: 'default',
@@ -146,4 +146,6 @@ const alovaInstance = createAlova({
 });
 ```
 
-> 深入了解响应缓存，请移步[缓存详解](/next/tutorial/cache/mode)。
+上文提到的 redis 适配器的源码参考[最佳实践 - l2 缓存适配器](/next/tutorial/project/best-practice/l2-storage)，进程间共享内存的适配器参考[这里](/next/resource/storage-adapter/psc)
+
+> 了解更多响应缓存请参考[缓存详解](/next/tutorial/cache/mode)。

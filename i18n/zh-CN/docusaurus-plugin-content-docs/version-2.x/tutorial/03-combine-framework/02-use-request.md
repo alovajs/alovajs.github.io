@@ -25,7 +25,7 @@ import useRequestVueOptions from '!!raw-loader!@site/codesandbox/01-getting-star
 useRequest 表示一次请求的发送，调用时默认将发送一次请求。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useRequestVue} editorHeight={400} />
 
@@ -52,7 +52,7 @@ useRequest 表示一次请求的发送，调用时默认将发送一次请求。
 你也可以修改`useRequest`创建的响应式数据。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript
 const { data, loading, error, update } = useRequest(todoListGetter);

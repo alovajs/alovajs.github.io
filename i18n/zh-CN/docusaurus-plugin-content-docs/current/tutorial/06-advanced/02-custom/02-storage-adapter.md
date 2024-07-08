@@ -5,9 +5,12 @@ title: 存储适配器
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-alova 中涉及多个需要数据持久化的功能，如持久化缓存、静默提交和离线提交。**在默认情况下，alova 会使用`localStorage`来存储持久化数据**，但考虑到非浏览器环境下，因此也支持了自定义。
+alova 提供了完善的多级缓存功能，默认情况下使用以下缓存
 
-自定义存储适配器同样非常简单，你只需要指定保存数据、获取数据，以及移除数据的函数即可，大致是这样的。
+- L1 缓存：客户端和服务端都以 object 的 key-value 形式保存
+- L2 缓存：客户端使用`localStorage`来存储，服务端不提供 L2 适配器
+
+在特定情况，你可能需要自定义不同的存储适配器，自定义存储适配器也非常简单，你只需要指定保存数据、获取数据，以及移除数据的函数。
 
 <Tabs>
 <TabItem value="1" label="object">
@@ -34,7 +37,8 @@ const customStorageAdapter = {
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  storageAdapter: customStorageAdapter
+  l1Cache: customStorageAdapter, // l1缓存
+  l2Cache: customStorageAdapter // l2缓存
 });
 ```
 
@@ -65,12 +69,15 @@ class CustomStorageAdapter implements AlovaGlobalCacheAdapter {
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  storageAdapter: new CustomStorageAdapter()
+  l1Cache: new CustomStorageAdapter(), // l1缓存
+  l2Cache: new CustomStorageAdapter() // l2缓存
 });
 ```
 
 </TabItem>
 </Tabs>
+
+> 了解更多响应缓存相关内容请参考[缓存详解](/next/tutorial/cache/mode)。
 
 ## SessionStorage 存储适配器示例
 
@@ -85,6 +92,9 @@ const sessionStorageAdapter = {
   },
   remove(key) {
     sessionStorage.removeItem(key);
+  },
+  clear() {
+    sessionStorage.clear();
   }
 };
 ```

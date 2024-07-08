@@ -10,7 +10,7 @@ The cache also supports updating and querying, As we mentioned in [cache mode](/
 ## Update static cache data
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

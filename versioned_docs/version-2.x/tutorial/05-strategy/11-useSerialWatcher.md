@@ -28,7 +28,7 @@ Status update triggers a set of serial requests, which is more concise and easy 
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm

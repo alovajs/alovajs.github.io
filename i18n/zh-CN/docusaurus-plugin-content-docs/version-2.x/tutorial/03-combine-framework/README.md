@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 在使用它们前，我们需要在 alova 实例上设置对应的 statesHook，它必须和项目使用的 UI 框架对应，这非常重要，它将告诉 alova 应该创建对应 UI 框架的响应式状态，目前支持以下框架：
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```js
 import { createAlova } from 'alova';

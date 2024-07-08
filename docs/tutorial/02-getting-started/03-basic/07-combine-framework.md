@@ -21,7 +21,7 @@ Before using the request strategy, we need to set the corresponding statesHook o
 
 <Tabs groupId="framework">
 
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```js
 import { createAlova } from 'alova';
@@ -76,7 +76,7 @@ export const alovaInstance = createAlova({
 useRequest means sending a request. By default, a request will be sent when called.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useRequestVue} editorHeight={400} />
 

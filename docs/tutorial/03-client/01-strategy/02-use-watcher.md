@@ -22,7 +22,7 @@ In some scenarios where you need to re-request as data changes, such as paging, 
 
 Next, let's take the search for todo items as an example and try to change the options in the selection box to see how the todo list changes.
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useWatcherSearchVue} editorHeight={800} />
 

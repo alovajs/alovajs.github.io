@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm

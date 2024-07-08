@@ -20,7 +20,7 @@ import useRequestSvelte from '!!raw-loader!@site/codesandbox@3/01-getting-starte
 在使用请求策略前，我们需要在 alova 实例上设置对应的 statesHook，它必须和项目使用的 UI 框架对应，这非常重要，它将告诉 alova 应该创建对应 UI 框架的响应式状态，目前支持以下框架：
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```js
 import { createAlova } from 'alova';
@@ -74,7 +74,7 @@ export const alovaInstance = createAlova({
 useRequest 表示一次请求的发送，调用时默认将发送一次请求。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useRequestVue} editorHeight={400} />
 

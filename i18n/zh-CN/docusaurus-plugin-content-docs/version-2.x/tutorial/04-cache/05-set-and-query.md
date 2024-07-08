@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 ## 更新静态缓存数据
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

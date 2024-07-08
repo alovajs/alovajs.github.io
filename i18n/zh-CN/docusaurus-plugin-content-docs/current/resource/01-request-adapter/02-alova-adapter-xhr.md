@@ -46,7 +46,7 @@ const alovaInst = createAlova({
 XMLHttpRequest 适配器提供了基本的配置参数，包含`responseType`、`withCredentials`、`mimeType`、`auth`，具体如下：
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <tempate>

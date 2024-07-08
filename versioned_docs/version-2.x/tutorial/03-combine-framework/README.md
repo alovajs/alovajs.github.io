@@ -16,7 +16,7 @@ In [RSM](/tutorial/others/RSM), the request timing describes when the request sh
 Before using them, we need to set the corresponding statesHook on the alova instance. It must correspond to the UI framework used by the project. This is very important. It will tell alova that it should create responsive states corresponding to the UI framework. Currently, the following frameworks are supported:
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```js
 import { createAlova } from 'alova';

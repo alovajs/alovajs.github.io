@@ -22,7 +22,7 @@ use hook
 
 接下来我们以搜索 todo 项为例，尝试改变选择框中的选项，看看 todo 列表是如何变化的。
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useWatcherSearchVue} editorHeight={800} />
 
