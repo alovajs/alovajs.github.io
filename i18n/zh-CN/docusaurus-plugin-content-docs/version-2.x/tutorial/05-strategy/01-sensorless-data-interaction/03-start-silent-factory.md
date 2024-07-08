@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 我们将所有场景化的请求策略放在了叫做`@alova/scene-*`的 js 包中，使用前你需要先安装它。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm
@@ -47,7 +47,7 @@ yarn add @alova/scene-svelte
 静默队列默认不启动，需要我们指定启动参数进行初始化，一般情况下，在入口文件中调用`bootSilentFactory`来初始化静默工厂，它将通过指定的配置项来读取还未执行的请求到对应的静默队列中并启动这些队列。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript
 import { bootSilentFactory } from '@alova/scene-vue';

@@ -38,7 +38,7 @@ A hook designed for paging scenarios, which can help you automatically manage pa
 ### Render list data
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>
@@ -372,7 +372,7 @@ In many cases, the list needs to be filtered by conditions. At this time, the re
 For example, filter by student name, student grade.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

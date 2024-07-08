@@ -23,7 +23,7 @@ A use hook that can automatically retry a request failure, you can use it for im
 ## Usage
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```typescript
 import { useSSE } from 'alova/client';

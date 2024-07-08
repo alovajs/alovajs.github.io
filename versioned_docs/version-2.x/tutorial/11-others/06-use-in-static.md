@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You can also use alova via importing from CDN.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <!DOCTYPE html>

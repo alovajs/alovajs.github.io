@@ -53,7 +53,7 @@ const alovaInst = createAlova({
 请求的使用方法与 web 环境中使用完全一致。已经完全兼容**axios**，你可以在创建 method 实例的*config*中指定`axios`支持的[全部配置项](https://axios-http.com/docs/req_config)
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <tempate>

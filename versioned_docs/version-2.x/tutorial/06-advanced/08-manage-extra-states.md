@@ -12,7 +12,7 @@ In the previous [Cross Page/Module Update Response States](/tutorial/advanced/up
 Additional states can be managed via `managedStates` when called by the use hook, and automatically assigned the state name to update it when `updateState` is called in other modules/pages.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript title="A.vue"
 const todoList = page =>

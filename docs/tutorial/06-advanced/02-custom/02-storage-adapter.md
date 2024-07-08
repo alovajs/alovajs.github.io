@@ -3,11 +3,16 @@ title: Storage Adapter
 ---
 
 import Tabs from '@theme/Tabs';
+
 import TabItem from '@theme/TabItem';
 
-alova involves multiple features that require data persistence, such as persistent caching, silent submission, and offline submission. **By default, alova uses `localStorage` to store persistent data**, but considering the non-browser environment, it also supports customization.
+alova provides a comprehensive multi-level cache function, and the following caches are used by default
 
-Customizing the storage adapter is also very simple. You only need to specify the functions for saving data, getting data, and removing data, which is roughly like this.
+- L1 cache: both the client and the server save in the form of object key-value
+
+- L2 cache: the client uses `localStorage` to store, and the server does not provide an L2 adapter
+
+In certain situations, you may need to customize different storage adapters. Customizing storage adapters is also very simple. You only need to specify functions for saving data, getting data, and removing data.
 
 <Tabs>
 <TabItem value="1" label="object">
@@ -34,7 +39,8 @@ Use a custom adapter.
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  storageAdapter: customStorageAdapter
+  l1Cache: customStorageAdapter, // l1 cache
+  l2Cache: customStorageAdapter // l2 cache
 });
 ```
 
@@ -65,12 +71,15 @@ Use a custom adapter.
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  storageAdapter: new CustomStorageAdapter()
+  l1Cache: new CustomStorageAdapter(), // l1 cache
+  l2Cache: new CustomStorageAdapter() // l2 cache
 });
 ```
 
 </TabItem>
 </Tabs>
+
+> For more information about response caching, please refer to [Detailed of Cache](/next/tutorial/cache/mode).
 
 ## SessionStorage Storage Adapter Example
 
@@ -85,6 +94,9 @@ const sessionStorageAdapter = {
   },
   remove(key) {
     sessionStorage.removeItem(key);
+  },
+  clear() {
+    sessionStorage.clear();
   }
 };
 ```

@@ -25,7 +25,7 @@ Before using useRequest, make sure you have [set statesHook](/tutorial/combine-f
 useRequest represents the sending of a request. When called, a request will be sent by default.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useRequestVue} editorHeight={400} />
 
@@ -52,7 +52,7 @@ useRequest represents the sending of a request. When called, a request will be s
 You can also modify the reactive data created by `useRequest`.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript
 const { data, loading, error, update } = useRequest(todoListGetter);

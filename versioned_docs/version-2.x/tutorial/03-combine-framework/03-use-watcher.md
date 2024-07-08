@@ -18,7 +18,7 @@ In some scenarios that require re-requesting as data changes, such as paging, da
 Next we take searching for todo items as an example. Try to change options in the search box and see how the todo list changes.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 <EmbedSandpack template="vue" mainFile={useWatcherSearchVue} editorHeight={800} />
 
@@ -45,7 +45,7 @@ Next we take searching for todo items as an example. Try to change options in th
 Taking the todo list pagination request as an example, you can do this.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

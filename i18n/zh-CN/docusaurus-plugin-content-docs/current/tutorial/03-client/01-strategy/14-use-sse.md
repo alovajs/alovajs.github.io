@@ -23,7 +23,7 @@ use hook
 ## 用法
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```typescript
 import { useSSE } from 'alova/client';

@@ -12,7 +12,7 @@ useHook provides `downloading` and `uploading` for displaying progress informati
 For performance reasons, there is no progress information in `downloading` by default. You need to set `enableDownload` of the method instance to `true`, which will continuously update the `downloading` status during the download process.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

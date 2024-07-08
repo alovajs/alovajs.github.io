@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 The silent queue is not started by default, and we need to specify the startup parameters for initialization. In general, call `bootSilentFactory` in the entry file to initialize the silent factory, which will read unexecuted requests to the corresponding silent through the specified configuration items queues and start those queues.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript
 import { bootSilentFactory } from 'alova/client';

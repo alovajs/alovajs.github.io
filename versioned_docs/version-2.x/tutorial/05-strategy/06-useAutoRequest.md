@@ -24,7 +24,7 @@ Automatically fetch data through browser events or polling, allowing the interfa
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 #npm

@@ -33,7 +33,7 @@ A hook designed for form submission. Through this hook, you can easily implement
 Demonstrates basic use of form hooks.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

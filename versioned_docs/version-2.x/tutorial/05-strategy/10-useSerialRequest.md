@@ -28,7 +28,7 @@ This use hook is more concise and easy to use than [serial request in best pract
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm

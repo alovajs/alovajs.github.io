@@ -17,7 +17,7 @@ When you have the following needs:
 Let's implement a paging list to automatically preload the next page of data. Before preloading data, please make sure that the Method instance used has enabled caching.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

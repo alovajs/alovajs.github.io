@@ -12,7 +12,7 @@ useHook 提供了`downloading`和`uploading`用于直接在视图中展示进度
 为了性能考虑，默认情况下`downloading`中没有进度信息，需要将 method 实例的`enableDownload`设置为`true`，就会在下载过程中持续更新`downloading`状态。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

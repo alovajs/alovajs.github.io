@@ -84,7 +84,7 @@ const alovaInst = createAlova({
 
 </TabItem>
 
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript
 import { createAlova } from 'alova';
@@ -124,7 +124,7 @@ const App = () => {
 ```
 
 </TabItem>
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <tempate>
@@ -201,7 +201,7 @@ const App = () => {
 ```
 
 </TabItem>
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <tempate>
@@ -290,7 +290,7 @@ const App = () => {
 ```
 
 </TabItem>
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <tempate>

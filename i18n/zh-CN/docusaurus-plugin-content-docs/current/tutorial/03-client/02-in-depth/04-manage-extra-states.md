@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 可以在 useHooks 调用时通过`managedStates`管理额外的状态，并在其他模块/页面中调用`updateState`时，自动指定状态名称来更新它。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript title="A.vue"
 const todoList = page =>

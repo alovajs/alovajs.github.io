@@ -16,7 +16,7 @@ alova 提供的`useRequest`在正常情况只会发送一次请求，并获取�
 当你编辑完一个列表的某条数据时，不希望再次重新请求更新列表数据，而是手动更新列表数据，很多开发者可能会直接修改列表数据。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>
@@ -97,7 +97,7 @@ const App = () => {
 因此你可以调用 `updateState` 来更新状态化数据的同时，还会立即更新缓存。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

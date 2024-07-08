@@ -28,7 +28,7 @@ Token authentication interceptor provides unified management of token-based logi
 ## Install
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 #npm

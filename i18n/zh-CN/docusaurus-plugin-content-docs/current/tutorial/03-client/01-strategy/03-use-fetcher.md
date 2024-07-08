@@ -23,7 +23,7 @@ use hook
 我们来实现一个分页列表中，自动预加载下一页数据，在预加载数据前请确保使用的 Method 实例已开启了缓存。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

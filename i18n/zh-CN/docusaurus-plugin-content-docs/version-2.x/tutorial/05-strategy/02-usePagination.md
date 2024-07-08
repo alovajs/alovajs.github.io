@@ -36,7 +36,7 @@ use hook
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm
@@ -77,7 +77,7 @@ yarn add @alova/scene-svelte
 ### 展示列表数据
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>
@@ -402,7 +402,7 @@ const {
 例如通过学生姓名、学生年级进行筛选。
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```html
 <template>

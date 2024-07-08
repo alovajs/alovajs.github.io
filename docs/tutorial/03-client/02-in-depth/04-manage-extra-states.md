@@ -19,7 +19,7 @@ In the previous [Update responsive state across pages/modules](/next/tutorial/cl
 You can manage additional states through `managedStates` when using useHooks, and automatically specify the state name to update it when calling `updateState` in other modules/pages.
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```javascript title="A.vue"
 const todoList = page =>

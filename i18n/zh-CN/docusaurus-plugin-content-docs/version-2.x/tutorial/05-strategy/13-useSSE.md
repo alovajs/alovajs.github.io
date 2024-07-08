@@ -23,7 +23,7 @@ use hook
 ## 安装
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```bash
 # npm
@@ -62,7 +62,7 @@ yarn add @alova/scene-svelte
 ## 用法
 
 <Tabs groupId="framework">
-<TabItem value="1" label="vue composition">
+<TabItem value="1" label="vue">
 
 ```typescript
 import { useSSE } from '@alova/scene-vue';
