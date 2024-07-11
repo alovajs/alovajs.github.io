@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10753395",
+      "name": "stackblitz",
+      "font_class": "icon",
+      "unicode": "e6cd",
+      "unicode_decimal": 59085
+    },
+    {
+      "icon_id": "14401714",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "22273272",
+      "name": "square",
+      "font_class": "square",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
       "icon_id": "39505834",
       "name": "开始",
       "font_class": "kaishi",
