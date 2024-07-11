@@ -100,7 +100,7 @@ const config: Config = {
           ]
         },
         {
-          to: 'tutorial/example/init-page',
+          to: 'next/examples',
           position: 'left',
           label: 'Example'
         },

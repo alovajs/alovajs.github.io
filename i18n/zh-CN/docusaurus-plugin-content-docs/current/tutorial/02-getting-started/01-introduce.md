@@ -4,6 +4,7 @@ title: 介绍alova
 
 import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
+import Examples from '@site/src/components/Examples';
 import SupportList from '@site/src/components/SupportList';
 
 ## alova 是什么？
@@ -78,9 +79,11 @@ alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它�
 
 <SupportList showStatus></SupportList>
 
-## 在线试用
+## 示例
 
-你可以通过 Codesandbox [在线可编辑示例尝试 alovajs](/category/examples)直接在浏览器中运行项目，因此它与本地开发几乎无差别，同时无需在你的机器上安装任何东西。
+这里为你准备了丰富的示例，帮助你快速体验 alova 的各种功能。
+
+<Examples />
 
 ## 脚手架推荐
 
