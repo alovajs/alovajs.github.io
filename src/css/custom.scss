@@ -39,6 +39,8 @@
   --ifm-color-primary-rgb: 76, 109, 214;
 }
 
+@tailwind utilities;
+
 /* GitHub */
 .header-github-link:hover {
   &:hover {

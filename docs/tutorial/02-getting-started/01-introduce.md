@@ -3,6 +3,7 @@ title: Introduce
 ---
 
 import Link from '@docusaurus/Link';
+import Examples from '@site/src/components/Examples';
 import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
 
@@ -82,7 +83,7 @@ Not only that, Alova is very flexible, you can use it with different request too
 
 ## Online trial
 
-You can run the project directly in the browser via Codesandbox [online editable examples try alovajs](/category/examples), so it's almost indistinguishable from local development without having to install anything on your machine.
+<Examples />
 
 ## Join alova community
 
