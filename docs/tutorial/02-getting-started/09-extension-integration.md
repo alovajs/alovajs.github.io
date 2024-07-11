@@ -218,3 +218,19 @@ export const $$userConfigMap = withConfigType({
 ```
 
 user is tag, profile is operationId, you can open `${output}/apiDefinitions.[js/ts]` to view all api interface paths.
+
+## Old project migration
+
+If you want to integrate the vscode extension in a project that already uses alova, you need to follow the steps below:
+
+1. Generate code according to the openapi specification file first.
+
+2. Replace the alova instance in `${output}/index.[js/ts]` with the original alova instance code.
+
+3. In the api call function that has been defined in the project, change the import path of the alova instance to `${output}/index.[js/ts]`.
+
+In this way, you can integrate the automatically generated code without changing the original code.
+
+## Notes
+
+1. In a ts project, if you find that vscode cannot correctly prompt, please set `"strictNullChecks": true` in `tsconfig.json`.
