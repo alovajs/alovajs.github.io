@@ -26,6 +26,8 @@ import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
 2. `alova.config.js`：ESModule 规范的配置文件，使用`export default`导出配置。
 3. `alova.config.ts`：typescript 格式的配置文件，使用`export default`导出配置。
 
+> 目前在配置文件中不支持使用`import`或`require`导入其他模块。
+
 具体的配置参数如下，以 commonjs 为例。
 
 ```js
@@ -67,6 +69,11 @@ module.exports = {
        * commonjs：表示生成commonjs规范文件
        */
       type: 'auto',
+
+      /**
+       * 全局导出的api名称，可通过此名称全局范围访问自动生成的api，默认为`Apis`，配置了多个generator时为必填，且不可以重复
+       */
+      global: 'Apis',
 
       /**
        * （可选）过滤或转换生成的api接口函数，返回一个新的apiDescriptor来生成api调用函数，未指定此函数时则不转换apiDescripor对象
@@ -116,6 +123,12 @@ module.exports = {
 
 ![](/img/vscode-namespace-operationid.png)
 
+首先，你需要在项目的入口文件中引入自动生成目录下的`index.[js/ts]`。
+
+```js title="main.js"
+import './your-generating-api';
+```
+
 在使用接口时，可以通过`params/pathParams/data/headers`来指定请求参数，它将会智能提示此接口需要的参数。此外，你还可以指定 method 实例的其他 config 参数。
 
 ```js
@@ -148,7 +161,7 @@ useRequest(() =>
 
 ## 快速访问 API
 
-通常，我们不可能知道每个 API 的 tag 和 operationId，为了快速访问不同的 API，你可以通过目标 API 的描述或 url 关键词快速定位到对应的 API，通过触发词`a->`触发快速定位。
+通常，我们不可能知道每个 API 的 tag 和 operationId，为了快速访问不同的 API，你可以通过目标 API 的描述或 url 关键词快速定位到对应的 API，通过触发词 **`a->`** 触发快速定位。
 
 ### 通过 url 查找
 
@@ -157,6 +170,14 @@ useRequest(() =>
 ### 通过描述查找
 
 ![](/img/vscode-query-with-description.png)
+
+### 对照接口参数表指定参数
+
+默认情况下，通过 **`a->`** 快捷访问 API 函数时将会自动提供这个 API 必要的参数，当你调用 API 函数传参时，vscode 编辑器也会自动弹出 API 文档让你对照参数表填写参数。
+
+![](/img/vscode-api-call-doc.png)
+
+如果你不小心关闭了 API 的文档弹框，你可以将光标放在 API 函数上并通过快捷键`shift+ctrl+space`再次唤起它，mac 为`shift+command+space`。
 
 ## 设置 alova 参数
 
@@ -238,3 +259,4 @@ user 为 tag，profile 为 operationId，具体你可以打开`${output}/apiDefi
 ## 注意事项
 
 1. 在 ts 项目中，如果发现 vscode 无法正确智能提示，请在`tsconfig.json`中设置`"strictNullChecks": true`。
+2. 有时候 api 会提示为`any`类型，你可以按以下方式尝试解决：第一步，确认此 api 是否在入口文件中引入，第二步，重启 vscode
