@@ -12,15 +12,23 @@ Integrating Alova's editor extension can make it more powerful.
 
 > Automatically generate support for swagger-v2 and openapi-v3 specifications.
 
+The following is an extended demonstration video
+
+import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
+
+<video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
+
 ## Configuration
 
 When using the extension, you need to specify the input source and output directory from the openapi file, etc. You can create a configuration file in the project root directory, which supports the following formats:
 
-1. `alova.config.cjs`: a configuration file of the commonjs specification, using `module.exports` to export the configuration.
+1. `alova.config.cjs`: a commonjs-standard configuration file, using `module.exports` to export the configuration.
 
-2. `alova.config.js`: a configuration file of the ESModule specification, using `export default` to export the configuration.
+2. `alova.config.js`: an ESModule-standard configuration file, using `export default` to export the configuration.
 
 3. `alova.config.ts`: a configuration file in typescript format, using `export default` to export the configuration.
+
+> Currently, using `import` or `require` to import other modules is not supported in the configuration file.
 
 The specific configuration parameters are as follows, taking commonjs as an example.
 
@@ -65,7 +73,12 @@ module.exports = {
       type: 'auto',
 
       /**
-       * (Optional) Filter or convert the generated api interface function, return a new apiDescriptor to generate the api call function, and do not convert the apiDescripor object when this function is not specified
+       * Globally exported api name, you can access the automatically generated api globally through this name, the default is `Apis`, it is required when multiple generators are configured, and it cannot be repeated
+       */
+      global: 'Apis',
+
+      /**
+       * (Optional) Filter or convert the generated api interface function, return a new apiDescriptor to generate the api call function, if this function is not specified, the apiDescripor object is not converted
        */
       handleApi: apiDescriptor => {
         // Returning a falsy value means filtering this api
@@ -88,29 +101,35 @@ module.exports = {
     }
   ],
 
-  // (Optional) Whether to automatically update the interface, enabled by default, checked every 5 minutes, disabled when false
+  // (Optional) Whether to automatically update the interface, enabled by default, check every 5 minutes, closed when false
   autoUpdate: true
 
   /* You can also configure more detailed parameters
-  autoUpdate: {
-  // Update when the editor is opened, false by default
-  launchEditor: true,
-  // Automatic update interval, in milliseconds
-  interval: 5 * 60 * 1000
-  }
+    autoUpdate: {
+    // Update when the editor is opened, default false
+    launchEditor: true,
+    // Automatic update interval, in milliseconds
+    interval: 5 * 60 * 1000
+    }
   */
 };
 ```
 
 ## Call API
 
-The generated API code is accessed by the global `Apis` variable by default. You can enjoy the smart prompts provided by the editor to quickly preview the API information, allowing you to check and use the API at the same time.
+The generated API code is accessed by the global `Apis` variable by default. You can enjoy the smart prompts provided by the editor to quickly preview the API information, allowing you to check and use the API.
 
-![Display detailed information of the interface](/img/vscode-api-doc.png)
+![Show detailed information of the interface](/img/vscode-api-doc.png)
 
 Where `pet` is the tag of the API, and the API name corresponds to `operationId`.
 
 ![](/img/vscode-namespace-operationid.png)
+
+First, you need to import `index.[js/ts]` in the automatically generated directory in the project's entry file.
+
+```js title="main.js"
+import './your-generating-api';
+```
 
 When using the interface, you can specify the request parameters through `params/pathParams/data/headers`, which will intelligently prompt the parameters required by this interface. In addition, you can also specify other config parameters of the method instance.
 
@@ -144,7 +163,7 @@ useRequest(() =>
 
 ## Quick access to API
 
-Usually, we cannot know the tag and operationId of each API. In order to quickly access different APIs, you can quickly locate the corresponding API through the description of the target API or the url keyword. API, trigger quick positioning through the trigger word `a->`.
+Usually, we cannot know the tag and operationId of each API. In order to quickly access different APIs, you can quickly locate the corresponding API through the description of the target API or the url keyword, and use the trigger word **`a->`** Trigger quick positioning.
 
 ### Search by url
 
@@ -154,9 +173,17 @@ Usually, we cannot know the tag and operationId of each API. In order to quickly
 
 ![](/img/vscode-query-with-description.png)
 
+### Specify parameters by referring to the interface parameter table
+
+By default, when you access the API function through **`a->`** shortcut, the necessary parameters of this API will be automatically provided. When you call the API function to pass parameters, the vscode editor will automatically pop up the API document for you to fill in the parameters according to the parameter table.
+
+![](/img/vscode-api-call-doc.png)
+
+If you accidentally close the API document pop-up, you can put the cursor on the API function and call it again through the shortcut key `shift+ctrl+space`, and the Mac is `shift+command+space`.
+
 ## Set alova parameters
 
-Usually we will set global parameters in `createAlova`. In the automatically generated code, you can go to `${output}/index.[js/ts]` to set it. `${output}` is the `output` directory you specified in the configuration file. When regenerating the code, this file will not be overwritten.
+Usually we will set global parameters in `createAlova`. In the automatically generated code, you can go to `${output}/index.[js/ts]` to set it. `${output}` is the `output` directory you specified in the configuration file. This file will not be overwritten when the code is regenerated.
 
 The contents of the `index` file are as follows:
 
@@ -190,7 +217,7 @@ export default Apis;
 
 You can write interceptors and replace request adapters as usual in `createAlova`.
 
-One thing to note is that since method instances are automatically generated, you cannot directly set method parameters such as `transform/cacheFor` when creating a method. To achieve the same effect, you can specify the corresponding parameters in `withConfigType({})`.
+One thing to note is that since method instances are automatically generated, you cannot set method parameters such as `transform/cacheFor` directly when creating a method. To achieve the same effect, you can specify the corresponding parameters in `withConfigType({})`.
 
 The following is a comparison example.
 
@@ -234,3 +261,5 @@ In this way, you can integrate the automatically generated code without changing
 ## Notes
 
 1. In a ts project, if you find that vscode cannot correctly prompt, please set `"strictNullChecks": true` in `tsconfig.json`.
+
+2. Sometimes the api will prompt as `any` type, you can try to solve it as follows: Step 1, confirm whether this api is introduced in the entry file, and step 2, restart vscode
