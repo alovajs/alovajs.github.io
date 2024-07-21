@@ -20,22 +20,19 @@ npm install @alova/psc@beta --save
 
 ## 在 Node.js 中使用
 
-在 Node.js 环境中，使用 `NodeSyncAdapter` 和 `createNodeSharedCacheSynchronizer` 来实现各子进程之间的缓存同步。
+在 Node.js 环境中，使用 `createNodePSCSynchronizer` 和 `createNodePSCAdapter` 来实现各子进程之间的缓存同步。
 
 1. 在主进程中设置同步器:
 
 ```javascript
-const process = require('node:process');
 const cluster = require('cluster');
-const { createPSCSynchronizer, NodeSyncAdapter } = require('@alova/psc');
+const { createNodePSCSynchronizer } = require('@alova/psc');
 
 if (cluster.isMaster) {
   // highlight-start
   // 确保在创建子进程之前调用
-  const stopIPC = await createPSCSynchronizer(NodeSyncAdapter());
+  await createNodePSCSynchronizer();
   // highlight-end
-
-  process.on('SIGTERM', stopIPC);
 } else {
   // fork worker processes
 }
@@ -43,18 +40,16 @@ if (cluster.isMaster) {
 
 2. 在子进程中使用适配器:
 
-```javascript
-const process = require('node:process');
-const { createPSCAdapter, NodeSyncAdapter, ExplictCacheAdapter } = require('@alova/psc');
+我们提供了一个导出 `createNodePSCAdapter`，它是 `createPSCAdapter(NodeSyncAdapter())` 的别称。
 
-const pscAdapter = createPSCAdapter(
-  NodeSyncAdapter(stopIPC => {
-    process.on('SIGTERM', stopIPC);
-  })
-);
+通常情况下，像这样使用即可：
+
+```javascript
+const { createNodePSCAdapter } = require('@alova/psc');
+
 createAlova({
   // ...
-  l1Cache: pscAdapter
+  l1Cache: createNodePSCAdapter()
 });
 ```
 
@@ -63,11 +58,12 @@ createAlova({
 当然，同时共享 `l1Cache` 和 `l2Cache` 也完全没有问题！使用 `scope` 选项，并创建不同的共享储存适配器即可。
 
 ```javascript
+const process = require('node:process');
+const { createPSCAdapter, NodeSyncAdapter } = require('@alova/psc');
+
 const createScopedPSCAdapter = (scope: string) =>
   createPSCAdapter(
-    NodeSyncAdapter(stopIPC => {
-      process.on('SIGTERM', stopIPC);
-    }),
+    NodeSyncAdapter(),
     // 这个参数用于指定储存适配器，我们稍后会介绍
     undefined,
     // highlight-start
@@ -84,7 +80,7 @@ createAlova({
 
 ## 在 Electron 中使用
 
-在 Electron 环境中，使用 `ElectronSyncAdapter` 和 `createPSCSynchronizer` 来实现各渲染进程之间的缓存同步。
+在 Electron 环境中，使用 `createElectronPSCSynchronizer` 和 `createElectronPSCAdapter` 来实现各渲染进程之间的缓存同步。
 
 1. 在主进程中设置同步器:
 
@@ -94,7 +90,7 @@ import { createPSCSynchronizer, ElectronSyncAdapter } from '@alova/psc';
 import { ipcMain } from 'electron';
 
 // 初始化同步器
-createPSCSynchronizer(ElectronSyncAdapter(ipcMain));
+createElectronPSCSynchronizer(ipcMain);
 
 // ...other codes
 ```
@@ -106,7 +102,8 @@ createPSCSynchronizer(ElectronSyncAdapter(ipcMain));
 import { createPSCAdapter, ElectronSyncAdapter } from '@alova/psc';
 import { ipcRenderer, contextBridge } from 'electron';
 
-const pscAdapter = createPSCAdapter(ElectronSyncAdapter(ipcRenderer));
+// createElectronPSCAdapter 也是一个别称
+const pscAdapter = createElectronPSCAdapter(ipcRenderer);
 
 contextBridge.exposeInMainWorld('pscAdapter', pscAdapter);
 ```
