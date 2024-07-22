@@ -80,8 +80,8 @@ useRequest(todoListGetter, {
 ```javascript
 useRequest(todoListGetter, {
   // highlight-start
-  force: ({ method, sendArgs }) => {
-    return !!sendArgs[0];
+  force: ({ method, args }) => {
+    return !!args[0];
   }
   // highlight-end
 });
@@ -130,23 +130,23 @@ send(1);
 
 #### 在事件回调函数中接收
 
-在事件回调函数中通过`event.sendArgs`接收，它是一个包含了 send 函数的所有参数的数组。
+在事件回调函数中通过`event.args`接收，它是一个包含了 send 函数的所有参数的数组。
 
 ```javascript
 const { send, onSuccess, onError, onComplete } = useRequest(newTodo =>
   alovaInstance.Post('/todo', newTodo)
 );
 onSuccess(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
+  // args的值为[1]
+  console.log(event.args);
 });
 onError(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
+  // args的值为[1]
+  console.log(event.args);
 });
 onComplete(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
+  // args的值为[1]
+  console.log(event.args);
 });
 
 // 发送请求
@@ -160,7 +160,7 @@ force 用于指定是否需要穿透响应缓存，关于响应缓存的内容�
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {
   force: event => {
-    return event.sendArgs[0];
+    return event.args[0];
   }
 });
 send(1);

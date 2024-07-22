@@ -30,28 +30,28 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 );
 ```
 
-alova provides 10+ request strategy modules based on the [RSM](/tutorial/others/RSM) specification, which are implemented in the form of useHook.
+alova provides 10+ request strategy modules based on the [RSM](/v2/tutorial/others/RSM) specification, which are implemented in the form of useHook.
 
 ## Core useHook
 
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-request">useRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-watcher">useWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/advanced/use-fetcher">useFetcher</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/combine-framework/use-request">useRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/combine-framework/use-watcher">useWatcher</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/advanced/use-fetcher">useFetcher</Link>
 
 ## Scenario-based request strategy
 
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/usePagination">usePagination</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useForm">useForm</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useAutoRequest">useAutoRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useCaptcha">useCaptcha</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/actionDelegationMiddleware">actionDelegationMiddleware</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialRequest">useSerialRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialWatcher">useSerialWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useRetriableRequest">useRetriableRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useUploader">useUploader</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSSE">useSSE</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/usePagination">usePagination</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useForm">useForm</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useAutoRequest">useAutoRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useCaptcha">useCaptcha</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/actionDelegationMiddleware">actionDelegationMiddleware</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useSerialRequest">useSerialRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useSerialWatcher">useSerialWatcher</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useRetriableRequest">useRetriableRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useUploader">useUploader</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useSSE">useSSE</Link>
 
 ## High flexibility
 
@@ -74,17 +74,17 @@ In addition, let’s take a look at the specific features:
 - 3 caching modes and request sharing mechanism to improve request performance and reduce server pressure;
 - Highly aggregated organization of API code. The request parameters, cache behavior, response data conversion, etc. of each API will be gathered in the same code block, which has great advantages for managing a large number of APIs;
 
-In [alova's future](/tutorial/others/future), further request simplification will be implemented.
+In [alova's future](/v2/tutorial/others/future), further request simplification will be implemented.
 
 :::info compared to other request libraries
 
-You can also check out [Comparison with other request libraries](/tutorial/others/comparison) to learn more about how alova is different.
+You can also check out [Comparison with other request libraries](/v2/tutorial/others/comparison) to learn more about how alova is different.
 
 :::
 
 ## Online trial
 
-You can run the project directly in the browser via Codesandbox [online editable examples try alovajs](/category/examples), so it's almost indistinguishable from local development without having to install anything on your machine.
+You can run the project directly in the browser via Codesandbox [online editable examples try alovajs](/v2/category/examples), so it's almost indistinguishable from local development without having to install anything on your machine.
 
 ## Join alova community
 
@@ -131,6 +131,6 @@ Let’s start learning to send our first request!
 {
 title: 'First request',
 desc: 'Try to use alova to send the first request',
-link: '/tutorial/getting-started/quick-start',
+link: '/v2/tutorial/getting-started/quick-start',
 }
 ]}></NavCard>

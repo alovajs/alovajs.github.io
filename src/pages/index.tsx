@@ -31,7 +31,7 @@ function HomepageHeader() {
     {
       text: <Translate id="homepage.Examples">Examples</Translate>,
       type: 'secondary',
-      link: '/category/examples'
+      link: '/examples'
     }
   ];
   const { i18n } = useDocusaurusContext();

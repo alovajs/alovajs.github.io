@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 Take Todo management as an example to realize the creation, editing, deletion and other functions of Todo in the non-sense interaction mode, and the key code related to the request will be provided in the following chapters.
 
-> The [simple list page example](/tutorial/example/silent-submit-simple-list) here contains the complete code, you can enter the experience.
+> The [simple list page example](/v2/tutorial/example/silent-submit-simple-list) here contains the complete code, you can enter the experience.
 
 In the `@alova/scene-*` js package, **useSQRequest** will be used to replace **useRequest** provided by alova, and then the most common conservative request mode will be implemented first, and then the process will be done step by step Interactive mode compatibility.
 

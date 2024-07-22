@@ -12,11 +12,11 @@ In order to meet the running requirements of js in different environments, you c
 - [localStorage storage adapter](https://github.com/alovajs/alova/blob/main/src/predefine/globalLocalStorage.ts)
 - [vue states hook](https://github.com/alovajs/alova/blob/main/src/predefine/VueHook.ts)
 
-You can also combine multiple types of adapters into a collection, for example [Uniapp Adapter](/tutorial/request-adapter/uniapp).
+You can also combine multiple types of adapters into a collection, for example [Uniapp Adapter](/v2/tutorial/request-adapter/alova-adapter-uniapp).
 
 ## Write request strategy
 
-alova's request strategy is separate from the alova core library, so that developers can also take advantage of alova's high scalability to write their own request strategies. Usually, a custom request strategy is based on the combination of `useRequest`, `useWatcher` and `useFetcher`, and writing [middleware](/tutorial/advanced/middleware), cache manipulation functions for them to control their The request method, so as to realize the request strategy of various effects.
+alova's request strategy is separate from the alova core library, so that developers can also take advantage of alova's high scalability to write their own request strategies. Usually, a custom request strategy is based on the combination of `useRequest`, `useWatcher` and `useFetcher`, and writing [middleware](/v2/tutorial/advanced/middleware), cache manipulation functions for them to control their The request method, so as to realize the request strategy of various effects.
 
 The request strategies in **@alova/scene** are well represented, and it is strongly recommended that you refer to the source code for inspiration.
 

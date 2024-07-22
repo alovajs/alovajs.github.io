@@ -224,7 +224,7 @@ The above example is set `updateState` to false when calling `useFetcher`. This 
 
 ## Update views across modules/components
 
-Next, we will modify a todo data and re-fetch the latest todo list data to update the view. We may not know which page the todo list is currently on. In this case, when using the `fetch` function, we can use [Method instance matcher](/tutorial/advanced/method-matcher) to dynamically fetch the data of the current page.
+Next, we will modify a todo data and re-fetch the latest todo list data to update the view. We may not know which page the todo list is currently on. In this case, when using the `fetch` function, we can use [Method instance matcher](/v2/tutorial/advanced/method-matcher) to dynamically fetch the data of the current page.
 
 > The Method instance matcher is used to find method instances that meet the conditions among the requested method instances.
 
@@ -268,11 +268,11 @@ useFetcher only updates the cache after the request is completed, and if this Me
 
 :::
 
-> For more methods of using `Method` instance matcher, see [Method instance matcher](/tutorial/advanced/method-matcher).
+> For more methods of using `Method` instance matcher, see [Method instance matcher](/v2/tutorial/advanced/method-matcher).
 
 ## Force sending request
 
-Same as `useRequest` and `useWatcher`, please read [Force Request](/tutorial/cache/force-request) for more information.
+Same as `useRequest` and `useWatcher`, please read [Force Request](/v2/tutorial/cache/force-request) for more information.
 
 ## Bind response callback
 
@@ -282,7 +282,7 @@ useFetcher also supports binding `onSuccess/onError/onComplete` callback functio
 const { onSuccess, onError, onComplete } = useFetcher();
 ```
 
-Please read [Response Processing](/tutorial/combine-framework/response) for details.
+Please read [Response Processing](/v2/tutorial/combine-framework/response) for details.
 
 ## send function parameter passing rules
 
@@ -297,7 +297,7 @@ onSuccess(({ sendArgs }) => {
 fetch(getTodoList(), 'test arg');
 ```
 
-For details, please read [send function parameter passing rules](/tutorial/combine-framework/receive-params).
+For details, please read [send function parameter passing rules](/v2/tutorial/combine-framework/receive-params).
 
 ## Comparison between useRequest and useFetcher
 

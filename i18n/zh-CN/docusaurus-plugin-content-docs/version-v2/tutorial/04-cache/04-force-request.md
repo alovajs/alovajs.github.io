@@ -41,7 +41,7 @@ useFetcher({
 
 ### 动态设置 force 值
 
-实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数，此函数也将接收来自 `send` 函数传入的参数。在之前的[接收参数](/tutorial/combine-framework/receive-params)中已讲解过。
+实际情况中，我们经常需要根据不同情况来设置是否需要强制发送请求，此时可以将 force 设置为一个函数，此函数也将接收来自 `send` 函数传入的参数。在之前的[接收参数](/v2/tutorial/combine-framework/receive-params)中已讲解过。
 
 ```javascript
 useRequest(todoListGetter, {
@@ -71,4 +71,4 @@ useFetcher({
 });
 ```
 
-`useFetcher`是一个数据拉取的 useHook，将在后面的[数据拉取](/tutorial/advanced/use-fetcher)中讲解。
+`useFetcher`是一个数据拉取的 useHook，将在后面的[数据拉取](/v2/tutorial/advanced/use-fetcher)中讲解。

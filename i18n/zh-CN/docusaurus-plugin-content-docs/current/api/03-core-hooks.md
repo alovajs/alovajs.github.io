@@ -37,7 +37,7 @@ function useRequest(
 | method           | 当前请求的 method 对象                                                                               | Method                                                                                                                                                                                                       | -       |
 | cachedResponse   | 命中的缓存数据                                                                                       | any                                                                                                                                                                                                          | -       |
 | config           | 当前的 use hook 配置                                                                                 | Record\<string, any\>                                                                                                                                                                                        | -       |
-| sendArgs         | 响应处理回调的参数，该参数由 use hooks 的 send 传入                                                  | any[]                                                                                                                                                                                                        | -       |
+| args             | 响应处理回调的参数，该参数由 use hooks 的 send 传入                                                  | any[]                                                                                                                                                                                                        | -       |
 | frontStates      | use hook 前端状态集合，如 data、loading、error 等                                                    | [FrontRequestState](#frontrequeststate)                                                                                                                                                                      | -       |
 | send             | 发送请求函数                                                                                         | (...args: any[]) => void                                                                                                                                                                                     | Promise |
 | abort            | 中断函数                                                                                             | () => void                                                                                                                                                                                                   | -       |
@@ -73,24 +73,24 @@ type AlovaGuardNext = (guardNextConfig?: {
 | 名称      | 描述                                                | 类型    | 版本 |
 | --------- | --------------------------------------------------- | ------- | ---- |
 | method    | 当前请求的 method 对象                              | Method  | -    |
-| sendArgs  | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]   | -    |
+| args      | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]   | -    |
 | data      | 响应数据                                            | any     | -    |
 | fromCache | 响应数据是否来自缓存                                | boolean | -    |
 
 #### AlovaErrorEvent
 
-| 名称     | 描述                                                | 类型   | 版本 |
-| -------- | --------------------------------------------------- | ------ | ---- |
-| method   | 当前请求的 method 对象                              | Method | -    |
-| sendArgs | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]  | -    |
-| error    | 响应错误实例                                        | Error  | -    |
+| 名称   | 描述                                                | 类型   | 版本 |
+| ------ | --------------------------------------------------- | ------ | ---- |
+| method | 当前请求的 method 对象                              | Method | -    |
+| args   | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]  | -    |
+| error  | 响应错误实例                                        | Error  | -    |
 
 #### AlovaCompleteEvent
 
 | 名称      | 描述                                                | 类型                 | 版本 |
 | --------- | --------------------------------------------------- | -------------------- | ---- |
 | method    | 当前请求的 method 对象                              | Method               | -    |
-| sendArgs  | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]                | -    |
+| args      | 响应处理回调的参数，该参数由 use hooks 的 send 传入 | any[]                | -    |
 | status    | 响应状态，成功时为 success，失败时为 error          | 'success' \| 'error' | -    |
 | data      | 响应数据，成功时有值                                | any                  | -    |
 | fromCache | 响应数据是否来自缓存，成功时有值                    | boolean              | -    |

@@ -4,8 +4,8 @@ title: Auto Invalidate
 
 There is a scenario where when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated with the edited content. Usually The approach is to trigger content updates on the previous page through events, which increases maintenance costs. And `alova` provides 3 ways to achieve this goal very elegantly:
 
-1. Use `useFetcher` to immediately re-request the latest data, which will be explained in the [Data Fetching](/tutorial/advanced/use-fetcher) chapter;
-2. Update the cache. This method will be explained in detail in the [Cache set and query](/tutorial/cache/set-and-query) chapter later;
+1. Use `useFetcher` to immediately re-request the latest data, which will be explained in the [Data Fetching](/v2/tutorial/advanced/use-fetcher) chapter;
+2. Update the cache. This method will be explained in detail in the [Cache set and query](/v2/tutorial/cache/set-and-query) chapter later;
 3. Invalidate the response cache. When requested again, the data will be requested again due to cache invalidation. This is also what this chapter will explain.
 
 Automatic cache invalidation is to set invalidation source rules in the target cache. As long as the rules match, the target cache can be automatically invalidated. This saves the trouble of manually clearing the cache in many cases.

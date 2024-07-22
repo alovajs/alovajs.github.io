@@ -115,7 +115,7 @@ const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
 
 :::warning caching advice
 
-It is recommended to turn off the cache of the corresponding request when using `useAutoRequest`, because when the cache is set, the cache will be hit when the automatic request is triggered and the newest data cannot be obtained. Please read [Cache Mode](/tutorial/cache/mode) for details.
+It is recommended to turn off the cache of the corresponding request when using `useAutoRequest`, because when the cache is set, the cache will be hit when the automatic request is triggered and the newest data cannot be obtained. Please read [Cache Mode](/v2/tutorial/cache/mode) for details.
 
 :::
 

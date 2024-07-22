@@ -56,7 +56,7 @@ invalidateCache(/^todoList/);
 
 ## Dynamic invalidate cache
 
-Maybe sometimes you are not sure which cached data needs to be invalidated. We can use [Method instance matcher](/tutorial/advanced/method-matcher) to dynamically find the corresponding method instance. The following example shows how to invalidate the cache of the first 5 method instances named todoList.
+Maybe sometimes you are not sure which cached data needs to be invalidated. We can use [Method instance matcher](/v2/tutorial/advanced/method-matcher) to dynamically find the corresponding method instance. The following example shows how to invalidate the cache of the first 5 method instances named todoList.
 
 ```javascript
 const getTodoList = currentPage => {
@@ -91,7 +91,7 @@ onSuccess(() => {
 });
 ```
 
-> For more methods of using method instance matcher, see [Method instance matcher](/tutorial/advanced/method-matcher)
+> For more methods of using method instance matcher, see [Method instance matcher](/v2/tutorial/advanced/method-matcher)
 
 ## Invalidate all caches
 

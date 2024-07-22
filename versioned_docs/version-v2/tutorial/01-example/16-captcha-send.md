@@ -4,7 +4,7 @@ title: Send captcha
 
 import CaptchaSend from '@site/example-links/CaptchaSend';
 
-> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/tutorial/getting-started) for details;
+> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/v2/tutorial/getting-started) for details;
 
 <CaptchaSend></CaptchaSend>
 
@@ -12,6 +12,6 @@ import CaptchaSend from '@site/example-links/CaptchaSend';
 
 This example demonstrates the convenient implementation of the captcha sending function.
 
-[Captcha sending strategy document](/tutorial/strategy/useCaptcha)
+[Captcha sending strategy document](/v2/tutorial/strategy/useCaptcha)
 
 :::

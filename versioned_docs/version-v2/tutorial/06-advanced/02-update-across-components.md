@@ -6,7 +6,7 @@ There is a scenario where when the user clicks on an item in the todo list, ente
 
 At this time, you can use `updateState` to update the existing responsive state under any module/page. It can find and modify the responsive state in other modules.
 
-[Here is an example of `updateState`](/tutorial/example/update-state)
+[Here is an example of `updateState`](/v2/tutorial/example/update-state)
 
 ## Use method instance to find response states
 
@@ -51,7 +51,7 @@ onSuccess(() => {
 
 ## Dynamically update response states
 
-Maybe sometimes you are not sure that you need to update the response states under the method, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/advanced/method-matcher) to dynamically Find the corresponding method instance. The following example shows adding a piece of data to the list corresponding to the method instance named todoList.
+Maybe sometimes you are not sure that you need to update the response states under the method, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/v2/tutorial/advanced/method-matcher) to dynamically Find the corresponding method instance. The following example shows adding a piece of data to the list corresponding to the method instance named todoList.
 
 ```javascript
 updateState('todoList', todoListRaw => {
@@ -63,7 +63,7 @@ updateState('todoList', todoListRaw => {
 });
 ```
 
-The [Method instance matcher](/tutorial/advanced/method-matcher) will be introduced in detail in subsequent chapters.
+The [Method instance matcher](/v2/tutorial/advanced/method-matcher) will be introduced in detail in subsequent chapters.
 
 ## Listen for matching events
 
@@ -91,7 +91,7 @@ By default, `updateState` will look for the response state created by alova's us
 This problem often occurs when updating states across pages. What we tend to overlook is that by default, the previous page has been destroyed when the page jumps. Therefore, if you want to update states across pages, here are two suggestions:
 
 1. Persist the page components to ensure that the updated states can still be found;
-2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
+2. Use [setCache](/v2/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
 
 :::
 

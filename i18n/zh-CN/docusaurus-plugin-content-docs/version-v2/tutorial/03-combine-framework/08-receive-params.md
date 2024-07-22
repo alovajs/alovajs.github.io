@@ -53,7 +53,7 @@ send(1);
 
 ## 在 force 函数中接收
 
-force 用于指定是否需要穿透响应缓存，关于响应缓存的内容将在后面的[缓存模式](/tutorial/cache/mode)中讲解。
+force 用于指定是否需要穿透响应缓存，关于响应缓存的内容将在后面的[缓存模式](/v2/tutorial/cache/mode)中讲解。
 
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {

@@ -13,7 +13,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-Status update triggers a set of serial requests, which is more concise and easy to use than [serial request in best practice](/tutorial/best-practice/skills), with unified loading status, error, and callback functions.
+Status update triggers a set of serial requests, which is more concise and easy to use than [serial request in best practice](/v2/tutorial/best-practice/skills), with unified loading status, error, and callback functions.
 
 ## Features
 
@@ -23,7 +23,7 @@ Status update triggers a set of serial requests, which is more concise and easy 
 
 ## Example
 
-[serial request](/tutorial/example/serial-request)
+[serial request](/v2/tutorial/example/serial-request)
 
 ## Install
 

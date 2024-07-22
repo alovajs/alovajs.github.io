@@ -17,9 +17,9 @@ A hook designed for paging scenarios, which can help you automatically manage pa
 
 ## Example
 
-[page list](/tutorial/example/paginated-list)
+[page list](/v2/tutorial/example/paginated-list)
 
-[Pull down to load more](/tutorial/example/load-more)
+[Pull down to load more](/v2/tutorial/example/load-more)
 
 ## Features
 
@@ -652,7 +652,7 @@ In append mode, you can specify the parameter of `refresh` as a list item. When 
 
 ### Manually update list data
 
-Use the `update` function to update responsive data, which is similar to [useRequest's update](/tutorial/combine-framework/use-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
+Use the `update` function to update responsive data, which is similar to [useRequest's update](/v2/tutorial/combine-framework/use-request), the only difference is that when calling `update` to update `data`, the list data is updated, while non-response data. This is useful when manually clearing list data without reissuing the request.
 
 ```typescript
 // case list data

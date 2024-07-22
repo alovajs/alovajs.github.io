@@ -157,7 +157,7 @@ If you use other request adapters, you can also pass the parameters they support
 
 ## Request behavior
 
-In [RSM](/tutorial/others/RSM), request behavior is used to describe how the request will be handled.
+In [RSM](/v2/tutorial/others/RSM), request behavior is used to describe how the request will be handled.
 
 ### overtime time
 
@@ -228,7 +228,7 @@ alovaInstance.Get('/todo/list', {
 
 ### Response cache
 
-Response caching allows you to better utilize server-side data multiple times without having to send a request to obtain the data every time it is requested. GET requests will set a memory cache time of 5 minutes by default, which we will explain in detail in the [Response Caching](/tutorial/cache/mode) section later.
+Response caching allows you to better utilize server-side data multiple times without having to send a request to obtain the data every time it is requested. GET requests will set a memory cache time of 5 minutes by default, which we will explain in detail in the [Response Caching](/v2/tutorial/cache/mode) section later.
 
 ## Abort request
 
@@ -287,9 +287,9 @@ const handleOffEvent = () => {
 
 :::warning Things to note when using the `GlobalFetch` adapter
 
-Due to fetch api limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/tutorial/request-adapter/xhr) or [axios Adapter](/tutorial/request-adapter/axios).
+Due to fetch api limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/v2/tutorial/request-adapter/alova-adapter-xhr) or [axios Adapter](/v2/tutorial/request-adapter/alova-adapter-axios).
 
-You can also write your own request adapter, see [Writing Request Adapter](/tutorial/custom/custom-http-adapter) for details.
+You can also write your own request adapter, see [Writing Request Adapter](/v2/tutorial/custom/custom-http-adapter) for details.
 
 :::
 

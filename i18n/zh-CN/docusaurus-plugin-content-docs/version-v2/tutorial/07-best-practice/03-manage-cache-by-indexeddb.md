@@ -4,9 +4,9 @@ title: 使用IndexedDB管理缓存
 
 如果你正在开发需要大量使用本地缓存的应用，如图形编辑类应用、文件管理类应用等，低容量的 localStorage 已经无法满足开发需求，此时你可以使用 IndexedDB 配合 alova 进行大容量的本地缓存管理。
 
-这一功能主要得益于 alova 的 [受控缓存](/tutorial/cache/controlled-cache) 功能，它可以实现自定义的缓存管理，我们来看看实践步骤。
+这一功能主要得益于 alova 的 [受控缓存](/v2/tutorial/cache/controlled-cache) 功能，它可以实现自定义的缓存管理，我们来看看实践步骤。
 
-这里有一个[使用 IndexedDB 管理缓存的示例](/tutorial/example/controlled-cache-by-indexeddb)
+这里有一个[使用 IndexedDB 管理缓存的示例](/v2/tutorial/example/controlled-cache-by-indexeddb)
 
 我们以自定义管理大图片数据为例。
 

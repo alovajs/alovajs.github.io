@@ -4,7 +4,7 @@ title: 下拉加载更多
 
 import LoadMore from '@site/example-links/LoadMore';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/v2/tutorial/getting-started);
 
 <LoadMore></LoadMore>
 
@@ -17,6 +17,6 @@ _操作引导：_
 1. 初始化完成后会预加载下一页数据，下拉翻页无需等待；
 2. 添加、删除、修改列表项无需重置列表，它将自动处理成和重新请求一致的效果；
 
-[usePagination 文档](/tutorial/strategy/usePagination)
+[usePagination 文档](/v2/tutorial/strategy/usePagination)
 
 :::

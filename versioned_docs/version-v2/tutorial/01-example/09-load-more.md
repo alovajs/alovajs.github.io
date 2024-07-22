@@ -4,7 +4,7 @@ title: Load more
 
 import LoadMore from '@site/example-links/LoadMore';
 
-> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](/tutorial/getting-started);
+> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](/v2/tutorial/getting-started);
 
 <LoadMore></LoadMore>
 
@@ -17,6 +17,6 @@ _Operation guide:_
 1. After the initialization is completed, the next page of data will be preloaded, and there is no need to wait for scrolling down the page;
 2. Adding, deleting, and modifying list items does not need to reset the list, it will be automatically processed into the same effect as the re-request;
 
-[usePagination documentation](/tutorial/strategy/usePagination)
+[usePagination documentation](/v2/tutorial/strategy/usePagination)
 
 :::

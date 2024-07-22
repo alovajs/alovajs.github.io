@@ -4,7 +4,7 @@ title: Conditional Search
 
 import ConditionSearch from '@site/example-links/ConditionSearch';
 
-> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](/tutorial/getting-started);
+> The example uses vue3 as an example, but you can also use alova in react and svelte. For details, please read the [Getting Started Guide](/v2/tutorial/getting-started);
 
 <ConditionSearch></ConditionSearch>
 

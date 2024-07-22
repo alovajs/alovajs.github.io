@@ -36,7 +36,7 @@ flowchart LR
 
 ## 转换响应数据
 
-在[method 详解](/tutorial/getting-started/method)中，我们已经了解过`transformData`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
+在[method 详解](/v2/tutorial/getting-started/method)中，我们已经了解过`transformData`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {

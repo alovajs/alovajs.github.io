@@ -4,7 +4,7 @@ title: Silent submit - Simple List
 
 import SimpleListSilentVue from '@site/example-links/SimpleListSilentVue';
 
-> The example uses vue3 as an example, but you can also use alova in react and svelte, please read the [Getting Started Guide](/tutorial/getting-started) for details;
+> The example uses vue3 as an example, but you can also use alova in react and svelte, please read the [Getting Started Guide](/v2/tutorial/getting-started) for details;
 
 <SimpleListSilentVue></SimpleListSilentVue>
 
@@ -17,6 +17,6 @@ _Operation guidance:_
 1. Add, edit, and delete list items, it will generate feedback immediately without waiting for the server to respond;
 2. Switch the request mode and network status to experience the difference between them;
 
-[Silent submit strategy document](/tutorial/strategy/sensorless-data-interaction)
+[Silent submit strategy document](/v2/tutorial/strategy/sensorless-data-interaction)
 
 :::

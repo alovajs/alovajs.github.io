@@ -96,7 +96,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-Obtain the requested method instance snapshot using the matching method of [method instance matcher](/tutorial/advanced/method-matcher) and return the matching result.
+Obtain the requested method instance snapshot using the matching method of [method instance matcher](/v2/tutorial/advanced/method-matcher) and return the matching result.
 
 - **type**
 
@@ -225,7 +225,7 @@ interface Method {
 
 ## method.meta
 
-The metadata of method is used to record request feature information, [View details](/tutorial/getting-started/method-metadata).
+The metadata of method is used to record request feature information, [View details](/v2/tutorial/getting-started/method-metadata).
 
 - **type**
 

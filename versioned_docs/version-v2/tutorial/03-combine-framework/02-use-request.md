@@ -16,7 +16,7 @@ In enterprise-level projects, it is very important to display the transfer statu
 
 :::info reminder
 
-Before using useRequest, make sure you have [set statesHook](/tutorial/combine-framework).
+Before using useRequest, make sure you have [set statesHook](/v2/tutorial/combine-framework).
 
 :::
 
@@ -128,7 +128,7 @@ export default {
 </TabItem>
 </Tabs>
 
-[When to use useRequest and when to send requests via `await alovaInstance.Get`](/tutorial/best-practice/skills).
+[When to use useRequest and when to send requests via `await alovaInstance.Get`](/v2/tutorial/best-practice/skills).
 
 ### UseHook usage specifications
 

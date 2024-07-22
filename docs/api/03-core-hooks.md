@@ -37,7 +37,7 @@ function useRequest(
 | method           | The method object of the current request                                                                                                                                     | Method                                                                                                                                                                                                        | -       |
 | cachedResponse   | Hit cached data                                                                                                                                                              | any                                                                                                                                                                                                           | -       |
 | config           | Current use hook configuration                                                                                                                                               | Record\<string, any\>                                                                                                                                                                                         | -       |
-| sendArgs         | Parameters of the response processing callback, which are passed in by send of use hooks                                                                                     | any[]                                                                                                                                                                                                         | -       |
+| args             | Parameters of the response processing callback, which are passed in by send of use hooks                                                                                     | any[]                                                                                                                                                                                                         | -       |
 | frontStates      | use hook front-end state collection, such as data, loading, error, etc.                                                                                                      | [FrontRequestState](#frontrequeststate)                                                                                                                                                                       | -       |
 | send             | Send request function                                                                                                                                                        | (...args: any[]) => Promise                                                                                                                                                                                   | -       |
 | abort            | abort function                                                                                                                                                               | () => void                                                                                                                                                                                                    | -       |
@@ -73,24 +73,24 @@ The following attribute values will automatically infer the responsive data type
 | Name      | Description                                                                              | Type    | Version |
 | --------- | ---------------------------------------------------------------------------------------- | ------- | ------- |
 | method    | The method object of the current request                                                 | Method  | -       |
-| sendArgs  | Parameters of the response processing callback, which are passed in by send of use hooks | any[]   | -       |
+| args      | Parameters of the response processing callback, which are passed in by send of use hooks | any[]   | -       |
 | data      | response data                                                                            | any     | -       |
 | fromCache | Whether the response data comes from cache                                               | boolean | -       |
 
 #### AlovaErrorEvent
 
-| Name     | Description                                                                              | Type   | Version |
-| -------- | ---------------------------------------------------------------------------------------- | ------ | ------- |
-| method   | The method object of the current request                                                 | Method | -       |
-| sendArgs | Parameters of the response processing callback, which are passed in by send of use hooks | any[]  | -       |
-| error    | Response error instance                                                                  | Error  | -       |
+| Name   | Description                                                                              | Type   | Version |
+| ------ | ---------------------------------------------------------------------------------------- | ------ | ------- |
+| method | The method object of the current request                                                 | Method | -       |
+| args   | Parameters of the response processing callback, which are passed in by send of use hooks | any[]  | -       |
+| error  | Response error instance                                                                  | Error  | -       |
 
 #### AlovaCompleteEvent
 
 | Name      | Description                                                                              | Type                 | Version |
 | --------- | ---------------------------------------------------------------------------------------- | -------------------- | ------- |
 | method    | The method object of the current request                                                 | Method               | -       |
-| sendArgs  | Parameters of the response processing callback, which are passed in by send of use hooks | any[]                | -       |
+| args      | Parameters of the response processing callback, which are passed in by send of use hooks | any[]                | -       |
 | status    | Response status, success when successful, error when failure                             | 'success' \| 'error' | -       |
 | data      | response data, with value when successful                                                | any                  | -       |
 | fromCache | Whether the response data comes from the cache, a value if successful                    | boolean              | -       |

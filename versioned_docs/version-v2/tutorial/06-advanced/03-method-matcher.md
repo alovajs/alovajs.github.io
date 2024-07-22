@@ -25,11 +25,11 @@ type MethodFilter =
 
 The method instance matcher can be used in the following functions.
 
-- [setCache](/tutorial/cache/set-and-query)
-- [queryCache](/tutorial/cache/set-and-query)
-- [invalidateCache](/tutorial/cache/manually-invalidate)
-- [updateState](/tutorial/advanced/update-across-components)
-- [useFetcher.fetch](/tutorial/advanced/use-fetcher)
+- [setCache](/v2/tutorial/cache/set-and-query)
+- [queryCache](/v2/tutorial/cache/set-and-query)
+- [invalidateCache](/v2/tutorial/cache/manually-invalidate)
+- [updateState](/v2/tutorial/advanced/update-across-components)
+- [useFetcher.fetch](/v2/tutorial/advanced/use-fetcher)
 
 ## Match by name attribute
 

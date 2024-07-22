@@ -222,7 +222,7 @@ async function middleware(context, next) {
   return next().catch(error => {
     if (needRetry) {
       setTimeout(() => {
-        context.send(...context.sendArgs);
+        context.send(...context.args);
       }, retryDelay);
     }
     return Promise.reject(error);
@@ -256,7 +256,7 @@ async function middleware(context, next) {
     .catch(error => {
       if (needRetry) {
         setTimeout(() => {
-          context.send(...context.sendArgs);
+          context.send(...context.args);
         }, retryDelay);
       } else {
         // 不再重试时也设置为false

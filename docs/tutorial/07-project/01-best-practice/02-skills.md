@@ -180,12 +180,12 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## Quickly get sendArgs in onSuccess
+## Quickly get args in onSuccess
 
-In actual projects, data is often passed through the `send` function. If you need to use these data in callback functions such as onSuccess, since they exist in the `event.sendArgs` array, you can use the double destructuring method to directly obtain them to the data.
+In actual projects, data is often passed through the `send` function. If you need to use these data in callback functions such as onSuccess, since they exist in the `event.args` array, you can use the double destructuring method to directly obtain them to the data.
 
 ```javascript
-onSuccess(({ sendArgs: [content] }) => {
+onSuccess(({ args: [content] }) => {
   console.log(content);
 });
 ```

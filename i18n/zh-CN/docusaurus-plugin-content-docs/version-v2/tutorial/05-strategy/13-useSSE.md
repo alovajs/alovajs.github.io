@@ -197,7 +197,7 @@ on('event-name', ({ data }) => {
 
 ### 全局响应拦截
 
-默认情况下，响应数据受到[全局响应拦截器的捕获](/tutorial/combine-framework/response)。如果这不是你预期的行为，可以手动关闭。
+默认情况下，响应数据受到[全局响应拦截器的捕获](/v2/tutorial/combine-framework/response)。如果这不是你预期的行为，可以手动关闭。
 
 ```typescript
 const { data, readyState, onMessage, on } = useSSE(method, {

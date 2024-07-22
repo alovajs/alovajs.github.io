@@ -180,12 +180,12 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## 在 onSuccess 中快速获取 sendArgs
+## 在 onSuccess 中快速获取 args
 
-在实际项目中，经常通过`send`函数传递数据，如果你需要在 onSuccess 等回调函数中使用这些数据，由于它们存在于`event.sendArgs`数组中，此时你可以使用双重解构的方式直接获取到数据。
+在实际项目中，经常通过`send`函数传递数据，如果你需要在 onSuccess 等回调函数中使用这些数据，由于它们存在于`event.args`数组中，此时你可以使用双重解构的方式直接获取到数据。
 
 ```javascript
-onSuccess(({ sendArgs: [content] }) => {
+onSuccess(({ args: [content] }) => {
   console.log(content);
 });
 ```

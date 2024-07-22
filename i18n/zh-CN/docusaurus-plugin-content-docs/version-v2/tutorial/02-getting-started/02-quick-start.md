@@ -11,7 +11,7 @@ import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02
 
 :::tip 示例提示
 
-如果你还未了解 alova，推荐你先阅读 [alova 概述](/tutorial/getting-started)。
+如果你还未了解 alova，推荐你先阅读 [alova 概述](/v2/tutorial/getting-started)。
 
 :::
 
@@ -48,7 +48,7 @@ bun add alova
 </TabItem>
 </Tabs>
 
-> 你也可以[通过 CDN 使用 alova](/tutorial/others/use-in-static)
+> 你也可以[通过 CDN 使用 alova](/v2/tutorial/others/use-in-static)
 
 ## 创建 alova 实例
 
@@ -78,7 +78,7 @@ const alova = createAlova({
 });
 ```
 
-> 在 nodejs 中使用 GlobalFetch 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/tutorial/request-adapter/axios/)。
+> 在 nodejs 中使用 GlobalFetch 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/v2/tutorial/request-adapter/alova-adapter-axios/)。
 
 </TabItem>
 <TabItem value="3" label="deno">

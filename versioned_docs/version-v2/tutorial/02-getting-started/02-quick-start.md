@@ -11,7 +11,7 @@ import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02
 
 :::tip Example tip
 
-If you haven’t learned about alova yet, it is recommended that you read [alova overview](/tutorial/getting-started) first.
+If you haven’t learned about alova yet, it is recommended that you read [alova overview](/v2/tutorial/getting-started) first.
 
 :::
 
@@ -48,7 +48,7 @@ bun add alova
 </TabItem>
 </Tabs>
 
-> You can also [use alova through CDN](/tutorial/others/use-in-static)
+> You can also [use alova through CDN](/v2/tutorial/others/use-in-static)
 
 ## Create alova instance
 
@@ -78,7 +78,7 @@ const alova = createAlova({
 });
 ```
 
-> When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/axios/).
+> When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/v2/tutorial/request-adapter/alova-adapter-axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">

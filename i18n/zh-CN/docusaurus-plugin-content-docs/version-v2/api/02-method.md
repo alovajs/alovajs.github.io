@@ -96,7 +96,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-以[method 匹配器](/tutorial/advanced/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
+以[method 匹配器](/v2/tutorial/advanced/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
 
 - **类型**
 
@@ -225,7 +225,7 @@ interface Method {
 
 ## method.meta
 
-method 的 元数据，用于记录请求特性信息，[详情查看](/tutorial/getting-started/method-metadata)。
+method 的 元数据，用于记录请求特性信息，[详情查看](/v2/tutorial/getting-started/method-metadata)。
 
 - **类型**
 

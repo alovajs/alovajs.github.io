@@ -5,7 +5,7 @@ title: 管理额外的状态
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-在之前的[跨页面/模块更新响应状态](/tutorial/advanced/update-across-components)章节中，介绍了如何跨页面或模块更新响应状态，但在此章节中我们只介绍了通过`updateState`更新在`useRequest`和`useWatcher`中返回的`data`状态，data 的值总是和响应数据一致，但在很多情况下我们会使用额外的状态来展示（如状态 A）数据，并在请求成功后将 data 数据附加到额外的状态 A 中，如下拉加载的分页方案。在这种情况下，我们就需要将额外的状态 A 进行管理，便于实现跨页面/模块更新它。
+在之前的[跨页面/模块更新响应状态](/v2/tutorial/advanced/update-across-components)章节中，介绍了如何跨页面或模块更新响应状态，但在此章节中我们只介绍了通过`updateState`更新在`useRequest`和`useWatcher`中返回的`data`状态，data 的值总是和响应数据一致，但在很多情况下我们会使用额外的状态来展示（如状态 A）数据，并在请求成功后将 data 数据附加到额外的状态 A 中，如下拉加载的分页方案。在这种情况下，我们就需要将额外的状态 A 进行管理，便于实现跨页面/模块更新它。
 
 ## 更新单个状态
 

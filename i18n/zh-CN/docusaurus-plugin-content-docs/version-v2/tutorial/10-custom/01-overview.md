@@ -12,11 +12,11 @@ alova 具有很高的扩展性，它除了提供核心的缓存机制、请求�
 - [localStorage 存储适配器](https://github.com/alovajs/alova/blob/main/src/predefine/globalLocalStorage.ts)
 - [vue states hook](https://github.com/alovajs/alova/blob/main/src/predefine/VueHook.ts)
 
-你也可以将多个类型的适配器组成一个集合，例如[Uniapp 适配器](/tutorial/request-adapter/uniapp)。
+你也可以将多个类型的适配器组成一个集合，例如[Uniapp 适配器](/v2/tutorial/request-adapter/alova-adapter-uniapp)。
 
 ## 编写请求策略
 
-alova 的请求策略和 alova 核心库是分开的，目的是为了开发者们也可以利用 alova 的高扩展性来编写自己的请求策略。通常情况下，一个自定义的请求策略是基于`useRequest`、`useWatcher` 和 `useFetcher` 三者的组合，以及为它们编写[中间件](/tutorial/advanced/middleware)、缓存的操纵函数来控制它们的请求方式，从而实现各种效果的请求策略。
+alova 的请求策略和 alova 核心库是分开的，目的是为了开发者们也可以利用 alova 的高扩展性来编写自己的请求策略。通常情况下，一个自定义的请求策略是基于`useRequest`、`useWatcher` 和 `useFetcher` 三者的组合，以及为它们编写[中间件](/v2/tutorial/advanced/middleware)、缓存的操纵函数来控制它们的请求方式，从而实现各种效果的请求策略。
 
 **@alova/scene** 中的请求策略具有很好的代表性，强烈建议你参考源码寻找灵感。
 

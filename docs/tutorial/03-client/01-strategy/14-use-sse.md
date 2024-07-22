@@ -207,9 +207,9 @@ type SSEReturnType<S, Data> = {
   eventSource: ExportedType<EventSource | undefined, S>;
   /**
    * Manually initiate the request. When `immediate: true` is used, this method is triggered automatically.
-   * @param sendArgs Request parameters passed to the method
+   * @param args Request parameters passed to the method
    */
-  send: (...sendArgs: any[]) => Promise<void>;
+  send: (...args: any[]) => Promise<void>;
   /**
    * Close the connection
    */

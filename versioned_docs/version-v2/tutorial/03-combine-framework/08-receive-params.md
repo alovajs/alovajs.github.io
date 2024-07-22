@@ -53,7 +53,7 @@ send(1);
 
 ##Received in force function
 
-force is used to specify whether it is necessary to penetrate the response cache. The content of the response cache will be explained later in [Cache Mode](/tutorial/cache/mode).
+force is used to specify whether it is necessary to penetrate the response cache. The content of the response cache will be explained later in [Cache Mode](/v2/tutorial/cache/mode).
 
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {

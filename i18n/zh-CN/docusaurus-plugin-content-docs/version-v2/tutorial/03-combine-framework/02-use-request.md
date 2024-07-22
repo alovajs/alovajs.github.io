@@ -16,7 +16,7 @@ import useRequestVueOptions from '!!raw-loader!@site/codesandbox/01-getting-star
 
 :::info 提醒
 
-在使用 useRequest 前，请确保已[设置 statesHook](/tutorial/combine-framework)。
+在使用 useRequest 前，请确保已[设置 statesHook](/v2/tutorial/combine-framework)。
 
 :::
 
@@ -128,7 +128,7 @@ export default {
 </TabItem>
 </Tabs>
 
-[何时使用 useRequest ，何时通过`await alovaInstance.Get` 发送请求](/tutorial/best-practice/skills)。
+[何时使用 useRequest ，何时通过`await alovaInstance.Get` 发送请求](/v2/tutorial/best-practice/skills)。
 
 ### useHook 的使用规范
 

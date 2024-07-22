@@ -48,7 +48,7 @@ const { loading, data, error } = useRequest(alova.Get('/xxx'));
 
 ### alova 提供开箱即用的高性能请求策略
 
-alova 为你提供了[多个高性能的请求策略模块](/tutorial/strategy)，你可以根据不同请求场景使用不同的模块，这是 axios 不具备的。
+alova 为你提供了[多个高性能的请求策略模块](/v2/tutorial/strategy)，你可以根据不同请求场景使用不同的模块，这是 axios 不具备的。
 
 ### alova 为 axios 提供响应数据缓存
 

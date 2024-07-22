@@ -240,7 +240,7 @@ export const alovaInst = createAlova({
 });
 ```
 
-并且推荐团队内不同的开发者可以根据每次迭代的版本号分别创建不同的模拟接口数据，以便于在团队中管理这些模拟数据，具体可参照 [模拟数据](/tutorial/request-adapter/alova-mock) 章节。
+并且推荐团队内不同的开发者可以根据每次迭代的版本号分别创建不同的模拟接口数据，以便于在团队中管理这些模拟数据，具体可参照 [模拟数据](/v2/tutorial/request-adapter/alova-mock) 章节。
 
 ## 使用 useRequest 并行请求
 
@@ -339,4 +339,4 @@ const serialRequest = async () => {
 };
 ```
 
-> 串行请求建议直接使用[useSerialRequest](/tutorial/strategy/useSerialRequest)和[useSerialWatcher](/tutorial/strategy/useSerialWatcher)。
+> 串行请求建议直接使用[useSerialRequest](/v2/tutorial/strategy/useSerialRequest)和[useSerialWatcher](/v2/tutorial/strategy/useSerialWatcher)。

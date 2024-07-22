@@ -5,7 +5,7 @@ title: Manage extra states
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In the previous [Cross Page/Module Update Response States](/tutorial/advanced/update-across-components) chapter, we introduced how to update the response status across pages or modules, but in this chapter we It only introduces updating the `data` state returned by `useRequest` and `useWatcher` through `updateState`, the value of data is always consistent with the response data, but in many cases we will use additional states(such as state A) to display data, and After the request is successful, the data data is appended to the additional state A, such as the pagination scheme of pull-down loading. In this case, we need to manage the additional state A so that it can be updated across pages/modules.
+In the previous [Cross Page/Module Update Response States](/v2/tutorial/advanced/update-across-components) chapter, we introduced how to update the response status across pages or modules, but in this chapter we It only introduces updating the `data` state returned by `useRequest` and `useWatcher` through `updateState`, the value of data is always consistent with the response data, but in many cases we will use additional states(such as state A) to display data, and After the request is successful, the data data is appended to the additional state A, such as the pagination scheme of pull-down loading. In this case, we need to manage the additional state A so that it can be updated across pages/modules.
 
 ## Update a single state
 

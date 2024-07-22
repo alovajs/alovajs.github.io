@@ -324,9 +324,9 @@ export const getData = () => alovaInst.Get('/todolist');
 
 **typescript**
 
-To add response data type in typescript, please read [alova documentation typescript chapter](/tutorial/combine-framework/typescript)
+To add response data type in typescript, please read [alova documentation typescript chapter](/v2/tutorial/combine-framework/typescript)
 
 ## limit
 
-1. [Manage extra states](/tutorial/advanced/manage-extra-states) is not supported yet.
+1. [Manage extra states](/v2/tutorial/advanced/manage-extra-states) is not supported yet.
 2. Currently, only alova’s three core useHooks of `useRequest/useWatcher/useFetcher` are supported, as well as the encapsulation based on the core useHook in your own project. [@alova/scene](https://github.com/alovajs/scene) is not supported yet. extension useHook.

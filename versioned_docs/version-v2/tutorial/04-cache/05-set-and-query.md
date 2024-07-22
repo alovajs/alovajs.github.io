@@ -5,7 +5,7 @@ title: Set & Query Cache
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The cache also supports updating and querying, As we mentioned in [cache mode](/tutorial/cache/mode), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
+The cache also supports updating and querying, As we mentioned in [cache mode](/v2/tutorial/cache/mode), each cached data is saved with the method instance that sends the request as the key, so the method instance will also be used when updating the cache manually to find the corresponding cached data.
 
 ## Update static cache data
 
@@ -245,7 +245,7 @@ setCache(getTodoListByDate('2022-10-01'), oldCache => {
 });
 ```
 
-Similarly, you can also dynamically find method instances through [method instance matcher](/tutorial/advanced/method-matcher).
+Similarly, you can also dynamically find method instances through [method instance matcher](/v2/tutorial/advanced/method-matcher).
 
 ```javascript
 setCache(
@@ -283,7 +283,7 @@ import { queryCache } from 'alova';
 const cacheData = queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-You can also dynamically find method instances via [method instance matcher](/tutorial/advanced/method-matcher).
+You can also dynamically find method instances via [method instance matcher](/v2/tutorial/advanced/method-matcher).
 
 ```javascript
 const cacheData = queryCache({

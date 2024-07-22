@@ -13,11 +13,11 @@ By default, `updateState` will look for the response state created by alova's us
 This problem often occurs when updating status across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update status across pages, here are two suggestions :
 
 1. Persist the page components to ensure that the updated status can still be found;
-2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
+2. Use [setCache](/v2/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
 
-> Go to [Cross-page/module update response states](/tutorial/advanced/update-across-components) for details.
+> Go to [Cross-page/module update response states](/v2/tutorial/advanced/update-across-components) for details.
 
-> To use updateState to manage extra states, please refer to [Extra State Management](/tutorial/advanced/manage-extra-states).
+> To use updateState to manage extra states, please refer to [Extra State Management](/v2/tutorial/advanced/manage-extra-states).
 
 - **type**
 
@@ -39,7 +39,7 @@ function updateState(
 
 - **Parameters**
 
-- `matcher`: The value is method instance, method name string, method name regular expression, it can also be set to [method instance matcher](/tutorial/advanced/method-matcher), if it matches the qualified method, `handleUpdate` will be called.
+- `matcher`: The value is method instance, method name string, method name regular expression, it can also be set to [method instance matcher](/v2/tutorial/advanced/method-matcher), if it matches the qualified method, `handleUpdate` will be called.
 - `handleUpdate`: update function or update function collection. If it is a function collection, the corresponding update function on the collection will be called and the return value will be used as the update result.
 - `options`: optional options.
 

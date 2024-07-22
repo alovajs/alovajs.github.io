@@ -17,7 +17,7 @@ A hook designed for form submission. Through this hook, you can easily implement
 
 ## Example
 
-[Form Submission Demo](/tutorial/example/form-hook)
+[Form Submission Demo](/v2/tutorial/example/form-hook)
 
 ## Features
 
@@ -450,7 +450,7 @@ const returnStates = useForm(submitData, {
 
 In this way, no matter which component is rendered first, the form with the id of testForm can be initialized, and the subsequent components will first use the initialized form data when encountering the id of testForm, and will not initialize again. This way you can initialize form data inside any component.
 
-> More detailed multi-step forms can also be experienced and viewed in [Form Submission Demo](/tutorial/example/form-hook).
+> More detailed multi-step forms can also be experienced and viewed in [Form Submission Demo](/v2/tutorial/example/form-hook).
 
 ### Conditional filter
 
@@ -467,7 +467,7 @@ const { send: searchData } = useForm(queryCity, {
 
 :::warning Conditional Restrictions
 
-In conditional filtering scenarios, `useForm` is more suitable for non-paginated list conditional queries. If you need to perform conditional queries in paginated lists, it is recommended to use [Pagination Request Strategy (usePagination)](/tutorial/strategy/usePagination).
+In conditional filtering scenarios, `useForm` is more suitable for non-paginated list conditional queries. If you need to perform conditional queries in paginated lists, it is recommended to use [Pagination Request Strategy (usePagination)](/v2/tutorial/strategy/usePagination).
 
 :::
 

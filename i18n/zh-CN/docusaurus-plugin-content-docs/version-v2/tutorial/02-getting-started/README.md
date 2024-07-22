@@ -30,28 +30,28 @@ const { loading, error, data, page, pageSize, total } = usePagination((page, siz
 );
 ```
 
-alova 提供了 10+个基于[RSM](/tutorial/others/RSM)规范的请求策略模块，它们以 useHook 的形式实现。
+alova 提供了 10+个基于[RSM](/v2/tutorial/others/RSM)规范的请求策略模块，它们以 useHook 的形式实现。
 
 ## 核心 useHook
 
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-request">useRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/combine-framework/use-watcher">useWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/advanced/use-fetcher">useFetcher</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/combine-framework/use-request">useRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/combine-framework/use-watcher">useWatcher</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/advanced/use-fetcher">useFetcher</Link>
 
 ## 场景化请求策略
 
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/usePagination">usePagination</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useForm">useForm</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useAutoRequest">useAutoRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useCaptcha">useCaptcha</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/actionDelegationMiddleware">actionDelegationMiddleware</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialRequest">useSerialRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSerialWatcher">useSerialWatcher</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useRetriableRequest">useRetriableRequest</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useUploader">useUploader</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/tutorial/strategy/useSSE">useSSE</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/usePagination">usePagination</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useForm">useForm</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useAutoRequest">useAutoRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useCaptcha">useCaptcha</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/actionDelegationMiddleware">actionDelegationMiddleware</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useSerialRequest">useSerialRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useSerialWatcher">useSerialWatcher</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useRetriableRequest">useRetriableRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useUploader">useUploader</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useSSE">useSSE</Link>
 
 ## 高灵活性
 
@@ -74,17 +74,17 @@ alova 提供了 10+个基于[RSM](/tutorial/others/RSM)规范的请求策略模�
 - 3 种缓存模式和请求共享机制，提升请求性能并降低服务端压力；
 - api 代码的高聚合组织，每个 api 的请求参数、缓存行为、响应数据转换等都将聚集在相同的代码块中，这对于管理大量的 api 有很大的优势；
 
-在[alova 的未来](/tutorial/others/future)中，将实现更进一步的请求简单化。
+在[alova 的未来](/v2/tutorial/others/future)中，将实现更进一步的请求简单化。
 
 :::info 与其他请求库的对比
 
-你还可以查看请[与其他请求库比较](/tutorial/others/comparison)详细了解 alova 的不同之处。
+你还可以查看请[与其他请求库比较](/v2/tutorial/others/comparison)详细了解 alova 的不同之处。
 
 :::
 
 ## 在线试用
 
-你可以通过 Codesandbox [在线可编辑示例尝试 alovajs](/category/examples)直接在浏览器中运行项目，因此它与本地开发几乎无差别，同时无需在你的机器上安装任何东西。
+你可以通过 Codesandbox [在线可编辑示例尝试 alovajs](/v2/category/examples)直接在浏览器中运行项目，因此它与本地开发几乎无差别，同时无需在你的机器上安装任何东西。
 
 ## 脚手架推荐
 
@@ -143,6 +143,6 @@ target: '__blank'
 {
 title: '第一个请求',
 desc: '尝试使用 alova 发送第一个请求',
-link: '/tutorial/getting-started/quick-start',
+link: '/v2/tutorial/getting-started/quick-start',
 }
 ]}></NavCard>

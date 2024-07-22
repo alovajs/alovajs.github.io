@@ -115,7 +115,7 @@ const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
 
 :::warning 缓存建议
 
-建议在使用`useAutoRequest`时关闭对应请求的缓存，因为当设置缓存时，在触发自动请求时也会命中缓存而获取不到最新数据。具体请阅读[缓存模式](/tutorial/cache/mode)。
+建议在使用`useAutoRequest`时关闭对应请求的缓存，因为当设置缓存时，在触发自动请求时也会命中缓存而获取不到最新数据。具体请阅读[缓存模式](/v2/tutorial/cache/mode)。
 
 :::
 

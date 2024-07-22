@@ -55,12 +55,12 @@ const alovaInstance = createAlova({
 
 在之前的章节中我们已经配置了`GlobalFetch`请求适配器，由这个 alova 实例发起的请求都将使用它发送请求。实际上，我们针对不同的 JS 环境，还提供了各种请求适配器。
 
-- [模拟请求适配器](/tutorial/request-adapter/alova-mock)
-- [XMLHttpRequest 适配器](/tutorial/request-adapter/xhr)
-- [axios 适配器](/tutorial/request-adapter/axios)
-- [uniapp 适配器](/tutorial/request-adapter/uniapp)
-- [taro 适配器](/tutorial/request-adapter/taro)
+- [模拟请求适配器](/v2/tutorial/request-adapter/alova-mock)
+- [XMLHttpRequest 适配器](/v2/tutorial/request-adapter/alova-adapter-xhr)
+- [axios 适配器](/v2/tutorial/request-adapter/alova-adapter-axios)
+- [uniapp 适配器](/v2/tutorial/request-adapter/alova-adapter-uniapp)
+- [taro 适配器](/v2/tutorial/request-adapter/alova-adapter-taro)
 
 ## 全局的响应缓存
 
-你还可以全局设置响应缓存，我们将在后面的[响应缓存](/tutorial/cache/mode)章节中详细说明。
+你还可以全局设置响应缓存，我们将在后面的[响应缓存](/v2/tutorial/cache/mode)章节中详细说明。

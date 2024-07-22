@@ -10,17 +10,17 @@ import NavCard from '@site/src/components/NavCard';
 {
 title: '进阶教程',
 desc: '更深入地使用 alova，帮你快速解决更多特殊的请求问题',
-link: '/tutorial/advanced'
+link: '/v2/tutorial/advanced'
 },
 {
 title: '最佳实践',
 desc: '在项目中使用实践总结的 alova 技巧',
-link: '/category/best-practice'
+link: '/v2/category/best-practice'
 },
 {
 title: 'alova 适配器',
 desc: '在不同的 JS 环境中使用 alova',
-link: '/category/request-adapter'
+link: '/v2/category/request-adapter'
 },
 ]}></NavCard>
 

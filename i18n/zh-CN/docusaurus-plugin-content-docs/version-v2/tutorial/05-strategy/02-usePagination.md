@@ -17,9 +17,9 @@ use hook
 
 ## 示例
 
-[页码列表](/tutorial/example/paginated-list)
+[页码列表](/v2/tutorial/example/paginated-list)
 
-[下拉加载更多](/tutorial/example/load-more)
+[下拉加载更多](/v2/tutorial/example/load-more)
 
 ## 特性
 
@@ -652,7 +652,7 @@ declare function refresh(pageOrItemPage?: number | LD[number]): void;
 
 ### 手动更新列表数据
 
-使用`update`函数更新响应式数据，这与[useRequest 的 update](/tutorial/combine-framework/use-request)相似，唯一不同的是，在调用`update`更新`data`时，更新的是列表数据，而非响应数据。这在手动清除列表数据，而不重新发起请求时很有用。
+使用`update`函数更新响应式数据，这与[useRequest 的 update](/v2/tutorial/combine-framework/use-request)相似，唯一不同的是，在调用`update`更新`data`时，更新的是列表数据，而非响应数据。这在手动清除列表数据，而不重新发起请求时很有用。
 
 ```typescript
 // 情况列表数据

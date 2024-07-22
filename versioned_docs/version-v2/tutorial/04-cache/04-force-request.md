@@ -41,7 +41,7 @@ useFetcher({
 
 ### Dynamically set force value
 
-In actual situations, we often need to set whether to force the request to be sent based on different situations. In this case, force can be set to a function, which will also receive parameters passed in from the `send` function. Please read the [receive params](/tutorial/combine-framework/receive-params) for details
+In actual situations, we often need to set whether to force the request to be sent based on different situations. In this case, force can be set to a function, which will also receive parameters passed in from the `send` function. Please read the [receive params](/v2/tutorial/combine-framework/receive-params) for details
 
 ```javascript
 useRequest(todoListGetter, {
@@ -71,4 +71,4 @@ useFetcher({
 });
 ```
 
-`useFetcher` is a useHook for data fetching, which will be discussed in the [Data Fetching](/tutorial/advanced/use-fetcher) chapter later.
+`useFetcher` is a useHook for data fetching, which will be discussed in the [Data Fetching](/v2/tutorial/advanced/use-fetcher) chapter later.

@@ -15,7 +15,7 @@ import useWatcherSearchVueOptions from '!!raw-loader!@site/codesandbox/03-learni
 
 :::info 提醒
 
-在使用 useWatcher 前，请确保已[设置 statesHook](/tutorial/combine-framework)。
+在使用 useWatcher 前，请确保已[设置 statesHook](/v2/tutorial/combine-framework)。
 
 :::
 

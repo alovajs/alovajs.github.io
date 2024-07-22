@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 在 createAlova 创建 alova 实例时会根据传入的`statesHook`自动推断出`useRequest`、`useWatcher`、`useFetcher`所创建的状态类型。
 
-> `useFetcher`是一个用于数据拉取的 useHook，详情请阅读[进阶-数据拉取章节](/tutorial/advanced/use-fetcher)。
+> `useFetcher`是一个用于数据拉取的 useHook，详情请阅读[进阶-数据拉取章节](/v2/tutorial/advanced/use-fetcher)。
 
 以下为预设中，useHooks 返回的状态类型。
 

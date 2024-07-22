@@ -4,7 +4,7 @@ title: Silent Submit - Settings Page
 
 import SettingSilentSvelte from '@site/example-links/SettingSilentSvelte';
 
-> The example uses svelte as an example, but you can also use alova in react and vue, please read the [Getting Started Guide](/tutorial/getting-started) for details;
+> The example uses svelte as an example, but you can also use alova in react and vue, please read the [Getting Started Guide](/v2/tutorial/getting-started) for details;
 
 <SettingSilentSvelte></SettingSilentSvelte>
 
@@ -17,6 +17,6 @@ _Operation guidance:_
 1. Operate the setting item, it will generate feedback immediately without waiting for the server to respond;
 2. Switch the request mode and network status to experience the difference between them;
 
-[Silent submit strategy document](/tutorial/strategy/sensorless-data-interaction)
+[Silent submit strategy document](/v2/tutorial/strategy/sensorless-data-interaction)
 
 :::

@@ -38,7 +38,7 @@ list.push(data);
 
 :::info 示例
 
-我们提供了一个[笔记应用示例](/tutorial/example/silent-submit-notes)，你可以进入体验。
+我们提供了一个[笔记应用示例](/v2/tutorial/example/silent-submit-notes)，你可以进入体验。
 
 :::
 
@@ -48,7 +48,7 @@ list.push(data);
 
 :::info 示例
 
-我们提供了一个[设置页示例](/tutorial/example/silent-submit-setting)，你可以进入体验。
+我们提供了一个[设置页示例](/v2/tutorial/example/silent-submit-setting)，你可以进入体验。
 
 :::
 
@@ -61,7 +61,7 @@ list.push(data);
 
 :::info 示例
 
-我们提供了一个[简单列表页示例](/tutorial/example/silent-submit-simple-list)，你可以进入体验。
+我们提供了一个[简单列表页示例](/v2/tutorial/example/silent-submit-simple-list)，你可以进入体验。
 
 :::
 
@@ -111,15 +111,15 @@ list.push(data);
 
 阅读前请确保已经掌握了以下章节内容
 
-- [基础学习](/tutorial/getting-started)
+- [基础学习](/v2/tutorial/getting-started)
 
 :::
 
 ### 数据预拉取
 
-在 html 中你可能见过这样的标签`<link rel="prefetch" href="index.css" as="style">`，它告诉浏览器在闲时去预加载样式文件，并放在缓存中，当真正需要使用的时候从缓存中取出即可，alova 也使用了类似的方案，通过[useFetcher](/tutorial/advanced/use-fetcher)来预拉取需要的数据，它将保存在本地缓存中。你可以在任意情况下预判用户的需要阅读的内容，然后预先拉取对应的内容，如在流程类的页面中可以预加载下一页的内容，又或者，用户在某个按钮上停留了 200ms，我们可以预先拉取下一个界面需要的数据，这点类似于**Next.js**的页面预加载。
+在 html 中你可能见过这样的标签`<link rel="prefetch" href="index.css" as="style">`，它告诉浏览器在闲时去预加载样式文件，并放在缓存中，当真正需要使用的时候从缓存中取出即可，alova 也使用了类似的方案，通过[useFetcher](/v2/tutorial/advanced/use-fetcher)来预拉取需要的数据，它将保存在本地缓存中。你可以在任意情况下预判用户的需要阅读的内容，然后预先拉取对应的内容，如在流程类的页面中可以预加载下一页的内容，又或者，用户在某个按钮上停留了 200ms，我们可以预先拉取下一个界面需要的数据，这点类似于**Next.js**的页面预加载。
 
-我们提供了一个[预加载的示例](/tutorial/example/prefetch)，你可以进入体验。
+我们提供了一个[预加载的示例](/v2/tutorial/example/prefetch)，你可以进入体验。
 
 ### 静默提交
 

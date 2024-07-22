@@ -10,17 +10,17 @@ import NavCard from '@site/src/components/NavCard';
 {
 title: 'Advanced Tutorial',
 desc: 'Use alova more deeply to help you quickly solve more special request problems',
-link: '/tutorial/advanced'
+link: '/v2/tutorial/advanced'
 },
 {
 title: 'Best Practices',
 desc: 'Use alova techniques summarized in practice in projects',
-link: '/category/best-practice'
+link: '/v2/category/best-practice'
 },
 {
 title: 'alova adapter',
 desc: 'Use alova in different JS environments',
-link: '/category/request-adapter'
+link: '/v2/category/request-adapter'
 },
 ]}></NavCard>
 

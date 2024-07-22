@@ -38,7 +38,7 @@ Note-taking applications such as Evernote and canvas editing applications such a
 
 :::info example
 
-We provide a [note application example](/tutorial/example/silent-submit-notes), you can enter the experience.
+We provide a [note application example](/v2/tutorial/example/silent-submit-notes), you can enter the experience.
 
 :::
 
@@ -48,7 +48,7 @@ The setting module composed of commonly used switches and selectors needs to rea
 
 :::info example
 
-We provide a [setting page example](/tutorial/example/silent-submit-setting), you can enter the experience.
+We provide a [setting page example](/v2/tutorial/example/silent-submit-setting), you can enter the experience.
 
 :::
 
@@ -61,7 +61,7 @@ The data we fill in when creating a list item is enough for the display of the l
 
 :::info example
 
-We provide a [simple list page example](/tutorial/example/silent-submit-simple-list), you can enter the experience.
+We provide a [simple list page example](/v2/tutorial/example/silent-submit-simple-list), you can enter the experience.
 
 :::
 
@@ -111,15 +111,15 @@ In the technical solution of non-inductive data interaction, alova has implement
 
 Please make sure you have mastered the following chapters before reading
 
-- [Basic Learning](/tutorial/getting-started)
+- [Basic Learning](/v2/tutorial/getting-started)
 
 :::
 
 ### Data pre-fetching
 
-In html, you may have seen such a tag `<link rel="prefetch" href="index.css" as="style">`, which tells the browser to preload the style file when it is idle, and put it in the cache In , when you really need to use it, you can take it out of the cache. Alova also uses a similar scheme to pre-fetch the required data through [useFetcher](/tutorial/advanced/use-fetcher), and it will be stored locally. in cache. You can predict the content that the user needs to read under any circumstances, and then pre-fetch the corresponding content. For example, the content of the next page can be pre-loaded in the process page, or the user stays on a button 200ms, we can pre-fetch the data needed for the next interface, which is similar to **Next.js** page preloading.
+In html, you may have seen such a tag `<link rel="prefetch" href="index.css" as="style">`, which tells the browser to preload the style file when it is idle, and put it in the cache In , when you really need to use it, you can take it out of the cache. Alova also uses a similar scheme to pre-fetch the required data through [useFetcher](/v2/tutorial/advanced/use-fetcher), and it will be stored locally. in cache. You can predict the content that the user needs to read under any circumstances, and then pre-fetch the corresponding content. For example, the content of the next page can be pre-loaded in the process page, or the user stays on a button 200ms, we can pre-fetch the data needed for the next interface, which is similar to **Next.js** page preloading.
 
-We provide a [preloaded example](/tutorial/example/prefetch), you can enter the experience.
+We provide a [preloaded example](/v2/tutorial/example/prefetch), you can enter the experience.
 
 ### Silent submit
 

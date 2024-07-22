@@ -4,7 +4,7 @@ title: 使用IndexedDB管理缓存
 
 import ControlledCacheByIndexedDB from '@site/example-links/ControlledCacheByIndexedDB';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/v2/tutorial/getting-started);
 
 <ControlledCacheByIndexedDB></ControlledCacheByIndexedDB>
 
@@ -17,6 +17,6 @@ _操作引导：_
 1. 选择其中一张图片，图片会先请求网络加载，图片数据将会保存在本地 IndexedDB 中；
 2. 刷新页面，再次选择相同的图片，图片将在 IndexedDB 中获取数据，而不再发起网络请求；
 
-[受控缓存文档](/tutorial/cache/controlled-cache)
+[受控缓存文档](/v2/tutorial/cache/controlled-cache)
 
 :::

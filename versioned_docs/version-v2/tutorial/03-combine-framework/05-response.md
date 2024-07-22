@@ -36,7 +36,7 @@ When no error is thrown, the next node receives the return value of the previous
 
 ## Transform response data
 
-In [method detailed explanation](/tutorial/getting-started/method), we have already learned about `transformData`, which is also very useful when used in useHook. It allows useHook's data to receive the transformed data without transform again.
+In [method detailed explanation](/v2/tutorial/getting-started/method), we have already learned about `transformData`, which is also very useful when used in useHook. It allows useHook's data to receive the transformed data without transform again.
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {

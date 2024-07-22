@@ -197,7 +197,7 @@ on('event-name', ({ data }) => {
 
 ### Global Response Interception
 
-By default, the response data is captured by [the global response interceptors](/tutorial/combine-framework/response). If this is not the desired behavior, you can manually disable it.
+By default, the response data is captured by [the global response interceptors](/v2/tutorial/combine-framework/response). If this is not the desired behavior, you can manually disable it.
 
 ```typescript
 const { data, readyState, onMessage, on } = useSSE(method, {

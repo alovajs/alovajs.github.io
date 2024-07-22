@@ -157,7 +157,7 @@ fetch('/todo/list', {
 
 ## 请求行为
 
-在[RSM](/tutorial/others/RSM)中，请求行为用于描述将以怎样的方式处理请求。
+在[RSM](/v2/tutorial/others/RSM)中，请求行为用于描述将以怎样的方式处理请求。
 
 ### 超时时间
 
@@ -228,7 +228,7 @@ alovaInstance.Get('/todo/list', {
 
 ### 响应缓存
 
-响应缓存让你可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。GET 请求将默认设置 5 分钟的内存缓存时间，我们将在后面的[响应缓存](/tutorial/cache/mode)章节中详细说明。
+响应缓存让你可以更好地多次利用服务端数据，而不需要每次请求时都发送请求获取数据。GET 请求将默认设置 5 分钟的内存缓存时间，我们将在后面的[响应缓存](/v2/tutorial/cache/mode)章节中详细说明。
 
 ## 中断请求
 
@@ -287,9 +287,9 @@ const handleOffEvent = () => {
 
 :::warning 使用`GlobalFetch`适配器需注意
 
-因 fetch api 限制，alova 提供的 **GlobalFetch** 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/tutorial/request-adapter/xhr)或[axios 适配器](/tutorial/request-adapter/axios)。
+因 fetch api 限制，alova 提供的 **GlobalFetch** 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/v2/tutorial/request-adapter/alova-adapter-xhr)或[axios 适配器](/v2/tutorial/request-adapter/alova-adapter-axios)。
 
-也可以自行编写请求适配器，详见 [编写请求适配器](/tutorial/custom/custom-http-adapter)。
+也可以自行编写请求适配器，详见 [编写请求适配器](/v2/tutorial/custom/custom-http-adapter)。
 
 :::
 
