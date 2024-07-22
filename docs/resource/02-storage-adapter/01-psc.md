@@ -20,7 +20,7 @@ npm install @alova/psc --save
 
 ## Use in Node.js
 
-In Node.js environment, you can use `createNodePSCSynchronizer` and `createNodePSCAdapter` to synchronize the cache between child processes.
+In Node.js environment, you can use `createNodePSCSynchronizer` and `createPSCAdapter` to synchronize the cache between child processes.
 
 1. Set up the synchronizer in the master process:
 
@@ -40,15 +40,14 @@ if (cluster.isMaster) {
 
 2. Use the adapter in the child process:
 
-We provide an export `createNodePSCAdapter`, which is alias for `createPSCAdapter(NodeSyncAdapter())`.
 In most cases, you can use it like this:
 
 ```javascript
-const { createNodePSCAdapter } = require('@alova/psc');
+const { createPSCAdapter, NodeSyncAdapter } = require('@alova/psc');
 
 createAlova({
   // ...
-  l1Cache: createNodePSCAdapter()
+  l1Cache: createPSCAdapter(NodeSyncAdapter())
 });
 ```
 
@@ -58,7 +57,6 @@ Of course, you can share both l1Cache and l2Cache at the same time! Just use the
 
 ```javascript
 const process = require('node:process');
-const { createPSCAdapter, NodeSyncAdapter } = require('@alova/psc');
 
 const createScopedPSCAdapter = (scope: string) =>
   createPSCAdapter(
@@ -69,17 +67,23 @@ const createScopedPSCAdapter = (scope: string) =>
     { scope }
     // highlight-end
   );
+
+createAlova({
+  // ...
+  l1Cache: createScopedPSCAdapter('l1'),
+  l2Cache: createScopedPSCAdapter('l2')
+});
 ```
 
 ## Use in Electron
 
-In the Electron environment, use `createElectronPSCSynchronizer` and `createElectronPSCAdapter` to synchronize the cache between renderer processes.
+In the Electron environment, use `createElectronPSCSynchronizer` and `createPSCAdapter` to synchronize the cache between renderer processes.
 
 1. Set up the synchronizer in the main process:
 
 ```javascript
 // main.js
-import { createPSCSynchronizer, ElectronSyncAdapter } from '@alova/psc';
+import { createElectronPSCSynchronizer } from '@alova/psc';
 import { ipcMain } from 'electron';
 
 // Initialize the synchronizer
@@ -96,7 +100,7 @@ import { createPSCAdapter, ElectronSyncAdapter } from '@alova/psc';
 import { ipcRenderer, contextBridge } from 'electron';
 
 // createElectronPSCAdapter is also an alias
-const pscAdapter = createElectronPSCAdapter(ipcRenderer);
+const pscAdapter = createPSCAdapter(ElectronSyncAdapter(ipcRenderer));
 
 contextBridge.exposeInMainWorld('pscAdapter', pscAdapter);
 ```
