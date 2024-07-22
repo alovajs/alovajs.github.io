@@ -17,14 +17,14 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-taro@beta --save
+npm install @alova/adapter-taro --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-taro@beta
+yarn add @alova/adapter-taro
 ```
 
 </TabItem>
@@ -326,7 +326,7 @@ const App = () => {
 
 ## 模拟请求适配器兼容
 
-在使用 Taro 开发应用时，我们仍然可能需要用到模拟请求，只是默认情况下，[模拟请求适配器(@alova/mock)](/next/resource/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`alova/fetch`请求适配器，当在 Taro 环境下使用时，我们需要让模拟请求适配器的响应数据是兼容 Taro 适配器的，因此你需要使用**@alova/adapter-taro**包中导出的`taroMockResponse`作为响应适配器。
+在使用 Taro 开发应用时，我们仍然可能需要用到模拟请求，只是默认情况下，[模拟请求适配器(@alova/mock)](/resource/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`alova/fetch`请求适配器，当在 Taro 环境下使用时，我们需要让模拟请求适配器的响应数据是兼容 Taro 适配器的，因此你需要使用**@alova/adapter-taro**包中导出的`taroMockResponse`作为响应适配器。
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

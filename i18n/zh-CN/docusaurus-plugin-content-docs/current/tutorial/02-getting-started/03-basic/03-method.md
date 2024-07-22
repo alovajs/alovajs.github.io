@@ -151,7 +151,7 @@ fetch('/todo/list', {
 });
 ```
 
-> 请求体除了可以传递 Object，还能传递请求适配器支持的请求体参数，例如 `alova/fetch` 支持传递`string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream`参数。
+> 详情请查看[fetch 适配器](/resource/request-adapter/fetch)。
 
 如果你使用了其他的请求适配器，也可以传递它们支持的参数。
 
@@ -237,7 +237,7 @@ alovaInstance.Get('/todo/list', {
 });
 ```
 
-详细内容可参考[响应缓存](/next/tutorial/cache/mode)
+详细内容可参考[响应缓存](/tutorial/cache/mode)
 
 ## 中断请求
 
@@ -296,9 +296,9 @@ const handleOffEvent = () => {
 
 :::warning 使用`alova/fetch`适配器需注意
 
-因 fetch api 限制，alova 提供的 `alova/fetch` 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/next/resource/request-adapter/alova-adapter-xhr)或[axios 适配器](/next/resource/request-adapter/alova-adapter-axios)。
+因 fetch api 限制，alova 提供的 `alova/fetch` 适配器不支持上传进度，如果需要上传进度，请使用[XMLHttpRequest 适配器](/resource/request-adapter/xhr)或[axios 适配器](/resource/request-adapter/axios)。
 
-也可以自行编写请求适配器，详见 [编写请求适配器](/next/tutorial/advanced/custom/http-adapter)。
+也可以自行编写请求适配器，详见 [编写请求适配器](/tutorial/advanced/custom/http-adapter)。
 
 :::
 

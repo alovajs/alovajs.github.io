@@ -151,7 +151,7 @@ createClientTokenAuthentication({
 
 :::
 
-> For more information about metadata, go to [method metadata](/next/tutorial/getting-started/basic/method-metadata).
+> For more information about metadata, go to [method metadata](/tutorial/getting-started/basic/method-metadata).
 
 ```javascript
 export const refreshToken = () => {
@@ -234,7 +234,7 @@ createServerTokenAuthentication({
 
 :::
 
-> For more information about metadata, please go to [method metadata](/next/tutorial/getting-started/basic/method-metadata).
+> For more information about metadata, please go to [method metadata](/tutorial/getting-started/basic/method-metadata).
 
 ```javascript
 export const refreshToken = () => {

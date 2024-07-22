@@ -6,7 +6,7 @@ title: Core useHooks
 
 Represents the sending of a request. When executing useRequest, a request will be sent by default, and stateful request-related data will be created and maintained, such as `loading/data/error`, etc. It is the most commonly used method when obtaining initial data on the page. It also supports turning off its default request sending, which is very useful in request scenarios triggered by click events such as submitting data.
 
-> Go to [Send Request](/next/tutorial/client/strategy/use-request) for details.
+> Go to [Send Request](/tutorial/client/strategy/use-request) for details.
 
 ### type
 
@@ -28,7 +28,7 @@ function useRequest(
 | initialData   | The initial data value. The data value is the initial value before the first response. If it is not set, it is `undefined` | any                                                                                                                                | -       | -       |
 | force         | Whether to force the request, it can be set to the function to dynamically return a boolean value                          | boolean \| (...args: any[]) => boolean \| false                                                                                    | -       | -       |
 | managedStates | Additional managed states, which can be updated via updateState                                                            | Record\<string \|number \| symbol, any\>                                                                                           | -       | -       |
-| middleware    | Middleware function, [Understanding alova middleware](/next/tutorial/client/in-depth/middleware)                           | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -       | -       |
+| middleware    | Middleware function, [Understanding alova middleware](/tutorial/client/in-depth/middleware)                                | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -       | -       |
 
 #### AlovaFrontMiddlewareContext
 
@@ -130,7 +130,7 @@ The following attribute values will automatically infer the responsive data type
 
 Monitor the status and initiate a request after the status changes. In some scenarios that require re-requesting as the data changes, such as paging, data filtering, and fuzzy search.
 
-> Go to [State Change Request](/next/tutorial/client/strategy/use-watcher) for details.
+> Go to [State Change Request](/tutorial/client/strategy/use-watcher) for details.
 
 ### type
 
@@ -154,7 +154,7 @@ function useWatcher(
 | force         | Whether to force the request, it can be set to the function to dynamically return a boolean value                                          | boolean \| (...args: any[]) => boolean \| false                                                                                    |
 | managedStates | Additional managed states, which can be updated via updateState                                                                            | Record\<string \| number \| symbol, any\>                                                                                          | -          |
 | debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time individually in the order of watchingStates | number \| number[]                                                                                                                 | -          |
-| middleware    | Middleware function, [Understanding alova middleware](/next/tutorial/client/in-depth/middleware)                                           | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -          | -       |
+| middleware    | Middleware function, [Understanding alova middleware](/tutorial/client/in-depth/middleware)                                                | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -          | -       |
 | sendable      | Whether to send a request when the monitored state changes                                                                                 | (methodInstance: AlovaEvent) => boolean                                                                                            | () => true | -       |
 | abortLast     | Whether to abort the last unresponsive request                                                                                             | boolean                                                                                                                            | true       | -       |
 
@@ -192,7 +192,7 @@ function useWatcher(
 
 It is used to pull data through `useFetcher`, which is useful when preloading data and updating status across modules.
 
-> Go to [Data Fetching](/next/tutorial/client/strategy/use-fetcher) to view details.
+> Go to [Data Fetching](/tutorial/client/strategy/use-fetcher) to view details.
 
 ### type
 
@@ -207,7 +207,7 @@ function useFetcher(config?: FetcherHookConfig): UseFetchHookReturnType;
 | Name       | Description                                                                                       | Type                                                                                                                                   | Default                              | Version |
 | ---------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
 | force      | Whether to force the request, it can be set to the function to dynamically return a boolean value | boolean                                                                                                                                | (...args: any[]) => boolean \| false | -       |
-| middleware | Middleware function, [Understand alova middleware](/next/tutorial/client/in-depth/middleware)     | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -                                    | -       |
+| middleware | Middleware function, [Understand alova middleware](/tutorial/client/in-depth/middleware)          | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -                                    | -       |
 
 #### AlovaFetcherMiddlewareContext
 

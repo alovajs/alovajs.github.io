@@ -12,7 +12,7 @@ In order to meet the running requirements of js in different environments, you c
 - [localStorage storage adapter](https://github.com/alovajs/alova/blob/main/src/predefine/globalLocalStorage.ts)
 - [vue states hook](https://github.com/alovajs/alova/blob/main/src/predefine/VueHook.ts)
 
-You can also combine multiple types of adapters into a collection, for example [Uniapp Adapter](/tutorial/request-adapter/alova-adapter-uniapp).
+You can also combine multiple types of adapters into a collection, for example [Uniapp Adapter](/tutorial/request-adapter/uniapp).
 
 ## Write request strategy
 

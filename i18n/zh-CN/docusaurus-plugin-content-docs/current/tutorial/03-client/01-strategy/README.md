@@ -8,7 +8,7 @@ import DocCardList from '@theme/DocCardList';
 
 所有的客户端 use hooks 都有以下共同点：
 
-1. 它们都依赖 statesHook，请在使用前[设置 statesHook](/next/tutorial/getting-started/basic/combine-framework)。
+1. 它们都依赖 statesHook，请在使用前[设置 statesHook](/tutorial/getting-started/basic/combine-framework)。
 
 2. 它们的返回值中都包含`update`函数，用于主动更新导出的状态值。
 

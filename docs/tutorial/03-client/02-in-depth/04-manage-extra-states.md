@@ -12,7 +12,7 @@ import Tabs from '@theme/Tabs';
 
 import TabItem from '@theme/TabItem';
 
-In the previous [Update responsive state across pages/modules](/next/tutorial/client/in-depth/update-across-components) chapter, we introduced how to update responsive states across pages or modules through `updateState`, but it can only update states created by useHooks. What should we do if we need to update custom states across components? Let's continue!
+In the previous [Update responsive state across pages/modules](/tutorial/client/in-depth/update-across-components) chapter, we introduced how to update responsive states across pages or modules through `updateState`, but it can only update states created by useHooks. What should we do if we need to update custom states across components? Let's continue!
 
 ## Update a single state
 

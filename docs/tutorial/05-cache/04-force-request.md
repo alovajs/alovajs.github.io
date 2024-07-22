@@ -14,4 +14,4 @@ const response = await alovaInstance.Get('/api/user').send(true);
 
 ## Forced request in useHook
 
-Please go to [Automatically manage request status-Forced request](/next/tutorial/client/strategy/use-request) for details.
+Please go to [Automatically manage request status-Forced request](/tutorial/client/strategy/use-request) for details.

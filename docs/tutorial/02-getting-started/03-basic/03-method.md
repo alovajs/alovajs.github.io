@@ -151,7 +151,7 @@ fetch('/todo/list', {
 });
 ```
 
-> In addition to passing Object, the request body can also pass request body parameters supported by the request adapter, such as `alova/fetch` supports passing `string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream` parameters.
+> For more details please refer to [fetch adapter](/resource/request-adapter/fetch).
 
 If you use other request adapters, you can also pass the parameters they support.
 
@@ -240,7 +240,7 @@ alovaInstance.Get('/todo/list', {
 });
 ```
 
-For details, please refer to [Response Cache](/next/tutorial/cache/mode)
+For details, please refer to [Response Cache](/tutorial/cache/mode)
 
 ## Interrupt request
 
@@ -299,9 +299,9 @@ const handleOffEvent = () => {
 
 :::warning Use `alova/fetch` adapter to pay attention to
 
-Due to the limitation of fetch api, the one provided by alova `alova/fetch` adapter does not support upload progress. If you need upload progress, please use [XMLHttpRequest adapter](/next/resource/request-adapter/alova-adapter-xhr) or [axios adapter](/next/resource/request-adapter/alova-adapter-axios).
+Due to the limitation of fetch api, the one provided by alova `alova/fetch` adapter does not support upload progress. If you need upload progress, please use [XMLHttpRequest adapter](/resource/request-adapter/xhr) or [axios adapter](/resource/request-adapter/axios).
 
-You can also write your own request adapter, see [Writing a request adapter](/next/tutorial/advanced/custom/http-adapter) for details.
+You can also write your own request adapter, see [Writing a request adapter](/tutorial/advanced/custom/http-adapter) for details.
 
 :::
 

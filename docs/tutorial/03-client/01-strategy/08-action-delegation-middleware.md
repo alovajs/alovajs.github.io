@@ -19,7 +19,7 @@ For example, after updating the menu data in a component, you can re-trigger the
 
 <!-- ## Example
 
-[Cross-component trigger request Demo](/next/tutorial/example/vue/action-delegation-middleware) -->
+[Cross-component trigger request Demo](/tutorial/example/vue/action-delegation-middleware) -->
 
 ## Features
 
@@ -138,11 +138,11 @@ Although the action functions delegated by most hooks are the same as the action
 
 ### useRequest
 
-| name   | description                                                  | function parameters | return value | version |
-| ------ | ------------------------------------------------------------ | ------------------- | ------------ | ------- |
-| send   | Same as [useRequset](/next/api/core-hooks#userequest).send   |                     |              | -       |
-| abort  | Same as [useRequset](/next/api/core-hooks#userequest).abort  |                     |              | -       |
-| update | Same as [useRequset](/next/api/core-hooks#userequest).update |                     |              | -       |
+| name   | description                                             | function parameters | return value | version |
+| ------ | ------------------------------------------------------- | ------------------- | ------------ | ------- |
+| send   | Same as [useRequset](/api/core-hooks#userequest).send   |                     |              | -       |
+| abort  | Same as [useRequset](/api/core-hooks#userequest).abort  |                     |              | -       |
+| update | Same as [useRequset](/api/core-hooks#userequest).update |                     |              | -       |
 
 ### useWatcher
 
@@ -150,23 +150,23 @@ Same as [useRequest delegate list](#userequest).
 
 ### useFetcher
 
-| name   | description                                                  | function parameters | return value | version |
-| ------ | ------------------------------------------------------------ | ------------------- | ------------ | ------- |
-| fetch  | Same as [useFetcher](/next/api/core-hooks#usefetcher).fetch  |                     |              | -       |
-| abort  | Same as [useFetcher](/next/api/core-hooks#usefetcher).abort  |                     |              | -       |
-| update | Same as [useFetcher](/next/api/core-hooks#usefetcher).update |                     |              | -       |
+| name   | description                                             | function parameters | return value | version |
+| ------ | ------------------------------------------------------- | ------------------- | ------------ | ------- |
+| fetch  | Same as [useFetcher](/api/core-hooks#usefetcher).fetch  |                     |              | -       |
+| abort  | Same as [useFetcher](/api/core-hooks#usefetcher).abort  |                     |              | -       |
+| update | Same as [useFetcher](/api/core-hooks#usefetcher).update |                     |              | -       |
 
 ### usePagination
 
-| name     | description                                                                                         | function parameters                                                                | return value                               | version |
-| -------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ | ------- |
-| refresh  | For details, see [usePagination action function](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
-| insert   | For details, see [usePagination action function](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
-| remove   | For details, see [usePagination action function](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
-| replace  | For details, see [usePagination action function](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
-| reload   | For details, see [usePagination action function](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
-| update   | For details, see [usePagination action function](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
-| getState | Get paging related data by name                                                                     | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | Corresponding to the value of the statekey | -       |
+| name     | description                                                                                    | function parameters                                                                | return value                               | version |
+| -------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ | ------- |
+| refresh  | For details, see [usePagination action function](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
+| insert   | For details, see [usePagination action function](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
+| remove   | For details, see [usePagination action function](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
+| replace  | For details, see [usePagination action function](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
+| reload   | For details, see [usePagination action function](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
+| update   | For details, see [usePagination action function](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                                            | -       |
+| getState | Get paging related data by name                                                                | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | Corresponding to the value of the statekey | -       |
 
 ### useSQRequest
 
@@ -174,13 +174,13 @@ Same as [useRequest delegate list](#userequest).
 
 ### useForm
 
-| name       | description                                                                             | function parameters | return value | version |
-| ---------- | --------------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
-| updateForm | For details, see [useForm action function](/next/tutorial/client/strategy/use-form#api) |                     |              | -       |
-| reset      | For details, see [useForm action function](/next/tutorial/client/strategy/use-form#api) |                     |              | -       |
-| send       | Same as [useRequset](/next/api/core-hooks#userequest).send                              |                     |              | -       |
-| abort      | Same as [useRequset](/next/api/core-hooks#userequest).abort                             |                     |              | -       |
-| update     | Same as [useRequset](/next/api/core-hooks#userequest).update                            |                     |              | -       |
+| name       | description                                                                        | function parameters | return value | version |
+| ---------- | ---------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
+| updateForm | For details, see [useForm action function](/tutorial/client/strategy/use-form#api) |                     |              | -       |
+| reset      | For details, see [useForm action function](/tutorial/client/strategy/use-form#api) |                     |              | -       |
+| send       | Same as [useRequset](/api/core-hooks#userequest).send                              |                     |              | -       |
+| abort      | Same as [useRequset](/api/core-hooks#userequest).abort                             |                     |              | -       |
+| update     | Same as [useRequset](/api/core-hooks#userequest).update                            |                     |              | -       |
 
 ### useCaptcha
 
@@ -188,12 +188,12 @@ Same as [useRequest delegate list](#userequest).
 
 ### useRetriableRequest
 
-| name   | description                                                                                                     | function parameters | return value | version |
-| ------ | --------------------------------------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
-| stop   | See [useRetriableRequest action function](/next/tutorial/client/strategy/use-retriable-request#api) for details |                     |              | -       |
-| send   | Same as [useRequset](/next/api/core-hooks#userequest).send                                                      |                     |              | -       |
-| abort  | Same as [useRequset](/next/api/core-hooks#userequest).abort                                                     |                     |              | -       |
-| update | Same as [useRequset](/next/api/core-hooks#userequest).update                                                    |                     |              | -       |
+| name   | description                                                                                                | function parameters | return value | version |
+| ------ | ---------------------------------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
+| stop   | See [useRetriableRequest action function](/tutorial/client/strategy/use-retriable-request#api) for details |                     |              | -       |
+| send   | Same as [useRequset](/api/core-hooks#userequest).send                                                      |                     |              | -       |
+| abort  | Same as [useRequset](/api/core-hooks#userequest).abort                                                     |                     |              | -       |
+| update | Same as [useRequset](/api/core-hooks#userequest).update                                                    |                     |              | -       |
 
 ### useSerialRequest
 

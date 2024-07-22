@@ -124,4 +124,4 @@ retry(request, {
 
 <!-- ## API
 
-请查看[API-retry](/next/api/core-hooks#usewatcher)。 -->
+请查看[API-retry](/api/core-hooks#usewatcher)。 -->

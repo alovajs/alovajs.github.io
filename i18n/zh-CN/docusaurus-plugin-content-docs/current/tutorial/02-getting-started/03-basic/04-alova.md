@@ -55,11 +55,11 @@ const alovaInstance = createAlova({
 
 在之前的章节中我们已经配置了`alova/fetch`请求适配器，由这个 alova 实例发起的请求都将使用它发送请求。实际上，我们针对不同的 JS 环境，还提供了各种请求适配器。
 
-- [模拟请求适配器](/next/resource/request-adapter/alova-mock)
-- [XMLHttpRequest 适配器](/next/resource/request-adapter/alova-adapter-xhr)
-- [axios 适配器](/next/resource/request-adapter/alova-adapter-axios)
-- [uniapp 适配器](/next/resource/request-adapter/alova-adapter-uniapp)
-- [taro 适配器](/next/resource/request-adapter/alova-adapter-taro)
+- [模拟请求适配器](/resource/request-adapter/alova-mock)
+- [XMLHttpRequest 适配器](/resource/request-adapter/xhr)
+- [axios 适配器](/resource/request-adapter/axios)
+- [uniapp 适配器](/resource/request-adapter/uniapp)
+- [taro 适配器](/resource/request-adapter/taro)
 
 ## 全局的响应缓存
 
@@ -75,4 +75,4 @@ const alovaInstance = createAlova({
 });
 ```
 
-详细内容可参考[响应缓存](/next/tutorial/cache/mode)
+详细内容可参考[响应缓存](/tutorial/cache/mode)

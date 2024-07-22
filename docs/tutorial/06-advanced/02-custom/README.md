@@ -12,11 +12,11 @@ In order to meet the running requirements of js in different environments, you c
 - [localStorage storage adapter](https://github.com/alovajs/alova/blob/main/packages/alova/src/defaults/cacheAdapter.ts)
 - [vue states hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/vue.ts)
 
-You can also group multiple types of adapters into a collection, such as [Uniapp adapter](/next/resource/request-adapter/alova-adapter-uniapp).
+You can also group multiple types of adapters into a collection, such as [Uniapp adapter](/resource/request-adapter/uniapp).
 
 ## Custom client strategy
 
-alova provides 10+ custom client strategy modules, but sometimes you may need to write your own strategy module. Usually, a custom request strategy is based on the combination of the three core useHooks of `useRequest`, `useWatcher` and `useFetcher`, and writes [middleware](/next/tutorial/client/in-depth/middleware) and cache manipulation functions for them to control their request methods, so as to achieve various request strategies
+alova provides 10+ custom client strategy modules, but sometimes you may need to write your own strategy module. Usually, a custom request strategy is based on the combination of the three core useHooks of `useRequest`, `useWatcher` and `useFetcher`, and writes [middleware](/tutorial/client/in-depth/middleware) and cache manipulation functions for them to control their request methods, so as to achieve various request strategies
 
 The following strategy modules are very representative, and it is strongly recommended that you refer to the source code for inspiration.
 

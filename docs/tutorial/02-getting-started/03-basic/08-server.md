@@ -2,7 +2,7 @@
 title: Server Usage
 ---
 
-As mentioned in the previous [Quick Start](/next/tutorial/getting-started/quick-start), alova can be used in server-side environments such as `nodejs/deno/bun`. You can use all functions except client request strategies on the server. In addition, alova also provides good support for server-side environments.
+As mentioned in the previous [Quick Start](/tutorial/getting-started/quick-start), alova can be used in server-side environments such as `nodejs/deno/bun`. You can use all functions except client request strategies on the server. In addition, alova also provides good support for server-side environments.
 
 ```js
 import { createAlova } from 'alova';
@@ -67,7 +67,7 @@ const result = await sendCaptcha(
 );
 ```
 
-> For more `Server hooks`, please visit [Server Strategy](/next/tutorial/server/strategy).
+> For more `Server hooks`, please visit [Server Strategy](/tutorial/server/strategy).
 
 ## Multi-level Cache
 
@@ -146,6 +146,6 @@ const alovaInstance = createAlova({
 });
 ```
 
-The source code of the redis adapter mentioned above can be found in [Best Practice - L2 Cache Adapter](/next/tutorial/project/best-practice/l2-storage), and the adapter for shared memory between processes can be found here(/next/resource/storage-adapter/psc)
+The source code of the redis adapter mentioned above can be found in [Best Practice - L2 Cache Adapter](/tutorial/project/best-practice/l2-storage), and the adapter for shared memory between processes can be found here(/resource/storage-adapter/psc)
 
-> For more detail of response cache, please refer to [Detailed Explanation of Cache](/next/tutorial/cache/mode).
+> For more detail of response cache, please refer to [Detailed Explanation of Cache](/tutorial/cache/mode).

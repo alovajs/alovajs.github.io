@@ -17,7 +17,7 @@ title: 步骤5-编辑数据
 
 在之前的章节中我们知道，当新建的数据项还没有成功提交时，将会使用虚拟数据作为 id 的占位符，通常，我们也是通过 id 来获取数据项的，此时我们在`useSQRequeset`上实现了虚拟数据拦截，一个请求如果附带了虚拟数据信息，它将在发送前被拦截并可以指定数据来替代响应数据，并且放弃这次请求。
 
-还记得在 [步骤 2-调整响应处理](/next/tutorial/client/strategy/sensorless-data-interaction/modify-response) 中保存的 **silentMethod.reviewData** 吗？
+还记得在 [步骤 2-调整响应处理](/tutorial/client/strategy/sensorless-data-interaction/modify-response) 中保存的 **silentMethod.reviewData** 吗？
 
 ```javascript
 onSuccess(({ silentMethod }) => {

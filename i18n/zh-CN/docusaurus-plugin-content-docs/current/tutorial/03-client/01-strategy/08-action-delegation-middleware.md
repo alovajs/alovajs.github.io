@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 <!-- ## 示例
 
-[跨组件触发请求 Demo](/next/tutorial/example/vue/action-delegation-middleware) -->
+[跨组件触发请求 Demo](/tutorial/example/vue/action-delegation-middleware) -->
 
 ## 特性
 
@@ -138,11 +138,11 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useRequest
 
-| 名称   | 描述                                                         | 函数参数 | 返回值 | 版本 |
-| ------ | ------------------------------------------------------------ | -------- | ------ | ---- |
-| send   | 与 [useRequset](/next/api/core-hooks#userequest).send 相同   |          |        | -    |
-| abort  | 与 [useRequset](/next/api/core-hooks#userequest).abort 相同  |          |        | -    |
-| update | 与 [useRequset](/next/api/core-hooks#userequest).update 相同 |          |        | -    |
+| 名称   | 描述                                                    | 函数参数 | 返回值 | 版本 |
+| ------ | ------------------------------------------------------- | -------- | ------ | ---- |
+| send   | 与 [useRequset](/api/core-hooks#userequest).send 相同   |          |        | -    |
+| abort  | 与 [useRequset](/api/core-hooks#userequest).abort 相同  |          |        | -    |
+| update | 与 [useRequset](/api/core-hooks#userequest).update 相同 |          |        | -    |
 
 ### useWatcher
 
@@ -150,23 +150,23 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useFetcher
 
-| 名称   | 描述                                                         | 函数参数 | 返回值 | 版本 |
-| ------ | ------------------------------------------------------------ | -------- | ------ | ---- |
-| fetch  | 与 [useFetcher](/next/api/core-hooks#usefetcher).fetch 相同  |          |        | -    |
-| abort  | 与 [useFetcher](/next/api/core-hooks#usefetcher).abort 相同  |          |        | -    |
-| update | 与 [useFetcher](/next/api/core-hooks#usefetcher).update 相同 |          |        | -    |
+| 名称   | 描述                                                    | 函数参数 | 返回值 | 版本 |
+| ------ | ------------------------------------------------------- | -------- | ------ | ---- |
+| fetch  | 与 [useFetcher](/api/core-hooks#usefetcher).fetch 相同  |          |        | -    |
+| abort  | 与 [useFetcher](/api/core-hooks#usefetcher).abort 相同  |          |        | -    |
+| update | 与 [useFetcher](/api/core-hooks#usefetcher).update 相同 |          |        | -    |
 
 ### usePagination
 
-| 名称     | 描述                                                                            | 函数参数                                                                           | 返回值             | 版本 |
-| -------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------ | ---- |
-| refresh  | 详见[usePagination 操作函数](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
-| insert   | 详见[usePagination 操作函数](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
-| remove   | 详见[usePagination 操作函数](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
-| replace  | 详见[usePagination 操作函数](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
-| reload   | 详见[usePagination 操作函数](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
-| update   | 详见[usePagination 操作函数](/next/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
-| getState | 按名称获取分页相关数据                                                          | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | 对应 statekey 的值 | -    |
+| 名称     | 描述                                                                       | 函数参数                                                                           | 返回值             | 版本 |
+| -------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------ | ---- |
+| refresh  | 详见[usePagination 操作函数](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
+| insert   | 详见[usePagination 操作函数](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
+| remove   | 详见[usePagination 操作函数](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
+| replace  | 详见[usePagination 操作函数](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
+| reload   | 详见[usePagination 操作函数](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
+| update   | 详见[usePagination 操作函数](/tutorial/client/strategy/use-pagination#api) |                                                                                    |                    | -    |
+| getState | 按名称获取分页相关数据                                                     | stateKey: 'page' \| 'pageSize' \| 'data' \| 'pageCount' \| 'total' \| 'isLastPage' | 对应 statekey 的值 | -    |
 
 ### useSQRequest
 
@@ -174,13 +174,13 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useForm
 
-| 名称       | 描述                                                                | 函数参数 | 返回值 | 版本 |
-| ---------- | ------------------------------------------------------------------- | -------- | ------ | ---- |
-| updateForm | 详见[useForm 操作函数](/next/tutorial/client/strategy/use-form#api) |          |        | -    |
-| reset      | 详见[useForm 操作函数](/next/tutorial/client/strategy/use-form#api) |          |        | -    |
-| send       | 与 [useRequset](/next/api/core-hooks#userequest).send 相同          |          |        | -    |
-| abort      | 与 [useRequset](/next/api/core-hooks#userequest).abort 相同         |          |        | -    |
-| update     | 与 [useRequset](/next/api/core-hooks#userequest).update 相同        |          |        | -    |
+| 名称       | 描述                                                           | 函数参数 | 返回值 | 版本 |
+| ---------- | -------------------------------------------------------------- | -------- | ------ | ---- |
+| updateForm | 详见[useForm 操作函数](/tutorial/client/strategy/use-form#api) |          |        | -    |
+| reset      | 详见[useForm 操作函数](/tutorial/client/strategy/use-form#api) |          |        | -    |
+| send       | 与 [useRequset](/api/core-hooks#userequest).send 相同          |          |        | -    |
+| abort      | 与 [useRequset](/api/core-hooks#userequest).abort 相同         |          |        | -    |
+| update     | 与 [useRequset](/api/core-hooks#userequest).update 相同        |          |        | -    |
 
 ### useCaptcha
 
@@ -188,12 +188,12 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ### useRetriableRequest
 
-| 名称   | 描述                                                                                         | 函数参数 | 返回值 | 版本 |
-| ------ | -------------------------------------------------------------------------------------------- | -------- | ------ | ---- |
-| stop   | 详见[useRetriableRequest 操作函数](/next/tutorial/client/strategy/use-retriable-request#api) |          |        | -    |
-| send   | 与 [useRequset](/next/api/core-hooks#userequest).send 相同                                   |          |        | -    |
-| abort  | 与 [useRequset](/next/api/core-hooks#userequest).abort 相同                                  |          |        | -    |
-| update | 与 [useRequset](/next/api/core-hooks#userequest).update 相同                                 |          |        | -    |
+| 名称   | 描述                                                                                    | 函数参数 | 返回值 | 版本 |
+| ------ | --------------------------------------------------------------------------------------- | -------- | ------ | ---- |
+| stop   | 详见[useRetriableRequest 操作函数](/tutorial/client/strategy/use-retriable-request#api) |          |        | -    |
+| send   | 与 [useRequset](/api/core-hooks#userequest).send 相同                                   |          |        | -    |
+| abort  | 与 [useRequset](/api/core-hooks#userequest).abort 相同                                  |          |        | -    |
+| update | 与 [useRequset](/api/core-hooks#userequest).update 相同                                 |          |        | -    |
 
 ### useSerialRequest
 

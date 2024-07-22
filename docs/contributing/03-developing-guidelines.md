@@ -134,4 +134,4 @@ alova uses [semantic-release](https://semantic-release.gitbook.io) as an automat
 
 ## 7. Writing docs
 
-If you are adding a new feature, you can try to add the relevant documentation of the new feature. For details, please read [Correcting or add docs](/next/contributing/overview#correct-or-add-docs), otherwise please explain it in the pull request.
+If you are adding a new feature, you can try to add the relevant documentation of the new feature. For details, please read [Correcting or add docs](/contributing/overview#correct-or-add-docs), otherwise please explain it in the pull request.

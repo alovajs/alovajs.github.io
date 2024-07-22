@@ -178,7 +178,7 @@ const App = () => {
 
 ## 跨模块/组件更新视图
 
-下面我们来实现修改一条 todo 数据，并重新拉取最新的 todo 列表数据，让视图更新。我们可能并不知道 todo 列表当前位于第几页，此时在使用`fetch`函数时可以使用[method 快照匹配器](/next/tutorial/client/in-depth/method-matcher)来动态拉取当前页的数据。
+下面我们来实现修改一条 todo 数据，并重新拉取最新的 todo 列表数据，让视图更新。我们可能并不知道 todo 列表当前位于第几页，此时在使用`fetch`函数时可以使用[method 快照匹配器](/tutorial/client/in-depth/method-matcher)来动态拉取当前页的数据。
 
 > method 快照匹配器可以在已请求过的 method 实例中，查找符合条件的 method 实例。
 
@@ -227,8 +227,8 @@ useFetcher 只会在请求完成后更新缓存，并且如果此方法发现该
 
 :::
 
-> 更多 method 快照匹配器的使用方法见 [method 快照匹配器](/next/tutorial/client/in-depth/method-matcher)。
+> 更多 method 快照匹配器的使用方法见 [method 快照匹配器](/tutorial/client/in-depth/method-matcher)。
 
 ## 强制发送请求
 
-和`useRequest`和`useWatcher`相同，更多请阅读[强制请求](/next/tutorial/cache/force-request)。
+和`useRequest`和`useWatcher`相同，更多请阅读[强制请求](/tutorial/cache/force-request)。

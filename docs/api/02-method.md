@@ -51,7 +51,7 @@ interface MethodConstructor {
 1. `type`: request type
 2. `context`: alova instance
 3. `url`: request url
-4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/next/api/alova#alovaget)
+4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/api/alova#alovaget)
 5. `data`: request body data
 
 - **Example**
@@ -96,7 +96,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-Obtain the requested method instance snapshot using the matching method of [method instance matcher](/next/tutorial/client/in-depth/method-matcher) and return the matching result.
+Obtain the requested method instance snapshot using the matching method of [method instance matcher](/tutorial/client/in-depth/method-matcher) and return the matching result.
 
 - **type**
 
@@ -153,7 +153,7 @@ interface Method {
 
 ## method.baseURL
 
-The base path of the request, inherited from [alova instance](/next/api/alova).
+The base path of the request, inherited from [alova instance](/api/alova).
 
 - **type**
 
@@ -225,7 +225,7 @@ interface Method {
 
 ## method.meta
 
-The metadata of method is used to record request feature information, [View details](/next/tutorial/getting-started/basic/method-metadata).
+The metadata of method is used to record request feature information, [View details](/tutorial/getting-started/basic/method-metadata).
 
 - **type**
 
@@ -237,7 +237,7 @@ interface Method {
 
 ## method.config
 
-Configuration information when creating a method through `alova.Get/alova.Post` and other methods, [View details](/next/api/alova#alovaget).
+Configuration information when creating a method through `alova.Get/alova.Post` and other methods, [View details](/api/alova#alovaget).
 
 - **type**
 

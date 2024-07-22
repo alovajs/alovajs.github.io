@@ -29,7 +29,7 @@ const {
   onSuccess, onError, onComplete,
   send, abort, update
 } = useRequest(todoDetail);`,
-    link: 'tutorial/combine-framework/use-request'
+    link: 'tutorial/client/strategy/use-request'
   },
   {
     title: <Translate id="homepage.strategy.useWatcher">Request when states changed</Translate>,
@@ -54,7 +54,7 @@ const {
     sendable: () => keyword !== ''
   }
 );`,
-    link: 'tutorial/combine-framework/use-watcher'
+    link: 'tutorial/client/strategy/use-watcher'
   },
   {
     title: <Translate id="homepage.strategy.useFetcher">Prefetch data</Translate>,
@@ -74,7 +74,7 @@ const {
   fetch
 } = useFetcher();
 fetch(todoDetail);`,
-    link: 'tutorial/advanced/use-fetcher'
+    link: 'tutorial/client/strategy/use-fetcher'
   },
   {
     title: <Translate id="homepage.strategy.Pagination">Pagination request</Translate>,
@@ -104,7 +104,7 @@ fetch(todoDetail);`,
   initialPage: 1,
   initialPageSize: 10
 });`,
-    link: 'tutorial/strategy/usePagination'
+    link: 'tutorial/client/strategy/use-pagination'
   },
   {
     title: (
@@ -147,7 +147,7 @@ const alovaInstance = createAlova({
   beforeRequest: onAuthRequired(),
   responded: onResponseRefreshToken()
 });`,
-    link: 'tutorial/strategy/tokenAuthentication'
+    link: 'tutorial/client/strategy/token-authentication'
   },
   {
     title: (
@@ -189,7 +189,7 @@ const alovaInstance = createAlova({
     delay: 2000
   }
 });`,
-    link: 'tutorial/strategy/sensorless-data-interaction/overview'
+    link: 'tutorial/client/strategy/sensorless-data-interaction'
   },
   {
     title: <Translate id="homepage.strategy.Form submit">Form Submit strategy</Translate>,
@@ -217,7 +217,7 @@ const alovaInstance = createAlova({
   },
   resetAfterSubmiting: true
 });`,
-    link: 'tutorial/strategy/useForm'
+    link: 'tutorial/client/strategy/use-form'
   },
   {
     title: <Translate id="homepage.strategy.Auto refetch">Auto refetch data</Translate>,
@@ -245,7 +245,7 @@ const alovaInstance = createAlova({
   enableNetwork: true,
   throttle: 1000
 }`,
-    link: 'tutorial/strategy/useAutoRequest'
+    link: 'tutorial/client/strategy/use-auto-request'
   },
   {
     title: <Translate id="homepage.strategy.Upload">File upload strategy</Translate>,
@@ -273,7 +273,7 @@ const alovaInstance = createAlova({
   accept: ['png', 'jpg', 'gif'],
   imageTempLink: true
 });`,
-    link: 'tutorial/strategy/useUploader'
+    link: 'tutorial/client/strategy/use-uploader'
   },
   {
     title: <Translate id="homepage.strategy.Send captcha">Send captcha</Translate>,
@@ -293,7 +293,7 @@ const alovaInstance = createAlova({
 } = useCaptcha(() => sendCaptcha(mobile), {
   initialCountdown: 60
 });`,
-    link: 'tutorial/strategy/useCaptcha'
+    link: 'tutorial/client/strategy/use-captcha'
   },
   {
     title: (
@@ -315,7 +315,7 @@ const alovaInstance = createAlova({
     code: `useRequest(todoDetail, {
   middleware: actionDelegationMiddleware('actionName')
 });`,
-    link: 'tutorial/strategy/actionDelegationMiddleware'
+    link: 'tutorial/client/strategy/action-delegation-middleware'
   },
   {
     title: (
@@ -349,7 +349,7 @@ const alovaInstance = createAlova({
     delay: 2000
   }
 });`,
-    link: 'tutorial/strategy/useRetriableRequest'
+    link: 'tutorial/client/strategy/use-retriable-request'
   },
   {
     title: <Translate id="homepage.strategy.SSE">SSE</Translate>,
@@ -371,6 +371,6 @@ const alovaInstance = createAlova({
   withCredentials: true,
   interceptByGlobalResponded: true
 });`,
-    link: 'tutorial/strategy/useSSE'
+    link: 'tutorial/client/strategy/use-sse'
   }
 ];

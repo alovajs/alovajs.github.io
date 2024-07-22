@@ -51,7 +51,7 @@ interface MethodConstructor {
 1. `type`：请求类型
 2. `context`：alova 实例
 3. `url`：请求 url
-4. `config`：配置参数, 类型与[alova.Get](/next/api/alova#alovaget)的 config 参数类型一致
+4. `config`：配置参数, 类型与[alova.Get](/api/alova#alovaget)的 config 参数类型一致
 5. `data`：请求体数据
 
 - **示例**
@@ -96,7 +96,7 @@ const methodKey = getMethodKey(method);
 
 ## matchSnapshotMethod()
 
-以[method 匹配器](/next/tutorial/client/in-depth/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
+以[method 匹配器](/tutorial/client/in-depth/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
 
 - **类型**
 
@@ -153,7 +153,7 @@ interface Method {
 
 ## method.baseURL
 
-请求的基础路径，继承于[alova 实例](/next/api/alova)。
+请求的基础路径，继承于[alova 实例](/api/alova)。
 
 - **类型**
 
@@ -225,7 +225,7 @@ interface Method {
 
 ## method.meta
 
-method 的 元数据，用于记录请求特性信息，[详情查看](/next/tutorial/getting-started/basic/method-metadata)。
+method 的 元数据，用于记录请求特性信息，[详情查看](/tutorial/getting-started/basic/method-metadata)。
 
 - **类型**
 
@@ -237,7 +237,7 @@ interface Method {
 
 ## method.config
 
-通过`alova.Get/alova.Post`等方法创建 method 时的配置信息，[详情查看](/next/api/alova#alovaget)。
+通过`alova.Get/alova.Post`等方法创建 method 时的配置信息，[详情查看](/api/alova#alovaget)。
 
 - **类型**
 

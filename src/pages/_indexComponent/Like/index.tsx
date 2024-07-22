@@ -13,7 +13,7 @@ const buttons = [
         size={24}></IconFont>
     ),
     text: <Translate>Get Started</Translate>,
-    link: '/tutorial/getting-started',
+    link: '/tutorial/getting-started/introduce',
     target: '_self'
   },
   {

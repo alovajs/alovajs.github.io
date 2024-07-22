@@ -17,7 +17,7 @@ A use hook that can automatically retry a request failure, you can use it for im
 
 <!-- ## Example
 
-[Request Retry Demo](/next/tutorial/example/react/retriable-hook) -->
+[Request Retry Demo](/tutorial/example/react/retriable-hook) -->
 
 ## Features
 
@@ -176,7 +176,7 @@ const handleStop = () => {
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 
 | Name    | Description                                                                                                                                  | Type                            | Default                                   | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------- | ------- | --- |
@@ -194,11 +194,11 @@ Inherit all configurations from [**useRequest**](/next/api/core-hooks#userequest
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all action functions of [**useRequest**](/api/core-hooks#userequest).
 
 | name | description                                                                                                        | function parameters | return value | version |
 | ---- | ------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ | ------- |
@@ -206,7 +206,7 @@ Inherit all action functions of [**useRequest**](/next/api/core-hooks#userequest
 
 ### Event
 
-Inherit all events from [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all events from [**useRequest**](/api/core-hooks#userequest).
 
 | Name    | Description                                                                                                                                                                                                                                                                                                                                                                                                          | Callback Parameters                                              | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------- |

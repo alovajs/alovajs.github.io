@@ -2,12 +2,6 @@
 title: alova v3.0 发布日志
 ---
 
-:::warning beta 提醒
-
-alova@3.0 目前处于 beta 阶段，小部分功能可能会有所改动，如果发现 bug 请在[Github issues](https://github.com/alovajs/alova/issues/new/choose)中告诉我们，我们会在第一时间解决。
-
-:::
-
 ## 整体升级目标
 
 alova@3.0旨在进一步实现“Run in any JS environment”的目标，让使用更简单，我们在 3.0 中进行了全量的重新设计和代码重构，使其在服务端和更多的 JS 环境中使用更加友好。
@@ -490,8 +484,8 @@ useRequest(Getter, {
 useRequest(Getter, {
   force(event) {
     // 获取 args
-    const arg1 = event.sendArgs[0];
-    const arg2 = event.sendArgs[1];
+    const arg1 = event.args[0];
+    const arg2 = event.args[1];
 
     // 获取method
     const method = event.method;
@@ -543,6 +537,27 @@ alova.Get('/api/profile', {
 });
 ```
 
+### 所有的`sendArgs`更改为`args`
+
+1. 在`onSuccess`等事件中
+2. 在`force`函数中
+3. 中间件函数中
+
+```js
+const { onSuccess } = useRequest(Getter, {
+  force(event) {
+    const args = event.args;
+  },
+  middleware(context, next) {
+    const args = context.args;
+    return next();
+  }
+});
+onSuccess(event => {
+  const args = event.args;
+});
+```
+
 ### @alova/adapter-uniapp 导出名称修改
 
 由于 alova 的`storageAdapter`改名为`l2Cache`，因此`@alova/adapter-uniapp`的导出项`uniappStorageAdapter`更改为`uniappL2CacheAdapter`。
@@ -579,8 +594,6 @@ middleware({ proxyStates, args }, ({ update }) => {
   proxyStates.loading.v = true;
 });
 ```
-
-2. sendArgs 和 fetchArgs 更改为 args。
 
 ### 所有的事件绑定函数返回自身对象
 

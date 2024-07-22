@@ -91,7 +91,7 @@ useRequest 表示一次请求的发送，调用时默认将发送一次请求。
 </TabItem>
 </Tabs>
 
-[何时使用 useRequest ，何时通过`await alovaInstance.Get` 发送请求](/next/tutorial/project/best-practice/skills)。
+[何时使用 useRequest ，何时通过`await alovaInstance.Get` 发送请求](/tutorial/project/best-practice/skills)。
 
 :::warning useHook 使用规范
 
@@ -189,7 +189,7 @@ flowchart LR
 
 ### 转换响应数据
 
-在[method 详解](/next/tutorial/getting-started/basic/method)中，我们已经了解过`transform`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
+在[method 详解](/tutorial/getting-started/basic/method)中，我们已经了解过`transform`了，这在 useHook 中使用也非常有用，它可以让 useHook 的 data 接收到转换后的数据，而不用再转换。
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -291,4 +291,4 @@ const { data, loading, error, onSuccess, onError, onComplete } = useRequest(todo
 3. useAutoRequest: 按定时轮询、浏览器聚焦、网络重连等规则自动请求
 4. ...
 
-了解完整使用或其他客户端请求策略，请移步[客户端策略](/next/tutorial/client/strategy)查看 alova 提供的所有客户端请求策略。
+了解完整使用或其他客户端请求策略，请移步[客户端策略](/tutorial/client/strategy)查看 alova 提供的所有客户端请求策略。

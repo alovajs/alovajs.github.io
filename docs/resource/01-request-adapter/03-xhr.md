@@ -11,14 +11,14 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-xhr@beta --save
+npm install @alova/adapter-xhr --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-xhr@beta
+yarn add @alova/adapter-xhr
 ```
 
 </TabItem>
@@ -243,7 +243,7 @@ const handleImageDownload = () => {
 
 ## Mock request adapter compatible
 
-When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/next/resource/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `alova/fetch` request adapter by default. When using the XMLHttpRequest adapter, we You need to adapt the response data of the mock request adapter to the XMLHttpRequest adapter. In this case, you need to use the `xhrMockResponse` exported in the **@alova/adapter-xhr** package as the response adapter.
+When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/resource/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `alova/fetch` request adapter by default. When using the XMLHttpRequest adapter, we You need to adapt the response data of the mock request adapter to the XMLHttpRequest adapter. In this case, you need to use the `xhrMockResponse` exported in the **@alova/adapter-xhr** package as the response adapter.
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

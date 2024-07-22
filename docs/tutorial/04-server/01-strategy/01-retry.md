@@ -125,4 +125,4 @@ endQuiver: 0.8;
 
 <!-- ## API
 
-Please refer to [API-retry](/next/api/core-hooks#usewatcher). -->
+Please refer to [API-retry](/api/core-hooks#usewatcher). -->

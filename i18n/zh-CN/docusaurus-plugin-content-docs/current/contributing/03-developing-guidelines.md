@@ -134,4 +134,4 @@ alova 使用了 [semantic-release](https://semantic-release.gitbook.io) 作为�
 
 ## 7.编写文档
 
-如果你正在添加新特性，可尝试添加新特性的相关文档说明，详细请阅读[更正或编写文档](/next/contributing/overview#更正或编写文档)，否则请在 pull request 中说明。
+如果你正在添加新特性，可尝试添加新特性的相关文档说明，详细请阅读[更正或编写文档](/contributing/overview#更正或编写文档)，否则请在 pull request 中说明。

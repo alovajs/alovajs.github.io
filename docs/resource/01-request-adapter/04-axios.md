@@ -11,14 +11,14 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-axios@beta --save
+npm install @alova/adapter-axios --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-axios@beta
+yarn add @alova/adapter-axios
 ```
 
 </TabItem>
@@ -199,7 +199,7 @@ const alovaInst = createAlova({
 
 ## Mock request adapter compatible
 
-When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/next/resource/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `alova/fetch` request adapter by default. When using the axios adapter, we The response data of the mock request adapter needs to be compatible with **AxiosResponse**, and the error instance is **AxiosError**, so you need to use `axiosMockResponse` exported from the **@alova/adapter-axios** package as the response adapter .
+When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/resource/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `alova/fetch` request adapter by default. When using the axios adapter, we The response data of the mock request adapter needs to be compatible with **AxiosResponse**, and the error instance is **AxiosError**, so you need to use `axiosMockResponse` exported from the **@alova/adapter-axios** package as the response adapter .
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

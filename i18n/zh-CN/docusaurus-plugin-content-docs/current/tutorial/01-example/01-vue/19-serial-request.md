@@ -4,7 +4,7 @@ title: 串行请求hook
 
 import SerialRequest from '@site/example-links/SerialRequest';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/next/tutorial/getting-started/introduce);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started/introduce);
 
 <SerialRequest></SerialRequest>
 
@@ -12,7 +12,7 @@ import SerialRequest from '@site/example-links/SerialRequest';
 
 本示例主要通过`useSerialRequest`展示更优雅地进行串行请求。
 
-[useSerialRequest](/next/tutorial/client/strategy/use-serial-request)
-[useSerialWatcher](/next/tutorial/client/strategy/use-serial-watcher)
+[useSerialRequest](/tutorial/client/strategy/use-serial-request)
+[useSerialWatcher](/tutorial/client/strategy/use-serial-watcher)
 
 :::

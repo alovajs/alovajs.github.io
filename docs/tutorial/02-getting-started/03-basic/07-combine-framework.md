@@ -93,7 +93,7 @@ useRequest means sending a request. By default, a request will be sent when call
 </TabItem>
 </Tabs>
 
-[When to use useRequest and when to send a request via `await alovaInstance.Get`](/next/tutorial/project/best-practice/skills).
+[When to use useRequest and when to send a request via `await alovaInstance.Get`](/tutorial/project/best-practice/skills).
 
 :::warning useHook usage specification
 
@@ -191,7 +191,7 @@ When no error is thrown, the next node receives the return value of the previous
 
 ### Transform response data
 
-In [method detailed explanation](/next/tutorial/getting-started/basic/method), we have already learned about `transform`, which is also very useful when used in useHook. It allows useHook's data to receive the transformed data without transform again.
+In [method detailed explanation](/tutorial/getting-started/basic/method), we have already learned about `transform`, which is also very useful when used in useHook. It allows useHook's data to receive the transformed data without transform again.
 
 ```javascript
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -295,4 +295,4 @@ The above is the basic use of our most commonly used `useRequest`. Other commonl
 3. useAutoRequest: automatically request according to rules such as timed polling, browser focus, network reconnection, etc.
 4. ...
 
-For complete usage or other client request strategies, please move to [Client Strategy](/next/tutorial/client/strategy) to view all client request strategies provided by alova.
+For complete usage or other client request strategies, please move to [Client Strategy](/tutorial/client/strategy) to view all client request strategies provided by alova.

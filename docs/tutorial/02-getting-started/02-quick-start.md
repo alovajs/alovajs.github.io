@@ -9,15 +9,9 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
 
-:::warning beta reminder
-
-alova@3.0 is currently in the beta stage, and some functions may be changed. If you find a bug, please let us know in [Github issues](https://github.com/alovajs/alova/issues/new/choose), and we will solve it as soon as possible.
-
-:::
-
 :::tip Example Tips
 
-If you haven't learned about alova yet, it is recommended that you read [introduce alova](/next/tutorial/getting-started/introduce) first.
+If you haven't learned about alova yet, it is recommended that you read [introduce alova](/tutorial/getting-started/introduce) first.
 
 :::
 
@@ -27,28 +21,28 @@ If you haven't learned about alova yet, it is recommended that you read [introdu
 <TabItem value="1" label="npm">
 
 ```bash
-npm install alova@beta --save
+npm install alova --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add alova@beta
+yarn add alova
 ```
 
 </TabItem>
 <TabItem value="3" label="pnpm">
 
 ```bash
-pnpm add alova@beta
+pnpm add alova
 ```
 
 </TabItem>
 <TabItem value="4" label="bun">
 
 ```bash
-bun add alova@beta
+bun add alova
 ```
 
 </TabItem>
@@ -82,7 +76,7 @@ requestAdapter: fetchAdapter();
 });
 ```
 
-> When using fetchAdapter in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/next/resource/request-adapter/alova-adapter-axios/).
+> When using fetchAdapter in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/resource/request-adapter/axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">

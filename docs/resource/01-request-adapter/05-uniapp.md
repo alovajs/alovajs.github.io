@@ -17,14 +17,14 @@ This plugin only supports vue3 version of uniapp application.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-uniapp@beta --save
+npm install @alova/adapter-uniapp --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-uniapp@beta
+yarn add @alova/adapter-uniapp
 ```
 
 </TabItem>
@@ -169,7 +169,7 @@ Similarly, it is fully compatible with `uni.downloadFile`, you can specify [all 
 
 ## Mock request adapter compatible
 
-When using uniapp to develop applications, we may still need to use simulated requests, but by default, the response data of [mock adapter (@alova/mock)](/next/resource/request-adapter/alova-mock) is a `Response` instance, That is, it is compatible with the `alova/fetch` request adapter by default. When used in the uniapp environment, we need to make the response data of the simulated request adapter compatible with the uniapp adapter, so you need to use the **@alova/adapter-uniapp** package exported `uniappMockResponse` as response adapter.
+When using uniapp to develop applications, we may still need to use simulated requests, but by default, the response data of [mock adapter (@alova/mock)](/resource/request-adapter/alova-mock) is a `Response` instance, That is, it is compatible with the `alova/fetch` request adapter by default. When used in the uniapp environment, we need to make the response data of the simulated request adapter compatible with the uniapp adapter, so you need to use the **@alova/adapter-uniapp** package exported `uniappMockResponse` as response adapter.
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

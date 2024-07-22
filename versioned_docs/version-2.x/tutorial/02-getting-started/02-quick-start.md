@@ -78,7 +78,7 @@ const alova = createAlova({
 });
 ```
 
-> When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/alova-adapter-axios/).
+> When using GlobalFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/tutorial/request-adapter/axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">

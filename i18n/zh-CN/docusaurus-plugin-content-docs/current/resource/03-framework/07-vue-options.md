@@ -21,14 +21,14 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install alova @alova/vue-options@beta --save
+npm install alova @alova/vue-options --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add alova @alova/vue-options@beta
+yarn add alova @alova/vue-options
 ```
 
 </TabItem>
@@ -216,8 +216,8 @@ export const getData = () => alovaInst.Get('/todolist');
 
 **typescript**
 
-在 typescript 中添加响应数据类型，请阅读 [alova 文档 typescript 章节](/next/tutorial/advanced/in-depth/typescript)
+在 typescript 中添加响应数据类型，请阅读 [alova 文档 typescript 章节](/tutorial/advanced/in-depth/typescript)
 
 ## 限制
 
-1. 暂不支持[管理额外的状态](/next/tutorial/client/in-depth/manage-extra-states)。
+1. 暂不支持[管理额外的状态](/tutorial/client/in-depth/manage-extra-states)。

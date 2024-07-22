@@ -111,7 +111,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-内存缓存模式对应 l1 cache，在此我们更换了缓存适配器为进程间共享的 lru-cache，你也可以[自定义存储适配器](/next/tutorial/advanced/custom/storage-adapter)，例如当你只需要单级缓存时，你也可以直接将 l1 cache 设置为 redis 适配器。
+内存缓存模式对应 l1 cache，在此我们更换了缓存适配器为进程间共享的 lru-cache，你也可以[自定义存储适配器](/tutorial/advanced/custom/storage-adapter)，例如当你只需要单级缓存时，你也可以直接将 l1 cache 设置为 redis 适配器。
 
 ## 恢复模式
 
@@ -136,7 +136,7 @@ flowchart LR
 
 在客户端中，当还未过期的缓存即使刷新页面缓存也不会失效，它一般用于一些需要服务端管理，但基本不变的数据，如每年的节假日具体日期有所不同，但不会再变动，这种场景下我们只需设置缓存过期时间为今年的最后一刻即可。
 
-客户端中使用 alova 时默认使用`localStorage`作为 L2 存储适配器，你也可以[自定义存储适配器](/next/tutorial/advanced/custom/storage-adapter)。
+客户端中使用 alova 时默认使用`localStorage`作为 L2 存储适配器，你也可以[自定义存储适配器](/tutorial/advanced/custom/storage-adapter)。
 
 在 method 实例上设置：
 
@@ -185,7 +185,7 @@ const todoListGetter = alovaInstance.Get('/todo/list', {
 3. 整合多个下游服务器的数据合并和处理，多个串行请求可能导致更长的响应时间，也可能因复杂的数据转换消耗性能，可将转换后的数据进行缓存。
 4. API 速率限制和计费，天气预报服务 API 每小时更新一次天气信息，地理位置数据 API 等。
 
-在服务端使用 alova 时默认没有 L2 存储适配器，在[服务端 L2 存储实践](/next/tutorial/project/best-practice/l2-storage)中分别提供了文件存储适配器和 redis 适配器的实现。你也可以[自定义存储适配器](/next/tutorial/advanced/custom/storage-adapter)，例如将 MongoDB、mysql 等数据库作为响应数据的存储适配器。
+在服务端使用 alova 时默认没有 L2 存储适配器，在[服务端 L2 存储实践](/tutorial/project/best-practice/l2-storage)中分别提供了文件存储适配器和 redis 适配器的实现。你也可以[自定义存储适配器](/tutorial/advanced/custom/storage-adapter)，例如将 MongoDB、mysql 等数据库作为响应数据的存储适配器。
 
 :::warning 注意
 
@@ -325,4 +325,4 @@ cacheFor: {
 
 ## 响应自动维护说明
 
-响应数据缓存的 key 是由 method 实例的请求方法(method)、请求地址(url)、请求头参数(headers)、url 参数(params)、请求体参数(requestBody)组合作为唯一标识，任意一个信息或位置不同都将被当做不同的 key，如果要自定义缓存 key，可以参考[自定义 method key](/next/tutorial/advanced/in-depth/custom-method-key)。
+响应数据缓存的 key 是由 method 实例的请求方法(method)、请求地址(url)、请求头参数(headers)、url 参数(params)、请求体参数(requestBody)组合作为唯一标识，任意一个信息或位置不同都将被当做不同的 key，如果要自定义缓存 key，可以参考[自定义 method key](/tutorial/advanced/in-depth/custom-method-key)。

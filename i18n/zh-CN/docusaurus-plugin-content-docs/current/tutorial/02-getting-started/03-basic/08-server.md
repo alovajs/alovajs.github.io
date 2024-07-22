@@ -2,7 +2,7 @@
 title: 在服务端使用
 ---
 
-在前面的[快速开始](/next/tutorial/getting-started/quick-start)中已经介绍过，alova 可以在`nodejs/deno/bun`等服务端环境中使用，你可以在服务端使用除客户端请求策略外的所有功能，此外，alova 还针对服务端环境提供了很好的支持。
+在前面的[快速开始](/tutorial/getting-started/quick-start)中已经介绍过，alova 可以在`nodejs/deno/bun`等服务端环境中使用，你可以在服务端使用除客户端请求策略外的所有功能，此外，alova 还针对服务端环境提供了很好的支持。
 
 ```js
 import { createAlova } from 'alova';
@@ -67,7 +67,7 @@ const result = await sendCaptcha(
 );
 ```
 
-> 了解更多`Server hooks`请移步[服务端策略](/next/tutorial/server/strategy)。
+> 了解更多`Server hooks`请移步[服务端策略](/tutorial/server/strategy)。
 
 ## 多级缓存
 
@@ -146,6 +146,6 @@ const alovaInstance = createAlova({
 });
 ```
 
-上文提到的 redis 适配器的源码参考[最佳实践 - l2 缓存适配器](/next/tutorial/project/best-practice/l2-storage)，进程间共享内存的适配器参考[这里](/next/resource/storage-adapter/psc)
+上文提到的 redis 适配器的源码参考[最佳实践 - l2 缓存适配器](/tutorial/project/best-practice/l2-storage)，进程间共享内存的适配器参考[这里](/resource/storage-adapter/psc)
 
-> 了解更多响应缓存请参考[缓存详解](/next/tutorial/cache/mode)。
+> 了解更多响应缓存请参考[缓存详解](/tutorial/cache/mode)。

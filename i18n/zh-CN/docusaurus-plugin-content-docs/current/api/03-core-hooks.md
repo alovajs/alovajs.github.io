@@ -6,7 +6,7 @@ title: 核心useHooks
 
 表示一次请求的发送，执行 useRequest 时默认会发送一次请求，并创建和维护状态化的请求相关数据，如`loading/data/error`等。在页面获取初始数据时是最常用的方法，同时也支持关闭它的默认的请求发送，这在提交数据等通过点击事件触发的请求场景非常有用。
 
-> 前往[useRequest](/next/tutorial/client/strategy/use-request)查看详情。
+> 前往[useRequest](/tutorial/client/strategy/use-request)查看详情。
 
 ### 类型
 
@@ -22,13 +22,13 @@ function useRequest(
 1. `methodHandler`: 可传入 method 实例和函数两种形式，当指定为函数时的可接收`send`传入的参数，并要求返回一个 method 实例。
 2. `config`: hook 的配置参数。
 
-| 名称          | 描述                                                                       | 类型                                                                                                                              | 默认值 | 版本 |
-| ------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------ | ---- |
-| immediate     | 是否立即发起请求                                                           | boolean                                                                                                                           | true   | -    |
-| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`        | any                                                                                                                               | -      | -    |
-| force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean \| (...args: any[]) => boolean \| false                                                                                   | -      | -    |
-| managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record\<string \|number \| symbol, any\>                                                                                          | -      | -    |
-| middleware    | 中间件函数，[了解 alova 中间件](/next/tutorial/client/in-depth/middleware) | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -      | -    |
+| 名称          | 描述                                                                  | 类型                                                                                                                              | 默认值 | 版本 |
+| ------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------ | ---- |
+| immediate     | 是否立即发起请求                                                      | boolean                                                                                                                           | true   | -    |
+| initialData   | 初始的 data 值，在首次响应前 data 值为初始值，未设置时为`undefined`   | any                                                                                                                               | -      | -    |
+| force         | 是否强制请求，可设置为函数动态返回 boolean 值                         | boolean \| (...args: any[]) => boolean \| false                                                                                   | -      | -    |
+| managedStates | 额外的监管状态，可通过 updateState 更新                               | Record\<string \|number \| symbol, any\>                                                                                          | -      | -    |
+| middleware    | 中间件函数，[了解 alova 中间件](/tutorial/client/in-depth/middleware) | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -      | -    |
 
 #### AlovaFrontMiddlewareContext
 
@@ -130,7 +130,7 @@ type AlovaGuardNext = (guardNextConfig?: {
 
 监听状态，并在状态变化后发起请求，在一些需要随数据变化而重新请求的场景下，如分页、数据筛选、模糊搜索使用。
 
-> 前往[状态变化请求](/next/tutorial/client/strategy/use-watcher)查看详情。
+> 前往[状态变化请求](/tutorial/client/strategy/use-watcher)查看详情。
 
 ### 类型
 
@@ -154,7 +154,7 @@ function useWatcher(
 | force         | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean \| (...args: any[]) => boolean \| false                                                                                   |
 | managedStates | 额外的监管状态，可通过 updateState 更新                                    | Record\<string \| number \| symbol, any\>                                                                                         | -          |
 | debounce      | 请求防抖时间（毫秒），传入数组时可按 watchingStates 的顺序单独设置防抖时间 | number \| number[]                                                                                                                | -          |
-| middleware    | 中间件函数，[了解 alova 中间件](/next/tutorial/client/in-depth/middleware) | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -          | -    |
+| middleware    | 中间件函数，[了解 alova 中间件](/tutorial/client/in-depth/middleware)      | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -          | -    |
 | sendable      | 监听的状态改变时是否发送请求                                               | (methodInstance: AlovaEvent) => boolean                                                                                           | () => true | -    |
 | abortLast     | 是否中断上一次的未响应请求                                                 | boolean                                                                                                                           | true       | -    |
 
@@ -192,7 +192,7 @@ function useWatcher(
 
 通过`useFetcher`用来拉取数据，在预加载数据和跨模块更新状态时很有用。
 
-> 前往[数据拉取](/next/tutorial/client/strategy/use-fetcher)查看详情。
+> 前往[数据拉取](/tutorial/client/strategy/use-fetcher)查看详情。
 
 ### 类型
 
@@ -204,10 +204,10 @@ function useFetcher(config?: FetcherHookConfig): UseFetchHookReturnType;
 
 1. `config`: hook 的配置参数。
 
-| 名称       | 描述                                                                       | 类型                                                                                                                                  | 默认值                               | 版本 |
-| ---------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---- |
-| force      | 是否强制请求，可设置为函数动态返回 boolean 值                              | boolean                                                                                                                               | (...args: any[]) => boolean \| false | -    |
-| middleware | 中间件函数，[了解 alova 中间件](/next/tutorial/client/in-depth/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -                                    | -    |
+| 名称       | 描述                                                                  | 类型                                                                                                                                  | 默认值                               | 版本 |
+| ---------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ---- |
+| force      | 是否强制请求，可设置为函数动态返回 boolean 值                         | boolean                                                                                                                               | (...args: any[]) => boolean \| false | -    |
+| middleware | 中间件函数，[了解 alova 中间件](/tutorial/client/in-depth/middleware) | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -                                    | -    |
 
 #### AlovaFetcherMiddlewareContext
 

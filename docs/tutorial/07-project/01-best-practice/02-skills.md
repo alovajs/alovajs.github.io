@@ -240,7 +240,7 @@ export const alovaInst = createAlova({
 });
 ```
 
-And it is recommended that different developers in the team can create different mock interface data according to the version number of each iteration, so as to manage these mock data in the team. For details, please refer to the chapter of [mock Data](/next/resource/request-adapter/alova-mock) .
+And it is recommended that different developers in the team can create different mock interface data according to the version number of each iteration, so as to manage these mock data in the team. For details, please refer to the chapter of [mock Data](/resource/request-adapter/alova-mock) .
 
 ## Use useRequest to make parallel requests
 
@@ -339,4 +339,4 @@ const serialRequest = async () => {
 };
 ```
 
-> For serial requests, it is recommended to use [useSerialRequest](/next/tutorial/client/strategy/use-serial-request) and [useSerialWatcher](/next/tutorial/client/strategy/use-serial-watcher) directly.
+> For serial requests, it is recommended to use [useSerialRequest](/tutorial/client/strategy/use-serial-request) and [useSerialWatcher](/tutorial/client/strategy/use-serial-watcher) directly.

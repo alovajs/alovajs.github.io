@@ -12,11 +12,11 @@ method 快照匹配器是一个在已请求的 method 快照列表中动态查�
 
 它一般与以下 5 个需要使用 method 实例的函数中使用。
 
-1. [setCache](/next/tutorial/cache/set-and-query)
-2. [queryCache](/next/tutorial/cache/set-and-query)
-3. [invalidateCache](/next/tutorial/cache/manually-invalidate)
-4. [updateState](/next/tutorial/client/in-depth/update-across-components)
-5. [useFetcher.fetch](/next/tutorial/client/strategy/use-fetcher)
+1. [setCache](/tutorial/cache/set-and-query)
+2. [queryCache](/tutorial/cache/set-and-query)
+3. [invalidateCache](/tutorial/cache/manually-invalidate)
+4. [updateState](/tutorial/client/in-depth/update-across-components)
+5. [useFetcher.fetch](/tutorial/client/strategy/use-fetcher)
 
 ## 匹配规则
 

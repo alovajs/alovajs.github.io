@@ -15,7 +15,7 @@ useRequest indicates the sending of a request. By default, a request will be sen
 
 ## Usage
 
-Its basic usage has been introduced in detail in [Basic - Combining UI Framework](/next/tutorial/getting-started/basic/combine-framework).
+Its basic usage has been introduced in detail in [Basic - Combining UI Framework](/tutorial/getting-started/basic/combine-framework).
 
 ### Set initial data
 
@@ -153,7 +153,7 @@ send(1);
 
 #### Received in force function
 
-force is used to specify whether to penetrate the response cache. The content about response cache will be explained in the [cache mode](/next/tutorial/cache/mode) later.
+force is used to specify whether to penetrate the response cache. The content about response cache will be explained in the [cache mode](/tutorial/cache/mode) later.
 
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {
@@ -200,7 +200,7 @@ abort();
 
 ### Additional managed states
 
-Set additional managed states, which can be updated across components. For details, please refer to [Additional managed states](/next/tutorial/client/in-depth/manage-extra-states).
+Set additional managed states, which can be updated across components. For details, please refer to [Additional managed states](/tutorial/client/in-depth/manage-extra-states).
 
 ### Middleware
 
@@ -218,8 +218,8 @@ useRequest(todoListGetter, {
 });
 ```
 
-For details, please refer to [In-depth Client-Middleware](/next/tutorial/client/in-depth/middleware).
+For details, please refer to [In-depth Client-Middleware](/tutorial/client/in-depth/middleware).
 
 ## API
 
-Please refer to [API-useRequest](/next/api/core-hooks#userequest).
+Please refer to [API-useRequest](/api/core-hooks#userequest).

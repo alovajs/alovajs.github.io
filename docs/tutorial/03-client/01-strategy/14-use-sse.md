@@ -158,7 +158,7 @@ on('event-name', ({ data }) => {
 
 ### Global Response Interception
 
-By default, the response data is captured by [the global response interceptors](/next/tutorial/getting-started/basic/global-interceptor). If this is not the desired behavior, you can manually disable it.
+By default, the response data is captured by [the global response interceptors](/tutorial/getting-started/basic/global-interceptor). If this is not the desired behavior, you can manually disable it.
 
 ```typescript
 const { data, readyState, onMessage, on } = useSSE(method, {

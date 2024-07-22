@@ -17,14 +17,14 @@ This plugin only supports the taro application of react 16.8+, vue3 version.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-taro@beta --save
+npm install @alova/adapter-taro --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-taro@beta
+yarn add @alova/adapter-taro
 ```
 
 </TabItem>
@@ -326,7 +326,7 @@ const App = () => {
 
 ## Mock request adapter compatible
 
-When using Taro to develop applications, we may still need to use mock requests, but by default, the response data of [Mock Request Adapter (@alova/mock)](/next/resource/request-adapter/alova-mock) is a `Response` instance, That is, it is compatible with the `alova/fetch` request adapter by default. When used in the Taro environment, we need to make the response data of the simulated request adapter compatible with the Taro adapter, so you need to use the **@alova/adapter-taro** package exported `taroMockResponse` as response adapter.
+When using Taro to develop applications, we may still need to use mock requests, but by default, the response data of [Mock Request Adapter (@alova/mock)](/resource/request-adapter/alova-mock) is a `Response` instance, That is, it is compatible with the `alova/fetch` request adapter by default. When used in the Taro environment, we need to make the response data of the simulated request adapter compatible with the Taro adapter, so you need to use the **@alova/adapter-taro** package exported `taroMockResponse` as response adapter.
 
 ```javascript
 import { defineMock, createAlovaMockAdapter } from '@alova/mock';

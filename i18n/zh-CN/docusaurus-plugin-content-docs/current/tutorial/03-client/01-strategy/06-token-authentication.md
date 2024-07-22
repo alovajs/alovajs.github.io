@@ -151,7 +151,7 @@ createClientTokenAuthentication({
 
 :::
 
-> 了解更多元数据的信息，请前往[method 元数据](/next/tutorial/getting-started/basic/method-metadata)。
+> 了解更多元数据的信息，请前往[method 元数据](/tutorial/getting-started/basic/method-metadata)。
 
 ```javascript
 export const refreshToken = () => {
@@ -234,7 +234,7 @@ createServerTokenAuthentication({
 
 :::
 
-> 了解更多元数据的信息，请前往[method 元数据](/next/tutorial/getting-started/basic/method-metadata)。
+> 了解更多元数据的信息，请前往[method 元数据](/tutorial/getting-started/basic/method-metadata)。
 
 ```javascript
 export const refreshToken = () => {

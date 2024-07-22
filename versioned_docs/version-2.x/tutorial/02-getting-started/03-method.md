@@ -287,7 +287,7 @@ const handleOffEvent = () => {
 
 :::warning Things to note when using the `GlobalFetch` adapter
 
-Due to fetch api limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/tutorial/request-adapter/alova-adapter-xhr) or [axios Adapter](/tutorial/request-adapter/alova-adapter-axios).
+Due to fetch api limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/tutorial/request-adapter/xhr) or [axios Adapter](/tutorial/request-adapter/axios).
 
 You can also write your own request adapter, see [Writing Request Adapter](/tutorial/custom/custom-http-adapter) for details.
 

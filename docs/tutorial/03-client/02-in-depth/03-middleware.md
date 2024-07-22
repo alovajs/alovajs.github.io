@@ -209,7 +209,7 @@ async function middleware(context, next) {
 }
 ```
 
-For detailed usage of state proxy, please refer to [State Proxy](/next/tutorial/advanced/custom/client-strategy).
+For detailed usage of state proxy, please refer to [State Proxy](/tutorial/advanced/custom/client-strategy).
 
 ## Interrupt or repeat request
 

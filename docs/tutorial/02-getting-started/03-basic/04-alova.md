@@ -55,11 +55,11 @@ const alovaInstance = createAlova({
 
 In the previous chapter we have configured the `alova/fetch` request adapter, which will be used to send requests initiated by this alova instance. In fact, we also provide various request adapters for different JS environments.
 
-- [Mock request adapter](/next/resource/request-adapter/alova-mock)
-- [XMLHttpRequest Adapter](/next/resource/request-adapter/alova-adapter-xhr)
-- [axios adapter](/next/resource/request-adapter/alova-adapter-axios)
-- [uniapp adapter](/next/resource/request-adapter/alova-adapter-uniapp)
-- [taro adapter](/next/resource/request-adapter/alova-adapter-taro)
+- [Mock request adapter](/resource/request-adapter/alova-mock)
+- [XMLHttpRequest Adapter](/resource/request-adapter/xhr)
+- [axios adapter](/resource/request-adapter/axios)
+- [uniapp adapter](/resource/request-adapter/uniapp)
+- [taro adapter](/resource/request-adapter/taro)
 
 ## Global response cache
 
@@ -75,4 +75,4 @@ const alovaInstance = createAlova({
 });
 ```
 
-For more details, please refer to [Response Cache](/next/tutorial/cache/mode)
+For more details, please refer to [Response Cache](/tutorial/cache/mode)

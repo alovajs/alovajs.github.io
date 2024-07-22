@@ -11,7 +11,7 @@ title: 管理额外的状态
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-在之前的[跨页面/模块更新响应状态](/next/tutorial/client/in-depth/update-across-components)章节中，介绍了如何通过`updateState`跨页面或模块更新响应状态，但它只能更新由 useHooks 创建的状态，如果需要跨组件更新自定义的状态，应该怎么做呢？让我们继续吧！
+在之前的[跨页面/模块更新响应状态](/tutorial/client/in-depth/update-across-components)章节中，介绍了如何通过`updateState`跨页面或模块更新响应状态，但它只能更新由 useHooks 创建的状态，如果需要跨组件更新自定义的状态，应该怎么做呢？让我们继续吧！
 
 ## 更新单个状态
 

@@ -52,7 +52,7 @@ invalidateCache([method1, method2, ...]);
 
 ## Dynamically invalidate cache
 
-Sometimes you may not be sure which cache data needs to be invalidated. We can use [method snapshot matcher](/next/tutorial/client/in-depth/method-matcher) to dynamically find the corresponding method instance. The following example shows how to invalidate the cache of the first five instances of a method called todoList.
+Sometimes you may not be sure which cache data needs to be invalidated. We can use [method snapshot matcher](/tutorial/client/in-depth/method-matcher) to dynamically find the corresponding method instance. The following example shows how to invalidate the cache of the first five instances of a method called todoList.
 
 ```javascript
 const getTodoList = currentPage => {
@@ -88,7 +88,7 @@ onSuccess(() => {
 });
 ```
 
-> For more usage of method matchers, see [method snapshot matcher](/next/tutorial/client/in-depth/method-matcher)
+> For more usage of method matchers, see [method snapshot matcher](/tutorial/client/in-depth/method-matcher)
 
 ## Invalidate all caches
 
