@@ -5,7 +5,7 @@ title: 自动管理请求状态
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
-import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import EmbedSandpack from "@site/src/components/EmbedSandpackV2";
 
 import useRequestVue from '!!raw-loader!@site/codesandbox/01-getting-started/03-combine-framework/vueComposition-useRequest.zh.vue';
 import useRequestReact from '!!raw-loader!@site/codesandbox/01-getting-started/03-combine-framework/react-useRequest.zh.jsx';

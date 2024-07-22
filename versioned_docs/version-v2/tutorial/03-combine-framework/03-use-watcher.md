@@ -4,7 +4,7 @@ title: Watching Request
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import EmbedSandpack from "@site/src/components/EmbedSandpackV2";
 import CodeBlock from '@theme/CodeBlock';
 import useWatcherSearchVue from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/vueComposition-search.en.vue';
 import useWatcherSearchReact from '!!raw-loader!@site/codesandbox/03-learning/04-use-watcher/react-search.en.jsx';

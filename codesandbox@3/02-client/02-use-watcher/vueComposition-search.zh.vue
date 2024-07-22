@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { useWatcher } from 'alova';
+import { useWatcher } from 'alova/client';
 import { ref } from 'vue';
 import { alovaInstance } from './api';
 

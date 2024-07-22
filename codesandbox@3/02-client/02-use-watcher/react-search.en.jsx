@@ -1,4 +1,4 @@
-import { useWatcher } from 'alova';
+import { useWatcher } from 'alova/client';
 import { useState } from 'react';
 import { alovaInstance } from './api';
 

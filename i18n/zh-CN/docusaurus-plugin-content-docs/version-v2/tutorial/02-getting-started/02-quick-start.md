@@ -4,7 +4,7 @@ title: 快速开始
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import EmbedSandpack from "@site/src/components/EmbedSandpack";
+import EmbedSandpack from "@site/src/components/EmbedSandpackV2";
 
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
