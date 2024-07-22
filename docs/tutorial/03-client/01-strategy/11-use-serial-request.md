@@ -13,7 +13,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-This use hook is more concise and easy to use than [serial request in best practice](/next/tutorial/project/best-practice/serial-request), with unified loading status, error, and callback functions.
+This use hook is more concise and easy to use than [serial request in best practice](/tutorial/project/best-practice/serial-request), with unified loading status, error, and callback functions.
 
 ## Features
 
@@ -23,7 +23,7 @@ This use hook is more concise and easy to use than [serial request in best pract
 
 <!-- ## Example
 
-[serial request](/next/tutorial/example/vue/serial-request) -->
+[serial request](/tutorial/example/vue/serial-request) -->
 
 ## Usage
 
@@ -91,16 +91,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations from [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 
 ### Responsive data
 
-Inherit all responsive data from [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 ### Action function
 
-Inherit all action functions of [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all action functions of [**useRequest**](/api/core-hooks#userequest).
 
 ### Event
 
-Inherit all events from [**useRequest**](/next/api/core-hooks#userequest).
+Inherit all events from [**useRequest**](/api/core-hooks#userequest).

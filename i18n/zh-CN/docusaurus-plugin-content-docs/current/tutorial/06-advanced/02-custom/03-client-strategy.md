@@ -6,13 +6,13 @@ alova 的客户端策略分为 中间件、拦截器、useHook 三种，当你�
 
 ## 中间件
 
-中间件提供了强大的、几乎能控制一个请求的所有行为的能力，你可以通过它控制请求行为、自定义修改请求状态、错误处理等，详情请前往[请求中间件](/next/tutorial/client/in-depth/middleware)查看，以下的源码可以告诉你中间件到底能做什么。
+中间件提供了强大的、几乎能控制一个请求的所有行为的能力，你可以通过它控制请求行为、自定义修改请求状态、错误处理等，详情请前往[请求中间件](/tutorial/client/in-depth/middleware)查看，以下的源码可以告诉你中间件到底能做什么。
 
 - [actionDelegationMiddleware](https://github.com/alovajs/alova/blob/main/packages/client/src/middlewares/actionDelegation.ts) 通过中间件中实现了跨组件触发请求。
 - [useSQRequest](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/silent/useSQRequest.ts) 在中间件中实现立即响应请求，无需等待。
 - [useSerialRequest](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/serial/useSerialRequest.ts) 在中间件中串行请求并管理多个请求的响应数据。
 - [useRetriableRequest](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/useRetriableRequest.ts) 在中间件中重试失败的请求。
-- [延迟更新 loading](/next/tutorial/project/best-practice/middleware)示例。
+- [延迟更新 loading](/tutorial/project/best-practice/middleware)示例。
 
 ## 拦截器
 

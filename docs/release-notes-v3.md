@@ -2,12 +2,6 @@
 title: alova v3.0 Release Notes
 ---
 
-:::warning beta reminder
-
-alova@3.0 is currently in the beta stage, and some functions may be changed. If you find a bug, please let us know in [Github issues](https://github.com/alovajs/alova/issues/new/choose), and we will solve it as soon as possible.
-
-:::
-
 ## Overall upgrade goal
 
 alova@3.0 aims to further achieve the goal of "Run in any JS environment" and make it easier to use. We have fully redesigned and refactored the code in 3.0 to make it more user-friendly on the server and in more JS environments.
@@ -495,8 +489,8 @@ useRequest(Getter, {
 useRequest(Getter, {
   force(event) {
     // Get args
-    const arg1 = event.sendArgs[0];
-    const arg2 = event.sendArgs[1];
+    const arg1 = event.args[0];
+    const arg2 = event.args[1];
 
     // Get method
     const method = event.method;
@@ -548,6 +542,29 @@ alova.Get('/api/profile', {
 });
 ```
 
+### All `sendArgs` are changed to `args`
+
+1. In `onSuccess` and other events
+
+2. In `force` function
+
+3. In middleware function
+
+```js
+const { onSuccess } = useRequest(Getter, {
+  force(event) {
+    const args = event.args;
+  },
+  middleware(context, next) {
+    const args = context.args;
+    return next();
+  }
+});
+onSuccess(event => {
+  const args = event.args;
+});
+```
+
 ### @alova/adapter-uniapp export name change
 
 Since alova's `storageAdapter` was renamed to `l2Cache`, the export item `uniappStorageAdapter` of `@alova/adapter-uniapp` was changed to `uniappL2CacheAdapter`.
@@ -584,8 +601,6 @@ middleware({ proxyStates, args }, ({ update }) => {
   proxyStates.loading.v = true;
 });
 ```
-
-2. sendArgs and fetchArgs are changed to args.
 
 ### All event binding functions return their own objects
 

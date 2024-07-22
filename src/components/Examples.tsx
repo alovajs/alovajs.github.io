@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
 import IconFont from '@site/src/components/IconFont';
 
-const linkPartCommon = '/alovajs/alova/tree/next/examples/';
+const linkPartCommon = '/alovajs/alova/tree/examples/';
 const exampleList = [
   {
     id: 'React',

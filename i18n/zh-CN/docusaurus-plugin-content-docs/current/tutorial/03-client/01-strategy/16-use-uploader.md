@@ -167,7 +167,7 @@ interface AlovaFileCompleteEvent extends AlovaCompleteEvent {
 
 ## 开发指南
 
-开发前请仔细阅读[开发指南](/next/contributing/developing-guidelines)
+开发前请仔细阅读[开发指南](/contributing/developing-guidelines)
 
 开发此 use hook 需要开发以下内容：
 

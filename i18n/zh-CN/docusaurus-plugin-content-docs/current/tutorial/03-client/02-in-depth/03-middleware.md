@@ -209,7 +209,7 @@ async function middleware(context, next) {
 }
 ```
 
-关于状态代理的详细用法，请参考[状态代理](/next/tutorial/advanced/custom/client-strategy)。
+关于状态代理的详细用法，请参考[状态代理](/tutorial/advanced/custom/client-strategy)。
 
 ## 中断或重复发送请求
 
@@ -222,7 +222,7 @@ async function middleware(context, next) {
   return next().catch(error => {
     if (needRetry) {
       setTimeout(() => {
-        context.send(...context.sendArgs);
+        context.send(...context.args);
       }, retryDelay);
     }
     return Promise.reject(error);
@@ -256,7 +256,7 @@ async function middleware(context, next) {
     .catch(error => {
       if (needRetry) {
         setTimeout(() => {
-          context.send(...context.sendArgs);
+          context.send(...context.args);
         }, retryDelay);
       } else {
         // 不再重试时也设置为false

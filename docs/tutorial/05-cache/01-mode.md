@@ -112,7 +112,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-Memory cache mode corresponds to l1 cache. Here we replace the cache adapter with lru-cache shared between processes. You can also [customize the storage adapter](/next/tutorial/advanced/custom/storage-adapter). For example, when you only need a single-level cache, you can also directly set the l1 cache to the redis adapter.
+Memory cache mode corresponds to l1 cache. Here we replace the cache adapter with lru-cache shared between processes. You can also [customize the storage adapter](/tutorial/advanced/custom/storage-adapter). For example, when you only need a single-level cache, you can also directly set the l1 cache to the redis adapter.
 
 ## Restore mode
 
@@ -137,7 +137,7 @@ flowchart LR
 
 In the client, when the cache has not expired, it will not be invalidated even if the page cache is refreshed. It is generally used for some data that requires server-side management but is basically unchanged, such as the specific dates of holidays each year are different, but will not change again. In this scenario, we only need to set the cache expiration time to the last minute of this year.
 
-When using alova in the client, `localStorage` is used as the L2 storage adapter by default. You can also [customize the storage adapter](/next/tutorial/advanced/custom/storage-adapter).
+When using alova in the client, `localStorage` is used as the L2 storage adapter by default. You can also [customize the storage adapter](/tutorial/advanced/custom/storage-adapter).
 
 Set on the method instance:
 
@@ -187,7 +187,7 @@ Some application scenarios are as follows:
 3. Integrate data merging and processing of multiple downstream servers. Multiple serial requests may lead to longer response time, and may also consume performance due to complex data conversion. The converted data can be cached.
 4. API rate limit and billing, weather forecast service API updates weather information once an hour, geographic location data API, etc.
 
-When using alova on the server, there is no L2 storage adapter by default. The implementation of file storage adapter and redis adapter are provided in [Server-side L2 storage practice](/next/tutorial/project/best-practice/l2-storage). You can also [customize storage adapter](/next/tutorial/advanced/custom/storage-adapter), for example, use MongoDB, MySQL and other databases as storage adapters for response data.
+When using alova on the server, there is no L2 storage adapter by default. The implementation of file storage adapter and redis adapter are provided in [Server-side L2 storage practice](/tutorial/project/best-practice/l2-storage). You can also [customize storage adapter](/tutorial/advanced/custom/storage-adapter), for example, use MongoDB, MySQL and other databases as storage adapters for response data.
 
 :::warning Note
 
@@ -327,4 +327,4 @@ cacheFor: {
 
 ## Automatic response maintenance instructions
 
-The key of the response data cache is a combination of the request method (method), request address (url), request header parameters (headers), url parameters (params), and request body parameters (requestBody) of the method instance as a unique identifier. Any information or location will be treated as a different key. If you want to customize the cache key, you can refer to [Custom method key](/next/tutorial/advanced/in-depth/custom-method-key).
+The key of the response data cache is a combination of the request method (method), request address (url), request header parameters (headers), url parameters (params), and request body parameters (requestBody) of the method instance as a unique identifier. Any information or location will be treated as a different key. If you want to customize the cache key, you can refer to [Custom method key](/tutorial/advanced/in-depth/custom-method-key).

@@ -13,7 +13,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-Status update triggers a set of serial requests, which is more concise and easy to use than [serial request in best practice](/next/tutorial/project/best-practice/serial-request), with unified loading status, error, and callback functions.
+Status update triggers a set of serial requests, which is more concise and easy to use than [serial request in best practice](/tutorial/project/best-practice/serial-request), with unified loading status, error, and callback functions.
 
 ## Features
 
@@ -23,7 +23,7 @@ Status update triggers a set of serial requests, which is more concise and easy 
 
 <!-- ## Example
 
-[serial request](/next/tutorial/example/vue/serial-request) -->
+[serial request](/tutorial/example/vue/serial-request) -->
 
 ## Usage
 
@@ -92,16 +92,16 @@ When any of the serial requests is wrong, `onError` will be triggered, and its `
 
 ### Hook configuration
 
-Inherit all configurations of [**useWatcher**](/next/api/core-hooks#usewatcher).
+Inherit all configurations of [**useWatcher**](/api/core-hooks#usewatcher).
 
 ### Responsive data
 
-Inherit all responsive data from [**useWatcher**](/next/api/core-hooks#usewatcher).
+Inherit all responsive data from [**useWatcher**](/api/core-hooks#usewatcher).
 
 ### Action function
 
-Inherit all action functions of [**useWatcher**](/next/api/core-hooks#usewatcher).
+Inherit all action functions of [**useWatcher**](/api/core-hooks#usewatcher).
 
 ### Event
 
-Inherit all events from [**useWatcher**](/next/api/core-hooks#usewatcher).
+Inherit all events from [**useWatcher**](/api/core-hooks#usewatcher).

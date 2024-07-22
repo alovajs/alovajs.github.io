@@ -4,7 +4,7 @@ title: 页码列表
 
 import Pagination from '@site/example-links/Pagination';
 
-> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/next/tutorial/getting-started/introduce);
+> 示例以 vue3 为例，但你还可以在 react、svelte 中使用 alova，详细请阅读 [入门指南](/tutorial/getting-started/introduce);
 
 <Pagination></Pagination>
 
@@ -17,6 +17,6 @@ _操作引导：_
 1. 初始化完成后会预加载下一页数据，翻页到下一页时无需等待；
 2. 添加、删除、修改列表项无需重置列表，它将自动处理成和重新请求一致的效果；
 
-[usePagination 文档](/next/tutorial/client/strategy/use-pagination)
+[usePagination 文档](/tutorial/client/strategy/use-pagination)
 
 :::

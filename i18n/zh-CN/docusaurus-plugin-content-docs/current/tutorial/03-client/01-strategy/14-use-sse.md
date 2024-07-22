@@ -158,7 +158,7 @@ on('event-name', ({ data }) => {
 
 ### 全局响应拦截
 
-默认情况下，响应数据受到[全局响应拦截器的捕获](/next/tutorial/getting-started/basic/global-interceptor)。如果这不是你预期的行为，可以手动关闭。
+默认情况下，响应数据受到[全局响应拦截器的捕获](/tutorial/getting-started/basic/global-interceptor)。如果这不是你预期的行为，可以手动关闭。
 
 ```typescript
 const { data, readyState, onMessage, on } = useSSE(method, {
@@ -207,9 +207,9 @@ type SSEReturnType<S, Data> = {
   eventSource: ExportedType<EventSource | undefined, S>;
   /**
    * 手动发起请求。在使用 `immediate: true` 时该方法会自动触发
-   * @param sendArgs 请求参数，会传递给 method
+   * @param args 请求参数，会传递给 method
    */
-  send: (...sendArgs: any[]) => Promise<void>;
+  send: (...args: any[]) => Promise<void>;
   /**
    * 关闭连接
    */

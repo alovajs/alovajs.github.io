@@ -12,7 +12,7 @@ title: 跨组件更新状态
 
 此时可以使用`updateState`来更新任意模块/页面下的已存在的响应状态，它可以查找并修改其他模块内的响应式状态。
 
-<!-- [这里有个`updateState`的 示例](/next/tutorial/example/vue/update-state) -->
+<!-- [这里有个`updateState`的 示例](/tutorial/example/vue/update-state) -->
 
 ## 使用 method 实例查找响应状态
 
@@ -57,7 +57,7 @@ onSuccess(() => {
 
 ## 动态更新响应状态
 
-可能有时候你并不确定需要更新 method 下的响应状态，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [method 匹配器](/next/tutorial/client/in-depth/method-matcher) 来动态查找对应的 method 实例。以下例子展示了为名称为 todoList 的 method 实例对应的列表添加一条数据。
+可能有时候你并不确定需要更新 method 下的响应状态，但却知道以什么方式来找到需要失效的缓存数据，我们可以使用 [method 匹配器](/tutorial/client/in-depth/method-matcher) 来动态查找对应的 method 实例。以下例子展示了为名称为 todoList 的 method 实例对应的列表添加一条数据。
 
 ```javascript
 updateState('todoList', todoListRaw => {
@@ -69,7 +69,7 @@ updateState('todoList', todoListRaw => {
 });
 ```
 
-关于 [method 快照匹配器](/next/tutorial/client/in-depth/method-matcher) 将在后面的章节中详细介绍。
+关于 [method 快照匹配器](/tutorial/client/in-depth/method-matcher) 将在后面的章节中详细介绍。
 
 ## 监听匹配事件
 
@@ -97,7 +97,7 @@ updateState(
 这个问题常常出现在跨页面更新状态，我们容易忽略的是，在默认情况下，当页面跳转时上一个页面已被销毁，因此，如果你希望跨页面更新状态，这里有两个建议：
 
 1. 将页面组件持久化，以保证被更新的状态还可以被查找到；
-2. 使用 [setCache](/next/tutorial/cache/set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
+2. 使用 [setCache](/tutorial/cache/set-and-query) 替代`updateState`，其原理是，当上一个页面的请求存在缓存时，更新它的缓存以保证再次创建页面时，所触发的请求可以命中更新后的缓存，达到同样的效果。
 
 :::
 

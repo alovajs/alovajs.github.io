@@ -13,7 +13,7 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-这个 use hook 比[在最佳实践中的串行请求](/next/tutorial/project/best-practice/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
+这个 use hook 比[在最佳实践中的串行请求](/tutorial/project/best-practice/serial-request)更加简洁易用，统一的 loading 状态、error、回调函数。
 
 ## 特性
 
@@ -23,7 +23,7 @@ use hook
 
 <!-- ## 示例
 
-[串行请求](/next/tutorial/example/vue/serial-request) -->
+[串行请求](/tutorial/example/vue/serial-request) -->
 
 ## 使用
 
@@ -91,16 +91,16 @@ useSerialRequest([
 
 ### Hook 配置
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有配置。
+继承[**useRequest**](/api/core-hooks#userequest)所有配置。
 
 ### 响应式数据
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有响应式数据。
+继承[**useRequest**](/api/core-hooks#userequest)所有响应式数据。
 
 ### 操作函数
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有操作函数。
+继承[**useRequest**](/api/core-hooks#userequest)所有操作函数。
 
 ### 事件
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有事件。
+继承[**useRequest**](/api/core-hooks#userequest)所有事件。

@@ -15,7 +15,7 @@ useRequest 表示一次请求的发送，调用时默认将发送一次请求，
 
 ## 使用
 
-它的基础用法已在[基础-结合 UI 框架](/next/tutorial/getting-started/basic/combine-framework)中详细介绍。
+它的基础用法已在[基础-结合 UI 框架](/tutorial/getting-started/basic/combine-framework)中详细介绍。
 
 ### 设置初始数据
 
@@ -80,8 +80,8 @@ useRequest(todoListGetter, {
 ```javascript
 useRequest(todoListGetter, {
   // highlight-start
-  force: ({ method, sendArgs }) => {
-    return !!sendArgs[0];
+  force: ({ method, args }) => {
+    return !!args[0];
   }
   // highlight-end
 });
@@ -130,23 +130,23 @@ send(1);
 
 #### 在事件回调函数中接收
 
-在事件回调函数中通过`event.sendArgs`接收，它是一个包含了 send 函数的所有参数的数组。
+在事件回调函数中通过`event.args`接收，它是一个包含了 send 函数的所有参数的数组。
 
 ```javascript
 const { send, onSuccess, onError, onComplete } = useRequest(newTodo =>
   alovaInstance.Post('/todo', newTodo)
 );
 onSuccess(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
+  // args的值为[1]
+  console.log(event.args);
 });
 onError(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
+  // args的值为[1]
+  console.log(event.args);
 });
 onComplete(event => {
-  // sendArgs的值为[1]
-  console.log(event.sendArgs);
+  // args的值为[1]
+  console.log(event.args);
 });
 
 // 发送请求
@@ -155,12 +155,12 @@ send(1);
 
 #### 在 force 函数中接收
 
-force 用于指定是否需要穿透响应缓存，关于响应缓存的内容将在后面的[缓存模式](/next/tutorial/cache/mode)中讲解。
+force 用于指定是否需要穿透响应缓存，关于响应缓存的内容将在后面的[缓存模式](/tutorial/cache/mode)中讲解。
 
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {
   force: event => {
-    return event.sendArgs[0];
+    return event.args[0];
   }
 });
 send(1);
@@ -202,7 +202,7 @@ abort();
 
 ### 额外的管理状态
 
-设置额外的管理状态，这些状态可以实现跨组件更新，具体请查看[额外的管理状态](/next/tutorial/client/in-depth/manage-extra-states)。
+设置额外的管理状态，这些状态可以实现跨组件更新，具体请查看[额外的管理状态](/tutorial/client/in-depth/manage-extra-states)。
 
 ### 中间件
 
@@ -220,8 +220,8 @@ useRequest(todoListGetter, {
 });
 ```
 
-具体请查看[深入客户端-中间件](/next/tutorial/client/in-depth/middleware)。
+具体请查看[深入客户端-中间件](/tutorial/client/in-depth/middleware)。
 
 ## API
 
-请查看[API-useRequest](/next/api/core-hooks#userequest)。
+请查看[API-useRequest](/api/core-hooks#userequest)。

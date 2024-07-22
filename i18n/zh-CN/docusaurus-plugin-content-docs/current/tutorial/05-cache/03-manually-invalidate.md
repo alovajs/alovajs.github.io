@@ -52,7 +52,7 @@ invalidateCache([method1, method2, ...]);
 
 ## 动态失效缓存
 
-可能有时候你并不确定需要失效哪个缓存数据，我们可以使用 [method 快照匹配器](/next/tutorial/client/in-depth/method-matcher) 来动态查找对应的 method 实例。以下例子展示了如何让名称为 todoList 的前 5 个 method 实例的缓存失效。
+可能有时候你并不确定需要失效哪个缓存数据，我们可以使用 [method 快照匹配器](/tutorial/client/in-depth/method-matcher) 来动态查找对应的 method 实例。以下例子展示了如何让名称为 todoList 的前 5 个 method 实例的缓存失效。
 
 ```javascript
 const getTodoList = currentPage => {
@@ -88,7 +88,7 @@ onSuccess(() => {
 });
 ```
 
-> 更多 method 匹配器的使用方法见 [method 快照匹配器](/next/tutorial/client/in-depth/method-matcher)
+> 更多 method 匹配器的使用方法见 [method 快照匹配器](/tutorial/client/in-depth/method-matcher)
 
 ## 失效所有缓存
 

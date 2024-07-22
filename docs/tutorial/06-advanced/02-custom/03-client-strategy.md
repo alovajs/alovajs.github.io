@@ -6,13 +6,13 @@ alova's client strategies are divided into three types: middleware, interceptor,
 
 ## Middleware
 
-Middleware provides powerful capabilities that can control almost all behaviors of a request. You can use it to control request behavior, customize request status, error handling, etc. For details, please go to [Request Middleware](/next/tutorial/client/in-depth/middleware) to view. The following source code can tell you what the middleware can do.
+Middleware provides powerful capabilities that can control almost all behaviors of a request. You can use it to control request behavior, customize request status, error handling, etc. For details, please go to [Request Middleware](/tutorial/client/in-depth/middleware) to view. The following source code can tell you what the middleware can do.
 
 - [actionDelegationMiddleware](https://github.com/alovajs/alova/blob/main/packages/client/src/middlewares/actionDelegation.ts) Cross-component triggering requests are implemented through middleware.
 - [useSQRequest](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/silent/useSQRequest.ts) Implement immediate response requests in middleware without waiting.
 - [useSerialRequest](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/serial/useSerialRequest.ts) Serialize requests in middleware and manage response data for multiple requests.
 - [useRetriableRequest](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/useRetriableRequest.ts) Retry failed requests in middleware.
-- [Delayed update loading](/next/tutorial/project/best-practice/middleware) example.
+- [Delayed update loading](/tutorial/project/best-practice/middleware) example.
 
 ## Interceptor
 

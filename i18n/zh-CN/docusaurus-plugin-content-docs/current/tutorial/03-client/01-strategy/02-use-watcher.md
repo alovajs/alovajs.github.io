@@ -43,7 +43,7 @@ use hook
 
 :::tip 用法提示
 
-useWatcher 支持 useRequest 的所有功能，详情请查看 [useRequest](/next/tutorial/client/strategy/use-request)。以下是 useWatcher 特有的用法。
+useWatcher 支持 useRequest 的所有功能，详情请查看 [useRequest](/tutorial/client/strategy/use-request)。以下是 useWatcher 特有的用法。
 
 :::
 
@@ -144,4 +144,4 @@ useWatcher(
 
 ## API
 
-请查看[API-useWatcher](/next/api/core-hooks#usewatcher)。
+请查看[API-useWatcher](/api/core-hooks#usewatcher)。

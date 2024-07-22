@@ -180,12 +180,12 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## Quickly get sendArgs in onSuccess
+## Quickly get args in onSuccess
 
-In actual projects, data is often passed through the `send` function. If you need to use these data in callback functions such as onSuccess, since they exist in the `event.sendArgs` array, you can use the double destructuring method to directly obtain them to the data.
+In actual projects, data is often passed through the `send` function. If you need to use these data in callback functions such as onSuccess, since they exist in the `event.args` array, you can use the double destructuring method to directly obtain them to the data.
 
 ```javascript
-onSuccess(({ sendArgs: [content] }) => {
+onSuccess(({ args: [content] }) => {
   console.log(content);
 });
 ```
@@ -240,7 +240,7 @@ export const alovaInst = createAlova({
 });
 ```
 
-And it is recommended that different developers in the team can create different mock interface data according to the version number of each iteration, so as to manage these mock data in the team. For details, please refer to the chapter of [mock Data](/next/resource/request-adapter/alova-mock) .
+And it is recommended that different developers in the team can create different mock interface data according to the version number of each iteration, so as to manage these mock data in the team. For details, please refer to the chapter of [mock Data](/resource/request-adapter/alova-mock) .
 
 ## Use useRequest to make parallel requests
 
@@ -339,4 +339,4 @@ const serialRequest = async () => {
 };
 ```
 
-> For serial requests, it is recommended to use [useSerialRequest](/next/tutorial/client/strategy/use-serial-request) and [useSerialWatcher](/next/tutorial/client/strategy/use-serial-watcher) directly.
+> For serial requests, it is recommended to use [useSerialRequest](/tutorial/client/strategy/use-serial-request) and [useSerialWatcher](/tutorial/client/strategy/use-serial-watcher) directly.

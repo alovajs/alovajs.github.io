@@ -17,7 +17,7 @@ use hook
 
 <!-- ## 示例
 
-[表单提交 Demo](/next/tutorial/example/react/form-hook) -->
+[表单提交 Demo](/tutorial/example/react/form-hook) -->
 
 ## 特性
 
@@ -413,7 +413,7 @@ const returnStates = useForm(submitData, {
 
 这样无论先渲染哪个组件都可以对 id 为 testForm 的表单初始化，后面的组件在遇到 id 为 testForm 时将优先使用已初始化的表单数据，而不会再次初始化。这样你就可以在任意组件内初始化表单数据。
 
-<!-- > 更详细的多步骤表单也可以在[表单提交 Demo](/next/tutorial/example/react/form-hook)中体验和查看。 -->
+<!-- > 更详细的多步骤表单也可以在[表单提交 Demo](/tutorial/example/react/form-hook)中体验和查看。 -->
 
 ### 条件筛选
 
@@ -430,7 +430,7 @@ const { send: searchData } = useForm(queryCity, {
 
 :::warning 条件限制
 
-在条件筛选场景下，`useForm`更适用于非分页的列表条件查询，如果你需要在分页列表中进行条件查询，建议使用 [分页请求策略(usePagination)](/next/tutorial/client/strategy/use-pagination)。
+在条件筛选场景下，`useForm`更适用于非分页的列表条件查询，如果你需要在分页列表中进行条件查询，建议使用 [分页请求策略(usePagination)](/tutorial/client/strategy/use-pagination)。
 
 :::
 
@@ -438,7 +438,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### Hook 配置
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有配置。
+继承[**useRequest**](/api/core-hooks#userequest)所有配置。
 
 | 名称                | 描述                                                                                                     | 类型                                               | 默认值 | 版本 |
 | ------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------ | ---- |
@@ -449,7 +449,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### 响应式数据
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有响应式数据。
+继承[**useRequest**](/api/core-hooks#userequest)所有响应式数据。
 
 | 名称 | 描述                          | 类型 | 版本 |
 | ---- | ----------------------------- | ---- | ---- |
@@ -471,7 +471,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### 操作函数
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有操作函数。
+继承[**useRequest**](/api/core-hooks#userequest)所有操作函数。
 
 | 名称       | 描述                                       | 函数参数                                                               | 返回值 | 版本 |
 | ---------- | ------------------------------------------ | ---------------------------------------------------------------------- | ------ | ---- |
@@ -480,7 +480,7 @@ const { send: searchData } = useForm(queryCity, {
 
 ### 事件
 
-继承[**useRequest**](/next/api/core-hooks#userequest)所有事件。
+继承[**useRequest**](/api/core-hooks#userequest)所有事件。
 
 | 名称      | 描述                 | 回调参数 | 版本 |
 | --------- | -------------------- | -------- | ---- |

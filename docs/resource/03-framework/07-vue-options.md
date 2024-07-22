@@ -22,14 +22,14 @@ Usually, use hook can only be used in vue's setup, but through the auxiliary fun
 <TabItem value="1" label="npm">
 
 ```bash
-npm install alova @alova/vue-options@beta --save
+npm install alova @alova/vue-options --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add alova @alova/vue-options@beta
+yarn add alova @alova/vue-options
 ```
 
 </TabItem>
@@ -107,7 +107,7 @@ The following is a complete example.
       this.todoRequest$send();
       this.todoRequest$onSuccess(event => {
         event.data.match;
-        event.sendArgs.copyWithin;
+        event.args.copyWithin;
       });
       this.todoRequest$onSuccess(event => {
         console.log('success', event);
@@ -215,8 +215,8 @@ import { Method } from 'alova';
 export const getData = () => alovaInst.Get('/todolist');
 ```
 
-**typescript**Add response data types in typescript, please read the [alova documentation typescript chapter](/next/tutorial/advanced/in-depth/typescript)
+**typescript**Add response data types in typescript, please read the [alova documentation typescript chapter](/tutorial/advanced/in-depth/typescript)
 
 ## Limitations
 
-1. [Manage extra states](/next/tutorial/client/in-depth/manage-extra-states) is not supported yet.
+1. [Manage extra states](/tutorial/client/in-depth/manage-extra-states) is not supported yet.

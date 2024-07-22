@@ -5,7 +5,7 @@ title: 更新与查找缓存
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-缓存也支持更新和查找，在[缓存模式](/next/tutorial/cache/mode)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在手动更新缓存时也将使用 method 实例来查找对应的缓存数据。
+缓存也支持更新和查找，在[缓存模式](/tutorial/cache/mode)中我们提到过，每份缓存数据是以发送请求的 method 实例作为 key 进行保存的，因此在手动更新缓存时也将使用 method 实例来查找对应的缓存数据。
 
 ## 更新缓存
 
@@ -63,7 +63,7 @@ import { queryCache } from 'alova';
 const cachedData = await queryCache(getTodoListByDate('2022-10-01'));
 ```
 
-你也可以通过 [method 快照匹配器](/next/tutorial/client/in-depth/method-matcher) 动态查找 method 实例。
+你也可以通过 [method 快照匹配器](/tutorial/client/in-depth/method-matcher) 动态查找 method 实例。
 
 ```javascript
 const lastMethod = alovaInstance.snapshots.match('todoList', true);

@@ -209,7 +209,7 @@ async function middleware(context, next) {
 }
 ```
 
-For detailed usage of state proxy, please refer to [State Proxy](/next/tutorial/advanced/custom/client-strategy).
+For detailed usage of state proxy, please refer to [State Proxy](/tutorial/advanced/custom/client-strategy).
 
 ## Interrupt or repeat request
 
@@ -222,7 +222,7 @@ async function middleware(context, next) {
   return next().catch(error => {
     if (needRetry) {
       setTimeout(() => {
-        context.send(...context.sendArgs);
+        context.send(...context.args);
       }, retryDelay);
     }
     return Promise.reject(error);
@@ -256,7 +256,7 @@ async function middleware(context, next) {
     .catch(error => {
       if (needRetry) {
         setTimeout(() => {
-          context.send(...context.sendArgs);
+          context.send(...context.args);
         }, retryDelay);
       } else {
         // Set to false when no longer retrying

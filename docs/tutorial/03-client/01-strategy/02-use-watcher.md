@@ -43,7 +43,7 @@ Next, let's take the search for todo items as an example and try to change the o
 
 :::tip Usage Tips
 
-useWatcher supports all the features of useRequest. For details, please see [useRequest](/next/tutorial/client/strategy/use-request). The following are the unique uses of useWatcher.
+useWatcher supports all the features of useRequest. For details, please see [useRequest](/tutorial/client/strategy/use-request). The following are the unique uses of useWatcher.
 
 :::
 
@@ -144,4 +144,4 @@ useWatcher(
 
 ## API
 
-Please refer to [API-useWatcher](/next/api/core-hooks#usewatcher).
+Please refer to [API-useWatcher](/api/core-hooks#usewatcher).

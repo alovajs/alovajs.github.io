@@ -53,7 +53,7 @@ Using the alova extension in vscode can help you automatically generate request 
 
 This extension also optimizes the API usage process, allowing you to experience a different API integration experience. In the past, you needed to query the API documentation first, and constantly switch between the API documentation and the editor to write request code. After using the alova plug-in, you no longer need to leave the editor and can directly use the API in the editor while checking.
 
-> For a detailed introduction to the alova plug-in, please refer to [Integrated Editor Extension](/next/tutorial/getting-started/extension-integration).
+> For a detailed introduction to the alova plug-in, please refer to [Integrated Editor Extension](/tutorial/getting-started/extension-integration).
 
 ## Is there any difference?
 
@@ -118,7 +118,7 @@ target: '__blank'
 
 ## Welcome to contribute
 
-Before contributing, please be sure to read the [Contribution Guide](/next/contributing/overview) in detail to ensure your effective contribution.
+Before contributing, please be sure to read the [Contribution Guide](/contributing/overview) in detail to ensure your effective contribution.
 
 ## Start
 

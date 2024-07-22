@@ -31,9 +31,9 @@ import { useAutoRequest } from 'alova/client';
 const { loading, data, error } = useAutoRequest(() => method());
 ```
 
-`useAutoRequest`的返回值与[useRequest](/next/api/core-hooks#userequest)相同。
+`useAutoRequest`的返回值与[useRequest](/api/core-hooks#userequest)相同。
 
-除了支持[useRequest](/next/api/core-hooks#userequest)的所有配置参数外，还支持自动拉取的配置参数，你可以通过以下配置开启或关闭一些事件，或修改请求节流事件。
+除了支持[useRequest](/api/core-hooks#userequest)的所有配置参数外，还支持自动拉取的配置参数，你可以通过以下配置开启或关闭一些事件，或修改请求节流事件。
 
 ```javascript
 const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
@@ -76,7 +76,7 @@ const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
 
 :::warning 缓存建议
 
-建议在使用`useAutoRequest`时关闭对应请求的缓存，因为当设置缓存时，在触发自动请求时也会命中缓存而获取不到最新数据。具体请阅读[缓存模式](/next/tutorial/cache/mode)。
+建议在使用`useAutoRequest`时关闭对应请求的缓存，因为当设置缓存时，在触发自动请求时也会命中缓存而获取不到最新数据。具体请阅读[缓存模式](/tutorial/cache/mode)。
 
 :::
 

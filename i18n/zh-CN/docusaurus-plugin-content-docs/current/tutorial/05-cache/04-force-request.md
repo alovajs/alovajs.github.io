@@ -14,4 +14,4 @@ const response = await alovaInstance.Get('/api/user').send(true);
 
 ## 在 useHook 中强制请求
 
-请前往[自动管理请求状态-强制请求](/next/tutorial/client/strategy/use-request#强制请求)中查看详情。
+请前往[自动管理请求状态-强制请求](/tutorial/client/strategy/use-request#强制请求)中查看详情。

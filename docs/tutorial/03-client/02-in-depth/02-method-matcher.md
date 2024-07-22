@@ -12,11 +12,11 @@ The method snapshot matcher is a method that dynamically searches for method ins
 
 It is generally used with the following 5 functions that need to use method instances.
 
-1. [setCache](/next/tutorial/cache/set-and-query)
-2. [queryCache](/next/tutorial/cache/set-and-query)
-3. [invalidateCache](/next/tutorial/cache/manually-invalidate)
-4. [updateState](/next/tutorial/client/in-depth/update-across-components)
-5. [useFetcher.fetch](/next/tutorial/client/strategy/use-fetcher)
+1. [setCache](/tutorial/cache/set-and-query)
+2. [queryCache](/tutorial/cache/set-and-query)
+3. [invalidateCache](/tutorial/cache/manually-invalidate)
+4. [updateState](/tutorial/client/in-depth/update-across-components)
+5. [useFetcher.fetch](/tutorial/client/strategy/use-fetcher)
 
 ## Matching rules
 

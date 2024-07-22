@@ -43,9 +43,10 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/alovajs/alovajs.github.io/blob/main/',
+          lastVersion: 'current',
           versions: {
             current: {
-              label: '3.0-beta'
+              label: 'v3'
             }
           }
         },
@@ -79,28 +80,28 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: 'tutorial/getting-started'
+              to: 'tutorial/getting-started/introduce'
             },
             {
               label: 'Request Adapter',
-              to: 'next/resource/request-adapter'
+              to: 'resource/request-adapter'
             },
             {
               label: 'Storage Adapter',
-              to: 'next/resource/storage-adapter'
+              to: 'resource/storage-adapter'
             },
             {
               label: 'UI Frameworks',
-              to: 'next/category/framework'
+              to: 'category/framework'
             },
             {
               label: 'Error Reference',
-              to: 'next/error'
+              to: 'error'
             }
           ]
         },
         {
-          to: 'next/examples',
+          to: 'examples',
           position: 'left',
           label: 'Example'
         },
@@ -217,11 +218,11 @@ const config: Config = {
           items: [
             {
               label: 'Docs',
-              to: 'tutorial/getting-started'
+              to: 'tutorial/getting-started/introduce'
             },
             {
               label: 'Example',
-              to: 'tutorial/example/init-page'
+              to: 'examples'
             },
             {
               label: 'API',
@@ -238,15 +239,15 @@ const config: Config = {
           items: [
             {
               label: 'Request Adapter',
-              to: 'next/resource/request-adapter'
+              to: 'resource/request-adapter'
             },
             {
               label: 'Storage Adapter',
-              to: 'next/resource/storage-adapter'
+              to: 'resource/storage-adapter'
             },
             {
               label: 'Framework Support',
-              to: 'next/category/framework'
+              to: 'category/framework'
             }
           ]
         },

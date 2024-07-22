@@ -158,7 +158,7 @@ on('event-name', ({ data }) => {
 
 ### Global Response Interception
 
-By default, the response data is captured by [the global response interceptors](/next/tutorial/getting-started/basic/global-interceptor). If this is not the desired behavior, you can manually disable it.
+By default, the response data is captured by [the global response interceptors](/tutorial/getting-started/basic/global-interceptor). If this is not the desired behavior, you can manually disable it.
 
 ```typescript
 const { data, readyState, onMessage, on } = useSSE(method, {
@@ -207,9 +207,9 @@ type SSEReturnType<S, Data> = {
   eventSource: ExportedType<EventSource | undefined, S>;
   /**
    * Manually initiate the request. When `immediate: true` is used, this method is triggered automatically.
-   * @param sendArgs Request parameters passed to the method
+   * @param args Request parameters passed to the method
    */
-  send: (...sendArgs: any[]) => Promise<void>;
+  send: (...args: any[]) => Promise<void>;
   /**
    * Close the connection
    */

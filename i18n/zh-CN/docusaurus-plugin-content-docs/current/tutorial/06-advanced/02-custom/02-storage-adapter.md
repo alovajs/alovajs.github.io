@@ -77,7 +77,7 @@ const alovaInstance = createAlova({
 </TabItem>
 </Tabs>
 
-> 了解更多响应缓存相关内容请参考[缓存详解](/next/tutorial/cache/mode)。
+> 了解更多响应缓存相关内容请参考[缓存详解](/tutorial/cache/mode)。
 
 ## SessionStorage 存储适配器示例
 

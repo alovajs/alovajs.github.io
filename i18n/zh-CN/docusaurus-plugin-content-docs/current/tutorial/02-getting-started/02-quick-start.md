@@ -9,15 +9,9 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
 
-:::warning beta 提醒
-
-alova@3.0 目前处于 beta 阶段，小部分功能可能会有所改动，如果发现 bug 请在[Github issues](https://github.com/alovajs/alova/issues/new/choose)中告诉我们，我们会在第一时间解决。
-
-:::
-
 :::tip 示例提示
 
-如果你还未了解 alova，推荐你先阅读 [alova 介绍](/next/tutorial/getting-started/introduce)。
+如果你还未了解 alova，推荐你先阅读 [alova 介绍](/tutorial/getting-started/introduce)。
 
 :::
 
@@ -27,28 +21,28 @@ alova@3.0 目前处于 beta 阶段，小部分功能可能会有所改动，如�
 <TabItem value="1" label="npm">
 
 ```bash
-npm install alova@beta --save
+npm install alova --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add alova@beta
+yarn add alova
 ```
 
 </TabItem>
 <TabItem value="3" label="pnpm">
 
 ```bash
-pnpm add alova@beta
+pnpm add alova
 ```
 
 </TabItem>
 <TabItem value="4" label="bun">
 
 ```bash
-bun add alova@beta
+bun add alova
 ```
 
 </TabItem>
@@ -82,7 +76,7 @@ const alova = createAlova({
 });
 ```
 
-> 在 nodejs 中使用 fetchAdapter 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/next/resource/request-adapter/alova-adapter-axios/)。
+> 在 nodejs 中使用 fetchAdapter 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/resource/request-adapter/axios/)。
 
 </TabItem>
 <TabItem value="3" label="deno">

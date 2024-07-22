@@ -36,7 +36,7 @@ SSR 中经常需要在服务端获取数据并渲染成 HTML，这种情况下�
 
 ### Nextjs
 
-Nextjs 提供了固定的服务端初始化页面数据的函数，如`getStaticProps`、`getServerSideProps`等，可以在函数中[直接使用 method 实例](/next/tutorial/getting-started/quick-start)调用接口。
+Nextjs 提供了固定的服务端初始化页面数据的函数，如`getStaticProps`、`getServerSideProps`等，可以在函数中[直接使用 method 实例](/tutorial/getting-started/quick-start)调用接口。
 
 ```jsx
 export const getServerSideProps = async ctx => {
@@ -63,7 +63,7 @@ export default function App(props) {
 
 ### Sveltekit
 
-Sveltekit 中也提供了`load`函数进行服务端的页面数据初始化，你同样可以在函数中[直接使用 method 实例](/next/tutorial/getting-started/quick-start)调用接口。例如在`+page.server.js`中调用接口。
+Sveltekit 中也提供了`load`函数进行服务端的页面数据初始化，你同样可以在函数中[直接使用 method 实例](/tutorial/getting-started/quick-start)调用接口。例如在`+page.server.js`中调用接口。
 
 ```javascript title=+page.server.js
 const todoListGetter = alovaInstance.Get('/todo/list', {

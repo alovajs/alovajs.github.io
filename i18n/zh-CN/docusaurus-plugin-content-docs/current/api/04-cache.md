@@ -6,7 +6,7 @@ title: 缓存操作
 
 主动失效缓存。
 
-> 前往[手动失效缓存](/next/tutorial/cache/manually-invalidate)查看详情。
+> 前往[手动失效缓存](/tutorial/cache/manually-invalidate)查看详情。
 
 - **类型**
 
@@ -24,7 +24,7 @@ function invalidateCache(matcher?: Method | Method[] | MethodFilter): void;
 
 - **参数**
 
-1. `matcher`：缓存失效的匹配器，值为 method 实例或数组，也可以设置为[method 匹配器](/next/tutorial/client/in-depth/method-matcher)。
+1. `matcher`：缓存失效的匹配器，值为 method 实例或数组，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)。
 
 - **返回**
 
@@ -47,7 +47,7 @@ invalidateCache({
 
 设置响应缓存。
 
-> 前往[缓存更新与查找](/next/tutorial/cache/set-and-query)查看详情。
+> 前往[缓存更新与查找](/tutorial/cache/set-and-query)查看详情。
 
 - **类型**
 
@@ -68,7 +68,7 @@ function setCache(
 
 - **参数**
 
-1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/next/tutorial/client/in-depth/method-matcher)，将会为所有符合条件的 method 实例设置缓存数据。
+1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)，将会为所有符合条件的 method 实例设置缓存数据。
 2. `dataOrUpdater`：缓存数据或更新函数，如果为函数，则需要返回新的缓存数据，如果返回`undefined`或不返回则取消更新。
 
 - **返回**
@@ -95,7 +95,7 @@ setCache(
 
 查询缓存。
 
-> 前往[缓存更新与查找](/next/tutorial/cache/set-and-query)查看详情。
+> 前往[缓存更新与查找](/tutorial/cache/set-and-query)查看详情。
 
 - **类型**
 
@@ -113,7 +113,7 @@ function queryCache(matcher?: Method | MethodFilter): R | undefined;
 
 - **参数**
 
-1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/next/tutorial/client/in-depth/method-matcher)，将会为符合条件的第一个 method 实例查询缓存数据。
+1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)，将会为符合条件的第一个 method 实例查询缓存数据。
 
 - **返回**
 

@@ -180,12 +180,12 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-## 在 onSuccess 中快速获取 sendArgs
+## 在 onSuccess 中快速获取 args
 
-在实际项目中，经常通过`send`函数传递数据，如果你需要在 onSuccess 等回调函数中使用这些数据，由于它们存在于`event.sendArgs`数组中，此时你可以使用双重解构的方式直接获取到数据。
+在实际项目中，经常通过`send`函数传递数据，如果你需要在 onSuccess 等回调函数中使用这些数据，由于它们存在于`event.args`数组中，此时你可以使用双重解构的方式直接获取到数据。
 
 ```javascript
-onSuccess(({ sendArgs: [content] }) => {
+onSuccess(({ args: [content] }) => {
   console.log(content);
 });
 ```
@@ -240,7 +240,7 @@ export const alovaInst = createAlova({
 });
 ```
 
-并且推荐团队内不同的开发者可以根据每次迭代的版本号分别创建不同的模拟接口数据，以便于在团队中管理这些模拟数据，具体可参照 [模拟数据](/next/resource/request-adapter/alova-mock) 章节。
+并且推荐团队内不同的开发者可以根据每次迭代的版本号分别创建不同的模拟接口数据，以便于在团队中管理这些模拟数据，具体可参照 [模拟数据](/resource/request-adapter/alova-mock) 章节。
 
 ## 使用 useRequest 并行请求
 
@@ -339,4 +339,4 @@ const serialRequest = async () => {
 };
 ```
 
-> 串行请求建议直接使用[useSerialRequest](/next/tutorial/client/strategy/use-serial-request)和[useSerialWatcher](/next/tutorial/client/strategy/use-serial-watcher)。
+> 串行请求建议直接使用[useSerialRequest](/tutorial/client/strategy/use-serial-request)和[useSerialWatcher](/tutorial/client/strategy/use-serial-watcher)。

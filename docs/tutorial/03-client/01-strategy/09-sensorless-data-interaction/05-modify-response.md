@@ -110,7 +110,7 @@ onSuccess(({ data, silentMethod }) => {
 // highlight-end
 ```
 
-> updateStateEffect is used in the same way as [updateState](/next/tutorial/client/in-depth/update-across-components)
+> updateStateEffect is used in the same way as [updateState](/tutorial/client/in-depth/update-across-components)
 
 </TabItem>
 <TabItem value="2" label="Page has been destroyed">
@@ -182,7 +182,7 @@ const { loading, data, send, onSuccess } = useSQRequest(deleteTodo, {
   // highlight-end
 });
 
-onSuccess(({ sendArgs: [deletingId] }) => {
+onSuccess(({ args: [deletingId] }) => {
   updateStateEffect(todoList(), todoListRaw =>
     todoListRaw.filter(item => item.id !== deletingId)
   );
@@ -234,7 +234,7 @@ onSuccess(({ silentMethod }) => {
 
 ```javascript
 //...
-onSuccess(({ sendArgs: [deletingId], silentMethod }) => {
+onSuccess(({ args: [deletingId], silentMethod }) => {
   //...
   // highlight-start
   if (silentMethod) {

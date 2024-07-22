@@ -10,16 +10,16 @@ import NavCard from '@site/src/components/NavCard';
 {
 title: 'Client Strategy',
 desc: 'Select the strategy module you need to quickly implement complex requests',
-link: '/next/tutorial/client/strategy'
+link: '/tutorial/client/strategy'
 },
 {
 title: 'Server Strategy',
 desc: 'Select the strategy module you need to quickly implement complex requests',
-link: '/next/tutorial/server/strategy'
+link: '/tutorial/server/strategy'
 },
 {
 title: 'Best Practices',
 desc: 'Use Alova skills summarized in practice in projects',
-link: '/next/tutorial/project/best-practice'
+link: '/tutorial/project/best-practice'
 }
 ]}></NavCard>

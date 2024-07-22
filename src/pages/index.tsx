@@ -26,12 +26,12 @@ function HomepageHeader() {
         </div>
       ),
       type: 'primary',
-      link: '/tutorial/getting-started'
+      link: '/tutorial/getting-started/introduce'
     },
     {
       text: <Translate id="homepage.Examples">Examples</Translate>,
       type: 'secondary',
-      link: '/category/examples'
+      link: '/examples'
     }
   ];
   const { i18n } = useDocusaurusContext();
@@ -67,9 +67,9 @@ function HomepageHeader() {
 
           <Link
             className={styles.announcement}
-            to="next/tutorial/getting-started/introduce">
+            to="tutorial/getting-started/introduce">
             🎉
-            <Translate id="homepage.release.announce">alvoa v3.0.b-beta is here</Translate> →
+            <Translate id="homepage.release.announce">alvoa v3 is here</Translate> →
           </Link>
         </div>
       </div>

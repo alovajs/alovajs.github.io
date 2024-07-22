@@ -4,7 +4,7 @@ title: 管理APIs
 
 在一个项目中，我们可能需要使用到成百上千个请求 api，因此管理这些请求 api 变得尤为重要。
 
-你可能会像 [快速开始](/next/tutorial/getting-started/quick-start) 中的代码片段那样编写请求发送的代码，所有请求代码写在一个文件中。
+你可能会像 [快速开始](/tutorial/getting-started/quick-start) 中的代码片段那样编写请求发送的代码，所有请求代码写在一个文件中。
 
 ```javascript
 const { loading, data, error } = useRequest(

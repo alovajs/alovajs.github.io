@@ -15,27 +15,24 @@ Only supports Alova 3.0 and above.
 ## Install
 
 ```bash
-npm install @alova/psc@beta --save
+npm install @alova/psc --save
 ```
 
 ## Use in Node.js
 
-In Node.js environment, you can use `NodeSyncAdapter` and `createNodeSharedCacheSynchronizer` to synchronize the cache between child processes.
+In Node.js environment, you can use `createNodePSCSynchronizer` and `createNodePSCAdapter` to synchronize the cache between child processes.
 
 1. Set up the synchronizer in the master process:
 
 ```javascript
-const process = require('node:process');
 const cluster = require('cluster');
-const { createPSCSynchronizer, NodeSyncAdapter } = require('@alova/psc');
+const { createNodePSCSynchronizer } = require('@alova/psc');
 
 if (cluster.isMaster) {
   // highlight-start
   // Make sure to call this before creating child processes
-  const stopIPC = await createPSCSynchronizer(NodeSyncAdapter());
+  await createNodePSCSynchronizer();
   // highlight-end
-
-  process.on('SIGTERM', stopIPC);
 } else {
   // fork worker processes
 }
@@ -43,18 +40,15 @@ if (cluster.isMaster) {
 
 2. Use the adapter in the child process:
 
-```javascript
-const process = require('node:process');
-const { createPSCAdapter, NodeSyncAdapter, ExplictCacheAdapter } = require('@alova/psc');
+We provide an export `createNodePSCAdapter`, which is alias for `createPSCAdapter(NodeSyncAdapter())`.
+In most cases, you can use it like this:
 
-const pscAdapter = createPSCAdapter(
-  NodeSyncAdapter(stopIPC => {
-    process.on('SIGTERM', stopIPC);
-  })
-);
+```javascript
+const { createNodePSCAdapter } = require('@alova/psc');
+
 createAlova({
   // ...
-  l1Cache: pscAdapter
+  l1Cache: createNodePSCAdapter()
 });
 ```
 
@@ -63,11 +57,12 @@ createAlova({
 Of course, you can share both l1Cache and l2Cache at the same time! Just use the scope option and create different shared storage adapters.
 
 ```javascript
+const process = require('node:process');
+const { createPSCAdapter, NodeSyncAdapter } = require('@alova/psc');
+
 const createScopedPSCAdapter = (scope: string) =>
   createPSCAdapter(
-    NodeSyncAdapter(stopIPC => {
-      process.on('SIGTERM', stopIPC);
-    }),
+    NodeSyncAdapter(),
     // This parameter is used to specify the storage adapter. We will introduce this later
     undefined,
     // highlight-start
@@ -78,7 +73,7 @@ const createScopedPSCAdapter = (scope: string) =>
 
 ## Use in Electron
 
-In the Electron environment, use ElectronSyncAdapter and createPSCSynchronizer to synchronize the cache between renderer processes.
+In the Electron environment, use `createElectronPSCSynchronizer` and `createElectronPSCAdapter` to synchronize the cache between renderer processes.
 
 1. Set up the synchronizer in the main process:
 
@@ -88,7 +83,7 @@ import { createPSCSynchronizer, ElectronSyncAdapter } from '@alova/psc';
 import { ipcMain } from 'electron';
 
 // Initialize the synchronizer
-createPSCSynchronizer(ElectronSyncAdapter(ipcMain));
+createElectronPSCSynchronizer(ipcMain);
 
 // ...other codes
 ```
@@ -100,7 +95,8 @@ createPSCSynchronizer(ElectronSyncAdapter(ipcMain));
 import { createPSCAdapter, ElectronSyncAdapter } from '@alova/psc';
 import { ipcRenderer, contextBridge } from 'electron';
 
-const pscAdapter = createPSCAdapter(ElectronSyncAdapter(ipcRenderer));
+// createElectronPSCAdapter is also an alias
+const pscAdapter = createElectronPSCAdapter(ipcRenderer);
 
 contextBridge.exposeInMainWorld('pscAdapter', pscAdapter);
 ```

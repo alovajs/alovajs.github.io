@@ -34,19 +34,19 @@ const jsEnvList: SupportItem[] = [
     id: 'Vue options',
     available: true,
     Image: require('@site/static/img/vue.svg').default,
-    link: '/tutorial/framework/vue-options'
+    link: '/resource/framework/vue-options'
   },
   {
     id: 'Next',
     available: true,
     Image: require('@site/static/img/next.svg').default,
-    link: '/tutorial/advanced/ssr#nextjs'
+    link: '/tutorial/advanced/in-depth/ssr#nextjs'
   },
   {
     id: 'Nuxt',
     available: true,
     Image: require('@site/static/img/nuxt.svg').default,
-    link: '/tutorial/advanced/ssr#nuxt3x'
+    link: '/tutorial/advanced/in-depth/ssr#nuxt3x'
   },
   {
     id: 'nodejs',
@@ -70,19 +70,19 @@ const jsEnvList: SupportItem[] = [
     id: 'Sveltekit',
     available: true,
     Image: require('@site/static/img/svelte.svg').default,
-    link: '/tutorial/advanced/ssr#sveltekit'
+    link: '/tutorial/advanced/in-depth/ssr#sveltekit'
   },
   {
     id: 'Solid',
     available: false,
     Image: require('@site/static/img/solid.svg').default,
-    link: '/tutorial/framework/solid'
+    link: '/resource/framework/solid'
   },
   {
     id: 'Mini program🇨🇳',
     available: false,
     Image: require('@site/static/img/miniprogram.svg').default,
-    link: '/tutorial/framework/native-mp'
+    link: '/resource/framework/native-mp'
   },
   {
     id: 'uniapp',
@@ -93,7 +93,7 @@ const jsEnvList: SupportItem[] = [
         className={className}
       />
     ),
-    link: '/tutorial/request-adapter/alova-adapter-uniapp'
+    link: '/resource/request-adapter/uniapp'
   },
   {
     id: 'Taro',
@@ -104,37 +104,37 @@ const jsEnvList: SupportItem[] = [
         className={className}
       />
     ),
-    link: '/tutorial/request-adapter/alova-adapter-taro'
+    link: '/resource/request-adapter/taro'
   },
   {
     id: 'Angular',
     available: false,
     Image: require('@site/static/img/angular.svg').default,
-    link: '/tutorial/framework/angular'
+    link: '/resource/framework/angular'
   },
   {
     id: 'Preact',
     available: false,
     Image: require('@site/static/img/preact.svg').default,
-    link: '/tutorial/framework/preact'
+    link: '/resource/framework/preact'
   },
   {
     id: 'Qwik',
     available: false,
     Image: require('@site/static/img/qwik.svg').default,
-    link: '/tutorial/framework/qwik'
+    link: '/resource/framework/qwik'
   },
   {
     id: 'Lit',
     available: false,
     Image: require('@site/static/img/lit.svg').default,
-    link: '/tutorial/framework/lit'
+    link: '/resource/framework/lit'
   },
   {
     id: 'Stencil',
     available: false,
     Image: require('@site/static/img/stencil.svg').default,
-    link: '/tutorial/framework/stencil'
+    link: '/resource/framework/stencil'
   }
 ];
 
@@ -143,19 +143,19 @@ const requestTools: SupportItem[] = [
     id: 'Fetch Api',
     available: true,
     Image: require('@site/static/img/fetchapi.svg').default,
-    link: '/tutorial/getting-started/method/#other-parameters-supported-by-the-request-adapter'
+    link: '/resource/request-adapter/fetch'
   },
   {
     id: 'Axios',
     available: true,
     Image: require('@site/static/img/axios.svg').default,
-    link: '/tutorial/request-adapter/alova-adapter-axios'
+    link: '/resource/request-adapter/axios'
   },
   {
     id: 'XMLHttpRequest',
     available: true,
     Image: require('@site/static/img/xhr.svg').default,
-    link: '/tutorial/request-adapter/alova-adapter-xhr'
+    link: '/resource/request-adapter/xhr'
   },
   {
     id: 'GraphQL',

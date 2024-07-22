@@ -176,7 +176,7 @@ The above example is set `updateState` to false when calling `useFetcher`. This 
 
 ## Update views across modules/components
 
-Next, we will modify a todo data and re-fetch the latest todo list data to update the view. We may not know which page the todo list is currently on. In this case, when using the `fetch` function, we can use [Method snapshots matcher](/next/tutorial/client/in-depth/method-matcher) to dynamically fetch the data of the current page.
+Next, we will modify a todo data and re-fetch the latest todo list data to update the view. We may not know which page the todo list is currently on. In this case, when using the `fetch` function, we can use [Method snapshots matcher](/tutorial/client/in-depth/method-matcher) to dynamically fetch the data of the current page.
 
 > The Method snapshots matcher is used to find method instances that meet the conditions among the requested method instances.
 
@@ -225,8 +225,8 @@ useFetcher only updates the cache after the request is completed, and if this Me
 
 :::
 
-> For more methods of using `Method` instance matcher, see [Method instance matcher](/next/tutorial/client/in-depth/method-matcher).
+> For more methods of using `Method` instance matcher, see [Method instance matcher](/tutorial/client/in-depth/method-matcher).
 
 ## Force sending request
 
-Same as `useRequest` and `useWatcher`, please read [Force Request](/next/tutorial/cache/force-request) for more information.
+Same as `useRequest` and `useWatcher`, please read [Force Request](/tutorial/cache/force-request) for more information.

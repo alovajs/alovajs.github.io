@@ -31,9 +31,9 @@ import { useAutoRequest } from 'alova/client';
 const { loading, data, error } = useAutoRequest(() => method());
 ```
 
-The return value of `useAutoRequest` is the same as [useRequest](/next/api/core-hooks#userequest).
+The return value of `useAutoRequest` is the same as [useRequest](/api/core-hooks#userequest).
 
-In addition to supporting all configuration parameters of [useRequest](/next/api/core-hooks#userequest), it also supports automatically fetched configuration parameters. You can turn on or off some events through the following configuration, or modify request throttling events.
+In addition to supporting all configuration parameters of [useRequest](/api/core-hooks#userequest), it also supports automatically fetched configuration parameters. You can turn on or off some events through the following configuration, or modify request throttling events.
 
 ```javascript
 const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
@@ -76,7 +76,7 @@ const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
 
 :::warning caching advice
 
-It is recommended to turn off the cache of the corresponding request when using `useAutoRequest`, because when the cache is set, the cache will be hit when the automatic request is triggered and the newest data cannot be obtained. Please read [Cache Mode](/next/tutorial/cache/mode) for details.
+It is recommended to turn off the cache of the corresponding request when using `useAutoRequest`, because when the cache is set, the cache will be hit when the automatic request is triggered and the newest data cannot be obtained. Please read [Cache Mode](/tutorial/cache/mode) for details.
 
 :::
 

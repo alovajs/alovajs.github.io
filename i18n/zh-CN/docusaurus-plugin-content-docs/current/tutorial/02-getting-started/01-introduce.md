@@ -51,7 +51,7 @@ alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它�
 
 这个扩展也优化了 API 的使用流程，让你感受不一样的 API 集成体验，在过去，你需要先查询 API 文档，并不断地在 API 文档与编辑器切换来编写请求代码，使用 alova 插件后，你可以不再需要离开编辑器，直接在编辑器中边查边使用 API。
 
-> 关于 alova 插件的详细介绍，请参考 [集成编辑器扩展](/next/tutorial/getting-started/extension-integration)。
+> 关于 alova 插件的详细介绍，请参考 [集成编辑器扩展](/tutorial/getting-started/extension-integration)。
 
 ## 有什么不同吗？
 
@@ -130,7 +130,7 @@ target: '__blank'
 
 ## 欢迎参与贡献
 
-在参与贡献前，请务必详细阅读 [贡献指南](/next/contributing/overview)，以保证你的有效贡献。
+在参与贡献前，请务必详细阅读 [贡献指南](/contributing/overview)，以保证你的有效贡献。
 
 ## 开始
 

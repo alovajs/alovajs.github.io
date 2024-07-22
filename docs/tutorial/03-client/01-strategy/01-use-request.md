@@ -15,7 +15,7 @@ useRequest indicates the sending of a request. By default, a request will be sen
 
 ## Usage
 
-Its basic usage has been introduced in detail in [Basic - Combining UI Framework](/next/tutorial/getting-started/basic/combine-framework).
+Its basic usage has been introduced in detail in [Basic - Combining UI Framework](/tutorial/getting-started/basic/combine-framework).
 
 ### Set initial data
 
@@ -80,8 +80,8 @@ It can also be set to a function. When the function return value is `true`, the 
 ```javascript
 useRequest(todoListGetter, {
   // highlight-start
-  force: ({ method, sendArgs }) => {
-    return !!sendArgs[0];
+  force: ({ method, args }) => {
+    return !!args[0];
   }
   // highlight-end
 });
@@ -128,23 +128,23 @@ send(1);
 
 #### Received in event callback function
 
-Received in the event callback function through `event.sendArgs`, which is an array containing all the parameters of the send function.
+Received in the event callback function through `event.args`, which is an array containing all the parameters of the send function.
 
 ```javascript
 const { send, onSuccess, onError, onComplete } = useRequest(newTodo =>
   alovaInstance.Post('/todo', newTodo)
 );
 onSuccess(event => {
-  // sendArgs value is [1]
-  console.log(event.sendArgs);
+  // args value is [1]
+  console.log(event.args);
 });
 onError(event => {
-  // sendArgs value is [1]
-  console.log(event.sendArgs);
+  // args value is [1]
+  console.log(event.args);
 });
 onComplete(event => {
-  // sendArgs value is [1]
-  console.log(event.sendArgs);
+  // args value is [1]
+  console.log(event.args);
 });
 
 // Send request
@@ -153,12 +153,12 @@ send(1);
 
 #### Received in force function
 
-force is used to specify whether to penetrate the response cache. The content about response cache will be explained in the [cache mode](/next/tutorial/cache/mode) later.
+force is used to specify whether to penetrate the response cache. The content about response cache will be explained in the [cache mode](/tutorial/cache/mode) later.
 
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {
   force: event => {
-    return event.sendArgs[0];
+    return event.args[0];
   }
 });
 send(1);
@@ -200,7 +200,7 @@ abort();
 
 ### Additional managed states
 
-Set additional managed states, which can be updated across components. For details, please refer to [Additional managed states](/next/tutorial/client/in-depth/manage-extra-states).
+Set additional managed states, which can be updated across components. For details, please refer to [Additional managed states](/tutorial/client/in-depth/manage-extra-states).
 
 ### Middleware
 
@@ -218,8 +218,8 @@ useRequest(todoListGetter, {
 });
 ```
 
-For details, please refer to [In-depth Client-Middleware](/next/tutorial/client/in-depth/middleware).
+For details, please refer to [In-depth Client-Middleware](/tutorial/client/in-depth/middleware).
 
 ## API
 
-Please refer to [API-useRequest](/next/api/core-hooks#userequest).
+Please refer to [API-useRequest](/api/core-hooks#userequest).

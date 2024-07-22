@@ -14,7 +14,7 @@ export default function AnnouncementBarContent(props) {
       {...props}
       className={clsx(styles.content, props.className, 'flex-col align-center')}>
       <strong className={styles.announceTitle}>
-        <Translate id="announcement.title">alova v3.0.0-beta is HERE!</Translate>
+        <Translate id="announcement.title">alova v3 is HERE!</Translate>
       </strong>
       <span>
         <Translate id="announcement.desc">
@@ -24,12 +24,12 @@ export default function AnnouncementBarContent(props) {
       <div className="flex-row">
         <Link
           className={styles.announceButton}
-          to="/next/release-notes-v3">
+          to="/release-notes-v3">
           <Translate id="announcement.btn1">What's New</Translate>
         </Link>
         <Link
           className={styles.announceButton}
-          to="/next/tutorial/getting-started/introduce">
+          to="/tutorial/getting-started/introduce">
           <Translate id="announcement.btn2">v3.0 Tutorial</Translate>
         </Link>
       </div>
