@@ -99,7 +99,6 @@ createElectronPSCSynchronizer(ipcMain);
 import { createPSCAdapter, ElectronSyncAdapter } from '@alova/psc';
 import { ipcRenderer, contextBridge } from 'electron';
 
-// createElectronPSCAdapter is also an alias
 const pscAdapter = createPSCAdapter(ElectronSyncAdapter(ipcRenderer));
 
 contextBridge.exposeInMainWorld('pscAdapter', pscAdapter);
