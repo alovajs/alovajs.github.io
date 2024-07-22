@@ -41,12 +41,11 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroContent}>
           <h1 className="title">
-            <Translate id="homepage.title">Lightweight request strategy library</Translate>
+            <Translate id="homepage.title">Creative Next Generation Request Tool</Translate>
           </h1>
           <p className="tagline">
             <Translate id="homepage.tagline">
-              One line of code completes network requests in various complex scenarios. Don’t
-              spend time on the small matter of requesting. Leave it to us.
+              Extremely improve your API using efficiency and save brainpower Just one step
             </Translate>
           </p>
           <div className={clsx(styles.buttons, 'margin-bottom--md')}>

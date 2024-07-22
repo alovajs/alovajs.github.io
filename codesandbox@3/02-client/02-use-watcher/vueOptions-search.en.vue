@@ -18,7 +18,7 @@
 
 <script>
 import { mapAlovaHook } from '@alova/vue-options';
-import { useWatcher } from 'alova';
+import { useWatcher } from 'alova/client';
 import { alovaInstance } from './api';
 
 // Create method instance

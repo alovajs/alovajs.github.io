@@ -1,7 +1,7 @@
-import alovaReact from '!!raw-loader!@site/codesandbox@3/00-create-alova/react';
-import alovaSvelte from '!!raw-loader!@site/codesandbox@3/00-create-alova/svelte';
-import alovaVueComposition from '!!raw-loader!@site/codesandbox@3/00-create-alova/vueComposition';
-import alovaVueOptions from '!!raw-loader!@site/codesandbox@3/00-create-alova/vueOptions';
+import alovaReact from '!!raw-loader!@site/codesandbox/00-create-alova/react';
+import alovaSvelte from '!!raw-loader!@site/codesandbox/00-create-alova/svelte';
+import alovaVueComposition from '!!raw-loader!@site/codesandbox/00-create-alova/vueComposition';
+import alovaVueOptions from '!!raw-loader!@site/codesandbox/00-create-alova/vueOptions';
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { SandpackPredefinedTemplate } from '@codesandbox/sandpack-react/unstyled';
 import { amethyst, monokaiPro } from '@codesandbox/sandpack-themes';
@@ -20,7 +20,7 @@ const fileEntry = {
       '/src/api.js': alovaVueOptions
     },
     deps: {
-      '@alova/vue-options': 'latest'
+      '@alova/vue-options': '^1'
     }
   },
   react: {
@@ -125,7 +125,7 @@ const EmbedSandpack = ({
   }
 
   const dependencies = {
-    alova: 'latest',
+    alova: '^2',
     ...(targetEntry.deps || {})
   };
   const { colorMode } = useColorMode();

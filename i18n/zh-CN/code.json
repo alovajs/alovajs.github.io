@@ -272,11 +272,11 @@
   },
 
   "homepage.title": {
-    "message": "轻量级请求策略库",
+    "message": "创新的下一代请求工具",
     "description": "The title of web page"
   },
   "homepage.tagline": {
-    "message": "一行代码完成各种复杂场景的网络请求，别再花时间在请求这件小事上了，交给我们",
+    "message": "极致地提升你的API接入效率，节约大脑，仅需一步",
     "description": "网站tagline"
   },
   "homepage.relationTitle": {
