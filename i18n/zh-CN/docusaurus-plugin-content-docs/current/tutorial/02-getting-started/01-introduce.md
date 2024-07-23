@@ -87,6 +87,11 @@ alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它�
 
 <Examples />
 
+## 迁移指南
+
+- [从 v2 迁移到 v3](/tutorial/project/migration/v2-to-v3)
+- [从 axios 低成本迁移到 alova 的指南](/tutorial/project/migration/from-axios)
+
 ## 脚手架推荐
 
 <NavCard list={[

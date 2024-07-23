@@ -87,6 +87,11 @@ Not only that, Alova is very flexible, you can use it with different request too
 
 <Examples />
 
+## Migration Guide
+
+- [Migration from v2 to v3](/tutorial/project/migration/v2-to-v3)
+- [Guide to low-cost migration from axios to alova](/tutorial/project/migration/from-axios)
+
 ## Join alova community
 
 import ImgDiscord from '@site/static/img/discord.svg';

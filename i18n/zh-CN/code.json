@@ -682,6 +682,10 @@
     "message": "v3.0指南",
     "description": "description of announcement btn2"
   },
+  "announcement.btn3": {
+    "message": "迁移到v3.0",
+    "description": "description of announcement btn2"
+  },
   "example.open in new tab": {
     "message": "遇到问题？点此在新页面中打开示例",
     "description": "description of example open in new tab"
