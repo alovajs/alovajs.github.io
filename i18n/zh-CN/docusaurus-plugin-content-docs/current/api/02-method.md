@@ -6,7 +6,7 @@ title: method实例
 
 ## PromiseLike 特性
 
-在`[v2.16.0]`之后，method 实例是一个 PromiseLike 实例，它拥有`then/catch/finally`函数，因此你可以按如下方式使用：
+method 实例是一个 PromiseLike 实例，它拥有`then/catch/finally`函数，因此你可以按如下方式使用：
 
 ```ts
 // 调用method的then函数
@@ -64,78 +64,6 @@ const method = new Method('GET', alovaInstance, '/api/users', {
   params: {
     id: 1
   }
-});
-```
-
-## getMethodKey()
-
-获取 method 的 key 值，此 key 值作为 alova 内部缓存 key 使用。
-
-- **类型**
-
-```ts
-function getMethodKey(method: Method): string;
-```
-
-- **参数**
-
-1. `method`：method 实例
-
-- **返回**
-
-传入的 method 实例的 key 值。
-
-- **示例**
-
-```ts
-import { getMethodKey } from 'alova';
-
-const method = alova.Get('/api/users');
-const methodKey = getMethodKey(method);
-```
-
-## matchSnapshotMethod()
-
-以[method 匹配器](/tutorial/client/in-depth/method-matcher)的匹配方式获取已经请求过的 method 实例快照，并返回匹配的结果。
-
-- **类型**
-
-```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
-function matchSnapshotMethod(
-  matcher: MethodFilter,
-  matchAll?: boolean
-): Method[] | Method | undefined;
-```
-
-- **参数**
-
-1. `matcher`：method 匹配器
-2. `matchAll`：是否匹配全部，默认为 true
-
-- **返回**
-
-`matchAll` 为 true 时返回 method 实例数组，否则返回 method 实例或 undefined
-
-- **示例**
-
-```ts
-import { matchSnapshotMethod } from 'alova';
-
-await alova.Get('/api/users');
-const snapshotMethod = matchSnapshotMethod({
-  name: 'user',
-  filter(method, i, methodArray) {
-    return method.url.includes('users');
-  },
-  alova: alova
 });
 ```
 
@@ -259,9 +187,71 @@ interface Method {
 }
 ```
 
+## method.promise
+
+当前请求的 Promise 实例，在请求中有值。
+
+- **类型**
+
+```ts
+interface Method {
+  promise?: Promise<Responded>;
+}
+```
+
+- **示例**
+
+```ts
+createAlova({
+  beforeRequest(method) {
+    method!.promise.then(data => {
+      // ...
+    });
+  }
+});
+```
+
+## method.key
+
+当前 method 的 key，你可以通过修改它自定义当前 method 的缓存 key。
+
+- **类型**
+
+```ts
+interface Method {
+  key: string;
+}
+```
+
+> [查看自定义 method 的 key](/tutorial/advanced/in-depth/custom-method-key)
+
+## method.dhs
+
+当前 method 的下载进度事件的回调函数数组。
+
+- **类型**
+
+```ts
+interface Method {
+  dhs: ProgressHandler[];
+}
+```
+
+## method.uhs
+
+当前 method 的上传进度事件的回调函数数组。
+
+- **类型**
+
+```ts
+interface Method {
+  uhs: ProgressHandler[];
+}
+```
+
 ## method.send()
 
-使用此 method 实例直接发送请求，在`[v2.16.0]`之后发送请求可省略调用此方法。
+使用此 method 实例直接发送请求，发送请求可省略调用此方法。
 
 - **类型**
 
@@ -307,7 +297,7 @@ method.abort();
 
 ## method.then()
 
-在`[v2.16.0]`之后，method 实例是一个 PromiseLike 实例，可直接调用此方法或`await method`发送请求，获得响应数据。
+method 实例是一个 PromiseLike 实例，可直接调用此方法或`await method`发送请求，获得响应数据。
 
 - **类型**
 
@@ -338,7 +328,7 @@ const response = await method;
 
 ## method.catch()
 
-在`[v2.16.0]`之后，method 实例是一个 PromiseLike 实例，可直接调用此方法发送请求，并捕获错误。
+method 实例是一个 PromiseLike 实例，可直接调用此方法发送请求，并捕获错误。
 
 - **类型**
 
@@ -369,7 +359,7 @@ const response = await method.catch(error => {
 
 ## method.finally()
 
-在`[v2.16.0]`之后，method 实例是一个 PromiseLike 实例，可直接调用此方法发送请求，并处理响应完成。
+method 实例是一个 PromiseLike 实例，可直接调用此方法发送请求，并处理响应完成。
 
 - **类型**
 
@@ -454,6 +444,35 @@ const offEvent = method.onUpload(event => {
 });
 
 offEvent();
+```
+
+## method.generateKey()
+
+生成当前 method 的 key，它在创建 method 实例时被调用，你可以通过重写`Method.prototype.generateKey`方法自定义生成 key。
+
+- **类型**
+
+```ts
+interface Method {
+  generateKey(): string;
+}
+```
+
+- **参数**
+
+无
+
+- **返回**
+
+当前 method 实例的 key 值。
+
+- **示例**
+
+```ts
+Method.prototype.generateKey = function () {
+  // 自定义生成 key
+  return customKey;
+};
 ```
 
 ## method.setName()

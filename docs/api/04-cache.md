@@ -1,93 +1,85 @@
 ---
-title: Cache operation
+title: Cache Operations
 ---
 
 ## invalidateCache()
 
-Active cache invalidation.
+Actively invalidate the cache.
 
-> Go to [Manually invalidate cache](/tutorial/cache/manually-invalidate) for details.
+> Go to [Manually Invalidate Cache](/tutorial/cache/manually-invalidate) for details.
 
-- **type**
+- **Type**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
-function invalidateCache(matcher?: Method | Method[] | MethodFilter): void;
+function invalidateCache(matcher?: Method | Method[]): Promise<void>;
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. `matcher`: Cache invalid matcher, the value is a method instance or array, or it can be set to [method instance matcher](/tutorial/client/in-depth/method-matcher).
+1. `matcher`: method instance or array for cache invalidation.
 
-- **return**
+- **Return**
 
-none
+Promise Example
 
 - **Example**
 
 ```ts
 import { invalidateCache } from 'alova';
 
-invalidateCache(method);
-invalidateCache([method1, method2]);
-invalidateCache({
-  name: 'userMethod',
-  filter: method => method.name === 'method1'
-});
+await invalidateCache(method);
+await invalidateCache([method1, method2]);
+const methodSnapshots = alova.snapshots.match('method-name');
+await invalidateCache(methodSnapshots);
 ```
 
 ## setCache()
 
-Set up response caching.
+Set the response cache.
 
-> Go to [Cache Update and Query](/tutorial/cache/set-and-query) for details.
+> Go to [Cache Update and Lookup](/tutorial/cache/set-and-query) for details.
 
-- **type**
+- **Type**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
 function setCache(
-  matcher: Method | Method[] | MethodFilter,
-  dataOrUpdater: R | ((oldCache: R) => R | undefined | void)
-): void;
+  matcher: Method | Method[],
+  dataOrUpdater: R | ((oldCache: R) => R | undefined | void),
+  options?: CacheSetOptions
+): Promise<void>;
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher](/tutorial/client/in-depth/method-matcher), which will match all matching The method instance of the condition sets the cached data.
-2. `dataOrUpdater`: Cache data or update function. If it is a function, it needs to return new cached data. If it returns `undefined` or does not return, the update will be cancelled.
+1. `matcher`: value is method instance or instance array.
+2. `dataOrUpdater`: cache data or update function. If it is a function, it needs to return the new cache data. If it returns `undefined` or does not return, the update is canceled.
+3. `options`: Configuration parameters
 
-- **return**
+| Parameter name | Type                  | Description                                                                                                                                                              |
+| -------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| policy         | 'l1' \| 'l2' \| 'all' | Cache update policy, `l1` means only updating the l1 layer cache, `l2` means only updating the l2 layer cache, and `all` means updating both the l1 and l2 layers cache. |
 
-none
+- **Return**
+
+Promise instance
 
 - **Example**
 
 ```ts
 import { setCache } from 'alova';
 
-setCache(method, {});
-setCache([method1, method2], {});
-setCache(
+await setCache(method, {});
+
+await setCache([method1, method2], {});
+
+const methodSnapshots = alova.snapshots.match('method-name');
+
+await setCache(
+  methodSnapshots,
+  {},
   {
-    name: 'userMethod',
-    filter: method => method.name === 'method1'
-  },
-  {}
+    policy: 'l1'
+  }
 );
 ```
 
@@ -95,38 +87,38 @@ setCache(
 
 Query cache.
 
-> Go to [Cache Update and Query](/tutorial/cache/set-and-query) for details.
+> Go to [Cache Update and Lookup](/tutorial/cache/set-and-query) for details.
 
-- **type**
+- **Type**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
-function queryCache(matcher?: Method | MethodFilter): R | undefined;
+function queryCache(
+  matcher?: Method,
+  options?: CacheQueryOptions
+): Promise<Responded | undefined>;
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher](/tutorial/client/in-depth/method-matcher), which will meet the conditions. The first method instance queries cached data.
+1. `matcher`: The value is a method instance, a method name string, or a method name regular expression. It can also be set to a [method matcher](/tutorial/client/in-depth/method-matcher). The cache data will be queried for the first method instance that meets the conditions.
+2. `options`: Configuration parameters
 
-- **return**
+| Parameter name | Type                  | Description                                                                                                                                                                       |
+| -------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| policy         | 'l1' \| 'l2' \| 'all' | Cache acquisition strategy, `l1` means only obtaining the l1 layer cache, `l2` means only obtaining the l2 layer cache, and `all` means querying both the l1 and l2 layer caches. |
 
-Cache data, or return `undefined` if not cached.
+- **Return**
+
+Promise instance of cache data, returns `undefined` if there is no cache.
 
 - **Example**
 
 ```ts
 import { queryCache } from 'alova';
 
-const responseCache = queryCache(method);
-const responseCache = queryCache({
-  name: 'userMethod',
-  filter: method => method.name === 'method1'
+const responseCache = await queryCache(method);
+const methodSnapshot = alova.snapshots.match('method-name', true);
+const responseCache = await queryCache(methodSnapshot, {
+  policy: 'l2'
 });
 ```

@@ -6,10 +6,12 @@ import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
 import Examples from '@site/src/components/Examples';
 import SupportList from '@site/src/components/SupportList';
+import tts from '@site/static/audio/tts.mp3';
+import AudioPlayer from '@site/src/components/AudioPlayer';
 
 ## alova 是什么？
 
-alova 是一个创新的下一代请求工具，帮你极致地提升 API 使用效率，节约大脑。将服务端接口集成到前端项目简化为只有 1 步。
+alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个创新的下一代请求工具，帮你极致地提升 API 使用效率，节约大脑。将服务端接口集成到前端项目简化为只有 1 步。
 
 ![](/img/overview_flow_cn.png)
 

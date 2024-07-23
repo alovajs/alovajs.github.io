@@ -2,36 +2,36 @@
 title: method instance
 ---
 
-A method instance corresponds to a request information description, which has the URL, request headers, request parameters of a request, as well as request behavior parameters such as response data processing and cache data processing. Through method instances, you can feel a unified usage experience in any js environment, and it can run normally with very few changes. In addition, method instances put request parameters and request behavior parameters together, making it easier for APIs management instead of spreading it across multiple code files.
+A method instance corresponds to a request information description. It has a request URL, request header, request parameters, and request behavior parameters such as response data processing and cache data processing. Through the method instance, you can experience a unified usage experience in any JS environment, and it can run normally with very few changes. In addition, the method instance puts the request parameters and request behavior parameters together, which is more convenient for API management, rather than being scattered in multiple code files.
 
-## PromiseLike attribute
+## PromiseLike feature
 
-After `[v2.16.0]`, the method instance is a PromiseLike instance, which has `then/catch/finally` functions, so you can use it as follows:
+The method instance is a PromiseLike instance, which has `then/catch/finally` functions, so you can use it as follows:
 
 ```ts
-// Call the then function of method
+// Call method's then function
 method.then(res => {
   console.log(res);
 });
 
-// catch exception
+// Catch exceptions
 method.catch(e => {
   console.log(e);
 });
 
-//Request completion call
+// Request completion call
 method.finally(() => {
-  console.log('Request completed');
+  console.log('request completed');
 });
 ```
 
-In addition, requests can also be sent through the `await method`.
+In addition, you can also send requests through `await method`.
 
 ## new Method()
 
-Create a custom method instance.
+Customize the creation of method instances.
 
-- **type**
+- **Type**
 
 ```ts
 interface MethodConstructor {
@@ -46,12 +46,16 @@ interface MethodConstructor {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. `type`: request type
+
 2. `context`: alova instance
+
 3. `url`: request url
-4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/api/alova#alovaget)
+
+4. `config`: configuration parameters, the type is consistent with the config parameter type of [alova.Get](/api/alova#alovaget)
+
 5. `data`: request body data
 
 - **Example**
@@ -62,88 +66,16 @@ import { alovaInstance } from './api';
 
 const method = new Method('GET', alovaInstance, '/api/users', {
   params: {
-    ID: 1
+    id: 1
   }
-});
-```
-
-## getMethodKey()
-
-Get the key value of method. This key value is used as alova internal cache key.
-
-- **type**
-
-```ts
-function getMethodKey(method: Method): string;
-```
-
-- **Parameters**
-
-1. `method`: method instance
-
-- **return**
-
-The key value of the method instance passed in.
-
-- **Example**
-
-```ts
-import { getMethodKey } from 'alova';
-
-const method = alova.Get('/api/users');
-const methodKey = getMethodKey(method);
-```
-
-## matchSnapshotMethod()
-
-Obtain the requested method instance snapshot using the matching method of [method instance matcher](/tutorial/client/in-depth/method-matcher) and return the matching result.
-
-- **type**
-
-```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
-function matchSnapshotMethod(
-  matcher: MethodFilter,
-  matchAll?: boolean
-): Method[] | Method | undefined;
-```
-
-- **Parameters**
-
-1. `matcher`: method instance matcher
-2. `matchAll`: Whether to match all, the default is true
-
-- **return**
-
-Returns an array of method instances when `matchAll` is true, otherwise returns a method instance or undefined
-
-- **Example**
-
-```ts
-import { matchSnapshotMethod } from 'alova';
-
-await alova.Get('/api/users');
-const snapshotMethod = matchSnapshotMethod({
-  name: 'user',
-  filter(method, i, methodArray) {
-    return method.url.includes('users');
-  },
-  alova: alova
 });
 ```
 
 ## method.headers
 
-Request header.
+Request headers.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -155,7 +87,7 @@ interface Method {
 
 The base path of the request, inherited from [alova instance](/api/alova).
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -165,9 +97,9 @@ interface Method {
 
 ## method.url
 
-Create the url of the method instance.
+The url to create a method instance.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -179,7 +111,7 @@ interface Method {
 
 Request type.
 
-- **type**:
+- **Type**:
 
 ```ts
 interface Method {
@@ -191,7 +123,7 @@ interface Method {
 
 Request body.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -201,9 +133,9 @@ interface Method {
 
 ## method.context
 
-Create an alova instance of the current method.
+Create an Alova instance for the current method.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -213,9 +145,9 @@ interface Method {
 
 ## method.hitSource
 
-Hitting the source method instance, when the source method instance request succeeds, the cache of the current method instance will be invalidated. As an automatic invalidation function, you only need to set the hit source instead of manually calling `invalidateCache` to invalidate the cache. In addition, this function is more concise and effective than the `invalidateCache` method in complex invalidation relationships. The field value can be set to the name of the method instance, other method instances, name regular matching, or their array.
+Hit the source method instance. When the source method instance request succeeds, the cache of the current method instance will be invalidated. As an automatic invalidation function, you only need to set the hit source, without manually calling `invalidateCache` to invalidate the cache. In addition, this function is more concise and effective than the `invalidateCache` method in complex invalidation relationships. The field value can be set to a method instance, the name of other method instances, a name regular match, or an array of them.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -225,9 +157,9 @@ interface Method {
 
 ## method.meta
 
-The metadata of method is used to record request feature information, [View details](/tutorial/getting-started/basic/method-metadata).
+Metadata of method, used to record request feature information, [Details](/tutorial/getting-started/basic/method-metadata).
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -237,9 +169,9 @@ interface Method {
 
 ## method.config
 
-Configuration information when creating a method through `alova.Get/alova.Post` and other methods, [View details](/api/alova#alovaget).
+Configuration information when creating a method through methods such as `alova.Get/alova.Post`, [Details](/api/alova#alovaget).
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -249,9 +181,9 @@ interface Method {
 
 ## method.fromCache
 
-Is the response of current request from cache.
+Whether the data of the current request comes from the cache.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -259,11 +191,73 @@ interface Method {
 }
 ```
 
+## method.promise
+
+The Promise instance of the current request, which has a value in the request.
+
+- **Type**
+
+```ts
+interface Method {
+  promise?: Promise<Responded>;
+}
+```
+
+- **Example**
+
+```ts
+createAlova({
+  beforeRequest(method) {
+    method!.promise.then(data => {
+      // ...
+    });
+  }
+});
+```
+
+## method.key
+
+The key of the current method. You can customize the cache key of the current method by modifying it.
+
+- **Type**
+
+```ts
+interface Method {
+  key: string;
+}
+```
+
+> [View the key of custom method](/tutorial/advanced/in-depth/custom-method-key)
+
+## method.dhs
+
+The callback function array of the download progress event of the current method.
+
+- **Type**
+
+```ts
+interface Method {
+  dhs: ProgressHandler[];
+}
+```
+
+## method.uhs
+
+The callback function array of the upload progress event of the current method.
+
+- **Type**
+
+```ts
+interface Method {
+  uhs: ProgressHandler[];
+}
+```
+
 ## method.send()
 
-Use this method instance to send the request directly. If you send the request after `[v2.16.0]`, you can omit calling this method.
+Use this method instance to send a request directly. You can omit calling this method when sending a request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -271,13 +265,13 @@ interface Method {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. `forceRequest`: whether to force the request, the default is false
+1. `forceRequest`: Whether to force the request, default is false
 
-- **return**
+- **Return**
 
-A Promise instance with response data.
+Promise instance with response data.
 
 - **Example**
 
@@ -290,7 +284,7 @@ const response = await method.send();
 
 Abort the current request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -307,9 +301,9 @@ method.abort();
 
 ## method.then()
 
-After `[v2.16.0]`, the method instance is a PromiseLike instance. You can directly call this method or `await method` to send a request and obtain the response data.
+The method instance is a PromiseLike instance. You can directly call this method or `await method` to send a request and get the response data.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -320,14 +314,15 @@ interface Method {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. `onFulfilled`: callback function when the request is successful
+
 2. `onRejected`: callback function when the request fails
 
-- **return**
+- **Return**
 
-A Promise instance with response data.
+Promise instance with response data.
 
 - **Example**
 
@@ -338,9 +333,9 @@ const response = await method;
 
 ## method.catch()
 
-After `[v2.16.0]`, the method instance is a PromiseLike instance. This method can be called directly to send requests and catch errors.
+The method instance is a PromiseLike instance. You can directly call this method to send a request and catch errors.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -350,11 +345,11 @@ interface Method {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. `onrejected`: callback function when request error
+1. `onrejected`: callback function when request error occurs
 
-- **return**
+- **Return**
 
 Promise instance.
 
@@ -369,9 +364,9 @@ const response = await method.catch(error => {
 
 ## method.finally()
 
-After `[v2.16.0]`, the method instance is a PromiseLike instance. This method can be called directly to send the request and handle the response completion.
+The method instance is a PromiseLike instance. You can directly call this method to send a request and handle the response completion.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -379,7 +374,7 @@ interface Method {
 }
 ```
 
-- **return**
+- **Return**
 
 Promise instance.
 
@@ -394,9 +389,7 @@ const response = await method.finally(() => {
 
 ## method.onDownload()
 
-Bind the download event to obtain download progress information.
-
-- **type**
+Binding the download event, you can get the download progress information.- **Type**
 
 ```ts
 interface Method {
@@ -404,13 +397,13 @@ interface Method {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. `handler` download event callback function
 
-- **return**
+- **Return**
 
-unbind function
+Unbinding function
 
 - **Example**
 
@@ -426,9 +419,9 @@ offEvent();
 
 ## method.onUpload()
 
-Bind the upload event to obtain upload progress information.
+Bind the upload event to get the upload progress information.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -436,13 +429,13 @@ interface Method {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. `handler` upload event callback function
 
-- **return**
+- **Return**
 
-unbind function
+Unbinding function
 
 - **Example**
 
@@ -456,11 +449,40 @@ const offEvent = method.onUpload(event => {
 offEvent();
 ```
 
+## method.generateKey()
+
+Generate the key of the current method. It is called when creating a method instance. You can customize the key generation by overriding the `Method.prototype.generateKey` method.
+
+- **Type**
+
+```ts
+interface Method {
+  generateKey(): string;
+}
+```
+
+- **Parameter**
+
+None
+
+- **Return**
+
+The key value of the current method instance.
+
+- **Example**
+
+```ts
+Method.prototype.generateKey = function () {
+  // Customize key generation
+  return customKey;
+};
+```
+
 ## method.setName()
 
 Set the name of the method instance.
 
-- **type**
+- **Type**
 
 ```ts
 interface Method {
@@ -468,13 +490,13 @@ interface Method {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. `name`: the name of the method instance
+1. `name`: name of the method instance
 
-- **return**
+- **Return**
 
-none
+None
 
 - **Example**
 

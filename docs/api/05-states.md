@@ -1,53 +1,42 @@
 ---
-title: Response states operation
+title: Response Status Operation
 ---
 
 ## updateState
 
-Manually update existing response data or additional status under any module/page.
+Manually update the existing response data or additional status under any module/page.
 
-**⚠️ Please make sure the component is not destroyed**
+**⚠️ Make sure the component is not destroyed**
 
-By default, `updateState` will look for the response state created by alova's useHooks when sending a request, but to prevent memory overflow, the destruction of a component will also recycle all the states created internally, so please make sure you use `updateState` It is hoped that the container component corresponding to the updated response status has not been destroyed, otherwise the corresponding response status will not be found and the update will fail.
+`updateState` will search for the response status created by alova's useHooks when sending a request by default, but to prevent memory overflow, the destruction of a component will also recycle all the status created inside it. Therefore, when using `updateState`, make sure that the container component corresponding to the response status you want to update is not destroyed, otherwise the corresponding response status will not be found and the update will fail.
 
-This problem often occurs when updating status across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update status across pages, here are two suggestions :
+This problem often occurs when updating state across pages, because when the page jumps, we tend to overlook that the previous page has been destroyed by default. Therefore, if you want to update the state across pages, here are two suggestions:
 
-1. Persist the page components to ensure that the updated status can still be found;
-2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
+1. Persist the page components to ensure that the updated state can still be found;
 
-> Go to [Cross-page/module update response states](/tutorial/client/in-depth/update-across-components) for details.
+2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request of the previous page is cached, update its cache to ensure that when the page is created again, the triggered request can hit the updated cache and achieve the same effect.
 
-> To use updateState to manage extra states, please refer to [Extra State Management](/tutorial/client/in-depth/manage-extra-states).
+> Go to [Update response status across pages/modules](/tutorial/client/in-depth/update-across-components) for details.
 
-- **type**
+> For managing additional states using updateState, please refer to [Extra state management](/tutorial/client/in-depth/manage-extra-states).
+
+- **Type**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova<any, any, any, any, any>;
-    };
 function updateState(
-  matcher: Method | MethodFilter,
+  matcher: Method,
   handleUpdate: UpdateStateCollection<Response>['data'] | UpdateStateCollection<Response>,
   options?: UpdateOptions
 ): boolean;
 ```
 
-- **Parameters**
+- **Parameter**
 
-- `matcher`: The value is method instance, method name string, method name regular expression, it can also be set to [method instance matcher](/tutorial/client/in-depth/method-matcher), if it matches the qualified method, `handleUpdate` will be called.
-- `handleUpdate`: update function or update function collection. If it is a function collection, the corresponding update function on the collection will be called and the return value will be used as the update result.
-- `options`: optional options.
+- `matcher`: The value is a method instance.
 
-| Parameter name | Type     | Description                                        |
-| -------------- | -------- | -------------------------------------------------- |
-| onMatch        | Function | After matching method, the function will be called |
+- `handleUpdate`: Update function or update function collection. If it is a function collection, the corresponding update function on the collection will be called and the return value will be used as the update result.
 
-- **return**
+- **Return**
 
 Whether the update is successful.
 
@@ -63,57 +52,60 @@ const { data } = useRequest(
 );
 ```
 
-Use `updateState` in page or component B to update the response state.
+Use `updateState` in page or component B to update the response status.
 
-```ts
+```javascript
 import { updateState } from 'alova';
 
-// Match by method instance
+// match by method instance
 updateState(alova.Get('/api/user'), oldData => {
-   return [
-    ...oldData,
-     {
-       id: 10000,
-       name: 'Alova',
-     },
-   ]
+  return [
+   ...oldData,
+    {
+      id: 10000,
+      name: 'Alova',
+    },
+  ]
 });
 
-// Match by method name
-updateState('user', oldData => {
-   return [
-   ...oldData,
-     {
-       id: 10000,
-       name: 'Alova',
-     },
-   ];
+// match by method name
+const methodSnapshot = alova.snapshots.match('user', true);
+updateState(methodSnapshot, oldData => {
+  return [
+  ...oldData,
+    {
+      id: 10000,
+      name: 'Alova',
+    },
+  ];
 }
 
-// Regular matching through method name
-updateState(/^us/, oldData => {
-   return [
-   ...oldData,
-     {
-       id: 10000,
-       name: 'Alova',
-     },
-   ];
+// match by regexp of method name
+const methodSnapshot = alova.snapshots.match(/^us/, true);
+updateState(methodSnapshot, oldData => {
+  return [
+  ...oldData,
+    {
+      id: 10000,
+      name: 'Alova',
+    },
+  ];
 })
 
-// Match through method instance matcher
-updateState({
-   name: 'user',
-   filter(method, i, methods) {
-     return methods.length === i + 1;
-   }
-}, oldData => {
-   return [
-  ...oldData,
-     {
-       id: 10000,
-       name: 'Alova',
-     },
-   ];
+// match by method matcher and filter
+const methodSnapshot = alova.snapshots.match({
+  name: 'user',
+  filter(method, i, methods) {
+    return methods.length === i + 1;
+  }
+}, true);
+updateState(methodSnapshot, oldData => {
+  return [
+ ...oldData,
+    {
+      id: 10000,
+      name: 'Alova',
+    },
+  ];
 });
 ```

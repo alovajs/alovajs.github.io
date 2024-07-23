@@ -11,36 +11,27 @@ title: 缓存操作
 - **类型**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
-function invalidateCache(matcher?: Method | Method[] | MethodFilter): void;
+function invalidateCache(matcher?: Method | Method[]): Promise<void>;
 ```
 
 - **参数**
 
-1. `matcher`：缓存失效的匹配器，值为 method 实例或数组，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)。
+1. `matcher`：缓存失效的 method 实例或数组。
 
 - **返回**
 
-无
+Promise 实例
 
 - **示例**
 
 ```ts
 import { invalidateCache } from 'alova';
 
-invalidateCache(method);
-invalidateCache([method1, method2]);
-invalidateCache({
-  name: 'userMethod',
-  filter: method => method.name === 'method1'
-});
+await invalidateCache(method);
+await invalidateCache([method1, method2]);
+
+const methodSnapshots = alova.snapshots.match('method-name');
+await invalidateCache(methodSnapshots);
 ```
 
 ## setCache()
@@ -52,42 +43,42 @@ invalidateCache({
 - **类型**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
 function setCache(
-  matcher: Method | Method[] | MethodFilter,
-  dataOrUpdater: R | ((oldCache: R) => R | undefined | void)
-): void;
+  matcher: Method | Method[],
+  dataOrUpdater: R | ((oldCache: R) => R | undefined | void),
+  options?: CacheSetOptions
+): Promise<void>;
 ```
 
 - **参数**
 
-1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)，将会为所有符合条件的 method 实例设置缓存数据。
+1. `matcher`：值为 method 实例或实例数组。
 2. `dataOrUpdater`：缓存数据或更新函数，如果为函数，则需要返回新的缓存数据，如果返回`undefined`或不返回则取消更新。
+3. `options`：配置参数
+
+| 参数名 | 类型                  | 说明                                                                                            |
+| ------ | --------------------- | ----------------------------------------------------------------------------------------------- |
+| policy | 'l1' \| 'l2' \| 'all' | 缓存更新策略， `l1`为只更新 l1 层缓存，`l2`为只更新 l2 层缓存，`all`为同时更新 l1 和 l2 层缓存. |
 
 - **返回**
 
-无
+Promise 实例
 
 - **示例**
 
 ```ts
 import { setCache } from 'alova';
 
-setCache(method, {});
-setCache([method1, method2], {});
-setCache(
+await setCache(method, {});
+await setCache([method1, method2], {});
+
+const methodSnapshots = alova.snapshots.match('method-name');
+await setCache(
+  methodSnapshots,
+  {},
   {
-    name: 'userMethod',
-    filter: method => method.name === 'method1'
-  },
-  {}
+    policy: 'l1'
+  }
 );
 ```
 
@@ -100,33 +91,33 @@ setCache(
 - **类型**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova;
-    };
-function queryCache(matcher?: Method | MethodFilter): R | undefined;
+function queryCache(
+  matcher?: Method,
+  options?: CacheQueryOptions
+): Promise<Responded | undefined>;
 ```
 
 - **参数**
 
 1. `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)，将会为符合条件的第一个 method 实例查询缓存数据。
+2. `options`：配置参数
+
+| 参数名 | 类型                  | 说明                                                                                            |
+| ------ | --------------------- | ----------------------------------------------------------------------------------------------- |
+| policy | 'l1' \| 'l2' \| 'all' | 缓存获取策略， `l1`为只获取 l1 层缓存，`l2`为只获取 l2 层缓存，`all`为同时查询 l1 和 l2 层缓存. |
 
 - **返回**
 
-缓存数据，如果没有缓存则返回`undefined`。
+缓存数据的 Promise 实例，如果没有缓存则返回`undefined`。
 
 - **示例**
 
 ```ts
 import { queryCache } from 'alova';
 
-const responseCache = queryCache(method);
-const responseCache = queryCache({
-  name: 'userMethod',
-  filter: method => method.name === 'method1'
+const responseCache = await queryCache(method);
+const methodSnapshot = alova.snapshots.match('method-name', true);
+const responseCache = await queryCache(methodSnapshot, {
+  policy: 'l2'
 });
 ```

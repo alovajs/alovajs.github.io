@@ -6,10 +6,12 @@ import Link from '@docusaurus/Link';
 import Examples from '@site/src/components/Examples';
 import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
+import tts from '@site/static/audio/tts.mp3';
+import AudioPlayer from '@site/src/components/AudioPlayer';
 
 ## What is alova?
 
-Alova is an creative next-generation request tool that helps you maximize API usage efficiency and save brainpower. Integrating the server-side APIs into the front-end project is simplified to only one step.
+alova (pronounced `/əˈləʊva/` <AudioPlayer src={tts} />) is an creative next-generation request tool that helps you maximize API usage efficiency and save brainpower. Integrating the server-side APIs into the front-end project is simplified to only one step.
 
 ![](/img/overview_flow_en.png)
 

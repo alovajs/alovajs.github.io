@@ -16,9 +16,9 @@ function globalConfig(config: AlovaGlobalConfig): void;
 
 1. config: 配置
 
-| 参数名         | 类型   | 说明                                                                             |
-| -------------- | ------ | -------------------------------------------------------------------------------- |
-| limitSnapshots | number | method 快照数量限制，设置为 0 表示关闭保存快照，关闭后 method 快照匹配器将不可用 |
+| 参数名       | 类型                          | 说明                                                                                                                    |
+| ------------ | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| autoHitCache | 'global' \| 'self' \| 'close' | 默认为`global`，`global`是可以跨多个 alova 实例失效缓存，`self`是只失效当前 alova 实例的缓存，`close`是关闭自动失效缓存 |
 
 - **返回**
 
@@ -26,10 +26,10 @@ function globalConfig(config: AlovaGlobalConfig): void;
 
 - **示例**
 
-```ts
+```js
 import { globalConfig } from 'alova';
 
 globalConfig({
-  limitSnapshots: 10
+  autoHitCache: 'self'
 });
 ```

@@ -22,16 +22,8 @@ title: 响应状态操作
 - **类型**
 
 ```ts
-type MethodFilter =
-  | string
-  | RegExp
-  | {
-      name?: string | RegExp;
-      filter?: MethodFilterHandler;
-      alova?: Alova<any, any, any, any, any>;
-    };
 function updateState(
-  matcher: Method | MethodFilter,
+  matcher: Method,
   handleUpdate: UpdateStateCollection<Response>['data'] | UpdateStateCollection<Response>,
   options?: UpdateOptions
 ): boolean;
@@ -39,13 +31,8 @@ function updateState(
 
 - **参数**
 
-- `matcher`：值为 method 实例、method 的 name 字符串、method 的 name 正则表达式，也可以设置为[method 匹配器](/tutorial/client/in-depth/method-matcher)，如果匹配到符合条件的 method，将会调用`handleUpdate`。
+- `matcher`：值为 method 实例。
 - `handleUpdate`：更新函数或更新函数集合，如果是函数集合，将会调用集合上对应的更新函数，并将返回值作为更新结果。
-- `options`：可选项。
-
-| 参数名  | 类型     | 说明                               |
-| ------- | -------- | ---------------------------------- |
-| onMatch | Function | 在匹配到 method 后，将会调用该函数 |
 
 - **返回**
 
@@ -65,7 +52,7 @@ const { data } = useRequest(
 
 在页面或组件 B 中使用`updateState`更新响应状态。
 
-```ts
+```javascript
 import { updateState } from 'alova';
 
 // 通过method实例匹配
@@ -80,7 +67,8 @@ updateState(alova.Get('/api/user'), oldData => {
 });
 
 // 通过method name匹配
-updateState('user', oldData => {
+const methodSnapshot = alova.snapshots.match('user', true);
+updateState(methodSnapshot, oldData => {
   return [
   ...oldData,
     {
@@ -91,7 +79,8 @@ updateState('user', oldData => {
 }
 
 // 通过method name正则匹配
-updateState(/^us/, oldData => {
+const methodSnapshot = alova.snapshots.match(/^us/, true);
+updateState(methodSnapshot, oldData => {
   return [
   ...oldData,
     {
@@ -102,12 +91,13 @@ updateState(/^us/, oldData => {
 })
 
 // 通过method匹配器匹配
-updateState({
+const methodSnapshot = alova.snapshots.match({
   name: 'user',
   filter(method, i, methods) {
     return methods.length === i + 1;
   }
-}, oldData => {
+}, true);
+updateState(methodSnapshot, oldData => {
   return [
  ...oldData,
     {
