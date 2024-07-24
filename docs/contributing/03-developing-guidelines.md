@@ -1,137 +1,120 @@
 ---
-title: Developing Guidelines
+title: Development Guidelines
 ---
 
-:::info version required
+:::info Version requirements
 
-Node.js 16+, npm 8+
+Node.js 18+, pnpm 9+
 
 :::
 
 ## 1. Fork repository
 
-[Open alova fork page](https://github.com/alovajs/alova/fork), click "Create fork" and clone the forked repository to local.
+[Open the alova repository fork page](https://github.com/alovajs/alova/fork), click "Create fork" to fork the repository, and clone the forked repository to your local machine.
 
-## 2. Clone to local
+## 2. Clone the project to your local machine
 
-Use the `git clone` command line, or the `Github Desktop` application to clone forked project.
+Use the `git clone` command, or the `Github Desktop` application to clone the project.
 
-## 3. New pull request
+## 3. Create a pull request
 
-You can [create pull request through a forked repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) after writing code. You can also commit code in arbitrary batches, without commiting a complete code.
+You can create a pull request by forking the repository after writing the code, or you can submit the code in any number of commits instead of submitting the entire code at once.
 
-## 4. Code something in your computer
+## 4. Code locally
 
 ### Install dependencies
 
-Install dependencies using `npm install`.
+Use `pnpm install` to install dependencies.
 
-### Install the recommended plugin(vscode)
+### Install recommended plugins (vscode)
 
-If you are using vscode, it is recommended that you install the following plugins:
+If you use vscode, you will be recommended to install the following plugins:
 
-- eslint: check code quality.
-- prettier: formatting code.
-- jest: Automatically execute unit test cases, and execute individual collection or unit test cases.
-- EditorConfig: Make sure the file format is consistent.
+- eslint: Check code quality
 
-### Project Structure
+- prettier: Format code
+
+- jest: Automatically execute unit test cases, and execute a single collection or unit test case
+
+- EditorConfig: Ensure consistent file format
+
+### Project structure
+
+alova is a monorepo project with the following structure:
 
 ```
 |-.github
 | |-ISSUE_TEMPLATE -> github issues template
 | |-workflows -> github action
+| |-DISCUSSION_TEMPLATE -> github discussion template
+| |-pull_request_template -> github pull request template
+|-.changeset -> changeset configuration
 |-.husky -> husky configuration
 |-.vscode -> vscode configuration
-|-config -> rollup package files
-|-src -> source code
-|-test -> unit test suits
-| |-browser -> browser environment unit test suits
-| |-server -> SSR unit test suits
-| |-components -> Unit test components
-| |-mockServer.ts -> mock apis (msw)
-|-typings -> ts declaration
-|- Other configuration files
+|-examples -> alova example project
+|-internal -> Public module for test cases
+|-packages -> Project source code
+|-scripts -> alova-scripts scripts
+|-Other configuration files
 
 ```
 
-### Coding specifications
+### Coding standards
 
 #### Code format
 
-If you install the `prettier` plugin, it will automatically format codes every time you save files, so you don't have to worry about the format.
+Please install the recommended plugins. `prettier` and `eslint` will automatically format the code every time you save the file, so you don't have to worry about the format.
 
-#### Minimize code
+#### Reuse code as much as possible
 
-Lightweight is one of the alova's features, so it is necessary to minimize the amount of coding when coding. Here are a few coding specifications that need to be followed:
+Public variables and methods are defined in `packages/shared`. Please browse them first and reuse them as much as possible.
 
-1. Avoid the same code block, which can reduce the amount of code in the library, but two lines of code may not be worth encapsulating;
-2. Use a variable declarator to aggregate variable declarations, for example:
+#### Typescript
 
-```javascript
-// ❌
-const a = 1;
-const b = 2;
+1. When writing typescript types, please try to write appropriate types and narrow the type range.
 
-// ✅
-const a = 1,
-  b = 2;
-```
+2. The types of `packages/alova` and `packages/client` packages are manually written. When modifying them, please make sure that `typings` of `packages/alova` and `packages/client` are also updated synchronously.
 
-3. Use constants to save js built-in values and prototype methods to reduce the amount of code in the compilation phase of `uglify`. built-in values and prototype methods that often used are defined in `src/utils/variables.ts`.
+## 5. Unit test guide
 
-```javascript
-// ❌
-if (a === false) {
-  //...
-}
-arr.forEach(item => {
-  //...
-});
+After writing the code, add the corresponding unit test cases and try to include tests for edge cases.
 
-// ✅
-import { falseValue, forEach } from '@/utils/variables';
-if (a === falseValue) {
-  //...
-}
-forEach(arr, item => {
-  //...
-});
-```
+The alova project uses jest as the unit testing framework and msw as the mock server. It is recommended to use the TDD mode. After each code modification, run the corresponding unit test and pass it.
 
-## 5. Unit Testing Guidelines
+:::warning Important
 
-After finish code, it is necessary to add corresponding unit tests.
-
-The alova project uses **jest** as the unit test framework, and msw as the mock server. It is recommended to use the TDD mode. After modifying code every time, please pass the corresponding unit test.
-
-:::warning IMPORTANT
-
-When you're ready to commit your code, make sure all your unit tests are passed. When you're working on a pull request, you can have multiple small commits, and GitHub can automatically squash them before merging them.
+When you create a pull request to submit code, please make sure that all unit tests pass. If you find any problems, you can submit it again, and the GitHub action will automatically run again.
 
 :::
 
-1. To add browser-related unit test cases, please add them to the corresponding test collection in `test/browser`, if there is no suitable test suits, you can create one by yourself;
-2. Add SSR-related unit test cases, please add them to the corresponding test collection in `test/server`, if there is no suitable test suits, you can create one by yourself;
+### Add test cases
 
-### Run and debug a single unit test or suits
+Unit test cases for each package are stored in the `packages/[packageName]/test` folder. Please find the corresponding test case file and add your test case. If there is no suitable test collection, you can create it yourself;
 
-It is recommended to use the **jest** plugin (one of the plugins recommended above) to test a single use case or a suit. You can right-click the specified unit test, select `Run Test` to run it, and select `Debug Test` to debug it with breakpoint.
+### Run and debug a single test case or collection
 
-![image](https://github.com/alovajs/alova/assets/29848971/a94ba9db-c100-472f-b870-6bcecb031bea)
+It is recommended to use the **jest** plug-in (one of the plug-ins recommended above) to test a single test case or collection. You can right-click in the test case to run the specified test case, select `Run Test` to run this test case, and select `Debug Test` to debug this test case, as shown in the figure:
 
-### Run all unit tests
+![image](/img/run-single-test.png)
 
-1. Use the **jest** plugin to run:
+### Run all test cases
 
-![image](https://github.com/alovajs/alova/assets/29848971/5af3ff15-16b7-4b28-9ae6-d0b5a236b181)
+1. Use the **jest** plug-in to run, as shown below:
 
-2. Run the browser unit tests with command line `npm run test:browser`, run the SSR unit tests with `npm run test:node`, and run both at the same time with `npm run test`.
+![image](/img/run-all-test.png)
 
-## 6. Commit codes
+2. You can also run unit tests through the command line `pnpm run test`
 
-alova uses [semantic-release](https://semantic-release.gitbook.io) as an automatic release tool, which can automatically release new version packages after merging code into `main` , and generate `CHANGELOG`, but you need to ensure that the committed message format follows [commit information convention](https://www.conventionalcommits.org/en/v1.0.0/), it is recommended that use `npm run commit` to automatically generate a git message that conforms to the specification.
+## 6. Submit code
 
-## 7. Writing docs
+alova uses [changesets](https://github.com/changesets/changesets) as a release tool, which can help us automatically generate `CHANGELOG` to increase the version number and release, but you need to submit the code according to the following process.
 
-If you are adding a new feature, you can try to add the relevant documentation of the new feature. For details, please read [Correcting or add docs](/contributing/overview#correct-or-add-docs), otherwise please explain it in the pull request.
+1. Tell changeset which packages have been changed. Use the `pnpm run changeset` command, which will guide you to fill it out in an interactive way.
+
+2. Submit the code to the remote repository. You need to make sure that the message format of the submission follows the [Commit Information Convention](https://www.conventionalcommits.org/zh-hans/v1.0.0/). It is recommended that you try to use `pnpm run commit` to automatically generate a git message that meets the specification.
+
+3. Create a pull request and wait for merging.
+
+## 7. Add documents
+
+If you are adding new features, try to add relevant documentation for the new features. Please read [Correct or add docs](/contributing/overview#correct-or-add-docs) for details. Otherwise, please explain it in the pull request.
