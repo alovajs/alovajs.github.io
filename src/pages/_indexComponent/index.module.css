@@ -97,3 +97,25 @@
   font-weight: 800;
   font-size: 0.9rem;
 }
+
+.titleGradient {
+  color: transparent;
+  background: -webkit-linear-gradient(0deg, #ff72b6 0%, #c685ff 35%, #6caeff 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: -webkit-linear-gradient(120deg, #86b91a 30%, #edd532);
+}
+
+/* thanks to https://github.com/chokcoco/iCSS/issues/266 */
+.borderGradient {
+  @apply rounded-2xl w-full h-full pointer-events-none;
+  position: absolute;
+  background: linear-gradient(135deg, #2e68ee, #55f6d3, #f655c6, #0f3);
+  padding: 3px;
+  -webkit-mask: linear-gradient(#fff 0 100%) content-box, linear-gradient(#fff 0 100%);
+  -webkit-mask-composite: xor;
+}
+
+.bgCard {
+  background-image: url('/img/bg-card.png');
+}

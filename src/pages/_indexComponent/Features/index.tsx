@@ -1,7 +1,6 @@
 import Translate from '@docusaurus/Translate';
 import IconFont from '@site/src/components/IconFont';
 import clsx from 'clsx';
-import React from 'react';
 import styles from './styles.module.css';
 
 type FeatureItem = {
@@ -79,7 +78,7 @@ function Feature({ title, icon, description }: FeatureItem) {
 export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
-      <div className="container">
+      <div className="container mx-auto">
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature

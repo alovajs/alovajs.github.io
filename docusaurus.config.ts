@@ -191,7 +191,7 @@ const config: Config = {
     announcementBar: {
       id: 'support_us',
       content: `⭐️
-          If you also like alova, 
+          If you also like alova,
           <a
             href="https://github.com/alovajs/alova"
             target="_blank">
