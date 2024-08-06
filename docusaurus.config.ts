@@ -69,8 +69,9 @@ const config: Config = {
     navbar: {
       title: '',
       logo: {
-        alt: 'ALOVA',
-        src: 'img/logo-text.svg'
+        alt: 'Alova',
+        src: 'img/logo-text@2x.png',
+        srcDark: 'img/logo-text-dark@2x.png'
       },
       items: [
         {
@@ -153,6 +154,10 @@ const config: Config = {
           ]
         },
         {
+          type: 'search',
+          position: 'right'
+        },
+        {
           type: 'docsVersionDropdown',
           position: 'right',
           dropdownActiveClassDisabled: true
@@ -162,9 +167,14 @@ const config: Config = {
           position: 'right'
         },
         {
-          to: 'https://github.com/alovajs/alova/releases',
-          position: 'right',
-          label: 'Releases'
+          href: 'https://github.com/alovajs/alova',
+          className: 'header-github-link',
+          position: 'right'
+        },
+        {
+          href: '/img/wechat_qrcode.jpg',
+          className: 'header-wechat-link',
+          position: 'right'
         },
         {
           href: 'https://x.com/alovajs',
@@ -174,11 +184,6 @@ const config: Config = {
         {
           href: 'https://discord.gg/S47QGJgkVb',
           className: 'header-discord-link',
-          position: 'right'
-        },
-        {
-          href: 'https://github.com/alovajs/alova',
-          className: 'header-github-link',
           position: 'right'
         }
       ]

@@ -1,3 +1,4 @@
+import Translate from '@docusaurus/Translate';
 import Arrow from '@site/static/img/arrow.svg';
 import { ReactNode } from 'react';
 import CodeBlock from '../CodeBlock';
@@ -10,6 +11,7 @@ export interface FeatureBlockProps {
   className?: string;
   children?: ReactNode;
   showLearnMore?: boolean;
+  to?: string;
 }
 
 export default function FeatureBlock(props: FeatureBlockProps) {
@@ -25,12 +27,17 @@ export default function FeatureBlock(props: FeatureBlockProps) {
           </span>
         ) : null}
         {props.showLearnMore ? (
-          <div className="flex items-center ml-auto">
-            <span>Learn more</span>
-            <span className="inline-block ml-2 text-white cursor-pointer w-[16px] h-[16px]">
+          <a
+            href={props.to ?? ''}
+            target="_blank"
+            className="flex items-center ml-auto cursor-pointer">
+            <span>
+              <Translate id="theme.featureBlock.learnMore">Learn More</Translate>
+            </span>
+            <span className="inline-block ml-2 dark:text-white cursor-pointer w-[16px] h-[16px]">
               <Arrow />
             </span>
-          </div>
+          </a>
         ) : null}
       </div>
       {props.description ? <p className="mt-5">{props.description}</p> : null}

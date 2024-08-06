@@ -40,10 +40,7 @@
 }
 
 /* GitHub */
-.header-github-link:hover {
-  &:hover {
-    opacity: 0.6;
-  }
+.header-github-link {
   &::before {
     content: '';
     width: 24px;
@@ -69,6 +66,19 @@
   background-size: contain !important;
   background: url('/img/discord.svg');
 }
+.header-wechat-link {
+  fill: red;
+  color: red;
+  --wechat-color: red;
+}
+.header-wechat-link:before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background-size: contain !important;
+  background: url('/img/wechat.svg');
+}
 // dark mode icons
 html[data-theme='dark'] {
   .header-github-link:before {
@@ -77,6 +87,12 @@ html[data-theme='dark'] {
   }
   .header-x-link:before {
     background: url('/img/x-dark.svg');
+  }
+  .header-discord-link:before {
+    background: url('/img/discord-dark.svg');
+  }
+  .header-wechat-link:before {
+    background: url('/img/wechat-dark.svg');
   }
 }
 

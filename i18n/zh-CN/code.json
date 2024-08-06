@@ -270,14 +270,168 @@
     "message": "请在Github为它点亮star！",
     "description": "The tips of support me snippet2"
   },
-
-  "homepage.title": {
-    "message": "创新的下一代请求工具",
-    "description": "The title of web page"
+  "theme.featureBlock.learnMore": {
+    "message": "查看详情"
+  },
+  "homepage.title.Creative": {
+    "message": "创新的",
+    "description": "First part of the title"
+  },
+  "homepage.title.Next Generation Request Tool": {
+    "message": "下一代请求工具",
+    "description": "The second part of the title"
   },
   "homepage.tagline": {
     "message": "极致地提升你的API接入效率，节约大脑，仅需一步",
     "description": "网站tagline"
+  },
+  "homepage.automaticGenerate.sectionTitle": {
+    "message": "自动生成",
+    "description": "section title for automatic generate"
+  },
+  "homepage.automaticGenerate.title": {
+    "message": "一边查询一边使用接口",
+    "description": "title for automatic generate"
+  },
+  "homepage.automaticGenerate.description": {
+    "message": "在编辑器中快速找到API，甚至在js项目中，也可以使用alova的扩展自动生成的API代码来享受完整的类型提示",
+    "description": "desc for automatic generate"
+  },
+  "homepage.automaticGenerate.Locate API by its url or description": {
+    "message": "根据API的url或描述定位API",
+    "description": "desc for automatic generate"
+  },
+  "homepage.automaticGenerate.API Parameters and Response at a glance": {
+    "message": "API参数和响应一目了然",
+    "description": "desc for automatic generate"
+  },
+  "homepage.requestStrategy.sectionTitle": {
+    "message": "请求策略",
+    "description": "section title for requestStrategy"
+  },
+  "homepage.requestStrategy.title": {
+    "message": "复杂的请求现场杀手锏",
+    "description": "title for requestStrategy"
+  },
+  "homepage.requestStrategy.description": {
+    "message": "一行代码实现各种复杂场景中的请求",
+    "description": "desc for requestStrategy"
+  },
+  "homepage.requestStrategy.Pagination Request.title": {
+    "message": "分页请求",
+    "description": "title for Pagination Request"
+  },
+  "homepage.requestStrategy.Pagination Request.description": {
+    "message": "自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅度提高300%，编码难度降低50%",
+    "description": "desc for Pagination Request"
+  },
+  "homepage.requestStrategy.Watching Request.title": {
+    "message": "监听请求",
+    "description": "title for Pagination Request"
+  },
+  "homepage.requestStrategy.Watching Request.description": {
+    "message": "状态变化立即发送请求，这在tabs切换和条件查询中很有用。",
+    "description": "desc for Pagination Request"
+  },
+  "homepage.requestStrategy.Retry Request.title": {
+    "message": "请求重试",
+    "description": "title for Pagination Request"
+  },
+  "homepage.requestStrategy.Retry Request.description": {
+    "message": "在重要的请求上使用它，可以提高请求的稳定性",
+    "description": "desc for Pagination Request"
+  },
+  "homepage.requestStrategy.Rate Limit.title": {
+    "message": "请求速率限制",
+    "description": "title for Rate Limit"
+  },
+  "homepage.requestStrategy.Rate Limit.description": {
+    "message": "将请求率限制在一定时间内",
+    "description": "desc for Rate Limit"
+  },
+  "homepage.requestStrategy.Fetch Data.title": {
+    "message": "预加载数据",
+    "description": "title for Fetch Data"
+  },
+  "homepage.requestStrategy.Fetch Data.description": {
+    "message": "预加载数据以更快地显示视图，或跨组件重新拉取数据",
+    "description": "desc for Fetch Data"
+  },
+  "homepage.requestStrategy.Token authentication.title": {
+    "message": "Token身份认证",
+    "description": "title for Token authentication"
+  },
+  "homepage.requestStrategy.Token authentication.description": {
+    "message": "支持无感刷新Token的全局拦截器，并提供基于令牌的登录、注销、令牌分配和令牌刷新的统一管理",
+    "description": "desc for Token authentication"
+  },
+  "homepage.requestStrategy.Form Submission.title": {
+    "message": "表单提交",
+    "description": "title for Form Submission"
+  },
+  "homepage.requestStrategy.Form Submission.description": {
+    "message": "自动管理表单数据，让你快速实现各种表单功能",
+    "description": "desc for Form Submission"
+  },
+  "homepage.requestStrategy.Auto refresh data.title": {
+    "message": "自动刷新数据",
+    "description": "title for Auto refresh data"
+  },
+  "homepage.requestStrategy.Auto refresh data.description": {
+    "message": "通过浏览器事件自动刷新数据，界面始终显示最新数据",
+    "description": "desc for Auto refresh data"
+  },
+  "homepage.Flexible.sectionTitle": {
+    "message": "灵活性",
+    "description": "section title for Flexible"
+  },
+  "homepage.Flexible.title": {
+    "message": "与任何请求工具在任何JS环境下运行",
+    "description": "title for Flexible"
+  },
+  "homepage.Flexible.description": {
+    "message": "Use hooks起源于functional组件，但alova创新性地使其与options和class风格的UI框架兼容，这意味着alova的客户端请求策略几乎不受JS环境和UI框架的限制，可以与您熟悉的请求工具一起使用",
+    "description": "desc for Flexible"
+  },
+  "homepage.Join the community.sectionTitle": {
+    "message": "加入社区",
+    "description": "section title for Join the community"
+  },
+  "homepage.Join the community.title": {
+    "message": "深受全球开发者的信赖",
+    "description": "title for Join the community"
+  },
+  "homepage.Join the community.description": {
+    "message": "依赖alova的开源项目",
+    "description": "desc for Join the community"
+  },
+  "homepage.projects.Scott Hu.desc": {
+    "message": "alova创建者"
+  },
+  "homepage.projects.Scott Hu.comment": {
+    "message": "像fetch和axios这样的请求库使请求变得非常简单，react-query和swr又进一步减少了请求的模板代码。但alova的目标是提供极致的API消耗效率，消除几乎所有的请求工作，实现更高效的客户端-服务器数据交互"
+  },
+  "homepage.projects.0x1EC10D.comment": {
+    "message": "alova是真的很细致，我看文档的时候每一个点都是痛点，解决了超多问题"
+  },
+  "homepage.projects.Ah jung.comment": {
+    "message": "alovajs很不错。我打算将我们的产品统一换成alovajs"
+  },
+  "homepage.Alova team.sectionTitle": {
+    "message": "Alova 团队",
+    "description": "section title for Alova team"
+  },
+  "homepage.Alova team.title": {
+    "message": "认识核心成员",
+    "description": "title for Alova team"
+  },
+  "homepage.Try It Now.sectionTitle": {
+    "message": "现在尝试 Alova",
+    "description": "section title for Try It Now"
+  },
+  "homepage.Try It Now.title": {
+    "message": "将你的开发效率提升到上一个层次",
+    "description": "title for Try It Now"
   },
   "homepage.relationTitle": {
     "message": "alova和请求库的关系",

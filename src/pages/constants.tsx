@@ -1,7 +1,9 @@
+import Translate, { translate } from '@docusaurus/Translate';
 import { FeatureBlockProps } from './_indexComponent/FeatureBlock';
 import { UserDescProps } from './_indexComponent/UserDescription';
 
 export const Snippet: Record<string, string> = {
+  locateApiByUrl: '// to be done',
   ApiParametersAndResponseAtAGlance: `// search API with url
 Apis.pet.updatePetWithForm({
   pathParams: { petId: 0 },
@@ -17,9 +19,16 @@ Apis.pet.getPetById({
 export const Strategy: FeatureBlockProps[] = [
   {
     type: 'Client',
-    title: 'Pagination Request',
-    description:
-      'Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, and reduce coding difficulty by 50%',
+    title: translate({
+      message: 'Pagination Request',
+      id: 'homepage.requestStrategy.Pagination Request.title'
+    }),
+    to: '/tutorial/client/strategy/use-pagination',
+    description: translate({
+      message:
+        'Automatically manage paging data, data preloading, reduce unnecessary data refresh, improve fluency by 300%, and reduce coding difficulty by 50%',
+      id: 'homepage.requestStrategy.Pagination Request.description'
+    }),
     className: 'col-span-8 row-span-3',
     snippet: `usePagination((page, size) => totoList(page, size), {
   initialData: {
@@ -32,9 +41,16 @@ export const Strategy: FeatureBlockProps[] = [
   },
   {
     type: 'Client',
-    title: 'Watching Request',
-    description:
-      'send requests immediately by watching states changes, useful in tab switching and condition quering.',
+    title: translate({
+      message: 'Watching Request',
+      id: 'homepage.requestStrategy.Watching Request.title'
+    }),
+    to: '/tutorial/client/strategy/use-watcher',
+    description: translate({
+      message:
+        'send requests immediately by watching states changes, useful in tab switching and condition quering.',
+      id: 'homepage.requestStrategy.Watching Request.description'
+    }),
     className: 'col-span-4 row-span-3',
     snippet: `useWatcher(
   () => filterTodoList(page, keyword),
@@ -46,8 +62,15 @@ export const Strategy: FeatureBlockProps[] = [
   },
   {
     type: 'Server',
-    title: 'Retry Request',
-    description: 'Using it on important requests can improve their stability.',
+    title: translate({
+      message: 'Retry Request',
+      id: 'homepage.requestStrategy.Retry Request.title'
+    }),
+    to: '/tutorial/server/strategy/retry',
+    description: translate({
+      message: 'Using it on important requests can improve their stability.',
+      id: 'homepage.requestStrategy.Retry Request.description'
+    }),
     className: 'col-span-4 row-span-3',
     snippet: `const res = await retry(alova.Post('/api/order'), {
   retry: 3,
@@ -59,8 +82,15 @@ export const Strategy: FeatureBlockProps[] = [
   },
   {
     type: 'Server',
-    title: 'Rate Limit',
-    description: 'Limit the request rate within a certain period of time.',
+    title: translate({
+      message: 'Rate Limit',
+      id: 'homepage.requestStrategy.Rate Limit.title'
+    }),
+    to: '/tutorial/server/strategy/rate-limit-middleware',
+    description: translate({
+      message: 'Limit the request rate within a certain period of time.',
+      id: 'homepage.requestStrategy.Rate Limit.description'
+    }),
     className: 'col-span-4 row-span-3',
     snippet: `const limit = createRateLimiter({
   points: 4,
@@ -71,9 +101,16 @@ const orderRes = await limit(
 )`
   },
   {
-    type: 'Server',
-    title: 'Watching Request',
-    description: 'Preload data to display view faster, or re-fetch data across components.',
+    type: 'Client',
+    title: translate({
+      message: 'Fetch Data',
+      id: 'homepage.requestStrategy.Fetch Data.title'
+    }),
+    to: '/tutorial/client/strategy/use-fetcher',
+    description: translate({
+      message: 'Preload data to display view faster, or re-fetch data across components.',
+      id: 'homepage.requestStrategy.Fetch Data.description'
+    }),
     className: 'col-span-4 row-span-3',
     snippet: `const { fetching, error, fetch } = useFetcher()
 
@@ -81,9 +118,16 @@ fetch(getTodoDetail)`
   },
   {
     type: 'Client',
-    title: 'Token authentication',
-    description:
-      'Global interceptor that supports silent token refresh, as well as providing unified management of token-based login, logout, token assignment and token refresh.',
+    title: translate({
+      message: 'Token authentication',
+      id: 'homepage.requestStrategy.Token authentication.title'
+    }),
+    to: '/tutorial/client/strategy/token-authentication',
+    description: translate({
+      message:
+        'Global interceptor that supports silent token refresh, as well as providing unified management of token-based login, logout, token assignment and token refresh.',
+      id: 'homepage.requestStrategy.Token authentication.description'
+    }),
     className: 'col-span-8 row-span-3',
     snippet: `const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
   refreshTokenOnError: {
@@ -103,16 +147,29 @@ const alovaInstance = createAlova({
   },
   {
     type: 'Client',
-    title: 'Form Submission',
-    description:
-      'Automatically manage form data, it allow you implement quickly various of forms.',
+    title: translate({
+      message: 'Form Submission',
+      id: 'homepage.requestStrategy.Form Submission.title'
+    }),
+    to: '/tutorial/client/strategy/use-form',
+    description: translate({
+      message:
+        'Automatically manage form data, it allow you implement quickly various of forms.',
+      id: 'homepage.requestStrategy.Form Submission.description'
+    }),
     className: 'col-span-4 row-span-1'
   },
   {
     type: 'Client',
-    title: 'Auto refresh data',
-    description:
-      'Automatically refresh data through the events of browser, always display the newest data.',
+    title: translate({
+      message: 'Auto refresh data',
+      id: 'homepage.requestStrategy.Auto refresh data.title'
+    }),
+    description: translate({
+      message:
+        'Automatically refresh data through the events of browser, always display the newest data.',
+      id: 'homepage.requestStrategy.Auto refresh data.description'
+    }),
     className: 'col-span-4 row-span-1'
   }
 ];
@@ -136,13 +193,18 @@ export const DeveloperComments: UserDescProps[] = [
   {
     avatar: '/img/avatar/scott-hu.png',
     name: 'Scott Hu',
-    description: 'The creator of alova',
+    description: translate({
+      message: 'The creator of alova',
+      id: 'homepage.projects.Scott Hu.desc'
+    }),
     children: (
       <p>
-        Request libs like fetch and axios make requests very simple, react-query and swr further
-        reduce the template code of requests. But what alova aims to do is to provide extreme
-        API consumption efficiency, eliminating almost all of your request work and achieving
-        more efficient Client-Server data interaction.
+        <Translate id="homepage.projects.Scott Hu.comment">
+          Request libs like fetch and axios make requests very simple, react-query and swr
+          further reduce the template code of requests. But what alova aims to do is to provide
+          extreme API consumption efficiency, eliminating almost all of your request work and
+          achieving more efficient Client-Server data interaction.
+        </Translate>
       </p>
     )
   },
@@ -158,8 +220,10 @@ export const DeveloperComments: UserDescProps[] = [
     description: 'Developer',
     children: (
       <p>
-        Alova is really meticulous. When I read the documents, every point was a pain point and
-        solved many problems.
+        <Translate id="homepage.projects.0x1EC10D.comment">
+          Alova is really meticulous. When I read the documents, every point was a pain point
+          and solved many problems.
+        </Translate>
       </p>
     )
   },
@@ -167,7 +231,13 @@ export const DeveloperComments: UserDescProps[] = [
     avatar: '/img/avatar/ah-jung.png',
     name: 'Scott Hu',
     description: 'Developer',
-    children: <p>The alovajs is nice. I plan to switch our products to alovajs uniformly</p>
+    children: (
+      <p>
+        <Translate id="homepage.projects.Ah jung.comment">
+          The alovajs is nice. I plan to switch our products to alovajs uniformly
+        </Translate>
+      </p>
+    )
   }
 ];
 
