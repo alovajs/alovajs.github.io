@@ -39,13 +39,8 @@
   --ifm-color-primary-rgb: 76, 109, 214;
 }
 
-@tailwind utilities;
-
 /* GitHub */
-.header-github-link:hover {
-  &:hover {
-    opacity: 0.6;
-  }
+.header-github-link {
   &::before {
     content: '';
     width: 24px;
@@ -71,6 +66,19 @@
   background-size: contain !important;
   background: url('/img/discord.svg');
 }
+.header-wechat-link {
+  fill: red;
+  color: red;
+  --wechat-color: red;
+}
+.header-wechat-link:before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background-size: contain !important;
+  background: url('/img/wechat.svg');
+}
 // dark mode icons
 html[data-theme='dark'] {
   .header-github-link:before {
@@ -79,6 +87,12 @@ html[data-theme='dark'] {
   }
   .header-x-link:before {
     background: url('/img/x-dark.svg');
+  }
+  .header-discord-link:before {
+    background: url('/img/discord-dark.svg');
+  }
+  .header-wechat-link:before {
+    background: url('/img/wechat-dark.svg');
   }
 }
 
@@ -274,4 +288,58 @@ table {
 }
 .flex-1 {
   flex: 1;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.use-tailwind {
+  @tailwind base;
+
+  * {
+    margin: 0;
+  }
+
+  @layer components {
+    .ctw-button-primary {
+      transition: background-color 0.2s;
+      @apply box-content leading-[40px] h-[40px] px-5 text-white z-10 relative cursor-pointer text-base font-medium mt-3 lg:mt-6 rounded-lg bg-primary-500  border-[1.5px] border-transparent;
+
+      @apply dark:bg-primary-500;
+
+      &:hover {
+        @apply hover:bg-primary-600;
+        // dark
+        @apply dark:hover:bg-primary-600;
+      }
+    }
+
+    .ctw-button-secondary {
+      transition: color 0.2s, border-color 0.2s;
+      @apply box-content leading-[40px] h-[40px] px-5 z-10 relative cursor-pointer text-base font-medium mt-3 lg:mt-6 rounded-lg border-[1.5px] border-gray-400;
+      // dark
+      @apply dark:text-gray-500 dark:border-gray-500;
+
+      &:hover {
+        @apply opacity-100 border-gray-700 text-gray-700;
+        // dark
+        @apply dark:hover:border-gray-400 dark:hover:text-gray-300;
+      }
+    }
+
+    .ctw-link {
+      transition: color 0.2s;
+      @apply text-gray-400 hover:text-gray-700 cursor-pointer;
+      @apply dark:text-gray-400 dark:hover:text-gray-200;
+    }
+
+    .ctw-card {
+      @apply bg-white;
+      @apply dark:bg-white/5;
+    }
+  }
+}
+
+.test {
+  background-color: red;
 }
