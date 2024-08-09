@@ -260,21 +260,38 @@ export default function Home(): JSX.Element {
                 <div className="relative col-span-4 row-span-1">
                   <div className={styles.borderGradient}></div>
                   <FeatureBlock
-                    title="Learn total 20+ strategies"
+                    title={translate({
+                      message: 'Learn total 20+ strategies',
+                      id: 'homepage.requestStrategy.More Strategy.title'
+                    })}
                     className="dark:bg-[#040f26] items-center h-full w-full rounded-2xl">
                     <div className="flex flex-1 mt-5 leading-[16px] w-full justify-around text-sm">
-                      <div className="flex items-center cursor-pointer">
-                        <span className="font-semibold">Client strategies</span>
-                        <span className="inline-block ml-2 text-white w-[14px] h-[14px]">
+                      <a
+                        href="/tutorial/client/strategy/"
+                        className="flex items-center cursor-pointer"
+                        target="_blank">
+                        <span className="font-semibold">
+                          <Translate id="homepage.requestStrategy.More Strategy.Client">
+                            Client strategies
+                          </Translate>
+                        </span>
+                        <span className="inline-block ml-2 dark:text-white w-[14px] h-[14px]">
                           <Arrow />
                         </span>
-                      </div>
-                      <div className="flex items-center cursor-pointer">
-                        <span className="font-semibold">Server strategies</span>
-                        <span className="inline-block ml-2 text-white w-[14px] h-[14px]">
+                      </a>
+                      <a
+                        href="/tutorial/server/strategy/"
+                        className="flex items-center cursor-pointer"
+                        target="_blank">
+                        <span className="font-semibold">
+                          <Translate id="homepage.requestStrategy.More Strategy.Server">
+                            Server strategies
+                          </Translate>
+                        </span>
+                        <span className="inline-block ml-2 dark:text-white w-[14px] h-[14px]">
                           <Arrow />
                         </span>
-                      </div>
+                      </a>
                     </div>
                   </FeatureBlock>
                 </div>

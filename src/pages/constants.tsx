@@ -18,7 +18,7 @@ Apis.pet.getPetById({
 
 export const Strategy: FeatureBlockProps[] = [
   {
-    type: 'Client',
+    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
       message: 'Pagination Request',
       id: 'homepage.requestStrategy.Pagination Request.title'
@@ -40,7 +40,7 @@ export const Strategy: FeatureBlockProps[] = [
 })`
   },
   {
-    type: 'Client',
+    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
       message: 'Watching Request',
       id: 'homepage.requestStrategy.Watching Request.title'
@@ -61,7 +61,7 @@ export const Strategy: FeatureBlockProps[] = [
 )`
   },
   {
-    type: 'Server',
+    type: translate({ message: 'Server', id: 'theme.featureBlock.server' }),
     title: translate({
       message: 'Retry Request',
       id: 'homepage.requestStrategy.Retry Request.title'
@@ -81,7 +81,7 @@ export const Strategy: FeatureBlockProps[] = [
 })`
   },
   {
-    type: 'Server',
+    type: translate({ message: 'Server', id: 'theme.featureBlock.server' }),
     title: translate({
       message: 'Rate Limit',
       id: 'homepage.requestStrategy.Rate Limit.title'
@@ -101,7 +101,7 @@ const orderRes = await limit(
 )`
   },
   {
-    type: 'Client',
+    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
       message: 'Fetch Data',
       id: 'homepage.requestStrategy.Fetch Data.title'
@@ -117,7 +117,7 @@ const orderRes = await limit(
 fetch(getTodoDetail)`
   },
   {
-    type: 'Client',
+    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
       message: 'Token authentication',
       id: 'homepage.requestStrategy.Token authentication.title'
@@ -146,7 +146,7 @@ const alovaInstance = createAlova({
 })`
   },
   {
-    type: 'Client',
+    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
       message: 'Form Submission',
       id: 'homepage.requestStrategy.Form Submission.title'
@@ -160,11 +160,12 @@ const alovaInstance = createAlova({
     className: 'col-span-4 row-span-1'
   },
   {
-    type: 'Client',
+    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
       message: 'Auto refresh data',
       id: 'homepage.requestStrategy.Auto refresh data.title'
     }),
+    to: '/tutorial/client/strategy/use-auto-request',
     description: translate({
       message:
         'Automatically refresh data through the events of browser, always display the newest data.',

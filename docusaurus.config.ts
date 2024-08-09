@@ -70,8 +70,8 @@ const config: Config = {
       title: '',
       logo: {
         alt: 'Alova',
-        src: 'img/logo-text@2x.png',
-        srcDark: 'img/logo-text-dark@2x.png'
+        src: 'img/logo-text.svg',
+        srcDark: 'img/logo-text-dark.svg'
       },
       items: [
         {

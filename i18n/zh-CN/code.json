@@ -273,6 +273,12 @@
   "theme.featureBlock.learnMore": {
     "message": "查看详情"
   },
+  "theme.featureBlock.client": {
+    "message": "客户端策略"
+  },
+  "theme.featureBlock.server": {
+    "message": "服务端策略"
+  },
   "homepage.title.Creative": {
     "message": "创新的",
     "description": "First part of the title"
@@ -380,6 +386,15 @@
   "homepage.requestStrategy.Auto refresh data.description": {
     "message": "通过浏览器事件自动刷新数据，界面始终显示最新数据",
     "description": "desc for Auto refresh data"
+  },
+  "homepage.requestStrategy.More Strategy.title": {
+    "message": "学习共20+个请求策略"
+  },
+  "homepage.requestStrategy.More Strategy.Client": {
+    "message": "客户端策略"
+  },
+  "homepage.requestStrategy.More Strategy.Server": {
+    "message": "服务端策略"
   },
   "homepage.Flexible.sectionTitle": {
     "message": "灵活性",

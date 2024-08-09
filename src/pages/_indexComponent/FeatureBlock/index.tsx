@@ -22,7 +22,7 @@ export default function FeatureBlock(props: FeatureBlockProps) {
           {props.title}
         </span>
         {props.type ? (
-          <span className="ml-3 bg-green-700/30 text-green-600 px-3 py-1 rounded-md">
+          <span className="ml-3 bg-green-400/30 dark:bg-green-700/30 text-green-600 px-3 py-1 rounded-md">
             {props.type}
           </span>
         ) : null}
