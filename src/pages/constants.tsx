@@ -42,7 +42,7 @@ export const Strategy: FeatureBlockProps[] = [
   {
     type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
     title: translate({
-      message: 'Watching Request',
+      message: 'Watch Request',
       id: 'homepage.requestStrategy.Watching Request.title'
     }),
     to: '/tutorial/client/strategy/use-watcher',

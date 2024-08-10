@@ -290,6 +290,38 @@ table {
   flex: 1;
 }
 
+@media (max-width: 1250px) {
+  .navbar__item {
+    display: none;
+  }
+}
+
+// 仅改变主页的样式
+html:not(.docs-wrapper) {
+  &[data-theme='dark'] {
+    background-color: #040f26;
+
+    .main-wrapper::before {
+      background-image: linear-gradient(45deg, #5b38d8 30%, #32a2ed3f);
+    }
+  }
+
+  .navbar__inner {
+    background-color: transparent;
+  }
+
+  .main-wrapper::before {
+    content: ' ';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-image: linear-gradient(45deg, #6f47ff6c 30%, #32a2ed3f);
+    filter: blur(130px);
+    border-radius: 50%;
+    transform: translate3d(-15%, -20%, 0);
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
 

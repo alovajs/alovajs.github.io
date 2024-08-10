@@ -77,7 +77,6 @@ function HomepageHeader() {
       <div className="flex flex-col mx-auto w-full">
         <div className="flex flex-col lg:flex-row items-center gap-20 justify-between mt-32 ">
           <div className="relative">
-            <div className={styles.bgTitle}></div>
             <div className="font-sans text-6xl font-bold leading-tight t">
               <p className={styles.titleGradient}>
                 <Translate id="homepage.title.Creative">Creative</Translate>
@@ -274,7 +273,7 @@ export default function Home(): JSX.Element {
                       id: 'homepage.requestStrategy.More Strategy.title'
                     })}
                     className="dark:bg-[#040f26] items-center h-full w-full rounded-2xl">
-                    <div className="flex flex-1 mt-5 leading-[16px] w-full justify-around text-sm">
+                    <div className="flex flex-1 flex-wrap gap-y-4 mt-5 leading-[16px] w-full justify-around text-sm">
                       <a
                         href="/tutorial/client/strategy/"
                         className="flex items-center cursor-pointer"
@@ -325,13 +324,13 @@ export default function Home(): JSX.Element {
               })}
               className="max-w-[600px]"
             />
-            <div className="flex gap-10 justify-between h-[400px]">
+            <div className="flex gap-10 justify-between">
               <SupportList></SupportList>
             </div>
           </section>
 
           {/* Join the community */}
-          <section className="container mx-auto py-10 flex flex-col mt-32 gap-24 justify-between">
+          <section className="container mx-auto py-10 flex flex-col mt-10 lg:mt-32 gap-24 justify-between">
             <Intro
               section={translate({
                 message: 'Join the community',
@@ -349,7 +348,7 @@ export default function Home(): JSX.Element {
             />
 
             {/* Projects */}
-            <div className="self-center flex gap-20 justify-between">
+            <div className="self-center flex gap-10 md:gap-20 justify-between">
               {Project.map((item, index) => (
                 <UserDescription
                   avatar={item.avatar}
@@ -380,7 +379,7 @@ export default function Home(): JSX.Element {
           </section>
 
           {/* Alova team */}
-          <section className="container mx-auto py-10 flex flex-col mt-32 gap-16 items-center">
+          <section className="container mx-auto py-10 flex flex-col mt-10 lg:mt-32 gap-16 items-center">
             <Intro
               section={translate({
                 message: 'Alova team',
