@@ -119,3 +119,23 @@
 .bgCard {
   background-image: url('/img/bg-card.png');
 }
+
+.bgTitle {
+  @apply absolute w-full h-full;
+  background-image: linear-gradient(45deg, #5b38d814 30%, #32a2ed3f);
+  filter: blur(130px);
+  border-radius: 50%;
+  transform: translate3d(-25%, -30%, 0);
+}
+
+[data-theme='dark'] .bgTitle {
+  background-image: linear-gradient(45deg, #5b38d84f 30%, #32a2ed3f);
+}
+
+.bgImage {
+  @apply absolute w-full h-full;
+  background-image: linear-gradient(-45deg, #d8d8d82c 30%, #32a2ed3f);
+  filter: blur(130px);
+  border-radius: 50%;
+  transform: translate3d(35%, 30%, 0);
+}

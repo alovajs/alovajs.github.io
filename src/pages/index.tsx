@@ -75,8 +75,9 @@ function HomepageHeader() {
   return (
     <header className="container mx-auto antialiased text-slate-500 dark:text-slate-400">
       <div className="flex flex-col mx-auto w-full">
-        <div className="flex justify-between mt-32 ">
-          <div className="">
+        <div className="flex flex-col lg:flex-row items-center gap-20 justify-between mt-32 ">
+          <div className="relative">
+            <div className={styles.bgTitle}></div>
             <div className="font-sans text-6xl font-bold leading-tight t">
               <p className={styles.titleGradient}>
                 <Translate id="homepage.title.Creative">Creative</Translate>
@@ -115,14 +116,24 @@ function HomepageHeader() {
               </button>
             </div>
           </div>
-          <img
-            style={{
-              transform: 'rotate(12deg) skew(-24deg, 0deg)'
-            }}
-            className="max-w-[700px]"
-            src="/img/header-image.svg"
-            alt=""
-          />
+          <div className="relative w-full lg:max-w-[700px] h-[300px]">
+            <div className={styles.bgImage}></div>
+            <div
+              style={{
+                transform: 'translateX(-5%)'
+              }}
+              className="relative overflow-hidden h-full w-full">
+              <img
+                style={{
+                  position: 'absolute',
+                  transform: 'rotate(12deg) skew(-24deg, 0deg)'
+                }}
+                className="top-0 left-0 w-full h-full"
+                src="/img/header-image.svg"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -167,12 +178,12 @@ export default function Home(): JSX.Element {
         })
       }
       description="alova.js a lightweight request strategy library">
-      <div className="dark:bg-[#040f26]">
+      <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
-        <main className="mx-auto mt-40">
+        <main className="mx-auto mt-20 lg:mt-40">
           {/* Automatic Generate */}
-          <section className="container mx-auto py-10 flex gap-16 justify-between">
-            <div className="flex flex-col items-start max-w-[500px]">
+          <section className="container mx-auto py-10 flex flex-col lg:flex-row gap-16 justify-between">
+            <div className="flex flex-col items-start lg:max-w-[500px]">
               <Intro
                 section={translate({
                   message: 'Automatic Generate',
@@ -187,14 +198,13 @@ export default function Home(): JSX.Element {
                   id: 'homepage.automaticGenerate.description'
                 })}
               />
-              <div className="flex flex-col gap-5 mt-10">
+              <div className="flex flex-col gap-5 mt-10 w-full md:w-[400px]">
                 <FeatureButton
                   icon="🔍"
                   text={translate({
                     message: 'Locate API by its url or description',
                     id: 'homepage.automaticGenerate.Locate API by its url or description'
                   })}
-                  className="w-[400px]"
                   onClick={() => setShowing('locateApiByUrl')}
                   data-select={showing === 'locateApiByUrl'}
                 />
@@ -204,13 +214,12 @@ export default function Home(): JSX.Element {
                     message: 'API Parameters and Response at a glance',
                     id: 'homepage.automaticGenerate.API Parameters and Response at a glance'
                   })}
-                  className="w-[400px]"
                   onClick={() => setShowing('ApiParamsAndResponseAtGlance')}
                   data-select={showing === 'ApiParamsAndResponseAtGlance'}
                 />
               </div>
             </div>
-            <div className="flex-1 max-w-[600px]">
+            <div className="flex-1 max-w-full lg:max-w-[600px]">
               <div
                 style={{
                   background:
@@ -244,7 +253,7 @@ export default function Home(): JSX.Element {
                 })}
               />
 
-              <div className="w-full grid grid-cols-12 grid-rows-3 gap-10">
+              <div className="w-full flex flex-col lg:!grid grid-cols-4 md:grid-cols-12 gap-10">
                 {Strategy.map(({ title, type, description, className, snippet, to }, index) => (
                   <FeatureBlock
                     title={title}
@@ -353,7 +362,7 @@ export default function Home(): JSX.Element {
             </div>
 
             {/* Developers */}
-            <div className="grid grid-cols-2 gap-14 self-center justify-between">
+            <div className="flex flex-col md:!grid grid-cols-2 gap-14 self-center justify-between">
               {DeveloperComments.map((item, index) => (
                 <div
                   className="col-span-1 max-w-[500px]"
@@ -383,7 +392,7 @@ export default function Home(): JSX.Element {
               })}
               className="items-center"
             />
-            <div className="grid grid-cols-3 gap-12 w-full grid-cols-3">
+            <div className="flex flex-col sm:!grid grid-cols-3 gap-12 w-full grid-cols-3">
               {CoreDevs.map((item, index) => (
                 <div
                   className="ctw-card flex flex-col items-center p-12 col-span-1 rounded-lg border border-gray-300 dark:border-transparent"
@@ -411,7 +420,7 @@ export default function Home(): JSX.Element {
           <section className="container mx-auto">
             <div
               className={clsx(
-                'flex flex-col pt-10 pb-16 mt-32 mb-20 items-center rounded-lg',
+                'flex flex-col px-10 pt-10 pb-16 mt-32 mb-20 items-center rounded-lg',
                 styles.bgCard
               )}>
               <Intro
@@ -423,7 +432,7 @@ export default function Home(): JSX.Element {
                   message: 'Take your development efficiency to the next level',
                   id: 'homepage.Try It Now.title'
                 })}
-                className="items-center text-white"
+                className="items-center text-white text-center"
               />
               <div className="mt-8 flex gap-x-4">
                 {buttons.map(({ text, style, link, type }, i) => (
