@@ -283,8 +283,12 @@
     "message": "创新的",
     "description": "First part of the title"
   },
-  "homepage.title.Next Generation Request Tool": {
-    "message": "下一代请求工具",
+  "homepage.title.Next Generation": {
+    "message": "下一代",
+    "description": "The second part of the title"
+  },
+  "homepage.title.Request Tool": {
+    "message": "请求工具",
     "description": "The second part of the title"
   },
   "homepage.tagline": {

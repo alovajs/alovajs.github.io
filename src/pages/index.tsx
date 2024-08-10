@@ -9,12 +9,11 @@ import clsx from 'clsx';
 import copy from 'copy-text-to-clipboard';
 import { useState } from 'react';
 import SupportList from '../components/SupportList';
-import CodeBlock from './_indexComponent/CodeBlock';
 import FeatureBlock from './_indexComponent/FeatureBlock';
 import styles from './_indexComponent/index.module.css';
 import Intro from './_indexComponent/Intro';
 import UserDescription from './_indexComponent/UserDescription';
-import { CoreDevs, DeveloperComments, Project, Snippet, Strategy } from './constants';
+import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from './constants';
 
 const buttons = [
   {
@@ -82,9 +81,10 @@ function HomepageHeader() {
                 <Translate id="homepage.title.Creative">Creative</Translate>
               </p>
               <p className="text-slate-900 tracking-normal dark:text-slate-50">
-                <Translate id="homepage.title.Next Generation Request Tool">
-                  Next Generation Request Tool
-                </Translate>
+                <Translate id="homepage.title.Next Generation">Next Generation</Translate>
+              </p>
+              <p className="text-slate-900 tracking-normal dark:text-slate-50">
+                <Translate id="homepage.title.Request Tool">Request Tool</Translate>
               </p>
             </div>
             <p className="mt-4 max-w-3xl text-lg space-y-6">
@@ -157,13 +157,14 @@ export default function Home(): JSX.Element {
   //   };
   // }, []);
 
-  const changableSnippet = {
-    locateApiByUrl: Snippet.locateApiByUrl,
-    ApiParamsAndResponseAtGlance: Snippet.ApiParametersAndResponseAtAGlance
+  const changableVideo = {
+    locateApiByUrl: VideoPath.locateApiByUrl,
+    useAndFindApi: VideoPath.useAndFindApi
   } as const;
 
   const { siteConfig } = useDocusaurusContext();
-  const [showing, setShowing] = useState<keyof typeof changableSnippet>('locateApiByUrl');
+  const [showingVideo, setShowingVideo] =
+    useState<keyof typeof changableVideo>('locateApiByUrl');
 
   return (
     <Layout
@@ -204,8 +205,8 @@ export default function Home(): JSX.Element {
                     message: 'Locate API by its url or description',
                     id: 'homepage.automaticGenerate.Locate API by its url or description'
                   })}
-                  onClick={() => setShowing('locateApiByUrl')}
-                  data-select={showing === 'locateApiByUrl'}
+                  onClick={() => setShowingVideo('locateApiByUrl')}
+                  data-select={showingVideo === 'locateApiByUrl'}
                 />
                 <FeatureButton
                   icon="📦"
@@ -213,8 +214,8 @@ export default function Home(): JSX.Element {
                     message: 'API Parameters and Response at a glance',
                     id: 'homepage.automaticGenerate.API Parameters and Response at a glance'
                   })}
-                  onClick={() => setShowing('ApiParamsAndResponseAtGlance')}
-                  data-select={showing === 'ApiParamsAndResponseAtGlance'}
+                  onClick={() => setShowingVideo('useAndFindApi')}
+                  data-select={showingVideo === 'useAndFindApi'}
                 />
               </div>
             </div>
@@ -225,11 +226,18 @@ export default function Home(): JSX.Element {
                     'linear-gradient( 135deg, #2C92FF 0%, #711EFF 41%, #FF41C6 71%, #FF772E 100%)'
                 }}
                 className="relative pt-8 pl-12 pr-8 rounded-3xl">
-                <CodeBlock
+                {/* <CodeBlock
                   className="h-[330px]"
                   fontSize={20}
                   code={changableSnippet[showing]}
-                />
+                /> */}
+                <video
+                  src={changableVideo[showingVideo]}
+                  className="w-full rounded-lg"
+                  autoPlay
+                  muted
+                  controls={false}
+                  loop></video>
               </div>
             </div>
           </section>

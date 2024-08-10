@@ -2,19 +2,10 @@ import Translate, { translate } from '@docusaurus/Translate';
 import { FeatureBlockProps } from './_indexComponent/FeatureBlock';
 import { UserDescProps } from './_indexComponent/UserDescription';
 
-export const Snippet: Record<string, string> = {
-  locateApiByUrl: '// to be done',
-  ApiParametersAndResponseAtAGlance: `// search API with url
-Apis.pet.updatePetWithForm({
-  pathParams: { petId: 0 },
-  data: {}
-})
-
-// search API with description
-Apis.pet.getPetById({
-  pathParams: { petId: 0 }
-})`
-};
+export const VideoPath = {
+  locateApiByUrl: '/video/locate-api.mp4',
+  useAndFindApi: '/video/use-and-find-api.mp4'
+} as const;
 
 export const Strategy: FeatureBlockProps[] = [
   {
