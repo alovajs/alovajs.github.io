@@ -15,7 +15,7 @@ interface IntroProps {
 export default function Intro(props: IntroProps) {
   return (
     <div className={`flex flex-col ${props.className}`}>
-      <span className="text-primary text-primary-500 text-md">
+      <span className="text-primary text-primary-500 text-md font-bold">
         <Translate id={props.sectionTransId}>{props.section}</Translate>
       </span>
       <span className="mt-3 dark:text-white text-3xl font-bold">

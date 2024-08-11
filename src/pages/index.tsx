@@ -17,7 +17,7 @@ import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from './con
 
 const buttons = [
   {
-    text: <Translate id="homepage.Get Started">Get Started</Translate>,
+    text: <Translate id="homepage.Getting Started">Getting Started</Translate>,
     type: 'primary',
     style: 'ctw-button-primary',
     link: '/tutorial/getting-started/introduce'

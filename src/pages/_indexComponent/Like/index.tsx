@@ -12,7 +12,7 @@ const buttons = [
         style={{ color: 'var(--ifm-color-primary)' }}
         size={24}></IconFont>
     ),
-    text: <Translate>Get Started</Translate>,
+    text: <Translate>Getting Started</Translate>,
     link: '/tutorial/getting-started/introduce',
     target: '_self'
   },

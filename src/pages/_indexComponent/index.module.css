@@ -99,11 +99,30 @@
 }
 
 .titleGradient {
-  color: transparent;
-  background: -webkit-linear-gradient(0deg, #ff72b6 0%, #c685ff 35%, #6caeff 80%);
-  -webkit-background-clip: text;
+  background: linear-gradient(
+    120deg,
+    #009dff -50%,
+    #d7c383 20%,
+    #ff258e 40%,
+    #a53eff 70%,
+    #d7c383 90%,
+    #009dff
+  );
   background-clip: text;
-  -webkit-text-fill-color: -webkit-linear-gradient(120deg, #86b91a 30%, #edd532);
+  color: transparent;
+  background-size: 200% auto;
+  animation: bg-clip 10s steps(1000) infinite;
+}
+@keyframes bg-clip {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 /* thanks to https://github.com/chokcoco/iCSS/issues/266 */
@@ -134,8 +153,11 @@
 
 .bgImage {
   @apply absolute w-full h-full;
-  background-image: linear-gradient(-45deg, #d8d8d82c 30%, #32a2ed3f);
-  filter: blur(130px);
+  background: rgba(92, 188, 232, 0.2);
+  filter: blur(180px);
   border-radius: 50%;
-  transform: translate3d(35%, 30%, 0);
+  transform: translate(35%, 30%);
+}
+[data-theme='dark'] .bgImage {
+  background: rgba(216, 216, 216, 0.2);
 }

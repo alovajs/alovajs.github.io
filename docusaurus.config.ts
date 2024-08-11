@@ -168,22 +168,22 @@ const config: Config = {
         },
         {
           href: 'https://github.com/alovajs/alova',
-          className: 'header-github-link',
+          className: 'header-github-link icon-link',
           position: 'right'
         },
         {
           href: '/img/wechat_qrcode.jpg',
-          className: 'header-wechat-link',
+          className: 'header-wechat-link icon-link',
           position: 'right'
         },
         {
           href: 'https://x.com/alovajs',
-          className: 'header-x-link',
+          className: 'header-x-link icon-link',
           position: 'right'
         },
         {
           href: 'https://discord.gg/S47QGJgkVb',
-          className: 'header-discord-link',
+          className: 'header-discord-link icon-link',
           position: 'right'
         }
       ]
@@ -193,20 +193,20 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true
     },
-    announcementBar: {
-      id: 'support_us',
-      content: `⭐️
-          If you also like alova,
-          <a
-            href="https://github.com/alovajs/alova"
-            target="_blank">
-            star it on GitHub!
-          </a>
-          ⭐️`,
-      backgroundColor: 'var(--ifm-color-primary-light)',
-      textColor: '#fff',
-      isCloseable: false
-    },
+    // announcementBar: {
+    //   id: 'support_us',
+    //   content: `⭐️
+    //       If you also like alova,
+    //       <a
+    //         href="https://github.com/alovajs/alova"
+    //         target="_blank">
+    //         star it on GitHub!
+    //       </a>
+    //       ⭐️`,
+    //   backgroundColor: 'var(--ifm-color-primary-light)',
+    //   textColor: '#fff',
+    //   isCloseable: true
+    // },
     footer: {
       style: 'light',
       logo: {
