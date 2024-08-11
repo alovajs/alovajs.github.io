@@ -32,7 +32,7 @@ export default function FeatureBlock(props: FeatureBlockProps) {
     <div className={`ctw-card flex flex-col rounded-2xl px-8 py-8 ${props.className ?? ''}`}>
       <div className="flex flex-wrap items-center text-sm gap-y-[10px]">
         <div className="flex-1 flex">
-          <span className="px-3 py-1 font-semibold bg-slate-200/10 rounded-full text-nowrap">
+          <span className="px-3 py-1 font-semibold bg-slate-800/5 dark:bg-slate-200/10 rounded-full text-nowrap">
             {props.title}
           </span>
           {props.type ? (
