@@ -84,5 +84,5 @@
   transform: translate(35%, 30%);
 }
 [data-theme='dark'] .bgImage {
-  background: rgba(216, 216, 216, 0.4);
+  background: rgba(216, 216, 216, 0.1);
 }

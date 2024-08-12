@@ -74,9 +74,9 @@ function HomepageHeader() {
   return (
     <header className="container mx-auto antialiased text-slate-500 dark:text-slate-400">
       <div className="flex flex-col mx-auto w-full">
-        <div className="flex flex-col md:flex-row items-center gap-20 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
+        <div className="flex flex-col md:flex-row items-center gap-10 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
           <div className="relative">
-            <div className="font-sans md:text-6xl text-4xl font-bold leading-tight">
+            <div className="font-sans md:text-6xl text-4xl font-bold !leading-tight">
               <p className={styles.titleGradient}>
                 <Translate id="homepage.title.Creative">Creative</Translate>
               </p>
@@ -116,23 +116,17 @@ function HomepageHeader() {
               </div>
             </div>
           </div>
-          <div className="relative w-full md:max-w-[1000px] h-[430px]">
-            <div className={styles.bgImage}></div>
-            <div
+          <div className="relative w-[120%] md:w-1/2 md:max-w-[1000px] right-5 md:-right-10">
+            <img
               style={{
-                transform: 'translateX(-5%)'
+                transform: 'rotate(12deg) skew(-24deg, 0deg)'
               }}
-              className="relative overflow-hidden h-full w-full">
-              <img
-                style={{
-                  transform: 'rotate(12deg) skew(-24deg, 0deg)'
-                }}
-                className="absolute top-0 left-0 w-full h-full"
-                src={isDarkTheme ? '/img/header-image-dark.svg' : '/img/header-image.svg'}
-                alt=""
-              />
-            </div>
+              className="w-full h-auto"
+              src={isDarkTheme ? '/img/header-image-dark.svg' : '/img/header-image.svg'}
+              alt=""
+            />
           </div>
+          <div className={styles.bgImage}></div>
         </div>
       </div>
     </header>
