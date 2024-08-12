@@ -87,23 +87,13 @@ const jsEnvList: SupportItem[] = [
   {
     id: 'uniapp',
     available: true,
-    Image: ({ className }) => (
-      <img
-        src={require('@site/static/img/uniapp.png').default}
-        className={className}
-      />
-    ),
+    Image: require('@site/static/img/uniapp.svg').default,
     link: '/resource/request-adapter/uniapp'
   },
   {
     id: 'Taro',
     available: true,
-    Image: ({ className }) => (
-      <img
-        src={require('@site/static/img/taro.png').default}
-        className={className}
-      />
-    ),
+    Image: require('@site/static/img/taro.svg').default,
     link: '/resource/request-adapter/taro'
   },
   {
@@ -175,8 +165,8 @@ interface Props {
   showStatus?: boolean;
 }
 export default function Support({ showStatus = false }: Props): JSX.Element {
-  const ListView = (list: SupportItem[], colSpan = 7) => (
-    <div className={`col col--${colSpan} flex-row justify-center flex-wrap`}>
+  const ListView = (list: SupportItem[], className: string) => (
+    <div className={`grid grid-cols-3 ${className} gap-3`}>
       {list.map(({ id, Image, link, available }) => (
         <Link
           to={link}
@@ -199,14 +189,17 @@ export default function Support({ showStatus = false }: Props): JSX.Element {
   );
 
   return (
-    <div className={clsx('row align-center', styles.wrapper)}>
-      {ListView(jsEnvList)}
-      <div className={clsx('col col--1 flex-col align-center', styles.iconPlus)}>
-        <IconFont
-          name="plus"
-          size={32}></IconFont>
-      </div>
-      {ListView(requestTools, 4)}
+    <div
+      className={clsx(
+        'grid grid-cols-1 md:grid-cols-[2fr_auto_1fr] justify-items-center md:items-center',
+        styles.wrapper
+      )}>
+      {ListView(jsEnvList, 'md:grid-cols-6')}
+      <IconFont
+        name="plus"
+        className="my-6 md:mx-6"
+        size={32}></IconFont>
+      {ListView(requestTools, 'md:grid-cols-4')}
     </div>
   );
 }

@@ -3,6 +3,8 @@
 import type { Config } from '@docusaurus/types';
 import { themes } from 'prism-react-renderer';
 
+const navIcon = (name: string, size = 24) =>
+  `<svg aria-hidden="true" width="${size}px" height="${size}px" style="fill: currentcolor; vertical-align: -0.5em;"><use xlink:href="#icon-${name}"></use></svg>`;
 const lightCodeTheme = themes.duotoneLight;
 const darkCodeTheme = themes.oceanicNext;
 const config: Config = {
@@ -168,23 +170,23 @@ const config: Config = {
         },
         {
           href: 'https://github.com/alovajs/alova',
-          className: 'header-github-link icon-link',
-          position: 'right'
+          position: 'right',
+          html: navIcon('github')
         },
         {
           href: '/img/wechat_qrcode.jpg',
-          className: 'header-wechat-link icon-link',
-          position: 'right'
+          position: 'right',
+          html: navIcon('wechat')
         },
         {
           href: 'https://x.com/alovajs',
-          className: 'header-x-link icon-link',
-          position: 'right'
+          position: 'right',
+          html: navIcon('x', 20)
         },
         {
           href: 'https://discord.gg/S47QGJgkVb',
-          className: 'header-discord-link icon-link',
-          position: 'right'
+          position: 'right',
+          html: navIcon('discord1', 22)
         }
       ]
     },
@@ -210,9 +212,9 @@ const config: Config = {
     footer: {
       style: 'light',
       logo: {
-        alt: 'Meta Open Source Logo',
+        alt: 'alova.js',
         src: 'img/logo.svg',
-        href: 'https://opensource.fb.com',
+        href: 'https://github.com/alovajs/alova',
         width: 160,
         height: 51
       },
@@ -259,10 +261,6 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            // {
-            //   label: 'Stack Overflow',
-            //   to: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            // },
             {
               label: 'Discord',
               to: 'https://discord.gg/S47QGJgkVb'
@@ -294,7 +292,7 @@ const config: Config = {
           ]
         }
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} alova.js Team`
+      copyright: `Copyright © ${new Date().getFullYear()} alova.js Team and contributors`
     },
     prism: {
       theme: lightCodeTheme,

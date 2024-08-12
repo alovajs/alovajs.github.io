@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
+import { useColorMode } from '@docusaurus/theme-common';
 import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Arrow from '@site/static/img/arrow.svg';
 import Copy from '@site/static/img/copy.svg';
 import Github from '@site/static/img/github.svg';
 import Layout from '@theme/Layout';
@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import copy from 'copy-text-to-clipboard';
 import { useState } from 'react';
 import SupportList from '../components/SupportList';
-import FeatureBlock from './_indexComponent/FeatureBlock';
+import FeatureBlock, { ArrowTextLink } from './_indexComponent/FeatureBlock';
 import styles from './_indexComponent/index.module.css';
 import Intro from './_indexComponent/Intro';
 import UserDescription from './_indexComponent/UserDescription';
@@ -29,6 +29,7 @@ const buttons = [
     link: '/examples'
   }
 ];
+const installCmd = 'npm i alova';
 
 function FeatureButton({
   icon,
@@ -44,15 +45,15 @@ function FeatureButton({
 }) {
   const buttonStyles = [
     className ?? '',
-    'group/button text-left px-6 py-4 text-white rounded-lg flex items-center border-[1.5px] transition cursor-pointer',
-    /* normal state */
-    'dark:border-slate-800',
+    'group/button text-left px-6 py-4 text-white rounded-lg border-primary-100 flex items-center border-[2px] bg-primary-100/20 transition cursor-pointer',
+    /* dark state */
+    'dark:border-slate-800 dark:bg-transparent',
     /* hover state */
-    'hover:border-primary-500 data-[select=true]:border-primary-500'
+    'hover:border-white data-[select=true]:border-primary-500'
   ].join(' ');
 
   const textStyles = [
-    'text-slate-700 dark:text-slate-200',
+    'text-slate-700 dark:text-slate-200 md:text-base text-sm',
     /* hover state */
     'group-hover/button:text-black dark:group-hover/button:text-white'
   ].join(' ');
@@ -69,22 +70,20 @@ function FeatureButton({
 }
 
 function HomepageHeader() {
-  const { i18n } = useDocusaurusContext();
-
+  const { isDarkTheme } = useColorMode();
   return (
     <header className="container mx-auto antialiased text-slate-500 dark:text-slate-400">
       <div className="flex flex-col mx-auto w-full">
-        <div className="flex flex-col lg:flex-row items-center gap-20 justify-between mt-32 ">
+        <div className="flex flex-col md:flex-row items-center gap-20 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
           <div className="relative">
-            <div className="font-sans text-6xl font-bold leading-tight t">
+            <div className="font-sans md:text-6xl text-4xl font-bold leading-tight">
               <p className={styles.titleGradient}>
                 <Translate id="homepage.title.Creative">Creative</Translate>
               </p>
               <p className="text-slate-900 tracking-normal dark:text-slate-50">
-                <Translate id="homepage.title.Next Generation">Next Generation</Translate>
-              </p>
-              <p className="text-slate-900 tracking-normal dark:text-slate-50">
-                <Translate id="homepage.title.Request Tool">Request Tool</Translate>
+                <Translate id="homepage.title.Next Generation Request Tool">
+                  Next Generation Request Tool
+                </Translate>
               </p>
             </div>
             <p className="mt-4 max-w-3xl text-lg space-y-6">
@@ -92,30 +91,32 @@ function HomepageHeader() {
                 Extremely improve your API using efficiency and save brainpower Just one step
               </Translate>
             </p>
-            <div className="mt-8 flex gap-x-4">
-              {buttons.map(({ text, style, link }, i) => (
-                <Link
-                  key={link}
-                  className={style}
-                  to={link}>
-                  {text}
-                </Link>
-              ))}
-            </div>
-
-            <div className="ctw-card flex items-center justify-between mt-4 border border-gray-800 max-w-sm font-mono text-sm py-2 px-4 w-[200px] rounded-md">
-              <div className="flex gap-2 items-center text-gray-800 dark:text-gray-400">
-                <span className="select-none">$</span>
-                <span>npm i alova</span>
+            <div className="flex flex-col md:items-stretch items-center">
+              <div className="mt-8 flex gap-x-4">
+                {buttons.map(({ text, style, link }, i) => (
+                  <Link
+                    key={link}
+                    className={style}
+                    to={link}>
+                    {text}
+                  </Link>
+                ))}
               </div>
-              <button
-                className="ctw-link w-[16px] h-[16px]"
-                onClick={() => copy('npm i alova')}>
-                <Copy />
-              </button>
+
+              <div className="ctw-card flex items-center justify-between mt-4 border border-primary-100 dark:border-primary-900 bg-primary-100/20 dark:bg-white/5 text-slate-500 max-w-sm font-mono text-sm py-2 px-4 w-[200px] rounded-md">
+                <div className="flex gap-2 items-center text-gray-800 dark:text-gray-400">
+                  <span className="select-none">$</span>
+                  <span>{installCmd}</span>
+                </div>
+                <button
+                  className="ctw-link w-[16px] h-[16px]"
+                  onClick={() => copy(installCmd)}>
+                  <Copy />
+                </button>
+              </div>
             </div>
           </div>
-          <div className="relative w-full lg:max-w-[700px] h-[300px]">
+          <div className="relative w-full md:max-w-[1000px] h-[430px]">
             <div className={styles.bgImage}></div>
             <div
               style={{
@@ -124,11 +125,10 @@ function HomepageHeader() {
               className="relative overflow-hidden h-full w-full">
               <img
                 style={{
-                  position: 'absolute',
                   transform: 'rotate(12deg) skew(-24deg, 0deg)'
                 }}
-                className="top-0 left-0 w-full h-full"
-                src="/img/header-image.svg"
+                className="absolute top-0 left-0 w-full h-full"
+                src={isDarkTheme ? '/img/header-image-dark.svg' : '/img/header-image.svg'}
                 alt=""
               />
             </div>
@@ -140,23 +140,6 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  // useEffect(() => {
-  //   const link = document.createElement('link');
-  //   link.rel = 'stylesheet';
-  //   link.href = '/css/reset.css';
-  //   console.log(link);
-  //   document.head.append(link);
-
-  //   console.log('appended');
-
-  //   return () => {
-  //     console.log('removed');
-  //     try {
-  //       document.head.removeChild(link);
-  //     } catch {}
-  //   };
-  // }, []);
-
   const changableVideo = {
     locateApiByUrl: VideoPath.locateApiByUrl,
     useAndFindApi: VideoPath.useAndFindApi
@@ -168,7 +151,7 @@ export default function Home(): JSX.Element {
 
   return (
     <Layout
-      wrapperClassName="use-tailwind"
+      wrapperClassName={clsx('use-tailwind', styles.decoratedPurple)}
       title={
         siteConfig.title +
         ' - ' +
@@ -180,10 +163,10 @@ export default function Home(): JSX.Element {
       description="alova.js a lightweight request strategy library">
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
-        <main className="mx-auto mt-20 lg:mt-40">
+        <main className="mx-auto mt-20 md:mt-40">
           {/* Automatic Generate */}
-          <section className="container mx-auto py-10 flex flex-col lg:flex-row gap-16 justify-between">
-            <div className="flex flex-col items-start lg:max-w-[500px]">
+          <section className="container mx-auto py-20 flex flex-col md:flex-row gap-16 justify-between">
+            <div className="flex flex-col items-start md:max-w-[500px]">
               <Intro
                 section={translate({
                   message: 'Automatic Generate',
@@ -219,32 +202,27 @@ export default function Home(): JSX.Element {
                 />
               </div>
             </div>
-            <div className="flex-1 max-w-full lg:max-w-[600px]">
+            <div className="flex-1 max-w-full md:max-w-[800px]">
               <div
                 style={{
                   background:
-                    'linear-gradient( 135deg, #2C92FF 0%, #711EFF 41%, #FF41C6 71%, #FF772E 100%)'
+                    'linear-gradient(135deg, #2C92FF 0%, #711EFF 41%, #FF41C6 71%, #FF772E 100%)'
                 }}
-                className="relative pt-8 pl-12 pr-8 rounded-3xl">
-                {/* <CodeBlock
-                  className="h-[330px]"
-                  fontSize={20}
-                  code={changableSnippet[showing]}
-                /> */}
+                className="relative pt-8 px-4 md:px-12 rounded-3xl flex flex-col items-center">
+                <div className="border-gray-200/40 border border-b-0 bg-[rgba(228,228,228,0.3)] h-6 rounded-t-xl w-11/12"></div>
                 <video
                   src={changableVideo[showingVideo]}
-                  className="w-full rounded-lg"
+                  className="w-full rounded-t-lg opacity-80 block"
                   autoPlay
                   muted
-                  controls={false}
-                  loop></video>
+                  controls={false}></video>
               </div>
             </div>
           </section>
 
           {/* Request Strategy */}
-          <div className="bg-gray-100 dark:bg-gray-500/10">
-            <section className="container mx-auto py-10 flex flex-col gap-16 justify-between ">
+          <div className="bg-gray-100/30 dark:bg-gray-500/10">
+            <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">
               <Intro
                 section={translate({
                   message: 'Request Strategy',
@@ -260,8 +238,8 @@ export default function Home(): JSX.Element {
                 })}
               />
 
-              <div className="w-full flex flex-col lg:!grid grid-cols-4 md:grid-cols-12 gap-10">
-                {Strategy.map(({ title, type, description, className, snippet, to }, index) => (
+              <div className="w-full flex flex-col md:!grid grid-cols-4 md:grid-cols-12 gap-6">
+                {Strategy.map(({ title, type, description, className, snippet, to }) => (
                   <FeatureBlock
                     title={title}
                     to={to}
@@ -269,12 +247,11 @@ export default function Home(): JSX.Element {
                     className={className + ' dark:bg-[#040f26]'}
                     description={description}
                     snippet={snippet}
-                    key={index}
+                    key={title}
                     showLearnMore
                   />
                 ))}
-                <div className="relative col-span-4 row-span-1">
-                  <div className={styles.borderGradient}></div>
+                <div className={clsx('relative col-span-4 row-span-1', styles.borderGradient)}>
                   <FeatureBlock
                     title={translate({
                       message: 'Learn total 20+ strategies',
@@ -282,32 +259,16 @@ export default function Home(): JSX.Element {
                     })}
                     className="dark:bg-[#040f26] items-center h-full w-full rounded-2xl">
                     <div className="flex flex-1 flex-wrap gap-y-4 mt-5 leading-[16px] w-full justify-around text-sm">
-                      <a
-                        href="/tutorial/client/strategy/"
-                        className="flex items-center cursor-pointer"
-                        target="_blank">
-                        <span className="font-semibold">
-                          <Translate id="homepage.requestStrategy.More Strategy.Client">
-                            Client strategies
-                          </Translate>
-                        </span>
-                        <span className="inline-block ml-2 dark:text-white w-[14px] h-[14px]">
-                          <Arrow />
-                        </span>
-                      </a>
-                      <a
-                        href="/tutorial/server/strategy/"
-                        className="flex items-center cursor-pointer"
-                        target="_blank">
-                        <span className="font-semibold">
-                          <Translate id="homepage.requestStrategy.More Strategy.Server">
-                            Server strategies
-                          </Translate>
-                        </span>
-                        <span className="inline-block ml-2 dark:text-white w-[14px] h-[14px]">
-                          <Arrow />
-                        </span>
-                      </a>
+                      <ArrowTextLink to="/tutorial/client/strategy/">
+                        <Translate id="homepage.requestStrategy.More Strategy.Client">
+                          Client strategies
+                        </Translate>
+                      </ArrowTextLink>
+                      <ArrowTextLink to="/tutorial/server/strategy/">
+                        <Translate id="homepage.requestStrategy.More Strategy.Server">
+                          Server strategies
+                        </Translate>
+                      </ArrowTextLink>
                     </div>
                   </FeatureBlock>
                 </div>
@@ -316,7 +277,7 @@ export default function Home(): JSX.Element {
           </div>
 
           {/* Flexible */}
-          <section className="container mx-auto py-10 flex flex-col gap-16 justify-between">
+          <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">
             <Intro
               section={translate({
                 message: 'Flexible',
@@ -338,7 +299,7 @@ export default function Home(): JSX.Element {
           </section>
 
           {/* Join the community */}
-          <section className="container mx-auto py-10 flex flex-col mt-10 lg:mt-32 gap-24 justify-between">
+          <section className="container mx-auto py-16 flex flex-col mt-10 md:mt-32 gap-24 justify-between">
             <Intro
               section={translate({
                 message: 'Join the community',
@@ -352,17 +313,18 @@ export default function Home(): JSX.Element {
                 message: `Open source projects dependent on alova`,
                 id: 'homepage.Join the community.description'
               })}
-              className="items-center"
+              className="items-center text-center"
             />
 
             {/* Projects */}
             <div className="self-center flex gap-10 md:gap-20 justify-between">
-              {Project.map((item, index) => (
+              {Project.map(item => (
                 <UserDescription
                   avatar={item.avatar}
                   avatarSize={54}
                   name={item.name}
-                  key={index}
+                  key={item.name}
+                  to={item.to}
                   vertical
                 />
               ))}
@@ -387,7 +349,7 @@ export default function Home(): JSX.Element {
           </section>
 
           {/* Alova team */}
-          <section className="container mx-auto py-10 flex flex-col mt-10 lg:mt-32 gap-16 items-center">
+          <section className="container mx-auto py-14 flex flex-col mt-10 md:mt-32 gap-16 items-center">
             <Intro
               section={translate({
                 message: 'Alova team',
@@ -397,12 +359,12 @@ export default function Home(): JSX.Element {
                 message: 'Meet the core members',
                 id: 'homepage.Alova team.title'
               })}
-              className="items-center"
+              className="items-center text-center"
             />
-            <div className="flex flex-col sm:!grid grid-cols-3 gap-12 w-full grid-cols-3">
+            <div className="flex flex-col sm:!grid grid-cols-3 gap-4 md:gap-12 w-full">
               {CoreDevs.map((item, index) => (
                 <div
-                  className="ctw-card flex flex-col items-center p-12 col-span-1 rounded-lg border border-gray-300 dark:border-transparent"
+                  className="ctw-card flex flex-col items-center p-12 col-span-1 rounded-lg border border-primary-100 dark:border-transparent"
                   key={index}>
                   <UserDescription
                     avatar={item.avatar}
@@ -425,16 +387,13 @@ export default function Home(): JSX.Element {
 
           {/* Try it NOW */}
           <section className="container mx-auto">
-            <div
-              className={clsx(
-                'flex flex-col px-10 pt-10 pb-16 mt-32 mb-20 items-center rounded-lg',
-                styles.bgCard
-              )}>
+            <div className="flex flex-col py-10 mt-0 md:mt-20 mb-20 items-center rounded-lg bg-[url(/img/bg-card.svg)] dark:bg-[url(/img/bg-card-dark.svg)]">
               <Intro
                 section={translate({
                   message: 'Try it NOW',
                   id: 'homepage.Try It Now.sectionTitle'
                 })}
+                sectionClassName="text-white dark:text-primary-500"
                 title={translate({
                   message: 'Take your development efficiency to the next level',
                   id: 'homepage.Try It Now.title'
@@ -445,12 +404,12 @@ export default function Home(): JSX.Element {
                 {buttons.map(({ text, style, link, type }, i) => (
                   <Link
                     key={link}
-                    className={
-                      style +
-                      (type === 'secondary'
-                        ? ' text-white hover:text-white hover:border-white'
-                        : '')
-                    }
+                    className={clsx(
+                      style,
+                      type === 'secondary'
+                        ? 'text-white hover:text-white hover:border-white border-white/20'
+                        : 'bg-white text-primary-500 hover:text-primary-600 hover:!bg-white/80 dark:bg-primary-500 dark:text-white dark:hover:!bg-primary-600 dark:hover:text-white'
+                    )}
                     to={link}>
                     {text}
                   </Link>

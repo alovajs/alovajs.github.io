@@ -2,92 +2,6 @@
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
-
-.heroBanner {
-  padding: 4rem 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.heroContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  margin: 0 auto;
-  text-align: center;
-  --ifm-button-padding-horizontal: 1rem;
-}
-.heroContent > h1 {
-  font-size: 4rem;
-}
-.heroContent > p {
-  font-size: 1.2rem;
-}
-
-.heroContent code {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-}
-
-.btn {
-  margin-right: 10px;
-}
-.btn:last-child {
-  margin-right: 0;
-}
-
-.logo {
-  width: 200px;
-}
-
-.relationContent {
-  background: var(--ifm-color-emphasis-100);
-  border-radius: 0.5rem;
-  padding: 3rem 3rem;
-  color: var(--ifm-color-emphasis-700);
-  width: 56%;
-  margin: 0 auto;
-}
-[data-theme='dark'] .relationContent {
-  background: var(--ifm-color-emphasis-200);
-}
-
-.quota {
-  font-size: 2rem;
-  line-height: 2rem;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 1rem;
-  }
-  .heroContent {
-    width: 90%;
-  }
-  .heroContent > h1 {
-    font-size: 3.4rem;
-  }
-  .logo {
-    display: none;
-  }
-  .relation {
-    width: 90%;
-  }
-  .codeExample {
-    display: none;
-  }
-  .relationContent {
-    padding: 1rem 2rem;
-    width: auto;
-  }
-}
-
 .announcement {
   margin-top: 2rem;
   background: var(--ifm-color-emphasis-100);
@@ -101,12 +15,12 @@
 .titleGradient {
   background: linear-gradient(
     120deg,
-    #009dff -50%,
-    #d7c383 20%,
+    #d7c383 -50%,
+    #009dff 20%,
     #ff258e 40%,
     #a53eff 70%,
-    #d7c383 90%,
-    #009dff
+    #009dff 90%,
+    #d7c383
   );
   background-clip: text;
   color: transparent;
@@ -126,17 +40,21 @@
 }
 
 /* thanks to https://github.com/chokcoco/iCSS/issues/266 */
-.borderGradient {
+.borderGradient::before {
+  content: '';
+  display: block;
   @apply rounded-2xl w-full h-full pointer-events-none;
   position: absolute;
-  background: linear-gradient(135deg, #2e68ee, #55f6d3, #f655c6, #0f3);
-  padding: 3px;
+  background: linear-gradient(
+    135deg,
+    rgba(47, 108, 244, 1),
+    rgba(85, 246, 211, 0.7),
+    rgba(245, 84, 197, 0.6),
+    rgba(54, 54, 54, 0.2)
+  );
+  padding: 2px;
   -webkit-mask: linear-gradient(#fff 0 100%) content-box, linear-gradient(#fff 0 100%);
   -webkit-mask-composite: xor;
-}
-
-.bgCard {
-  background-image: url('/img/bg-card.png');
 }
 
 .bgTitle {
@@ -146,9 +64,16 @@
   border-radius: 50%;
   transform: translate3d(-25%, -30%, 0);
 }
-
 [data-theme='dark'] .bgTitle {
   background-image: linear-gradient(45deg, #5b38d84f 30%, #32a2ed3f);
+}
+
+.decoratedPurple::before {
+  @apply absolute w-[460px] h-[460px] md:w-[620px] md:h-[620px] bg-[#755FC21A] dark:bg-[#755FC266];
+  content: '';
+  filter: blur(200px);
+  border-radius: 50%;
+  transform: translate(-30%, -30%);
 }
 
 .bgImage {
@@ -159,5 +84,5 @@
   transform: translate(35%, 30%);
 }
 [data-theme='dark'] .bgImage {
-  background: rgba(216, 216, 216, 0.2);
+  background: rgba(216, 216, 216, 0.4);
 }

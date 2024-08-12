@@ -10,6 +10,7 @@ export interface UserDescProps {
   className?: string;
   children?: ReactNode;
   vertical?: boolean;
+  to?: string;
 }
 
 function renderAvatar(avatar: UserDescProps['avatar'], size = 40, radius = 0) {
@@ -32,7 +33,9 @@ export default function UserDescription(props: UserDescProps) {
   const withDirection = (className: string) =>
     (props.vertical ? 'flex-col ' : 'flex-row ') + className;
   return (
-    <div
+    <a
+      href={props.to}
+      target="_blank"
       className={clsx(
         withDirection('flex gap-4 items-center text-base'),
         props.className ?? ''
@@ -42,6 +45,6 @@ export default function UserDescription(props: UserDescProps) {
         <span className="font-semibold">{props.name}</span>
         {props.description ? <span className="text-gray-400">{props.description}</span> : null}
       </div>
-    </div>
+    </a>
   );
 }

@@ -1,4 +1,5 @@
 import Translate from '@docusaurus/Translate';
+import clsx from 'clsx';
 import { ReactNode } from 'react';
 
 interface IntroProps {
@@ -10,15 +11,16 @@ interface IntroProps {
   descTransId?: string;
   children?: ReactNode;
   className?: string;
+  sectionClassName?: string;
 }
 
 export default function Intro(props: IntroProps) {
   return (
-    <div className={`flex flex-col ${props.className}`}>
-      <span className="text-primary text-primary-500 text-md font-bold">
+    <div className={clsx('flex flex-col', props.className)}>
+      <span className={clsx('text-primary-500 text-md font-bold', props.sectionClassName)}>
         <Translate id={props.sectionTransId}>{props.section}</Translate>
       </span>
-      <span className="mt-3 dark:text-white text-3xl font-bold">
+      <span className="mt-3 dark:text-white text-2xl md:text-3xl font-bold">
         <Translate id={props.titleTransId}>{props.title}</Translate>
       </span>
       {props.description ? (

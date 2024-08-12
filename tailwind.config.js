@@ -7,14 +7,13 @@ export default {
     extend: {
       colors: {
         primary: {
-          500: '#1A98FF',
-          600: '#1AA8FF'
-        }
-      },
-      backgroundColor: {
-        primary: {
-          500: '#1A98FF',
-          600: '#1AA8FF'
+          100: '#E2EEF7',
+          500: 'var(--ifm-color-primary)',
+          600: 'var(--ifm-color-primary-dark)',
+          900: '#222E49'
+        },
+        font: {
+          500: '#4C6172'
         }
       }
     }

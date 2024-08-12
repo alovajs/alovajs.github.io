@@ -9,7 +9,7 @@ export const VideoPath = {
 
 export const Strategy: FeatureBlockProps[] = [
   {
-    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
+    type: 'Client',
     title: translate({
       message: 'Pagination Request',
       id: 'homepage.requestStrategy.Pagination Request.title'
@@ -31,7 +31,7 @@ export const Strategy: FeatureBlockProps[] = [
 })`
   },
   {
-    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
+    type: 'Client',
     title: translate({
       message: 'Watch Request',
       id: 'homepage.requestStrategy.Watching Request.title'
@@ -52,7 +52,7 @@ export const Strategy: FeatureBlockProps[] = [
 )`
   },
   {
-    type: translate({ message: 'Server', id: 'theme.featureBlock.server' }),
+    type: 'Server',
     title: translate({
       message: 'Retry Request',
       id: 'homepage.requestStrategy.Retry Request.title'
@@ -72,7 +72,7 @@ export const Strategy: FeatureBlockProps[] = [
 })`
   },
   {
-    type: translate({ message: 'Server', id: 'theme.featureBlock.server' }),
+    type: 'Server',
     title: translate({
       message: 'Rate Limit',
       id: 'homepage.requestStrategy.Rate Limit.title'
@@ -92,7 +92,7 @@ const orderRes = await limit(
 )`
   },
   {
-    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
+    type: 'Client',
     title: translate({
       message: 'Fetch Data',
       id: 'homepage.requestStrategy.Fetch Data.title'
@@ -108,7 +108,7 @@ const orderRes = await limit(
 fetch(getTodoDetail)`
   },
   {
-    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
+    type: 'Client',
     title: translate({
       message: 'Token authentication',
       id: 'homepage.requestStrategy.Token authentication.title'
@@ -137,7 +137,7 @@ const alovaInstance = createAlova({
 })`
   },
   {
-    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
+    type: 'Client',
     title: translate({
       message: 'Form Submission',
       id: 'homepage.requestStrategy.Form Submission.title'
@@ -151,7 +151,7 @@ const alovaInstance = createAlova({
     className: 'col-span-4 row-span-1'
   },
   {
-    type: translate({ message: 'Client', id: 'theme.featureBlock.client' }),
+    type: 'Client',
     title: translate({
       message: 'Auto refresh data',
       id: 'homepage.requestStrategy.Auto refresh data.title'
@@ -169,15 +169,18 @@ const alovaInstance = createAlova({
 export const Project: UserDescProps[] = [
   {
     avatar: '/img/project/nova-admin.png',
-    name: 'Nova-admin'
+    name: 'Nova-admin',
+    to: 'https://github.com/chansee97/nova-admin'
   },
   {
     avatar: '/img/project/ems-esp.png',
-    name: 'EMS-ESP'
+    name: 'EMS-ESP',
+    to: 'https://github.com/emsesp/EMS-ESP32'
   },
   {
     avatar: '/img/project/mall-chat.png',
-    name: 'MallChat'
+    name: 'MallChat',
+    to: 'https://github.com/Evansy/MallChatWeb'
   }
 ];
 
@@ -221,7 +224,7 @@ export const DeveloperComments: UserDescProps[] = [
   },
   {
     avatar: '/img/avatar/ah-jung.png',
-    name: 'Scott Hu',
+    name: 'Ah jung',
     description: 'Developer',
     children: (
       <p>

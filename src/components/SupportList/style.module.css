@@ -2,19 +2,12 @@
   --ifm-spacing-horizontal: 0;
 }
 .framework {
-  padding: 0.6rem 1rem;
-  border: solid 1px var(--ifm-color-emphasis-300);
+  @apply border border-primary-100 dark:border-primary-900;
+  padding: 0.8rem 0;
   border-radius: 0.5rem;
   transition: all 0.3s;
-  font-size: 0.9rem;
-  color: var(--ifm-font-color-secondary);
-  margin-right: 0.8rem;
-  margin-bottom: 0.8rem;
-  background: var(--ifm-color-emphasis-0);
+  font-size: 0.8rem;
   text-decoration: none;
-}
-[data-theme='dark'] .framework {
-  background: var(--ifm-color-emphasis-200);
 }
 .unavailableWrapper {
   background: var(--ifm-color-emphasis-200) !important;
@@ -33,9 +26,8 @@
 .icon {
   width: auto;
   height: 1.6rem;
-  padding: 0 1rem;
   transition: all 0.3s;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.4rem;
 }
 .iconUnavailable {
   filter: grayscale(100%);
