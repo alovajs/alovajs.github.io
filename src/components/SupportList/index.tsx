@@ -205,12 +205,12 @@ export default function Support({ showStatus = false }: Props): JSX.Element {
         'grid grid-cols-1 md:grid-cols-[2fr_auto_1fr] justify-items-center md:items-center',
         styles.wrapper
       )}>
-      {ListView(jsEnvList, 'md:grid-cols-6')}
+      {ListView(jsEnvList, 'md:grid-cols-4 xl:grid-cols-6')}
       <IconFont
         name="plus"
         className="my-6 md:mx-6"
         size={32}></IconFont>
-      {ListView(requestTools, 'md:grid-cols-4')}
+      {ListView(requestTools, 'md:grid-cols-2 xl:grid-cols-3')}
     </div>
   );
 }

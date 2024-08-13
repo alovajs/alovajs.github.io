@@ -258,12 +258,16 @@ export default function Home(): JSX.Element {
                     })}
                     className="dark:bg-[#040f26] items-center h-full w-full rounded-2xl">
                     <div className="flex flex-1 flex-wrap gap-y-4 mt-5 leading-[16px] w-full justify-around text-sm">
-                      <ArrowTextLink to="/tutorial/client/strategy/">
+                      <ArrowTextLink
+                        to="/tutorial/client/strategy/"
+                        keepText>
                         <Translate id="homepage.requestStrategy.More Strategy.Client">
                           Client strategies
                         </Translate>
                       </ArrowTextLink>
-                      <ArrowTextLink to="/tutorial/server/strategy/">
+                      <ArrowTextLink
+                        to="/tutorial/server/strategy/"
+                        keepText>
                         <Translate id="homepage.requestStrategy.More Strategy.Server">
                           Server strategies
                         </Translate>
@@ -386,7 +390,7 @@ export default function Home(): JSX.Element {
 
           {/* Try it NOW */}
           <section className="container mx-auto">
-            <div className="flex flex-col py-10 mt-0 md:mt-20 mb-20 items-center rounded-lg bg-[url(/img/bg-card.svg)] dark:bg-[url(/img/bg-card-dark.svg)]">
+            <div className="flex flex-col py-10 mt-0 md:mt-20 mb-20 px-5 items-center rounded-lg bg-[url(/img/bg-card.svg)] dark:bg-[url(/img/bg-card-dark.svg)]">
               <Intro
                 section={translate({
                   message: 'Try it NOW',

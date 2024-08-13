@@ -5,12 +5,18 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 import CodeBlock from '../CodeBlock';
 
-export function ArrowTextLink(props: { to: string; children: ReactNode }) {
+export function ArrowTextLink(props: { to: string; children: ReactNode; keepText?: boolean }) {
   return (
     <Link
       to={props.to ?? ''}
       className="flex items-center cursor-pointer text-primary-500 dark:text-white">
-      <span className="text-nowrap text-sm md:text-base">{props.children}</span>
+      <span
+        className={clsx(
+          'text-nowrap text-sm md:text-base',
+          props.keepText ? '' : 'hidden min-[480px]:block lg:hidden xl:block'
+        )}>
+        {props.children}
+      </span>
       <Arrow className="ml-2 w-[12px] h-[12px]" />
     </Link>
   );
@@ -29,8 +35,8 @@ export interface FeatureBlockProps {
 
 export default function FeatureBlock(props: FeatureBlockProps) {
   const tagClasses = {
-    client: 'bg-green-400/30 dark:bg-green-700/30 text-green-500',
-    server: 'bg-orange-400/30 text-orange-500'
+    client: 'bg-green-400/30 dark:bg-green-700/30 text-green-500 text-xs',
+    server: 'bg-orange-400/30 text-orange-500 text-xs'
   };
   return (
     <div className={`ctw-card flex flex-col rounded-2xl md:p-8 p-4 ${props.className ?? ''}`}>
@@ -42,7 +48,7 @@ export default function FeatureBlock(props: FeatureBlockProps) {
           {props.type ? (
             <span
               className={clsx(
-                'ml-2 px-3 py-1 rounded-md',
+                'ml-2 px-2 py-1 rounded-md',
                 tagClasses[props.type?.toLowerCase()]
               )}>
               {props.type}
@@ -56,7 +62,6 @@ export default function FeatureBlock(props: FeatureBlockProps) {
         ) : null}
       </div>
       {props.description ? <p className="mt-5">{props.description}</p> : null}
-      {/* <div>code...</div> */}
       {props.snippet ? (
         <CodeBlock
           fontSize={14}
