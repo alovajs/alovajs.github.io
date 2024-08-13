@@ -167,10 +167,7 @@ const uploadFile = (name, filePath, formData) =>
     },
     {
       // 设置请求方式为上传，适配器内将调用uni.uploadFile
-      requestType: 'upload',
-
-      // 开启上传进度
-      enableUpload: true
+      requestType: 'upload'
     }
   );
 
@@ -224,10 +221,7 @@ const App = () => {
       },
       {
         // 设置请求方式为上传，适配器内将调用uni.uploadFile
-        requestType: 'upload',
-
-        // 开启上传进度
-        enableUpload: true
+        requestType: 'upload'
       }
     );
 
@@ -266,10 +260,7 @@ const downloadFile = filePath =>
   alovaInst.Get('/bigImage.jpg', {
     // 设置请求方式为下载，适配器内将调用uni.downloadFile
     requestType: 'download',
-    filePath,
-
-    // 开启下载进度
-    enableDownload: true
+    filePath
   });
 
 const App = () => {
@@ -305,10 +296,7 @@ const App = () => {
     alovaInst.Get('/bigImage.jpg', {
       // 设置请求方式为下载，适配器内将调用uni.downloadFile
       requestType: 'download',
-      filePath,
-
-      // 开启下载进度
-      enableDownload: true
+      filePath
     });
 
   const { loading, data, downloading, send } = useRequest(downloadFile, {

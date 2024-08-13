@@ -107,10 +107,7 @@ Similarly, it is fully compatible with `uni.uploadFile`, you can specify [all co
        {
          // Set the request method to upload, and the adapter will call uni.uploadFile
          requestType: 'upload',
-         fileType: 'image',
-
-         // Start upload progress
-         enableUpload: true
+         fileType: 'image'
        }
      );
 
@@ -151,10 +148,7 @@ Similarly, it is fully compatible with `uni.downloadFile`, you can specify [all 
      alovaInst.Get('/bigImage.jpg', {
        // Set the request method to download, and the adapter will call uni.downloadFile
        requestType: 'download',
-       filePath,
-
-       // Start download progress
-       enableDownload: true
+       filePath
      });
 
    const { loading, data, downloading, send } = useRequest(downloadFile, {

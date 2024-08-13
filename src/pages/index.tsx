@@ -49,7 +49,7 @@ function FeatureButton({
     /* dark state */
     'dark:border-slate-800 dark:bg-transparent',
     /* hover state */
-    'hover:border-white data-[select=true]:border-primary-500'
+    'hover:border-primary-900 dark:hover:border-white data-[select=true]:border-primary-500'
   ].join(' ');
 
   const textStyles = [
