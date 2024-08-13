@@ -5,8 +5,8 @@ import { themes } from 'prism-react-renderer';
 
 const navIcon = (name: string, size = 24) =>
   `<svg aria-hidden="true" width="${size}px" height="${size}px" style="fill: currentcolor; vertical-align: -0.5em;"><use xlink:href="#icon-${name}"></use></svg>`;
-const lightCodeTheme = themes.duotoneLight;
-const darkCodeTheme = themes.oceanicNext;
+const lightCodeTheme = themes.oneLight;
+const darkCodeTheme = themes.oneDark;
 const config: Config = {
   title: 'Alova.JS',
   tagline:
@@ -175,6 +175,7 @@ const config: Config = {
         },
         {
           href: '/img/wechat_qrcode.jpg',
+          target: '_blank',
           position: 'right',
           html: navIcon('wechat')
         },

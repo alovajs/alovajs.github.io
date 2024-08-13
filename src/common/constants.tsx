@@ -1,6 +1,6 @@
 import Translate, { translate } from '@docusaurus/Translate';
-import { FeatureBlockProps } from './_indexComponent/FeatureBlock';
-import { UserDescProps } from './_indexComponent/UserDescription';
+import { FeatureBlockProps } from '../pages/_indexComponent/FeatureBlock';
+import { UserDescProps } from '../pages/_indexComponent/UserDescription';
 
 export const VideoPath = {
   locateApiByUrl: '/video/locate-api.mp4',

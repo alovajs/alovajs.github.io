@@ -8,12 +8,12 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import copy from 'copy-text-to-clipboard';
 import { useState } from 'react';
+import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from '../common/constants';
 import SupportList from '../components/SupportList';
 import FeatureBlock, { ArrowTextLink } from './_indexComponent/FeatureBlock';
 import styles from './_indexComponent/index.module.css';
 import Intro from './_indexComponent/Intro';
 import UserDescription from './_indexComponent/UserDescription';
-import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from './constants';
 
 const buttons = [
   {
@@ -70,7 +70,7 @@ function FeatureButton({
 }
 
 function HomepageHeader() {
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
   return (
     <header className="container mx-auto antialiased text-slate-500 dark:text-slate-400">
       <div className="flex flex-col mx-auto w-full">
@@ -116,17 +116,22 @@ function HomepageHeader() {
               </div>
             </div>
           </div>
-          <div className="relative w-[120%] md:w-1/2 md:max-w-[1000px] right-5 md:-right-10">
+          <div
+            className={clsx(
+              'relative w-[120%] md:w-1/2 md:max-w-[1000px] right-5 md:-right-10',
+              styles.bgImage
+            )}>
             <img
               style={{
                 transform: 'rotate(12deg) skew(-24deg, 0deg)'
               }}
               className="w-full h-auto"
-              src={isDarkTheme ? '/img/header-image-dark.svg' : '/img/header-image.svg'}
+              src={
+                colorMode === 'dark' ? '/img/header-image-dark.svg' : '/img/header-image.svg'
+              }
               alt=""
             />
           </div>
-          <div className={styles.bgImage}></div>
         </div>
       </div>
     </header>
@@ -232,7 +237,7 @@ export default function Home(): JSX.Element {
                 })}
               />
 
-              <div className="w-full flex flex-col md:!grid grid-cols-4 md:grid-cols-12 gap-6">
+              <div className="flex flex-col md:!grid grid-cols-4 md:grid-cols-12 gap-4">
                 {Strategy.map(({ title, type, description, className, snippet, to }) => (
                   <FeatureBlock
                     title={title}

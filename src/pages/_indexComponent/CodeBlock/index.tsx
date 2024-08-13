@@ -8,10 +8,10 @@ interface Props {
 }
 
 export default (props: Props) => {
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
   return (
     <Highlight
-      theme={isDarkTheme ? themes.oneDark : themes.oneLight}
+      theme={colorMode === 'dark' ? themes.oneDark : themes.oneLight}
       code={props.code}
       language="tsx">
       {({ style, tokens, getLineProps, getTokenProps }) => (

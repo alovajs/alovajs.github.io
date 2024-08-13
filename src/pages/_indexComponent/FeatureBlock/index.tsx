@@ -1,3 +1,4 @@
+import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import Arrow from '@site/static/img/arrow.svg';
 import clsx from 'clsx';
@@ -6,13 +7,12 @@ import CodeBlock from '../CodeBlock';
 
 export function ArrowTextLink(props: { to: string; children: ReactNode }) {
   return (
-    <a
-      href={props.to ?? ''}
-      target="_blank"
+    <Link
+      to={props.to ?? ''}
       className="flex items-center cursor-pointer text-primary-500 dark:text-white">
       <span className="text-nowrap text-sm md:text-base">{props.children}</span>
       <Arrow className="ml-2 w-[12px] h-[12px]" />
-    </a>
+    </Link>
   );
 }
 
@@ -36,7 +36,7 @@ export default function FeatureBlock(props: FeatureBlockProps) {
     <div className={`ctw-card flex flex-col rounded-2xl md:p-8 p-4 ${props.className ?? ''}`}>
       <div className="flex flex-wrap items-center text-sm gap-y-[10px]">
         <div className="flex-1 flex">
-          <span className="flex items-center px-3 font-bold bg-primary-100/20 border dark:bg-white/5 border-primary-100 dark:border-primary-900 rounded-full text-nowrap text-xs md:text-base">
+          <span className="flex items-center px-3 font-bold bg-primary-100/20 border dark:bg-white/5 border-primary-100 dark:border-primary-900 rounded-full text-nowrap text-xs md:text-sm">
             {props.title}
           </span>
           {props.type ? (

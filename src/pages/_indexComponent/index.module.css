@@ -76,13 +76,14 @@
   transform: translate(-30%, -30%);
 }
 
-.bgImage {
-  @apply absolute w-full h-full;
-  background: rgba(92, 188, 232, 0.2);
+.bgImage::before {
+  content: '';
+  display: block;
+  @apply absolute top-0 -right-40 w-[460px] h-[460px] md:w-[620px] md:h-[620px];
+  background: rgba(92, 188, 232, 0.1);
   filter: blur(180px);
   border-radius: 50%;
-  transform: translate(35%, 30%);
 }
-[data-theme='dark'] .bgImage {
+[data-theme='dark'] .bgImage::before {
   background: rgba(216, 216, 216, 0.1);
 }
