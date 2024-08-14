@@ -1,10 +1,10 @@
 import Link from '@docusaurus/Link';
-import { useColorMode } from '@docusaurus/theme-common';
 import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Copy from '@site/static/img/copy.svg';
 import Github from '@site/static/img/github.svg';
 import Layout from '@theme/Layout';
+import ThemedImage from '@theme/ThemedImage';
 import clsx from 'clsx';
 import copy from 'copy-text-to-clipboard';
 import { useState } from 'react';
@@ -70,11 +70,10 @@ function FeatureButton({
 }
 
 function HomepageHeader() {
-  const { colorMode } = useColorMode();
   return (
     <header className="container mx-auto antialiased text-slate-500 dark:text-slate-400">
       <div className="flex flex-col mx-auto w-full">
-        <div className="flex flex-col md:flex-row items-center gap-10 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
+        <div className="flex flex-col md:flex-row items-stretch gap-20 md:gap-10 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
           <div className="relative">
             <div className="font-sans md:text-6xl text-4xl font-bold !leading-tight">
               <p className={styles.titleGradient}>
@@ -116,21 +115,22 @@ function HomepageHeader() {
               </div>
             </div>
           </div>
-          <div
-            className={clsx(
-              'relative w-[120%] md:w-1/2 md:max-w-[1000px] right-5 md:-right-10',
-              styles.bgImage
-            )}>
-            <img
-              style={{
-                transform: 'rotate(12deg) skew(-24deg, 0deg)'
-              }}
-              className="w-full h-auto"
-              src={
-                colorMode === 'dark' ? '/img/header-image-dark.svg' : '/img/header-image.svg'
-              }
-              alt=""
-            />
+          <div className="relative w-full md:max-w-[800px] scale-125 sm:scale-100">
+            <div className="relative overflow-hidden min-h-[300px] h-full w-full transform translate-x-[-5%] lg:translate-x-0">
+              {/* do NOT use useColorMode hook: https://github.com/facebook/docusaurus/issues/7986#issuecomment-1921320703 */}
+              <ThemedImage
+                style={{
+                  transform: 'rotate(12deg) skew(-24deg, 0deg)'
+                }}
+                className="absolute top-0 left-0 w-full h-full"
+                alt="Docusaurus themed image"
+                sources={{
+                  light: '/img/header-image.svg',
+                  dark: '/img/header-image-dark.svg'
+                }}
+              />
+            </div>
+            <div className={styles.bgImage}></div>
           </div>
         </div>
       </div>
@@ -164,7 +164,7 @@ export default function Home(): JSX.Element {
         <HomepageHeader></HomepageHeader>
         <main className="mx-auto mt-20 md:mt-40">
           {/* Automatic Generate */}
-          <section className="container mx-auto py-20 flex flex-col md:flex-row gap-16 justify-between">
+          <section className="container mx-auto py-20 flex flex-col lg:flex-row gap-16 justify-between">
             <div className="flex flex-col items-start md:max-w-[500px]">
               <Intro
                 section={translate({
@@ -201,7 +201,7 @@ export default function Home(): JSX.Element {
                 />
               </div>
             </div>
-            <div className="flex-1 max-w-full md:max-w-[800px]">
+            <div className="flex-1 max-w-full lg:max-w-[800px] self-end">
               <div
                 style={{
                   background:
@@ -237,7 +237,7 @@ export default function Home(): JSX.Element {
                 })}
               />
 
-              <div className="flex flex-col md:!grid grid-cols-4 md:grid-cols-12 gap-4">
+              <div className="flex flex-col lg:!grid grid-cols-4 md:grid-cols-12 gap-4">
                 {Strategy.map(({ title, type, description, className, snippet, to }) => (
                   <FeatureBlock
                     title={title}
