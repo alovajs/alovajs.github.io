@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  important: '.use-tailwind',
+  important: true,
+  corePlugins: {
+    preflight: false
+  },
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
@@ -20,4 +23,3 @@ export default {
   },
   plugins: []
 };
-// background: linear-gradient(180deg, #FF72B6 0%, #C685FF 55%, #6CAEFF 100%);

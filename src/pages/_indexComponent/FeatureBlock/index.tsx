@@ -9,7 +9,7 @@ export function ArrowTextLink(props: { to: string; children: ReactNode; keepText
   return (
     <Link
       to={props.to ?? ''}
-      className="flex items-center cursor-pointer text-primary-500 dark:text-white">
+      className="flex items-center cursor-pointer text-primary-500 dark:text-white hover:text-primary-900 dark:hover:text-primary-500">
       <span
         className={clsx(
           'text-nowrap text-sm md:text-base',

@@ -202,7 +202,7 @@ export default function Support({ showStatus = false }: Props): JSX.Element {
   return (
     <div
       className={clsx(
-        'grid grid-cols-1 md:grid-cols-[2fr_auto_1fr] justify-items-center md:items-center',
+        'grid grid-cols-1 md:grid-cols-[2fr_auto_1fr] justify-items-center md:items-center use-tailwind',
         styles.wrapper
       )}>
       {ListView(jsEnvList, 'md:grid-cols-4 xl:grid-cols-6')}

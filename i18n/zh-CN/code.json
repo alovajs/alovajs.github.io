@@ -418,7 +418,7 @@
     "message": "alova创建者"
   },
   "homepage.projects.Scott Hu.comment": {
-    "message": "像fetch和axios这样的请求库使请求变得非常简单，react-query和swr又进一步减少了请求的模板代码。但alova的目标是提供极致的API消耗效率，消除几乎所有的请求工作，实现更高效的客户端-服务器数据交互"
+    "message": "像fetch和axios这样的请求库使请求变得非常简单，react-query和swr又进一步减少了请求的模板代码。但alova的目标是提供极致的API消费效率，消除几乎所有的请求工作，实现更高效的客户端-服务器数据交互"
   },
   "homepage.projects.0x1EC10D.comment": {
     "message": "alova是真的很细致，我看文档的时候每一个点都是痛点，解决了超多问题"

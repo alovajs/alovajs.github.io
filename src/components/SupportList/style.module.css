@@ -2,7 +2,7 @@
   --ifm-spacing-horizontal: 0;
 }
 .framework {
-  @apply border border-primary-100 dark:border-primary-900;
+  @apply border border-solid border-primary-100 dark:border-primary-900;
   padding: 0.8rem 0;
   border-radius: 0.5rem;
   transition: all 0.3s;

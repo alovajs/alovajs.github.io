@@ -80,7 +80,7 @@ function HomepageHeader() {
               <p className={styles.titleGradient}>
                 <Translate id="homepage.title.Creative">Creative</Translate>
               </p>
-              <p className="text-slate-900 tracking-normal dark:text-slate-50">
+              <p className="text-slate-900 tracking-normal dark:text-slate-50 mt-3">
                 <Translate id="homepage.title.Next Generation Request Tool">
                   Next Generation Request Tool
                 </Translate>

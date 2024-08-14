@@ -3,6 +3,7 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+@import './preflight.scss';
 
 /* You can override the default Infima variables here. */
 :root {
@@ -323,14 +324,12 @@ html:not(.docs-wrapper) {
 
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
 
 .use-tailwind {
-  @tailwind base;
-
   * {
     margin: 0;
   }
-
   @layer components {
     .ctw-button-primary {
       transition: background-color 0.2s;

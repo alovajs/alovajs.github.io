@@ -28,7 +28,7 @@ const exampleList = [
 const Examples = () => {
   return (
     <div className="use-tailwind">
-      <div className="grid grid-rows-1 gap-10 gap-y-10 xl:grid-cols-3">
+      <div className="grid grid-rows-1 gap-4 xl:grid-cols-3">
         {exampleList.map(item => (
           <div
             key={item.id}
