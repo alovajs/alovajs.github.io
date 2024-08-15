@@ -38,11 +38,13 @@
   --ifm-color-primary-lighter: #44abff;
   --ifm-color-primary-lightest: #6ebeff;
   --ifm-color-primary-rgb: 26, 152, 255;
+
+  --ifm-background-surface-color: #030e27 !important;
 }
 
 // navbar
 .navbar__items--right .navbar__link {
-  @apply text-font-500 hover:text-black dark:hover:text-white;
+  @apply text-font-500 dark:text-[#94A3B8] hover:text-black dark:hover:text-white;
 }
 .navbar__link {
   font-size: 0.9rem;
@@ -82,11 +84,6 @@ $--icon-size: 20px;
   background-size: contain !important;
   background: url('/img/discord.svg');
 }
-.header-wechat-link {
-  fill: red;
-  color: red;
-  --wechat-color: red;
-}
 .header-wechat-link:before {
   content: '';
   width: $--icon-size;
@@ -109,6 +106,14 @@ html[data-theme='dark'] {
   .header-wechat-link:before {
     background: url('/img/wechat-dark.svg');
   }
+}
+// doc-search
+.doc-search {
+  --docsearch-searchbox-background: transparent;
+  --docsearch-muted-color: theme(colors.font.500);
+}
+html[data-theme='dark'] {
+  --docsearch-muted-color: #94a3b8;
 }
 
 /* sidebar */

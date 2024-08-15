@@ -157,6 +157,7 @@ const config: Config = {
         },
         {
           type: 'search',
+          className: 'doc-search',
           position: 'right'
         },
         {
