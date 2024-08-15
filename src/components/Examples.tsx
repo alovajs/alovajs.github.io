@@ -23,6 +23,13 @@ const exampleList = [
     linkGithub: `https://github.com${linkPartCommon}svelte`,
     linkCodesandbox: `https://codesandbox.io/p/sandbox/github${linkPartCommon}svelte`,
     linkStackblitz: `https://stackblitz.com/fork/github${linkPartCommon}svelte`
+  },
+  {
+    id: 'Server',
+    Image: require('@site/static/img/nodejs.svg').default,
+    linkGithub: `https://github.com${linkPartCommon}server`,
+    linkCodesandbox: `https://codesandbox.io/p/sandbox/github${linkPartCommon}server`,
+    linkStackblitz: `https://stackblitz.com/fork/github${linkPartCommon}server`
   }
 ];
 const Examples = () => {

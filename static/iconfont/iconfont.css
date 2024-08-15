@@ -1,71 +1,78 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4123843 */
-  src: url('iconfont.woff2?t=1723455919209') format('woff2'),
-       url('iconfont.woff?t=1723455919209') format('woff'),
-       url('iconfont.ttf?t=1723455919209') format('truetype');
+  font-family: 'iconfont'; /* Project id 4123843 */
+  src: url('iconfont.woff2?t=1723605787185') format('woff2'),
+    url('iconfont.woff?t=1723605787185') format('woff'),
+    url('iconfont.ttf?t=1723605787185') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shipin:before {
+  content: '\e619';
+}
+
+.icon-wenjian:before {
+  content: '\e600';
+}
+
 .icon-plus:before {
-  content: "\e694";
+  content: '\e694';
 }
 
 .icon-awesome:before {
-  content: "\e6ce";
+  content: '\e6ce';
 }
 
 .icon-position:before {
-  content: "\e6cf";
+  content: '\e6cf';
 }
 
 .icon-github:before {
-  content: "\e644";
+  content: '\e644';
 }
 
 .icon-search:before {
-  content: "\e647";
+  content: '\e647';
 }
 
 .icon-x:before {
-  content: "\e649";
+  content: '\e649';
 }
 
 .icon-arrow:before {
-  content: "\e64b";
+  content: '\e64b';
 }
 
 .icon-discord1:before {
-  content: "\e64c";
+  content: '\e64c';
 }
 
 .icon-arrow-2:before {
-  content: "\e64d";
+  content: '\e64d';
 }
 
 .icon-wechat:before {
-  content: "\e645";
+  content: '\e645';
 }
 
 .icon-language:before {
-  content: "\e646";
+  content: '\e646';
 }
 
 .icon-icon:before {
-  content: "\e6cd";
+  content: '\e6cd';
 }
 
 .icon-square:before {
-  content: "\e6a2";
+  content: '\e6a2';
 }
 
 .icon-weixin:before {
-  content: "\e637";
+  content: '\e637';
 }
-

@@ -1,35 +1,38 @@
 ---
-title: alova instance
+title: Alova Instance
 ---
 
 ## createAlova()
 
-Create an alova instance.
+Create an Alova instance.
 
-- **type**
+- **Type**
 
 ```ts
 function createAlova(options?: AlovaOptions): Alova;
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. config: configuration parameters
+1. config: Configuration parameters
 
-| Parameter name | Type                        | Description                                                                                                 |
-| -------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| baseURL        | string                      | Base path, empty by default, [View details](/tutorial/getting-started/basic/alova)                          |
-| statesHook     | object                      | State management hook, optional, [View details](/tutorial/getting-started/basic/combine-framework)          |
-| requestAdapter | object                      | Request adapter, required, [View details](/tutorial/advanced/custom/http-adapter)                           |
-| timeout        | number                      | Timeout time, no timeout by default, [View details](/tutorial/getting-started/basic/alova)                  |
-| cacheFor       | object                      | Local cache configuration, default GET has 5000ms cache, [View details](/tutorial/cache/mode)               |
-| storageAdapter | object                      | Local storage adapter, default is `localStorage`, [View details](/tutorial/advanced/custom/storage-adapter) |
-| beforeRequest  | function                    | Before request hook, [View details](/tutorial/getting-started/basic/global-interceptor)                     |
-| responded      | object \| function          | Request response hook, [View details](/tutorial/getting-started/basic/global-interceptor)                   |
-| shareRequest   | boolean                     | Share request, [View details](/tutorial/getting-started/basic/alova)                                        |
-| cacheLogger    | boolean \| null \| function | Cache log, [View details](/tutorial/advanced/in-depth/cache-logger)                                         |
+| Parameter name | Type                        | Description                                                                                                             |
+| -------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| requestAdapter | object                      | Request adapter, required, [View details](/tutorial/advanced/custom/http-adapter)                                       |
+| id             | string \| number            | Alova instance id, optional, [View details](/tutorial/cache/mode#%E8%AE%BE%E7%BD%AE-alova-id)                           |
+| baseURL        | string                      | Base path, optional, default is empty, [View details](/tutorial/getting-started/basic/alova)                            |
+| statesHook     | object                      | State management hook, optional, [see details](/tutorial/getting-started/basic/combine-framework)                       |
+| timeout        | number                      | Timeout, default is no timeout, [see details](/tutorial/getting-started/basic/alova)                                    |
+| cacheFor       | object                      | Local cache configuration, default GET has 5000ms cache, [see details](/tutorial/cache/mode)                            |
+| l1Cache        | object                      | Level1 cache adapter [see details](/tutorial/cache/mode)                                                                |
+| l2Cache        | object                      | Level2 cache adapter, [see details](/tutorial/cache/mode)                                                               |
+| beforeRequest  | function                    | Before request hook, [see details](/tutorial/getting-started/basic/global-interceptor)                                  |
+| responded      | object \| function          | Request response hook, [see details](/tutorial/getting-started/basic/global-interceptor)                                |
+| shareRequest   | boolean                     | Share request, [see details](/tutorial/getting-started/basic/alova)                                                     |
+| cacheLogger    | boolean \| null \| function | Cache log, [see details](/tutorial/advanced/in-depth/cache-logger)                                                      |
+| snapshots      | number                      | method The number of snapshots is limited, the default is 1000, [see details](/tutorial/client/in-depth/method-matcher) |
 
-- **return**
+- **Return**
 
 Alova instance
 
@@ -37,8 +40,8 @@ Alova instance
 
 ```ts
 import { createAlova } from 'alova';
-import adapterFetch from 'alova/fetch';
 import VueHook from 'alova/vue';
+import adapterFetch from 'alova/fetch';
 
 const alova = createAlova({
   baseURL: 'https://example.com',
@@ -51,15 +54,15 @@ const alova = createAlova({
 
 ## alova.id
 
-The alova instance id is used to distinguish different alova instances. It can accurately match the method instance of the specified alova in [method instance matcher](/tutorial/client/in-depth/method-matcher).
+alova instance id, used to distinguish different alova instances, can be used to accurately match the method instance of the specified alova in the [method matcher](/tutorial/client/in-depth/method-matcher).
 
 - **Type**: string
 
 ## alova.options
 
-When creating an alova instance through `createAlova`, the default configuration is merged with the passed-in configuration object.
+When creating an alova instance through `createAlova`, the object after the default configuration is merged with the passed in configuration object.
 
-- **type**
+- **Type**
 
 ```ts
 interface AlovaOptions {
@@ -68,34 +71,53 @@ interface AlovaOptions {
   baseURL?: string;
   timeout?: number;
   cacheFor?: GlobalcacheForConfig;
-  storageAdapter?: AlovaStorageAdapter;
+  l1Cache?: AlovaStorageAdapter;
+  l2Cache?: AlovaStorageAdapter;
   beforeRequest?: Function;
   responded?: Function | ResponsedHandlerRecord;
   shareRequest?: boolean;
-  errorLogger?: boolean | null | Function;
   cacheLogger?: boolean | null | Function;
+  snapshots?: number;
 }
 ```
 
-## alova.storage
+## alova.l1Cache
 
-The storage adapter instance corresponding to the alova instance defaults to `AlovaGlobalStorage`, which uses `localStorage`.
+The level1 cache adapter corresponding to the alova instance, the default is memory cache.
 
-- **type**
+- **Type**
 
 ```ts
 interface AlovaStorageAdapter {
   get(key: string): any;
   set(key: string, value: any): void;
   remove(key: string): void;
+  clear(): void;
 }
 ```
 
-## alova.Get()
+## alova.l2Cache
 
-Create a method instance for the GET request.
+The level2 cache adapter corresponding to the alova instance. The default value is `localStorage` in the client, and there is no adapter on the server by default.
 
-- **type**
+- **Type**
+
+```ts
+interface AlovaStorageAdapter {
+  get(key: string): any;
+  set(key: string, value: any): void;
+  remove(key: string): void;
+  clear(): void;
+}
+```
+
+## alova.snapshots
+
+The method snapshot storage of the current instance.
+
+- **Type** `ts class MethodSnapshotContainer<AG extends AlovaGenerics> { records: Record<string, Set<Method<AG>>>; capacity: number; occupy: number; save(methodInstance: Method<AG>): void; match<M extends boolean = true>( matcher: MethodFilter<AG>, matchAll?: M ): M extends true ? Method<AG>[] : Method<AG> | undefined; } ` ## al ova.Get() creates a method instance for a GET request.
+
+- **Type**
 
 ```ts
 interface Alova {
@@ -103,25 +125,26 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
 2. config: configuration parameters
 
-| Parameter name | Type           | Description                                                                                                                                                                                                                                                                                                                    |
-| -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| headers        | object         | Request headers, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                        |
-| params         | object         | Request parameters, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                     |
-| name           | string         | method object name, in [updateState](/tutorial/client/in-depth/update-across-components), [invalidateCache](/tutorial/cache/manually-invalidate), [setCache](/tutorial/cache/set-and-query), and [fetch function](/tutorial/client/strategy/use-fetcher), you can obtain the corresponding method instance by name or wildcard |
-| timeout        | number         | Request timeout, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                        |
-| cacheFor       | cacheForConfig | Response cache time, [View details](/tutorial/cache/mode)                                                                                                                                                                                                                                                                      |
-| hitSource      | string         | Hit the source method instance. When the source method instance request is successful, the cache of the current method instance will be invalidated. [View details](/tutorial/cache/auto-invalidate)                                                                                                                           |
-| transform      | function       | Transform response data, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                |
-| shareRequest   | boolean        | Request-level sharing request switch, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                   |
+| Parameter name | Type           | Description                                                                                                                                                                                                                                                                                                                 |
+| -------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| headers        | object         | Request header, [see details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                       |
+| params         | object         | Request parameters, [see details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                   |
+| name           | string         | Method object name. In [updateState](/tutorial/client/in-depth/update-across-components), [invalidateCache](/tutorial/cache/manually-invalidate), [setCache](/tutorial/cache/set-and-query), and [fetch function](/tutorial/client/strategy/use-fetcher), you can get the corresponding method instance by name or wildcard |
+| timeout        | number         | Request timeout, [see details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                      |
+| cacheFor       | cacheForConfig | Response cache time, [see details](/tutorial/cache/mode)                                                                                                                                                                                                                                                                    |
+| hitSource      | string         | Hit the source method instance. When the source method instance request succeeds, the cache of the current method instance will be invalidated. [View details](/tutorial/cache/auto-invalidate)                                                                                                                             |
+| transform      | function       | Transform response data. [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                             |
+| shareRequest   | boolean        | Request-level shared request switch. [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                 |
+| meta           | any            | method metadata. [View details](/tutorial/getting-started/basic/method-metadata)                                                                                                                                                                                                                                            |
 
 > In addition to the configurable parameters above, other parameters supported by the request adapter are also supported.
 
-- **return**
+- **Return**
 
 method instance
 
@@ -130,7 +153,7 @@ method instance
 ```ts
 const getUsers = alovaInstance.Get('/users', {
   params: {
-    ID: 1
+    id: 1
   }
   // ...
 });
@@ -138,9 +161,9 @@ const getUsers = alovaInstance.Get('/users', {
 
 ## alova.Post()
 
-Create a method instance for the POST request.
+Create a method instance for a POST request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Alova {
@@ -152,13 +175,15 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
-2. data: request body
-3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
+2. data: request body
+
+3. config: configuration parameters, parameter type is the same as [alova.Get](#alovaget)
+
+- **Return**
 
 method instance
 
@@ -180,9 +205,9 @@ const postUsers = alovaInstance.Post(
 
 ## alova.Delete()
 
-Create a method instance for the DELETE request.
+Create a method instance for a DELETE request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Alova {
@@ -194,13 +219,15 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
-2. data: request body
-3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
+2. data: request body
+
+3. config: configuration parameters, parameter type is the same as [alova.Get](#alovaget)
+
+- **Return**
 
 method instance
 
@@ -210,7 +237,7 @@ method instance
 const deleteUsers = alovaInstance.Delete(
   '/deleteUser',
   {
-    ID: 1
+    id: 1
   },
   {
     // Configuration parameters...
@@ -220,9 +247,9 @@ const deleteUsers = alovaInstance.Delete(
 
 ## alova.Put()
 
-Create a method instance for the PUT request.
+Create a method instance for a PUT request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Alova {
@@ -234,13 +261,15 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
-2. data: request body
-3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
+2. data: request body
+
+3. config: configuration parameters, parameter type is the same as [alova.Get](#alovaget)
+
+- **Return**
 
 method instance
 
@@ -261,9 +290,9 @@ const putUsers = alovaInstance.Put(
 
 ## alova.Head()
 
-Create a method instance of the HEAD request.
+Create a method instance for HEAD request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Alova {
@@ -271,12 +300,12 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
-2. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+2. config: configuration parameters, parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
+- **Return**
 
 method instance
 
@@ -284,7 +313,7 @@ method instance
 
 Create a method instance for the PATCH request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Alova {
@@ -296,21 +325,23 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
-2. data: request body
-3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
+2. data: request body
+
+3. config: configuration parameters, parameter type is the same as [alova.Get](#alovaget)
+
+- **Return**
 
 method instance
 
 ## alova.Options()
 
-Create a method instance of the OPTIONS request.
+Create a method instance for OPTIONS request.
 
-- **type**
+- **Type**
 
 ```ts
 interface Alova {
@@ -318,11 +349,11 @@ interface Alova {
 }
 ```
 
-- **Parameters**
+- **Parameter**
 
 1. url: request address
-2. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
+2. config: configuration parameters, parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
+- **Return**
 
 method instance

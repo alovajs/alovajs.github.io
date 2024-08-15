@@ -9,9 +9,11 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import quickStartGET from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/get.js';
 import quickStartPOST from '!!raw-loader!@site/codesandbox/01-getting-started/02-first-request/post.js';
 
-:::tip 示例提示
+:::tip
 
 如果你还未了解 alova，推荐你先阅读 [alova 介绍](/tutorial/getting-started/introduce)。
+
+并且我们提供了一个[5 分钟快速入门视频](/video-tutorial)，让你飞速掌握 alova。
 
 :::
 

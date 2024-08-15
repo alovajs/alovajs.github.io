@@ -1,35 +1,37 @@
 ---
-title: Global configuration
+title: Global Configuration
 ---
 
 ## globalConfig()
 
-Global configuration.
+Global Configuration.
 
-- **type**
+- **Type**
 
 ```ts
 function globalConfig(config: AlovaGlobalConfig): void;
 ```
 
-- **Parameters**
+- **Parameter**
 
-1. config: configuration
+1. config: Configuration
 
-| Parameter name | Type   | Description                                                                                                                        |
-| -------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| limitSnapshots | number | method snapshot number limit, set to 0 to disable saving snapshots. After closing, the method snapshot matcher will be unavailable |
+| Parameter name | Type                          | Description                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| autoHitCache   | 'global' \| 'self' \| 'close' | Default is `global`, `global` means that cache can be invalidated across multiple Alova instances, `self` means that only the cache of the current Alova instance is invalidated, and `close` means that the automatic invalidation cache is turned off |
+| ssr            | boolean \| undefined          | Default is `undefined`, which means that it is up to alova to determine whether it is running on the server.                                                                                                                                            |
 
-- **return**
+- **Return**
 
-none
+None
 
 - **Example**
 
-```ts
+```js
 import { globalConfig } from 'alova';
 
 globalConfig({
-  limitSnapshots: 10
+  autoHitCache: 'self',
+  ssr: true
 });
 ```

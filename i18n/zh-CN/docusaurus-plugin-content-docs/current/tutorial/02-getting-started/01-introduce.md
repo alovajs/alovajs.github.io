@@ -6,10 +6,12 @@ import Link from '@docusaurus/Link';
 import NavCard from '@site/src/components/NavCard';
 import Examples from '@site/src/components/Examples';
 import SupportList from '@site/src/components/SupportList';
+import tts from '@site/static/audio/tts.mp3';
+import AudioPlayer from '@site/src/components/AudioPlayer';
 
 ## alova 是什么？
 
-alova 是一个创新的下一代请求工具，帮你极致地提升 API 使用效率，节约大脑。将服务端接口集成到前端项目简化为只有 1 步。
+alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个创新的下一代请求工具，帮你极致地提升 API 使用效率，节约大脑。将服务端接口集成到前端项目简化为只有 1 步。
 
 ![](/img/overview_flow_cn.png)
 
@@ -85,6 +87,11 @@ alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它�
 
 <Examples />
 
+## 迁移指南
+
+- [从 v2 迁移到 v3](/tutorial/project/migration/v2-to-v3)
+- [从 axios 低成本迁移到 alova 的指南](/tutorial/project/migration/from-axios)
+
 ## 脚手架推荐
 
 <NavCard list={[
@@ -132,16 +139,21 @@ target: '__blank'
 
 在参与贡献前，请务必详细阅读 [贡献指南](/contributing/overview)，以保证你的有效贡献。
 
-## 开始
+## 让我们开始吧
 
 接下来，我们将从最简单的请求开始，再到请求策略的讲解，了解 alova 如何简化你的工作，再深入到进阶指南，以及在实际项目中总结的最佳实践。
 
-让我们开始学习发送第一个请求吧！
+让我们开始学习 alova 吧！
 
 <NavCard list={[
 {
-title: '第一个请求',
-desc: '尝试使用 alova 发送第一个请求',
-link: '/tutorial/getting-started/quick-start',
+title: '5 分钟快速入门视频',
+desc: '在 5 分钟内学会使用 alova',
+link: '/video-tutorial'
+},
+{
+title: '快速开始文档',
+desc: '更详细地学习 alova，自由掌控学习时间',
+link: '/tutorial/getting-started/quick-start'
 }
 ]}></NavCard>

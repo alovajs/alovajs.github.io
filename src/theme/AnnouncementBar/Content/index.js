@@ -32,6 +32,11 @@ export default function AnnouncementBarContent(props) {
           to="/tutorial/getting-started/introduce">
           <Translate id="announcement.btn2">v3.0 Tutorial</Translate>
         </Link>
+        <Link
+          className={styles.announceButton}
+          to="/tutorial/project/migration/v2-to-v3">
+          <Translate id="announcement.btn3">Migrate to v3.0</Translate>
+        </Link>
       </div>
     </div>
   );

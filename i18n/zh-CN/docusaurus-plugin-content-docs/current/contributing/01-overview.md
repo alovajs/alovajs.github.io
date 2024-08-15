@@ -38,7 +38,7 @@ title: 贡献指南
 
 alova 的使命为它指出了明确的发展方向，它清晰地定义了 alova 什么应该做。
 
-alova 是一个轻量级的请求策略库，**它的使命就是让开发者在编写少量代码的同时，也能实现更高效地 Client-Server 数据交互**。
+alova 是一个以全 JS 环境可运行的，请求策略为主要方向的请求工具，主要帮助开发者极致地减少 API 的消费流程，提升效率，我们认为这是下一代请求工具的方向，**它的使命就是让开发者在编写少量代码的同时，也能实现更高效地 Client-Server 数据交互**。
 
 对于开发者来说，alova 为他们提供了简单的 api 和开箱即用的高级请求功能，以及各种简单的、高性能的请求策略模块，对于应用的用户来说，它们可以享受到 alova 的高性能数据交互带来的流畅体验，因此，alova 具备了以下特性：
 
@@ -54,8 +54,8 @@ alova 是一个轻量级的请求策略库，**它的使命就是让开发者在
 设计理念指出了它应该如何设计，以下为 alova 的核心设计理念。
 
 1. Method 代理设计，高聚合、平台无关的设计，贯穿请求始终，你在任意请求函数中都应该可以访问到它，从另一个角度说，与请求相关的信息也应该被放在 method 实例中;
-2. 轻量级，在编码中尽量保持源码简洁，例如避免重复代码、合并变量声明、原型链函数封装、无相似 api、tree shaking，但长变量名是被允许的，因为在编译时它将会被单个字母替代;
-3. 高扩展性设计，其一，alova 的设计中大量使用了适配器模式和钩子函数，例如适配器有`requestAdapter`、`storageAdapter`等，钩子函数有`beforeRequest`、`reseponded`、`transform`、`cacheFor`等，而且大多存在默认行为，这样设计的目的是为了在保留高扩展性的同时，使用也足够简单；其二，全局请求参数可覆盖，例如`timeout`、`shareRequest`等，对于特别的请求可单独设置这些参数。
+2. state 代理设计，这是我们实现 UI 框架无关的关键技术，它可以让 alova 的 useHooks 在不同 UI 框架中运行，因此在编写 useHooks 时请使用 state 代理;
+3. 高扩展性设计，其一，alova 的设计中大量使用了适配器模式和钩子函数，例如适配器有`requestAdapter`、`l1Cache/l2Cache`等，钩子函数有`beforeRequest`、`reseponded`、`transform`、`cacheFor`等，而且大多存在默认行为，这样设计的目的是为了在保留高扩展性的同时，使用也足够简单；其二，全局请求参数可覆盖，例如`timeout`、`shareRequest`等，对于特别的请求可单独设置这些参数。
 4. api 设计具有普适性，其一，它表示此 api 的功能具有较高的抽象层级，而不是针对某一个具体业务而提出的；其二，api 设计具有可扩展性，以适应 api 的迭代
 
 > api 普适性设计仅适用于 alova 库，如果你正在构思一个请求策略，那么可以根据具体业务来设计。
@@ -118,13 +118,13 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 自定义各类适配器以满足不同环境下的运行要求，以下几个方向可供参考：
 
 1. 自定义 statesHook，满足在不同 UI 框架下执行，例如`solid/qwik`，目前内置支持`react/vue/svelte`，请阅读[自定义 statesHook](/tutorial/advanced/custom/stateshook)；
-2. 自定义请求适配器，让 alova 可以与更多请求方案协作，例如`GraphQL/SSE`等；
-3. 自定义存储适配器，满足不同环境的存储，例如`react-native`；
-4. 以上任意的组合，例如官方的[uniapp 适配器](https://github.com/alovajs/adapter-uniapp)，其中包含了请求适配器、存储适配器。
+2. 自定义请求适配器，让 alova 可以与更多请求方案协作，例如`GraphQL/SSE`等，请阅读[自定义请求适配器](/tutorial/advanced/custom/http-adapter)；
+3. 自定义存储适配器，满足不同环境的存储，例如`react-native`，请阅读[自定义存储适配器](/tutorial/advanced/custom/storage-adapter)；
+4. 以上任意的组合，例如官方的[uniapp 适配器](https://github.com/alovajs/alova/tree/main/packages/adapter-uniapp)，其中包含了请求适配器、存储适配器。
 
 #### 自定义请求策略
 
-请求策略可以帮助开发者更高效地编写出高性能功能，虽然官方的 [alova/scene](/tutorial/client/strategy) 提供了一些常用的请求策略，但还不足以满足广大开发者各种请求相关的业务场景，基于 alova 自定义你自己的可复用请求策略是一个不错的选择，也可以将它们发布到 npm 上给大家使用。
+请求策略可以帮助开发者更高效地编写出高性能功能，虽然官方的 [alova/client](/tutorial/client/strategy) 和[alova/server](/tutorial/server/strategy)提供了一些常用的请求策略，但还不足以满足广大开发者各种请求相关的业务场景，基于 alova 自定义你自己的可复用请求策略是一个不错的选择，也可以将它们发布到 npm 上给大家使用，请阅读[自定义客户端策略](/tutorial/advanced/custom/client-strategy)和[自定义服务端策略](/tutorial/advanced/custom/server-strategy)。
 
 :::tip 提交你的项目
 
@@ -134,7 +134,7 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 
 ### 参与社区交流/PR review
 
-如果你对技术交流感兴趣，那么参与更多的社区交流可能更适合你，你可以在 Github issues 中参与 bug 和新特性的讨论，也可以在[Github Disscussion](https://github.com/alovajs/alova/discussions)中、[Discord](https://discord.gg/S47QGJgkVb)或[QQ 频道](https://pd.qq.com/s/1cdjx0nnw)中为别人解答问题，这可以让你与世界各地的人交流，是一件很有趣的事情。
+如果你对技术交流感兴趣，那么参与更多的社区交流可能更适合你，你可以在 Github issues 中参与 bug 和新特性的讨论，也可以在[Github Disscussion](https://github.com/alovajs/alova/discussions)中、[Discord](https://discord.gg/S47QGJgkVb)或[微信群聊](/img/wechat_qrcode.jpg)中为别人解答问题，这可以让你与世界各地的人交流，是一件很有趣的事情。
 
 同时，你也可以在[pull request](https://github.com/alovajs/alova/pulls)中参与 PR review，这也是一种交流的主题。
 
@@ -158,7 +158,7 @@ alova 提供了高扩展特性，你可以基于它编写自己的 js 库。
 
 您可以在以下三个渠道为项目捐赠，捐赠特权说明请进入捐赠页面查看。
 
-1. [Github sponsors](https://github.com/alovajs)
+1. [Github sponsors](https://github.com/sponsors/alovajs)
 2. [OpenCollective](https://opencollective.com/alova)
 3. [afdian](https://afdian.net/a/huzhen555)
 

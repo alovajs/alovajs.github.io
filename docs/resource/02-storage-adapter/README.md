@@ -1,5 +1,5 @@
 ---
-title: 存储适配器
+title: Storage Adapter
 ---
 
 import DocCardList from '@theme/DocCardList';
