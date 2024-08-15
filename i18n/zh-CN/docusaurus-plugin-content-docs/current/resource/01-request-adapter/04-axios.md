@@ -127,10 +127,7 @@ const App = () => {
 const uploadFile = imageFile => {
   const formData = new FormData();
   formData.append('file', imageFile);
-  return alovaInst.Post('/uploadImg', formData, {
-    // 开启上传进度
-    enableUpload: true
-  });
+  return alovaInst.Post('/uploadImg', formData);
 };
 
 const {
@@ -150,13 +147,11 @@ const handleImageChoose = ({ target }) => {
 
 ### 下载
 
-将请求 url 指向文件地址即可下载，你也可以通过将`enableDownload`设置为 true 来开启下载进度。
+将请求 url 指向文件地址即可下载。
 
 ```javascript
 const downloadFile = () =>
   alovaInst.Get('/bigImage.jpg', {
-    // 开启下载进度
-    enableDownload: true,
     responseType: 'blob'
   });
 

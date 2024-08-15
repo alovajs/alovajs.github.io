@@ -3,16 +3,17 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+@import './preflight.scss';
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #0e42ee;
-  --ifm-color-primary-dark: #0d3bd6;
-  --ifm-color-primary-darker: #0c38ca;
-  --ifm-color-primary-darkest: #0a2ea7;
-  --ifm-color-primary-light: #2353f2;
-  --ifm-color-primary-lighter: #2f5cf3;
-  --ifm-color-primary-lightest: #5378f5;
+  --ifm-color-primary: #1a98ff;
+  --ifm-color-primary-dark: #008bfd;
+  --ifm-color-primary-darker: #0083ef;
+  --ifm-color-primary-darkest: #006cc5;
+  --ifm-color-primary-light: #36a5ff;
+  --ifm-color-primary-lighter: #44abff;
+  --ifm-color-primary-lightest: #6ebeff;
   --ifm-blockquote-color: var(--ifm-color-gray-600);
   --ifm-font-family-base: Inter, system-ui, sans-serif;
   --ifm-heading-font-family: Inter, system-ui, sans-serif;
@@ -21,7 +22,7 @@
   --ifm-alert-shadow: none;
   --ifm-menu-link-padding-vertical: 0.3rem;
   --ifm-navbar-shadow: none;
-  --ifm-color-primary-rgb: 14, 66, 238;
+  --ifm-color-primary-rgb: 26, 152, 255;
   --docusaurus-highlighted-code-line-bg: rgba(255, 217, 120, 0.2);
 
   --docusaurus-announcement-bar-height: auto !important;
@@ -29,57 +30,90 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #4c6dd6;
-  --ifm-color-primary-dark: #345ad1;
-  --ifm-color-primary-darker: #2e53c9;
-  --ifm-color-primary-darkest: #2644a5;
-  --ifm-color-primary-light: #6480db;
-  --ifm-color-primary-lighter: #6f8ade;
-  --ifm-color-primary-lightest: #93a7e6;
-  --ifm-color-primary-rgb: 76, 109, 214;
+  --ifm-color-primary: #1a98ff;
+  --ifm-color-primary-dark: #008bfd;
+  --ifm-color-primary-darker: #0083ef;
+  --ifm-color-primary-darkest: #006cc5;
+  --ifm-color-primary-light: #36a5ff;
+  --ifm-color-primary-lighter: #44abff;
+  --ifm-color-primary-lightest: #6ebeff;
+  --ifm-color-primary-rgb: 26, 152, 255;
+
+  --ifm-background-surface-color: #030e27 !important;
 }
 
-@tailwind utilities;
+// navbar
+.navbar__items--right .navbar__link {
+  @apply text-font-500 dark:text-[#94A3B8] hover:text-black dark:hover:text-white;
+}
+.navbar__link {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+$--icon-size: 20px;
 
 /* GitHub */
-.header-github-link:hover {
-  &:hover {
-    opacity: 0.6;
-  }
-  &::before {
+.icon-github {
+  width: $--icon-size;
+  height: $--icon-size;
+}
+.header-github-link {
+  &:before {
     content: '';
-    width: 24px;
-    height: 24px;
+    width: $--icon-size;
+    height: $--icon-size;
     display: flex;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-      no-repeat;
+    background: url('/img/github.svg');
   }
 }
-.header-x-link:before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background-size: contain !important;
-  background: url('/img/x.svg');
+.header-x-link {
+  &:before {
+    content: '';
+    width: $--icon-size;
+    height: $--icon-size;
+    display: flex;
+    background-size: contain !important;
+    background: url('/img/x.svg');
+  }
 }
 .header-discord-link:before {
   content: '';
-  width: 24px;
-  height: 24px;
+  width: $--icon-size;
+  height: $--icon-size;
   display: flex;
   background-size: contain !important;
   background: url('/img/discord.svg');
 }
+.header-wechat-link:before {
+  content: '';
+  width: $--icon-size;
+  height: $--icon-size;
+  display: flex;
+  background-size: contain !important;
+  background: url('/img/wechat.svg');
+}
 // dark mode icons
 html[data-theme='dark'] {
   .header-github-link:before {
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-      no-repeat;
+    background: url('/img/github.svg');
   }
   .header-x-link:before {
     background: url('/img/x-dark.svg');
   }
+  .header-discord-link:before {
+    background: url('/img/discord-dark.svg');
+  }
+  .header-wechat-link:before {
+    background: url('/img/wechat-dark.svg');
+  }
+}
+// doc-search
+.doc-search {
+  --docsearch-searchbox-background: transparent;
+  --docsearch-muted-color: theme(colors.font.500);
+}
+html[data-theme='dark'] {
+  --docsearch-muted-color: #94a3b8;
 }
 
 /* sidebar */
@@ -274,4 +308,69 @@ table {
 }
 .flex-1 {
   flex: 1;
+}
+
+@media (max-width: 1250px) {
+  .navbar__item {
+    display: none;
+  }
+}
+
+// 仅改变主页的样式
+html:not(.docs-wrapper) {
+  &[data-theme='dark'] {
+    background-color: #040f26;
+  }
+
+  .navbar__inner {
+    background-color: transparent;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+@tailwind base;
+
+.use-tailwind {
+  * {
+    margin: 0;
+  }
+  @layer components {
+    .ctw-button-primary {
+      transition: background-color 0.2s;
+      @apply box-content leading-[40px] h-[40px] px-5 text-white z-10 relative cursor-pointer text-base mt-3 md:mt-6 rounded-lg bg-primary-500  border-[1.5px] border-transparent font-bold;
+
+      @apply dark:bg-primary-500;
+
+      &:hover {
+        @apply hover:bg-primary-600;
+        // dark
+        @apply dark:hover:bg-primary-600;
+      }
+    }
+
+    .ctw-button-secondary {
+      transition: color 0.2s, border-color 0.2s;
+      @apply box-content leading-[40px] h-[40px] px-5 z-10 relative cursor-pointer text-base mt-3 md:mt-6 rounded-lg border-[2px] border-primary-100 font-bold;
+      // dark
+      @apply dark:text-font-500 dark:border-white/15;
+
+      &:hover {
+        @apply opacity-100 border-gray-700 text-gray-700;
+        // dark
+        @apply dark:hover:border-white dark:hover:text-white;
+      }
+    }
+
+    .ctw-link {
+      transition: color 0.2s;
+      @apply text-gray-400 hover:text-gray-700 cursor-pointer;
+      @apply dark:text-gray-400 dark:hover:text-gray-200;
+    }
+
+    .ctw-card {
+      @apply bg-white;
+      @apply dark:bg-white/5;
+    }
+  }
 }

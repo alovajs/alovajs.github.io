@@ -139,16 +139,21 @@ target: '__blank'
 
 在参与贡献前，请务必详细阅读 [贡献指南](/contributing/overview)，以保证你的有效贡献。
 
-## 开始
+## 让我们开始吧
 
 接下来，我们将从最简单的请求开始，再到请求策略的讲解，了解 alova 如何简化你的工作，再深入到进阶指南，以及在实际项目中总结的最佳实践。
 
-让我们开始学习发送第一个请求吧！
+让我们开始学习 alova 吧！
 
 <NavCard list={[
 {
-title: '第一个请求',
-desc: '尝试使用 alova 发送第一个请求',
-link: '/tutorial/getting-started/quick-start',
+title: '5 分钟快速入门视频',
+desc: '在 5 分钟内学会使用 alova',
+link: '/video-tutorial'
+},
+{
+title: '快速开始文档',
+desc: '更详细地学习 alova，自由掌控学习时间',
+link: '/tutorial/getting-started/quick-start'
 }
 ]}></NavCard>

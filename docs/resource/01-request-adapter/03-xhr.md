@@ -192,10 +192,7 @@ Use `FormData` to upload files, and this `FormData` instance will be sent to the
 const uploadFile = imageFile => {
   const formData = new FormData();
   formData.append('file', imageFile);
-  return alovaInst.Post('/uploadImg', formData, {
-    // Start upload progress
-    enableUpload: true
-  });
+  return alovaInst.Post('/uploadImg', formData);
 };
 
 const {
@@ -215,13 +212,11 @@ const handleImageChoose = ({ target }) => {
 
 ### download
 
-Point the request url to the file address to download, you can also enable the download progress by setting `enableDownload` to true.
+Point the request url to the file address to download.
 
 ```javascript
 const downloadFile = () =>
   alovaInst.Get('/bigImage.jpg', {
-    // Start download progress
-    enableDownload: true,
     responseType: 'blob'
   });
 

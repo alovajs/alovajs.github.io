@@ -1,79 +1,78 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4123843 */
-  src: url('iconfont.woff2?t=1720688003960') format('woff2'),
-       url('iconfont.woff?t=1720688003960') format('woff'),
-       url('iconfont.ttf?t=1720688003960') format('truetype');
+  font-family: 'iconfont'; /* Project id 4123843 */
+  src: url('iconfont.woff2?t=1723605787185') format('woff2'),
+    url('iconfont.woff?t=1723605787185') format('woff'),
+    url('iconfont.ttf?t=1723605787185') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-icon:before {
-  content: "\e6cd";
+.icon-shipin:before {
+  content: '\e619';
 }
 
-.icon-github:before {
-  content: "\e66f";
-}
-
-.icon-square:before {
-  content: "\e6a2";
-}
-
-.icon-kaishi:before {
-  content: "\e63e";
-}
-
-.icon-weixin:before {
-  content: "\e637";
-}
-
-.icon-aixin:before {
-  content: "\e85c";
-}
-
-.icon-discord:before {
-  content: "\ebf8";
-}
-
-.icon-a-logoline1:before {
-  content: "\e62b";
-}
-
-.icon-a-logoline:before {
-  content: "\e62c";
+.icon-wenjian:before {
+  content: '\e600';
 }
 
 .icon-plus:before {
-  content: "\e62d";
+  content: '\e694';
 }
 
-.icon-uf_check:before {
-  content: "\e626";
+.icon-awesome:before {
+  content: '\e6ce';
 }
 
-.icon-youjiantou:before {
-  content: "\e62a";
+.icon-position:before {
+  content: '\e6cf';
 }
 
-.icon-shandian:before {
-  content: "\e628";
+.icon-github:before {
+  content: '\e644';
 }
 
-.icon-shujuku:before {
-  content: "\e629";
+.icon-search:before {
+  content: '\e647';
 }
 
-.icon-check:before {
-  content: "\e73c";
+.icon-x:before {
+  content: '\e649';
 }
 
-.icon-box:before {
-  content: "\e8c6";
+.icon-arrow:before {
+  content: '\e64b';
 }
 
+.icon-discord1:before {
+  content: '\e64c';
+}
+
+.icon-arrow-2:before {
+  content: '\e64d';
+}
+
+.icon-wechat:before {
+  content: '\e645';
+}
+
+.icon-language:before {
+  content: '\e646';
+}
+
+.icon-icon:before {
+  content: '\e6cd';
+}
+
+.icon-square:before {
+  content: '\e6a2';
+}
+
+.icon-weixin:before {
+  content: '\e637';
+}

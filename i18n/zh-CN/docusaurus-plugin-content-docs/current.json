@@ -17,11 +17,11 @@
   },
   "sidebar.tutorial.category.Getting Started": {
     "message": "开始",
-    "description": "The label for category Get Started in sidebar tutorial"
+    "description": "The label for category Getting Started in sidebar tutorial"
   },
   "sidebar.tutorial.category.Basic": {
     "message": "基础",
-    "description": "The label for category Get Started in sidebar tutorial"
+    "description": "The label for category Getting Started in sidebar tutorial"
   },
   "sidebar.tutorial.category.Cache Details": {
     "message": "缓存详解",

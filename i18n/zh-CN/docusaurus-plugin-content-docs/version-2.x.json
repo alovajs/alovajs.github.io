@@ -17,7 +17,7 @@
   },
   "sidebar.tutorial.category.Getting Started": {
     "message": "开始",
-    "description": "The label for category Get Started in sidebar tutorial"
+    "description": "The label for category Getting Started in sidebar tutorial"
   },
   "sidebar.tutorial.category.Response Cache": {
     "message": "响应缓存",

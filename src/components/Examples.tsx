@@ -34,47 +34,49 @@ const exampleList = [
 ];
 const Examples = () => {
   return (
-    <div className="grid grid-rows-1 gap-4 lg:grid-cols-3">
-      {exampleList.map(item => (
-        <div
-          key={item.id}
-          className="flex flex-col bg-slate-100 px-10 py-6 rounded-md border-[1px] border-slate-200 border-solid">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex flex-row items-center">
-              <item.Image className="mr-4 w-10 h-auto"></item.Image>
-              <strong>{item.id}</strong>
+    <div className="use-tailwind">
+      <div className="grid grid-rows-1 gap-4 xl:grid-cols-3">
+        {exampleList.map(item => (
+          <div
+            key={item.id}
+            className="flex flex-col bg-gray-100/5 px-5 py-6 rounded-md border-[1px] border-gray-200 border-solid dark:border-gray-200/10 dark:text-slate-200">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex flex-row items-center">
+                <item.Image className="mr-4"></item.Image>
+                <strong>{item.id}</strong>
+              </div>
+              <Link
+                className="flex items-center"
+                href={item.linkGithub}
+                target="_blank">
+                <IconFont
+                  name="github"
+                  size={28}></IconFont>
+              </Link>
             </div>
-            <Link
-              className="flex items-center"
-              href={item.linkGithub}
-              target="_blank">
-              <IconFont
-                name="github"
-                size={28}></IconFont>
-            </Link>
+            <div className="flex flex-row justify-between">
+              <Link
+                className="flex items-center"
+                href={item.linkCodesandbox}
+                target="_blank">
+                <IconFont
+                  name="square"
+                  size={20}></IconFont>
+                <p className="text-sm mb-0 ml-1">Codesandbox</p>
+              </Link>
+              <Link
+                className="flex items-center"
+                href={item.linkStackblitz}
+                target="_blank">
+                <IconFont
+                  name="icon"
+                  size={20}></IconFont>
+                <p className="text-sm mb-0 ml-1">StackBlitz</p>
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-row justify-between">
-            <Link
-              className="flex items-center text-black hover:text-black"
-              href={item.linkCodesandbox}
-              target="_blank">
-              <IconFont
-                name="square"
-                size={20}></IconFont>
-              <p className="text-sm mb-0 ml-1">Codesandbox</p>
-            </Link>
-            <Link
-              className="flex items-center text-black hover:text-black"
-              href={item.linkStackblitz}
-              target="_blank">
-              <IconFont
-                name="icon"
-                size={20}></IconFont>
-              <p className="text-sm mb-0 ml-1">StackBlitz</p>
-            </Link>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

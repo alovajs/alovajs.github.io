@@ -8,6 +8,7 @@ import NavCard from '@site/src/components/NavCard';
 import SupportList from '@site/src/components/SupportList';
 import tts from '@site/static/audio/tts.mp3';
 import AudioPlayer from '@site/src/components/AudioPlayer';
+import IconFont from '@site/src/components/IconFont';
 
 ## What is alova?
 
@@ -127,16 +128,23 @@ target: '__blank'
 
 Before contributing, please be sure to read the [Contribution Guide](/contributing/overview) in detail to ensure your effective contribution.
 
-## Start
+## Let's start
 
 Next, we will start with the simplest request, then explain the request strategy, understand how alova simplifies your work, and then go into the advanced guide and the best practices summarized in actual projects.
 
-Let’s start learning to send our first request!
+Let’s start learning alova!
 
 <NavCard list={[
 {
-title: 'First request',
-desc: 'Try to use alova to send the first request',
+Image: <IconFont name="shipin" />,
+title: 'tutorial in 5 minutes video',
+desc: 'Learn alova in 5 minutes',
+link: '/video-tutorial',
+},
+{
+Image: <IconFont name="wenjian" />,
+title: 'Quick start documentation',
+desc: 'Learn alova in more detail and learn on your own time',
 link: '/tutorial/getting-started/quick-start',
 }
 ]}></NavCard>

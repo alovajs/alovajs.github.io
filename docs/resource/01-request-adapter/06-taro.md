@@ -167,10 +167,7 @@ const uploadFile = (name, filePath, formData) =>
      },
      {
        // Set the request method to upload, and the adapter will call uni.uploadFile
-       requestType: 'upload',
-
-       // Start upload progress
-       enableUpload: true
+       requestType: 'upload'
      }
    );
 
@@ -224,10 +221,7 @@ const App = () => {
        },
        {
          // Set the request method to upload, and the adapter will call uni.uploadFile
-         requestType: 'upload',
-
-         // Start upload progress
-         enableUpload: true
+         requestType: 'upload'
        }
      );
 
@@ -266,10 +260,7 @@ const downloadFile = filePath =>
    alovaInst.Get('/bigImage.jpg', {
      // Set the request method to download, and the adapter will call uni.downloadFile
      requestType: 'download',
-     filePath,
-
-     // Start download progress
-     enableDownload: true
+     filePath
    });
 
 const App = () => {
@@ -305,10 +296,7 @@ const App = () => {
      alovaInst.Get('/bigImage.jpg', {
        // Set the request method to download, and the adapter will call uni.downloadFile
        requestType: 'download',
-       filePath,
-
-       // Start download progress
-       enableDownload: true
+       filePath
      });
 
    const { loading, data, downloading, send } = useRequest(downloadFile, {

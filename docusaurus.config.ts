@@ -3,8 +3,10 @@
 import type { Config } from '@docusaurus/types';
 import { themes } from 'prism-react-renderer';
 
-const lightCodeTheme = themes.duotoneLight;
-const darkCodeTheme = themes.oceanicNext;
+const navIcon = (name: string, size = 24) =>
+  `<svg aria-hidden="true" width="${size}px" height="${size}px" style="fill: currentcolor; vertical-align: -0.5em;"><use xlink:href="#icon-${name}"></use></svg>`;
+const lightCodeTheme = themes.oneLight;
+const darkCodeTheme = themes.oneDark;
 const config: Config = {
   title: 'Alova.JS',
   tagline:
@@ -69,8 +71,9 @@ const config: Config = {
     navbar: {
       title: '',
       logo: {
-        alt: 'ALOVA',
-        src: 'img/logo-text.svg'
+        alt: 'Alova',
+        src: 'img/logo-text.svg',
+        srcDark: 'img/logo-text-dark.svg'
       },
       items: [
         {
@@ -153,6 +156,11 @@ const config: Config = {
           ]
         },
         {
+          type: 'search',
+          className: 'doc-search',
+          position: 'right'
+        },
+        {
           type: 'docsVersionDropdown',
           position: 'right',
           dropdownActiveClassDisabled: true
@@ -162,24 +170,25 @@ const config: Config = {
           position: 'right'
         },
         {
-          to: 'https://github.com/alovajs/alova/releases',
+          href: 'https://github.com/alovajs/alova',
           position: 'right',
-          label: 'Releases'
+          html: navIcon('github')
+        },
+        {
+          href: '/img/wechat_qrcode.jpg',
+          target: '_blank',
+          position: 'right',
+          html: navIcon('wechat')
         },
         {
           href: 'https://x.com/alovajs',
-          className: 'header-x-link',
-          position: 'right'
+          position: 'right',
+          html: navIcon('x', 20)
         },
         {
           href: 'https://discord.gg/S47QGJgkVb',
-          className: 'header-discord-link',
-          position: 'right'
-        },
-        {
-          href: 'https://github.com/alovajs/alova',
-          className: 'header-github-link',
-          position: 'right'
+          position: 'right',
+          html: navIcon('discord1', 22)
         }
       ]
     },
@@ -188,26 +197,26 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true
     },
-    announcementBar: {
-      id: 'support_us',
-      content: `⭐️
-          If you also like alova, 
-          <a
-            href="https://github.com/alovajs/alova"
-            target="_blank">
-            star it on GitHub!
-          </a>
-          ⭐️`,
-      backgroundColor: 'var(--ifm-color-primary-light)',
-      textColor: '#fff',
-      isCloseable: false
-    },
+    // announcementBar: {
+    //   id: 'support_us',
+    //   content: `⭐️
+    //       If you also like alova,
+    //       <a
+    //         href="https://github.com/alovajs/alova"
+    //         target="_blank">
+    //         star it on GitHub!
+    //       </a>
+    //       ⭐️`,
+    //   backgroundColor: 'var(--ifm-color-primary-light)',
+    //   textColor: '#fff',
+    //   isCloseable: true
+    // },
     footer: {
       style: 'light',
       logo: {
-        alt: 'Meta Open Source Logo',
+        alt: 'alova.js',
         src: 'img/logo.svg',
-        href: 'https://opensource.fb.com',
+        href: 'https://github.com/alovajs/alova',
         width: 160,
         height: 51
       },
@@ -254,10 +263,6 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            // {
-            //   label: 'Stack Overflow',
-            //   to: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            // },
             {
               label: 'Discord',
               to: 'https://discord.gg/S47QGJgkVb'
@@ -289,7 +294,7 @@ const config: Config = {
           ]
         }
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} alova.js Team`
+      copyright: `Copyright © ${new Date().getFullYear()} alova.js Team and contributors`
     },
     prism: {
       theme: lightCodeTheme,

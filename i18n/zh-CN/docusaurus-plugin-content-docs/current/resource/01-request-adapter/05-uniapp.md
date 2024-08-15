@@ -107,10 +107,7 @@ const { loading, data } = useRequest(() => getDetail(options.id));
       {
         // 设置请求方式为上传，适配器内将调用uni.uploadFile
         requestType: 'upload',
-        fileType: 'image',
-
-        // 开启上传进度
-        enableUpload: true
+        fileType: 'image'
       }
     );
 
@@ -151,10 +148,7 @@ const { loading, data } = useRequest(() => getDetail(options.id));
     alovaInst.Get('/bigImage.jpg', {
       // 设置请求方式为下载，适配器内将调用uni.downloadFile
       requestType: 'download',
-      filePath,
-
-      // 开启下载进度
-      enableDownload: true
+      filePath
     });
 
   const { loading, data, downloading, send } = useRequest(downloadFile, {
