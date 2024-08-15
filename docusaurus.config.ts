@@ -66,7 +66,7 @@ const config: Config = {
     'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'
   ],
   themeConfig: {
-    image: '/img/card_image.jpg',
+    image: '/img/card_image.png',
     metadata: [{ name: 'twitter:site', content: '@alovajs' }],
     navbar: {
       title: '',
