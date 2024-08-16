@@ -155,11 +155,11 @@ export default function Home(): JSX.Element {
         siteConfig.title +
         ' - ' +
         translate({
-          message: 'Lightweight request strategy library',
+          message: 'Creative next generation request library',
           id: 'homepage.title'
         })
       }
-      description="alova.js a lightweight request strategy library">
+      description="alova.js a creative next generation request library">
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
         <main className="mx-auto mt-20 md:mt-40">

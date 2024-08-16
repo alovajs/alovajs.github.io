@@ -273,6 +273,10 @@
   "theme.featureBlock.learnMore": {
     "message": "查看详情"
   },
+  "homepage.title": {
+    "message": "创新的下一代请求工具",
+    "description": "the title"
+  },
   "homepage.title.Creative": {
     "message": "创新的",
     "description": "First part of the title"
