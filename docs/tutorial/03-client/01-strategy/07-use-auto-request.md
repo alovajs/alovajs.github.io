@@ -80,6 +80,24 @@ It is recommended to turn off the cache of the corresponding request when using 
 
 :::
 
+## Pause request
+
+When the user leaves the page but the component is not destroyed, `useAutoRequest` will continue to request in the background. If you want to pause the request in this case, you can implement it in `middleware`.
+
+```js
+let pause = false;
+useAutoRequest({
+  // ...
+  middleware(_, ​​next) {
+    if (!pause) {
+      next();
+    }
+  }
+});
+```
+
+You can pause or resume the automatic request by controlling the `pause` variable.
+
 ## Custom listening functions
 
 The above 4 methods of automatically fetching data are implemented by listening browser's events by default. When users use it in a non-browser environment, you may need to customize the listening function. This function receives the notification request function and useHook config as parameters, and returns a cancel listening function.

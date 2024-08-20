@@ -80,6 +80,24 @@ const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
 
 :::
 
+## 暂停请求
+
+当用户离开页面，但组件未销毁时，`useAutoRequest`还会在后台继续请求，如果你希望在这种情况下暂停请求，你可以在`middleware`中实现。
+
+```js
+let pause = false;
+useAutoRequest({
+  // ...
+  middleware(_, next) {
+    if (!pause) {
+      next();
+    }
+  }
+});
+```
+
+你可以通过控制`pause`变量来暂停或恢复自动请求。
+
 ## 自定义监听函数
 
 以上 4 种自动拉取数据的方式，默认是监听浏览器事件来实现的，当用户在非浏览器环境下使用时，需要自定义监听函数，此函数接收通知请求和 useHook 配置对象作为参数，并返回一个取消监听函数。
