@@ -77,7 +77,7 @@ export const Strategy: FeatureBlockProps[] = [
       message: 'Rate Limit',
       id: 'homepage.requestStrategy.Rate Limit.title'
     }),
-    to: '/tutorial/server/strategy/rate-limit-middleware',
+    to: '/tutorial/server/strategy/rate-limit',
     description: translate({
       message: 'Limit the request rate within a certain period of time.',
       id: 'homepage.requestStrategy.Rate Limit.description'
