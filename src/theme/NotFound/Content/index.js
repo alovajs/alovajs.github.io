@@ -3,9 +3,12 @@ import { lang } from '@site/src/common/lang';
 import Content from '@theme-original/NotFound/Content';
 
 const initialTs = Date.now();
-const href = window.location.href;
+let href = '';
 const initialRedirectList = ['v2'];
 let redirectList = [...initialRedirectList];
+try {
+  href = window.location.href;
+} catch (e) {}
 export default function ContentWrapper(props) {
   const hrefSplited = href.split('/');
   hrefSplited.splice(0, 3, '');
