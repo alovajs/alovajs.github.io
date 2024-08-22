@@ -1,4 +1,4 @@
-import React from 'react';
+import { lang } from '@site/src/common/lang';
 
 // 自动判断语言环境
 try {
@@ -7,7 +7,7 @@ try {
     const locale = window.navigator.language;
     const href = window.location.href;
     if (
-      ['zh-CN'].includes(locale) &&
+      lang.includes(locale) &&
       href.indexOf(locale) < 0 &&
       !sessionStorage.getItem(storageKey)
     ) {

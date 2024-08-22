@@ -642,6 +642,25 @@ It will clear all caches and reload the first page.
 declare function reload(): void;
 ```
 
+## Compatible with `updateState`
+
+You can also use `updateState` to update responsive data exported by `usePagination`.
+
+```javascript
+updateState(listMethod, {
+  // Update the exported list data, i.e. data.
+  listData: oldList => [...oldList, ...newList],
+  // Update the exported total data
+  total: oldTotal => oldTotal + newList.length,
+  // Update the exported page data
+  page: oldPage => oldPage + 1,
+  // Update the exported pageSize data
+  pageSize: oldPageSize => oldPageSize + 10
+});
+```
+
+[Click here](/tutorial/client/in-depth/update-across-components) for detailed of `updateState`.
+
 ## API
 
 ### Hook configuration

@@ -3,7 +3,6 @@ import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import AdCard from '@site/src/components/AdCard';
 import TOC from '@theme-original/TOC';
-import React from 'react';
 
 export default function TOCWrapper(props) {
   const { i18n } = useDocusaurusContext();

@@ -642,6 +642,25 @@ update({
 declare function reload(): void;
 ```
 
+## 与`updateState`兼容使用
+
+你还可以使用`updateState`更新`usePagination`导出的响应式数据。
+
+```javascript
+updateState(listMethod, {
+  // 更新导出的list数据，即data。
+  listData: oldList => [...oldList, ...newList],
+  // 更新导出的total数据
+  total: oldTotal => oldTotal + newList.length,
+  // 更新导出的page数据
+  page: oldPage => oldPage + 1,
+  // 更新导出的pageSize数据
+  pageSize: oldPageSize => oldPageSize + 10
+});
+```
+
+[点此查看](/tutorial/client/in-depth/update-across-components)关于`updateState`的详细用法。
+
 ## API
 
 ### Hook 配置
