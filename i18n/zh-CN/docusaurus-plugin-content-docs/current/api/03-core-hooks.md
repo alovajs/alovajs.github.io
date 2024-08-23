@@ -109,12 +109,12 @@ type AlovaGuardNext = (guardNextConfig?: {
 
 #### 操作函数
 
-| 名称           | 描述                                                | 函数参数                                                | 返回值         | 版本 |
-| -------------- | --------------------------------------------------- | ------------------------------------------------------- | -------------- | ---- |
-| send           | 发送请求函数                                        | ...args: any[]                                          | -              | -    |
-| abort          | 中断函数                                            | -                                                       | Promise        | -    |
-| update         | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](#frontrequeststate) | -              |
-| \_\_proxyState | 内部函数，获取状态代理的函数                        | stateKey: string                                        | FrameworkState |
+| 名称           | 描述                                                | 函数参数                          | 返回值         | 版本 |
+| -------------- | --------------------------------------------------- | --------------------------------- | -------------- | ---- |
+| send           | 发送请求函数                                        | ...args: any[]                    | -              | -    |
+| abort          | 中断函数                                            | -                                 | Promise        | -    |
+| update         | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: FrontRequestState | -              |
+| \_\_proxyState | 内部函数，获取状态代理的函数                        | stateKey: string                  | FrameworkState |
 
 #### 事件
 
@@ -173,11 +173,11 @@ function useWatcher<AG extends AlovaGenerics>(
 
 #### 操作函数
 
-| 名称   | 描述                                                | 函数参数                                                | 返回值  | 版本 |
-| ------ | --------------------------------------------------- | ------------------------------------------------------- | ------- | ---- |
-| send   | 发送请求函数                                        | ...args: any[]                                          | Promise | -    |
-| abort  | 中断函数                                            | -                                                       | -       | -    |
-| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](#frontrequeststate) | -       |
+| 名称   | 描述                                                | 函数参数                          | 返回值  | 版本 |
+| ------ | --------------------------------------------------- | --------------------------------- | ------- | ---- |
+| send   | 发送请求函数                                        | ...args: any[]                    | Promise | -    |
+| abort  | 中断函数                                            | -                                 | -       | -    |
+| update | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: FrontRequestState | -       |
 
 #### 事件
 
@@ -250,12 +250,12 @@ function useFetcher(config?: FetcherHookConfig): UseFetchHookExposure;
 
 #### 操作函数
 
-| 名称           | 描述                                                | 函数参数                                                | 返回值         | 版本 |
-| -------------- | --------------------------------------------------- | ------------------------------------------------------- | -------------- | ---- |
-| fetch          | 数据预加载函数                                      | 1. method: 预加载的 Method 实例<br/>2. ...args: any[]   | Promise        | -    |
-| abort          | 中断函数                                            | -                                                       | -              | -    |
-| update         | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: [FrontRequestState](#frontrequeststate) | -              |
-| \_\_proxyState | 内部函数，获取状态代理的函数                        | stateKey: string                                        | FrameworkState |
+| 名称           | 描述                                                | 函数参数                                              | 返回值         | 版本 |
+| -------------- | --------------------------------------------------- | ----------------------------------------------------- | -------------- | ---- |
+| fetch          | 数据预加载函数                                      | 1. method: 预加载的 Method 实例<br/>2. ...args: any[] | Promise        | -    |
+| abort          | 中断函数                                            | -                                                     | -              | -    |
+| update         | 更新当前 use hook 前端状态的函数，在 react 中较有用 | newFrontStates: FrontRequestState                     | -              |
+| \_\_proxyState | 内部函数，获取状态代理的函数                        | stateKey: string                                      | FrameworkState |
 
 #### 事件
 

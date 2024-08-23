@@ -649,13 +649,21 @@ You can also use `updateState` to update responsive data exported by `usePaginat
 ```javascript
 updateState(listMethod, {
   // Update the exported list data, i.e. data.
-  listData: oldList => [...oldList, ...newList],
+  dataata: oldList => [...oldList, ...newList],
   // Update the exported total data
   total: oldTotal => oldTotal + newList.length,
   // Update the exported page data
   page: oldPage => oldPage + 1,
   // Update the exported pageSize data
   pageSize: oldPageSize => oldPageSize + 10
+});
+```
+
+Since the `data` type of `usePagination` is not directly inferred from the method instance, you need to manually specify the type in `updateState`.
+
+```ts
+updateState<Item[]>(listMethod, {
+  data: oldList => [...oldList, ...newList]
 });
 ```
 

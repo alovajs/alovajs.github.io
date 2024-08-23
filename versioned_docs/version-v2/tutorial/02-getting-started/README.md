@@ -74,8 +74,6 @@ In addition, let’s take a look at the specific features:
 - 3 caching modes and request sharing mechanism to improve request performance and reduce server pressure;
 - Highly aggregated organization of API code. The request parameters, cache behavior, response data conversion, etc. of each API will be gathered in the same code block, which has great advantages for managing a large number of APIs;
 
-In [alova's future](/v2/tutorial/others/future), further request simplification will be implemented.
-
 :::info compared to other request libraries
 
 You can also check out [Comparison with other request libraries](/v2/tutorial/others/comparison) to learn more about how alova is different.

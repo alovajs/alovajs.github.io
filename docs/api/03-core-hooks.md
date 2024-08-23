@@ -109,12 +109,12 @@ The following property values ​​are `FrameworkState` collections. `Framework
 
 #### Operation function
 
-| Name           | Description                                                                               | Function parameters                                     | Return value   | Version |
-| -------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------- | -------------- | ------- |
-| send           | Send request function                                                                     | ...args: any[]                                          | -              | -       |
-| abort          | Interrupt function                                                                        | -                                                       | Promise        | -       |
-| update         | Function that updates the current use hook front-end state, which is more useful in react | newFrontStates: [FrontRequestState](#frontrequeststate) | -              |
-| \_\_proxyState | Internal function, function to get the state proxy                                        | stateKey: string                                        | FrameworkState |
+| Name           | Description                                                                               | Function parameters               | Return value   | Version |
+| -------------- | ----------------------------------------------------------------------------------------- | --------------------------------- | -------------- | ------- |
+| send           | Send request function                                                                     | ...args: any[]                    | -              | -       |
+| abort          | Interrupt function                                                                        | -                                 | Promise        | -       |
+| update         | Function that updates the current use hook front-end state, which is more useful in react | newFrontStates: FrontRequestState | -              |
+| \_\_proxyState | Internal function, function to get the state proxy                                        | stateKey: string                  | FrameworkState |
 
 #### Event
 
@@ -174,11 +174,11 @@ function useWatcher<AG extends AlovaGenerics>(
 
 #### Operation function
 
-| Name   | Description                                                                   | Function parameters                                     | Return value | Version |
-| ------ | ----------------------------------------------------------------------------- | ------------------------------------------------------- | ------------ | ------- |
-| send   | Send request function                                                         | ...args: any[]                                          | Promise      | -       |
-| abort  | Interrupt function                                                            | -                                                       | -            | -       |
-| update | Update the current use hook Function of front-end state, more useful in react | newFrontStates: [FrontRequestState](#frontrequeststate) | -            |
+| Name   | Description                                                                   | Function parameters               | Return value | Version |
+| ------ | ----------------------------------------------------------------------------- | --------------------------------- | ------------ | ------- |
+| send   | Send request function                                                         | ...args: any[]                    | Promise      | -       |
+| abort  | Interrupt function                                                            | -                                 | -            | -       |
+| update | Update the current use hook Function of front-end state, more useful in react | newFrontStates: FrontRequestState | -            |
 
 #### Event
 
@@ -255,7 +255,7 @@ The following property values ​​will automatically infer the responsive data
 | -------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------- | ------- |
 | fetch          | Data preloading function                                                               | 1. method: preloaded Method instance<br/>2. ...args: any[] | Promise        | -       |
 | abort          | Interrupt function                                                                     | -                                                          | -              | -       |
-| update         | Function to update the current use hook front-end state, which is more useful in react | newFrontStates: [FrontRequestState](#frontrequeststate)    | -              |
+| update         | Function to update the current use hook front-end state, which is more useful in react | newFrontStates: FrontRequestState                          | -              |
 | \_\_proxyState | Internal function, function to get state proxy                                         | stateKey: string                                           | FrameworkState |
 
 #### Event

@@ -74,8 +74,6 @@ alova 提供了 10+个基于[RSM](/v2/tutorial/others/RSM)规范的请求策略�
 - 3 种缓存模式和请求共享机制，提升请求性能并降低服务端压力；
 - api 代码的高聚合组织，每个 api 的请求参数、缓存行为、响应数据转换等都将聚集在相同的代码块中，这对于管理大量的 api 有很大的优势；
 
-在[alova 的未来](/v2/tutorial/others/future)中，将实现更进一步的请求简单化。
-
 :::info 与其他请求库的对比
 
 你还可以查看请[与其他请求库比较](/v2/tutorial/others/comparison)详细了解 alova 的不同之处。

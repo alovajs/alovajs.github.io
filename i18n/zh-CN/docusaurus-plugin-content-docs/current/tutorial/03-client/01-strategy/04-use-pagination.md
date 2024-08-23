@@ -649,7 +649,7 @@ declare function reload(): void;
 ```javascript
 updateState(listMethod, {
   // 更新导出的list数据，即data。
-  listData: oldList => [...oldList, ...newList],
+  data: oldList => [...oldList, ...newList],
   // 更新导出的total数据
   total: oldTotal => oldTotal + newList.length,
   // 更新导出的page数据
@@ -660,6 +660,14 @@ updateState(listMethod, {
 ```
 
 [点此查看](/tutorial/client/in-depth/update-across-components)关于`updateState`的详细用法。
+
+由于`usePagination`的`data`类型不是直接由 method 推断而来，因此在`updateState`中需要手动指定类型。
+
+```ts
+updateState<Item[]>(listMethod, {
+  data: oldList => [...oldList, ...newList]
+});
+```
 
 ## API
 
