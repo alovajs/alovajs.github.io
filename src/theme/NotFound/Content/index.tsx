@@ -25,8 +25,14 @@ export default function ContentWrapper(props: Props): JSX.Element {
         if (!hrefSplited.includes(redirectTag)) {
           hrefSplited.splice(breakPointIndex, 0, redirectTag);
           const newHref = hrefSplited.join('/');
-          const response = await fetch(location.origin + newHref);
-          if (response.status >= 200 && response.status < 400) {
+          try {
+            const response = await fetch(location.origin + newHref);
+            if (response.status >= 200 && response.status < 400) {
+              window.location.href = newHref;
+            }
+          } catch (e) {
+            // 由于github服务器限制，如果页面存在将会报以下错误，此时我们也重定向
+            // Mixed Content: The page at 'https://alova.js.org/zh-CN/tutorial/combine-framework/use-request' was loaded over HTTPS, but requested an insecure resource 'http://alova.js.org/zh-CN/v2/tutorial/combine-framework/use-request/'. This request has been blocked; the content must be served over HTTPS.
             window.location.href = newHref;
           }
         }
