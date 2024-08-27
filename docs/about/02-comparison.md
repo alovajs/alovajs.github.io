@@ -3,13 +3,37 @@ title: Compare with other libraries
 ---
 
 import Tabs from '@theme/Tabs';
+
 import TabItem from '@theme/TabItem';
 
-## Compare with axios
+## react-query/swr/alova comparison
 
-axios provides a very simple and easy-to-use HTTP request function based on promise. It only requires a simple line of code to send and receive requests, and can run in the browser and nodejs environment. It is a very excellent request js library.
+react-query is a powerful asynchronous state management, swr is a React Hooks library for data requests, their common feature is also the use of use hook to send and manage requests, and data caching function, the following is a comparison table of the three.
 
-But axios focuses on sending requests and receiving responses, which means that if you need to write more code by yourself to actively optimize the request function, and alova is like a weapon of axios, combining axios with alova can get more powerful request capabilities. The following are the request management capabilities added by alova to axios.
+| Features ↓/Library →                | react-query                   | swr                           | alova                                           |
+| ----------------------------------- | ----------------------------- | ----------------------------- | ----------------------------------------------- |
+| Positioning                         | Asynchronous state management | Asynchronous state management | Improve API consumption efficiency              |
+| Usage mode                          | Hooks-based                   | Hooks-based                   | Complete request solution                       |
+| Applicable environment              | client                        | client                        | client/server                                   |
+| Request strategy                    | 2-3 hooks                     | 2-3 hooks                     | 20+ hooks/interceptors/middlewares/server hooks |
+| Hooks operation function            | ❌                            | ❌                            | ✅                                              |
+| Framework support                   | Multi-package support         | React only                    | Adapter support                                 |
+| SSR                                 | ✅                            | ✅                            | ✅                                              |
+| Server                              | ❌                            | ❌                            | nodejs/deno/bun                                 |
+| Freedom                             | 🟡 Limited                    | 🟡 Limited                    | High flexibility                                |
+| Request sharing                     | ❌                            | ❌                            | ✅                                              |
+| Cache strategy                      | Single-level cache            | Single-level cache            | Multi-level cache                               |
+| Axios support                       | ✅                            | ✅                            | ✅                                              |
+| Fetch support                       | ✅                            | ✅                            | ✅                                              |
+| XMLHttpRequest support              | 🟡 Limited                    | 🟡 Limited                    | ✅                                              |
+| Request method                      | Third-party library           | Third-party library           | Unified Method proxy                            |
+| Plugin system                       | Request library decision      | Request library decision      | Officially provided                             |
+| Dependency collection (performance) | ❌                            | ✅                            | ✅                                              |
+| Data synchronization                | ✅                            | ✅                            | ✅                                              |
+
+## Comparison with traditional request tools such as axios/fetch/XMLHttpRequest
+
+Traditional request tools such as `axios/fetch/XMLHttpRequest` and the next-generation request tool alova solve different problems. The former focuses on sending requests and receiving responses, while the latter is used to improve APIs The consumption efficiency of alova is improved. They complement each other. Combining alova with traditional request tools can obtain more powerful request features. Let's take axios as an example.
 
 ### alova provides automated request status management for axios
 
@@ -65,28 +89,3 @@ Requesting the data to be used in advance can also greatly improve application f
 ### alova can manage request states
 
 You can use alova across any component hierarchy to access stateful data in other components, which allows you to reduce some of the trouble of cross-component communication.
-
-## Compared with react-query and swr
-
-react-query is a powerful asynchronous state management, and swr is a React Hooks library for data requests. Their common feature is the use of use hooks to send and manage requests, and data caching functions. For them, alova has the following differences at.
-
-### alova has different goals
-
-In fact, alova's use hook also refers to the design of react-query and swr, but alova chooses the direction of the request strategy library. You can use different request strategy modules in different request scenarios, allowing you to write less code. At the same time, more efficient Client-Server data interaction can also be achieved.
-
-### Method proxy design
-
-Both react-query and swr use `axios` or `fetch api` directly in use hook to send requests, while alova uses the `Method` proxy design mode. This design has the following 3 benefits:
-
-1. Unified usage without different usage depending on the platform or UI framework.
-2. Request libraries such as `axios` and `fetch api` are decoupled from each API in the form of request adapters, which allows alova to provide a unified development experience and perfect coding migration.
-3. Each `Method` instance represents an API, you can aggregate the request parameters and request behavior parameters of the same API into the same `Method` instance without spreading them to different files, which is more suitable for managing a large number of APIs.
-4. alova realizes automatic management of response data cache by serializing request parameters on the `Method` instance. You do not need to specify the cache key, and both react-query and swr need to customize the `queryKey` to manage the cache.
-
-### High flexibility
-
-Alova achieves high flexibility through various adapters and middleware. It can not only run in any js environment, but also support users to customize request modules in different scenarios.
-
-### Lightweight
-
-alova is very lightweight, and its size is only 30%+ of react-query and axios. Similar in size to swr, but provides richer functionality.
