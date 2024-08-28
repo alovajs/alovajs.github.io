@@ -162,11 +162,11 @@ const uploadFile = (name, filePath, formData) =>
        name,
        filePath,
 
-       // Additional data will be passed into formData of uni.uploadFile
+       // Additional data will be passed into formData of Taro.uploadFile
        ...formData
      },
      {
-       // Set the request method to upload, and the adapter will call uni.uploadFile
+       // Set the request method to upload, and the adapter will call Taro.uploadFile
        requestType: 'upload',
 
        // Start upload progress
@@ -219,11 +219,11 @@ const App = () => {
          name,
          filePath,
 
-         // Additional data will be passed into formData of uni.uploadFile
+         // Additional data will be passed into formData of Taro.uploadFile
          ...formData
        },
        {
-         // Set the request method to upload, and the adapter will call uni.uploadFile
+         // Set the request method to upload, and the adapter will call Taro.uploadFile
          requestType: 'upload',
 
          // Start upload progress
@@ -264,7 +264,7 @@ Similarly, it is fully compatible with `Taro.downloadFile`, you can specify [all
 ```jsx
 const downloadFile = filePath =>
    alovaInst.Get('/bigImage.jpg', {
-     // Set the request method to download, and the adapter will call uni.downloadFile
+     // Set the request method to download, and the adapter will call Taro.downloadFile
      requestType: 'download',
      filePath,
 
@@ -303,7 +303,7 @@ const App = () => {
 <script setup>
    const downloadFile = filePath =>
      alovaInst.Get('/bigImage.jpg', {
-       // Set the request method to download, and the adapter will call uni.downloadFile
+       // Set the request method to download, and the adapter will call Taro.downloadFile
        requestType: 'download',
        filePath,
 
