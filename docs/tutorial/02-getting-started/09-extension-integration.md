@@ -14,7 +14,7 @@ Integrating Alova's editor extension can make it more powerful.
 
 The following is an extended demonstration video
 
-import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
+import vscodeDemoVideo from '@site/static/video/vscode-demo-video-en.mp4';
 
 <video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
 

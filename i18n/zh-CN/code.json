@@ -277,8 +277,8 @@
     "message": "创新的下一代请求工具",
     "description": "the title"
   },
-  "homepage.title.Creative": {
-    "message": "创新的",
+  "homepage.title.Streamlined": {
+    "message": "工作流精简的",
     "description": "First part of the title"
   },
   "homepage.title.Next Generation Request Tool": {
@@ -286,7 +286,7 @@
     "description": "The second part of the title"
   },
   "homepage.tagline": {
-    "message": "极致地提升你的API接入效率，节约大脑，仅需一步",
+    "message": "极致地简化你的API集成工作流，仅需一步",
     "description": "网站tagline"
   },
   "homepage.automaticGenerate.sectionTitle": {
