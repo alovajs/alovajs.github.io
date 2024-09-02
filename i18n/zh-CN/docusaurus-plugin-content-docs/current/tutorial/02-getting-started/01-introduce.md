@@ -11,9 +11,11 @@ import AudioPlayer from '@site/src/components/AudioPlayer';
 
 ## alova 是什么？
 
-alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个创新的下一代请求工具，帮你极致地提升 API 使用效率，节约大脑。将服务端接口集成到前端项目简化为只有 1 步。
+alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个流程简化的下一代请求工具，帮你极致地简化 API 集成工作流。
 
 ![](/img/overview_flow_cn.png)
+
+它可以将 API 集成工作流从 7 个步骤简化为 1 个步骤，你只需要选择 API 即可使用。
 
 ## 如何做的？
 
@@ -29,16 +31,37 @@ const response = await alova.Get('/api/user');
 
 基于 alova 的核心功能，还提供了完整的应对复杂请求场景的方案，我们称之为**请求策略**，只需一行代码就能快速实现各种复杂的请求逻辑，不仅能帮你提升开发效率，还能帮你提升 App 的运行效率，降低服务端压力。
 
-例如，`useRequest`可以自动管理请求状态，**`loading/error/data` 是响应式的数据**，在 react、vue、svelte 等 UI 框架中可以直接在视图中绑定它们，而且会根据请求状态自动维护它这些响应式数据。
+例如，`useRequest`可以自动管理请求状态，**`loading/error/data` 是响应式的数据**，在 react、vue、svelte 等 UI 框架中可以直接在视图中绑定它们，而且会根据请求状态自动维护这些响应式数据。
 
 ```javascript
 const { loading, error, data } = useRequest(alova.Get('/api/user'));
 ```
 
-再来一个分页请求策略，**当`page/pageSize`等发生变化时会自动以不同参数触发请求**。
+再来一个分页请求策略，它包含响应式状态、操作函数、事件，并且**当`page/pageSize`等发生变化时会自动以不同参数触发请求**。
 
 ```javascript
-const { loading, error, data, page, pageSize, total } = usePagination((page, size) =>
+const {
+  // 响应式状态
+  loading,
+  error,
+  data,
+  page,
+  pageSize,
+  total,
+
+  // 操作函数
+  refresh,
+  insert,
+  replace,
+  remove,
+  reload
+
+  // 事件
+  onSuccess,
+  onFetchSuccess,
+  onError,
+  onFetchError
+} = usePagination((page, size) =>
   alova.Get('/api/user/list', {
     params: { page, size }
   })
@@ -52,6 +75,10 @@ alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它�
 在 vscode 中使用 alova 扩展可以帮你自动生成包含完整的 API 文档标注，响应类型的请求代码，无论是 ts 项目还是 js 项目，你都可以获得完整的接口查询、接口详细信息，以及响应数据类型的智能提示。
 
 这个扩展也优化了 API 的使用流程，让你感受不一样的 API 集成体验，在过去，你需要先查询 API 文档，并不断地在 API 文档与编辑器切换来编写请求代码，使用 alova 插件后，你可以不再需要离开编辑器，直接在编辑器中边查边使用 API。
+
+import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
+
+<video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
 
 > 关于 alova 插件的详细介绍，请参考 [集成编辑器扩展](/tutorial/getting-started/extension-integration)。
 

@@ -12,11 +12,11 @@ import IconFont from '@site/src/components/IconFont';
 
 ## What is alova?
 
-alova (pronounced `/əˈləʊva/` <AudioPlayer src={tts} />) is an creative next-generation request tool that helps you maximize API usage efficiency and save brainpower. Integrating the server-side APIs into the front-end project is simplified to only one step.
+alova (pronounced `/əˈləʊva/` <AudioPlayer src={tts} />) is an workflow-streamlined next-generation request tool that helps you extremely streamline API integration workflow.
 
 ![](/img/overview_flow_en.png)
 
-It can simplify API consumption from 7 steps to 1 step. You only need to choose the API to use.
+It can streamline API integration workflow from 7 steps to 1 step. You only need to choose the API to use.
 
 ## How to do it?
 
@@ -32,16 +32,37 @@ const response = await alova.Get('/api/user');
 
 Based on the core functions of alova, it also provides a complete solution for complex request scenarios, which we call **request strategy**. With only one line of code, you can quickly implement various complex request logics, which can not only help you improve development efficiency, but also help you improve the running efficiency of the App and reduce the pressure on the server.
 
-For example, `useRequest` can automatically manage the request status, **`loading/error/data` is responsive data**, which can be directly bound in the view in UI frameworks such as react, vue, and svelte, and these responsive data will be automatically maintained according to the request status.
+For example, `useRequest` can automatically manage the request states, **`loading/error/data` is responsive data**, which can be directly bound in the view in UI frameworks such as react, vue, and svelte, and these responsive data will be automatically maintained according to the request states.
 
 ```javascript
 const { loading, error, data } = useRequest(alova.Get('/api/user'));
 ```
 
-Another paging request strategy, **when `page/pageSize` changes, it will automatically trigger requests with different parameters**.
+Here is another pagination request strategy, which includes responsive states, actions, events, and **when `page/pageSize` changes, it will automatically trigger a request with different parameters**.
 
 ```javascript
-const { loading, error, data, page, pageSize, total } = usePagination((page, size) =>
+const {
+  // states
+  loading,
+  error,
+  data,
+  page,
+  pageSize,
+  total,
+
+  // actions
+  refresh,
+  insert,
+  replace,
+  remove,
+  reload
+
+  // events
+  onSuccess,
+  onFetchSuccess,
+  onError,
+  onFetchError
+} = usePagination((page, size) =>
   alova.Get('/api/user/list', {
     params: { page, size }
   })
@@ -55,6 +76,10 @@ alova provides 15+ request strategy modules based on the [RSM](/about/RSM) speci
 Using the alova extension in vscode can help you automatically generate request codes with complete API document annotations and response types. Whether it is a ts project or a js project, you can get complete interface queries, interface details, and smart prompts for response data types.
 
 This extension also optimizes the API usage process, allowing you to experience a different API integration experience. In the past, you needed to query the API documentation first, and constantly switch between the API documentation and the editor to write request code. After using the alova plug-in, you no longer need to leave the editor and can directly use the API in the editor while checking.
+
+import vscodeDemoVideo from '@site/static/video/vscode-demo-video-en.mp4';
+
+<video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
 
 > For a detailed introduction to the alova plug-in, please refer to [Integrated Editor Extension](/tutorial/getting-started/extension-integration).
 

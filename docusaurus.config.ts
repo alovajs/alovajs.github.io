@@ -127,6 +127,10 @@ const config: Config = {
               to: 'about/comparison'
             },
             {
+              label: 'Releases',
+              to: 'https://github.com/alovajs/alova/releases'
+            },
+            {
               label: 'Q&A',
               to: 'about/qa'
             }

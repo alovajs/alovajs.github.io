@@ -76,8 +76,8 @@ function HomepageHeader() {
         <div className="flex flex-col md:flex-row items-stretch gap-20 md:gap-10 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
           <div className="relative">
             <div className="font-sans md:text-6xl text-4xl font-bold !leading-tight">
-              <p className={styles.titleGradient}>
-                <Translate id="homepage.title.Creative">Creative</Translate>
+              <p className={clsx(styles.titleGradient, 'md:text-4xl text-2xl')}>
+                <Translate id="homepage.title.Streamlined">Workflow-Streamlined</Translate>
               </p>
               <p className="text-slate-900 tracking-normal dark:text-slate-50 mt-3">
                 <Translate id="homepage.title.Next Generation Request Tool">
@@ -87,7 +87,7 @@ function HomepageHeader() {
             </div>
             <p className="mt-4 max-w-3xl text-lg space-y-6">
               <Translate id="homepage.tagline">
-                Extremely improve your API using efficiency and save brainpower Just one step
+                Extremely streamline API integration workflow. Just one step
               </Translate>
             </p>
             <div className="flex flex-col md:items-stretch items-center">
