@@ -155,11 +155,11 @@ export default function Home(): JSX.Element {
         siteConfig.title +
         ' - ' +
         translate({
-          message: 'Creative next generation request library',
+          message: 'Workflow-streamlined next generation request library',
           id: 'homepage.title'
         })
       }
-      description="alova.js a creative next generation request library">
+      description="alovajs is Workflow-Streamlined Next Generation Request Tool. Extremely streamline API integration workflow. Just one step">
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
         <main className="mx-auto mt-20 md:mt-40">
