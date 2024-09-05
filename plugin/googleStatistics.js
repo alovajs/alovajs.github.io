@@ -3,7 +3,7 @@ export default async function (_, { id }) {
   return {
     name: 'google-statistics',
     injectHtmlTags() {
-      if (isProd) {
+      if (!isProd) {
         return {};
       }
       return {
