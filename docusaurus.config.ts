@@ -355,7 +355,7 @@ const config: Config = {
     [
       './plugin/googleStatistics',
       {
-        id: 'G-HYBM7B3X0N'
+        id: 'GTM-539X2N2M'
       }
     ]
   ]
