@@ -56,6 +56,9 @@ const config: Config = {
         blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.scss')
+        },
+        googleTagManager: {
+          containerId: 'GTM-539X2N2M'
         }
       }
     ]
@@ -350,12 +353,6 @@ const config: Config = {
       './plugin/baiduStatistics',
       {
         id: '5afa4c96fca09cb386951b736ee31e56'
-      }
-    ],
-    [
-      './plugin/googleStatistics',
-      {
-        id: 'GTM-539X2N2M'
       }
     ]
   ]
