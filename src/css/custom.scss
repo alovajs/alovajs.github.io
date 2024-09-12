@@ -275,6 +275,17 @@ table {
   }
 }
 
+// details
+details {
+  --ifm-alert-background-color: transparent !important;
+  --ifm-alert-border-color: var(--ifm-color-emphasis-300) !important;
+  summary {
+    font-weight: 600;
+    color: var(--ifm-color-primary);
+    --docusaurus-details-decoration-color: var(--ifm-color-primary) !important;
+  }
+}
+
 /* //////// 自定义类 //////// */
 /* flex */
 .flex-row {

@@ -70,20 +70,28 @@ const {
 
 alova 提供了 15+个基于[RSM](/about/RSM)规范的请求策略模块，它们以 useHook 或 function 的形式实现。
 
-### 编辑器扩展
+### 更先进的 openAPI 解决方案
 
-在 vscode 中使用 alova 扩展可以同时为你自动生成三项 API 信息，分别是 API 请求代码、对应的请求参数和响应数据类型、对应 API 的完整文档信息，无论是 ts 项目还是 js 项目，你都可以在编辑器中获得完整的 API 类型的智能提示，此外，还能在编辑器中快速查看 API 文档。
+1. alova 的开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型定义和详尽的 API 文档，即使在 JavaScript 项目中也能享受到完整的 API 类型提示。
 
 ```mermaid
 flowchart LR
-R1[OpenAPI文件] --> S1[Alova扩展] --> W1[API函数]
+R1[openAPI文件] --> S1[Alova扩展] --> W1[API函数]
 S1[Alova扩展] --> W2[完整的API类型]
 S1[Alova扩展] --> W3[完整的API文档]
 ```
 
-这个扩展也优化了 API 的使用流程，让你感受不一样的 API 集成体验，在过去，你需要先查询 API 文档，并不断地在 API 文档与编辑器切换来编写请求代码，使用 alova 扩展后，你可以不再需要离开编辑器，直接在编辑器中通过 API 的路径或描述关键字快速插入 API 并自动补全不要的请求参数。
+2. 在过去，当后端开发者交付 API 给你后，你需要先打开中间的 API 文档查询并复制关键信息到代码中，你需要不断地在中间的 API 文档与编辑器切换，但现在，alova 的开发工具可以为你消除中间的 API 文档，像虫洞一样拉近前后端的协作距离。通过它你可以在编辑器中快速查找所需的 API 并展示这个 API 的完整文档，参照 API 参数表快速完成参数传递，让你感受不一样的 API 集成体验。
 
-> 关于 alova 扩展的详细介绍，请参考 [集成编辑器扩展](/tutorial/getting-started/extension-integration)。
+```mermaid
+flowchart LR
+  A[收到交付的API] --> B[<s>查看中间的API文档</s>] --> C[编写API调用代码]
+
+  class B redNode;
+  classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
+```
+
+> 关于 alova 开发工具的详细介绍，请参考 [集成编辑器扩展](/tutorial/getting-started/extension-integration)。
 
 ## 有什么不同吗？
 
