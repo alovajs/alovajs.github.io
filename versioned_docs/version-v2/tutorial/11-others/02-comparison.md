@@ -3,33 +3,33 @@ title: Compare with other libraries
 ---
 
 import Tabs from '@theme/Tabs';
-
 import TabItem from '@theme/TabItem';
 
 ## react-query/swr/alova comparison
 
-react-query is a powerful asynchronous state management, swr is a React Hooks library for data requests, their common feature is also the use of use hook to send and manage requests, and data caching function, the following is a comparison table of the three.
+react-query is a powerful asynchronous state management library, swr is a React Hooks library for data requests, their common features are also using use hook to send and manage requests, and data caching function, the following is a comparison table of the three.
 
-| Features ↓/Library →                | react-query                   | swr                           | alova                                           |
-| ----------------------------------- | ----------------------------- | ----------------------------- | ----------------------------------------------- |
-| Positioning                         | Asynchronous state management | Asynchronous state management | Improve API consumption efficiency              |
-| Usage mode                          | Hooks-based                   | Hooks-based                   | Complete request solution                       |
-| Applicable environment              | client                        | client                        | client/server                                   |
-| Request strategy                    | 2-3 hooks                     | 2-3 hooks                     | 20+ hooks/interceptors/middlewares/server hooks |
-| Hooks operation function            | ❌                            | ❌                            | ✅                                              |
-| Framework support                   | Multi-package support         | React only                    | Adapter support                                 |
-| SSR                                 | ✅                            | ✅                            | ✅                                              |
-| Server                              | ❌                            | ❌                            | nodejs/deno/bun                                 |
-| Freedom                             | 🟡 Limited                    | 🟡 Limited                    | High flexibility                                |
-| Request sharing                     | ❌                            | ❌                            | ✅                                              |
-| Cache strategy                      | Single-level cache            | Single-level cache            | Multi-level cache                               |
-| Axios support                       | ✅                            | ✅                            | ✅                                              |
-| Fetch support                       | ✅                            | ✅                            | ✅                                              |
-| XMLHttpRequest support              | 🟡 Limited                    | 🟡 Limited                    | ✅                                              |
-| Request method                      | Third-party library           | Third-party library           | Unified Method proxy                            |
-| Plugin system                       | Request library decision      | Request library decision      | Officially provided                             |
-| Dependency collection (performance) | ❌                            | ✅                            | ✅                                              |
-| Data synchronization                | ✅                            | ✅                            | ✅                                              |
+| Features ↓/Library →                | react-query                       | swr                                   | alova                                         |
+| ----------------------------------- | --------------------------------- | ------------------------------------- | --------------------------------------------- |
+| Positioning                         | Asynchronous state management     | React Hooks library for data requests | Extremely simplified API integration workflow |
+| Usage mode                          | hooks                             | hooks                                 | Complete request scheme                       |
+| Applicable environment              | client                            | client                                | client/server                                 |
+| Framework support                   | Multi-package support             | React only                            | Adapter support                               |
+| SSR                                 | ✅                                | ✅                                    | ✅                                            |
+| Number of hooks                     | 2-3                               | 2-3                                   | 15+                                           |
+| Hooks operation function            | ❌                                | ❌                                    | ✅                                            |
+| Server                              | ❌                                | ❌                                    | nodejs/deno/bun                               |
+| server hooks                        | ❌                                | ❌                                    | ✅                                            |
+| Freedom                             | 🟡 Limited                        | 🟡 Limited                            | 🟢 High flexibility                           |
+| Request sharing                     | ❌                                | ❌                                    | ✅                                            |
+| Cache strategy                      | Single-level cache                | Single-level cache                    | Multi-level cache                             |
+| Axios support                       | ✅                                | ✅                                    | ✅                                            |
+| Fetch support                       | ✅                                | ✅                                    | ✅                                            |
+| XMLHttpRequest support              | 🟡 Restricted                     | 🟡 Restricted                         | ✅                                            |
+| Request method                      | Third-party library               | Third-party library                   | Unified Method proxy                          |
+| openAPI support                     | 🟡 Restricted third-party library | 🟡 Restricted third-party library     | 🟢 More modern solutions                      |
+| Dependency collection (performance) | ❌                                | ✅                                    | ✅                                            |
+| Data synchronization                | ✅                                | ✅                                    | ✅                                            |
 
 ## Comparison with traditional request tools such as axios/fetch/XMLHttpRequest
 

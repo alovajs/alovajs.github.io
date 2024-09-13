@@ -176,7 +176,7 @@ export default function Home(): JSX.Element {
                   id: 'homepage.automaticGenerate.title'
                 })}
                 description={translate({
-                  message: `alova's devtools can generate API calling code, along with corresponding TypeScript types and comprehensive documentation, all in one go. Even in JavaScript projects, you can enjoy full TypeScript type hinting. Moreover, you can quickly search for the APIs you need, match parameters from the parameter list, all without leaving your editor.`,
+                  message: `alova's devtools can generate API calling code, as well as TypeScript types and detailed documentation for each API. Even in JavaScript projects, you can enjoy full TypeScript type hinting. Moreover, you can quickly search for the APIs you need, match parameters from the parameter list, all without leaving your editor.`,
                   id: 'homepage.automaticGenerate.description'
                 })}
               />

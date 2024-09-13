@@ -32,8 +32,6 @@ react-query is a powerful asynchronous state management library, swr is a React 
 | Dependency collection (performance) | ❌                                | ✅                                    | ✅                                            |
 | Data synchronization                | ✅                                | ✅                                    | ✅                                            |
 
-1
-
 ## Compare with traditional request tools such as axios/fetch/XMLHttpRequest
 
 Traditional request tools such as `axios/fetch/XMLHttpRequest` and the next-generation request tool alova solve different problems. The former focuses on sending requests and receiving responses, while the latter is used to improve APIs The consumption efficiency of alova is improved. They complement each other. Combining alova with traditional request tools can obtain more powerful request features. Let's take axios as an example.

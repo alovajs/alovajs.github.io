@@ -384,7 +384,7 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 ### More modern openAPI solution
 
-1. alova's devtools can generate API calling code, along with corresponding TypeScript types and comprehensive documentation, all in one go, so you can enjoy comprehensive API type hints even in JavaScript projects.
+1. alova's devtools can generate API calling code, as well as TypeScript types and detailed documentation for each API, so you can enjoy full API type hints even in JavaScript projects.
 
 ```mermaid
 flowchart LR
