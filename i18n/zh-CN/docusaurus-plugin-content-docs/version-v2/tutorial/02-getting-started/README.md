@@ -41,7 +41,7 @@ alova 提供了 10+个基于[RSM](/v2/tutorial/others/RSM)规范的请求策略�
 ## 场景化请求策略
 
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/usePagination">usePagination</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/seamless-data-interaction">useSQRequest</Link>
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useForm">useForm</Link>
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useAutoRequest">useAutoRequest</Link>

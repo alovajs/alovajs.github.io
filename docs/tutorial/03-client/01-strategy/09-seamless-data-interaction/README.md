@@ -1,5 +1,5 @@
 ---
-title: Sensorless data interaction - Overview
+title: Seamless data interaction - Overview
 ---
 
 Non-inductive data interaction means that when users interact with the application, relevant content can be displayed immediately without waiting, or the operation result can be displayed without waiting when submitting information, just like interacting with local data, thereby greatly improving the smoothness of the application It allows users to not feel the lag caused by data transmission.

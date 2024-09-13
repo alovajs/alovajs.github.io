@@ -31,9 +31,9 @@
     "message": "请求策略",
     "description": "The label for category Strategy in sidebar tutorial"
   },
-  "sidebar.tutorial.category.Sensorless data interaction": {
+  "sidebar.tutorial.category.Seamless data interaction": {
     "message": "无感数据交互",
-    "description": "The label for category Sensorless data interaction in sidebar tutorial"
+    "description": "The label for category Seamless data interaction in sidebar tutorial"
   },
   "sidebar.tutorial.category.Basics completed": {
     "message": "🎉你已完成基础",

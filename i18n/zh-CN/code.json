@@ -290,15 +290,15 @@
     "description": "网站tagline"
   },
   "homepage.automaticGenerate.sectionTitle": {
-    "message": "自动生成",
+    "message": "更先进的openAPI方案",
     "description": "section title for automatic generate"
   },
   "homepage.automaticGenerate.title": {
-    "message": "一边查询一边使用接口",
+    "message": "消除中间的API文档",
     "description": "title for automatic generate"
   },
   "homepage.automaticGenerate.description": {
-    "message": "在编辑器中快速找到API，甚至在js项目中，也可以使用alova的扩展自动生成的API代码来享受完整的类型提示",
+    "message": "alova的devtools能够同时生成API调用代码，同时提供相应的TypeScript类型定义和详尽的文档。即使在JavaScript项目中，也能享受到完整的TypeScript类型提示。此外，你还可以快速查找所需API，参照参数表快速传参，所有操作均在编辑器内完成。",
     "description": "desc for automatic generate"
   },
   "homepage.automaticGenerate.Locate API by its url or description": {
@@ -314,11 +314,11 @@
     "description": "section title for requestStrategy"
   },
   "homepage.requestStrategy.title": {
-    "message": "复杂的请求现场杀手锏",
+    "message": "复杂请求场景的杀手锏",
     "description": "title for requestStrategy"
   },
   "homepage.requestStrategy.description": {
-    "message": "一行代码实现各种复杂场景中的请求",
+    "message": "使用alova的客户端和服务器的请求策略应对不同场景下的请求，它们对每一个请求场景都提供了完整的状态化参数、事件和操作函数，只需一行代码实现各种复杂场景的请求。",
     "description": "desc for requestStrategy"
   },
   "homepage.requestStrategy.Pagination Request.title": {
@@ -609,29 +609,29 @@
     "message": "高性能的列表操作函数",
     "description": "description of Pagination feature4"
   },
-  "homepage.strategy.Sensorless interact strategy": {
+  "homepage.strategy.Seamless interact strategy": {
     "message": "无感数据交互策略",
     "description": "description of Pagination request strategy"
   },
-  "homepage.strategy.Sensorless interact strategy.desc": {
+  "homepage.strategy.Seamless interact strategy.desc": {
     "message": "全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用",
-    "description": "description of Sensorless interact strategy desc"
+    "description": "description of Seamless interact strategy desc"
   },
-  "homepage.strategy.Sensorless interact strategy.feature1": {
+  "homepage.strategy.Seamless interact strategy.feature1": {
     "message": "像操作本地数据一样，无需等待网络响应",
-    "description": "description of Sensorless interact strategy desc"
+    "description": "description of Seamless interact strategy desc"
   },
-  "homepage.strategy.Sensorless interact strategy.feature2": {
+  "homepage.strategy.Seamless interact strategy.feature2": {
     "message": "弱网或断网状态依然可用",
-    "description": "description of Sensorless interact strategy desc"
+    "description": "description of Seamless interact strategy desc"
   },
-  "homepage.strategy.Sensorless interact strategy.feature3": {
+  "homepage.strategy.Seamless interact strategy.feature3": {
     "message": "更稳定的数据同步，用户无感知的",
-    "description": "description of Sensorless interact strategy desc"
+    "description": "description of Seamless interact strategy desc"
   },
-  "homepage.strategy.Sensorless interact strategy.feature4": {
+  "homepage.strategy.Seamless interact strategy.feature4": {
     "message": "自由切换无感请求和正常网络请求",
-    "description": "description of Sensorless interact strategy desc"
+    "description": "description of Seamless interact strategy desc"
   },
   "homepage.strategy.Token authentication": {
     "message": "Token身份认证",

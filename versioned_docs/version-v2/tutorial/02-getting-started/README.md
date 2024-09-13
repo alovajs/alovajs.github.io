@@ -41,7 +41,7 @@ alova provides 10+ request strategy modules based on the [RSM](/v2/tutorial/othe
 ## Scenario-based request strategy
 
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/usePagination">usePagination</Link>
-<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/sensorless-data-interaction">useSQRequest</Link>
+<Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/seamless-data-interaction">useSQRequest</Link>
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useForm">useForm</Link>
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/tokenAuthentication">TokenAuthentication</Link>
 <Link className="button button--secondary margin-bottom--xs" to="/v2/tutorial/strategy/useAutoRequest">useAutoRequest</Link>

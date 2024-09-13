@@ -1,5 +1,5 @@
 ---
-title: Cross components to trigger request
+title: Cross components request trigger
 ---
 
 import Tabs from '@theme/Tabs';
