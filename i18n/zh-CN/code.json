@@ -298,7 +298,7 @@
     "description": "title for automatic generate"
   },
   "homepage.automaticGenerate.description": {
-    "message": "alova的devtools能够同时生成API调用代码，同时提供相应的TypeScript类型定义和详尽的文档。即使在JavaScript项目中，也能享受到完整的TypeScript类型提示。此外，你还可以快速查找所需API，参照参数表快速传参，所有操作均在编辑器内完成。",
+    "message": "alova的devtools能够同时生成API调用代码，以及每个API的TypeScript类型和详尽的文档。即使在JavaScript项目中，也能享受到完整的TypeScript类型提示。此外，你还可以快速查找所需API，参照参数表快速传参，所有操作均在编辑器内完成。",
     "description": "desc for automatic generate"
   },
   "homepage.automaticGenerate.Locate API by its url or description": {

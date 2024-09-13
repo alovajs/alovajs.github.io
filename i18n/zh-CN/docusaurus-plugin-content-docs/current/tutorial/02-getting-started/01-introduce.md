@@ -384,7 +384,7 @@ const orderRes = await limit(alova.Get('/api/order'));
 
 ### 更先进的 openAPI 解决方案
 
-1. alova 的开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型定义和详尽的 API 文档，即使在 JavaScript 项目中也能享受到完整的 API 类型提示。
+1. alova 的开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型和详尽的 API 文档，即使在 JavaScript 项目中也能享受到完整的 API 类型提示。
 
 ```mermaid
 flowchart LR
