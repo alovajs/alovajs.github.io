@@ -23,7 +23,7 @@ A hook designed for paging scenarios, which can help you automatically manage pa
 
 ## Features
 
-- Rich and comprehensive paging status;
+- Rich and comprehensive paging states;
 - Rich and comprehensive pagination events;
 - Change page, pageSize to automatically get specified paging data;
 - Data caching, no need to repeatedly request list data of the same parameters;

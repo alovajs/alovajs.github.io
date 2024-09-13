@@ -103,7 +103,7 @@ const defaultSerializers = {
 };
 ```
 
-[Read Date serializer source code](https://github.com/alovajs/scene/blob/main/src/hooks/silent/serializer/date.ts)
+[Read Date serializer source code](https://github.com/alovajs/alova/blob/main/packages/client/src/util/serializer/date.ts)
 
 ## Manipulate the silent queue
 
@@ -139,11 +139,11 @@ const handleClick = () => {
 
 ### Find silentMethod
 
-In the previous [data compensation](/v2/tutorial/strategy/sensorless-data-interaction/data-compensation), we used [filterSilentMethods](/v2/tutorial/strategy/sensorless-data-interaction/data-compensation#filtersilentmethods) to find the silentMethod of the specified queue instance, it will return all matching silentMethod instances, here are two more ways to find the queue:
+In the previous [data compensation](/tutorial/client/strategy/seamless-data-interaction/data-compensation), we used [filterSilentMethods](/tutorial/client/strategy/seamless-data-interaction/data-compensation#filtersilentmethods) to find the silentMethod of the specified queue instance, it will return all matching silentMethod instances, here are two more ways to find the queue:
 
 #### Find a silentMethod instance
 
-Use `getSilentMethod` to query the first matching silentMethod instance, the usage is the same as [filterSilentMethods](/v2/tutorial/strategy/sensorless-data-interaction/data-compensation#filtersilentmethods).
+Use `getSilentMethod` to query the first matching silentMethod instance, the usage is the same as [filterSilentMethods](/tutorial/client/strategy/seamless-data-interaction/data-compensation#filtersilentmethods).
 
 ```typescript
 function filterSilentMethods(
@@ -170,6 +170,15 @@ const silentQueueMap = {
 
 After finding the silentMethod instance you want, you can manipulate these waiting silentMethod instances.
 
+#### update silentMethod
+
+Call `silentMethod.save` to update this silentMethod data to cache.
+
+```javascript
+silentMethod.extraData = { ... };
+await silentMethod.save();
+```
+
 #### replace silentMethod
 
 Call `silentMethod.replace` to replace a silentMethod with another silentMethod in the queue.
@@ -191,7 +200,7 @@ oldSilentMethod.remove();
 You can also access `silentQueueMap` to custom change any data of any queue.
 
 ```javascript
-import { silentQueueMap } from '@alova/scene-*';
+import { silentQueueMap } from 'alova/client';
 
 // Modify all silentMethods in the default queue
 silentQueueMap.default.forEach(silentMethodItem => {

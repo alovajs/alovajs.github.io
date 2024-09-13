@@ -7,28 +7,29 @@ import TabItem from '@theme/TabItem';
 
 ## react-query/swr/alova 对比
 
-react-query 是一个强大的异步状态管理，swr 是一个用于数据请求的 React Hooks 库，它们的共同特性也是使用 use hook 来发送和管理请求，和数据缓存功能，以下是三者的对比表格。
+react-query 是一个强大的异步状态管理库，swr 是一个用于数据请求的 React Hooks 库，它们的共同特性也是使用 use hook 来发送和管理请求，和数据缓存功能，以下是三者的对比表格。
 
-| 特性 ↓/库 →         | react-query  | swr          | alova                                                |
-| ------------------- | ------------ | ------------ | ---------------------------------------------------- |
-| 定位                | 异步状态管理 | 异步状态管理 | 提升 API 消费效率                                    |
-| 使用模式            | hooks 为主   | hooks 为主   | 完整的请求方案                                       |
-| 适用环境            | client       | client       | client/server                                        |
-| 请求策略            | 2-3 个 hooks | 2-3 个 hooks | hooks/interceptors/middlewares/server hooks 等 20+个 |
-| hooks 操作函数      | ❌           | ❌           | ✅                                                   |
-| 框架支持            | 多包支持     | 仅 React     | 适配器支持                                           |
-| SSR                 | ✅           | ✅           | ✅                                                   |
-| 服务端              | ❌           | ❌           | nodejs/deno/bun                                      |
-| 自由度              | 🟡 受限      | 🟡 受限      | 灵活度高                                             |
-| 请求共享            | ❌           | ❌           | ✅                                                   |
-| 缓存策略            | 单级缓存     | 单级缓存     | 多级缓存                                             |
-| axios 支持          | ✅           | ✅           | ✅                                                   |
-| fetch 支持          | ✅           | ✅           | ✅                                                   |
-| XMLHttpRequest 支持 | 🟡 受限      | 🟡 受限      | ✅                                                   |
-| 请求方式            | 第三方库     | 第三方库     | 统一的 Method 代理                                   |
-| 插件系统            | 请求库决定   | 请求库决定   | 官方提供                                             |
-| 依赖收集（性能）    | ❌           | ✅           | ✅                                                   |
-| 数据同步            | ✅           | ✅           | ✅                                                   |
+| 特性 ↓/库 →         | react-query     | swr                       | alova                   |
+| ------------------- | --------------- | ------------------------- | ----------------------- |
+| 定位                | 异步状态管理    | 数据请求的 React Hooks 库 | 极致简化 API 集成工作流 |
+| 使用模式            | hooks           | hooks                     | 完整的请求方案          |
+| 适用环境            | client          | client                    | client/server           |
+| 框架支持            | 多包支持        | 仅 React                  | 适配器支持              |
+| SSR                 | ✅              | ✅                        | ✅                      |
+| hooks 数量          | 2-3             | 2-3                       | 15+                     |
+| hooks 操作函数      | ❌              | ❌                        | ✅                      |
+| 服务端              | ❌              | ❌                        | nodejs/deno/bun         |
+| server hooks        | ❌              | ❌                        | ✅                      |
+| 自由度              | 🟡 受限         | 🟡 受限                   | 🟢 灵活度高             |
+| 请求共享            | ❌              | ❌                        | ✅                      |
+| 缓存模式            | 单级缓存        | 单级缓存                  | 多级缓存                |
+| axios 支持          | ✅              | ✅                        | ✅                      |
+| fetch 支持          | ✅              | ✅                        | ✅                      |
+| XMLHttpRequest 支持 | 🟡 受限         | 🟡 受限                   | ✅                      |
+| 请求方式            | 第三方库        | 第三方库                  | 统一的 Method 代理      |
+| openAPI 支持        | 🟡 受限第三方库 | 🟡 受限第三方库           | 🟢 更现代的方案         |
+| 依赖收集（性能）    | ❌              | ✅                        | ✅                      |
+| 数据同步            | ✅              | ✅                        | ✅                      |
 
 ## 与 axios/fetch/XMLHttpRequest 等传统请求工具对比
 

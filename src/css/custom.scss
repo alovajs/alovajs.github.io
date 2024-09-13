@@ -7,13 +7,15 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #1a98ff;
-  --ifm-color-primary-dark: #008bfd;
-  --ifm-color-primary-darker: #0083ef;
-  --ifm-color-primary-darkest: #006cc5;
-  --ifm-color-primary-light: #36a5ff;
-  --ifm-color-primary-lighter: #44abff;
-  --ifm-color-primary-lightest: #6ebeff;
+  --ifm-color-primary: #0a6cff;
+  --ifm-color-primary-dark: #005fef;
+  --ifm-color-primary-darker: #005ae1;
+  --ifm-color-primary-darkest: #004aba;
+  --ifm-color-primary-light: #257cff;
+  --ifm-color-primary-lighter: #3284ff;
+  --ifm-color-primary-lightest: #5a9cff;
+  --ifm-color-primary-rgb: 10, 108, 255;
+
   --ifm-blockquote-color: var(--ifm-color-gray-600);
   --ifm-font-family-base: Inter, system-ui, sans-serif;
   --ifm-heading-font-family: Inter, system-ui, sans-serif;
@@ -22,24 +24,15 @@
   --ifm-alert-shadow: none;
   --ifm-menu-link-padding-vertical: 0.3rem;
   --ifm-navbar-shadow: none;
-  --ifm-color-primary-rgb: 26, 152, 255;
-  --docusaurus-highlighted-code-line-bg: rgba(255, 217, 120, 0.2);
-
+  --docusaurus-highlighted-code-line-bg: rgba(var(--ifm-color-primary-rgb), 0.1);
   --docusaurus-announcement-bar-height: auto !important;
+  --ifm-alert-border-color: var(--ifm-color-gray-600);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #1a98ff;
-  --ifm-color-primary-dark: #008bfd;
-  --ifm-color-primary-darker: #0083ef;
-  --ifm-color-primary-darkest: #006cc5;
-  --ifm-color-primary-light: #36a5ff;
-  --ifm-color-primary-lighter: #44abff;
-  --ifm-color-primary-lightest: #6ebeff;
-  --ifm-color-primary-rgb: 26, 152, 255;
-
+html[data-theme='dark'] {
   --ifm-background-surface-color: #030e27 !important;
+  --ifm-background-color: #040f26;
 }
 
 // navbar
@@ -110,10 +103,7 @@ html[data-theme='dark'] {
 // doc-search
 .doc-search {
   --docsearch-searchbox-background: transparent;
-  --docsearch-muted-color: theme(colors.font.500);
-}
-html[data-theme='dark'] {
-  --docsearch-muted-color: #94a3b8;
+  --docsearch-muted-color: var(--ifm-color-emphasis-800);
 }
 
 /* sidebar */
@@ -223,8 +213,7 @@ code {
 article {
   a:not([class]) {
     text-decoration: underline;
-    text-decoration-color: var(--ifm-color-primary-lightest);
-    text-underline-offset: 0.0625em;
+    text-underline-offset: 0.3em;
     text-decoration-thickness: auto;
   }
   section {
@@ -254,9 +243,11 @@ table {
 }
 .tabs {
   border-bottom: solid 1px var(--ifm-color-emphasis-300);
-  background: var(--ifm-color-emphasis-100);
+  // background: var(--ifm-color-emphasis-100);
+  --ifm-tabs-padding-vertical: 0.4rem;
   .tabs__item {
     border-radius: 0;
+    border-bottom-width: 2px;
   }
 }
 /* footer */
@@ -279,11 +270,39 @@ table {
 details {
   --ifm-alert-background-color: transparent !important;
   --ifm-alert-border-color: var(--ifm-color-emphasis-300) !important;
+  --docusaurus-details-summary-arrow-size: 0.3rem !important;
   summary {
     font-weight: 600;
-    color: var(--ifm-color-primary);
     --docusaurus-details-decoration-color: var(--ifm-color-primary) !important;
+    &::before {
+      top: 0.55rem !important;
+    }
   }
+}
+
+// alert-bar
+.alert {
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  border-radius: 2px;
+}
+.alert--success {
+  --ifm-alert-foreground-color: var(--ifm-color-success-dark);
+}
+.alert--warning {
+  --ifm-alert-foreground-color: var(--ifm-color-warning-dark);
+}
+.alert--danger {
+  --ifm-alert-foreground-color: var(--ifm-color-danger-dark);
+}
+.alert--info {
+  --ifm-alert-foreground-color: var(--ifm-color-info-dark);
+}
+.alert--note {
+  --ifm-alert-foreground-color: var(--ifm-color-note-dark);
 }
 
 /* //////// 自定义类 //////// */
