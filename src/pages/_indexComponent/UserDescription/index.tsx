@@ -17,7 +17,6 @@ function renderAvatar(avatar: UserDescProps['avatar'], size = 40, radius = 0) {
   return typeof avatar === 'string' ? (
     <img
       style={{
-        width: `${size}px`,
         height: `${size}px`,
         borderRadius: `${radius}px`
       }}

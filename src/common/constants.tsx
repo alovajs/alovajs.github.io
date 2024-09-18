@@ -168,8 +168,13 @@ const alovaInstance = createAlova({
 
 export const Project: UserDescProps[] = [
   {
+    avatar: '/img/project/naive-ui-admin.png',
+    name: 'Naive Admin',
+    to: 'https://www.naiveadmin.com/'
+  },
+  {
     avatar: '/img/project/nova-admin.png',
-    name: 'Nova-admin',
+    name: 'Nova admin',
     to: 'https://github.com/chansee97/nova-admin'
   },
   {
@@ -189,7 +194,7 @@ export const DeveloperComments: UserDescProps[] = [
     avatar: '/img/avatar/scott-hu.png',
     name: 'Scott Hu',
     description: translate({
-      message: 'The creator of alova',
+      message: 'Creator of alova',
       id: 'homepage.projects.Scott Hu.desc'
     }),
     children: (
@@ -225,7 +230,7 @@ export const DeveloperComments: UserDescProps[] = [
   {
     avatar: '/img/avatar/ah-jung.png',
     name: 'Ah jung',
-    description: 'Developer',
+    description: 'Author of Naive Admin',
     children: (
       <p>
         <Translate id="homepage.projects.Ah jung.comment">

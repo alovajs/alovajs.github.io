@@ -163,6 +163,11 @@ const config: Config = {
           ]
         },
         {
+          to: 'showcase',
+          position: 'left',
+          label: 'Showcase'
+        },
+        {
           type: 'search',
           className: 'doc-search',
           position: 'right'
