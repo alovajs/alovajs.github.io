@@ -237,9 +237,9 @@ export const alovaInst = createAlova({
 mock 数据一般只作用于开发环境，在生产环境下将会切换到实际的接口中，因此这段 mock 代码在生产环境就变得没有作用，此时我们可以通过环境变量的判断来排除这块代码，你只需要这样做：
 
 ```javascript
-const fetchAdapter = adapterFetch();
+const adapterFetch = adapterFetch();
 const mockAdapter = createAlovaMockAdapter([mockGroup1, /** ... */], {
-  httpAdapter: fetchAdapter,
+  httpAdapter: adapterFetch,
   delay: 1000,
 });
 
