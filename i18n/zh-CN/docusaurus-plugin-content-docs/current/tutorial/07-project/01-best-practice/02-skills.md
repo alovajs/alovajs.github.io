@@ -225,9 +225,9 @@ const handleInvalidateCache = id => {
 如果你的项目，在开发环境下需要使用模拟数据模拟部分或全部接口，在生产切换回真实的网络请求，你可以通过环境变量来控制。
 
 ```javascript
-const fetchAdapter = adapterFetch();
+const adapterFetch = adapterFetch();
 const mockAdapter = createAlovaMockAdapter([mockGroup1 /** ... */], {
-  httpAdapter: fetchAdapter,
+  httpAdapter: adapterFetch,
   delay: 1000
 });
 

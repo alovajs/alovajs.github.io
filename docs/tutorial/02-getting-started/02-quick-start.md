@@ -59,10 +59,10 @@ In alova, you need to initiate a request through an alova instance. Let's create
 
 ```javascript
 import { createAlova } from 'alova';
-import fetchAdapter from 'alova/fetch';
+import adapterFetch from 'alova/fetch';
 
 const alovaInstance = createAlova({
-  requestAdapter: fetchAdapter()
+  requestAdapter: adapterFetch()
 });
 ```
 
@@ -71,24 +71,24 @@ const alovaInstance = createAlova({
 
 ```javascript
 const { createAlova } = require('alova');
-const fetchAdapter = require('alova/fetch');
+const adapterFetch = require('alova/fetch');
 
 const alova = createAlova({
-requestAdapter: fetchAdapter();
+requestAdapter: adapterFetch();
 });
 ```
 
-> When using fetchAdapter in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/resource/request-adapter/axios/).
+> When using adapterFetch in nodejs, the nodejs version requires `v17.5`, or you can use [axios request adapter](/resource/request-adapter/axios/).
 
 </TabItem>
 <TabItem value="3" label="deno">
 
 ```javascript
 import { createAlova } from 'npm:alova';
-import fetchAdapter from 'npm:alova/fetch';
+import adapterFetch from 'npm:alova/fetch';
 
 const alova = createAlova({
-requestAdapter: fetchAdapter();
+requestAdapter: adapterFetch();
 });
 ```
 
@@ -97,7 +97,7 @@ requestAdapter: fetchAdapter();
 
 ## GET request
 
-Send a request through `alovaInstance.Get`. Since the `fetchAdapter` request adapter is used, a `Response` instance will be received. This is very simple.
+Send a request through `alovaInstance.Get`. Since the `adapterFetch` request adapter is used, a `Response` instance will be received. This is very simple.
 
 ```js
 const response = await alovaInstance

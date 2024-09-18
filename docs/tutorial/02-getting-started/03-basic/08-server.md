@@ -6,10 +6,10 @@ As mentioned in the previous [Quick Start](/tutorial/getting-started/quick-start
 
 ```js
 import { createAlova } from 'alova';
-import fetchAdapter from 'alova/fetch';
+import adapterFetch from 'alova/fetch';
 
 const alovaInstance = createAlova({
-requestAdapter: fetchAdapter()
+requestAdapter: adapterFetch()
 });
 
 alovaInstance.Get(...);

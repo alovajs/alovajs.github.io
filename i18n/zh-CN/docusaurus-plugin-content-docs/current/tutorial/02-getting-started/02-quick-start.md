@@ -59,10 +59,10 @@ bun add alova
 
 ```javascript
 import { createAlova } from 'alova';
-import fetchAdapter from 'alova/fetch';
+import adapterFetch from 'alova/fetch';
 
 const alovaInstance = createAlova({
-  requestAdapter: fetchAdapter()
+  requestAdapter: adapterFetch()
 });
 ```
 
@@ -71,24 +71,24 @@ const alovaInstance = createAlova({
 
 ```javascript
 const { createAlova } = require('alova');
-const fetchAdapter = require('alova/fetch');
+const adapterFetch = require('alova/fetch');
 
 const alova = createAlova({
-  requestAdapter: fetchAdapter();
+  requestAdapter: adapterFetch();
 });
 ```
 
-> 在 nodejs 中使用 fetchAdapter 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/resource/request-adapter/axios/)。
+> 在 nodejs 中使用 adapterFetch 时，nodejs 版本要求`v17.5`，或者你可以使用[axios 请求适配器](/resource/request-adapter/axios/)。
 
 </TabItem>
 <TabItem value="3" label="deno">
 
 ```javascript
 import { createAlova } from 'npm:alova';
-import fetchAdapter from 'npm:alova/fetch';
+import adapterFetch from 'npm:alova/fetch';
 
 const alova = createAlova({
-  requestAdapter: fetchAdapter();
+  requestAdapter: adapterFetch();
 });
 ```
 
@@ -97,7 +97,7 @@ const alova = createAlova({
 
 ## GET 请求
 
-通过 `alovaInstance.Get` 发送一个请求，由于使用了`fetchAdapter`请求适配器，将会接收到一个`Response`实例，这很简单。
+通过 `alovaInstance.Get` 发送一个请求，由于使用了`adapterFetch`请求适配器，将会接收到一个`Response`实例，这很简单。
 
 ```js
 const response = await alovaInstance
