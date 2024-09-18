@@ -422,9 +422,16 @@ flowchart LR
 - [从 v2 迁移到 v3](/tutorial/project/migration/v2-to-v3)
 - [从 axios 低成本迁移到 alova 的指南](/tutorial/project/migration/from-axios)
 
-## 脚手架推荐
+## 项目推荐
 
 <NavCard list={[
+{
+Image: <img src="/img/project/naive-ui-admin.png"/>,
+title: 'Naive Admin',
+desc: '开箱即用的中后台框架/简化您的中后台开发',
+link: 'https://www.naiveadmin.com/',
+target: '__blank'
+},
 {
 Image: <img src="https://codercup.github.io/unibest-docs/logo.svg"/>,
 title: 'Uniapp 脚手架 - unibest',

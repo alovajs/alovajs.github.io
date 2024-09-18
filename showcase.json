@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Naive Admin",
+    "logo": "/img/project/naive-ui-admin.png",
+    "desc": "开箱即用的中后台框架/简化您的中后台开发",
+    "link": "https://www.naiveadmin.com/"
+  },
+  {
+    "title": "Nova-admin",
+    "logo": "/img/project/nova-admin.png",
+    "desc": "A simple and flexible admin template based on Vue3, Vite, TypeScript, NaiveUI",
+    "link": "https://github.com/chansee97/nova-admin"
+  },
+  {
+    "title": "EMS-ESP",
+    "logo": "/img/project/ems-esp.png",
+    "desc": "ESP32 firmware to read and control EMS and Heatronic compatible equipment such as boilers, thermostats, solar modules, and heat pumps",
+    "link": "https://github.com/emsesp/EMS-ESP32"
+  },
+  {
+    "title": "MallChat",
+    "logo": "/img/project/mall-chat.png",
+    "desc": "mallchat的前端项目，是一个既能购物又能聊天的电商系统。",
+    "link": "https://github.com/Evansy/MallChatWeb"
+  },
+  {
+    "title": "KoKo",
+    "logo": "/img/project/koko.png",
+    "desc": "a connector of JumpServer for secure connections using character protocols, supporting SSH, Telnet, Kubernetes, SFTP and database protocols",
+    "link": "https://github.com/jumpserver/koko"
+  },
+  {
+    "title": "5Minutes",
+    "logo": "/img/project/5minutes.png",
+    "desc": "5minutes is a mentor-mentee learning platform where mentors share content that is consumable in no more than 5minutes.",
+    "link": "https://app.5minutes.ng/"
+  },
+  {
+    "title": "vue-shopping-cart",
+    "logo": "/img/project/vue-shopping-cart.png",
+    "desc": "Simple shopping cart with Vue.js and Deno.js",
+    "link": "https://github.com/dangvanthanh/vue-shopping-cart"
+  }
+]
