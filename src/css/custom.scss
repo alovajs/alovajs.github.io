@@ -24,7 +24,7 @@
   --ifm-alert-shadow: none;
   --ifm-menu-link-padding-vertical: 0.3rem;
   --ifm-navbar-shadow: none;
-  --docusaurus-highlighted-code-line-bg: rgba(var(--ifm-color-primary-rgb), 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(var(--ifm-color-primary-rgb), 0.07);
   --docusaurus-announcement-bar-height: auto !important;
   --ifm-alert-border-color: var(--ifm-color-gray-600);
 }
@@ -357,6 +357,38 @@ html:not(.docs-wrapper) {
   }
 }
 
+// tabs using to show file
+.file-tabs {
+  border-bottom-style: none;
+  font-size: 0.8rem;
+  background: var(--prism-background-color);
+  & + .margin-top--md {
+    margin-top: 0 !important;
+  }
+  & + div .theme-code-block {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .tabs__item {
+    border: solid 1px var(--ifm-color-emphasis-200);
+    border-bottom: none;
+    border-right-width: 0;
+    $--tabs-border-radius: 6px;
+    &:first-child {
+      border-top-left-radius: $--tabs-border-radius;
+    }
+    &:last-child {
+      border-right-width: 1px;
+      border-top-right-radius: $--tabs-border-radius;
+    }
+  }
+  .tabs__item--active {
+    border-bottom: none;
+    background: var(--ifm-color-emphasis-100);
+  }
+}
+
+// tailwind
 @tailwind components;
 @tailwind utilities;
 @tailwind base;
