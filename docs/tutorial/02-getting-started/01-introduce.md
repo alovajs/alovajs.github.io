@@ -405,6 +405,12 @@ classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
 
 > For a detailed introduction to alova devtools, please refer to [Integrated Editor Extension](/tutorial/getting-started/extension-integration).
 
+## Building Network Layer
+
+With the various features of alova, you can also build a network layer for your project. The network layer will distribute response data to various components by merging same requests. Additionally, the network layer also manages response data and the responsive states created by useHooks. You can access and modify the datas in network layer in any UI component, as well as refresh the network layer data.
+
+> If you want to build a network layer, please refer to [Building Network Layer](/tutorial/project/best-practice/network-layer)
+
 ## Run in any JS environment
 
 Not only that, Alova is very flexible, you can use it with different request tools in any of the following JS environments (the gray part will be gradually supported in the future).
