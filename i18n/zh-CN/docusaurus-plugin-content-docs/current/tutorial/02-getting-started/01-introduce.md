@@ -405,11 +405,11 @@ flowchart LR
 
 > 关于 alova 开发工具的详细介绍，请参考 [集成编辑器扩展](/tutorial/getting-started/extension-integration)。
 
-## 构建网络层
+## 构建 Client-Server 交互层
 
-通过 alova 的各种特性，你还可以为你的项目构建网络层，网络层将会以合并相同请求的方式分发响应数据到各个组件中，此外，网络层还管理响应数据和 useHooks 所创建的响应式状态，你可以在任意的 UI 组件中访问和修改网络层的数据，以及刷新网络层数据。
+通过 alova 的各种特性，你还可以为你的项目构建 Client-Server 交互层（CS 交互层），CS 交互层将会以合并相同请求的方式分发响应数据到各个组件中，此外，CS 交互层还管理响应数据和 useHooks 所创建的响应式状态，你可以在任意的 UI 组件中访问和修改 CS 交互层的数据，以及刷新 CS 交互层数据。
 
-> 如果你想要构建网络层，请参考[构建网络层](/tutorial/project/best-practice/network-layer)
+> 如果你想要构建 CS 交互层，请参考[构建 Client-Server 交互层](/tutorial/project/best-practice/csil)
 
 ## 在任何 JS 环境下运行
 

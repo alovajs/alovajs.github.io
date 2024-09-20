@@ -405,11 +405,11 @@ classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
 
 > For a detailed introduction to alova devtools, please refer to [Integrated Editor Extension](/tutorial/getting-started/extension-integration).
 
-## Building Network Layer
+## Building Client-Server Interaction Layer
 
-With the various features of alova, you can also build a network layer for your project. The network layer will distribute response data to various components by merging same requests. Additionally, the network layer also manages response data and the responsive states created by useHooks. You can access and modify the datas in network layer in any UI component, as well as refresh the network layer data.
+With the various features of alova, you can also build a Client-Server interaction layer(CSIL) for your project. The CSIL will distribute response data to various components by merging same requests. Additionally, the CSIL also manages response data and the responsive states created by useHooks. You can access and modify the datas in CSIL in any UI component, as well as refresh the data in CSIL.
 
-> If you want to build a network layer, please refer to [Building Network Layer](/tutorial/project/best-practice/network-layer)
+> If you want to build a CSIL, please refer to [Building Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
 
 ## Run in any JS environment
 
