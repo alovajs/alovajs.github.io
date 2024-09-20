@@ -209,20 +209,19 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true
     },
-    // announcementBar: {
-    //   id: 'support_us',
-    //   content: `⭐️
-    //       If you also like alova,
-    //       <a
-    //         href="https://github.com/alovajs/alova"
-    //         target="_blank">
-    //         star it on GitHub!
-    //       </a>
-    //       ⭐️`,
-    //   backgroundColor: 'var(--ifm-color-primary-light)',
-    //   textColor: '#fff',
-    //   isCloseable: true
-    // },
+    announcementBar: {
+      id: 'support_us',
+      content: `⭐️
+          If you also like alova,
+          <a
+            href="https://github.com/alovajs/alova"
+            target="_blank">
+            star it on GitHub!
+          </a>
+          ⭐️`,
+      backgroundColor: 'rgba(var(--ifm-color-primary-rgb), 0.05)'
+      // textColor: '#fff'
+    },
     footer: {
       style: 'light',
       logo: {
