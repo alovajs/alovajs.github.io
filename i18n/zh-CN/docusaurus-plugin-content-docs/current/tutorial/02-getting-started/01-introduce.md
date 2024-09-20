@@ -9,6 +9,8 @@ import SupportList from '@site/src/components/SupportList';
 import tts from '@site/static/audio/tts.mp3';
 import AudioPlayer from '@site/src/components/AudioPlayer';
 import IconFont from '@site/src/components/IconFont';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## alova 是什么？
 
@@ -273,19 +275,28 @@ const {
 
 跨组件请求触发中间件可以帮你消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数。
 
-```javascript title="组件A"
+<Tabs className="file-tabs">
+<TabItem value="1" label="ComponentA">
+
+```javascript
 useRequest(alova.Get('/api/todo/list'), {
   // ...
   middleware: actionDelegationMiddleware('action:todoList')
 });
 ```
 
-```javascript title="组件B"
+</TabItem>
+<TabItem value="2" label="ComponentB">
+
+```javascript
 accessAction('action:todoList', delegatedActions => {
   delegatedActions.send();
   delegatedActions.abort();
 });
 ```
+
+</TabItem>
+</Tabs>
 
 前往[跨组件触发请求](/tutorial/client/strategy/action-delegation-middleware) 查看详情。
 

@@ -20,12 +20,12 @@ alova provides 10+ custom client strategy modules, but sometimes you may need to
 
 The following strategy modules are very representative, and it is strongly recommended that you refer to the source code for inspiration.
 
-- [source of usePagination](https://github.com/alovajs/scene/blob/main/packages/client/src/hooks/pagination/usePagination.ts)
-- [source of useCaptcha](https://github.com/alovajs/scene/blob/main/packages/client/src/hooks/useCaptcha.ts)
-- [source of useForm](https://github.com/alovajs/scene/blob/main/packages/client/src/hooks/useForm.ts)
+- [source code of usePagination](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/pagination/usePagination.ts)
+- [source code of useCaptcha](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/useCaptcha.ts)
+- [source code of useForm](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/useForm.ts)
 
 ## Custom server-side strategy
 
 The server-side strategy module is a simple function. The following is a `Server hook` for request retry.
 
-- [Request retry](https://github.com/alovajs/scene/blob/main/packages/server/src/hooks/retry.ts)
+- [Request retry](https://github.com/alovajs/alova/blob/main/packages/server/src/hooks/retry.ts)

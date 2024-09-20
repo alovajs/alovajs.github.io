@@ -20,12 +20,12 @@ alova 提供了 10+个自定义的客户端策略模块，但有时候可能你�
 
 以下的策略模块具有很好的代表性，强烈建议你参考源码寻找灵感。
 
-- [usePagination 源码](https://github.com/alovajs/scene/blob/main/packages/client/src/hooks/pagination/usePagination.ts)
-- [useCaptcha 源码](https://github.com/alovajs/scene/blob/main/packages/client/src/hooks/useCaptcha.ts)
-- [useForm 源码](https://github.com/alovajs/scene/blob/main/packages/client/src/hooks/useForm.ts)
+- [usePagination 源码](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/pagination/usePagination.ts)
+- [useCaptcha 源码](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/useCaptcha.ts)
+- [useForm 源码](https://github.com/alovajs/alova/blob/main/packages/client/src/hooks/useForm.ts)
 
 ## 自定义服务端策略
 
 服务端的策略模块是一个简单的函数，以下是一个请求重试的`Server hook`。
 
-- [请求重试](https://github.com/alovajs/scene/blob/main/packages/server/src/hooks/retry.ts)
+- [请求重试](https://github.com/alovajs/alova/blob/main/packages/server/src/hooks/retry.ts)
