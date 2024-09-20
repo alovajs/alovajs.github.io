@@ -9,6 +9,8 @@ import SupportList from '@site/src/components/SupportList';
 import tts from '@site/static/audio/tts.mp3';
 import AudioPlayer from '@site/src/components/AudioPlayer';
 import IconFont from '@site/src/components/IconFont';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## What is alova?
 
@@ -273,19 +275,28 @@ See [Seamless Data Interaction](/tutorial/client/strategy/seamless-data-interact
 
 Cross-component request triggering middleware can help you eliminate the limitations of component levels and quickly trigger any request actions in any component.
 
-```javascript title="Component A"
+<Tabs className="file-tabs">
+<TabItem value="1" label="ComponentA">
+
+```javascript
 useRequest(alova.Get('/api/todo/list'), {
   // ...
   middleware: actionDelegationMiddleware('action:todoList')
 });
 ```
 
-```javascript title="Component B"
+</TabItem>
+<TabItem value="2" label="ComponentB">
+
+```javascript
 accessAction('action:todoList', delegatedActions => {
   delegatedActions.send();
   delegatedActions.abort();
 });
 ```
+
+</TabItem>
+</Tabs>
 
 See [Cross-component request trigger](/tutorial/client/strategy/action-delegation-middleware) for details.
 

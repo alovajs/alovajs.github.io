@@ -288,6 +288,7 @@ details {
   border-bottom-width: 1px;
   border-right-width: 1px;
   border-radius: 2px;
+  --ifm-alert-foreground-color: var(--ifm-color-primary) !important;
 }
 .alert--success {
   --ifm-alert-foreground-color: var(--ifm-color-success-dark);

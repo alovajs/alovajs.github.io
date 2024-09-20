@@ -21,12 +21,11 @@ You can manage additional states through `managedStates` when using useHooks, an
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
-```javascript title="A.vue"
-const todoList = page =>
-  alova.Get('/todo', {
-    name: 'todoList'
-  });
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.vue">
 
+```javascript
+const todoList = () => alova.Get('/todo');
 const allTodo = ref([]);
 useRequest(todoList, {
   // ...
@@ -40,11 +39,14 @@ useRequest(todoList, {
 });
 ```
 
-```javascript title="B.vue"
+</TabItem>
+<TabItem value="2" label="PageB.vue">
+
+```javascript
 const handleSuccess = () => {
   // highlight-start
   // Pass in an object and specify the state name to find
-  updateState('todoList', {
+  updateState(alova.Get('/todo'), {
     allTodo: allTodoData => {
       // Add a new todo item
       allTodoData.push({
@@ -59,15 +61,19 @@ const handleSuccess = () => {
 ```
 
 </TabItem>
+</Tabs>
+
+</TabItem>
 
 <TabItem value="2" label="react">
 
-```javascript title="A.jsx"
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.jsx">
+
+```javascript
 const PageA = () => {
   const todoList = page =>
-    alova.Get('/todo', {
-    name: 'todoList'
-  });
+    alova.Get('/todo');
 
   const [allTodo, setAllTodo] = allTodoState = useState([]);
   useRequest(todoList, {
@@ -87,13 +93,16 @@ const PageA = () => {
 }
 ```
 
-```javascript title="B.jsx"
+</TabItem>
+<TabItem value="2" label="PageB.jsx">
+
+```javascript
 const PageB = () => {
   // ...
   const handleSuccess = () => {
     // highlight-start
     // Pass in an object and specify the state name to look up
-    updateState('todoList', {
+    updateState(alova.Get('/todo'), {
       allTodo: allTodoData => {
         // Add a new todo item
         allTodoData.push({
@@ -113,16 +122,18 @@ const PageB = () => {
 ```
 
 </TabItem>
+</Tabs>
+
+</TabItem>
 
 <TabItem value="3" label="svelte">
 
-```javascript title="A.svelte"
-// a.svelte
-const todoList = page =>
-  alova.Get('/todo', {
-    name: 'todoList'
-  });
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.svelte">
 
+```javascript
+// a.svelte
+const todoList = () => alova.Get('/todo');
 const allTodo = writable([]);
 useRequest(todoList, {
   // ...
@@ -136,11 +147,14 @@ useRequest(todoList, {
 });
 ```
 
-```javascript title="B.svelte"
+</TabItem>
+<TabItem value="2" label="PageB.svelte">
+
+```javascript
 const handleSuccess = () => {
   // highlight-start
   // Pass in an object and specify the state name to search
-  updateState('todoList', {
+  updateState(alova.Get('/todo'), {
     allTodo: allTodoData => {
       // Add a new todo item
       allTodoData.push({
@@ -155,7 +169,9 @@ const handleSuccess = () => {
 ```
 
 </TabItem>
+</Tabs>
 
+</TabItem>
 </Tabs>
 
 ## Update multiple states

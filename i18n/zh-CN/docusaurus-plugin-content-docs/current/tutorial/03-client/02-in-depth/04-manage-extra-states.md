@@ -20,12 +20,11 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
 
-```javascript title="A.vue"
-const todoList = page =>
-  alova.Get('/todo', {
-    name: 'todoList'
-  });
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.vue">
 
+```javascript
+const todoList = () => alova.Get('/todo');
 const allTodo = ref([]);
 useRequest(todoList, {
   // ...
@@ -39,11 +38,14 @@ useRequest(todoList, {
 });
 ```
 
-```javascript title="B.vue"
+</TabItem>
+<TabItem value="2" label="PageB.vue">
+
+```javascript
 const handleSuccess = () => {
   // highlight-start
   // 传入一个对象并指定状态名来查找
-  updateState('todoList', {
+  updateState(alova.Get('/todo'), {
     allTodo: allTodoData => {
       // 新增一条todo项
       allTodoData.push({
@@ -58,16 +60,18 @@ const handleSuccess = () => {
 ```
 
 </TabItem>
+</Tabs>
+
+</TabItem>
 
 <TabItem value="2" label="react">
 
-```javascript title="A.jsx"
-const PageA = () => {
-  const todoList = page =>
-    alova.Get('/todo', {
-      name: 'todoList'
-    });
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.jsx">
 
+```javascript
+const PageA = () => {
+  const todoList = () => alova.Get('/todo');
   const [allTodo, setAllTodo] = allTodoState = useState([]);
   useRequest(todoList, {
     // ...
@@ -86,13 +90,16 @@ const PageA = () => {
 }
 ```
 
-```javascript title="B.jsx"
+</TabItem>
+<TabItem value="2" label="PageB.jsx">
+
+```javascript
 const PageB = () => {
   // ...
   const handleSuccess = () => {
     // highlight-start
     // 传入一个对象并指定状态名来查找
-    updateState('todoList', {
+    updateState(alova.Get('/todo'), {
       allTodo: allTodoData => {
         // 新增一条todo项
         allTodoData.push({
@@ -112,16 +119,17 @@ const PageB = () => {
 ```
 
 </TabItem>
+</Tabs>
 
+</TabItem>
 <TabItem value="3" label="svelte">
 
-```javascript title="A.svelte"
-// a.svelte
-const todoList = page =>
-  alova.Get('/todo', {
-    name: 'todoList'
-  });
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.svelte">
 
+```javascript
+// a.svelte
+const todoList = () => alova.Get('/todo');
 const allTodo = writable([]);
 useRequest(todoList, {
   // ...
@@ -135,11 +143,14 @@ useRequest(todoList, {
 });
 ```
 
-```javascript title="B.svelte"
+</TabItem>
+<TabItem value="2" label="PageB.svelte">
+
+```javascript
 const handleSuccess = () => {
   // highlight-start
   // 传入一个对象并指定状态名来查找
-  updateState('todoList', {
+  updateState(alova.Get('/todo'), {
     allTodo: allTodoData => {
       // 新增一条todo项
       allTodoData.push({
@@ -152,6 +163,9 @@ const handleSuccess = () => {
   // highlight-end
 };
 ```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 </Tabs>
