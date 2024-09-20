@@ -1,5 +1,5 @@
 ---
-title: 构建网络层
+title: 构建Client-Server交互层
 ---
 
 :::tip
@@ -8,7 +8,7 @@ title: 构建网络层
 
 :::
 
-你可以组合 alova 的各种特性实现应用的网络层，网络层将会管理你的响应数据和 useHooks 所创建的响应式状态，它们将会在网络层中通过 method 实例建立映射关系，从而消除组件层级的限制，你可以在任意的 UI 组件中通过 method 实例来访问、修改和刷新网络层的数据，以及调用 useHooks 的 actions。
+你可以组合 alova 的各种特性实现应用的 Client-Server 交互层（CS 交互层），CS 交互层将会管理你的响应数据和 useHooks 所创建的响应式状态，它们将会在 CS 交互层中通过 method 实例建立映射关系，从而消除组件层级的限制，你可以在任意的 UI 组件中通过 method 实例来访问、修改和刷新 CS 交互层的数据，以及调用 useHooks 的 actions。
 
 ```mermaid
 graph TD
@@ -44,7 +44,7 @@ class K specialNode;
 classDef specialNode fill:transparent,stroke:#10b13c50,color:#10b13c,stroke-width:2px;
 ```
 
-让我们来看看网络层可以带来哪些好处。
+让我们来看看 CS 交互层可以带来哪些好处。
 
 ## 请求点分离
 
@@ -65,14 +65,14 @@ graph TD
   end
 ```
 
-现在，你可以在不同组件中发起相同的请求，网络层中将会合并请求，并将数据分发到这些组件中。
+现在，你可以在不同组件中发起相同的请求，CS 交互层中将会合并请求，并将数据分发到这些组件中。
 
 ```mermaid
 graph TD
   B[组件1]
   C[组件2]
   D[组件3]
-  B --> E[网络层]
+  B --> E[CS交互层]
   C --> E
   D --> E
   E --> F[API服务]
@@ -271,11 +271,15 @@ const Assets = () => {
 
 ## 响应式状态集中管理
 
-由于响应式状态在网络层管理，你可以快速实现跨组件更新状态和刷新刷新数据。
+由于响应式状态在 CS 交互层管理，你可以快速实现跨组件更新状态和刷新刷新数据，例如你可以在遇到以下场景时使用：
 
-### 跨组件更新状态数据
+- 新增/编辑列表项后更新列表数据
+- 在 App 中通知上一页刷新数据
+- 编辑权限后刷新菜单栏
 
-通过 [`updateState`](/tutorial/client/in-depth/update-across-components) 并传入 method 实例实现跨组件的更新响应式状态。
+### 跨组件更新状态
+
+通过 [`updateState`](/tutorial/client/in-depth/update-across-components) 并传入 method 实例实现跨组件的更新响应式状态，此外，你还可以让 CS 交互层[管理自定义的状态](/tutorial/client/in-depth/manage-extra-states)，让自定义的状态也支持跨组件更新。
 
 ### 跨组件刷新数据
 
@@ -286,7 +290,7 @@ const Assets = () => {
 
 ## 响应数据集中管理
 
-当开启了响应数据缓存后，网络层将会按一定规则缓存响应数据，相同请求将会复用缓存数据来提升性能，具体请参考[响应缓存](/tutorial/cache)章节。此外，你还可以预测用户接下来将要访问的数据，使用 [`useFetcher`](/tutorial/client/strategy/use-fetcher) 预先请求数据并放在缓存中。
+当开启了响应数据缓存后，CS 交互层将会按一定规则缓存响应数据，相同请求将会复用缓存数据来提升性能，具体请参考[响应缓存](/tutorial/cache)章节。此外，你还可以预测用户接下来将要访问的数据，使用 [`useFetcher`](/tutorial/client/strategy/use-fetcher) 预先请求数据并放在缓存中。
 
 ### 缓存时效性
 

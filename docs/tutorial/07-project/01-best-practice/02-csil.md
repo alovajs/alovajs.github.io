@@ -1,5 +1,5 @@
 ---
-title: Building Network Layer
+title: Building Client-Server Interaction Layer
 ---
 
 :::tip
@@ -8,7 +8,7 @@ This is a practical experience summarized by using alova in depth. Please make s
 
 :::
 
-You can combine various features of alova to implement the network layer of your application. The network layer will manage your response data and the responsive states created by useHooks. They will establish a mapping relationship in the network layer through method instances, thereby eliminating the limitation of component hierarchy. You can access, modify and refresh the data of the network layer through method instances in any UI component, and call the actions of useHooks.
+You can combine various features of alova to implement the Client-Server Interaction Layer(CSIL) of your application. The CSIL will manage your response data and the responsive states created by useHooks. They will establish a mapping relationship in the CSIL through method instances, thereby eliminating the limitation of component hierarchy. You can access, modify and refresh the data of the CSIL through method instances in any UI component, and call the actions of useHooks.
 
 ```mermaid
 graph TD
@@ -22,7 +22,7 @@ graph TD
   E --> G[Component2]
   E --> H[Component3]
 
-  B --> K[Network Layer]
+  B --> K[CSIL]
   C --> K
   D --> K
   F --> K
@@ -44,7 +44,7 @@ class K specialNode;
 classDef specialNode fill:transparent,stroke:#10b13c50,color:#10b13c,stroke-width:2px;
 ```
 
-Let's see what benefits the network layer can bring us.
+Let's see what benefits the CSIL can bring us.
 
 ## Request point separation
 
@@ -65,14 +65,14 @@ In traditional practice, when a page is divided into multiple components, we nee
   end
 ```
 
-Now, you can initiate the same request in different components, and the network layer will merge the requests and distribute the data to these components.
+Now, you can initiate the same request in different components, and the CSIL will merge the requests and distribute the data to these components.
 
 ```mermaid
   graph TD
   B[component 1]
   C[component 2]
   D[component 3]
-  B --> E[network layer]
+  B --> E[CSIL]
   C --> E
   D --> E
   E --> F[API service]
@@ -271,11 +271,15 @@ const Assets = () => {
 
 ## Responsive states centralized management
 
-Since responsive states is managed at the network layer, you can quickly update state and refresh data across components.
+Since responsive states is managed in the CSIL, you can quickly update or refresh them across components. For example, you can use it in the following scenarios:
 
-### Update state data across components
+- Update list after adding/editing list items
+- Notify the previous page to refresh data in the App
+- Refresh the menu bar after editing permissions
 
-Update responsive states across components by passing in a method instance through [`updateState`](/tutorial/client/in-depth/update-across-components).
+### Update states across components
+
+Use [`updateState`](/tutorial/client/in-depth/update-across-components) and pass in a method instance to implement cross-component update responsive state. In addition, you can also let the CS interaction layer [manage custom states](/tutorial/client/in-depth/manage-extra-states) to allow custom states to support cross-component updates.
 
 ### Refresh data across components
 
@@ -286,7 +290,7 @@ There are two ways to refresh data across components.
 
 ## Centralized management of response data
 
-When response data caching is enabled, the network layer will cache response data according to certain rules, and the same request will reuse cached data to improve performance. For details, please refer to the [Response Cache](/tutorial/cache) section. In addition, you can also predict the data that the user will access next, use [`useFetcher`](/tutorial/client/strategy/use-fetcher) to pre-request the data and put it in the cache.
+When response data caching is enabled, the CSIL will cache response data according to certain rules, and the same request will reuse cached data to improve performance. For details, please refer to the [Response Cache](/tutorial/cache) section. In addition, you can also predict the data that the user will access next, use [`useFetcher`](/tutorial/client/strategy/use-fetcher) to pre-request the data and put it in the cache.
 
 ### Cache timeliness
 
