@@ -1,5 +1,17 @@
 [
   {
+    "title": "soybean-admin",
+    "logo": "/img/project/soybean-admin.svg",
+    "desc": "A clean, elegant, beautiful and powerful admin template, based on Vue3, Vite5, TypeScript, Pinia, NaiveUI and UnoCSS",
+    "link": "https://github.com/soybeanjs/soybean-admin"
+  },
+  {
+    "title": "vue-bag-admin",
+    "logo": "/img/project/vue-bag-admin.png",
+    "desc": "一款开箱即用的 Vue 中后台管理系统框架，旨在让开发者能够以最小的成本完成开发 降低开发量",
+    "link": "https://github.com/hangjob/vue-bag-admin"
+  },
+  {
     "title": "Naive Admin",
     "logo": "/img/project/naive-ui-admin.png",
     "desc": "开箱即用的中后台框架/简化您的中后台开发",
