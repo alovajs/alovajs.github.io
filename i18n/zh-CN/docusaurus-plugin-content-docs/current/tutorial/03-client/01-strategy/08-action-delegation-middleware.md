@@ -39,7 +39,7 @@ import { actionDelegationMiddleware } from 'alova/client';
 
 useRequest(queryTodo, {
   // ...
-  middleware: actionDelegationMiddleware('actionName')
+  middleware: actionDelegationMiddleware('testAction')
 });
 ```
 
@@ -48,7 +48,7 @@ useRequest(queryTodo, {
 ```javascript title=组件B
 import { accessAction } from 'alova/client';
 
-accessAction('actionName', delegatedActions => {
+accessAction('testAction', delegatedActions => {
   // 调用组件A中的send函数
   delegatedActions.send();
 
@@ -59,10 +59,25 @@ accessAction('actionName', delegatedActions => {
 
 :::info 注意
 
-1. alova 内的全部 use hook 都支持操作函数委托，但不同的 use hook 所委托的函数有所不同。
-2. 使用`actionDelegationMiddleware`时，委托名称可传入字符串、数字、symbol 值。
+1. 只有发出请求的 use hook， 它的 actions 才会被委托。
+2. alova 内的全部 use hook 都支持操作函数委托，但不同的 use hook 所委托的函数有所不同。
+3. 使用`actionDelegationMiddleware`时，委托名称可传入字符串、数字、symbol 值。
 
 :::
+
+### 静默访问 actions
+
+默认情况下，当没有找到`testAction`的 action 委托时将会报错，这可以帮助你定位问题，但如果在调用`accessAction`时不确定目标 actions 是否被委托，你可以通过第三个参数`true`阻止报错。
+
+```javascript
+accessAction(
+  'testAction',
+  delegatedActions => {
+    delegatedActions.send();
+  },
+  true
+);
+```
 
 ### 批量触发操作函数
 
@@ -73,7 +88,7 @@ import { actionDelegationMiddleware } from 'alova/client';
 
 useRequest(queryTodo, {
   // ...
-  middleware: actionDelegationMiddleware('actionName1')
+  middleware: actionDelegationMiddleware('testAction1')
 });
 ```
 
@@ -82,7 +97,7 @@ import { actionDelegationMiddleware } from 'alova/client';
 
 useRequest(queryTodo, {
   // ...
-  middleware: actionDelegationMiddleware('actionName1')
+  middleware: actionDelegationMiddleware('testAction1')
 });
 ```
 
@@ -90,7 +105,7 @@ useRequest(queryTodo, {
 import { accessAction } from 'alova/client';
 
 // 因为将会匹配组件C、组件D的委托hook，因此回调函数将被执行两次
-accessAction('actionName1', delegatedActions => {
+accessAction('testAction1', delegatedActions => {
   // 调用组件C、组件D中的send函数
   delegatedActions.send();
 

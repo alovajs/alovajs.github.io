@@ -39,7 +39,7 @@ import { actionDelegationMiddleware } from 'alova/client';
 
 useRequest(queryTodo, {
   //...
-  middleware: actionDelegationMiddleware('actionName')
+  middleware: actionDelegationMiddleware('testAction')
 });
 ```
 
@@ -48,7 +48,7 @@ In any component (such as component B), pass in the specified delegate name thro
 ```javascript title=Component B
 import { accessAction } from 'alova/client';
 
-accessAction('actionName', delegatedActions => {
+accessAction('testAction', delegatedActions => {
   // Call the send function in component A
   delegatedActions.send();
 
@@ -59,10 +59,25 @@ accessAction('actionName', delegatedActions => {
 
 :::info note
 
-1. All use hooks in alova support action function delegation, but the functions delegated by different use hooks are different.
-2. When using `actionDelegationMiddleware`, the delegate name can be passed in strings, numbers, and symbol values.
+1. The use hook that only makes request will have its actions delegated
+2. All use hooks in alova support action function delegation, but the functions delegated by different use hooks are different.
+3. When using `actionDelegationMiddleware`, the delegate name can be passed in strings, numbers, and symbol values.
 
 :::
+
+### Silently access actions
+
+By default, an error will be throwed when the action delegate of `testAction` is not found, which can help you locate problems, but if you are not sure whether the target actions are delegated when calling `accessAction`, you can prevent the error by passing the third parameter `true`.
+
+```javascript
+accessAction(
+  'testAction',
+  delegatedActions => {
+    delegatedActions.send();
+  },
+  true
+);
+```
 
 ### Batch trigger action function
 
@@ -73,7 +88,7 @@ import { actionDelegationMiddleware } from 'alova/client';
 
 useRequest(queryTodo, {
   //...
-  middleware: actionDelegationMiddleware('actionName1')
+  middleware: actionDelegationMiddleware('testAction1')
 });
 ```
 
@@ -82,7 +97,7 @@ import { actionDelegationMiddleware } from 'alova/client';
 
 useRequest(queryTodo, {
   //...
-  middleware: actionDelegationMiddleware('actionName1')
+  middleware: actionDelegationMiddleware('testAction1')
 });
 ```
 
@@ -90,7 +105,7 @@ useRequest(queryTodo, {
 import { accessAction } from 'alova/client';
 
 // Because the delegate hooks of component C and component D will be matched, the callback function will be executed twice
-accessAction('actionName1', delegatedActions => {
+accessAction('testAction1', delegatedActions => {
   // Call the send function in component C and component D
   delegatedActions.send();
 
