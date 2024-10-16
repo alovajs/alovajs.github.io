@@ -82,11 +82,11 @@ module.exports = {
        */
       handleApi: apiDescriptor => {
         // Returning a falsy value means filtering this api
-        if (!apiDescriptor.path.startWith('/user')) {
+        if (!apiDescriptor.path.startsWith('/user')) {
           return;
         }
 
-        apiDescriptor.parameter = apiDescriptor.parameter.filter(
+        apiDescriptor.parameters = (apiDescriptor.parameters || []).filter(
           param => param.in === 'header' && param.name === 'token'
         );
         delete apiDescriptor.requestBody.id;

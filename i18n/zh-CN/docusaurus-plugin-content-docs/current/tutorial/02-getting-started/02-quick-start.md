@@ -62,7 +62,8 @@ import { createAlova } from 'alova';
 import adapterFetch from 'alova/fetch';
 
 const alovaInstance = createAlova({
-  requestAdapter: adapterFetch()
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
 });
 ```
 
@@ -74,7 +75,8 @@ const { createAlova } = require('alova');
 const adapterFetch = require('alova/fetch');
 
 const alova = createAlova({
-  requestAdapter: adapterFetch();
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
 });
 ```
 
@@ -88,7 +90,8 @@ import { createAlova } from 'npm:alova';
 import adapterFetch from 'npm:alova/fetch';
 
 const alova = createAlova({
-  requestAdapter: adapterFetch();
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
 });
 ```
 
@@ -100,9 +103,7 @@ const alova = createAlova({
 通过 `alovaInstance.Get` 发送一个请求，由于使用了`adapterFetch`请求适配器，将会接收到一个`Response`实例，这很简单。
 
 ```js
-const response = await alovaInstance
-  .Get('https://alovajs.dev/user/profile')
-  .then(response => response.json());
+const response = await alovaInstance.Get('https://alovajs.dev/user/profile');
 ```
 
 在异步函数中，你也可以使用`await alovaInstance.Get`等待响应。
@@ -112,13 +113,11 @@ const response = await alovaInstance
 通过 `alovaInstance.Post`提交数据，这同样很简单。
 
 ```js
-const response = alovaInstance
-  .Post('https://alovajs.dev/posts', {
-    title: 'foo',
-    body: 'bar',
-    userId: 1
-  })
-  .then(response => response.json());
+const response = alovaInstance.Post('https://alovajs.dev/posts', {
+  title: 'foo',
+  body: 'bar',
+  userId: 1
+});
 ```
 
 ## 接下来要做什么？
