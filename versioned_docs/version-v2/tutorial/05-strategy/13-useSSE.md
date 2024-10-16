@@ -13,7 +13,13 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-A use hook that can automatically retry a request failure, you can use it for important requests.
+This hook is implemented using the `EventSource` API.
+
+::: warning note
+
+When you are not to be used in useSSE add custom header, because the standard [does not contain the behavior](https://stackoverflow.com/a/36226251)
+
+:::
 
 ## Features
 
