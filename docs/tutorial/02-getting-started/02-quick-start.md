@@ -62,7 +62,8 @@ import { createAlova } from 'alova';
 import adapterFetch from 'alova/fetch';
 
 const alovaInstance = createAlova({
-  requestAdapter: adapterFetch()
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
 });
 ```
 
@@ -74,7 +75,8 @@ const { createAlova } = require('alova');
 const adapterFetch = require('alova/fetch');
 
 const alova = createAlova({
-requestAdapter: adapterFetch();
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
 });
 ```
 
@@ -88,7 +90,8 @@ import { createAlova } from 'npm:alova';
 import adapterFetch from 'npm:alova/fetch';
 
 const alova = createAlova({
-requestAdapter: adapterFetch();
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
 });
 ```
 
@@ -100,9 +103,7 @@ requestAdapter: adapterFetch();
 Send a request through `alovaInstance.Get`. Since the `adapterFetch` request adapter is used, a `Response` instance will be received. This is very simple.
 
 ```js
-const response = await alovaInstance
-  .Get('https://alovajs.dev/user/profile')
-  .then(response => response.json());
+const response = await alovaInstance.Get('https://alovajs.dev/user/profile');
 ```
 
 In an asynchronous function, you can also use `await alovaInstance.Get` to wait for the response.
@@ -112,13 +113,11 @@ In an asynchronous function, you can also use `await alovaInstance.Get` to wait 
 Submit data through `alovaInstance.Post`. This is also very simple.
 
 ```js
-const response = alovaInstance
-  .Post('https://alovajs.dev/posts', {
-    title: 'foo',
-    body: 'bar',
-    userId: 1
-  })
-  .then(response => response.json());
+const response = alovaInstance.Post('https://alovajs.dev/posts', {
+  title: 'foo',
+  body: 'bar',
+  userId: 1
+});
 ```
 
 ## What to do next?
