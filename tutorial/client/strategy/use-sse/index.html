@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <script src="/iconfont/iconfont.js"></script><link rel="stylesheet" href="/assets/css/styles.7cc12f93.css">
-<script src="/assets/js/runtime~main.1e016350.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.553ccde0.js" defer="defer"></script>
 <script src="/assets/js/main.c24fbfa0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -30,7 +30,10 @@
 <blockquote>
 <p>Before using extension hooks, make sure you are familiar with the basic usage of alova.</p>
 </blockquote>
-<p>A use hook that can automatically retry a request failure, you can use it for important requests.</p>
+<p>This hook is implemented using the <code>EventSource</code> API.</p>
+<p>::: warning note</p>
+<p>When you are not to be used in useSSE add custom header, because the standard <a href="https://stackoverflow.com/a/36226251" target="_blank" rel="noopener noreferrer">does not contain the behavior</a></p>
+<p>:::</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="features">Features<a class="hash-link" aria-label="Direct link to Features" title="Direct link to Features" href="/tutorial/client/strategy/use-sse#features">​</a></h2>
 <ul>
 <li>Simpler and easier-to-use usage.</li>
