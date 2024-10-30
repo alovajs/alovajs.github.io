@@ -25,17 +25,20 @@ const App = () => {
     });
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  } else if (error) {
-    return <div>{error.message}</div>;
-  }
   return (
-    <div>
-      <div>请求结果: {JSON.stringify(data)}</div>
-      <button onClick={handleSend}>手动发送请求</button>
-      <button onClick={handleUpdate}>手动修改data</button>
-    </div>
+    <>
+      {loading() ? (
+        <div>Loading...</div>
+      ) : error() ? (
+        <div>{error().message}</div>
+      ) : (
+        <div>
+          <div>请求结果: {JSON.stringify(data)}</div>
+          <button onClick={handleSend}>手动发送请求</button>
+          <button onClick={handleUpdate}>手动修改data</button>
+        </div>
+      )}
+    </>
   );
 };
 export default App;

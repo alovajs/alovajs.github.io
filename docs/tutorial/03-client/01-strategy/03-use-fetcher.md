@@ -166,6 +166,55 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { createSignal } from 'solid-js';
+import { useFetcher } from 'alova/client';
+
+// method instance creation function
+const getTodoList = currentPage => {
+  return alovaInstance.Get('/todo/list', {
+    cacheFor: 60000,
+    params: {
+      currentPage,
+      pageSize: 10
+    }
+  });
+};
+
+const App = () => {
+  const {
+    // loading indicates the status of sending a pull request
+    loading,
+    error,
+    onSuccess,
+    onError,
+    onComplete,
+
+    // Only after calling fetch will a request be sent to pull data. You can call fetch repeatedly to pull data from different interfaces
+    fetch
+  } = useFetcher({
+    updateState: false
+  });
+  const [currentPage, setCurrentPage] = createSignal(1);
+  const { data } = useWatcher(() => getTodoList(currentPage()), [currentPage], {
+    immediate: true
+  }).onSuccess(() => {
+    // After the current page is loaded successfully, pass the method instance of the next page to pre-fetch the data of the next page
+    fetch(getTodoList(currentPage() + 1));
+  });
+
+  return (
+    <>
+      {loading() ? <div>Fetching...</div> : null}
+      {/* List view */}
+    </>
+  );
+};
+```
+
+</TabItem>
 </Tabs>
 
 :::warning

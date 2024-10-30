@@ -1,6 +1,6 @@
 <script>
-import { writable } from 'svelte/store';
 import { useWatcher } from 'alova/client';
+import { writable } from 'svelte/store';
 
 // 创建method实例
 const filterTodoList = userId => {
@@ -28,7 +28,7 @@ const { loading, data, error } = useWatcher(
 {:else}
 <ul>
   {#each $data as todo}
-    <li class="todo-title">{{ todo.completed ? '(Completed)' : '' }}{{ todo.title }}</li>
+    <li class="todo-title">{ todo.completed ? '(Completed)' : '' }{ todo.title }</li>
   {/each}
 </ul>
 {/if}

@@ -9,6 +9,7 @@ import CodeBlock from '@theme/CodeBlock';
 import useWatcherSearchVue from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/vueComposition-search.en.vue';
 import useWatcherSearchReact from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/react-search.en.jsx';
 import useWatcherSearchSvelte from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/svelte-search.en.svelte';
+import useWatcherSearchSolid from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/solid-search.en.jsx';
 
 :::info Strategy type
 
@@ -35,6 +36,11 @@ Next, let's take the search for todo items as an example and try to change the o
 <TabItem value="3" label="svelte">
 
 <CodeBlock language="html">{useWatcherSearchSvelte}</CodeBlock>
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+<EmbedSandpack template="solid" mainFile={useWatcherSearchSolid} editorHeight={800} />
 
 </TabItem>
 </Tabs>

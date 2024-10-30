@@ -3,7 +3,7 @@ import { useRequest } from 'alova/client';
 import { alovaInstance } from './api';
 
 // 使用alova实例创建method并传给useRequest即可发送请求
-const { loading, data, error, send, update, onSuccess } = useRequest(
+const { loading, data, error, send, update } = useRequest(
   alovaInstance.Get('/todos/1', {
     cacheFor: 0
   }),
@@ -11,8 +11,7 @@ const { loading, data, error, send, update, onSuccess } = useRequest(
     initialData: {}, // 设置data状态的初始数据
     immediate: true // 是否立即发送请求，默认为true
   }
-);
-onSuccess(event => {
+).onSuccess(event => {
   event.method; // 当前请求的method
   event.data; // 当前请求的响应数据
 });

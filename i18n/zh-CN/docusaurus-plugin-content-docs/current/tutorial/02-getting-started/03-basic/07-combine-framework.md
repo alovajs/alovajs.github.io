@@ -10,6 +10,7 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import useRequestVue from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/vueComposition-useRequest.zh.vue';
 import useRequestReact from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/react-useRequest.zh.jsx';
 import useRequestSvelte from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/svelte-useRequest.zh.svelte';
+import useRequestSolid from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/solid-useRequest.zh.jsx';
 
 接下来，我们将学习如何与客户端的 UI 框架结合使用，这可以让 alova 发挥出真正的力量，在 UI 框架中使用时，不仅可以让 alova 自动管理响应式的请求状态，还能通过一定规则自动控制什么时候应该发送请求。
 
@@ -65,6 +66,22 @@ export const alovaInstance = createAlova({
 ```
 
 </TabItem>
+
+<TabItem value="4" label="solid">
+
+```js
+import { createAlova } from 'alova';
+import SolidHook from 'alova/solid';
+
+export const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  statesHook: SolidHook
+  // highlight-end
+});
+```
+
+</TabItem>
 </Tabs>
 
 ## 自动管理请求状态
@@ -87,6 +104,11 @@ useRequest 表示一次请求的发送，调用时默认将发送一次请求。
 <TabItem value="3" label="svelte">
 
 <CodeBlock language="html">{useRequestSvelte}</CodeBlock>
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+<EmbedSandpack template="solid" mainFile={useRequestSolid} editorHeight={400} />
 
 </TabItem>
 </Tabs>

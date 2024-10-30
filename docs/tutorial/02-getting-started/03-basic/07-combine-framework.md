@@ -10,6 +10,7 @@ import EmbedSandpack from "@site/src/components/EmbedSandpack";
 import useRequestVue from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/vueComposition-useRequest.en.vue';
 import useRequestReact from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/react-useRequest.en.jsx';
 import useRequestSvelte from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/svelte-useRequest.en.svelte';
+import useRequestSolid from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/solid-useRequest.en.jsx';
 
 Next, we will learn how to use it in conjunction with the client UI framework, which can allow alova to exert its true power. When used in the UI framework, not only can alova automatically manage the responsive request status, but also automatically control when the request should be sent through certain rules.
 
@@ -67,6 +68,21 @@ export const alovaInstance = createAlova({
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```js
+import { createAlova } from 'alova';
+import SolidHook from 'alova/solid';
+
+export const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  statesHook: SolidHook
+  // highlight-end
+});
+```
+
+</TabItem>
 </Tabs>
 
 ## Automatically manage request status
@@ -89,6 +105,11 @@ useRequest means sending a request. By default, a request will be sent when call
 <TabItem value="3" label="svelte">
 
 <CodeBlock language="html">{useRequestSvelte}</CodeBlock>
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+<EmbedSandpack template="solid" mainFile={useRequestSolid} editorHeight={400} />
 
 </TabItem>
 </Tabs>

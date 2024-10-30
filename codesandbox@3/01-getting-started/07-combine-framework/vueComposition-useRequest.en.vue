@@ -13,7 +13,7 @@ import { useRequest } from 'alova/client';
 import { alovaInstance } from './api';
 
 // Use the alova instance to create a method and pass it to useRequest to send a request
-const { loading, data, error, send, update, onSuccess } = useRequest(
+const { loading, data, error, send, update } = useRequest(
   alovaInstance.Get('/todos/1', {
     cacheFor: 0
   }),
@@ -21,8 +21,7 @@ const { loading, data, error, send, update, onSuccess } = useRequest(
     initialData: {}, // Set the initial data of the data state
     immediate: true // Whether to send a request immediately, the default is true
   }
-);
-onSuccess(event => {
+).onSuccess(event => {
   event.method; //The method of the current request
   event.data; //Response data of the current request
 });
