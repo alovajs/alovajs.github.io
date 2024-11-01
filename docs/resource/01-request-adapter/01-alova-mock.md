@@ -31,6 +31,13 @@ yarn add @alova/mock
 ```
 
 </TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install @alova/mock
+```
+
+</TabItem>
 </Tabs>
 
 The following is the usage flow.

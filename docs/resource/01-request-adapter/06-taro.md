@@ -28,6 +28,13 @@ yarn add @alova/adapter-taro
 ```
 
 </TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install @alova/adapter-taro
+```
+
+</TabItem>
 </Tabs>
 
 :::warning React-Native Application
@@ -40,7 +47,7 @@ If you are develop a React-Native app with Taro, please ensure `metro >= 0.76.0`
 
 :::warning Dependency precompilation issues
 
-[Dependency precompilation function](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91) has been added in Taro v3.5 beta, and is enabled by default in development mode when you are using the `alova` library and `@alova/scene-react(vue)` may cause the error `` [alova]can not call useHooks until set the `statesHook` at alova instance. ``. This is caused by the prebundle feature repeatedly packaging two different `alova` packages. , turning off the prebundle function at this time can solve this problem.
+[Dependency precompilation function](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91) has been added in Taro v3.5 beta, and is enabled by default in development mode when you are using the `alova` library and `@alova/scene-react(vue)` may cause the error ``[alova]can not call useHooks until set the `statesHook` at alova instance.``. This is caused by the prebundle feature repeatedly packaging two different `alova` packages. , turning off the prebundle function at this time can solve this problem.
 
 ```js
 // config/dev.ts

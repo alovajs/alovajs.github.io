@@ -33,6 +33,13 @@ yarn add alova @alova/vue-options
 ```
 
 </TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install alova @alova/vue-options
+```
+
+</TabItem>
 </Tabs>
 
 :::info Version requirements
