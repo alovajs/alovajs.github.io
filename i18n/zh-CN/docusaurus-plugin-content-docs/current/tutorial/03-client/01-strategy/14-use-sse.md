@@ -28,109 +28,61 @@ use hook
 
 ## 用法
 
-<Tabs groupId="framework">
-<TabItem value="1" label="vue">
-
-```typescript
+```javascript
 import { useSSE } from 'alova/client';
 
 const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
+const {
+  // 接收的数据，每次接收将会修改data
+  data,
+
+  // 当前的EventSource实例
+  eventSource,
+
+  // 连接状态，0-connecting，1-open，2-closed
+  readyState,
+
+  // 绑定连接事件
+  onOpen
+
+  // 绑定消息接收
+  onMessage,
+
+  // 绑定错误事件
+  onError,
+
+  // 绑定自定义事件
+  on,
+
+  // 连接并发送消息
+  send,
+
+  // 关闭连接
+  close,
+
+  // 原始的EventSource实例
+  eventSource
+} = useSSE(method, {
+  withCredentials: true, // 将会传给EventSource
   initialData: 'initial-data' // 初始时 data 中的数据
 });
-
-// connect
-send('value');
-
-console.log(data.value); // data 在接收到事件后更新，默认是 initialData
-
-// 对应 eventsource 的 message 事件
-const unbindMessage = onMessage(({ data }) => {
-  console.log(data);
-});
-
-const unbindError = onError(({ error }) => {
-  console.error('sse error', error);
-  close();
-});
-
-// 在需要的时候解绑
-unbindMessage();
-unbindError();
 ```
 
-</TabItem>
-<TabItem value="2" label="react">
+## 发送请求
 
-```typescript
-import { useSSE } from 'alova/client';
+默认情况下不会发送请求，你需要调用`send`来发送请求，也可以设置`immediate = true`立即发送请求。
 
-const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
+```javascript
 const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
-  initialData: 'initial-data' // 初始时 data 中的数据
+  // highlight-start
+  immediate: true
+  // highlight-end
 });
-
-// connect
-send('value');
-
-console.log(data); // data 在接收到事件后更新，默认是 initialData
-
-// 对应 eventsource 的 message 事件
-const unbindMessage = onMessage(({ data }) => {
-  console.log(data);
-});
-
-const unbindError = onError(({ error }) => {
-  console.error('sse error', error);
-  close();
-});
-
-// 在需要的时候解绑
-unbindMessage();
-unbindError();
 ```
-
-</TabItem>
-<TabItem value="3" label="svelte">
-
-```typescript
-import { useSSE } from 'alova/client';
-
-const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
-  initialData: 'initial-data' // 初始时 data 中的数据
-});
-
-// connect
-send('value');
-
-console.log(data); // data 在接收到事件后更新，默认是 initialData
-
-// 对应 eventsource 的 message 事件
-const unbindMessage = onMessage(({ data }) => {
-  console.log(data);
-});
-
-const unbindError = onError(({ error }) => {
-  console.error('sse error', error);
-  close();
-});
-
-// 在需要的时候解绑
-unbindMessage();
-unbindError();
-```
-
-</TabItem>
-</Tabs>
-
-:::warning
 
 `useSSE` 目前只能连接到一个源。也就是说，当试图连接多个目标时，上一个连接总会被断开。
 
-:::
-
-```typescript
+```javascript
 const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method);
 
 send('value1');
@@ -140,25 +92,162 @@ send('value3'); // 这也会断开上一个连接
 // highlight-end
 ```
 
-默认情况下，不会发送请求。当然，通过设置`immediate = true`，可以省去手动 send 的一步。
+## 接收数据
 
-```typescript
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
-  // highlight-start
-  immediate: true
-  // highlight-end
-});
+当接收到数据时会自动将数据赋值给状态`data`，你可以直接在视图上绑定它，或者监听它进行一些操作。
 
-// codes here...
+<Tabs groupId="framework">
+<TabItem value="1" label="vue">
+
+```html
+<template>
+  <div>
+    <span v-if="readyState === 0">连接中</span>
+    <span v-else-if="readyState === 1">已连接</span>
+    <span v-else-if="readyState === 2">已断开</span>
+  </div>
+  <div>最后接收的数据：{{data}}</div>
+  <ul>
+    <li
+      v-for="item in dataList"
+      :key="item">
+      {{item}}
+    </li>
+  </ul>
+  <button @click="send">连接</button>
+  <button @click="close">关闭</button>
+</template>
+
+<script setup>
+  import { ref } from 'vue';
+
+  const { data, readyState, onMessage, close, send } = useSSE(method);
+  const dataList = ref([]);
+  onMessage(({ data }) => {
+    dataList.value.push(data);
+  });
+</script>
 ```
 
-### 绑定自定义事件
+</TabItem>
+<TabItem value="2" label="react">
 
-```typescript
-const { data, readyState, onMessage, on } = useSSE(method);
+```jsx
+import { useEffect, useState } from 'react';
 
-on('event-name', ({ data }) => {
-  console.log(data);
+const App = () => {
+  const [dataList, setDataList] = useState([]);
+  const { data, readyState, onMessage, onError, close, send } = useSSE(method);
+
+  onMessage(({ data }) => {
+    setDataList(prevList => [...prevList, data]);
+  });
+  return (
+    <div>
+      <span>{readyState === 0 ? '连接中' : readyState === 1 ? '已连接' : '已断开'}</span>
+      <div>最后接收的数据：{data}</div>
+      <ul>
+        {dataList.map(item => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      <button onClick={send}>连接</button>
+      <button onClick={close}>关闭</button>
+    </div>
+  );
+};
+```
+
+</TabItem>
+<TabItem value="3" label="svelte">
+
+```html
+<script>
+  let dataList = [];
+  const { data, readyState, onMessage, close, send } = useSSE(method);
+
+  onMessage(({ data: newData }) => {
+    dataList.push(newData);
+    data = newData;
+  });
+</script>
+
+<div>
+  <span>{readyState === 0 ? '连接中' : readyState === 1 ? '已连接' : '已断开'}</span>
+  <div>最后接收的数据：{data}</div>
+  <ul>
+    {#each dataList as item}
+    <li>{item}</li>
+    {/each}
+  </ul>
+  <button on:click="{send}">连接</button>
+  <button on:click="{close}">关闭</button>
+</div>
+```
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { createSignal } from 'solid-js';
+
+const App = () => {
+  const [dataList, setDataList] = createSignal([]);
+  const { data, readyState, onMessage, onError, close, send } = useSSE(method);
+
+  onMessage(({ data }) => {
+    setDataList(prevList => [...prevList, data]);
+  });
+  return (
+    <div>
+      <span>{readyState() === 0 ? '连接中' : readyState() === 1 ? '已连接' : '已断开'}</span>
+      <div>最后接收的数据：{data()}</div>
+      <ul>
+        <For each={dataList()}>{item => <li key={item}>{item}</li>}</For>
+      </ul>
+      <button onClick={send}>连接</button>
+      <button onClick={close}>关闭</button>
+    </div>
+  );
+};
+```
+
+</TabItem>
+</Tabs>
+
+### 绑定事件
+
+`useSSE`提供了一系列的绑定事件方法，绑定时将返回解绑函数。
+
+```javascript
+const { onMessage, onError, close } = useSSE(method);
+
+// 对应 eventsource 的 message 事件
+const offMessage = onMessage(event => {
+  console.log(event.eventSource); // 当前的EventSource实例
+  console.log(event.data);
+});
+
+const offError = onError(event => {
+  console.log(event.eventSource); // 当前的EventSource实例
+  console.error('sse error', event.error);
+  close();
+});
+
+// 解绑事件
+offMessage();
+offError();
+```
+
+除此以外，你还可以监听自定义的 EventSource 事件，它将调用 EventSource 的`addEventListener`绑定。
+
+```javascript
+const { on } = useSSE(method);
+
+// 以下代码将监听具有字段 `event: update` 的事件
+const offUpdate = on('update', event => {
+  console.log(event.eventSource); // 当前的EventSource实例
+  console.log(event.data);
 });
 ```
 
@@ -166,7 +255,7 @@ on('event-name', ({ data }) => {
 
 默认情况下，响应数据受到[全局响应拦截器的捕获](/tutorial/getting-started/basic/global-interceptor)。如果这不是你预期的行为，可以手动关闭。
 
-```typescript
+```javascript
 const { data, readyState, onMessage, on } = useSSE(method, {
   // highlight-start
   interceptByGlobalResponded: false // 现在数据不会被响应拦截

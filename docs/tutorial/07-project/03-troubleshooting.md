@@ -111,19 +111,3 @@ In alova's `package.json`, `exports` is used to define multiple export items, so
 1. Metro version is higher than 0.76.0
 
 2. Enable `resolver.unstable_enablePackageExports` in `metro.config.js`. [Click here for details](https://facebook.github.io/metro/docs/configuration/#unstable_enablepackageexports-experimental)
-
-## Error when importing `alova/fetch`
-
-When you introduce `alova/fetch` in a typescript project and get the error `module "${1}/alova/typings/fetch" has no default export`, please check the following 2 points:
-
-1. add configuration below to `tsconfig.json`:
-
-```json
-{
-  "compilerOptions": {
-    "esModuleInterop": true
-  }
-}
-```
-
-2. downgrade typescript version to 5.5.x or below.

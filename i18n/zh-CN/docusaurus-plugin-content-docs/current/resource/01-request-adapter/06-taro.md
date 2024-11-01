@@ -28,6 +28,13 @@ yarn add @alova/adapter-taro
 ```
 
 </TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install @alova/adapter-taro
+```
+
+</TabItem>
 </Tabs>
 
 :::warning React-Native 应用

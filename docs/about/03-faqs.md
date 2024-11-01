@@ -1,9 +1,6 @@
 ---
-title: Question and Answer
+title: FAQs
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Why to create alova?
 
@@ -28,3 +25,7 @@ Decoupling a js library means using it in more scenarios. For example, axios can
 ## Why does the request function use PascalCase specification?
 
 Different from the axios, taking the GET method as an example, `axios.get` is a request action, while `alova.Get` creates a method instance but actually does not send request.
+
+## Troubleshooting
+
+Refer to [Troubleshooting](/tutorial/project/troubleshooting)

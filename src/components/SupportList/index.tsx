@@ -85,7 +85,7 @@ export default function Support({ showStatus = false }: Props): JSX.Element {
     },
     {
       id: 'Solid',
-      available: false,
+      available: true,
       Image: require('@site/static/img/solid.svg').default,
       link: '/resource/framework/solid'
     },

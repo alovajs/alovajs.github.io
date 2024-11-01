@@ -113,9 +113,10 @@ interface StatesHook<State, Computed, Watched = State | Computed, Export = State
 
 :::
 
-以下是留下 UI 框架的 statesHook 源码。
+以下是流行 UI 框架的 statesHook 源码。
 
 - [react hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/react.ts)
 - [vue hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/vue.ts)
 - [svelte hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/svelte.ts)
+- [solid hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/solid.ts)
 - [vue options hook](https://github.com/alovajs/alova/blob/main/packages/vue-options/src/stateHook.ts)

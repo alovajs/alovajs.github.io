@@ -269,6 +269,91 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { queryStudents } from './api.js';
+import { usePagination } from 'alova/client';
+
+const App = () => {
+  const {
+    // 加载状态
+    loading,
+
+    // 列表数据
+    data,
+
+    // 是否为最后一页
+    // 下拉加载时可通过此参数判断是否还需要加载
+    isLastPage,
+
+    // 当前页码，改变此页码将自动触发请求
+    page,
+
+    // 每页数据条数
+    pageSize,
+
+    // 分页页数
+    pageCount,
+
+    // 总数据量
+    total,
+
+    // 更新状态
+    update
+  } = usePagination(
+    // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // 请求前的初始数据（接口返回的数据格式）
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // 初始页码，默认为1
+      initialPageSize: 10 // 初始每页数据条数，默认为10
+    }
+  );
+
+  // 翻到上一页，page值更改后将自动发送请求
+  const handlePrevPage = () => {
+    update({
+      page: page() - 1
+    });
+  };
+
+  // 翻到下一页，page值更改后将自动发送请求
+  const handleNextPage = () => {
+    update({
+      page: page() + 1
+    });
+  };
+
+  // 更改每页数量，pageSize值更改后将自动发送请求
+  const handleSetPageSize = () => {
+    update({
+      pageSize: 20
+    });
+  };
+
+  return (
+    <div>
+      {data().map(item => (
+        <div key={item.id}>
+          <span>{item.name}</span>
+        </div>
+      ))}
+      <button onClick={handlePrevPage}>上一页</button>
+      <button onClick={handleNextPage}>下一页</button>
+      <button onClick={handleSetPageSize}>设置每页数量</button>
+      <span>共有{pageCount()}页</span>
+      <span>共有{total()}条数据</span>
+    </div>
+  );
+};
+```
+
+</TabItem>
 </Tabs>
 
 ### 指定分页数据
@@ -415,6 +500,7 @@ const {
 ```jsx
 import { queryStudents } from './api.js';
 import { usePagination } from 'alova/client';
+import { useState } from 'react';
 
 const App = () => {
   // 搜索条件状态
@@ -477,6 +563,44 @@ const App = () => {
 </select>
 <!-- highlight-end -->
 <!-- ... -->
+```
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { queryStudents } from './api.js';
+import { usePagination } from 'alova/client';
+import { createSignal } from 'solid-js';
+
+const App = () => {
+  // 搜索条件状态
+  const [studentName, setStudentName] = createSignal('');
+  const [clsName, setClsName] = createSignal('');
+  const {
+    // ...
+  } = usePagination(
+    (page, pageSize) => queryStudents(page, pageSize, studentName(), clsName()),
+    {
+      // ...
+      // highlight-start
+      watchingStates: [studentName, clsName]
+      // highlight-end
+    }
+  );
+
+  return (
+    // highlight-start
+    <input value={studentName()} onChange={({ target }) => setStudentName(target.value)} />
+    <select value={clsName()} onChange={({ target }) => setClsName(target.value)}>
+      <option value="1">Class 1</option>
+      <option value="2">Class 2</option>
+      <option value="3">Class 3</option>
+    </select>
+    // highlight-end
+    // ...
+  );
+};
 ```
 
 </TabItem>

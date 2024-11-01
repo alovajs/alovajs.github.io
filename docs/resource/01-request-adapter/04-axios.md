@@ -22,6 +22,13 @@ yarn add @alova/adapter-axios axios
 ```
 
 </TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install @alova/adapter-axios axios
+```
+
+</TabItem>
 </Tabs>
 
 ## Instructions

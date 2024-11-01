@@ -20,7 +20,7 @@ alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个流程简化�
 
 有别于`@tanstack/react-request`、`swrjs`、`ahooks`的`useRequest`等库，`alova`是一个完整的请求方案，alova 让你的请求集成变得非常简单，并且保持更高效的 Client-Server 数据交互。此外，你可以在客户端和服务端环境中（包括 SSR）使用`alova`。
 
-这里有一份详细的[与其他请求库的比较](/about/comparison)。
+你可以在 [为什么创造 alova](/about/faqs) 中了解背景故事，我们也提供了一份详细的 [对比与其他请求库](/about/comparison) 了解 alova 的差异。
 
 此外，alova 还具有以下特性：
 

@@ -1,4 +1,5 @@
 import alovaReact from '!!raw-loader!@site/codesandbox@3/00-create-alova/react';
+import alovaSolid from '!!raw-loader!@site/codesandbox@3/00-create-alova/solid';
 import alovaSvelte from '!!raw-loader!@site/codesandbox@3/00-create-alova/svelte';
 import alovaVueComposition from '!!raw-loader!@site/codesandbox@3/00-create-alova/vueComposition';
 import alovaVueOptions from '!!raw-loader!@site/codesandbox@3/00-create-alova/vueOptions';
@@ -33,6 +34,12 @@ const fileEntry = {
     root: '/App.svelte',
     files: {
       '/api.js': alovaSvelte
+    }
+  },
+  solid: {
+    root: '/App.js',
+    files: {
+      '/api.js': alovaSolid
     }
   },
   static: {

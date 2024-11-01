@@ -1,7 +1,7 @@
-<script>
-  import { useRequest } from 'alova/client';
-  import { alovaInstance } from './api';
+import { useRequest } from 'alova/client';
+import { alovaInstance } from './api';
 
+const App = () => {
   // Use the alova instance to create a method and pass it to useRequest to send a request
   const { loading, data, error, send, update } = useRequest(
     alovaInstance.Get('/todos/1', {
@@ -23,21 +23,22 @@
     update({
       data: { title: 'new title' }
     });
-
-    // You can also modify the data value directly
-    // $data = { title: 'new title' };
-    // data.update(d => ({ title: 'new title' }));
   };
-</script>
 
-{#if $loading}
-<div>Loading...</div>
-{:else if $error}
-<div>{ $error.message }</div>
-{:else}
-<div>
-  <div>Request result: {{ data }}</div>
-  <button on:click="{handleSend}">Manually send request</button>
-  <button on:click="{handleUpdate}">Manually modify data</button>
-</div>
-{/if}
+  return (
+    <>
+      {loading() ? (
+        <div>Loading...</div>
+      ) : error() ? (
+        <div>{error().message}</div>
+      ) : (
+        <div>
+          <div>Request result: {JSON.stringify(data)}</div>
+          <button onClick={handleSend}>Manually send request</button>
+          <button onClick={handleUpdate}>Manually modify data</button>
+        </div>
+      )}
+    </>
+  );
+};
+export default App;

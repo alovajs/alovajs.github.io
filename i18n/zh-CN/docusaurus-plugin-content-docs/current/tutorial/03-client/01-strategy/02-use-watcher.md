@@ -9,6 +9,7 @@ import CodeBlock from '@theme/CodeBlock';
 import useWatcherSearchVue from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/vueComposition-search.zh.vue';
 import useWatcherSearchReact from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/react-search.zh.jsx';
 import useWatcherSearchSvelte from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/svelte-search.zh.svelte';
+import useWatcherSearchSolid from '!!raw-loader!@site/codesandbox@3/02-client/02-use-watcher/solid-search.zh.jsx';
 
 :::info 策略类型
 
@@ -35,6 +36,11 @@ use hook
 <TabItem value="3" label="svelte">
 
 <CodeBlock language="html">{useWatcherSearchSvelte}</CodeBlock>
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+<EmbedSandpack template="solid" mainFile={useWatcherSearchSolid} editorHeight={800} />
 
 </TabItem>
 </Tabs>

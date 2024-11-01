@@ -269,6 +269,91 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { queryStudents } from './api.js';
+import { usePagination } from 'alova/client';
+
+const App = () => {
+  const {
+    // loading state
+    loading,
+
+    // list data
+    data,
+
+    // is it the last page
+    // This parameter can be used to determine whether it needs to be loaded during pull-down loading
+    isLastPage,
+
+    // The current page number, changing this page number will automatically trigger the request
+    page,
+
+    // Number of data items per page
+    pageSize,
+
+    // number of paging pages
+    pageCount,
+
+    // total amount of data
+    total，
+
+    // update states
+    update
+  } = usePagination(
+    // Method instance acquisition function, it will receive page and pageSize, and return a Method instance
+    (page, pageSize) => queryStudents(page, pageSize),
+    {
+      // Initial data before the request (data format returned by the interface)
+      initialData: {
+        total: 0,
+        data: []
+      },
+      initialPage: 1, // initial page number, default is 1
+      initialPageSize: 10 // The initial number of data items per page, the default is 10
+    }
+  );
+
+  // Turn to the previous page, the request will be sent automatically after the page value changes
+  const handlePrevPage = () => {
+    update({
+      page: page() - 1
+    });
+  };
+
+  // Turn to the next page, the request will be sent automatically after the page value changes
+  const handleNextPage = () => {
+    update({
+      page: page() + 1
+    });
+  };
+
+  // Change the number of pages, the request will be sent automatically after the pageSize value is changed
+  const handleSetPageSize = () => {
+    update({
+      pageSize: 20
+    });
+  };
+
+  return (
+    <div>
+      {data().map(item => (
+        <div key={item.id}>
+          <span>{item.name}</span>
+        </div>
+      ))}
+      <button onClick={handlePrevPage}>Previous page</button>
+      <button onClick={handleNextPage}>Next Page</button>
+      <button onClick={handleSetPageSize}>Set the number per page</button>
+      <span>There are {pageCount()} pages</span>
+      <span>A total of {total()} pieces of data</span>
+    </div>
+  );
+};
+```
+
+</TabItem>
 </Tabs>
 
 ### Specify pagination data
@@ -415,6 +500,7 @@ For example, filter by student name, student grade.
 ```jsx
 import { queryStudents } from './api.js';
 import { usePagination } from 'alova/client';
+import { useState } from 'react';
 
 const App = () => {
    // search condition status
@@ -480,6 +566,45 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { queryStudents } from './api.js';
+import { usePagination } from 'alova/client';
+import { createSignal } from 'solid-js';
+
+const App = () => {
+   // search condition status
+   const [studentName, setStudentName] = createSignal('');
+   const [clsName, setClsName] = createSignal('');
+   const {
+     //...
+   } = usePagination(
+     (page, pageSize) => queryStudents(page, pageSize, studentName(), clsName()),
+     {
+       //...
+       // highlight-start
+       watchingStates: [studentName, clsName]
+       // highlight-end
+     }
+   );
+
+   return (
+     // highlight-start
+     <input value={studentName()} onChange={({ target }) => setStudentName(target.value)} />
+     <select value={clsName()} onChange={({ target }) => setClsName(target.value)}>
+       <option value="1">Class 1</option>
+       <option value="2">Class 2</option>
+       <option value="3">Class 3</option>
+     </select>
+     // highlight-end
+     //...
+   );
+};
+```
+
+</TabItem>
+
 </Tabs>
 
 Same as `useWatcher`, you can also implement request debounce by specifying `debounce`, for details, please refer to [useWatcher's debounce parameter setting](/api/core-hooks#usewatcher).

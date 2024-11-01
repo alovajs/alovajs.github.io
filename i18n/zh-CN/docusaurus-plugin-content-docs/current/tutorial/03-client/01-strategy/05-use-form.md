@@ -227,6 +227,78 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { formSubmit } from './api.js';
+import { useForm } from 'alova/client';
+
+const App = () => {
+  const {
+    // 提交状态
+    loading: submiting,
+
+    // 响应式的表单数据，内容由initialForm决定
+    form,
+
+    // 提交数据函数
+    send: submit,
+
+    // 更新表单项
+    updateForm,
+
+    // 提交成功回调绑定
+    onSuccess,
+
+    // 提交失败回调绑定
+    onError,
+
+    // 提交完成回调绑定
+    onComplete
+  } = useForm(
+    formData => {
+      // 可以在此转换表单数据并提交
+      return formSubmit(formData);
+    },
+    {
+      // 初始化表单数据
+      initialForm: {
+        name: '',
+        cls: '1'
+      }
+    }
+  );
+
+  // 提交表单数据
+  const handleSubmit = () => {
+    // 验证表单数据...
+    submit();
+  };
+
+  return (
+    <div>
+      <input
+        value={form().name}
+        onChange={({ target }) => updateForm({ name: target.value })}
+      />
+      <select
+        value={form().cls}
+        onChange={({ target }) => updateForm({ cls: target.value })}>
+        <option value="1">class 1</option>
+        <option value="2">class 2</option>
+        <option value="3">class 3</option>
+      </select>
+      <button
+        onClick={handleSubmit}
+        loading={submiting()}>
+        提交
+      </button>
+    </div>
+  );
+};
+```
+
+</TabItem>
 </Tabs>
 
 `useForm`默认不会请求，在调用`send`后才会发出请求，同时在`useForm`的回调函数将传入最新的 form 数据，如果需要在提交前转换数据，可在此进行转换，也可以在`formSubmit`函数中转换。
@@ -293,8 +365,7 @@ const {
 });
 
 // 请求表单数据并更新到表单中
-const { onSuccess } = useRequest(getData);
-onSuccess(({ data }) => {
+useRequest(getData).onSuccess(({ data }) => {
   updateForm({
     name: data.name,
     cls: data.cls

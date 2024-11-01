@@ -20,7 +20,7 @@ Alova (pronounced as `/əˈləʊva/` <AudioPlayer src={tts} />) is a workflow-st
 
 Different from `@tanstack/react-request`, `swrjs`, `ahooks's useRequest`, etc. library, `alova` is a comprehensive request tool, alova makes your request integration very simple and maintains more efficient Client-Server data interaction. In addition, you can use it in client and server environments (including SSR).
 
-Here is a detailed comparison [with other request libraries](/about/comparison).
+You can read the backstory on [why create alova](/about/faqs), and we've also provided a detailed [comparison to other request libraries](/about/comparison) to see how alova differs.
 
 In addition, alova also has the following features:
 

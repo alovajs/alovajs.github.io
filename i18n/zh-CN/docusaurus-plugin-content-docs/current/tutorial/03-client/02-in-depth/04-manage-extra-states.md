@@ -72,7 +72,8 @@ const handleSuccess = () => {
 ```javascript
 const PageA = () => {
   const todoList = () => alova.Get('/todo');
-  const [allTodo, setAllTodo] = allTodoState = useState([]);
+  const allTodoState = useState([]);
+  const [allTodo, setAllTodo] = allTodoState;
   useRequest(todoList, {
     // ...
 
@@ -162,6 +163,65 @@ const handleSuccess = () => {
   });
   // highlight-end
 };
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.jsx">
+
+```javascript
+const PageA = () => {
+  const todoList = () => alova.Get('/todo');
+  const allTodoState = createSignal([]);
+  const [allTodo, setAllTodo] = allTodoState;
+  useRequest(todoList, {
+    // ...
+
+    // highlight-start
+    // 将allTodo作为额外的状态进行管理
+    managedStates: {
+      allTodo: allTodoState
+    }
+    // highlight-end
+  });
+
+  return (
+    // ...
+  );
+}
+```
+
+</TabItem>
+<TabItem value="2" label="PageB.jsx">
+
+```javascript
+const PageB = () => {
+  // ...
+  const handleSuccess = () => {
+    // highlight-start
+    // 传入一个对象并指定状态名来查找
+    updateState(alova.Get('/todo'), {
+      allTodo: allTodoData => {
+        // 新增一条todo项
+        allTodoData.push({
+          title: 'new todo',
+          time: '10:00'
+        });
+        return allTodoData;
+      }
+    });
+    // highlight-end
+  };
+
+  return (
+    // ...
+  );
+}
 ```
 
 </TabItem>

@@ -227,6 +227,78 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { formSubmit } from './api.js';
+import { useForm } from 'alova/client';
+
+const App = () => {
+  const {
+    // submit status
+    loading: submitting,
+
+    // Responsive form data, the content is determined by initialForm
+    form,
+
+    // submit data function
+    send: submit,
+
+    // update form item
+    updateForm,
+
+    // Submit successful callback binding
+    onSuccess,
+
+    // Submit failure callback binding
+    onError,
+
+    // Submit completed callback binding
+    onComplete
+  } = useForm(
+    formData => {
+      // Form data can be converted and submitted here
+      return formSubmit(formData);
+    },
+    {
+      // Initialize form data
+      initialForm: {
+        name: '',
+        cls: '1'
+      }
+    }
+  );
+
+  // submit form data
+  const handleSubmit = () => {
+    // Validate form data...
+    submit();
+  };
+
+  return (
+    <div>
+      <input
+        value={form().name}
+        onChange={({ target }) => updateForm({ name: target.value })}
+      />
+      <select
+        value={form().cls}
+        onChange={({ target }) => updateForm({ cls: target.value })}>
+        <option value="1">class 1</option>
+        <option value="2">class 2</option>
+        <option value="3">class 3</option>
+      </select>
+      <button
+        onClick={handleSubmit}
+        loading={submitting()}>
+        submit
+      </button>
+    </div>
+  );
+};
+```
+
+</TabItem>
 </Tabs>
 
 `useForm` will not request by default, and the request will be sent after calling `send`. At the same time, the callback function of `useForm` will pass in the latest form data. If you need to convert the data before submitting, you can convert it here, or Can be converted in the `formSubmit` function.
@@ -293,8 +365,7 @@ const {
 });
 
 // Request form data and update it to the form
-const { onSuccess } = useRequest(getData);
-onSuccess(({ data }) => {
+useRequest(getData).onSuccess(({ data }) => {
    updateForm({
      name: data.name,
      cls: data.cls

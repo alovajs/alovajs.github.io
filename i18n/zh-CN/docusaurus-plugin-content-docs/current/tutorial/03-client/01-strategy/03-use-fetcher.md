@@ -166,6 +166,55 @@ const App = () => {
 ```
 
 </TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { createSignal } from 'solid-js';
+import { useFetcher } from 'alova/client';
+
+// method实例创建函数
+const getTodoList = currentPage => {
+  return alovaInstance.Get('/todo/list', {
+    cacheFor: 60000,
+    params: {
+      currentPage,
+      pageSize: 10
+    }
+  });
+};
+
+const App = () => {
+  const {
+    // loading表示发送拉取请求的状态
+    loading,
+    error,
+    onSuccess,
+    onError,
+    onComplete,
+
+    // 调用fetch后才会发送请求拉取数据，可以重复调用fetch多次拉取不同接口的数据
+    fetch
+  } = useFetcher({
+    updateState: false
+  });
+  const [currentPage, setCurrentPage] = createSignal(1);
+  const { data } = useWatcher(() => getTodoList(currentPage()), [currentPage], {
+    immediate: true
+  }).onSuccess(() => {
+    // 在当前页加载成功后，传入下一页的method实例，即可预拉取下一页的数据
+    fetch(getTodoList(currentPage() + 1));
+  });
+
+  return (
+    <>
+      {loading() ? <div>Fetching...</div> : null}
+      {/* 列表视图 */}
+    </>
+  );
+};
+```
+
+</TabItem>
 </Tabs>
 
 可以重复利用 fetch 函数拉取不同接口的数据，此时你可以使用 `loading` 和 `error` 状态统一渲染视图，从而达到统一处理的目的;

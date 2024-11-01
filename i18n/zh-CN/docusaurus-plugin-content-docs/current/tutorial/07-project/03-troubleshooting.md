@@ -110,19 +110,3 @@ svelte 依赖于编译工具，不能通过 CDN 直接使用，详情见 [svelte
 
 1. metro 版本高于 0.76.0
 2. 在`metro.config.js`中开启`resolver.unstable_enablePackageExports`。[详情点此查看](https://facebook.github.io/metro/docs/configuration/#unstable_enablepackageexports-experimental)
-
-## 引入`alova/fetch`时报错
-
-当在 typescript 项目中引入`alova/fetch`时报`模块"${1}/alova/typings/fetch"没有默认导出`的错误时，请检查以下两点：
-
-1. 在`tsconfig.json`中添加如下配置：
-
-```json
-{
-  "compilerOptions": {
-    "esModuleInterop": true
-  }
-}
-```
-
-2. 降级 typescript 版本到 5.5.x 及以下。

@@ -55,6 +55,9 @@ use hook
     // 发送状态
     loading: sending,
 
+    // 倒计时
+    countdown,
+
     // 调用sendCaptcha才会请求接口发送验证码
     send: sendCaptcha
   } = useCaptcha(() => apiSendCaptcha(mobile.value));
@@ -70,10 +73,13 @@ import { apiSendCaptcha } from './api.js';
 import { useCaptcha } from 'alova/clientct';
 
 const App = () => {
-  const [mobile, setMobile] = ref('');
+  const [mobile, setMobile] = useState('');
   const {
     // 发送状态
     loading: sending,
+
+    // 倒计时
+    countdown,
 
     // 调用sendCaptcha才会请求接口发送验证码
     send: sendCaptcha
@@ -109,6 +115,9 @@ const App = () => {
     // 发送状态
     loading: sending,
 
+    // 倒计时
+    countdown,
+
     // 调用sendCaptcha才会请求接口发送验证码
     send: sendCaptcha
   } = useCaptcha(() => apiSendCaptcha(mobile));
@@ -121,6 +130,44 @@ const App = () => {
   disabled="{$sending || $countdown > 0}">
   { $loading ? '发送中...' : $countdown > 0 ? `${$countdown}后可重发` : '发送验证码' }
 </button>
+```
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { apiSendCaptcha } from './api.js';
+import { useCaptcha } from 'alova/clientct';
+import { createSignal } from 'solid-js';
+
+const App = () => {
+  const [mobile, setMobile] = createSignal('');
+  const {
+    // 发送状态
+    loading: sending,
+
+    // 倒计时
+    countdown,
+
+    // 调用sendCaptcha才会请求接口发送验证码
+    send: sendCaptcha
+  } = useCaptcha(() => apiSendCaptcha(mobile()));
+
+  return (
+    <div>
+      <input
+        value={mobile()}
+        onChange={({ target }) => setMobile(target.value)}
+      />
+      <button
+        onClick={sendCaptcha}
+        loading={sending()}
+        disabled={sending() || countdown() > 0}>
+        {loading ? '发送中...' : countdown() > 0 ? `${countdown()}后可重发` : '发送验证码'}
+      </button>
+    </div>
+  );
+};
 ```
 
 </TabItem>

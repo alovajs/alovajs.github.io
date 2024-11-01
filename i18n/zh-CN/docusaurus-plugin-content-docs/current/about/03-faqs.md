@@ -1,5 +1,5 @@
 ---
-title: 提问&回答
+title: FAQs
 ---
 
 ## 为什么创造 alova？
@@ -25,3 +25,7 @@ alova 是一个请求策略库，它的创建初衷是对不同请求场景提�
 ## 为什么请求方法使用 PascalCase 规范？
 
 有别于 axios 的的请求方法，以 GET 请求为例，`axios.get`是一个请求动作，而 alova.Get 则是创建一个 method 实例，实际还没有发送请求。
+
+## Troubleshooting
+
+前往[Troubleshooting](/tutorial/project/troubleshooting)查看。

@@ -22,6 +22,13 @@ yarn add @alova/adapter-xhr
 ```
 
 </TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install @alova/adapter-xhr
+```
+
+</TabItem>
 </Tabs>
 
 ## Instructions
