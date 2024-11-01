@@ -53,8 +53,10 @@ Demonstrates basic use of form hooks.
 
   const mobile = ref('');
   const {
-    // send status
+    // send states
     loading: sending,
+
+    countdown,
 
     // Call sendCaptcha to request the interface to send the verification code
     send: sendCaptcha
@@ -73,8 +75,10 @@ import { useCaptcha } from 'alova/client';
 const App = () => {
   const [mobile, setMobile] = ref('');
   const {
-    // send status
+    // send states
     loading: sending,
+
+    countdown,
 
     // Call sendCaptcha to request the interface to send the verification code
     send: sendCaptcha
@@ -111,8 +115,10 @@ const App = () => {
 
   let mobile = '';
   const {
-    // send status
+    // send states
     loading: sending,
+
+    countdown,
 
     // Call sendCaptcha to request the interface to send the verification code
     send: sendCaptcha
@@ -127,6 +133,47 @@ const App = () => {
   { $loading ? 'Sending...' : $countdown > 0 ? `after ${$countdown} seconds can be resent` :
   'Send captcha' }
 </button>
+```
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+```jsx
+import { apiSendCaptcha } from './api.js';
+import { useCaptcha } from 'alova/client';
+import { createSignal } from 'solid-js';
+
+const App = () => {
+  const [mobile, setMobile] = createSignal('');
+  const {
+    // send states
+    loading: sending,
+
+    countdown,
+
+    // Call sendCaptcha to request the interface to send the verification code
+    send: sendCaptcha
+  } = useCaptcha(() => apiSendCaptcha(mobile()));
+
+  return (
+    <div>
+      <input
+        value={mobile()}
+        onChange={({ target }) => setMobile(target.value)}
+      />
+      <button
+        onClick={sendCaptcha}
+        loading={sending()}
+        disabled={sending() || countdown() > 0}>
+        {loading
+          ? 'Sending...'
+          : countdown() > 0
+          ? `${countdown()} can be resent`
+          : 'Send verification code'}
+      </button>
+    </div>
+  );
+};
 ```
 
 </TabItem>

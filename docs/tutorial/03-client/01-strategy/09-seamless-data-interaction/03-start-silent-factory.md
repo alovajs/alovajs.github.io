@@ -7,10 +7,7 @@ import TabItem from '@theme/TabItem';
 
 The silent queue is not started by default, and we need to specify the startup parameters for initialization. In general, call `bootSilentFactory` in the entry file to initialize the silent factory, which will read unexecuted requests to the corresponding silent through the specified configuration items queues and start those queues.
 
-<Tabs groupId="framework">
-<TabItem value="1" label="vue">
-
-```javascript
+```javascript title="main.js"
 import { bootSilentFactory } from 'alova/client';
 import { alovaInst } from '@/api';
 
@@ -22,43 +19,6 @@ bootSilentFactory({
   delay: 1000
 });
 ```
-
-</TabItem>
-
-<TabItem value="2" label="react">
-
-```javascript
-import { bootSilentFactory } from 'alova/client';
-import { alovaInst } from '@/api';
-
-bootSilentFactory({
-  // Specify the alova instance at startup to request information storage and request sending
-  alova: alovaInst,
-
-  // Delay start time, in milliseconds, the default is 2000ms, see the follow-up instructions for details
-  delay: 1000
-});
-```
-
-</TabItem>
-
-<TabItem value="3" label="svelte">
-
-```javascript
-import { bootSilentFactory } from 'alova/client';
-import { alovaInst } from '@/api';
-
-bootSilentFactory({
-  // Specify the alova instance at startup to request information storage and request sending
-  alova: alovaInst,
-
-  // Delay start time, in milliseconds, the default is 2000ms, see the follow-up instructions for details
-  delay: 1000
-});
-```
-
-</TabItem>
-</Tabs>
 
 :::warning `delay` parameter description
 

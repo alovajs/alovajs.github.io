@@ -134,8 +134,8 @@ const config: Config = {
               to: 'https://github.com/alovajs/alova/releases'
             },
             {
-              label: 'Q&A',
-              to: 'about/qa'
+              label: 'FAQs',
+              to: 'about/faqs'
             }
           ]
         },

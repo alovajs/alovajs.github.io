@@ -14,11 +14,11 @@ import useRequestSolid from '!!raw-loader!@site/codesandbox@3/01-getting-started
 
 接下来，我们将学习如何与客户端的 UI 框架结合使用，这可以让 alova 发挥出真正的力量，在 UI 框架中使用时，不仅可以让 alova 自动管理响应式的请求状态，还能通过一定规则自动控制什么时候应该发送请求。
 
-`alova`中提供了 10+个客户端的请求策略，它们帮助你以简单优雅的用法实现复杂的请求，让我们继续往下看吧！
+`alova`中提供了 15+个客户端的请求策略，它们帮助你以简单优雅的用法实现复杂的请求，让我们继续往下看吧！
 
 ## 设置 statesHook
 
-在使用请求策略前，我们需要在 alova 实例上设置对应的 statesHook，它必须和项目使用的 UI 框架对应，这非常重要，它将告诉 alova 应该创建对应 UI 框架的响应式状态，目前支持以下框架：
+alova 的 useHook 请求策略可以在所有 alova 支持的 UI 框架中运行，只需要在 alova 实例上设置对应 UI 框架的 statesHook 即可，它将告诉 alova 应该使用哪个 UI 框架来创建 states。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -82,7 +82,27 @@ export const alovaInstance = createAlova({
 ```
 
 </TabItem>
+<TabItem value="5" label="vue-demi">
+
+```js
+import { createAlova } from 'alova';
+import VueDemiHook from 'alova/vue-demi';
+
+// 支持vue@2.7+ composition api
+export const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  statesHook: VueDemiHook
+  // highlight-end
+});
+```
+
+</TabItem>
 </Tabs>
+
+此外，alova 还提供了以下 statesHook：
+
+- [vue options 风格的 statesHook](/resource/framework/vue-options)，这意味着你可以在 vue2 的 options 风格组件中使用 alova 的 usehooks。
 
 ## 自动管理请求状态
 
@@ -247,7 +267,7 @@ type data = {
 
 ### 绑定响应回调
 
-如需设置请求回调，你还可以在 useHooks 的返回参数中接收回调的设置函数，如下：
+如需设置请求回调，你还可以在 usehooks 的返回参数中接收回调的设置函数，如下：
 
 ```javascript
 const {
@@ -284,7 +304,7 @@ onComplete(event => {
 });
 ```
 
-我们在所有的 useHooks 中都支持了绑定函数的链式调用方式。
+我们在所有的 usehooks 中都支持了绑定函数的链式调用方式。
 
 ```js
 const { data, loading, error, onSuccess, onError, onComplete } = useRequest(todoListGetter)

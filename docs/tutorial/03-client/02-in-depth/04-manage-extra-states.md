@@ -61,6 +61,7 @@ const handleSuccess = () => {
 ```
 
 </TabItem>
+
 </Tabs>
 
 </TabItem>
@@ -72,10 +73,9 @@ const handleSuccess = () => {
 
 ```javascript
 const PageA = () => {
-  const todoList = page =>
-    alova.Get('/todo');
-
-  const [allTodo, setAllTodo] = allTodoState = useState([]);
+  const todoList = () => alova.Get('/todo');
+  const allTodoState = useState([]);
+  const [allTodo, setAllTodo] = allTodoState;
   useRequest(todoList, {
     // ...
 
@@ -90,7 +90,7 @@ const PageA = () => {
   return (
     // ...
   );
-}
+};
 ```
 
 </TabItem>
@@ -101,7 +101,7 @@ const PageB = () => {
   // ...
   const handleSuccess = () => {
     // highlight-start
-    // Pass in an object and specify the state name to look up
+    // Pass in an object and specify the state name to find
     updateState(alova.Get('/todo'), {
       allTodo: allTodoData => {
         // Add a new todo item
@@ -118,14 +118,13 @@ const PageB = () => {
   return (
     // ...
   );
-}
+};
 ```
 
 </TabItem>
 </Tabs>
 
 </TabItem>
-
 <TabItem value="3" label="svelte">
 
 <Tabs className="file-tabs">
@@ -153,7 +152,7 @@ useRequest(todoList, {
 ```javascript
 const handleSuccess = () => {
   // highlight-start
-  // Pass in an object and specify the state name to search
+  // Pass in an object and specify the state name to find
   updateState(alova.Get('/todo'), {
     allTodo: allTodoData => {
       // Add a new todo item
@@ -169,6 +168,68 @@ const handleSuccess = () => {
 ```
 
 </TabItem>
+
+</Tabs>
+
+</TabItem>
+<TabItem value="4" label="solid">
+
+<Tabs className="file-tabs">
+<TabItem value="1" label="PageA.jsx">
+
+```javascript
+const PageA = () => {
+  const todoList = () => alova.Get('/todo');
+  const allTodoState = createSignal([]);
+  const [allTodo, setAllTodo] = allTodoState;
+  useRequest(todoList, {
+    // ...
+
+    // highlight-start
+    // Manage allTodo as an additional state
+    managedStates: {
+      allTodo: allTodoState
+    }
+    // highlight-end
+  });
+
+  return (
+    // ...
+  );
+};
+```
+
+</TabItem>
+
+<TabItem value="2" label="PageB.jsx">
+
+```javascript
+const PageB = () => {
+  // ...
+  const handleSuccess = () => {
+    // highlight-start
+    // Pass in an object and specify the state name to find
+    updateState(alova.Get('/todo'), {
+      allTodo: allTodoData => {
+        // Add a new todo item
+        allTodoData.push({
+          title: 'new todo',
+          time: '10:00'
+        });
+        return allTodoData;
+      }
+    });
+    // highlight-end
+  };
+
+  return (
+    // ...
+  );
+};
+```
+
+</TabItem>
+
 </Tabs>
 
 </TabItem>

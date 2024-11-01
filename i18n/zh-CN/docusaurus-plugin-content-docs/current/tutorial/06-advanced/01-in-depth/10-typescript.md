@@ -17,6 +17,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="VueHook">
 
 ```typescript
+import VueHook from 'alova/vue';
 const vueAlova = createAlova({
   statesHook: VueHook
   // ...
@@ -32,6 +33,7 @@ const {
 <TabItem value="2" label="ReactHook">
 
 ```typescript
+import ReactHook from 'alova/react';
 const reactAlova = createAlova({
   statesHook: ReactHook
   // ...
@@ -47,6 +49,7 @@ const {
 <TabItem value="3" label="SvelteHook">
 
 ```typescript
+import SvelteHook from 'alova/svelte';
 const svelteAlova = createAlova({
   statesHook: SvelteHook
   // ...
@@ -55,6 +58,22 @@ const {
   loading, // Writable<boolean>
   data, // Writable<{ data: any }>
   error // Writable<Error>
+} = useRequest(svelteAlova.Get<{ data: any }>('/todo/list'));
+```
+
+</TabItem>
+<TabItem value="4" label="SolidHook">
+
+```typescript
+import SolidHook from 'alova/solid';
+const solidAlova = createAlova({
+  statesHook: SolidHook
+  // ...
+});
+const {
+  loading, // Accessor<boolean>
+  data, // Accessor<{ data: any }>
+  error // Accessor<Error>
 } = useRequest(svelteAlova.Get<{ data: any }>('/todo/list'));
 ```
 
@@ -82,6 +101,7 @@ const { data } = useRequest(Get);
 // vue: data的类型为Ref<Todo[]>
 // react: data的类型为Todo[]
 // svelte: data的类型为Writable<Todo[]>
+// solid: data的类型为Accessor<Todo[]>
 ```
 
 ### 情况 2
@@ -108,6 +128,7 @@ const { data } = useRequest(Get);
 // vue: data的类型为Ref<(Todo & { status: string })[]>
 // react: data的类型为(Todo & { status: string })[]
 // svelte: data的类型为Writable<(Todo & { status: string })[]>
+// solid: data的类型为Accessor<(Todo & { status: string })[]>
 ```
 
 :::warning 注意

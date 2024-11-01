@@ -30,6 +30,24 @@ yarn add @alova/adapter-uniapp
 </TabItem>
 </Tabs>
 
+:::warning
+
+在 uniapp+vite 中，需要配置`@rollup/plugin-node-resolve`，否则可能导致找不到依赖报错。
+
+[#535 discussion](https://github.com/orgs/alovajs/discussions/535)
+
+```js
+import { defineConfig } from 'vite';
+import uni from '@dcloudio/vite-plugin-uni';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+export default defineConfig({
+  plugins: [uni(), nodeResolve()]
+});
+```
+
+:::
+
 ## 使用方法
 
 ### 创建 alova

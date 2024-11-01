@@ -7,10 +7,7 @@ import TabItem from '@theme/TabItem';
 
 静默队列默认不启动，需要我们指定启动参数进行初始化，一般情况下，在入口文件中调用`bootSilentFactory`来初始化静默工厂，它将通过指定的配置项来读取还未执行的请求到对应的静默队列中并启动这些队列。
 
-<Tabs groupId="framework">
-<TabItem value="1" label="vue">
-
-```javascript
+```javascript title="main.js"
 import { bootSilentFactory } from 'alova/client';
 import { alovaInst } from '@/api';
 
@@ -22,43 +19,6 @@ bootSilentFactory({
   delay: 1000
 });
 ```
-
-</TabItem>
-
-<TabItem value="2" label="react">
-
-```javascript
-import { bootSilentFactory } from 'alova/client';
-import { alovaInst } from '@/api';
-
-bootSilentFactory({
-  // 启动时指定 alova 实例，用于请求信息存储、请求发送
-  alova: alovaInst,
-
-  // 延迟启动的时间，单位毫秒，默认为2000ms，具体描述看后续说明
-  delay: 1000
-});
-```
-
-</TabItem>
-
-<TabItem value="3" label="svelte">
-
-```javascript
-import { bootSilentFactory } from 'alova/client';
-import { alovaInst } from '@/api';
-
-bootSilentFactory({
-  // 启动时指定 alova 实例，用于请求信息存储、请求发送
-  alova: alovaInst,
-
-  // 延迟启动的时间，单位毫秒，默认为2000ms，具体描述看后续说明
-  delay: 1000
-});
-```
-
-</TabItem>
-</Tabs>
 
 :::warning `delay`参数说明
 

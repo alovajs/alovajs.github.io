@@ -118,4 +118,5 @@ The following is the statesHook source code that leaves the UI framework.
 - [react hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/react.ts)
 - [vue hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/vue.ts)
 - [svelte hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/svelte.ts)
+- [solid hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/solid.ts)
 - [vue options hook](https://github.com/alovajs/alova/blob/main/packages/vue-options/src/stateHook.ts)

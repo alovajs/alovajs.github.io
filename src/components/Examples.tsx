@@ -25,6 +25,13 @@ const exampleList = [
     linkStackblitz: `https://stackblitz.com/fork/github${linkPartCommon}svelte`
   },
   {
+    id: 'Solid',
+    Image: require('@site/static/img/solid.svg').default,
+    linkGithub: `https://github.com${linkPartCommon}solid`,
+    linkCodesandbox: `https://codesandbox.io/p/sandbox/github${linkPartCommon}solid`,
+    linkStackblitz: `https://stackblitz.com/fork/github${linkPartCommon}solid`
+  },
+  {
     id: 'Server',
     Image: require('@site/static/img/nodejs.svg').default,
     linkGithub: `https://github.com${linkPartCommon}server`,
@@ -42,7 +49,7 @@ const Examples = () => {
             className="flex flex-col bg-gray-100/5 px-5 py-6 rounded-md border-[1px] border-gray-200 border-solid dark:border-gray-200/10 dark:text-slate-200">
             <div className="flex items-center justify-between mb-3">
               <div className="flex flex-row items-center">
-                <item.Image className="mr-4"></item.Image>
+                <item.Image className="mr-4 h-8"></item.Image>
                 <strong>{item.id}</strong>
               </div>
               <Link

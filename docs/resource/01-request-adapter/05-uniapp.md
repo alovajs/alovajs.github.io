@@ -30,6 +30,24 @@ yarn add @alova/adapter-uniapp
 </TabItem>
 </Tabs>
 
+:::warning
+
+In uniapp+vite, `@rollup/plugin-node-resolve` needs to be configured, otherwise it may cause an error that the dependency cannot be found.
+
+[#535 discussion](https://github.com/orgs/alovajs/discussions/535)
+
+```js
+import { defineConfig } from 'vite';
+import uni from '@dcloudio/vite-plugin-uni';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+export default defineConfig({
+  plugins: [uni(), nodeResolve()]
+});
+```
+
+:::
+
 ## Usage
 
 ### create alova

@@ -14,11 +14,11 @@ import useRequestSolid from '!!raw-loader!@site/codesandbox@3/01-getting-started
 
 Next, we will learn how to use it in conjunction with the client UI framework, which can allow alova to exert its true power. When used in the UI framework, not only can alova automatically manage the responsive request status, but also automatically control when the request should be sent through certain rules.
 
-`alova` provides 10+ client request strategies, which help you implement complex requests in a simple and elegant way. Let's continue to look down!
+`alova` provides 15+ client request strategies, which help you implement complex requests in a simple and elegant way. Let's continue to look down!
 
 ## Set statesHook
 
-Before using the request strategy, we need to set the corresponding statesHook on the alova instance. It must correspond to the UI framework used by the project. This is very important. It will tell alova that it should create responsive states for the corresponding UI framework. Currently, the following frameworks are supported:
+Alova's useHook request strategy can run in all UI frameworks supported by Alova. You only need to set the statesHook of the corresponding UI framework on the Alova instance, which will tell Alova which UI framework should be used to create states.
 
 <Tabs groupId="framework">
 
@@ -83,7 +83,27 @@ export const alovaInstance = createAlova({
 ```
 
 </TabItem>
+<TabItem value="5" label="vue-demi">
+
+```js
+import { createAlova } from 'alova';
+import VueDemiHook from 'alova/vue-demi';
+
+// support vue@2.7+ composition api
+export const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  statesHook: VueDemiHook
+  // highlight-end
+});
+```
+
+</TabItem>
 </Tabs>
+
+In addition, alova also provides the following statesHooks:
+
+- [statesHook for vue options style](/resource/framework/vue-options), which means you can use alova's usehooks in vue2's options style components.
 
 ## Automatically manage request status
 

@@ -59,6 +59,22 @@ const {
 ```
 
 </TabItem>
+<TabItem value="4" label="SolidHook">
+
+```typescript
+import SolidHook from 'alova/solid';
+const solidAlova = createAlova({
+  statesHook: SolidHook
+  // ...
+});
+const {
+  loading, // Accessor<boolean>
+  data, // Accessor<{ data: any }>
+  error // Accessor<Error>
+} = useRequest(svelteAlova.Get<{ data: any }>('/todo/list'));
+```
+
+</TabItem>
 </Tabs>
 
 The type of data will be different depending on the response data type specified in different Method instances, let's continue to look below.
@@ -82,6 +98,7 @@ const { data } = useRequest(Get);
 // vue: The type of data is Ref<Todo[]>
 // react: The type of data is Todo[]
 // svelte: The type of data is Writable<Todo[]>
+// solid: The type of data is Accessor<Todo[]>
 ```
 
 ### Case 2
@@ -108,6 +125,7 @@ const { data } = useRequest(Get);
 // vue: The type of data is Ref<(Todo & { status: string })[]>
 // react: The type of data is (Todo & { status: string })[]
 // svelte: The type of data is Writable<(Todo & { status: string })[]>
+// solid: The type of data is Accessor<(Todo & { status: string })[]>
 ```
 
 :::warning note
