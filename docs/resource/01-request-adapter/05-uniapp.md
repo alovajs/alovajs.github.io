@@ -17,21 +17,21 @@ This plugin only supports vue3 version of uniapp application.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-uniapp @alova/shared --save
+npm install alova @alova/adapter-uniapp @alova/shared --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-uniapp @alova/shared
+yarn add alova @alova/adapter-uniapp @alova/shared
 ```
 
 </TabItem>
 <TabItem value="3" label="pnpm">
 
 ```bash
-pnpm install @alova/adapter-uniapp @alova/shared
+pnpm install alova @alova/adapter-uniapp @alova/shared
 ```
 
 </TabItem>

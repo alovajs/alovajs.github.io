@@ -17,21 +17,21 @@ This plugin only supports the taro application of react 16.8+, vue3 version.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-taro --save
+npm install alova @alova/adapter-taro --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-taro
+yarn add alova @alova/adapter-taro
 ```
 
 </TabItem>
 <TabItem value="3" label="pnpm">
 
 ```bash
-pnpm install @alova/adapter-taro
+pnpm install alova @alova/adapter-taro
 ```
 
 </TabItem>
