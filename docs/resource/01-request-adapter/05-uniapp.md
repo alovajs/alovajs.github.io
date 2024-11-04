@@ -17,36 +17,25 @@ This plugin only supports vue3 version of uniapp application.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-uniapp --save
+npm install alova @alova/adapter-uniapp @alova/shared --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-uniapp
+yarn add alova @alova/adapter-uniapp @alova/shared
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install alova @alova/adapter-uniapp @alova/shared
 ```
 
 </TabItem>
 </Tabs>
-
-:::warning
-
-In uniapp+vite, `@rollup/plugin-node-resolve` needs to be configured, otherwise it may cause an error that the dependency cannot be found.
-
-[#535 discussion](https://github.com/orgs/alovajs/discussions/535)
-
-```js
-import { defineConfig } from 'vite';
-import uni from '@dcloudio/vite-plugin-uni';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-
-export default defineConfig({
-  plugins: [uni(), nodeResolve()]
-});
-```
-
-:::
 
 ## Usage
 

@@ -17,36 +17,25 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-uniapp --save
+npm install alova @alova/adapter-uniapp @alova/shared --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-uniapp
+yarn add alova @alova/adapter-uniapp @alova/shared
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install alova @alova/adapter-uniapp @alova/shared
 ```
 
 </TabItem>
 </Tabs>
-
-:::warning
-
-在 uniapp+vite 中，需要配置`@rollup/plugin-node-resolve`，否则可能导致找不到依赖报错。
-
-[#535 discussion](https://github.com/orgs/alovajs/discussions/535)
-
-```js
-import { defineConfig } from 'vite';
-import uni from '@dcloudio/vite-plugin-uni';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-
-export default defineConfig({
-  plugins: [uni(), nodeResolve()]
-});
-```
-
-:::
 
 ## 使用方法
 

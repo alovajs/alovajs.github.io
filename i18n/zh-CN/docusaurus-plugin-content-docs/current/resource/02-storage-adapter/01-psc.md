@@ -15,7 +15,12 @@ title: 进程共享适配器
 ## 安装
 
 ```bash
-npm install @alova/psc --save
+# npm
+npm install alova @alova/psc --save
+# yarn
+yarn add alova @alova/psc
+# npm
+pnpm install alova @alova/psc
 ```
 
 ## 在 Node.js 中使用

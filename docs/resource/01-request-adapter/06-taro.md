@@ -17,14 +17,21 @@ This plugin only supports the taro application of react 16.8+, vue3 version.
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-taro --save
+npm install alova @alova/adapter-taro --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-taro
+yarn add alova @alova/adapter-taro
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install alova @alova/adapter-taro
 ```
 
 </TabItem>
@@ -40,7 +47,7 @@ If you are develop a React-Native app with Taro, please ensure `metro >= 0.76.0`
 
 :::warning Dependency precompilation issues
 
-[Dependency precompilation function](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91) has been added in Taro v3.5 beta, and is enabled by default in development mode when you are using the `alova` library and `@alova/scene-react(vue)` may cause the error `` [alova]can not call useHooks until set the `statesHook` at alova instance. ``. This is caused by the prebundle feature repeatedly packaging two different `alova` packages. , turning off the prebundle function at this time can solve this problem.
+[Dependency precompilation function](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91) has been added in Taro v3.5 beta, and is enabled by default in development mode when you are using the `alova` library and `@alova/scene-react(vue)` may cause the error ``[alova]can not call useHooks until set the `statesHook` at alova instance.``. This is caused by the prebundle feature repeatedly packaging two different `alova` packages. , turning off the prebundle function at this time can solve this problem.
 
 ```js
 // config/dev.ts
@@ -162,11 +169,11 @@ const uploadFile = (name, filePath, formData) =>
        name,
        filePath,
 
-       // Additional data will be passed into formData of uni.uploadFile
+       // Additional data will be passed into formData of Taro.uploadFile
        ...formData
      },
      {
-       // Set the request method to upload, and the adapter will call uni.uploadFile
+       // Set the request method to upload, and the adapter will call Taro.uploadFile
        requestType: 'upload'
      }
    );
@@ -216,11 +223,11 @@ const App = () => {
          name,
          filePath,
 
-         // Additional data will be passed into formData of uni.uploadFile
+         // Additional data will be passed into formData of Taro.uploadFile
          ...formData
        },
        {
-         // Set the request method to upload, and the adapter will call uni.uploadFile
+         // Set the request method to upload, and the adapter will call Taro.uploadFile
          requestType: 'upload'
        }
      );
@@ -258,7 +265,7 @@ Similarly, it is fully compatible with `Taro.downloadFile`, you can specify [all
 ```jsx
 const downloadFile = filePath =>
    alovaInst.Get('/bigImage.jpg', {
-     // Set the request method to download, and the adapter will call uni.downloadFile
+     // Set the request method to download, and the adapter will call Taro.downloadFile
      requestType: 'download',
      filePath
    });
@@ -294,7 +301,7 @@ const App = () => {
 <script setup>
    const downloadFile = filePath =>
      alovaInst.Get('/bigImage.jpg', {
-       // Set the request method to download, and the adapter will call uni.downloadFile
+       // Set the request method to download, and the adapter will call Taro.downloadFile
        requestType: 'download',
        filePath
      });

@@ -10,15 +10,17 @@ When the response is very fast, the loading status will flash once, which will b
 const delayLoadingMiddleware =
   (delayTimer = 1000) =>
   async (ctx, next) => {
-    //Control loading by yourself
+    const { loading } = ctx.proxyStates;
+
+    // Control loading by yourself
     ctx.controlLoading();
 
-    //Delay updates for a specific time
+    // Delay updates for a specific time
     const timer = setTimeout(() => {
-      ctx.update({ loading: true });
+      loading.v = true;
     }, delayTimer);
     await next();
-    ctx.update({ loading: false });
+    loading.v = false;
     clearTimeout(timer);
   };
 

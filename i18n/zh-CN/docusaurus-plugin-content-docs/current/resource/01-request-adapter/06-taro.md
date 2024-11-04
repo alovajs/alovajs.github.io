@@ -17,14 +17,21 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-taro --save
+npm install alova @alova/adapter-taro --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-taro
+yarn add alova @alova/adapter-taro
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install alova @alova/adapter-taro
 ```
 
 </TabItem>
@@ -162,11 +169,11 @@ const uploadFile = (name, filePath, formData) =>
       name,
       filePath,
 
-      // 额外数据将传入uni.uploadFile的formData中
+      // 额外数据将传入Taro.uploadFile的formData中
       ...formData
     },
     {
-      // 设置请求方式为上传，适配器内将调用uni.uploadFile
+      // 设置请求方式为上传，适配器内将调用Taro.uploadFile
       requestType: 'upload'
     }
   );
@@ -216,11 +223,11 @@ const App = () => {
         name,
         filePath,
 
-        // 额外数据将传入uni.uploadFile的formData中
+        // 额外数据将传入Taro.uploadFile的formData中
         ...formData
       },
       {
-        // 设置请求方式为上传，适配器内将调用uni.uploadFile
+        // 设置请求方式为上传，适配器内将调用Taro.uploadFile
         requestType: 'upload'
       }
     );
@@ -258,7 +265,7 @@ const App = () => {
 ```jsx
 const downloadFile = filePath =>
   alovaInst.Get('/bigImage.jpg', {
-    // 设置请求方式为下载，适配器内将调用uni.downloadFile
+    // 设置请求方式为下载，适配器内将调用Taro.downloadFile
     requestType: 'download',
     filePath
   });
@@ -294,7 +301,7 @@ const App = () => {
 <script setup>
   const downloadFile = filePath =>
     alovaInst.Get('/bigImage.jpg', {
-      // 设置请求方式为下载，适配器内将调用uni.downloadFile
+      // 设置请求方式为下载，适配器内将调用Taro.downloadFile
       requestType: 'download',
       filePath
     });

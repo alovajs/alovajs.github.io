@@ -15,6 +15,12 @@ use hook
 
 通过 Server-sent Events(SSE)请求，内部使用`EventSource`实现。
 
+:::warning 注意
+
+你不可以在使用 useSSE 时添加自定义 header，因为该标准[不包含这一行为](https://stackoverflow.com/a/36226251)。
+
+:::
+
 ## 特性
 
 - 更加简洁易用的使用方式；

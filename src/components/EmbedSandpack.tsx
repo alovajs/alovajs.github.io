@@ -37,7 +37,7 @@ const fileEntry = {
     }
   },
   solid: {
-    root: '/App.js',
+    root: '/App.jsx',
     files: {
       '/api.js': alovaSolid
     }
@@ -87,6 +87,40 @@ const customSetup = {
     },
     main: '/App.svelte',
     environment: 'svelte'
+  }),
+  solid: (commonConfig: Record<string, any>) => ({
+    files: {
+      '/index.js': {
+        code: `import { render } from "solid-js/web";
+import App from "./App";
+import "./styles.css";
+render(() => App(), document.getElementById("app"));`,
+        hidden: true
+      },
+      '/public/index.html': {
+        code: `<html>
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <div id="app"></div>
+  <script src="src/index.js"></script>
+</body>
+</html>`,
+        hidden: true
+      },
+      ...commonConfig.files
+    },
+    customSetup: {
+      entry: '/index.js',
+      dependencies: {
+        svelte: '^1.8.19',
+        ...commonConfig.customSetup.dependencies
+      }
+    },
+    main: '/App.jsx',
+    environment: 'solid'
   })
 };
 

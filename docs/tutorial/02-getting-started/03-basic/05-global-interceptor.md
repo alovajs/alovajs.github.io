@@ -66,7 +66,7 @@ flowchart LR
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  //Use two items of the array to specify the interceptor for successful request and the interceptor for failed request respectively.
+  // Use responded object to specify the interceptor for successful request and the interceptor for failed request respectively.
   responded: {
     // highlight-start
     // Interceptor for successful request

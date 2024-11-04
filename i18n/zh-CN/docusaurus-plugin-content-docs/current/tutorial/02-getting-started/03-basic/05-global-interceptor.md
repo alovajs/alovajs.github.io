@@ -66,7 +66,7 @@ flowchart LR
 ```javascript
 const alovaInstance = createAlova({
   // ...
-  // 使用数组的两个项，分别指定请求成功的拦截器和请求失败的拦截器
+  // 使用 responded 对象分别指定请求成功的拦截器和请求失败的拦截器
   responded: {
     // highlight-start
     // 请求成功的拦截器

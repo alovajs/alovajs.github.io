@@ -10,15 +10,17 @@ title: 常用中间件实践
 const delayLoadingMiddleware =
   (delayTimer = 1000) =>
   async (ctx, next) => {
+    const { loading } = ctx.proxyStates;
+
     // 自行控制loading
     ctx.controlLoading();
 
     // 延迟特定时间更新
     const timer = setTimeout(() => {
-      ctx.update({ loading: true });
+      loading.v = true;
     }, delayTimer);
     await next();
-    ctx.update({ loading: false });
+    loading.v = false;
     clearTimeout(timer);
   };
 

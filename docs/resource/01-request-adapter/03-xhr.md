@@ -11,14 +11,21 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/adapter-xhr --save
+npm install alova @alova/adapter-xhr --save
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/adapter-xhr
+yarn add alova @alova/adapter-xhr
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm install alova @alova/adapter-xhr
 ```
 
 </TabItem>
