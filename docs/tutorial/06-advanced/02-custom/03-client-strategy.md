@@ -65,7 +65,7 @@ We innovatively use **state proxy** to smooth out the differences in UI framewor
 In order to smooth out the differences in state proxies, we provide the `statesHookHelper` function to create auxiliary functions, and use these auxiliary functions to implement useHook across UI frameworks.
 
 ```js
-import { statesHookHelper } from '@alova/shared/function';
+import { statesHookHelper } from 'alova/client';
 import { promiseStatesHook } from 'alova';
 
 function myUseHook(methodHandler, options) {

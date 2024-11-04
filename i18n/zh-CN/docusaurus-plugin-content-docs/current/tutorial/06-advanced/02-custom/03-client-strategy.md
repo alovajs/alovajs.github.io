@@ -65,7 +65,7 @@ useHook 是 alova 最常用的请求策略，而且它是跨 UI 框架的，当�
 为了抹平状态代理的差异性，我们提供了`statesHookHelper`函数来创建辅助函数，通过这些辅助函数来实现跨 UI 框架的 useHook。
 
 ```js
-import { statesHookHelper } from '@alova/shared/function';
+import { statesHookHelper } from 'alova/client';
 import { promiseStatesHook } from 'alova';
 
 function myUseHook(methodHandler, options) {
