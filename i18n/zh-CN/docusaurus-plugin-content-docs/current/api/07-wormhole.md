@@ -8,9 +8,9 @@ title: wormhole API
 
 ```bash
 # npm
-npm i @alova/wormhole -D
+npm i @alova/wormhole --save-dev
 # yarn
-yarn add @alova/wormhole -D
+yarn add @alova/wormhole --dev
 # pnpm
 pnpm add @alova/wormhole -D
 ```

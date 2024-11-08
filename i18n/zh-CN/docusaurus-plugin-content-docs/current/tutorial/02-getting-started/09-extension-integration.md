@@ -25,21 +25,21 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="npm">
 
 ```bash
-npm install @alova/wormhole --save
+npm install @alova/wormhole --save-dev
 ```
 
 </TabItem>
 <TabItem value="2" label="yarn">
 
 ```bash
-yarn add @alova/wormhole
+yarn add @alova/wormhole --dev
 ```
 
 </TabItem>
 <TabItem value="3" label="pnpm">
 
 ```bash
-pnpm add @alova/wormhole
+pnpm add @alova/wormhole -D
 ```
 
 </TabItem>
