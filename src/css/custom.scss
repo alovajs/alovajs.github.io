@@ -35,6 +35,11 @@ html[data-theme='dark'] {
   --ifm-background-color: #040f26;
 }
 
+// announcement
+.announcement {
+  color: var(--ifm-font-color-base) !important;
+}
+
 // navbar
 .navbar__items--right .navbar__link {
   @apply text-font-500 dark:text-[#94A3B8] hover:text-black dark:hover:text-white;

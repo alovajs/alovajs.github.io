@@ -8,15 +8,46 @@ title: 编辑器扩展集成
 2. 将 api 文档嵌入代码中，带你体验边查边用 API 的效果。
 3. 定时更新 api 并主动通知前端开发，不再依赖服务端开发人员通知。
 
-<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">安装 VS Code 扩展</a>
-
-> 自动生成支持 swagger-v2 和 openapi-v3 规范。
-
-以下是一个扩展演示视频
+## 演示视频
 
 import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
 
 <video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
+
+## 安装
+
+<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">安装 VSCode 扩展（支持 swagger-v2 和 openapi-v3 规范）</a>
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="1" label="npm">
+
+```bash
+npm install @alova/wormhole --save
+```
+
+</TabItem>
+<TabItem value="2" label="yarn">
+
+```bash
+yarn add @alova/wormhole
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm add @alova/wormhole
+```
+
+</TabItem>
+</Tabs>
+
+同时安装`@alova/wormhole`和 alova 的 vscode 扩展可以享受到完整的特性，`@alova/wormhole`提供自动生成特性，vscode 扩展可以快速调用`@alova/wormhole`的能力，并提供在编辑器中快速查找接口文档的快捷键。
+
+如果你正在使用 WebStorm 等编辑器，你可以通过 [@alova/wormhole 的命令](/api/wormhole#commands) 来自动生成 api 调用函数、api 的完整 TypeScript 类型和 api 文档信息。
 
 ## 配置
 
@@ -53,7 +84,7 @@ module.exports = {
       // 接口文件和类型文件的输出路径，多个generator不能重复的地址，否则生成的代码会相互覆盖
       output: 'src/api',
 
-      // （可选）指定生成的响应数据的mediaType，以此数据类型来生成200状态码的响应ts格式，默认application/json
+      // （可选）指定生成的响应数据的mediaType，以此数据类型来生成2xx状态码的响应ts格式，默认application/json
       responseMediaType: 'application/json',
 
       // （可选）指定生成的请求体数据的bodyMediaType，以此数据类型来生成请求体的ts格式，默认application/json
@@ -76,7 +107,15 @@ module.exports = {
       global: 'Apis',
 
       /**
+       * 全局api对象挂载的宿主对象，默认为 `globalThis`，在浏览器中代表 `window`，在nodejs中代表 `global`
+       */
+      globalHost: 'globalThis'
+
+      /**
        * （可选）过滤或转换生成的api接口函数，返回一个新的apiDescriptor来生成api调用函数，未指定此函数时则不转换apiDescripor对象
+       *
+       * `apiDescriptor` 的类型和 openapi 文件的 api 项相同。
+       * @see https://spec.openapis.org/oas/v3.1.0.html#operation-object
        */
       handleApi: apiDescriptor => {
         // 返回falsy值表示过滤此api
@@ -259,4 +298,6 @@ user 为 tag，profile 为 operationId，具体你可以打开`${output}/apiDefi
 ## 注意事项
 
 1. 在 ts 项目中，如果发现 vscode 无法正确智能提示，请在`tsconfig.json`中设置`"strictNullChecks": true`。
-2. 有时候 api 会提示为`any`类型，你可以按以下方式尝试解决：第一步，确认此 api 是否在入口文件中引入，第二步，重启 vscode
+2. 有时候 api 会提示为`any`类型，你可以按以下方式尝试解决：
+   - 第一步，确认此 api 是否在入口文件中引入。
+   - 第二步，重启 vscode

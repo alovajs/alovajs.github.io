@@ -8,15 +8,46 @@ Integrating Alova's editor extension can make it more powerful.
 2. Embed API documents in the code to experience the effect of checking and using APIs.
 3. Update APIs regularly and actively notify front-end developers, no longer relying on server-side developers to notify.
 
-<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">Install VS Code extension</a>
-
-> Automatically generate support for swagger-v2 and openapi-v3 specifications.
-
-The following is an extended demonstration video
+## Demo video
 
 import vscodeDemoVideo from '@site/static/video/vscode-demo-video-en.mp4';
 
 <video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
+
+## Install
+
+<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">Install VSCode extension (supports swagger-v2 and openapi-v3 specifications)</a>
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="1" label="npm">
+
+```bash
+npm install @alova/wormhole --save
+```
+
+</TabItem>
+<TabItem value="2" label="yarn">
+
+```bash
+yarn add @alova/wormhole
+```
+
+</TabItem>
+<TabItem value="3" label="pnpm">
+
+```bash
+pnpm add @alova/wormhole
+```
+
+</TabItem>
+</Tabs>
+
+Install `@alova/wormhole` and alova's vscode extension at the same time to enjoy the complete features. `@alova/wormhole` provides automatic generation features. The vscode extension can quickly call `@alova/wormhole` and provide shortcut keys for quickly finding interface documents in the editor.
+
+If you are using an editor such as WebStorm, you can use [@alova/wormhole's commands](/api/wormhole#commands) to automatically generate API call functions, complete TypeScript types of APIs, and API documentation information.
 
 ## Configuration
 
@@ -35,27 +66,27 @@ The specific configuration parameters are as follows, taking commonjs as an exam
 ```js
 // alova.config.js
 module.exports = {
-  // API generation setting array, each item represents an automatically generated rule, including the generated input and output directories, standard file addresses, etc.
+  // API generation setting array, each item represents an automatically generated rule, including the generated input and output directories, standard file paths, etc.
   generator: [
     // Server 1
     {
-      // Input parameter 1: openapi json file url address
+      // Input parameter 1: openapi json file url url
       input: 'http://localhost:3000/openapi.json',
 
-      // Input parameter 2: local address with the current project as the relative directory
+      // Input parameter 2: local url with the current project as the relative directory
       // input: 'openapi/api.json'
 
-      // Input parameter 3: When there is no direct reference to the openapi file, it is a document address, and the document type must be specified with the platform parameter
+      // Input parameter 3: When there is no direct reference to the openapi file, it is a document url, and the document type must be specified with the platform parameter
       // input: 'http://192.168.5.123:8080'
 
       // (Optional) platform is a platform that supports openapi. Currently only swagger is supported. The default is empty
-      // When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
+      // When this parameter is specified, the input field only needs to specify the document url without specifying the openapi file
       platform: 'swagger',
 
-      // Output path of interface file and type file. Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
+      // Output path of interface file and type file. Multiple generators cannot have the same output path, otherwise the generated code will overwrite each other.
       output: 'src/api',
 
-      // (Optional) Specify the mediaType of the generated response data. Use this data type to generate the ts format of the response with a 200 status code. The default is application/json.
+      // (Optional) Specify the mediaType of the generated response data. Use this data type to generate the ts format of the response with a 2xx status code. The default is application/json.
       responseMediaType: 'application/json',
 
       // (Optional) Specify the bodyMediaType of the generated request body data. Use this data type to generate the ts format of the request body. The default is application/json.
@@ -78,7 +109,15 @@ module.exports = {
       global: 'Apis',
 
       /**
+       * The host object of global mounting, default is `globalThis`, it means `window` in browser and `global` in nodejs
+       */
+      globalHost: 'globalThis'
+
+      /**
        * (Optional) Filter or convert the generated api interface function, return a new apiDescriptor to generate the api call function, if this function is not specified, the apiDescripor object is not converted
+       *
+       * The type of `apiDescriptor` is the same as the api item of openapi file.
+       * @see https://spec.openapis.org/oas/v3.1.0.html#operation-object
        */
       handleApi: apiDescriptor => {
         // Returning a falsy value means filtering this api
@@ -262,4 +301,6 @@ In this way, you can integrate the automatically generated code without changing
 
 1. In a ts project, if you find that vscode cannot correctly prompt, please set `"strictNullChecks": true` in `tsconfig.json`.
 
-2. Sometimes the api will prompt as `any` type, you can try to solve it as follows: Step 1, confirm whether this api is introduced in the entry file, and step 2, restart vscode
+2. Sometimes the api will prompt as `any` type, you can try to solve it as follows:
+   - Step 1, confirm whether this api is introduced in the entry file.
+   - Step 2, restart vscode

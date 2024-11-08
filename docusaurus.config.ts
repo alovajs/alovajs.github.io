@@ -211,14 +211,12 @@ const config: Config = {
     },
     announcementBar: {
       id: 'support_us',
-      content: `⭐️
-          If you also like alova,
-          <a
-            href="https://github.com/alovajs/alova"
-            target="_blank">
-            star it on GitHub!
-          </a>
-          ⭐️`,
+      content: `<span class="announcement">⭐️If you also like alova, 
+      <a
+        href="https://github.com/alovajs/alova"
+        target="_blank">
+        star it on GitHub!
+      </a>⭐️</span>`,
       backgroundColor: 'rgba(var(--ifm-color-primary-rgb), 0.05)'
       // textColor: '#fff'
     },
