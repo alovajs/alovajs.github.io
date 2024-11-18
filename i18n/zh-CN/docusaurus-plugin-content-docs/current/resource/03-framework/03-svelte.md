@@ -13,3 +13,5 @@ const alovaInstance = createAlova({
   statesHook: SvelteHook
 });
 ```
+
+配置`statesHook`后，你可以使用所有的[客户端策略](/tutorial/client/strategy)。

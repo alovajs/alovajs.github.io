@@ -13,3 +13,5 @@ const alovaInstance = createAlova({
   statesHook: SvelteHook
 });
 ```
+
+After configuring `statesHook`, you can use all [client strategies](/tutorial/client/strategy).

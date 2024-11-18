@@ -25,3 +25,5 @@ const alovaInstance = createAlova({
   statesHook: VueHook
 });
 ```
+
+After configuring `statesHook`, you can use all [client strategies](/tutorial/client/strategy). You can also use all client strategies in vue options, please refer to [vue options](/resource/framework/vue-options).

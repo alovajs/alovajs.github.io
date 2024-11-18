@@ -42,7 +42,34 @@ SSR 中经常需要在服务端获取数据并渲染成 HTML，这种情况下�
 
 ### Nextjs
 
-Nextjs 提供了固定的服务端初始化页面数据的函数，如`getStaticProps`、`getServerSideProps`等，可以在函数中[直接使用 method 实例](/v2/tutorial/getting-started/quick-start)调用接口。
+<Tabs>
+<TabItem value="1" label="App Router">
+
+在 nextjs 的 app router 模式下，你可以直接在组件中调用 method 实例。
+
+```jsx
+const App = async () => {
+  const data = await alovaInstance.Get('/todo/list', {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
+  // then ...code
+  return data.map(item => (
+    <div>
+      <span>{item.title}</span>
+      <span>{item.time}</span>
+    </div>
+  ));
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="2" label="Pages Router">
+
+在传统的 pages router 模式下，nextjs 提供程序固定的服务端数据初始化函数，例如 `getStaticProps`、`getServerSideProps` 和 `getStaticPaths` 等，您可以[直接使用方法实例](/v2/tutorial/getting-started/quick-start)在函数中调用 api。
 
 ```jsx
 const todoListGetter = alovaInstance.Get('/todo/list', {
@@ -68,6 +95,9 @@ export default function App(props) {
   ));
 }
 ```
+
+</TabItem>
+</Tabs>
 
 ### Sveltekit
 
