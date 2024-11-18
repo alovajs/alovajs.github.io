@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 
 import TabItem from '@theme/TabItem';
 
-Usually, use hook can only be used in vue's setup, but through the auxiliary function provided by `@alova/vue-options`, you can also use alova's use hook in vue's options, which is perfectly compatible with almost all functions of alova. You can use all request strategies of `alova/client` under options.
+Usually, use hook can only be used in vue's setup, but through the auxiliary function provided by `@alova/vue-options`, you can also use alova's use hook in vue's options, which is perfectly compatible with almost all functions of alova. You can use all [client request strategies](/tutorial/client/strategy) of `alova/client` under options.
 
 > It can be used in both vue2 and vue3.
 

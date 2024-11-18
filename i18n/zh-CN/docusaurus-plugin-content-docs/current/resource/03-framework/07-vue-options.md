@@ -5,7 +5,7 @@ title: vue options
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-通常，use hook 只能在 vue 的 setup 中使用，但通过`@alova/vue-options`提供的辅助函数，你也可以在 vue 的 options 中使用 alova 的 use hook，完美兼容 alova 的几乎所有功能，你可以在 options 下使用`alova/client`的所有请求策略。
+通常，use hook 只能在 vue 的 setup 中使用，但通过`@alova/vue-options`提供的辅助函数，你也可以在 vue 的 options 中使用 alova 的 use hook，完美兼容 alova 的几乎所有功能，你可以在 options 下使用`alova/client`的所有[客户端请求策略](/tutorial/client/strategy)。
 
 > vue2 和 vue3 中均可使用。
 
