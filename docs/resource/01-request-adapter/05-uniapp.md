@@ -265,7 +265,7 @@ type UniappResponse =
 In actual use, we usually need to process the response data globally. It is recommended to judge the returned data separately. A simple example is as follows:
 
 ```typescript
-const alovaInst = createAlova(
+const alovaInst = createAlova({
    baseURL: 'https://api.alovajs.org',
    ...AdapterUniapp(),
    responded(response) {
