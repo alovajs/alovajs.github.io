@@ -466,7 +466,10 @@
     "message": "快速开始",
     "description": "开始按钮文字"
   },
-
+  "homepage.5-minute Video Tutorial": {
+    "message": "5分钟入门视频",
+    "description": "快速入门按钮文字"
+  },
   "homepage.features.Simple and familiar": {
     "message": "简单熟悉",
     "description": "简单熟悉"
@@ -499,16 +502,14 @@
     "message": "4kb+，只有axios的30%",
     "description": "description of feature"
   },
-
   "homepage.availableScope.title": {
-    "message": "🎉打破useHook使用边界",
+    "message": "打破useHook使用边界",
     "description": "description of available scope"
   },
   "homepage.availableScope.subtitle": {
     "message": "现在，alova已经完美兼容了vue options，尽情使用吧！",
     "description": "description of available scope desc"
   },
-
   "homepage.strategy.title": {
     "message": "以声明的方式完成你的请求",
     "description": "description of request strategy"
@@ -781,7 +782,6 @@
     "message": "查看详情",
     "description": "description of btnDetail of strategy"
   },
-
   "homepage.support.title": {
     "message": "与任何请求工具在任何JS环境下运行",
     "description": "description of support title"
@@ -790,7 +790,6 @@
     "message": "use hooks起源于functional component, 但alova创新性地将它兼容了options和class风格的UI框架，这意味着alova的use hooks几乎不受JS环境和UI框架限制，并且可以与你熟悉的请求工具一起使用",
     "description": "description of support subtitle"
   },
-
   "homepage.contributors.title": {
     "message": "感谢有你们",
     "description": "description of contributors title"
@@ -799,7 +798,6 @@
     "message": "alova贡献者们的智慧和力量，正在让alova变得越来越完美",
     "description": "description of contributors subtitle"
   },
-
   "homepage.like.title": {
     "message": "如果你也喜欢alova",
     "description": "description of support title"
@@ -824,7 +822,6 @@
     "message": "alova v3已发布",
     "description": "description of release announce"
   },
-
   "ad.project collection": {
     "message": "alova用在项目里了吗？快来告诉我",
     "description": "description of ad.project collection"

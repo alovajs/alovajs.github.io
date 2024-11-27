@@ -47,7 +47,11 @@ pnpm add @alova/wormhole -D
 
 同时安装`@alova/wormhole`和 alova 的 vscode 扩展可以享受到完整的特性，`@alova/wormhole`提供自动生成特性，vscode 扩展可以快速调用`@alova/wormhole`的能力，并提供在编辑器中快速查找接口文档的快捷键。
 
-如果你正在使用 WebStorm 等编辑器，你可以通过 [@alova/wormhole 的命令](/api/wormhole#commands) 来自动生成 api 调用函数、api 的完整 TypeScript 类型和 api 文档信息。
+:::info WebStorm 编辑器说明
+
+如果你正在使用 WebStorm 等非 vscode 系列的编辑器，你可以通过 [@alova/wormhole 的命令](/api/wormhole#commands) 来自动生成 api 调用函数、api 的完整 TypeScript 类型和 api 文档信息。
+
+:::
 
 ## 配置
 

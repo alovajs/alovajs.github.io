@@ -47,7 +47,11 @@ pnpm add @alova/wormhole -D
 
 Install `@alova/wormhole` and alova's vscode extension at the same time to enjoy the complete features. `@alova/wormhole` provides automatic generation features. The vscode extension can quickly call `@alova/wormhole` and provide shortcut keys for quickly finding interface documents in the editor.
 
+:::info WebStorm editor tips
+
 If you are using an editor such as WebStorm, you can use [@alova/wormhole's commands](/api/wormhole#commands) to automatically generate API call functions, complete TypeScript types of APIs, and API documentation information.
+
+:::
 
 ## Configuration
 

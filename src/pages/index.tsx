@@ -23,6 +23,12 @@ const buttons = [
     link: '/tutorial/getting-started/introduce'
   },
   {
+    text: <Translate id="homepage.5-minute Video Tutorial">5-minute Video Tutorial</Translate>,
+    type: 'primary',
+    style: 'ctw-button-primary',
+    link: '/video-tutorial'
+  },
+  {
     text: <Translate id="homepage.Examples">Examples</Translate>,
     type: 'secondary',
     style: 'ctw-button-secondary',
