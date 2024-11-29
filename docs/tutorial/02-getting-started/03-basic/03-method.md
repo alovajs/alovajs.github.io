@@ -205,6 +205,8 @@ alovaInst.Get('/todo', {
 });
 ```
 
+However, it should be noted that when the request body is `FormData`, it will be considered that you intend to communicate with the server, and in this case, request sharing will not be triggered.
+
 :::warning How to identify the same request
 
 The request method, request url, request header, url parameter, and request body of the method instance are used as unique identifiers. Identical identifiers indicate the same request, rather than comparing the reference address of the method instance.
