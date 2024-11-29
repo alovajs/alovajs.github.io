@@ -43,7 +43,7 @@ import { xhrRequestAdapter } from '@alova/adapter-xhr';
 
 const alovaInst = createAlova({
   //...
-  requestAdapter: xhrResponseAdapter()
+  requestAdapter: xhrRequestAdapter()
   //...
 });
 ```
