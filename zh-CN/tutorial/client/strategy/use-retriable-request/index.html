@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <script src="/iconfont/iconfont.js"></script><link rel="stylesheet" href="/zh-CN/assets/css/styles.15d805d0.css">
-<script src="/zh-CN/assets/js/runtime~main.f17dad12.js" defer="defer"></script>
+<script src="/zh-CN/assets/js/runtime~main.2e7a5114.js" defer="defer"></script>
 <script src="/zh-CN/assets/js/main.17f6baf2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -62,7 +62,7 @@
 <p>继承<a href="/zh-CN/api/core-hooks#userequest"><strong>useRequest</strong></a>所有配置。</p>
 <table><thead><tr><th>名称</th><th>描述</th><th>类型</th><th>默认值</th><th>版本</th></tr></thead><tbody><tr><td>retry</td><td>最大重试次数，也可以设置为返回 boolean 值的函数，来动态判断是否继续重试。</td><td>number</td><td>(error: Error, ...args: any[]) =&gt; boolean | 3</td><td>-</td></tr><tr><td>backoff</td><td>避让策略，设置重试延迟时间等</td><td><a href="/zh-CN/tutorial/client/strategy/use-retriable-request#backoffpolicy">BackoffPolicy</a></td><td>-</td><td>-</td></tr></tbody></table>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="backoffpolicy">BackoffPolicy<a class="hash-link" aria-label="标题的直接链接" title="标题的直接链接" href="/zh-CN/tutorial/client/strategy/use-retriable-request#backoffpolicy">​</a></h4>
-<table><thead><tr><th>名称</th><th>描述</th><th>类型</th><th>默认值</th><th>版本</th></tr></thead><tbody><tr><td>delay</td><td>再次请求的延迟时间，单位毫秒</td><td>number</td><td>1000</td><td>-</td></tr><tr><td>multiplier</td><td>指定延迟倍数，例如把 multiplier 设置为 2、delay 为 1 秒时，第一次重试为 1 秒，第二次为 2 秒，第三次为 4 秒，以此类推</td><td>number</td><td>0</td><td>-</td></tr><tr><td>startQuiver</td><td>延迟请求的抖动起始百分比值，范围为 0-1，当只设置了 startQuiver 时，endQuiver 默认为 1，例如设置为 0.5，它将在当前延迟时间上增加 50%到 100%的随机时间，如果 endQuiver 有值，则延迟时间将增加 startQuiver 和 endQuiver 范围的随机值</td><td>number</td><td>0</td><td>-</td></tr><tr><td>endQuiver</td><td>延迟请求的抖动结束百分比值，范围为 0-1，当只设置了 endQuiver 时，startQuiver 默认为 0，例如设置为 0.5，它将在当前延迟时间上增加 0%到 50%的随机时间，如果 startQuiver 有值，则延迟时间将增加 startQuiver 和 endQuiver 范围的随机值</td><td>number</td><td>0</td><td>-</td></tr></tbody></table>
+<table><thead><tr><th>名称</th><th>描述</th><th>类型</th><th>默认值</th><th>版本</th></tr></thead><tbody><tr><td>delay</td><td>再次请求的延迟时间，单位毫秒</td><td>number</td><td>1000</td><td>-</td></tr><tr><td>multiplier</td><td>指定延迟倍数，例如把 multiplier 设置为 2、delay 为 1 秒时，第一次重试为 1 秒，第二次为 2 秒，第三次为 4 秒，以此类推</td><td>number</td><td>1</td><td>-</td></tr><tr><td>startQuiver</td><td>延迟请求的抖动起始百分比值，范围为 0-1，当只设置了 startQuiver 时，endQuiver 默认为 1，例如设置为 0.5，它将在当前延迟时间上增加 50%到 100%的随机时间，如果 endQuiver 有值，则延迟时间将增加 startQuiver 和 endQuiver 范围的随机值</td><td>number</td><td>0</td><td>-</td></tr><tr><td>endQuiver</td><td>延迟请求的抖动结束百分比值，范围为 0-1，当只设置了 endQuiver 时，startQuiver 默认为 0，例如设置为 0.5，它将在当前延迟时间上增加 0%到 50%的随机时间，如果 startQuiver 有值，则延迟时间将增加 startQuiver 和 endQuiver 范围的随机值</td><td>number</td><td>0</td><td>-</td></tr></tbody></table>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="响应式数据">响应式数据<a class="hash-link" aria-label="标题的直接链接" title="标题的直接链接" href="/zh-CN/tutorial/client/strategy/use-retriable-request#响应式数据">​</a></h3>
 <p>继承<a href="/zh-CN/api/core-hooks#userequest"><strong>useRequest</strong></a>所有响应式数据。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="操作函数">操作函数<a class="hash-link" aria-label="标题的直接链接" title="标题的直接链接" href="/zh-CN/tutorial/client/strategy/use-retriable-request#操作函数">​</a></h3>
