@@ -23,16 +23,16 @@ const buttons = [
     link: '/tutorial/getting-started/introduce'
   },
   {
-    text: <Translate id="homepage.5-minute Video Tutorial">5-minute Video Tutorial</Translate>,
-    type: 'primary',
-    style: 'ctw-button-primary',
-    link: '/video-tutorial'
-  },
-  {
     text: <Translate id="homepage.Examples">Examples</Translate>,
     type: 'secondary',
     style: 'ctw-button-secondary',
     link: '/examples'
+  },
+  {
+    text: <Translate id="homepage.Video Tutorial">Video Tutorial</Translate>,
+    type: 'primary',
+    style: 'ctw-button-primary',
+    link: '/video-tutorial'
   }
 ];
 const installCmd = 'npm i alova';
@@ -97,7 +97,7 @@ function HomepageHeader() {
               </Translate>
             </p>
             <div className="flex flex-col md:items-stretch items-center">
-              <div className="mt-8 flex gap-x-4">
+              <div className="mt-8 flex md:justify-stretch justify-center gap-x-4 flex-wrap">
                 {buttons.map(({ text, style, link }, i) => (
                   <Link
                     key={link}
@@ -169,62 +169,6 @@ export default function Home(): JSX.Element {
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
         <main className="mx-auto mt-20 md:mt-40">
-          {/* Automatic Generate */}
-          <section className="container mx-auto py-20 flex flex-col lg:flex-row gap-16 justify-between">
-            <div className="flex flex-col items-start md:max-w-[500px]">
-              <Intro
-                section={translate({
-                  message: 'More modern openAPI solution',
-                  id: 'homepage.automaticGenerate.sectionTitle'
-                })}
-                title={translate({
-                  message: 'Discard the intermediary API docs',
-                  id: 'homepage.automaticGenerate.title'
-                })}
-                description={translate({
-                  message: `alova's devtools can generate API calling code, as well as TypeScript types and detailed documentation for each API. Even in JavaScript projects, you can enjoy full TypeScript type hinting. Moreover, you can quickly search for the APIs you need, match parameters from the parameter list, all without leaving your editor.`,
-                  id: 'homepage.automaticGenerate.description'
-                })}
-              />
-              <div className="flex flex-col gap-5 mt-10 w-full md:w-[400px]">
-                <FeatureButton
-                  icon="🔍"
-                  text={translate({
-                    message: 'Locate API by its url or description',
-                    id: 'homepage.automaticGenerate.Locate API by its url or description'
-                  })}
-                  onClick={() => setShowingVideo('locateApiByUrl')}
-                  data-select={showingVideo === 'locateApiByUrl'}
-                />
-                <FeatureButton
-                  icon="📦"
-                  text={translate({
-                    message: 'API Parameters and Response at a glance',
-                    id: 'homepage.automaticGenerate.API Parameters and Response at a glance'
-                  })}
-                  onClick={() => setShowingVideo('useAndFindApi')}
-                  data-select={showingVideo === 'useAndFindApi'}
-                />
-              </div>
-            </div>
-            <div className="flex-1 max-w-full lg:max-w-[800px] self-end">
-              <div
-                style={{
-                  background:
-                    'linear-gradient(135deg, #2C92FF 0%, #711EFF 41%, #FF41C6 71%, #FF772E 100%)'
-                }}
-                className="relative pt-8 px-4 md:px-12 rounded-3xl flex flex-col items-center">
-                <div className="border-gray-200/40 border border-b-0 bg-[rgba(228,228,228,0.3)] h-6 rounded-t-xl w-11/12"></div>
-                <video
-                  src={changableVideo[showingVideo]}
-                  className="w-full rounded-t-lg opacity-80 block"
-                  autoPlay
-                  muted
-                  controls={false}></video>
-              </div>
-            </div>
-          </section>
-
           {/* Request Strategy */}
           <div className="bg-gray-100/30 dark:bg-gray-500/10">
             <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">
@@ -285,6 +229,62 @@ export default function Home(): JSX.Element {
               </div>
             </section>
           </div>
+
+          {/* Automatic Generate */}
+          <section className="container mx-auto py-20 flex flex-col lg:flex-row gap-16 justify-between">
+            <div className="flex flex-col items-start md:max-w-[500px]">
+              <Intro
+                section={translate({
+                  message: 'More modern openAPI solution',
+                  id: 'homepage.automaticGenerate.sectionTitle'
+                })}
+                title={translate({
+                  message: 'Discard the intermediary API docs',
+                  id: 'homepage.automaticGenerate.title'
+                })}
+                description={translate({
+                  message: `alova's devtools can generate API calling code, as well as TypeScript types and detailed documentation for each API. Even in JavaScript projects, you can enjoy full TypeScript type hinting. Moreover, you can quickly search for the APIs you need, match parameters from the parameter list, all without leaving your editor.`,
+                  id: 'homepage.automaticGenerate.description'
+                })}
+              />
+              <div className="flex flex-col gap-5 mt-10 w-full md:w-[400px]">
+                <FeatureButton
+                  icon="🔍"
+                  text={translate({
+                    message: 'Locate API by its url or description',
+                    id: 'homepage.automaticGenerate.Locate API by its url or description'
+                  })}
+                  onClick={() => setShowingVideo('locateApiByUrl')}
+                  data-select={showingVideo === 'locateApiByUrl'}
+                />
+                <FeatureButton
+                  icon="📦"
+                  text={translate({
+                    message: 'API Parameters and Response at a glance',
+                    id: 'homepage.automaticGenerate.API Parameters and Response at a glance'
+                  })}
+                  onClick={() => setShowingVideo('useAndFindApi')}
+                  data-select={showingVideo === 'useAndFindApi'}
+                />
+              </div>
+            </div>
+            <div className="flex-1 max-w-full lg:max-w-[800px] self-end">
+              <div
+                style={{
+                  background:
+                    'linear-gradient(135deg, #2C92FF 0%, #711EFF 41%, #FF41C6 71%, #FF772E 100%)'
+                }}
+                className="relative pt-8 px-4 md:px-12 rounded-3xl flex flex-col items-center">
+                <div className="border-gray-200/40 border border-b-0 bg-[rgba(228,228,228,0.3)] h-6 rounded-t-xl w-11/12"></div>
+                <video
+                  src={changableVideo[showingVideo]}
+                  className="w-full rounded-t-lg opacity-80 block"
+                  autoPlay
+                  muted
+                  controls={false}></video>
+              </div>
+            </div>
+          </section>
 
           {/* Flexible */}
           <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">

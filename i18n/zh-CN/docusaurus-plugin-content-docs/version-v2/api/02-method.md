@@ -51,7 +51,7 @@ interface MethodConstructor {
 1. `type`：请求类型
 2. `context`：alova 实例
 3. `url`：请求 url
-4. `config`：配置参数, 类型与[alova.Get](/api/alova#alovaget)的 config 参数类型一致
+4. `config`：配置参数, 类型与[alova.Get](/v2/api/alova#alovaget)的 config 参数类型一致
 5. `data`：请求体数据
 
 - **示例**

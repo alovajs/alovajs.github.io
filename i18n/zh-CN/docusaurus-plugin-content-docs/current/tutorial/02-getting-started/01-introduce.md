@@ -18,17 +18,23 @@ alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个流程简化�
 
 ![](/img/overview_flow_cn.png)
 
-有别于`@tanstack/react-request`、`swrjs`、`ahooks`的`useRequest`等库，`alova`是一个完整的请求方案，alova 让你的请求集成变得非常简单，并且保持更高效的 Client-Server 数据交互。此外，你可以在客户端和服务端环境中（包括 SSR）使用`alova`。
+有别于`@tanstack/react-request`、`swrjs`、`ahooks`的`useRequest`等库，`alova`通过将`fetch/XMLHttpRequest/axios`封装成请求适配器，并提供不同的复杂请求场景下的请求策略，来达到更简单和统一的开发体验。
 
 你可以在 [为什么创造 alova](/about/faqs) 中了解背景故事，我们也提供了一份详细的 [对比与其他请求库](/about/comparison) 了解 alova 的差异。
 
-此外，alova 还具有以下特性：
+## 特性
 
-- 与 axios 相似的 api 设计，学习成本更低；
-- 高性能的客户端和服务端请求策略，让应用更流畅；
-- 灵活性高，alova 可以在任何 js 环境下，与任何 UI 框架协作使用，并且提供了统一的使用体验和完美的代码迁移；
-- 多级缓存模式和请求共享机制，提升请求性能并降低服务端压力；
-- api 代码的高聚合组织，每个 api 的请求参数、缓存行为、响应数据转换等都将聚集在相同的代码块中，这对于管理大量的 api 有很大的优势；
+- 简单易用，并且学习成本更低。
+- 更先进的 openAPI 解决方案，直接扔掉中间的API文档吧。
+- 搭配客户端技术和请求库，`react/vue/svelte/solid/next/nuxt/sveltkit/solid-start/uniapp/taro/...` + `fetch/XMLHttpRequest/axios/...`
+- 搭配服务端技术和请求库，`nodejs/deno/bun/...` + `fetch/XMLHttpRequest/axios/...`
+- 15+ 高性能的请求策略应对复杂的请求场景，帮助你快速开发性能更好的应用。
+
+## 在线体验
+
+这里为你准备了丰富的示例，帮助你快速体验 alova 的各种功能。
+
+<Examples />
 
 ## 如何做的？
 
@@ -341,25 +347,13 @@ const {
 
 </details>
 
-alova 共提供了 15+个基于[RSM](/about/RSM)规范的请求客户端请求策略，请前往 [请求策略列表](/tutorial/client/strategy) 查看全部客户端请求策略。
+请前往 [请求策略列表](/tutorial/client/strategy) 查看全部客户端请求策略。
 
 ### 服务端请求策略
 
-alova 不仅可以在 `nodejs/deno/bun` 等服务端环境中使用，还提供了例如请求重试、调用 API 发送验证码、请求速率限制等服务端的请求策略，我们称为 **server hooks**，它们都支持集群模式。
+在服务端中例如`nodejs/deno/bun`，alova还提供了服务端的请求策略，称之为 **server hooks**，它们都支持集群模式。
 
-一个最简单的服务端请求示例如下：
-
-```javascript
-const response = await alova.Get('/api/user');
-```
-
-你可以通过`server hooks`装饰在请求函数来获得不同的特性，就是这么简单。
-
-```javascript
-const response = await serverHookFunction(alova.Get('/api/user'));
-```
-
-以下是几个服务端请求策略的介绍和示例，请选择你感兴趣的展开查看。
+以下是部分server hooks的介绍和示例，请选择你感兴趣的展开查看。
 
 <details>
 <summary>请求重试策略</summary>
@@ -424,15 +418,9 @@ flowchart LR
 
 ## 在任何 JS 环境下运行
 
-不仅如此，alova 的灵活性非常高，你可以在以下任意的 JS 环境下，配合不同的请求工具使用（灰色部分将在未来逐渐支持）。
+alova 的灵活性非常高，你可以在以下任意的 JS 环境下，配合不同的请求工具使用（灰色部分将在未来逐渐支持）。
 
 <SupportList showStatus></SupportList>
-
-## 示例
-
-这里为你准备了丰富的示例，帮助你快速体验 alova 的各种功能。
-
-<Examples />
 
 ## 迁移指南
 

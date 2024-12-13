@@ -19,7 +19,7 @@ function createAlova(options?: AlovaOptions): Alova;
 | Parameter name | Type                        | Description                                                                                                             |
 | -------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | requestAdapter | object                      | Request adapter, required, [View details](/tutorial/advanced/custom/http-adapter)                                       |
-| id             | string \| number            | Alova instance id, optional, [View details](/tutorial/cache/mode#%E8%AE%BE%E7%BD%AE-alova-id)                           |
+| id             | string \| number            | Alova instance id, optional, [View details](/tutorial/cache/mode#set-alova-id)                                          |
 | baseURL        | string                      | Base path, optional, default is empty, [View details](/tutorial/getting-started/basic/alova)                            |
 | statesHook     | object                      | State management hook, optional, [see details](/tutorial/getting-started/basic/combine-framework)                       |
 | timeout        | number                      | Timeout, default is no timeout, [see details](/tutorial/getting-started/basic/alova)                                    |
@@ -141,6 +141,52 @@ interface Alova {
 | transform      | function       | Transform response data. [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                             |
 | shareRequest   | boolean        | Request-level shared request switch. [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                 |
 | meta           | any            | method metadata. [View details](/tutorial/getting-started/basic/method-metadata)                                                                                                                                                                                                                                            |
+
+> In addition to the configurable parameters above, other parameters supported by the request adapter are also supported.
+
+- **Return**
+
+method instance
+
+- **Example**
+
+```ts
+const getUsers = alovaInstance.Get('/users', {
+  params: {
+    id: 1
+  }
+  // ...
+});
+```
+
+## alova.Get()
+
+Create a method instance for a GET request.
+
+- **Type**
+
+```ts
+interface Alova {
+  Get(url: string, config?: AlovaMethodCreateConfig): Method;
+}
+```
+
+- **Parameter**
+
+1. url: request address
+2. config: configuration parameters
+
+| Parameter name | Type           | Description                                                                                                                                                                                                                                                                                                            |
+| -------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| headers        | object         | request header, [view details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                 |
+| params         | object         | request parameters, [view details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                             |
+| name           | string         | method object name, in [updateState](/tutorial/client/in-depth/update-across-components), [invalidateCache](/tutorial/cache/manually-invalidate), [setCache](/tutorial/cache/set-and-query), and [fetch function](/tutorial/client/strategy/use-fetcher) can get the corresponding method instance by name or wildcard |
+| timeout        | number         | request timeout, [see details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                                 |
+| cacheFor       | cacheForConfig | response cache time, [see details](/tutorial/cache/mode)                                                                                                                                                                                                                                                               |
+| hitSource      | string         | hit source method instance, when the source method instance request is successful, the cache of the current method instance will be invalidated, [see details](/tutorial/cache/auto-invalidate)                                                                                                                        |
+| transform      | function       | Convert response data, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                          |
+| shareRequest   | boolean        | Request-level shared request switch, [View details](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                            |
+| meta           | any            | method metadata, [View details](/tutorial/getting-started/basic/method-metadata)                                                                                                                                                                                                                                       |
 
 > In addition to the configurable parameters above, other parameters supported by the request adapter are also supported.
 

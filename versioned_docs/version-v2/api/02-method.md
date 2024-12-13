@@ -51,7 +51,7 @@ interface MethodConstructor {
 1. `type`: request type
 2. `context`: alova instance
 3. `url`: request url
-4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/api/alova#alovaget)
+4. `config`: Configuration parameters, the type is the same as config parameter type of [alova.Get](/v2/api/alova#alovaget)
 5. `data`: request body data
 
 - **Example**

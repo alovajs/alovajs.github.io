@@ -14,31 +14,35 @@ import TabItem from '@theme/TabItem';
 
 ## What is alova?
 
-Alova (pronounced as `/əˈləʊva/` <AudioPlayer src={tts} />) is a workflow-streamlined next-generation request tool. It can extremely streamline your API integration workflow from 7 steps to 1 step, and you just select the API what you need.
+Alova (pronounced `/əˈləʊva/`<AudioPlayer src={tts} />) is a next-generation request library that radically simplifies your API integration workflow, reducing what used to take 7 complex steps down to just 1 - simply select your API and go.
 
-![](/img/overview_flow_en.png)
+Unlike libraries such as `@tanstack/react-request`, `swrjs`, and `useRequest` from `ahooks`, alova revolutionizes your development experience by wrapping `fetch/XMLHttpRequest/axios` into request adapters and providing intelligent request strategies for even the most complex scenarios.
 
-Different from `@tanstack/react-request`, `swrjs`, `ahooks's useRequest`, etc. library, `alova` is a comprehensive request tool, alova makes your request integration very simple and maintains more efficient Client-Server data interaction. In addition, you can use it in client and server environments (including SSR).
+Want to dive into the origin story? Check out [Why we created alova](/about/faqs). For a deep dive into how we're different, explore our comprehensive [comparison with other request libraries](/about/comparison).
 
-You can read the backstory on [why create alova](/about/faqs), and we've also provided a detailed [comparison to other request libraries](/about/comparison) to see how alova differs.
+## Features
 
-In addition, alova also has the following features:
+- Incredibly simple to use with a minimal learning curve.
+- More modern OpenAPI solution - say goodbye to tedious intermediate API documentation.
+- Compatible with client-side technologies and request libraries: `react/vue/svelte/solid/next/nuxt/sveltkit/solid-start/uniapp/taro/...` + `fetch/XMLHttpRequest/axios/...`
+- Compatible with server-side technologies and request libraries: `nodejs/deno/bun/...` + `fetch/XMLHttpRequest/axios/...`
+- 15+ high-performance request strategies to handle complex request scenarios, helping you develop more efficient applications faster.
 
-- API design similar to axios, with lower learning cost;
-- High-performance client and server request strategies, making the application smoother;
-- High flexibility, alova can be used in any js environment with any UI framework, and provides a unified user experience and perfect code migration;
-- Multi-level cache mode and request sharing mechanism to improve request performance and reduce server-side pressure;
-- High aggregation of api code organization, the request parameters, cache behavior, response data conversion, etc. of each API will be gathered in the same code block, which is a great advantage for managing a large number of APIs;
+## Live Demo
 
-## How to do it?
+We've prepared a rich set of examples to help you quickly explore alova's capabilities.
 
-Alova provides a comprehensive solution for complex request scenarios, which we call **request strategy**. they include client request strategies and server request strategies.
+<Examples />
+
+## How It Works?
+
+alova provides comprehensive solutions for complex request scenarios, which we call **Request Strategy** , encompassing both client-side and server-side request strategies.
 
 ### Client request strategy
 
-On the client side, request strategies are implemented in the form of hooks, interceptors, and middleware. Use different request strategies to handle different requests scenarios. They provide comprehensive stateful parameters, events, and actions for each request scenario. With just one line of code to quickly implement various complex request logics, which can not only help you improve development efficiency, but also help you improve the running efficiency of the App, and reduce the pressure on the server.
+On the client-side, request strategies are implemented through hooks, interceptors, and middleware, allowing you to tackle different request scenarios with precision. These strategies provide comprehensive, stateful parameters, events, and operational functions for every request scenario, enabling you to implement complex request logic with just a single line of code. Not only do they boost your development efficiency, but they also optimize your app's performance and reduce server-side load.
 
-The following are some clients For an introduction and examples of request strategies, please expand them which you are interested in.
+Below are introductions and examples of some client-side request strategies. Feel free to explore the ones that catch your interest.
 
 <details>
 <summary>Watching request strategy</summary>
@@ -345,21 +349,9 @@ alova provides total 15+ client request strategies based on the [RSM](/about/RSM
 
 ### Server Request Strategy
 
-alova can not only be used in server environments such as `nodejs/deno/bun`, but also provides server request strategies such as request retry, calling API to send captcha, request rate limit, etc. We call them **server hooks**, which all support cluster mode.
+On the server-side, such as in `nodejs/deno/bun`, alova also provides server-side request strategies, which we call **server hooks**, all of which support cluster mode.
 
-A simplest server request example is as follows:
-
-```javascript
-const response = await alova.Get('/api/user');
-```
-
-You can decorate the request function with `server hooks` to get corresponding features. It's so simple.
-
-```javascript
-const response = await serverHookFunction(alova.Get('/api/user'));
-```
-
-The following are introductions and examples of several server-side request strategies. please expand them which you are interested in.
+Below are introductions and examples of some server-side request strategies. Feel free to explore the ones that catch your interest.
 
 <details>
 <summary>Request Retry strategy</summary>
@@ -395,7 +387,7 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 ### More modern openAPI solution
 
-1. alova's devtools can generate API calling code, as well as TypeScript types and detailed documentation for each API, so you can enjoy full API type hints even in JavaScript projects.
+1. alova's devtools can simultaneously generate API call code, TypeScript types for each API, and comprehensive API documentation, allowing you to enjoy full API type hints even in JavaScript projects.
 
 ```mermaid
 flowchart LR
@@ -404,7 +396,7 @@ S1[Alova extension] --> W2[Comprehensive API type]
 S1[Alova extension] --> W3[Comprehensive API docs]
 ```
 
-2. In the past, when the backend developer delivered the API to you, you had to open the intermediate API docs to query and copy the key information into your project, and you had to constantly switch between the intermediate API docs and your editor. But now, alova's devtools can eliminate the intermediate API docs for you, shortening the collaboration distance between the frontend and the backend like a wormhole. Through it, you can quickly find the required API in the editor and display the comprehensive document of this API, and quickly comprehensive parameter transfer by referring to the API parameter table, giving you a different API integration experience.
+2. In the past, when backend developers delivered APIs, you had to open the intermediate API documentation, search for and copy key information into your project, constantly switching between the API docs and your editor. Now, Alova's development tools can eliminate this intermediary documentation, bridging the frontend and backend collaboration like a wormhole. Through this tool, you can quickly find the APIs you need directly in your editor, display the API's complete documentation, and rapidly complete parameter passing by referencing the API parameter table - offering you an entirely new API integration experience.
 
 ```mermaid
 flowchart LR
@@ -420,11 +412,11 @@ classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
 
 With the various features of alova, you can also build a Client-Server interaction layer(CSIL) for your project. The CSIL will distribute response data to various components by merging same requests. Additionally, the CSIL also manages response data and the responsive states created by useHooks. You can access and modify the datas in CSIL in any UI component, as well as refresh the data in CSIL.
 
-> If you want to build a CSIL, please refer to [Building Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
+> To learn how to build a CS Interaction Layer, refer to [Building the Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
 
 ## Run in any JS environment
 
-Not only that, Alova is very flexible, you can use it with different request tools in any of the following JS environments (the gray part will be gradually supported in the future).
+alova is very flexible, you can use it with various request tools across any JavaScript environment (grayed-out options will be gradually supported in the future).
 
 <SupportList showStatus></SupportList>
 

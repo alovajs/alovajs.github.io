@@ -418,7 +418,9 @@ html:not(.docs-wrapper) {
     }
 
     .ctw-button-secondary {
-      transition: color 0.2s, border-color 0.2s;
+      transition:
+        color 0.2s,
+        border-color 0.2s;
       @apply box-content leading-[40px] h-[40px] px-5 z-10 relative cursor-pointer text-base mt-3 md:mt-6 rounded-lg border-[2px] border-primary-100 font-bold;
       // dark
       @apply dark:text-font-500 dark:border-white/15;
