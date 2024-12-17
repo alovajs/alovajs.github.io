@@ -420,10 +420,6 @@ alova is very flexible, you can use it with various request tools across any Jav
 
 <SupportList showStatus></SupportList>
 
-## Online trial
-
-<Examples />
-
 ## Migration Guide
 
 - [Migration from v2 to v3](/tutorial/project/migration/v2-to-v3)
