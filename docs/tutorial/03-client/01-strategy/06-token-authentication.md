@@ -296,8 +296,8 @@ Usually, we will append token to the request information in `beforeRequest`. The
 ```javascript
 createClientTokenAuthentication({
    assignToken: method => {
-     method.config.headers.Authorization = localStorage.getItem('token')};
-   }
+     method.config.headers.Authorization = localStorage.getItem('token')
+   },
 });
 ```
 
