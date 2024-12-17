@@ -296,7 +296,7 @@ createClientTokenAuthentication({
 ```javascript
 createClientTokenAuthentication({
   assignToken: method => {
-    method.config.headers.Authorization = localStorage.getItem('token')};
+    method.config.headers.Authorization = localStorage.getItem('token');
   }
 });
 ```
