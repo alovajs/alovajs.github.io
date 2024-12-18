@@ -48,6 +48,21 @@ const alovaInst = createAlova({
 });
 ```
 
+When you need to access the internal XMLHttpRequest instance, you can get the instance through the `create` callback function.
+
+```javascript
+const alovaInst = createAlova({
+  // ...
+  requestAdapter: xhrRequestAdapter({
+    onCreate(xhr) {
+      // Access xhr instance
+      // ...
+    }
+  })
+  // ...
+});
+```
+
 ### Request
 
 The XMLHttpRequest adapter provides basic configuration parameters, including `responseType`, `withCredentials`, `mimeType`, `auth`, as follows:

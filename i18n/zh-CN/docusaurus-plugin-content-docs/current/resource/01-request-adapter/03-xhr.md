@@ -48,6 +48,21 @@ const alovaInst = createAlova({
 });
 ```
 
+当需要访问内部的XMLHttpRequest 实例时，可以通过`create`回调函数获取到实例。
+
+```javascript
+const alovaInst = createAlova({
+  // ...
+  requestAdapter: xhrRequestAdapter({
+    onCreate(xhr) {
+      // 访问xhr实例
+      // ...
+    }
+  })
+  // ...
+});
+```
+
 ### 请求
 
 XMLHttpRequest 适配器提供了基本的配置参数，包含`responseType`、`withCredentials`、`mimeType`、`auth`，具体如下：
