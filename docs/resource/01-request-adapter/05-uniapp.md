@@ -13,7 +13,7 @@ This plugin only supports vue3 version of uniapp application.
 
 ## Install
 
-<Tabs groupId="framework">
+<Tab groupId="framework">
 <TabItem value="1" label="npm">
 
 ```bash
@@ -35,7 +35,7 @@ pnpm install alova @alova/adapter-uniapp @alova/shared
 ```
 
 </TabItem>
-</Tabs>
+</Tab>
 
 ## Usage
 
@@ -58,7 +58,7 @@ const alovaInst = createAlova({
 The usage method of the request is exactly the same as that used in the web environment. Already fully compatible with `uni.request`, you can specify [all configuration items] supported by `uni.request` in _config_ of method instance creation (https://uniapp.dcloud.net.cn/api/request/ request.html)
 
 ```html
-<tempate>
+<template>
    <view v-if="loading">Loading...</view>
    <view>The requested data is: {{ data }}</view>
 </template>
