@@ -35,7 +35,7 @@ const getTodoList = currentPage =>
   });
 
 // Match all Method instances with the name `todoList`
-const matchedMethods = alova.snaptshots.match('todoList');
+const matchedMethods = alova.snapshots.match('todoList');
 ```
 
 ## Match by regular expression
@@ -44,7 +44,7 @@ By passing in a regular expression for matching, all method instance names that 
 
 ```javascript
 // Match all Method instances whose name starts with `todo`
-const matchedMethods = alova.snaptshots.match(/^todo/);
+const matchedMethods = alova.snapshots.match(/^todo/);
 ```
 
 ## Filter matching results
@@ -56,7 +56,7 @@ Let's look at a few examples.
 **Invalidate the cache of the last method instance of a specific name**
 
 ```javascript
-const matchedMethods = alova.snaptshots.match({
+const matchedMethods = alova.snapshots.match({
   name: 'todoList',
   filter: (method, index, methods) => index === methods.length - 1
 });
@@ -67,7 +67,7 @@ const matchedMethods = alova.snaptshots.match({
 You can also set the second function of the `match` function to `true` to return the first item of the matching result, and return `undefined` if no match is found.
 
 ```js
-const matchedSingleMethod = alova.snaptshots.match(/^todo/, true);
+const matchedSingleMethod = alova.snapshots.match(/^todo/, true);
 ```
 
 ## Limit instance snapshots
