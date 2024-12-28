@@ -51,19 +51,19 @@ const alovaInst = createAlova({
 The usage method of the request is exactly the same as that used in the web environment. Already fully compatible with `uni.request`, you can specify [all configuration items] supported by `uni.request` in _config_ of method instance creation (https://uniapp.dcloud.net.cn/api/request/ request.html)
 
 ```html
-<tempate>
-   <view v-if="loading">Loading...</view>
-   <view>The requested data is: {{ data }}</view>
+<template>
+  <view v-if="loading">Loading...</view>
+  <view>The requested data is: {{ data }}</view>
 </template>
 
 <script setup>
-   const list = () =>
-     alovaInst.Get('/list', {
-       // The set parameters will be passed to uni.request
-       enableHttp2: true,
-       sslVerify: true
-     });
-   const { loading, data } = useRequest(list);
+  const list = () =>
+    alovaInst.Get('/list', {
+      // The set parameters will be passed to uni.request
+      enableHttp2: true,
+      sslVerify: true
+    });
+  const { loading, data } = useRequest(list);
 </script>
 ```
 
@@ -86,49 +86,49 @@ When `requestType: 'upload'` is set in the _config_ of the method instance, it m
 Similarly, it is fully compatible with `uni.uploadFile`, you can specify [all configuration items] supported by `uni.uploadFile` in _config_ of method instance creation (https://uniapp.dcloud.net.cn/api /request/network-file.html#uploadfile), if there are additional parameters to be set, please specify them in _config_ of the method instance.
 
 ```html
-<tempate>
-   <view v-if="loading">Uploading...</view>
-   <view>Upload progress: {{ uploading.loaded }}/{{ uploading.total }}</view>
-   <button @click="handleImageChoose">Upload image</button>
-   <!-- ... -->
+<template>
+  <view v-if="loading">Uploading...</view>
+  <view>Upload progress: {{ uploading.loaded }}/{{ uploading.total }}</view>
+  <button @click="handleImageChoose">Upload image</button>
+  <!-- ... -->
 </template>
 
 <script setup>
-   const uploadFile = (name, filePath, formData) =>
-     alovaInst. Post(
-       '/uploadImg',
-       {
-         name,
-         filePath,
+  const uploadFile = (name, filePath, formData) =>
+    alovaInst.Post(
+      '/uploadImg',
+      {
+        name,
+        filePath,
 
-         // Additional data will be passed into formData of uni.uploadFile
-         ...formData
-       },
-       {
-         // Set the request method to upload, and the adapter will call uni.uploadFile
-         requestType: 'upload',
-         fileType: 'image',
+        // Additional data will be passed into formData of uni.uploadFile
+        ...formData
+      },
+      {
+        // Set the request method to upload, and the adapter will call uni.uploadFile
+        requestType: 'upload',
+        fileType: 'image',
 
-         // Start upload progress
-         enableUpload: true
-       }
-     );
+        // Start upload progress
+        enableUpload: true
+      }
+    );
 
-   const { loading, data, uploading, send } = useRequest(uploadFile, {
-     immediate: false
-   });
+  const { loading, data, uploading, send } = useRequest(uploadFile, {
+    immediate: false
+  });
 
-   const handleImageChoose = () => {
-     uni.chooseImage({
-       success: chooseImageRes => {
-         const tempFilePaths = chooseImageRes.tempFilePaths;
-         send('fileName', tempFilePaths[0], {
-           extra1: 'a',
-           extra2: 'b'
-         });
-       }
-     });
-   };
+  const handleImageChoose = () => {
+    uni.chooseImage({
+      success: chooseImageRes => {
+        const tempFilePaths = chooseImageRes.tempFilePaths;
+        send('fileName', tempFilePaths[0], {
+          extra1: 'a',
+          extra2: 'b'
+        });
+      }
+    });
+  };
 </script>
 ```
 
@@ -139,31 +139,31 @@ When `requestType: 'download'` is set in the _config_ of the method instance, it
 Similarly, it is fully compatible with `uni.downloadFile`, you can specify [all configuration items] supported by `uni.downloadFile` in _config_ of method instance creation (https://uniapp.dcloud.net.cn/api /request/network-file.html#downloadfile), if there are additional parameters to be set, please specify them in _config_ of the method instance.
 
 ```html
-<tempate>
-   <view v-if="loading">Downloading...</view>
-   <view>Download progress: {{ downloading.loaded }}/{{ downloading.total }}</view>
-   <button @click="handleImageDownload">Download image</button>
-   <!-- ... -->
+<template>
+  <view v-if="loading">Downloading...</view>
+  <view>Download progress: {{ downloading.loaded }}/{{ downloading.total }}</view>
+  <button @click="handleImageDownload">Download image</button>
+  <!-- ... -->
 </template>
 
 <script setup>
-   const downloadFile = filePath =>
-     alovaInst.Get('/bigImage.jpg', {
-       // Set the request method to download, and the adapter will call uni.downloadFile
-       requestType: 'download',
-       filePath,
+  const downloadFile = filePath =>
+    alovaInst.Get('/bigImage.jpg', {
+      // Set the request method to download, and the adapter will call uni.downloadFile
+      requestType: 'download',
+      filePath,
 
-       // Start download progress
-       enableDownload: true
-     });
+      // Start download progress
+      enableDownload: true
+    });
 
-   const { loading, data, downloading, send } = useRequest(downloadFile, {
-     immediate: false
-   });
+  const { loading, data, downloading, send } = useRequest(downloadFile, {
+    immediate: false
+  });
 
-   const handleImageDownload = () => {
-     send('file_save_path');
-   };
+  const handleImageDownload = () => {
+    send('file_save_path');
+  };
 </script>
 ```
 

@@ -63,10 +63,10 @@ const alovaInst = createAlova({
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
+<template>
   <div v-if="loading">加载中...</div>
   <div>请求数据为：{{ data }}</div>
-</tempate>
+</template>
 
 <script setup>
   const list = () =>

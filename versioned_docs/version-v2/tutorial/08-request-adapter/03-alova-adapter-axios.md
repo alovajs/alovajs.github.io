@@ -58,20 +58,20 @@ The usage of request is exactly the same as that used in the web environment. Al
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <div v-if="loading">Loading...</div>
-   <div>The request data is: {{ data }}</div>
+<template>
+  <div v-if="loading">Loading...</div>
+  <div>The request data is: {{ data }}</div>
 </template>
 
 <script setup>
-   const list = () =>
-     alovaInst.Get('/list', {
-       // The set parameters will be passed to axios
-       paramsSerializer: params => {
-         return Qs.stringify(params, { arrayFormat: 'brackets' });
-       }
-     });
-   const { loading, data } = useRequest(list);
+  const list = () =>
+    alovaInst.Get('/list', {
+      // The set parameters will be passed to axios
+      paramsSerializer: params => {
+        return Qs.stringify(params, { arrayFormat: 'brackets' });
+      }
+    });
+  const { loading, data } = useRequest(list);
 </script>
 ```
 

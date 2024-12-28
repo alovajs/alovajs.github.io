@@ -134,18 +134,18 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <view v-if="loading">Loading...</view>
-   <view>The requested data is: {{ data }}</view>
+<template>
+  <view v-if="loading">Loading...</view>
+  <view>The requested data is: {{ data }}</view>
 </template>
 
 <script setup>
-   const list = () =>
-     alovaInst.Get('/list', {
-       // The set parameters will be passed to Taro.request
-       enableHttp2: true
-     });
-   const { loading, data } = useRequest(list);
+  const list = () =>
+    alovaInst.Get('/list', {
+      // The set parameters will be passed to Taro.request
+      enableHttp2: true
+    });
+  const { loading, data } = useRequest(list);
 </script>
 ```
 
@@ -208,45 +208,45 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <view v-if="loading">Uploading...</view>
-   <view>Upload progress: {{ uploading.loaded }}/{{ uploading.total }}</view>
-   <button @click="handleImageChoose">Upload image</button>
-   <!-- ... -->
+<template>
+  <view v-if="loading">Uploading...</view>
+  <view>Upload progress: {{ uploading.loaded }}/{{ uploading.total }}</view>
+  <button @click="handleImageChoose">Upload image</button>
+  <!-- ... -->
 </template>
 
 <script setup>
-   const uploadFile = (name, filePath, formData) =>
-     alovaInst.Post(
-       '/uploadImg',
-       {
-         name,
-         filePath,
+  const uploadFile = (name, filePath, formData) =>
+    alovaInst.Post(
+      '/uploadImg',
+      {
+        name,
+        filePath,
 
-         // Additional data will be passed into formData of Taro.uploadFile
-         ...formData
-       },
-       {
-         // Set the request method to upload, and the adapter will call Taro.uploadFile
-         requestType: 'upload'
-       }
-     );
+        // Additional data will be passed into formData of Taro.uploadFile
+        ...formData
+      },
+      {
+        // Set the request method to upload, and the adapter will call Taro.uploadFile
+        requestType: 'upload'
+      }
+    );
 
-   const { loading, data, uploading, send } = useRequest(uploadFile, {
-     immediate: false
-   });
+  const { loading, data, uploading, send } = useRequest(uploadFile, {
+    immediate: false
+  });
 
-   const handleImageChoose = () => {
-     Taro.chooseImage({
-       success: chooseImageRes => {
-         const tempFilePaths = chooseImageRes.tempFilePaths;
-         send('fileName', tempFilePaths[0], {
-           extra1: 'a',
-           extra2: 'b'
-         });
-       }
-     });
-   };
+  const handleImageChoose = () => {
+    Taro.chooseImage({
+      success: chooseImageRes => {
+        const tempFilePaths = chooseImageRes.tempFilePaths;
+        send('fileName', tempFilePaths[0], {
+          extra1: 'a',
+          extra2: 'b'
+        });
+      }
+    });
+  };
 </script>
 ```
 
@@ -291,28 +291,28 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <view v-if="loading">Downloading...</view>
-   <view>Download progress: {{ downloading.loaded }}/{{ downloading.total }}</view>
-   <button @click="handleImageDownload">Download image</button>
-   <!-- ... -->
+<template>
+  <view v-if="loading">Downloading...</view>
+  <view>Download progress: {{ downloading.loaded }}/{{ downloading.total }}</view>
+  <button @click="handleImageDownload">Download image</button>
+  <!-- ... -->
 </template>
 
 <script setup>
-   const downloadFile = filePath =>
-     alovaInst.Get('/bigImage.jpg', {
-       // Set the request method to download, and the adapter will call Taro.downloadFile
-       requestType: 'download',
-       filePath
-     });
+  const downloadFile = filePath =>
+    alovaInst.Get('/bigImage.jpg', {
+      // Set the request method to download, and the adapter will call Taro.downloadFile
+      requestType: 'download',
+      filePath
+    });
 
-   const { loading, data, downloading, send } = useRequest(downloadFile, {
-     immediate: false
-   });
+  const { loading, data, downloading, send } = useRequest(downloadFile, {
+    immediate: false
+  });
 
-   const handleImageDownload = () => {
-     send('file_save_path');
-   };
+  const handleImageDownload = () => {
+    send('file_save_path');
+  };
 </script>
 ```
 

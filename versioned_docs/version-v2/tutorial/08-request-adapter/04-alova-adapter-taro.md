@@ -40,7 +40,7 @@ If you are develop a React-Native app with Taro, please ensure `metro >= 0.76.0`
 
 :::warning Dependency precompilation issues
 
-[Dependency precompilation function](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91) has been added in Taro v3.5 beta, and is enabled by default in development mode when you are using the `alova` library and `@alova/scene-react(vue)` may cause the error `` [alova]can not call useHooks until set the `statesHook` at alova instance. ``. This is caused by the prebundle feature repeatedly packaging two different `alova` packages. , turning off the prebundle function at this time can solve this problem.
+[Dependency precompilation function](https://docs.taro.zone/blog/2022/05/19/Taro-3.5-beta#2-%E4%BE%9D%E8%B5%96%E9%A2%84%E7%BC%96%E8%AF%91) has been added in Taro v3.5 beta, and is enabled by default in development mode when you are using the `alova` library and `@alova/scene-react(vue)` may cause the error ``[alova]can not call useHooks until set the `statesHook` at alova instance.``. This is caused by the prebundle feature repeatedly packaging two different `alova` packages. , turning off the prebundle function at this time can solve this problem.
 
 ```js
 // config/dev.ts
@@ -127,18 +127,18 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <view v-if="loading">Loading...</view>
-   <view>The requested data is: {{ data }}</view>
+<template>
+  <view v-if="loading">Loading...</view>
+  <view>The requested data is: {{ data }}</view>
 </template>
 
 <script setup>
-   const list = () =>
-     alovaInst.Get('/list', {
-       // The set parameters will be passed to Taro.request
-       enableHttp2: true
-     });
-   const { loading, data } = useRequest(list);
+  const list = () =>
+    alovaInst.Get('/list', {
+      // The set parameters will be passed to Taro.request
+      enableHttp2: true
+    });
+  const { loading, data } = useRequest(list);
 </script>
 ```
 
@@ -204,48 +204,48 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <view v-if="loading">Uploading...</view>
-   <view>Upload progress: {{ uploading.loaded }}/{{ uploading.total }}</view>
-   <button @click="handleImageChoose">Upload image</button>
-   <!-- ... -->
+<template>
+  <view v-if="loading">Uploading...</view>
+  <view>Upload progress: {{ uploading.loaded }}/{{ uploading.total }}</view>
+  <button @click="handleImageChoose">Upload image</button>
+  <!-- ... -->
 </template>
 
 <script setup>
-   const uploadFile = (name, filePath, formData) =>
-     alovaInst.Post(
-       '/uploadImg',
-       {
-         name,
-         filePath,
+  const uploadFile = (name, filePath, formData) =>
+    alovaInst.Post(
+      '/uploadImg',
+      {
+        name,
+        filePath,
 
-         // Additional data will be passed into formData of Taro.uploadFile
-         ...formData
-       },
-       {
-         // Set the request method to upload, and the adapter will call Taro.uploadFile
-         requestType: 'upload',
+        // Additional data will be passed into formData of Taro.uploadFile
+        ...formData
+      },
+      {
+        // Set the request method to upload, and the adapter will call Taro.uploadFile
+        requestType: 'upload',
 
-         // Start upload progress
-         enableUpload: true
-       }
-     );
+        // Start upload progress
+        enableUpload: true
+      }
+    );
 
-   const { loading, data, uploading, send } = useRequest(uploadFile, {
-     immediate: false
-   });
+  const { loading, data, uploading, send } = useRequest(uploadFile, {
+    immediate: false
+  });
 
-   const handleImageChoose = () => {
-     Taro.chooseImage({
-       success: chooseImageRes => {
-         const tempFilePaths = chooseImageRes.tempFilePaths;
-         send('fileName', tempFilePaths[0], {
-           extra1: 'a',
-           extra2: 'b'
-         });
-       }
-     });
-   };
+  const handleImageChoose = () => {
+    Taro.chooseImage({
+      success: chooseImageRes => {
+        const tempFilePaths = chooseImageRes.tempFilePaths;
+        send('fileName', tempFilePaths[0], {
+          extra1: 'a',
+          extra2: 'b'
+        });
+      }
+    });
+  };
 </script>
 ```
 
@@ -293,31 +293,31 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <view v-if="loading">Downloading...</view>
-   <view>Download progress: {{ downloading.loaded }}/{{ downloading.total }}</view>
-   <button @click="handleImageDownload">Download image</button>
-   <!-- ... -->
+<template>
+  <view v-if="loading">Downloading...</view>
+  <view>Download progress: {{ downloading.loaded }}/{{ downloading.total }}</view>
+  <button @click="handleImageDownload">Download image</button>
+  <!-- ... -->
 </template>
 
 <script setup>
-   const downloadFile = filePath =>
-     alovaInst.Get('/bigImage.jpg', {
-       // Set the request method to download, and the adapter will call Taro.downloadFile
-       requestType: 'download',
-       filePath,
+  const downloadFile = filePath =>
+    alovaInst.Get('/bigImage.jpg', {
+      // Set the request method to download, and the adapter will call Taro.downloadFile
+      requestType: 'download',
+      filePath,
 
-       // Start download progress
-       enableDownload: true
-     });
+      // Start download progress
+      enableDownload: true
+    });
 
-   const { loading, data, downloading, send } = useRequest(downloadFile, {
-     immediate: false
-   });
+  const { loading, data, downloading, send } = useRequest(downloadFile, {
+    immediate: false
+  });
 
-   const handleImageDownload = () => {
-     send('file_save_path');
-   };
+  const handleImageDownload = () => {
+    send('file_save_path');
+  };
 </script>
 ```
 
