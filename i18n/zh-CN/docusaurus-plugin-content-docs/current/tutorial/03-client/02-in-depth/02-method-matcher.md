@@ -64,10 +64,10 @@ const matchedMethods = alova.snaptshots.match({
 
 ## 匹配单个 method 实例
 
-你还可以将`match`函数的第二个函数设置为`true`返回匹配结果的第一项，未匹配到时返回`undefined`。
+你还可以将`match`函数的第二个函数设置为`false`返回匹配结果的第一项，未匹配到时返回`undefined`。
 
 ```js
-const matchedSingleMethod = alova.snaptshots.match(/^todo/, true);
+const matchedSingleMethod = alova.snaptshots.match(/^todo/, false);
 ```
 
 ## 限制实例快照
