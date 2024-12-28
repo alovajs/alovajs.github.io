@@ -35,7 +35,7 @@ const getTodoList = currentPage =>
   });
 
 // 匹配name为`todoList`的所有Method实例
-const matchedMethods = alova.snaptshots.match('todoList');
+const matchedMethods = alova.snapshots.match('todoList');
 ```
 
 ## 通过正则表达式匹配
@@ -44,7 +44,7 @@ const matchedMethods = alova.snaptshots.match('todoList');
 
 ```javascript
 // 匹配name为以`todo`开头的所有Method实例
-const matchedMethods = alova.snaptshots.match(/^todo/);
+const matchedMethods = alova.snapshots.match(/^todo/);
 ```
 
 ## 过滤匹配结果
@@ -56,7 +56,7 @@ const matchedMethods = alova.snaptshots.match(/^todo/);
 **让特定名称的最后一个 method 实例的缓存失效**
 
 ```javascript
-const matchedMethods = alova.snaptshots.match({
+const matchedMethods = alova.snapshots.match({
   name: 'todoList',
   filter: (method, index, methods) => index === methods.length - 1
 });
@@ -67,7 +67,7 @@ const matchedMethods = alova.snaptshots.match({
 你还可以将`match`函数的第二个函数设置为`false`返回匹配结果的第一项，未匹配到时返回`undefined`。
 
 ```js
-const matchedSingleMethod = alova.snaptshots.match(/^todo/, false);
+const matchedSingleMethod = alova.snapshots.match(/^todo/, false);
 ```
 
 ## 限制实例快照
