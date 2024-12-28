@@ -70,7 +70,7 @@ use hook
 ```jsx
 import { useState } from 'react';
 import { apiSendCaptcha } from './api.js';
-import { useCaptcha } from 'alova/clientct';
+import { useCaptcha } from 'alova/client';
 
 const App = () => {
   const [mobile, setMobile] = useState('');
@@ -137,7 +137,7 @@ const App = () => {
 
 ```jsx
 import { apiSendCaptcha } from './api.js';
-import { useCaptcha } from 'alova/clientct';
+import { useCaptcha } from 'alova/client';
 import { createSignal } from 'solid-js';
 
 const App = () => {
