@@ -13,7 +13,7 @@ This plugin only supports vue3 version of uniapp application.
 
 ## Install
 
-<Tab groupId="framework">
+<Tabs groupId="framework">
 <TabItem value="1" label="npm">
 
 ```bash
@@ -35,7 +35,7 @@ pnpm install alova @alova/adapter-uniapp @alova/shared
 ```
 
 </TabItem>
-</Tab>
+</Tabs>
 
 ## Usage
 
