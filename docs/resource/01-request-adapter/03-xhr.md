@@ -71,44 +71,44 @@ The XMLHttpRequest adapter provides basic configuration parameters, including `r
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
-   <div v-if="loading">Loading...</div>
-   <div>The request data is: {{ data }}</div>
+<template>
+  <div v-if="loading">Loading...</div>
+  <div>The request data is: {{ data }}</div>
 </template>
 
 <script setup>
-   const list = () =>
-     alovaInst. Get('/list', {
-       /**
-        * Set the response data type
-        * Can be set to change the response type. Values are: "arraybuffer", "blob", "document", "json" and "text"
-        * defaults to "json"
-        */
-       responseType: 'text',
+  const list = () =>
+    alovaInst.Get('/list', {
+      /**
+       * Set the response data type
+       * Can be set to change the response type. Values are: "arraybuffer", "blob", "document", "json" and "text"
+       * defaults to "json"
+       */
+      responseType: 'text',
 
-       /**
-        * True when credentials are to be included in cross-origin requests. false when they are excluded from cross-origin requests and when cookies are ignored in their responses. Default is false
-        */
-       withCredentials: true,
+      /**
+       * True when credentials are to be included in cross-origin requests. false when they are excluded from cross-origin requests and when cookies are ignored in their responses. Default is false
+       */
+      withCredentials: true,
 
-       /**
-        * Set the mimeType of the response data
-        */
-       mimeType: 'text/plain; charset=x-user-defined',
+      /**
+       * Set the mimeType of the response data
+       */
+      mimeType: 'text/plain; charset=x-user-defined',
 
-       /**
-        * auth means use HTTP Basic authentication and provide credentials.
-        * This will set an `Authorization` header, overriding any existing
-        * Custom headers for `Authorization` set using `headers`.
-        * Note that only HTTP Basic authentication can be configured via this parameter.
-        * For Bearer tokens etc., use the `Authorization` custom header instead.
-        */
-       auth: {
-         username: 'name1',
-         password: '123456'
-       }
-     });
-   const { loading, data } = useRequest(list);
+      /**
+       * auth means use HTTP Basic authentication and provide credentials.
+       * This will set an `Authorization` header, overriding any existing
+       * Custom headers for `Authorization` set using `headers`.
+       * Note that only HTTP Basic authentication can be configured via this parameter.
+       * For Bearer tokens etc., use the `Authorization` custom header instead.
+       */
+      auth: {
+        username: 'name1',
+        password: '123456'
+      }
+    });
+  const { loading, data } = useRequest(list);
 </script>
 ```
 

@@ -58,10 +58,10 @@ const alovaInst = createAlova({
 请求的使用方法与 web 环境中使用完全一致。已经完全兼容`uni.request`，你可以在创建 method 实例的*config*中指定`uni.request`支持的[全部配置项](https://uniapp.dcloud.net.cn/api/request/request.html)
 
 ```html
-<tempate>
+<template>
   <view v-if="loading">加载中...</view>
   <view>请求数据为：{{ data }}</view>
-</tempate>
+</template>
 
 <script setup>
   const list = () =>
@@ -93,12 +93,12 @@ const { loading, data } = useRequest(() => getDetail(options.id));
 同样的，已经完全兼容`uni.uploadFile`，你可以在创建 method 实例的*config*中指定`uni.uploadFile`支持的[全部配置项](https://uniapp.dcloud.net.cn/api/request/network-file.html#uploadfile)，如果还有额外的参数需要设置，请在 method 实例的*config*中指定。
 
 ```html
-<tempate>
+<template>
   <view v-if="loading">上传中...</view>
   <view>上传进度：{{ uploading.loaded }}/{{ uploading.total }}</view>
   <button @click="handleImageChoose">上传图片</button>
   <!-- ... -->
-</tempate>
+</template>
 
 <script setup>
   const uploadFile = (name, filePath, formData) =>
@@ -143,12 +143,12 @@ const { loading, data } = useRequest(() => getDetail(options.id));
 同样的，已经完全兼容`uni.downloadFile`，你可以在创建 method 实例的*config*中指定`uni.downloadFile`支持的[全部配置项](https://uniapp.dcloud.net.cn/api/request/network-file.html#downloadfile)，如果还有额外的参数需要设置，请在 method 实例的*config*中指定。
 
 ```html
-<tempate>
+<template>
   <view v-if="loading">下载中...</view>
   <view>下载进度：{{ downloading.loaded }}/{{ downloading.total }}</view>
   <button @click="handleImageDownload">下载图片</button>
   <!-- ... -->
-</tempate>
+</template>
 
 <script setup>
   const downloadFile = filePath =>

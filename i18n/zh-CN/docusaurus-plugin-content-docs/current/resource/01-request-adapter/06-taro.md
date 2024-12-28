@@ -134,10 +134,10 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
+<template>
   <view v-if="loading">加载中...</view>
   <view>请求数据为：{{ data }}</view>
-</tempate>
+</template>
 
 <script setup>
   const list = () =>
@@ -208,12 +208,12 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
+<template>
   <view v-if="loading">上传中...</view>
   <view>上传进度：{{ uploading.loaded }}/{{ uploading.total }}</view>
   <button @click="handleImageChoose">上传图片</button>
   <!-- ... -->
-</tempate>
+</template>
 
 <script setup>
   const uploadFile = (name, filePath, formData) =>
@@ -291,12 +291,12 @@ const App = () => {
 <TabItem value="1" label="vue">
 
 ```html
-<tempate>
+<template>
   <view v-if="loading">下载中...</view>
   <view>下载进度：{{ downloading.loaded }}/{{ downloading.total }}</view>
   <button @click="handleImageDownload">下载图片</button>
   <!-- ... -->
-</tempate>
+</template>
 
 <script setup>
   const downloadFile = filePath =>
