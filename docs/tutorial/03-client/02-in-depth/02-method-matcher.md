@@ -64,10 +64,10 @@ const matchedMethods = alova.snapshots.match({
 
 ## Match a single method instance
 
-You can also set the second function of the `match` function to `true` to return the first item of the matching result, and return `undefined` if no match is found.
+You can also set the second function of the `match` function to `false` to return the first item of the matching result, and return `undefined` if no match is found.
 
 ```js
-const matchedSingleMethod = alova.snapshots.match(/^todo/, true);
+const matchedSingleMethod = alova.snaptshots.match(/^todo/, false);
 ```
 
 ## Limit instance snapshots
