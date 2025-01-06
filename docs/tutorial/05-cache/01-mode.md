@@ -328,3 +328,28 @@ cacheFor: {
 ## Automatic response maintenance instructions
 
 The key of the response data cache is a combination of the request method (method), request address (url), request header parameters (headers), url parameters (params), and request body parameters (requestBody) of the method instance as a unique identifier. Any information or location will be treated as a different key. If you want to customize the cache key, you can refer to [Custom method key](/tutorial/advanced/in-depth/custom-method-key).
+
+Note that the key of the response data cache (or method) is **only** determined when the method created. After the method instance is created, modifying any of the following: request method (method), request address (url), request header parameters (headers), url parameters (params), or request body parameters (requestBody) will not cause the key to change, which will result in the cache pointing to the same value.
+
+In this case, if you need to cache separately pointing to different values, consider dynamically creating methods.
+
+```javascript
+const alovaInst = createAlova({
+  // ...
+  beforeRequest(method) {
+    const sec = Math.floor(Date.now() / 1000);
+    method.config.headers.sec = sec;
+  }
+});
+
+const Getter = () =>
+  alovaInst.Get('/user/profile', {
+    // ...
+    cacheFor: 10 * 1000
+  });
+
+// create a new method
+Getter().send();
+// or
+useRequest(Getter);
+```
