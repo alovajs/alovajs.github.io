@@ -215,3 +215,28 @@ localCache: {
 ## 响应自动维护说明
 
 响应数据缓存的 key 是由 method 实例的请求方法(method)、请求地址(url)、请求头参数(headers)、url 参数(params)、请求体参数(requestBody)组合作为唯一标识，任意一个信息或位置不同都将被当做不同的 key。
+
+此外，数据缓存的 key **只在** method 实例创建时确定，在创建后修改其：请求方法(method)、请求地址(url)、请求头参数(headers)、url 参数(params)、请求体参数(requestBody) 任一都不会导致 key 发生变化，这会导致缓存指向同一个值。
+
+如果你需要在上述情况下，缓存分别指向不同的值，请考虑动态创建 method。
+
+```javascript
+const alovaInst = createAlova({
+  // ...
+  beforeRequest(method) {
+    const sec = Math.floor(Date.now() / 1000);
+    method.config.headers.sec = sec;
+  }
+});
+
+const Getter = () =>
+  alovaInst.Get('/user/profile', {
+    // ...
+    localCache: 10 * 1000
+  });
+
+// 调用函数来创建一个新的method
+Getter().send();
+// or
+useRequest(Getter);
+```
