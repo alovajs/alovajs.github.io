@@ -161,8 +161,8 @@ import Assets from './component/assets';
 const App = () => {
   return (
     <>
-      <profile></profile>
-      <assets></assets>
+      <Profile></Profile>
+      <Assets></Assets>
     </>
   );
 };
