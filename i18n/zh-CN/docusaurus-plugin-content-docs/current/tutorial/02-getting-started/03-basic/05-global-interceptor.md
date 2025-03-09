@@ -92,7 +92,7 @@ const alovaInstance = createAlova({
     // 请求错误时将会进入该拦截器。
     // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
     onError: (err, method) => {
-      alert(error.message);
+      alert(err.message);
     },
     // highlight-end
 
