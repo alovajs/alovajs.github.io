@@ -11,13 +11,13 @@ import TabItem from '@theme/TabItem';
 <TabItem value="1" label="vue">
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
     <script src="https://unpkg.com/alova/dist/adapter/fetch.umd.min.js"></script>
-    <script src="https://unpkg.com/alova/dist/hooks/vuehook.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/stateshook/vue.umd.min.js"></script>
   </head>
   <body>
     <div id="app">
@@ -48,7 +48,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="2" label="react">
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -56,7 +56,7 @@ import TabItem from '@theme/TabItem';
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
     <script src="https://unpkg.com/alova/dist/adapter/fetch.umd.min.js"></script>
-    <script src="https://unpkg.com/alova/dist/hooks/reacthook.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/stateshook/react.umd.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
