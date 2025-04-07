@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 ## 发送请求 useRequest OR method
 
-alova 提供的`useRequest`在正常情况只会发送一次请求，并获取响应数据，那为什么不直接使用 method 实例来发送请求呢，这是因为`useRequest`可以帮我们自动管理`loading`、`data`、`error`等可以直接使用的响应式数据，因此，如果你需要使用这些状态时，使用`useRequest`不需要自行维护数据。但相反，你并不需要在整个项目中只适用`useRequest`，例如在只关心获取信息，而不需要使用到`loading`、`error`等的时候，在组件外获取数据的时候，可以使用 method 实例来发送请求。
+alova 提供的`useRequest`在正常情况只会发送一次请求，并获取响应数据，那为什么不直接使用 method 实例来发送请求呢，这是因为`useRequest`可以帮我们自动管理`loading`、`data`、`error`等可以直接使用的响应式数据，因此，如果你需要使用这些状态时，使用`useRequest`不需要自行维护数据。但相反，你并不需要在整个项目中只使用`useRequest`，例如在只关心获取信息，而不需要使用到`loading`、`error`等的时候，在组件外获取数据的时候，可以使用 method 实例来发送请求。
 
 ## 同时更新状态和缓存
 
