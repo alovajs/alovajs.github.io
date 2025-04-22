@@ -58,5 +58,11 @@
     "logo": "/img/project/scienhub.png",
     "desc": "一个在线的Latex协作平台，丰富的在线模板、便捷的在线编辑器、支持AI编辑、在线预览、丰富的公式工具集等",
     "link": "https://scienhub.com"
+  },
+  {
+    "title": "CoderHub",
+    "logo": "/img/project/coderhub.png",
+    "desc": "技术博客社区,涵盖面试宝典, 技术问答, 编程经验, 技术新闻, 求职简历, 技术书籍, 开源项目",
+    "link": "https://xiyuer.club"
   }
 ]
