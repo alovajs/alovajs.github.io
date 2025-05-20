@@ -74,7 +74,7 @@ const {
   loading, // Accessor<boolean>
   data, // Accessor<{ data: any }>
   error // Accessor<Error>
-} = useRequest(svelteAlova.Get<{ data: any }>('/todo/list'));
+} = useRequest(solidAlova.Get<{ data: any }>('/todo/list'));
 ```
 
 </TabItem>

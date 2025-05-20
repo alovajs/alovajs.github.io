@@ -233,13 +233,13 @@ The contents of the `index` file are as follows:
 ```js
 import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
-import vueHook from 'alova/vue';
+import VueHook from 'alova/vue';
 import { createApis, withConfigType } from './createApis';
 
 // The alova instance corresponding to the current api, you can modify the parameters here.
 export const alovaInstance = createAlova({
   baseURL: 'server parameter in openapi file',
-  statesHook: vueHook,
+  statesHook: VueHook,
   requestAdapter: GlobalFetch(),
   beforeRequest: method => {},
   responded: res => {

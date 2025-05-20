@@ -253,7 +253,7 @@ const { data } = useRequest(todoListGetter);
 data 值将接收到转换后的数据格式。
 
 ```typescript
-type data = {
+type Data = {
   // ...
   statusText: '已完成' | '进行中';
 }[];

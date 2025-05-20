@@ -73,7 +73,7 @@ export const orderAlova = createAlova({
 
 // upload alova instance
 export const uploadAlova = createAlova({
-  baseURL: 'https://api-order.alovajs.org',
+  baseURL: 'https://api-upload.alovajs.org',
   statesHook: VueHook,
   requestAdapter: axiosRequestAdapter()
 });
