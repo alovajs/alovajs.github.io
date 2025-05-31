@@ -13,18 +13,12 @@ use hook
 
 > 在使用扩展 hooks 前，确保你已熟悉了 alova 的基本使用。
 
-通过 Server-sent Events(SSE)请求，内部使用`EventSource`实现。
-
-:::warning 注意
-
-你不可以在使用 useSSE 时添加自定义 header，因为该标准[不包含这一行为](https://stackoverflow.com/a/36226251)。
-
-:::
-
 ## 特性
 
 - 更加简洁易用的使用方式；
 - 自动管理连接；
+
+在`[3.3.0+]`中，此策略使用`fetch`实现，这意味着你可以在流式请求指定headers和method等所有`fetch`支持的参数，而在之前的版本中使用`EventSource`实现。
 
 ## 用法
 
@@ -63,7 +57,12 @@ const {
   // 原始的EventSource实例
   eventSource
 } = useSSE(method, {
-  withCredentials: true, // 将会传给EventSource
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  // ...fetch的其他参数
+
+  // 兼容3.3.0之前的版本，此参数设置为true时将会设置fetch的credentials为'include'
+  withCredentials: true,
   initialData: 'initial-data' // 初始时 data 中的数据
 });
 ```

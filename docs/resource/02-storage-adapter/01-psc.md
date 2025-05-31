@@ -8,7 +8,7 @@ We implemented two adapters that can be used in Node.js and Electron.
 
 :::info Tips
 
-Only supports Alova 3.0 and above.
+Only alova 3.0+ is supported.
 
 :::
 

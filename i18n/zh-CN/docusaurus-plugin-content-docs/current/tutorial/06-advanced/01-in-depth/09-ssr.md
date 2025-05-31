@@ -7,29 +7,49 @@ import TabItem from '@theme/TabItem';
 
 ## 概述
 
-尽管 alova 的定位并不是在 nodejs 中进行请求，但为了可以结合 UI 框架的服务端渲染（[Nuxt3.x](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/)），我们也对它做了适配。尽管例如`Nuxt3.x`、`Sveltekit`中提供了内置的请求功能，但如果你选择使用 alova 的话，你可以同时在服务端和客户端中使用 alova 管理请求，而不是服务端和客户端分别使用不同的请求方案来管理它们。
+为了可以结合 UI 框架的服务端渲染（[Nuxt3.x](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/)），alova对它们做了适配。尽管例如`Nuxt3.x`、`Sveltekit`中提供了内置的请求功能，但如果你选择使用 alova 的话，你可以同时在服务端和客户端中使用 alova 管理请求，而不是服务端和客户端分别使用不同的请求方案来管理它们。
 
-这里有一些在 SSR 中使用 alova 需要注意的地方，以及不同 UI 框架的 SSR 中的使用示例。
+## 在SSR环境下使用
 
-## 在服务端调用接口
+当代码在服务端运行时，组件中的`useRequest`和`useWatcher`等use hooks将不会发送请求，即使将`immediate`设置为`true`，而会在浏览器运行时发送请求，你可以和往常一样使用 alova 的所有功能，这是在所有SSR框架中统一的表现。
 
-SSR 中经常需要在服务端获取数据并渲染成 HTML，这种情况下我们不能使用 alova 的 use hooks（也无需使用）来获取数据，以下我们将分别对支持的 SSR 框架进行展示。
+但在每个SSR框架中使用时有所差别，现在，我们依次展示如何使用。
 
 ### Nuxt3.x
 
-在 Nuxt3.x 中提供了`useAsyncData`在服务端初始化页面数据，同时还提供了`useFetch`和`$fetch`请求函数，这些可以同时在服务端和客户端使用的请求函数真的很方便。尽管如此，如果你希望在 nuxt 中使用 alova 的话，你可以使用 **useAsyncData + alova.Method** 组合的方式完成服务端数据获取，这与你平时使用`useAsyncData`没什么区别。
+在 Nuxt3.x 中，你可以像`useFetch`一样使用`useRequest`、`useWatcher`等hooks，它会在服务端发起请求，并且不会在客户端进行初始化请求，实现与`useFetch`相同的效果。
 
 ```html
+<template>
+  <div v-if="loading">Loading...</div>
+  <div v-else-if="error">{{ error.message }}</div>
+  <div v-else>{{ data }}</div>
+</template>
+
 <script setup>
-  const todoListGetter = alovaInstance.Get('/todo/list', {
+  const todoList = () => alovaInstance.Get('/todo/list', {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
     }
   });
 
+  // 注意，`useRequest`使用了await，否则不会在服务端发送请求
+  const { data, error, loading } = await useRequest(todoList);
+</script>
+```
+
+你也可以使用 **useAsyncData + alova.Method** 组合的方式完成服务端数据获取，这与你平时使用`useAsyncData`没什么区别。
+
+```html
+<script setup>
   // 在useAsyncData中返回promise
-  const { data, pending, refresh } = useAsyncData(async () => {
-    return todoListGetter.send();
+  const { data, pending, refresh } = await useAsyncData(async () => {
+    const response = await alovaInstance.Get('/todo/list', {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    });
+    return response;
   });
 </script>
 ```
@@ -66,14 +86,12 @@ export default App;
 在传统的 pages router 模式下，nextjs 提供程序固定的服务端数据初始化函数，例如 `getStaticProps`、`getServerSideProps` 和 `getStaticPaths` 等，你可以[直接使用方法实例](/tutorial/getting-started/quick-start)在函数中调用 api。
 
 ```jsx
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
-  }
-});
-
 export const getServerSideProps = async ctx => {
-  const list = await todoListGetter.send();
+  const list = await alovaInstance.Get('/todo/list', {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
   return {
     props: {
       list
@@ -98,25 +116,17 @@ export default function App(props) {
 Sveltekit 中也提供了`load`函数进行服务端的页面数据初始化，你同样可以在函数中[直接使用 method 实例](/tutorial/getting-started/quick-start)调用接口。例如在`+page.server.js`中调用接口。
 
 ```javascript title=+page.server.js
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
-  }
-});
-
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   return {
-    list: todoListGetter
+    list: alovaInstance.Get('/todo/list', {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    })
   };
 }
 ```
-
-## 在 SSR 中使用 usehooks
-
-由于每个 SSR 框架都有各自的在服务端中初始化数据的方式，因此在 SSR 中生成 html 时，组件中的`useRequest`和`useWatcher`即使将`immediate`设置为`true`也不会发起请求，因为这更像是客户端初始化数据。
-
-不过，如果你需要像客户端中一样初始化页面的数据，也可以设置`immediate`为`true`，当页面在浏览器中运行时，你可以和往常一样使用 alova 的所有功能。
 
 ## 注意事项
 

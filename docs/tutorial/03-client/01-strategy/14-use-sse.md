@@ -14,18 +14,12 @@ use hook
 
 > Before using extended hooks, make sure you are familiar with the basic use of alova.
 
-This hook is implemented using the `EventSource` API.
-
-::: warning note
-
-When you are not to be used in useSSE add custom header, because the standard [does not contain the behavior](https://stackoverflow.com/a/36226251)
-
-:::
-
 ## Features
 
 - A simpler and easier way to use;
 - Automatically manage connections;
+
+In [3.3.0+], this strategy is implemented using fetch, which means you can specify all fetch parameters such as headers and method in the streaming request, while in previous versions it was implemented using EventSource.
 
 ## Usage
 
@@ -61,7 +55,12 @@ const {
   // Close connection
   close
 } = useSSE(method, {
-  withCredentials: true, // Will be passed to EventSource
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  // ...other parameters of fetch
+
+  // Compatible with versions before 3.3.0, when this parameter is set to true, the credentials of fetch will be set to 'include'
+  withCredentials: true,
   initialData: 'initial-data' // Data in data at the beginning
 });
 ```
