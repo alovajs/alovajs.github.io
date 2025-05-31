@@ -255,7 +255,7 @@ const { data } = useWatcher(() => todoListGetter, [userInfo]);
 The data value will receive the transformed data format.
 
 ```typescript
-type data = {
+type Data = {
   // ...
   statusText: 'Completed' | 'In progress';
 }[];

@@ -30,15 +30,15 @@ const alova = createAlova({
 Now you can directly use `alova/client` and `alova/server` as long as you install `alova`.
 
 ```javascript
-import vueHook from 'alova/vue';
-import reactHook from 'alova/react';
-import svelteHook from 'alova/svelte';
-import vueDemiHook from 'alova/vue-demi';
+import VueHook from 'alova/vue';
+import ReactHook from 'alova/react';
+import SvelteHook from 'alova/svelte';
+import VueDemiHook from 'alova/vue-demi';
 import { useRequest, useWatcher, usePagination } from 'alova/client';
 import adapterFetch from 'alova/fetch';
 
 const alova = createAlova({
-  statesHook: vueHook,
+  statesHook: VueHook,
   requestAdapter: adapterFetch()
 });
 const { data, loading, error } = useRequest(alova.Get('/api/user'));
@@ -135,7 +135,7 @@ const alovaInst = createAlova({
 An example of handling cache avalanche, solved by adding random expiration time
 
 ```javascript
-alova.Get('/xxx', {
+alovaInst.Get('/xxx', {
   cacheFor: {
     expire: 100000 * Math.floor(Math.random() * 1000),
     mode: 'restore'

@@ -74,7 +74,7 @@ const alovaInstance = createAlova({
 const { createAlova } = require('alova');
 const adapterFetch = require('alova/fetch');
 
-const alova = createAlova({
+const alovaInstance = createAlova({
   requestAdapter: adapterFetch(),
   responded: response => response.json()
 });
@@ -89,7 +89,7 @@ const alova = createAlova({
 import { createAlova } from 'npm:alova';
 import adapterFetch from 'npm:alova/fetch';
 
-const alova = createAlova({
+const alovaInstance = createAlova({
   requestAdapter: adapterFetch(),
   responded: response => response.json()
 });

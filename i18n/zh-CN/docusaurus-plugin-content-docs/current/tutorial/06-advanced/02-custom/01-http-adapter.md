@@ -162,7 +162,7 @@ function XMLHttpRequestAdapter(requestElements, methodInstance) {
 ```javascript
 import type { AlovaRequestAdapter } from 'alova';
 
-export type adapterFetch = () => AlovaRequestAdapter<FetchRequestInit, Response, Headers>;
+export type AdapterFetch = () => AlovaRequestAdapter<FetchRequestInit, Response, Headers>;
 ```
 
 在`AlovaRequestAdapter`中的泛型参数分别为`RequestConfig`、`Response`和`ResponseHeader`三个类型的值，用于在全局的拦截器中、method 实例配置中等地方将自动推断为请求适配器给定的类型。

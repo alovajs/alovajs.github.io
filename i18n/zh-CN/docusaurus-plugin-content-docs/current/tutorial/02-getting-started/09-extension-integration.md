@@ -231,13 +231,13 @@ useRequest(() =>
 ```js
 import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
-import vueHook from 'alova/vue';
+import VueHook from 'alova/vue';
 import { createApis, withConfigType } from './createApis';
 
 // 当前api对应的alova实例，你可以在此修改参数。
 export const alovaInstance = createAlova({
   baseURL: 'openapi文件中的server参数',
-  statesHook: vueHook,
+  statesHook: VueHook,
   requestAdapter: GlobalFetch(),
   beforeRequest: method => {},
   responded: res => {

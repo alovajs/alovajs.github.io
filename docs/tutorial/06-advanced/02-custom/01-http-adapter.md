@@ -162,7 +162,7 @@ The global `beforeRequest`, `responded` interceptors, and the types of configura
 ```javascript
 import type { AlovaRequestAdapter } from 'alova';
 
-export type adapterFetch = () => AlovaRequestAdapter<FetchRequestInit, Response, Headers>;
+export type AdapterFetch = () => AlovaRequestAdapter<FetchRequestInit, Response, Headers>;
 ```
 
 The generic parameters in `AlovaRequestAdapter` are values ​​of three types: `RequestConfig`, `Response`, and `ResponseHeader`, which are automatically inferred to the types given by the request adapter in global interceptors, method instance configurations, etc.
