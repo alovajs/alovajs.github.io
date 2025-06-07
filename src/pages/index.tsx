@@ -91,7 +91,7 @@ function HomepageHeader() {
                 </Translate>
               </p>
             </div>
-            <p className="mt-4 max-w-3xl text-lg space-y-6">
+            <p className="mt-4 max-w-4xl text-lg space-y-6">
               <Translate id="homepage.tagline">
                 alova is perfectly compatible with your favorite HTTP clients and UI frameworks,
                 makes ultimate efficiency in APIs integration with its business modules and
