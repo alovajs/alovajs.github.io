@@ -56,7 +56,7 @@ export const userAlova = createAlova({
   baseURL: 'https://api-user.alovajs.org',
   statesHook: VueHook,
   requestAdapter: GlobalFetch(),
-  async responded(method) {
+  async beforeRequest(method) {
     method.config.headers.token = 'user token';
   }
 });
@@ -66,7 +66,7 @@ export const orderAlova = createAlova({
   baseURL: 'https://api-order.alovajs.org',
   statesHook: VueHook,
   requestAdapter: GlobalFetch(),
-  async responded(method) {
+  async beforeRequest(method) {
     method.config.headers.token = 'order token';
   }
 });
