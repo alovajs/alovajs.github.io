@@ -7,34 +7,106 @@ import TabItem from '@theme/TabItem';
 
 ## 概述
 
-尽管 alova 的定位并不是在 nodejs 中进行请求，但为了可以结合 UI 框架的服务端渲染（[Nuxt3.x](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/)），我们也对它做了适配。尽管例如`Nuxt3.x`、`Sveltekit`中提供了内置的请求功能，但如果你选择使用 alova 的话，你可以同时在服务端和客户端中使用 alova 管理请求，而不是服务端和客户端分别使用不同的请求方案来管理它们。
+为了可以结合 UI 框架的服务端渲染（[Nuxt3](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/)），alova对它们做了适配。尽管例如`Nuxt3`、`Sveltekit`中提供了内置的请求功能，但如果你选择使用 alova 的话，你可以同时在服务端和客户端中使用 alova 管理请求，而不是服务端和客户端分别使用不同的请求方案来管理它们。
 
-这里有一些在 SSR 中使用 alova 需要注意的地方，以及不同 UI 框架的 SSR 中的使用示例。
+## SSR中的CSR模式
 
-## 在服务端调用接口
+当代码在服务端运行时，组件中的`useRequest`和`useWatcher`等use hooks将不会发送请求，即使将`immediate`设置为`true`，而会在浏览器运行时发送请求，你可以和往常一样使用 alova 的所有功能，这是在所有SSR框架中相同的表现。
 
-SSR 中经常需要在服务端获取数据并渲染成 HTML，这种情况下我们不能使用 alova 的 use hooks（也无需使用）来获取数据，以下我们将分别对支持的 SSR 框架进行展示。
+但在每个SSR框架中使用时有所差别，现在，我们依次展示如何使用。
 
-### Nuxt3.x
+## 全栈框架
 
-在 Nuxt3.x 中提供了`useAsyncData`在服务端初始化页面数据，同时还提供了`useFetch`和`$fetch`请求函数，这些可以同时在服务端和客户端使用的请求函数真的很方便。尽管如此，如果你希望在 nuxt 中使用 alova 的话，你可以使用 **useAsyncData + alova.Method** 组合的方式完成服务端数据获取，这与你平时使用`useAsyncData`没什么区别。
+### Nuxt3
+
+在 Nuxt3 中使用`useFetch`可以让数据在服务的和浏览器同步，使用nuxt适配器可以实现更好的体验，在使用`useRequest`、`useWatcher`等几乎所有的hooks时不仅可以同步两端的数据，避免在客户端重复请求，还可以同步例如`Date`，`Error`等以及自定义类型的数据，来看下如何使用。
+
+#### 设置nuxt适配器
+
+```javascript
+import { createAlova } from 'alova';
+import NuxtHook from 'alova/nuxt';
+
+export const alovaInstance = createAlova({
+  // ...
+  statesHook: NuxtHook({
+    nuxtApp: useNuxtApp // 必须指定useNuxtApp
+  })
+});
+```
+
+#### 在服务端拉取数据
+
+使用`useRequest`、`useWatcher`等几乎所有的hooks时，通过`await`在服务端拉取数据，它具有以下特性：
+
+1. 将会同步服务端数据到浏览器的states中，保持两端的states数据同步，并且states都是响应式的。
+2. 默认支持`Date`、`Error`、`RegExp`对象的序列化，也支持序列化自定义数据。
+3. 浏览器中不再重复初始化请求。
 
 ```html
+<template>
+  <div v-if="error">{{ error.message }}</div>
+  <div v-else>{{ data }}</div>
+</template>
+
 <script setup>
-  const todoListGetter = alovaInstance.Get('/todo/list', {
+  const todoList = () => alovaInstance.Get('/todo/list', {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
     }
   });
 
+  // 注意，`useRequest`使用了await，否则不会在服务端发送请求
+  const { data, error } = await useRequest(todoList);
+</script>
+```
+
+你也可以使用 **useAsyncData + alova.Method** 组合的方式完成服务端数据获取，这与你平时使用`useAsyncData`没什么区别。
+
+```html
+<script setup>
   // 在useAsyncData中返回promise
-  const { data, pending, refresh } = useAsyncData(async () => {
-    return todoListGetter.send();
+  const { data, pending, refresh } = await useAsyncData(async () => {
+    const response = await alovaInstance.Get('/todo/list', {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    });
+    return response;
   });
 </script>
 ```
 
+#### 自定义序列化器
+
+如果你希望序列化自定义的数据并同步到客户端，可以在nuxt适配器的`serializers`中指定，例如自定义moment实例序列化器。
+
+```javascript
+const momentSerializer = {
+  // forward在序列化时被调用
+  // 需要判断是否为moment实例，如果不是目标值则返回undefined，表示不处理它
+  forward: data => moment.isMoment(data) ? data.valueOf() : undefined,
+
+  // backward在反序列化时被调用，data为forward中返回的值
+  backward: timestamp => moment(timestamp);
+};
+
+createAlova({
+  // ...
+  statesHook: NuxtHook({
+    nuxtApp: useNuxtApp,
+    // highlight-start
+    serializers: {
+      moment: momentSerializer
+    }
+    // highlight-end
+  })
+});
+```
+
 ### Nextjs
+
+在nuxtjs中设置使用react适配器。
 
 <Tabs>
 <TabItem value="1" label="App Router">
@@ -66,14 +138,12 @@ export default App;
 在传统的 pages router 模式下，nextjs 提供程序固定的服务端数据初始化函数，例如 `getStaticProps`、`getServerSideProps` 和 `getStaticPaths` 等，你可以[直接使用方法实例](/tutorial/getting-started/quick-start)在函数中调用 api。
 
 ```jsx
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
-  }
-});
-
 export const getServerSideProps = async ctx => {
-  const list = await todoListGetter.send();
+  const list = await alovaInstance.Get('/todo/list', {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
   return {
     props: {
       list
@@ -98,154 +168,14 @@ export default function App(props) {
 Sveltekit 中也提供了`load`函数进行服务端的页面数据初始化，你同样可以在函数中[直接使用 method 实例](/tutorial/getting-started/quick-start)调用接口。例如在`+page.server.js`中调用接口。
 
 ```javascript title=+page.server.js
-const todoListGetter = alovaInstance.Get('/todo/list', {
-  headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
-  }
-});
-
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   return {
-    list: todoListGetter
+    list: alovaInstance.Get('/todo/list', {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    })
   };
 }
 ```
-
-## 在 SSR 中使用 usehooks
-
-由于每个 SSR 框架都有各自的在服务端中初始化数据的方式，因此在 SSR 中生成 html 时，组件中的`useRequest`和`useWatcher`即使将`immediate`设置为`true`也不会发起请求，因为这更像是客户端初始化数据。
-
-不过，如果你需要像客户端中一样初始化页面的数据，也可以设置`immediate`为`true`，当页面在浏览器中运行时，你可以和往常一样使用 alova 的所有功能。
-
-## 注意事项
-
-### 客户端和服务端的缓存可能不一致
-
-如果你使用了 alova 的缓存功能，这里可能需要注意的是，客户端和服务端的缓存并不是共享的，这意味着如果你在初始化页面时直接使用了**usehooks**获取数据，你可能会遇到客户端和服务端渲染不一致的问题，尽管很少人这样做。
-
-请看以下代码片段。
-
-<Tabs groupId="framework">
-<TabItem label="nuxt" value="1">
-
-```html
-<template>
-  <div v-if="loading">loading</div>
-  <div>{{ data }}</div>
-</template>
-
-<script setup>
-  const { loading, data } = useRequest(alovaGetter);
-</script>
-```
-
-</TabItem>
-<TabItem label="next" value="2">
-
-```jsx
-function App(props) {
-  const { loading, data } = useRequest(alovaGetter);
-  return (
-    <>
-      {loading ? <div>loading</div> : null}
-      <div>{data}</div>
-    </>
-  );
-}
-```
-
-</TabItem>
-<TabItem label="sveltekit" value="3">
-
-```html
-<script>
-  export let data;
-  const { loading, data } = useRequest(alovaGetter);
-</script>
-
-{#if $loading}
-<div>loading</div>
-{/if}
-<div>{{ data }}</div>
-```
-
-</TabItem>
-</Tabs>
-
-以下代码假设`alovaGetter`请求在服务端存在缓存，但在客户端不存在。
-
-此时在服务端生成时 html 时，由于命中缓存，`loading`为`false`而不显示`<div>loading</div>`，但在客户端初始化时由于未命中缓存，`loading`为`true`而导致显示`<div>loading</div>`，此时 SSR 框架将会提示两个端渲染不一致。
-
-**解决方法**
-
-1. 尽量将页面数据初始化的工作放在获取函数中，而不是组件中；
-2. 如果必须这样做，则可以避免在客户端和服务端使用相同的接口，或者关闭出现问题的接口缓存；
-3. 如果也需要缓存，你可以在服务端数据初始化函数中清除服务端的缓存，示例代码如下：
-
-<Tabs groupId="framework">
-<TabItem label="nuxt" value="1">
-
-```html
-<template>
-  <div v-if="loading">loading</div>
-  <div>{{ data }}</div>
-</template>
-
-<script setup>
-  import { invalidateCache } from 'alova';
-  const { loading, data } = useRequest(alovaGetter);
-
-  // 在服务端中清除缓存
-  useAsyncData(
-    () => {
-      invalidateCache(alovaGetter);
-    },
-    {
-      server: true
-    }
-  );
-</script>
-```
-
-</TabItem>
-<TabItem label="next" value="2">
-
-```jsx
-import { invalidateCache } from 'alova';
-
-function App(props) {
-  const { loading, data } = useRequest(alovaGetter);
-  return (
-    <>
-      {loading ? <div>loading</div> : null}
-      <div>{data}</div>
-    </>
-  );
-}
-
-export const getServerSideProps = async () => {
-  // 在服务端中清除缓存
-  invalidateCache(alovaGetter);
-  return {
-    props: {}
-  };
-};
-```
-
-</TabItem>
-<TabItem label="sveltekit" value="3">
-
-```javascript title=+page.server.js
-import { invalidateCache } from 'alova';
-
-/** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
-  // 在服务端中清除缓存
-  invalidateCache(alovaGetter);
-  return {};
-}
-```
-
-</TabItem>
-</Tabs>

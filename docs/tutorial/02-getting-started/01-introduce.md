@@ -14,19 +14,20 @@ import TabItem from '@theme/TabItem';
 
 ## What is alova?
 
-Alova (pronounced `/əˈləʊva/`<AudioPlayer src={tts} />) is a next-generation request library that radically simplifies your API integration workflow, reducing what used to take 7 complex steps down to just 1 - simply select your API and go.
+alova​​ (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a request toolkit design for API integrating with ​​ultimate efficiency. it seamlessly works with your favorite HTTP clients and UI frameworks, accelerating business logic development for both client and server apps, while enabling interactive API information within your code. bridging the backend collaboration gap like a wormhole.
 
-Unlike libraries such as `@tanstack/react-request`, `swrjs`, and `useRequest` from `ahooks`, alova revolutionizes your development experience by wrapping `fetch/XMLHttpRequest/axios` into request adapters and providing intelligent request strategies for even the most complex scenarios.
-
-Want to dive into the origin story? Check out [Why we created alova](/about/faqs). For a deep dive into how we're different, explore our comprehensive [comparison with other request libraries](/about/comparison).
+Learn about our story in [why built alova](/about/faqs), and explore how we differ in our detailed [comparison with other request libraries](/about/comparison).
 
 ## Features
 
-- Incredibly simple to use with a minimal learning curve.
-- More modern OpenAPI solution - say goodbye to tedious intermediate API documentation.
-- Compatible with client-side technologies and request libraries: `react/vue/svelte/solid/next/nuxt/sveltkit/solid-start/uniapp/taro/...` + `fetch/XMLHttpRequest/axios/...`
-- Compatible with server-side technologies and request libraries: `nodejs/deno/bun/...` + `fetch/XMLHttpRequest/axios/...`
-- 15+ high-performance request strategies to handle complex request scenarios, helping you develop more efficient applications faster.
+- ​​Easy to use, [watching video](/video-tutorial) to get started in 5 mins.
+- ​​Full compatibility​​ with your favorite technology stack.
+- ​​20+ high-performance business modules​​ for building faster apps.
+- ​​Advanced OpenAPI solution​​ for efficient APIs information interaction within your code.
+- Request sharing and response cache to improve app performance.
+- Type safety.
+
+<SupportList showStatus></SupportList>
 
 ## Live Demo
 
@@ -413,12 +414,6 @@ classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
 With the various features of alova, you can also build a Client-Server interaction layer(CSIL) for your project. The CSIL will distribute response data to various components by merging same requests. Additionally, the CSIL also manages response data and the responsive states created by useHooks. You can access and modify the datas in CSIL in any UI component, as well as refresh the data in CSIL.
 
 > To learn how to build a CS Interaction Layer, refer to [Building the Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
-
-## Run in any JS environment
-
-alova is very flexible, you can use it with various request tools across any JavaScript environment (grayed-out options will be gradually supported in the future).
-
-<SupportList showStatus></SupportList>
 
 ## Migration Guide
 

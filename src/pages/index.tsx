@@ -11,9 +11,9 @@ import { useState } from 'react';
 import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from '../common/constants';
 import SupportList from '../components/SupportList';
 import FeatureBlock, { ArrowTextLink } from './_indexComponent/FeatureBlock';
-import styles from './_indexComponent/index.module.css';
 import Intro from './_indexComponent/Intro';
 import UserDescription from './_indexComponent/UserDescription';
+import styles from './_indexComponent/index.module.css';
 
 const buttons = [
   {
@@ -27,12 +27,6 @@ const buttons = [
     type: 'secondary',
     style: 'ctw-button-secondary',
     link: '/examples'
-  },
-  {
-    text: <Translate id="homepage.Video Tutorial">Video Tutorial</Translate>,
-    type: 'primary',
-    style: 'ctw-button-primary',
-    link: '/video-tutorial'
   }
 ];
 const installCmd = 'npm i alova';
@@ -81,19 +75,27 @@ function HomepageHeader() {
       <div className="flex flex-col mx-auto w-full">
         <div className="flex flex-col md:flex-row items-stretch gap-20 md:gap-10 justify-between md:mt-32 mt-16 mx-5 md:mx-0">
           <div className="relative">
-            <div className="font-sans md:text-6xl text-4xl font-bold !leading-tight">
-              <p className={clsx(styles.titleGradient, 'md:text-4xl text-2xl')}>
-                <Translate id="homepage.title.Streamlined">Workflow-Streamlined</Translate>
-              </p>
-              <p className="text-slate-900 tracking-normal dark:text-slate-50 mt-3">
-                <Translate id="homepage.title.Next Generation Request Tool">
-                  Next Generation Request Tool
+            <div>
+              <p
+                className={clsx(
+                  styles.titleGradient,
+                  'font-sans md:text-5xl text-3xl font-bold tracking-normal'
+                )}
+                ref={el => {
+                  if (el) {
+                    el.style.setProperty('line-height', '1.3', 'important');
+                  }
+                }}>
+                <Translate id="homepage.title.position">
+                  The Request Toolkit For Ultimate Efficiency
                 </Translate>
               </p>
             </div>
             <p className="mt-4 max-w-3xl text-lg space-y-6">
               <Translate id="homepage.tagline">
-                Extremely streamline API integration workflow. Just one step
+                alova is perfectly compatible with your favorite HTTP clients and UI frameworks,
+                makes ultimate efficiency in APIs integration with its business modules and
+                devtools.
               </Translate>
             </p>
             <div className="flex flex-col md:items-stretch items-center">
@@ -161,11 +163,12 @@ export default function Home(): JSX.Element {
         siteConfig.title +
         ' - ' +
         translate({
-          message: 'Workflow-streamlined next generation request library',
+          message:
+            'Efficient Request Toolkit that helps you integrate APIs with ultimate efficiency',
           id: 'homepage.title'
         })
       }
-      description="alovajs is Workflow-Streamlined Next Generation Request Tool. Extremely streamline API integration workflow. Just one step">
+      description="alova is a Efficient Request Toolkit, which is perfectly compatible with your favorite HTTP clients and UI frameworks, accelerates business logic for both client and server apps, while making API documentation and and code interactive with each other. delivering ultimate efficiency in APIs integration.">
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
         <main className="mx-auto mt-20 md:mt-40">
@@ -174,15 +177,15 @@ export default function Home(): JSX.Element {
             <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">
               <Intro
                 section={translate({
-                  message: 'Request Strategy',
+                  message: '# Request Strategy',
                   id: 'homepage.requestStrategy.sectionTitle'
                 })}
                 title={translate({
-                  message: 'Complex request scenes killer',
+                  message: 'Business development killer',
                   id: 'homepage.requestStrategy.title'
                 })}
                 description={translate({
-                  message: `With alova's client and server request strategies, you can handle requests across diverse scenarios. Each scenario is equipped with comprehensive stateful parameters, events, and actions, allowing complex requests to be executed with just a single line of code.`,
+                  message: `alova privides 20+ business modules which we call request strategy, to help you accelerate business logic development for both client-side and server-side applications.`,
                   id: 'homepage.requestStrategy.description'
                 })}
                 className="max-w-[600px]"
@@ -235,15 +238,16 @@ export default function Home(): JSX.Element {
             <div className="flex flex-col items-start md:max-w-[500px]">
               <Intro
                 section={translate({
-                  message: 'More modern openAPI solution',
+                  message: '# Modern openAPI solution',
                   id: 'homepage.automaticGenerate.sectionTitle'
                 })}
                 title={translate({
-                  message: 'Discard the intermediary API docs',
+                  message: 'Move API docs to Editor',
                   id: 'homepage.automaticGenerate.title'
                 })}
                 description={translate({
-                  message: `alova's devtools can generate API calling code, as well as TypeScript types and detailed documentation for each API. Even in JavaScript projects, you can enjoy full TypeScript type hinting. Moreover, you can quickly search for the APIs you need, match parameters from the parameter list, all without leaving your editor.`,
+                  message:
+                    "alova's devtools enable interactive communication between API information and your code, search API and view its full information while coding, all without leaving your editor.",
                   id: 'homepage.automaticGenerate.description'
                 })}
               />
@@ -290,7 +294,7 @@ export default function Home(): JSX.Element {
           <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">
             <Intro
               section={translate({
-                message: 'Flexible',
+                message: '# Flexible',
                 id: 'homepage.Flexible.sectionTitle'
               })}
               title={translate({

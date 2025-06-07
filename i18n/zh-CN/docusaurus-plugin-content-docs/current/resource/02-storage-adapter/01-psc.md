@@ -8,7 +8,7 @@ title: 进程共享适配器
 
 :::info Tips
 
-仅支持 Alova 3.0 以上版本
+仅 alova 3.0+ 支持
 
 :::
 

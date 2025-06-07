@@ -21,14 +21,12 @@ export const Strategy: FeatureBlockProps[] = [
       id: 'homepage.requestStrategy.Pagination Request.description'
     }),
     className: 'col-span-8 row-span-3',
-    snippet: `usePagination((page, size) => totoList(page, size), {
-  initialData: {
-    total: 0,
-    data: []
-  },
-  initialPage: 1,
-  initialPageSize: 10
-})`
+    snippet: `const todoList = (page, size) => alova.Get('/todos', {
+  params: { page, size }
+});
+const {
+  loading, data, page, pageSize, pageCount, total
+} = usePagination(todoList);`
   },
   {
     type: 'Client',
@@ -44,8 +42,8 @@ export const Strategy: FeatureBlockProps[] = [
     }),
     className: 'col-span-4 row-span-3',
     snippet: `useWatcher(
-  () => filterTodoList(page, keyword),
-  [keyword, page],
+  () => alova.Get(\`/rewards/\${activeKey}\`),
+  [activeKey],
   {
     debounce: [500, 0]
   }
@@ -104,8 +102,7 @@ const orderRes = await limit(
     }),
     className: 'col-span-4 row-span-3',
     snippet: `const { fetching, error, fetch } = useFetcher()
-
-fetch(getTodoDetail)`
+fetch(alova.Get('/todo/1'))`
   },
   {
     type: 'Client',
