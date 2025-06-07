@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 ## alova 是什么？
 
-alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个请求工具集，从而极致高效地集成你的APIs，它完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离。
+alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个请求工具集，帮助开发者极致高效地集成你的APIs，它完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离。
 
 你可以在 [为什么创造 alova](/about/faqs) 中了解背景故事，我们也提供了一份详细的 [对比与其他请求库](/about/comparison) 了解 alova 的差异。
 
