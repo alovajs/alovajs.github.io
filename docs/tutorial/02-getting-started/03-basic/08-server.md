@@ -23,46 +23,49 @@ On the server, we also have different request scenarios, such as request retries
 The following is an example that combines `retry` and `sendCaptcha`, which implements sending verification codes by retrying after failure:
 
 ```js
-const { retry, sendCaptcha } = require('alova/server');
+const { retry, createCaptchaProvider } = require('alova/server');
 
-const email = 'xxx@xxx.com';
-// Create a method instance for sending verification codes
-const captchaMethod = alovaInstance.Post('/api/captcha', {
-  email,
-  content: 'captcha content'
+const { sendCaptcha } = createCaptchaProvider({
+  store: redisAdapter
 });
 
-// Use retry hook to wrap captchaMethod
-const retringMethod = retry(captchaMethod, {
+// step1: create a method instance to send code.
+const createCaptchaMethod = (code, key) = > alovaInstance.Post('/api/captcha', {
+  code,
+  email: key,
+});
+
+// step2: wrap `createCaptchaMethod` with sendCaptcha hook.
+const captchaMethod = sendCaptcha(createCaptchaMethod, {
+  key: 'xxx@xxx.com'
+});
+
+// step3: wrap `captchaMethod` with retry hook, and get the response result through `await`
+const result = await retry(captchaMethod, {
   retry: 3,
   backoff: {
     delay: 2000
   }
 });
-// Use sendCaptcha hook to wrap retringMethod, and send the request and get the response result through await
-const result = await sendCaptcha(retringMethod, {
-  key: email
-});
 ```
 
 You can also use multiple `server hooks` to wrap method instances directly.
 
-```ts
-const result = await sendCaptcha(
-  retry(
-    alovaInstance.Post('/api/captcha', {
-      email,
-      content: 'captcha content'
-    }),
-    {
-      retry: 3,
-      backoff: {
-        delay: 2000
-      }
-    }
+```javascript
+const result = await retry(
+  sendCaptcha(
+    (code, key) =>
+      alovaInstance.Post('/api/captcha', {
+        email,
+        content: 'captcha content'
+      }),
+    { key: 'xxx@xxx.com' }
   ),
   {
-    key: email
+    retry: 3,
+    backoff: {
+      delay: 2000
+    }
   }
 );
 ```

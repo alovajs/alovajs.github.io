@@ -38,7 +38,7 @@ export const alovaInstance = createAlova({
 
 </TabItem>
 
-<TabItem value="2" label="react">
+<TabItem value="2" label="react/next">
 
 ```js
 import { createAlova } from 'alova';
@@ -51,6 +51,25 @@ export const alovaInstance = createAlova({
   // highlight-end
 });
 ```
+
+</TabItem>
+<TabItem value="6" label="nuxt">
+
+```js
+import { createAlova } from 'alova';
+import NuxtHook from 'alova/nuxt';
+
+export const alovaInstance = createAlova({
+  // ...
+  // highlight-start
+  statesHook: NuxtHook({
+    nuxtApp: useNuxtApp
+  })
+  // highlight-end
+});
+```
+
+For more usage about NuxtHook，please refer to [SSR#nuxt](/tutorial/advanced/in-depth/ssr#nuxt3)
 
 </TabItem>
 <TabItem value="3" label="svelte">

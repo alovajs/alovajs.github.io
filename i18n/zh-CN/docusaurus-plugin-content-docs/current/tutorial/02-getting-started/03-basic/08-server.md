@@ -23,46 +23,49 @@ alovaInstance.Post(...);
 以下是组合了`retry`和`sendCaptcha`的示例，它实现了以失败重试的方式发送验证码：
 
 ```js
-const { retry, sendCaptcha } = require('alova/server');
+const { retry, createCaptchaProvider } = require('alova/server');
 
-const email = 'xxx@xxx.com';
-// 创建一个发送验证码的method实例
-const captchaMethod = alovaInstance.Post('/api/captcha', {
-  email,
-  content: 'captcha content'
+const { sendCaptcha } = createCaptchaProvider({
+  store: redisAdapter
 });
 
-// 使用retry hook包装captchaMethod
-const retringMethod = retry(captchaMethod, {
+// step1: 创建一个发送验证码的method实例
+const createCaptchaMethod = (code, key) = > alovaInstance.Post('/api/captcha', {
+  code,
+  email: key,
+});
+
+// step2: 使用sendCaptcha hook包装createCaptchaMethod
+const captchaMethod = sendCaptcha(createCaptchaMethod, {
+  key: 'xxx@xxx.com'
+});
+
+// step3: 使用retry hook包装captchaMethod，并通过await发送请求并获取响应结果
+const result = await retry(captchaMethod, {
   retry: 3,
   backoff: {
     delay: 2000
   }
 });
-// 再使用sendCaptcha hook包装retringMethod，并通过await发送请求并获取响应结果
-const result = await sendCaptcha(retringMethod, {
-  key: email
-});
 ```
 
 你也可以直接使用多个`server hooks`包装 method 实例。
 
-```ts
-const result = await sendCaptcha(
-  retry(
-    alovaInstance.Post('/api/captcha', {
-      email,
-      content: 'captcha content'
-    }),
-    {
-      retry: 3,
-      backoff: {
-        delay: 2000
-      }
-    }
+```javascript
+const result = await retry(
+  sendCaptcha(
+    (code, key) =>
+      alovaInstance.Post('/api/captcha', {
+        email,
+        content: 'captcha content'
+      }),
+    { key: 'xxx@xxx.com' }
   ),
   {
-    key: email
+    retry: 3,
+    backoff: {
+      delay: 2000
+    }
   }
 );
 ```

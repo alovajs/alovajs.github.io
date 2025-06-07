@@ -10,7 +10,7 @@ const darkCodeTheme = themes.oneDark;
 const config: Config = {
   title: 'Alova.JS',
   tagline:
-    'According to different request scenarios, we provide targeted request strategies to improve application fluency and availability, reduce server pressure, and enable applications to have excellent strategic thinking like a wise man',
+    'alova is perfectly compatible with your favorite HTTP clients and UI frameworks, accelerates business logic for both client and server apps, while making API documentation and and code interactive with each other. delivering ultimate efficiency in APIs integration.',
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -65,8 +65,7 @@ const config: Config = {
   ],
 
   stylesheets: [
-    'https://rsms.me/inter/inter.css',
-    'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+    'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Share+Tech:wght@400;500;600&display=swap'
   ],
   themeConfig: {
     image: '/img/card_image.jpg',
@@ -356,7 +355,8 @@ const config: Config = {
       {
         id: '5afa4c96fca09cb386951b736ee31e56'
       }
-    ]
+    ],
+    './plugin/webpack'
   ]
 };
 

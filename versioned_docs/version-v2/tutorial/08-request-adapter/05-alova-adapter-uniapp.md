@@ -48,7 +48,7 @@ const alovaInst = createAlova({
 
 ### Request
 
-The usage method of the request is exactly the same as that used in the web environment. Already fully compatible with `uni.request`, you can specify [all configuration items] supported by `uni.request` in _config_ of method instance creation (https://uniapp.dcloud.net.cn/api/request/ request.html)
+The usage method of the request is exactly the same as that used in the web environment. Already fully compatible with `uni.request`, you can specify [all configuration items](https://uniapp.dcloud.net.cn/api/request/request.html) supported by `uni.request` in _config_ of method instance creation.
 
 ```html
 <tempate>

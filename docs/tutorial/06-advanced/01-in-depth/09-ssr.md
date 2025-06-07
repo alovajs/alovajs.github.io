@@ -7,22 +7,46 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-To be compatible with server-side rendering of UI frameworks such as [Nuxt3.x](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/), alova has made adaptations for them. Although frameworks like `Nuxt3.x` and `Sveltekit` offer built-in request capabilities, if you choose to use alova, you can manage requests on both the server and client sides with alova instead of using different request solutions on the server and client sides respectively.
+To be compatible with server-side rendering of UI frameworks such as [Nuxt3](https://nuxt.com/) / [Nextjs](https://nextjs.org/) / [sveltekit](https://kit.svelte.dev/), alova has made adaptations for them. Although frameworks like `Nuxt3` and `Sveltekit` offer built-in request capabilities, if you choose to use alova, you can manage requests on both the server and client sides with alova instead of using different request solutions on the server and client sides respectively.
 
-Usage in SSR Environment
+## CSR mode in SSR
 
-When the code runs on the server side, the `useRequest` and `useWatcher` and other use hooks in the component will not send requests, even if `immediate` is set to `true`. Instead, requests will be sent when the code runs in the browser. You can use all the features of alova as usual. This is a unified behavior in all SSR frameworks.
+When the code runs on the server side, the `useRequest` and `useWatcher` and other use hooks in the component will not send requests, even if `immediate` is set to `true`. Instead, requests will be sent when the code runs in the browser. You can use all the features of alova as usual. This is a same behavior in all SSR frameworks.
 
 However, there are differences when using each SSR framework. Now, we will demonstrate how to use them one by one.
 
-### Nuxt3.x
+## SSR Frameworks
 
-In Nuxt 3.x, you can use hooks like `useRequest` and `useWatcher` just as you would `useFetch`. It initiates requests on the server side and does not perform an initial request on the client side, achieving the same effect as `useFetch`.
+### Nuxt3
+
+In Nuxt3, using `useFetch` can synchronize data between the server and the browser. By using the states hook adapter for nuxt, a better experience can be achieved. When using almost all hooks such as `useRequest` and `useWatcher`, not only can data be synchronized on both ends to avoid duplicate requests on the client side, but also data such as `Date`, `Error`, and custom types can be synchronized. Let's take a look at how to use it.
+
+#### Setup the Nuxt adapter
+
+```javascript
+import { createAlova } from 'alova';
+import NuxtHook from 'alova/nuxt';
+
+
+export const alovaInstance = createAlova({
+// ...
+  statesHook: NuxtHook({
+    nuxtApp: useNuxtApp // useNuxtApp must be specified })
+  });
+});
+```
+
+#### Fetch data on the server side
+
+When using almost all hooks such as `useRequest` and `useWatcher`, data is fetched on the server side through `await`. it has the following features:
+
+1. The server-side data will be synchronized to the states in browser, keeping the states on both ends in sync, and all states are reactive.
+2. By default, it supports the serialization of `Date`, `Error`, and `RegExp` object of data, and also supports the serialization of custom data.
+3. No repeated initialization requests in the browser.
 
 ```html
 <template>
-  <div v-if="loading">Loading...</div>
-  <div v-else-if="error">{{ error.message }}</div>
+  <div v-if="error">{{ error.message }}</div>
   <div v-else>{{ data }}</div>
 </template>
 
@@ -35,7 +59,7 @@ In Nuxt 3.x, you can use hooks like `useRequest` and `useWatcher` just as you wo
 
 
   // Note that `useRequest` uses `await`, otherwise the request will not be sent on the server side.
-  const { data, error, loading } = await useRequest(todoList);
+  const { data, error } = await useRequest(todoList);
 </script>
 ```
 
@@ -43,7 +67,7 @@ You can also use the combination of `useAsyncData + alova.Method` to complete th
 
 ```html
 <script setup>
-  // Return a promise in useAsyncData.
+  // Return a promise in useAsyncData
   const { data, pending, refresh } = await useAsyncData(async () => {
     const response = await alovaInstance.Get('/todo/list', {
       headers: {
@@ -53,6 +77,33 @@ You can also use the combination of `useAsyncData + alova.Method` to complete th
     return response;
   });
 </script>
+```
+
+#### Custom Serializer
+
+If you need to serialize custom data and synchronize them to client, you can specify it in the `serializers` of the Nuxt adapter, for example, a custom serializer for a moment instance.
+
+```javascript
+const momentSerializer = {
+  // forward is called during serialization
+  // It is necessary to determine whether it is a moment instance; if not, the target value is returned as undefined, indicating that it should not be processed.
+  forward: data => (moment.isMoment(data) ? data.valueOf() : undefined),
+
+  // The `backward` method is called during deserialization, and `data` is the value returned in `forward`.
+  backward: timestamp => moment(timestamp)
+};
+
+createAlova({
+  // ...
+  statesHook: NuxtHook({
+    nuxtApp: useNuxtApp,
+    // highlight-start
+    serializers: {
+      moment: momentSerializer
+    }
+    // highlight-end
+  })
+});
 ```
 
 ### Nextjs
@@ -128,135 +179,3 @@ export async function load({ params }) {
   };
 }
 ```
-
-## Notes
-
-The cache on the client side and the server side may be inconsistent.
-
-If you use the caching feature of alova, it's worth noting that the cache on the client side and the server side is not shared. This means that if you directly use **use hooks** to fetch data when initializing the page, you may encounter issues with inconsistent rendering between the client and the server, although few people do this.
-
-Please look at the following code snippet.
-
-<Tabs groupId="framework">
-<TabItem label="nuxt" value="1">
-
-```html
-<template>
-  <div v-if="loading">loading</div>
-  <div>{{ data }}</div>
-</template>
-
-<script setup>
-  const { loading, data } = useRequest(alovaGetter);
-</script>
-```
-
-</TabItem>
-<TabItem label="next" value="2">
-
-```jsx
-function App(props) {
-  const { loading, data } = useRequest(alovaGetter);
-  return (
-    <>
-      {loading ? <div>loading</div> : null}
-      <div>{data}</div>
-    </>
-  );
-}
-```
-
-</TabItem>
-<TabItem label="sveltekit" value="3">
-
-```html
-<script>
-  export let data;
-  const { loading, data } = useRequest(alovaGetter);
-</script>
-
-{#if $loading}
-<div>loading</div>
-{/if}
-<div>{{ data }}</div>
-```
-
-</TabItem>
-</Tabs>
-
-The following code assumes that the `alovaGetter` request exists in the server cache but not in the client cache.
-
-At this point, when the HTML is generated on the server side, due to cache hit, `loading` is `false` and `<div>loading</div>` is not displayed. However, during client-side initialization, since the cache is not hit, `loading` is `true`, causing `<div>loading</div>` to be displayed. At this time, the SSR framework will prompt that the rendering on the two ends is inconsistent.
-
-**Solution**
-
-1. Try to place the page data initialization work in the fetching function rather than in the component.
-2. If you must do so, you can avoid using the same interface on the client and server, or disable the caching of the problematic interface.
-3. If caching is also needed, you can clear the server-side cache in the server-side data initialization function. The sample code is as follows:
-
-<Tabs groupId="framework">
-<TabItem label="nuxt" value="1">
-
-```html
-<template>
-  <div v-if="loading">loading</div>
-  <div>{{ data }}</div>
-</template>
-
-<script setup>
-  import { invalidateCache } from 'alova';
-  const { loading, data } = useRequest(alovaGetter);
-
-  // Clear the cache on the server side.
-  useAsyncData(
-    () => {
-      invalidateCache(alovaGetter);
-    },
-    {
-      server: true
-    }
-  );
-</script>
-```
-
-</TabItem>
-<TabItem label="next" value="2">
-
-```jsx
-import { invalidateCache } from 'alova';
-
-function App(props) {
-  const { loading, data } = useRequest(alovaGetter);
-  return (
-    <>
-      {loading ? <div>loading</div> : null}
-      <div>{data}</div>
-    </>
-  );
-}
-
-export const getServerSideProps = async () => {
-  // Clear the cache on the server side.
-  invalidateCache(alovaGetter);
-  return {
-    props: {}
-  };
-};
-```
-
-</TabItem>
-<TabItem label="sveltekit" value="3">
-
-```javascript title=+page.server.js
-import { invalidateCache } from 'alova';
-
-/** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
-  // Clear the cache on the server side.
-  invalidateCache(alovaGetter);
-  return {};
-}
-```
-
-</TabItem>
-</Tabs>

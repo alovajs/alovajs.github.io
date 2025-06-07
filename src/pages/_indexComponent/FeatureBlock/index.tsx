@@ -35,11 +35,12 @@ export interface FeatureBlockProps {
 
 export default function FeatureBlock(props: FeatureBlockProps) {
   const tagClasses = {
-    client: 'bg-green-400/30 dark:bg-green-700/30 text-green-500 text-xs',
-    server: 'bg-orange-400/30 text-orange-500 text-xs'
+    client: 'bg-green-400/10 dark:bg-green-700/30 border-green-500 text-green-500',
+    server: 'bg-orange-400/15 text-orange-500 border-orange-500'
   };
   return (
-    <div className={`ctw-card flex flex-col rounded-2xl md:p-8 p-4 ${props.className ?? ''}`}>
+    <div
+      className={`ctw-card flex flex-col border border-solid border-primary-100 dark:border-primary-900 rounded-2xl md:p-8 p-4 ${props.className ?? ''}`}>
       <div className="flex flex-wrap items-center text-sm gap-y-[10px]">
         <div className="flex-1 flex">
           <span className="flex items-center px-3 font-bold bg-primary-100/20 border dark:bg-white/5 border-primary-100 dark:border-primary-900 rounded-full text-nowrap text-xs md:text-sm">
@@ -48,7 +49,7 @@ export default function FeatureBlock(props: FeatureBlockProps) {
           {props.type ? (
             <span
               className={clsx(
-                'ml-2 px-2 py-1 rounded-md',
+                'ml-2 px-1 py-1 leading-none rounded-md text-xs border-solid border',
                 tagClasses[props.type?.toLowerCase()]
               )}>
               {props.type}

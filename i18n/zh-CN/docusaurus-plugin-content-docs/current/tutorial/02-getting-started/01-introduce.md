@@ -14,21 +14,22 @@ import TabItem from '@theme/TabItem';
 
 ## alova 是什么？
 
-alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个流程简化的下一代请求工具，它可以将你的 API 集成工作流从 7 个步骤极致地简化为 1 个步骤，你只需要选择 API 即可使用。
-
-![](/img/overview_flow_cn.png)
-
-有别于`@tanstack/react-request`、`swrjs`、`ahooks`的`useRequest`等库，`alova`通过将`fetch/XMLHttpRequest/axios`封装成请求适配器，并提供不同的复杂请求场景下的请求策略，来达到更简单和统一的开发体验。
+alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个请求工具集，从而极致高效地集成你的APIs，它完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离。
 
 你可以在 [为什么创造 alova](/about/faqs) 中了解背景故事，我们也提供了一份详细的 [对比与其他请求库](/about/comparison) 了解 alova 的差异。
 
 ## 特性
 
-- 简单易用，并且学习成本更低。
-- 更先进的 openAPI 解决方案，直接扔掉中间的API文档吧。
-- 搭配客户端技术和请求库，`react/vue/svelte/solid/next/nuxt/sveltkit/solid-start/uniapp/taro/...` + `fetch/XMLHttpRequest/axios/...`
-- 搭配服务端技术和请求库，`nodejs/deno/bun/...` + `fetch/XMLHttpRequest/axios/...`
-- 15+ 高性能的请求策略应对复杂的请求场景，帮助你快速开发性能更好的应用。
+- 简单易用，[观看视频](/video-tutorial)5分钟上手。
+- 完美兼容你最喜欢的技术栈。
+- 20+ 高性能的业务模块，帮助你快速开发性能更好的应用。
+- 更先进的 openAPI 解决方案，在代码中和API信息高效交互。
+- 请求共享和响应缓存，提升应用性能。
+- 类型安全。
+
+alova兼容以下技术栈，灰色部分将在未来逐渐支持。
+
+<SupportList showStatus></SupportList>
 
 ## 在线体验
 
@@ -416,35 +417,10 @@ flowchart LR
 
 > 如果你想要构建 CS 交互层，请参考[构建 Client-Server 交互层](/tutorial/project/best-practice/csil)
 
-## 在任何 JS 环境下运行
-
-alova 的灵活性非常高，你可以在以下任意的 JS 环境下，配合不同的请求工具使用（灰色部分将在未来逐渐支持）。
-
-<SupportList showStatus></SupportList>
-
 ## 迁移指南
 
 - [从 v2 迁移到 v3](/tutorial/project/migration/v2-to-v3)
 - [从 axios 低成本迁移到 alova 的指南](/tutorial/project/migration/from-axios)
-
-## 项目推荐
-
-<NavCard list={[
-{
-Image: <img src="/img/project/naive-ui-admin.png"/>,
-title: 'Naive Admin',
-desc: '开箱即用的中后台框架/简化您的中后台开发',
-link: 'https://www.naiveadmin.com/',
-target: '__blank'
-},
-{
-Image: <img src="https://codercup.github.io/unibest-docs/logo.svg"/>,
-title: 'Uniapp 脚手架 - unibest',
-desc: '集成了最新前端技术栈的跨端解决方案',
-link: 'https://codercup.github.io/unibest-docs/',
-target: '__blank'
-}
-]}></NavCard>
 
 ## 加入 alova 社区
 

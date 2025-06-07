@@ -57,7 +57,7 @@ export default function Support({ showStatus = false }: Props): JSX.Element {
       Image: isDarkTheme
         ? require('@site/static/img/nuxt-dark.svg').default
         : require('@site/static/img/nuxt.svg').default,
-      link: '/tutorial/advanced/in-depth/ssr#nuxt3x'
+      link: '/tutorial/advanced/in-depth/ssr#nuxt3'
     },
     {
       id: 'nodejs',
