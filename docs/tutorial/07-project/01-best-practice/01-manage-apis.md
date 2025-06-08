@@ -133,7 +133,7 @@ In the **user component**, the method function can be directly imported for use,
 </template>
 <script setup>
   import { getUserInfo, editUserInfo } from '@/api/methods/user';
-  import { useRequest, invalidateCache } from 'alova';
+  import { useRequest, invalidateCache } from 'alova/client';
 
   const userId = 1; // use 1 as userId
   const { loading, error, data } = useRequest(getUserInfo(userId));

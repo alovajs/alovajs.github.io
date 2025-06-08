@@ -56,12 +56,12 @@ alova 共提供了 GET、POST、PUT、DELETE、HEAD、OPTIONS、PATCH 7 种请�
 - `data`为请求体数据；
 - `config`为请求配置对象，其中包含了请求头、params 参数等、请求行为参数等配置；
 
-你也可以自定义创建 method 实例，这在动态指定请求类型时很有用。
+你也可以通过`alova.Request`自定义创建 method 实例，这在动态指定请求类型时很有用。
 
 ```javascript
-import { Method } from 'alova';
-
-const method = new Method('GET', alovaInstance, '/api/users', {
+const method = alovaInstance.Request({
+  url: '/api/users',
+  method: 'GET', // 默认为GET
   params: {
     ID: 1
   }
