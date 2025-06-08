@@ -56,12 +56,12 @@ Parameter description:
 - `data` is the request body data;
 - `config` is the request configuration object, which includes the request header, params parameters, request behavior parameters and other configurations;
 
-You can also create your own custom method instance, which is useful when dynamically specifying the request type.
+You can also create your own custom method instance by `alova.Request`, which is useful when dynamically specifying the request type.
 
 ```javascript
-import { Method } from 'alova';
-
-const method = new Method('GET', alovaInstance, '/api/users', {
+const method = alovaInstance.Request({
+  url: '/api/users',
+  method: 'GET', // default is GET
   params: {
     ID: 1
   }

@@ -133,7 +133,7 @@ export const removeUser = id => userAlova.Delete('/user/' + id);
 </template>
 <script setup>
   import { getUserInfo, editUserInfo } from '@/api/methods/user';
-  import { useRequest, invalidateCache } from 'alova';
+  import { useRequest, invalidateCache } from 'alova/client';
 
   const userId = 1; // 使用1作为userId
   const { loading, error, data } = useRequest(getUserInfo(userId));

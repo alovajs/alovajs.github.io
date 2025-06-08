@@ -130,6 +130,53 @@ class MethodSnapshotContainer<AG extends AlovaGenerics> {
 }
 ```
 
+## alova.Request()
+
+创建 method 实例。
+
+- **类型**
+
+```ts
+interface Alova {
+  Request(config?: AlovaMethodCreateConfig): Method;
+}
+```
+
+- **参数**
+
+| 参数名       | 类型           | 说明                                                                                                                                                                                                                                                                                         |
+| ------------ | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| url          | string         | 请求地址，相对于 baseURL                                                                                                                                                                                                                                                                     |
+| method       | string         | 请求方法，默认为 GET                                                                                                                                                                                                                                                                         |
+| headers      | object         | 请求头，[查看详情](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                   |
+| params       | object         | 请求参数，[查看详情](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                                 |
+| name         | string         | method 对象名称，在 [updateState](/tutorial/client/in-depth/update-across-components)、[invalidateCache](/tutorial/cache/manually-invalidate)、[setCache](/tutorial/cache/set-and-query)、以及 [fetch 函数](/tutorial/client/strategy/use-fetcher)中可以通过名称或通配符获取对应 method 实例 |
+| timeout      | number         | 请求超时时间，[查看详情](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                             |
+| cacheFor     | cacheForConfig | 响应缓存时间，[查看详情](/tutorial/cache/mode)                                                                                                                                                                                                                                               |
+| hitSource    | string         | 打击源方法实例，当源方法实例请求成功时，当前方法实例的缓存将被失效，[查看详情](/tutorial/cache/auto-invalidate)                                                                                                                                                                              |
+| transform    | function       | 转换响应数据，[查看详情](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                             |
+| shareRequest | boolean        | 请求级共享请求开关，[查看详情](/tutorial/getting-started/basic/method)                                                                                                                                                                                                                       |
+| meta         | any            | method 元数据， [查看详情](/tutorial/getting-started/basic/method-metadata)                                                                                                                                                                                                                  |
+
+> 除了可配置上面的参数外，还支持请求适配器支持的其他参数。
+
+- **返回**
+
+method 实例
+
+- **示例**
+
+```ts
+const getUsers = alovaInstance.Request({
+  url: '/users',
+  method: 'GET',
+  params: {
+    id: 1
+  }
+  // ...
+});
+```
+
 ## alova.Get()
 
 创建 GET 请求的 method 实例。
