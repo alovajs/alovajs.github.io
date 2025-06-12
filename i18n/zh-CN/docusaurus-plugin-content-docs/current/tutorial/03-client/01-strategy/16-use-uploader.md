@@ -347,9 +347,7 @@ const file = {
 };
 
 // 调用 appendFiles，不传 start 则默认追加到列表末尾
-const appendCount = await appendFiles({
-  files: file
-});
+const appendCount = await appendFiles(file);
 ```
 
 #### 批量追加多种格式的文件数据
@@ -389,27 +387,8 @@ const canvasFile = {
   mimeType: 'image/png' // 默认为blob.type
 };
 
-// 批量追加，设置 multiple: true 允许超过 1 个文件
-const appendCount = await appendFiles({
-  files: [base64File, blobFile, canvasFile]
-});
-```
-
-#### 选择文件
-
-当不传入文件数据时，默认将打开上传对话框选择文件。
-
-```javascript
-// 通过 appendFiles 追加文件
-const appendCount = await appendFiles({
-  // 上传文件类型，此参数将设置到<input type="file"> 的 accept 属性
-  // 具体查看[https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input/file#accept]
-  accept: 'png, jpg, jpeg',
-
-  // 是否允许选择多个文件，此参数将设置到<input type="file"> 的 multiple 属性
-  // 具体查看[https://developer.mozilla.org/docs/Web/HTML/Element/input/file#multiple]
-  multiple: true
-});
+// 批量追加文件
+const appendCount = await appendFiles([base64File, blobFile, canvasFile]);
 ```
 
 #### 插入到指定位置
@@ -423,9 +402,28 @@ const insertFile = {
 };
 
 // 插入文件到位置2（索引从 0 开始）
-const appendCount = await appendFiles({
-  files: insertFile,
+const appendCount = await appendFiles(insertFile, {
   start: 2
+});
+```
+
+#### 选择文件
+
+当第一个参数不传入文件数据时，默认将打开上传对话框选择文件。
+
+```javascript
+// 通过 appendFiles 追加文件
+const appendCount = await appendFiles({
+  // 上传文件类型，此参数将设置到<input type="file"> 的 accept 属性
+  // 具体查看[https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input/file#accept]
+  accept: 'png, jpg, jpeg',
+
+  // 是否允许选择多个文件，此参数将设置到<input type="file"> 的 multiple 属性
+  // 具体查看[https://developer.mozilla.org/docs/Web/HTML/Element/input/file#multiple]
+  multiple: true,
+
+  // 插入到列表开头
+  start: 0
 });
 ```
 

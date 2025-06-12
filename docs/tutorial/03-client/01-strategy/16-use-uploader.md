@@ -356,9 +356,7 @@ const file = {
 };
 
 // Call appendFiles, if start is not passed, it will be appended to the end of the list by default
-const appendCount = await appendFiles({
-  files: file
-});
+const appendCount = await appendFiles(file);
 ```
 
 #### Batch append file data in multiple formats
@@ -398,9 +396,23 @@ const canvasFile = {
   mimeType: 'image/png' // defaults to blob.type
 };
 
-// Batch append, set multiple: true to allow more than 1 file
-const appendCount = await appendFiles({
-  files: [base64File, blobFile, canvasFile]
+// Batch append files
+const appendCount = await appendFiles([base64File, blobFile, canvasFile]);
+```
+
+#### Insert to the specified position
+
+Insert the newly uploaded file into the second position of the list.
+
+```javascript
+// Insert a CSV file
+const insertFile = {
+  file: new File(['id,name\n1,John'], 'data.csv', { type: 'text/csv' })
+};
+
+// Insert the file to position 2 (index starts at 0)
+const appendCount = await appendFiles(insertFile, {
+  start: 2
 });
 ```
 
@@ -417,24 +429,10 @@ const appendCount = await appendFiles({
 
   // Whether to allow multiple files to be selected, this parameter will be set to the multiple attribute of <input type="file">
   // See [https://developer.mozilla.org/docs/Web/HTML/Element/input/file#multiple]
-  multiple: true
-});
-```
+  multiple: true,
 
-#### Insert to the specified position
-
-Insert the newly uploaded file into the second position of the list.
-
-```javascript
-// Insert a CSV file
-const insertFile = {
-  file: new File(['id,name\n1,John'], 'data.csv', { type: 'text/csv' })
-};
-
-// Insert the file to position 2 (index starts at 0)
-const appendCount = await appendFiles({
-  files: insertFile,
-  start: 2
+  // Insert to the start of the list
+  start: 0
 });
 ```
 
