@@ -26,7 +26,10 @@ In [3.3.0+], this strategy is implemented using fetch, which means you can speci
 ```javascript
 import { useSSE } from 'alova/client';
 
-const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
+const postMethodHandler = (value: string) => alova.Post('/api/source', null, {
+  headers: { 'Content-Type': 'application/json' },
+  param: { key: value }
+});
 const {
   // Received data, each reception will modify data
   data,
@@ -54,14 +57,10 @@ const {
 
   // Close connection
   close
-} = useSSE(method, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  // ...other parameters of fetch
-
-  // Compatible with versions before 3.3.0, when this parameter is set to true, the credentials of fetch will be set to 'include'
-  withCredentials: true,
+} = useSSE(postMethodHandler, {
+  credentials: 'include',
   initialData: 'initial-data' // Data in data at the beginning
+  // ...other parameters of fetch
 });
 ```
 
@@ -70,17 +69,21 @@ const {
 By default, no request will be sent. You need to call `send` to send the request, or you can set `immediate = true` to send the request immediately.
 
 ```javascript
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
-  // highlight-start
-  immediate: true
-  // highlight-end
-});
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(
+  postMethodHandler,
+  {
+    // highlight-start
+    immediate: true
+    // highlight-end
+  }
+);
 ```
 
 `useSSE` can only connect to one source at present. That is, when trying to connect to multiple targets, the previous connection will always be disconnected.
 
 ```javascript
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method);
+const { data, eventSource, readyState, onMessage, onError, on, send, close } =
+  useSSE(postMethodHandler);
 
 send('value1');
 // highlight-start
@@ -118,7 +121,7 @@ When data is received, it will automatically be assigned to the state `data`. Yo
 <script setup>
   import { ref } from 'vue';
 
-  const { data, readyState, onMessage, close, send } = useSSE(method);
+  const { data, readyState, onMessage, close, send } = useSSE(postMethodHandler);
   const dataList = ref([]);
   onMessage(({ data }) => {
     dataList.value.push(data);
@@ -133,7 +136,7 @@ When data is received, it will automatically be assigned to the state `data`. Yo
 import { useEffect, useState } from 'react';
 const App = () => {
   const [dataList, setDataList] = useState([]);
-  const { data, readyState, onMessage, onError, close, send } = useSSE(method);
+  const { data, readyState, onMessage, onError, close, send } = useSSE(postMethodHandler);
   onMessage(({ data }) => {
     setDataList(prevList => [...prevList, data]);
   });
@@ -161,7 +164,7 @@ const App = () => {
 ```html
 <script>
   let dataList = [];
-  const { data, readyState, onMessage, close, send } = useSSE(method);
+  const { data, readyState, onMessage, close, send } = useSSE(postMethodHandler);
 
   onMessage(({ data: newData }) => {
     dataList.push(newData);
@@ -192,7 +195,7 @@ import { createSignal } from 'solid-js';
 
 const App = () => {
   const [dataList, setDataList] = createSignal([]);
-  const { data, readyState, onMessage, onError, close, send } = useSSE(method);
+  const { data, readyState, onMessage, onError, close, send } = useSSE(postMethodHandler);
 
   onMessage(({ data }) => {
     setDataList(prevList => [...prevList, data]);
@@ -221,7 +224,7 @@ const App = () => {
 `useSSE` provides a series of binding event methods, and will return the unbinding function when binding.
 
 ```javascript
-const { onMessage, onError, close } = useSSE(method);
+const { onMessage, onError, close } = useSSE(postMethodHandler);
 
 // Corresponding to the message event of eventsource
 const offMessage = onMessage(event => {
@@ -243,7 +246,7 @@ offError();
 In addition, you can also listen to custom EventSource events, which will call the `addEventListener` binding of EventSource.
 
 ```javascript
-const { on } = useSSE(method);
+const { on } = useSSE(postMethodHandler);
 
 // The following code will listen for events with the field `event: update`
 const offUpdate = on('update', event => {
@@ -257,7 +260,7 @@ const offUpdate = on('update', event => {
 By default, response data is captured by the [global response interceptor](/tutorial/getting-started/basic/global-interceptor). If this is not the behavior you expect, you can turn it off manually.
 
 ```javascript
-const { data, readyState, onMessage, on } = useSSE(method, {
+const { data, readyState, onMessage, on } = useSSE(postMethodHandler, {
   // highlight-start
   interceptByGlobalResponded: false // Now dataWill not be intercepted by response
   // highlight-end

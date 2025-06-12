@@ -25,7 +25,10 @@ use hook
 ```javascript
 import { useSSE } from 'alova/client';
 
-const method = (value: string) => alova.Get('/api/source', { param: { key: value } });
+const postMethodHandler = (value: string) => alova.Post('/api/source', null, {
+  headers: { 'Content-Type': 'application/json' },
+  param: { key: value }
+});
 const {
   // 接收的数据，每次接收将会修改data
   data,
@@ -56,14 +59,10 @@ const {
 
   // 原始的EventSource实例
   eventSource
-} = useSSE(method, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  // ...fetch的其他参数
-
-  // 兼容3.3.0之前的版本，此参数设置为true时将会设置fetch的credentials为'include'
-  withCredentials: true,
+} = useSSE(postMethodHandler, {
+  credentials: 'include',
   initialData: 'initial-data' // 初始时 data 中的数据
+  // ...fetch的其他参数
 });
 ```
 
@@ -72,17 +71,21 @@ const {
 默认情况下不会发送请求，你需要调用`send`来发送请求，也可以设置`immediate = true`立即发送请求。
 
 ```javascript
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method, {
-  // highlight-start
-  immediate: true
-  // highlight-end
-});
+const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(
+  postMethodHandler,
+  {
+    // highlight-start
+    immediate: true
+    // highlight-end
+  }
+);
 ```
 
 `useSSE` 目前只能连接到一个源。也就是说，当试图连接多个目标时，上一个连接总会被断开。
 
 ```javascript
-const { data, eventSource, readyState, onMessage, onError, on, send, close } = useSSE(method);
+const { data, eventSource, readyState, onMessage, onError, on, send, close } =
+  useSSE(postMethodHandler);
 
 send('value1');
 // highlight-start
@@ -120,7 +123,7 @@ send('value3'); // 这也会断开上一个连接
 <script setup>
   import { ref } from 'vue';
 
-  const { data, readyState, onMessage, close, send } = useSSE(method);
+  const { data, readyState, onMessage, close, send } = useSSE(postMethodHandler);
   const dataList = ref([]);
   onMessage(({ data }) => {
     dataList.value.push(data);
@@ -136,7 +139,7 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
   const [dataList, setDataList] = useState([]);
-  const { data, readyState, onMessage, onError, close, send } = useSSE(method);
+  const { data, readyState, onMessage, onError, close, send } = useSSE(postMethodHandler);
 
   onMessage(({ data }) => {
     setDataList(prevList => [...prevList, data]);
@@ -163,7 +166,7 @@ const App = () => {
 ```html
 <script>
   let dataList = [];
-  const { data, readyState, onMessage, close, send } = useSSE(method);
+  const { data, readyState, onMessage, close, send } = useSSE(postMethodHandler);
 
   onMessage(({ data: newData }) => {
     dataList.push(newData);
@@ -192,7 +195,7 @@ import { createSignal } from 'solid-js';
 
 const App = () => {
   const [dataList, setDataList] = createSignal([]);
-  const { data, readyState, onMessage, onError, close, send } = useSSE(method);
+  const { data, readyState, onMessage, onError, close, send } = useSSE(postMethodHandler);
 
   onMessage(({ data }) => {
     setDataList(prevList => [...prevList, data]);
@@ -219,7 +222,7 @@ const App = () => {
 `useSSE`提供了一系列的绑定事件方法，绑定时将返回解绑函数。
 
 ```javascript
-const { onMessage, onError, close } = useSSE(method);
+const { onMessage, onError, close } = useSSE(postMethodHandler);
 
 // 对应 eventsource 的 message 事件
 const offMessage = onMessage(event => {
@@ -241,7 +244,7 @@ offError();
 除此以外，你还可以监听自定义的 EventSource 事件，它将调用 EventSource 的`addEventListener`绑定。
 
 ```javascript
-const { on } = useSSE(method);
+const { on } = useSSE(postMethodHandler);
 
 // 以下代码将监听具有字段 `event: update` 的事件
 const offUpdate = on('update', event => {
@@ -255,7 +258,7 @@ const offUpdate = on('update', event => {
 默认情况下，响应数据受到[全局响应拦截器的捕获](/tutorial/getting-started/basic/global-interceptor)。如果这不是你预期的行为，可以手动关闭。
 
 ```javascript
-const { data, readyState, onMessage, on } = useSSE(method, {
+const { data, readyState, onMessage, on } = useSSE(postMethodHandler, {
   // highlight-start
   interceptByGlobalResponded: false // 现在数据不会被响应拦截
   // highlight-end
