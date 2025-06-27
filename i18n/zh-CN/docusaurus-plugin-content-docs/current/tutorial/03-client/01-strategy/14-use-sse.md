@@ -55,10 +55,7 @@ const {
   send,
 
   // 关闭连接
-  close,
-
-  // 原始的EventSource实例
-  eventSource
+  close
 } = useSSE(postMethodHandler, {
   credentials: 'include',
   initialData: 'initial-data' // 初始时 data 中的数据
