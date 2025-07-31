@@ -113,7 +113,7 @@ In an asynchronous function, you can also use `await alovaInstance.Get` to wait 
 Submit data through `alovaInstance.Post`. This is also very simple.
 
 ```js
-const response = alovaInstance.Post('https://alovajs.dev/posts', {
+const response = await alovaInstance.Post('https://alovajs.dev/posts', {
   title: 'foo',
   body: 'bar',
   userId: 1
