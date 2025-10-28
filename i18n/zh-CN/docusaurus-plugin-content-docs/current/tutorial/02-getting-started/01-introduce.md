@@ -390,26 +390,26 @@ const orderRes = await limit(alova.Get('/api/order'));
 
 ### 更先进的 openAPI 解决方案
 
-1. alova 的开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型和详尽的 API 文档，即使在 JavaScript 项目中也能享受到完整的 API 类型提示。
+alova 的openAPI开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型和详尽的 API 文档，你可以享受完整的类型提示外，还能在vscode等编辑器中直接查看 API 的文档，即使是 JavaScript 项目也兼容。
 
 ```mermaid
 flowchart LR
-R1[openAPI文件] --> S1[Alova扩展] --> W1[API函数]
-S1[Alova扩展] --> W2[完整的API类型]
-S1[Alova扩展] --> W3[完整的API文档]
+R1[openAPI文件] --> S1[alova自动生成] --> W1[API函数]
+S1[alova自动生成] --> W2[完整的API类型]
+S1[alova自动生成] --> W3[完整的API文档]
 ```
 
-2. 在过去，当后端开发者交付 API 给你后，你需要先打开中间的 API 文档查询并复制关键信息到你的项目里，你需要不断地在中间的 API 文档与编辑器切换，但现在，alova 的开发工具可以为你消除中间的 API 文档，像虫洞一样拉近前后端的协作距离。通过它你可以在编辑器中快速查找所需的 API 并展示这个 API 的完整文档，参照 API 参数表快速完成参数传递，让你感受不一样的 API 集成体验。
+这将打破过去的开发流程，在过去，当后端开发者交付 API 给你后，你需要先打开中间的 API 文档查询并复制关键信息到你的项目里，你需要不断地在中间的 API 文档与编辑器切换，但现在，alova 的开发工具可以为你消除中间的 API 文档，通过它你可以在编辑器中快速查找所需的 API 并展示这个 API 的完整文档，参照 API 参数表快速完成参数传递，像虫洞一样拉近前后端的协作距离。
 
 ```mermaid
 flowchart LR
-  A[收到交付的API] --> B[<s>查看中间的API文档</s>] --> C[编写API调用代码]
+  A[服务端部署API] --> B[<s>查看中间的API文档</s>] --> C[编写API调用代码]
 
   class B redNode;
   classDef redNode fill:transparent,stroke:#ee440050,color:#ee4400,stroke-width:2px;
 ```
 
-> 关于 alova 开发工具的详细介绍，请参考 [集成编辑器扩展](/tutorial/getting-started/extension-integration)。
+> 关于 alova 开发工具的详细介绍，请参考 [集成 openAPI](/tutorial/getting-started/extension-integration)。
 
 ## 构建 Client-Server 交互层
 

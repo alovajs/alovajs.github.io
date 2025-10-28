@@ -39,6 +39,10 @@
     "message": "框架支持",
     "description": "Navbar item with label UI Frameworks"
   },
+  "item.label.Devtool plugins": {
+    "message": "开发工具插件",
+    "description": "Navbar item with label Devtool plugins"
+  },
   "item.label.Error Reference": {
     "message": "错误码对照",
     "description": "Navbar item with label Error Reference"

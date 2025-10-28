@@ -87,6 +87,10 @@
     "message": "UI框架",
     "description": "The label for category Framework in sidebar resource"
   },
+  "sidebar.resource.category.Devtool plugins": {
+    "message": "开发工具插件",
+    "description": "The label for category devtool plugins in sidebar resource"
+  },
   "sidebar.tutorial.category.Best practice": {
     "message": "最佳实践",
     "description": "The label for category best practice in sidebar tutorial"
