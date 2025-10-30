@@ -25,17 +25,9 @@ interface ApiPlugin {
   config?: (config: GeneratorConfig) => MaybePromise<GeneratorConfig | undefined | null | void>;
 
   /**
-   * 在解析 OpenAPI 文件之前操作输入配置。
-   * 返回 undefined, null 不会替换任何内容。
+   * 在解析 OpenAPI 文件之前调用。
    */
-  beforeOpenapiParse?: (
-    inputConfig: Pick<GeneratorConfig, 'input' | 'platform' | 'plugins' | 'fetchOptions'>
-  ) => MaybePromise<
-    | Pick<GeneratorConfig, 'input' | 'platform' | 'plugins' | 'fetchOptions'>
-    | undefined
-    | null
-    | void
-  >;
+  beforeOpenapiParse?: (config: GeneratorConfig) =>  void;
 
   /**
    * 在解析 OpenAPI 文件之后操作文档。
@@ -74,8 +66,8 @@ interface ApiPlugin {
 
 2. **`beforeOpenapiParse`**
 
-   - **作用**：在解析 OpenAPI 文件之前操作输入配置。
-   - **使用场景**：修改输入配置，例如调整请求参数或平台设置。
+   - **作用**：在解析 OpenAPI 文件之前调用。
+   - **使用场景**：获取完整的config配置，进行一些自定义操作。
 
 3. **`afterOpenapiParse`**
 

@@ -6,8 +6,8 @@ title: 重命名
 
 本插件用于对 API 接口的 URL 和参数进行重命名转换，支持多种命名风格和自定义转换规则。主要功能包括：
 
-- 支持 URL/请求参数/路径参数/请求体/响应数据的重命名
-- 内置驼峰式（camelCase）和下划线式（underscore）命名转换
+- 支持 URL/请求参数/路径参数/请求体/响应数据/引用类型名的重命名
+- 内置小驼峰式（camelCase）、大驼峰式（pascalCase）、中划线（kebabCase）和下划线式（snakeCase）命名转换
 - 支持自定义匹配规则和转换函数
 - 支持多规则配置
 
@@ -41,8 +41,9 @@ interface Config {
    * pathParams: 路径参数
    * data: 请求体数据
    * response: 响应数据
+   * refName：引用类型名
    */
-  scope?: 'url' | 'params' | 'pathParams' | 'data' | 'response';
+  scope?: 'url' | 'params' | 'pathParams' | 'data' | 'response' | 'refName';
 
   /**
    * 匹配规则，不指定则转换全部
@@ -54,10 +55,12 @@ interface Config {
 
   /**
    * 命名风格
-   * camelCase: 驼峰命名(userName)
-   * underscore: 下划线命名(user_name)
+   * camelCase: 小驼峰命名(userName)
+   * kebabCase: 中划线命令(user-name)
+   * snakecore: 下划线命名(user_name)
+   * pascalCase: 大驼峰命名(UserName)
    */
-  style?: 'camelCase' | 'underscore';
+  style?: 'camelCase' | 'kebabCase' | 'snakeCase' | 'pascalCase';
 
   /**
    * 自定义转换函数
@@ -68,6 +71,9 @@ interface Config {
 
 function rename(config: Config | Config[]): ApiPlugin;
 ```
+> **注意**
+> 1.`refName`和`kebabCase`不能同时配置因为类型名不能设置为中划线的形式
+> 2.`params`、`pathParams`、`data`和`response`只转换第一层的名称
 
 ## 多规则配置
 

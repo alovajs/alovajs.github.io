@@ -241,6 +241,18 @@ payloadModifier([
 ### 支持 `oneOf`、`anyOf`、`allOf`
 
 ```javascript
+// 使用数组定义多选一参数
+payloadModifier([
+  {
+    scope: 'data',
+    match: 'paymentMethod',
+    handler: () => ([
+      { type: 'string', cardNumber: 'string' },
+      { type: 'number', email: 'string' }
+    ])
+  }
+]);
+
 // 使用 `oneOf` 定义多选一参数
 payloadModifier([
   {
@@ -248,8 +260,8 @@ payloadModifier([
     match: 'paymentMethod',
     handler: () => ({
       oneOf: [
-        { type: 'creditCard', cardNumber: 'string' },
-        { type: 'paypal', email: 'string' }
+        { type: 'string', cardNumber: 'string' },
+        { type: 'number', email: 'string' }
       ]
     })
   }
@@ -262,8 +274,8 @@ payloadModifier([
     match: 'contactMethod',
     handler: () => ({
       anyOf: [
-        { type: 'email', value: 'string' },
-        { type: 'phone', value: 'string' }
+        { email: 'string', value: 'string' },
+        { phone: 'string', value: 'number' }
       ]
     })
   }
