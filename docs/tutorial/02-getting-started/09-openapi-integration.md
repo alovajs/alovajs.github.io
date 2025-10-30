@@ -1,22 +1,43 @@
 ---
-title: Editor extension integration
+title: OpenAPI integration
 ---
 
-Integrating Alova's editor extension can make it more powerful.
+alova's devtool can unleash its full potential.
 
-1. Automatically generate request code and response data types, and experience smart prompts for interface data in js projects.
-2. Embed API documents in the code to experience the effect of checking and using APIs.
-3. Update APIs regularly and actively notify front-end developers, no longer relying on server-side developers to notify.
+1. Automatically generate request code and response data types, enabling intelligent hints for interface data even in JavaScript projects.
+2. Embed API documentation directly into the code, allowing you to view detailed information for each API right in the editor.
+3. Periodically update APIs and proactively notify frontend developers, eliminating reliance on backend developers for updates.
 
-## Demo video
+```mermaid
+flowchart LR
+R1[OpenAPI File] --> S1[alova Auto-Generation] --> W1[API Functions]
+S1[alova Auto-Generation] --> W2[Complete API Types]
+S1[alova Auto-Generation] --> W3[Complete API Documentation]
+```
 
-import vscodeDemoVideo from '@site/static/video/vscode-demo-video-en.mp4';
+This revolutionizes the traditional development workflow. Previously, after backend developers delivered APIs, you had to open intermediate API documentation to query and copy key information into your project, constantly switching between the documentation and the editor. Now, alova's devtool eliminates the need for intermediate API documentation. With it, you can quickly locate the required API in the editor, display its complete documentation, and reference the API parameter table to swiftly complete parameter passing—bridging the collaboration gap between frontend and backend like a wormhole.
+
+```mermaid
+flowchart LR
+  A[Backend Deploys API] --> B[<s>View Intermediate API Docs</s>] --> C[Write API Call Code]
+
+  class B redNode;
+  classDef redNode fill:transparent,stroke:#ee440050,color:#ee4400,stroke-width:2px;
+```
+
+## Demo Video
+
+import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
 
 <video width="100%" controls controlsList="nodownload" src={vscodeDemoVideo} />
 
-## Install
+## Installation
 
-<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">Install VSCode extension (supports swagger-v2 and openapi-v3 specifications)</a>
+Install `@alova/wormhole` and the VSCode extension. `@alova/wormhole` provides auto-generation features, while the VSCode extension allows you to quickly leverage `@alova/wormhole`'s capabilities, browse API documentation in the editor, and use shortcuts to find interface documentation.
+
+<a className="button button--primary" style={{marginBottom: '20px'}} href="vscode:extension/Alova.alova-vscode-extension">Install VSCode Extension</a>
+
+Alternatively, search for "alova" in the extension marketplace. Supports Swagger-v2 and OpenAPI-v3 specifications.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -45,86 +66,91 @@ pnpm add @alova/wormhole -D
 </TabItem>
 </Tabs>
 
-Install `@alova/wormhole` and alova's vscode extension at the same time to enjoy the complete features. `@alova/wormhole` provides automatic generation features. The vscode extension can quickly call `@alova/wormhole` and provide shortcut keys for quickly finding interface documents in the editor.
+:::info WebStorm Editor Note
 
-:::info WebStorm editor tips
-
-If you are using an editor such as WebStorm, you can use [@alova/wormhole's commands](/api/wormhole#commands) to automatically generate API call functions, complete TypeScript types of APIs, and API documentation information.
+Non-VSCode editors like WebStorm currently do not support the editor extension. You can use [@alova/wormhole commands](/api/wormhole#commands) to auto-generate API call functions, complete TypeScript types for APIs, and API documentation.
 
 :::
 
 ## Configuration
 
-When using the extension, you need to specify the input source and output directory from the openapi file, etc. You can create a configuration file in the project root directory, which supports the following formats:
+When using the extension, you need to specify the input source for the OpenAPI file and the output directory, among other settings. You can create a configuration file in the project root directory, which supports the following formats:
 
-1. `alova.config.cjs`: a commonjs-standard configuration file, using `module.exports` to export the configuration.
+1. `alova.config.cjs`: A CommonJS configuration file using `module.exports` to export settings.
+2. `alova.config.js`: An ESModule configuration file using `export default` to export settings.
+3. `alova.config.ts`: A TypeScript configuration file using `export default` to export settings.
 
-2. `alova.config.js`: an ESModule-standard configuration file, using `export default` to export the configuration.
+You can also use the `alova init` command provided by the `@alova/wormhole` devtool to quickly create a configuration template.
 
-3. `alova.config.ts`: a configuration file in typescript format, using `export default` to export the configuration.
-
-> Currently, using `import` or `require` to import other modules is not supported in the configuration file.
-
-The specific configuration parameters are as follows, taking commonjs as an example.
+Below is an example of the configuration parameters and their explanations, using CommonJS as an example.
 
 ```js
-// alova.config.js
-module.exports = {
-  // API generation setting array, each item represents an automatically generated rule, including the generated input and output directories, standard file paths, etc.
+import { defineConfig } from '@alova/wormhole';
+import { rename } from '@alova/wormhole/plugin';
+
+module.exports = defineConfig({
+  // An array of API generation settings, where each item represents an auto-generation rule, including input/output directories, specification file paths, etc.
   generator: [
     // Server 1
     {
-      // Input parameter 1: openapi json file url url
+      // Input parameter 1: URL of the OpenAPI JSON file
       input: 'http://localhost:3000/openapi.json',
 
-      // Input parameter 2: local url with the current project as the relative directory
+      // Configure one or more plugins, each generator item can have its own settings
+      plugin: [
+        rename({
+          style: 'camelCase'
+        })
+      ],
+
+      // Input parameter 2: Local path relative to the project
       // input: 'openapi/api.json'
 
-      // Input parameter 3: When there is no direct reference to the openapi file, it is a document url, and the document type must be specified with the platform parameter
+      // Input parameter 3: When not directly pointing to an OpenAPI file, this is a documentation URL, and you must specify the documentation type using the `platform` parameter
       // input: 'http://192.168.5.123:8080'
 
-      // (Optional) platform is a platform that supports openapi. Currently only swagger is supported. The default is empty
-      // When this parameter is specified, the input field only needs to specify the document url without specifying the openapi file
+      // (Optional) `platform` specifies the OpenAPI platform, currently only supports Swagger. Default is empty.
+      // When this parameter is specified, the `input` field only needs to point to the documentation URL, not the OpenAPI file.
       platform: 'swagger',
 
-      // Output path of interface file and type file. Multiple generators cannot have the same output path, otherwise the generated code will overwrite each other.
+      // Output path for interface and type files. Addresses must not be duplicated across multiple generators to avoid code overwrites.
       output: 'src/api',
 
-      // (Optional) Specify the mediaType of the generated response data. Use this data type to generate the ts format of the response with a 2xx status code. The default is application/json.
+      // (Optional) Specify the media type for generated response data, used to generate TypeScript types for 2xx status codes. Default is `application/json`.
       responseMediaType: 'application/json',
 
-      // (Optional) Specify the bodyMediaType of the generated request body data. Use this data type to generate the ts format of the request body. The default is application/json.
+      // (Optional) Specify the media type for generated request body data, used to generate TypeScript types for the request body. Default is `application/json`.
       bodyMediaType: 'application/json',
 
-      // (Optional) Specify the generated api version. The default is auto. The version of the current project will be determined by the alova version installed in the current project. If the generation is incorrect, you can also customize the specified version.
+      // (Optional) Specify the API version to generate. Default is `auto`, which determines the version based on the installed alova version in the project. You can also manually specify it if needed.
       version: 'auto',
 
       /**
-       * (Optional) The type of generated code. The optional values ​​are auto/ts/typescript/module/commonjs. The default is auto. The type of the current project will be determined by certain rules. If the generation is incorrect, you can also customize the specified type:
-       * ts/typescript: The same meaning, indicating the generation of ts type files
-       * module: Generate esModule specification file
-       * commonjs: Generate commonjs specification file
+       * (Optional) Type of generated code. Options: `auto`, `ts`, `typescript`, `module`, `commonjs`. Default is `auto`, which determines the type based on project rules. You can manually specify it if needed:
+       * `ts`/`typescript`: Same meaning, generates TypeScript type files.
+       * `module`: Generates ESModule-compliant files.
+       * `commonjs`: Generates CommonJS-compliant files.
        */
       type: 'auto',
 
       /**
-       * Globally exported api name, you can access the automatically generated api globally through this name, the default is `Apis`, it is required when multiple generators are configured, and it cannot be repeated
+       * Global API export name. Use this name to access auto-generated APIs globally. Default is `Apis`. Required when configuring multiple generators, and must be unique.
        */
       global: 'Apis',
 
       /**
-       * The host object of global mounting, default is `globalThis`, it means `window` in browser and `global` in nodejs
+       * Host object for global API mounting. Default is `globalThis` (represents `window` in browsers and `global` in Node.js).
        */
       globalHost: 'globalThis'
 
       /**
-       * (Optional) Filter or convert the generated api interface function, return a new apiDescriptor to generate the api call function, if this function is not specified, the apiDescripor object is not converted
+       * (Optional) Filter or transform generated API interface functions. Return a new `apiDescriptor` to generate API call functions. If not specified, the `apiDescriptor` object remains unchanged.
        *
-       * The type of `apiDescriptor` is the same as the api item of openapi file.
+       * The `apiDescriptor` type matches the API item in the OpenAPI file.
        * @see https://spec.openapis.org/oas/v3.1.0.html#operation-object
        */
       handleApi: apiDescriptor => {
-        // Returning a falsy value means filtering this api
+        // Return a falsy value to filter this API
         if (!apiDescriptor.path.startsWith('/user')) {
           return;
         }
@@ -144,101 +170,191 @@ module.exports = {
     }
   ],
 
-  // (Optional) Whether to automatically update the interface, enabled by default, check every 5 minutes, closed when false
+  // (Optional) Whether to auto-update APIs. Default is `true`, checking every 5 minutes. Set to `false` to disable.
   autoUpdate: true
 
-  /* You can also configure more detailed parameters
-    autoUpdate: {
-    // Update when the editor is opened, default false
+  /* Alternatively, configure more detailed parameters:
+  autoUpdate: {
+    // Update when the editor launches. Default is `false`.
     launchEditor: true,
-    // Automatic update interval, in milliseconds
+    // Auto-update interval in milliseconds.
     interval: 5 * 60 * 1000
-    }
+  }
   */
+});
+```
+
+## The `handleApi` Hook
+
+Note that the `handleApi` hook allows you to customize any API configuration, such as modifying parameter names, types, or return types. This is particularly useful when the OpenAPI file is incorrect or lacks detail.
+
+It is called before generating each API, receiving the `apiDescriptor` and returning the modified `apiDescriptor`. It contains information for each API in the OpenAPI file. For details, refer to [OpenAPI Spec Operation Object](https://spec.openapis.org/oas/v3.1.0.html#operation-object).
+
+Here are a few examples.
+
+### Modify API Function Names
+
+```javascript
+// Convert snake_case to camelCase
+const handleApi = apiDescription => {
+  apiDescription.operationId = apiDescription.operationId.replace(
+    /_([a-z])/g,
+    function (match, group) {
+      return group.toUpperCase();
+    }
+  );
+  return apiDescription;
 };
 ```
 
-## Call API
+### Modify Tags
 
-The generated API code is accessed by the global `Apis` variable by default. You can enjoy the smart prompts provided by the editor to quickly preview the API information, allowing you to check and use the API.
+```javascript
+const handleApi = apiDescription => {
+  if (apiDescription.url.includes('/user')) {
+    apiDescription.tags = ['userTag'];
+  }
+  return apiDescription;
+};
+```
 
-![Show detailed information of the interface](/img/vscode-api-doc.png)
+### Modify Response Data Generation
 
-Where `pet` is the tag of the API, and the API name corresponds to `operationId`.
+Generate types for `response.data`.
+
+```javascript
+const handleApi = apiDescription => {
+  apiDescriptor.responses = apiDescriptor.responses?.properties?.data;
+  return apiDescriptor;
+};
+```
+
+## Plugins
+
+To simplify the logic of modifying generated data, alova's devtool also supports configuring `plugin`. Currently, the following preset plugins are available:
+
+1. **[rename](/resource/devtool-plugins/rename)**: Renames API call functions and parameter names, supporting camelCase and snake_case, as well as custom modifications.
+2. **[tagModifier](/resource/devtool-plugins/tag-modifier)**: Modifies the tag names of APIs.
+3. **[payloadModifier](/resource/devtool-plugins/payload-modifier)**: Adds, deletes, or modifies API parameter types.
+4. **[filterApi](/resource/devtool-plugins/filter-api)**: Filters APIs based on URL and tag matching.
+5. **[apifox](/resource/devtool-plugins/apifox)**: Automatically imports projects from Apifox, eliminating the need for manual exports.
+6. **[importType](/resource/devtool-plugins/import-type)**: Excludes types that require customization, allowing users to use their own custom types.
+
+You can configure `plugin` in the `generator` to use these plugins, and they will be executed in the order they are configured.
+
+```javascript
+export default defineConfig({
+  generator: [
+    {
+      // ...
+      plugin: [
+        rename(...),
+        tagModifier(...),
+      ]
+    }
+  ]
+})
+```
+
+If you need to create custom plugins, refer to the [Plugin Development Guide](/resource/devtool-plugins).
+
+## Usage
+
+The generated API code can be accessed via the `Apis` variable, which can be customized in the configuration file using the `global` field. You can quickly view detailed information for each API in the editor.
+
+![Displaying API Details](/img/vscode-api-doc.png)
+
+Here, `pet` is the API's tag, and the API name corresponds to the `operationId`.
 
 ![](/img/vscode-namespace-operationid.png)
 
-First, you need to import `index.[js/ts]` in the automatically generated directory in the project's entry file.
+You can access `Apis` in two ways:
+
+### Global Mounting (Default)
+
+Import the `index.[js/ts]` file from the auto-generated directory in the `main.[js/ts]` entry file.
 
 ```js title="main.js"
-import './your-generating-api';
+import './your-generating-api-folder';
 ```
 
-When using the interface, you can specify the request parameters through `params/pathParams/data/headers`, which will intelligently prompt the parameters required by this interface. In addition, you can also specify other config parameters of the method instance.
+### Import
+
+Import the `Apis` variable in the files where it is needed.
+
+```js
+import { Apis } from './your-generating-api-folder';
+```
+
+In this case, you need to remove `mountApis(Apis)` from the `your-generating-api-folder/index.[js/ts]` file to prevent it from being globally mounted.
+
+### Accessing APIs
+
+When using an API, you can specify request parameters via `params`, `pathParams`, `data`, or `headers`. It will intelligently prompt the required parameters for the API. Additionally, you can specify other config parameters for the method instance.
 
 ```js
 useRequest(() =>
   Apis.user.changeProfile({
-    // (optional) query parameters
+    // (Optional) Query parameters
     params: {
       id: 12
     },
-    // (optional) path parameters
+    // (Optional) Path parameters
     pathParams: {
       id2: 20
     },
-    // (optional) body parameters
+    // (Optional) Body parameters
     data: {
       name: 'alova',
       age: 18
     },
-    // (optional) header parameters
+    // (Optional) Header parameters
     headers: {
       'Content-Type': 'application/json'
     },
 
-    // config items supported by other methods
+    // Other config options supported by the method
     cacheFor: 100 * 1000,
     transform: response => response.detail
   })
 );
 ```
 
-## Quick access to API
+## Quick API Lookup
 
-Usually, we cannot know the tag and operationId of each API. In order to quickly access different APIs, you can quickly locate the corresponding API through the description of the target API or the url keyword, and use the trigger word **`a->`** Trigger quick positioning.
+You can quickly locate the target API using keywords from its `description` or `url`. Use the shortcut `Ctrl+Alt+P` to open the API search box or trigger the quick lookup with the keyword **`a->`**.
 
-### Search by url
+### Searching by URL
 
 ![](/img/vscode-query-with-url.png)
 
-### Search by description
+### Searching by Description
 
 ![](/img/vscode-query-with-description.png)
 
-### Specify parameters by referring to the interface parameter table
+### Referencing the Parameter Table
 
-By default, when you access the API function through **`a->`** shortcut, the necessary parameters of this API will be automatically provided. When you call the API function to pass parameters, the vscode editor will automatically pop up the API document for you to fill in the parameters according to the parameter table.
+By default, when accessing an API function via **`a->`**, the necessary parameters for the API will be automatically provided. When passing parameters to the API function, the VSCode editor will also automatically display the API documentation for reference.
 
 ![](/img/vscode-api-call-doc.png)
 
-If you accidentally close the API document pop-up, you can put the cursor on the API function and call it again through the shortcut key `shift+ctrl+space`, and the Mac is `shift+command+space`.
+If you accidentally close the API documentation popup, you can place the cursor on the API function and use the shortcut `Shift+Ctrl+Space` (or `Shift+Command+Space` on Mac) to reopen it.
 
-## Set alova parameters
+## Configuring alova Parameters
 
-Usually we will set global parameters in `createAlova`. In the automatically generated code, you can go to `${output}/index.[js/ts]` to set it. `${output}` is the `output` directory you specified in the configuration file. This file will not be overwritten when the code is regenerated.
+Typically, we set global parameters in `createAlova`. In the auto-generated code, you can configure these in `${output}/index.[js/ts]`, where `${output}` is the `output` directory specified in the configuration file. This file will not be overwritten when regenerating the code.
 
-The contents of the `index` file are as follows:
+The `index` file looks like this:
 
 ```js
 import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
 import VueHook from 'alova/vue';
-import { createApis, withConfigType } from './createApis';
+import { createApis, withConfigType, mountApis } from './createApis';
 
-// The alova instance corresponding to the current api, you can modify the parameters here.
+// The alova instance for the current API. You can modify parameters here.
 export const alovaInstance = createAlova({
-  baseURL: 'server parameter in openapi file',
+  baseURL: 'server parameter from the OpenAPI file',
   statesHook: VueHook,
   requestAdapter: GlobalFetch(),
   beforeRequest: method => {},
@@ -247,25 +363,26 @@ export const alovaInstance = createAlova({
   }
 });
 
-// Reusable method parameter configuration
+// Reusable method parameter configurations
 export const $$userConfigMap = withConfigType({});
 
 /**
  * @type {APIS}
  */
 const Apis = createApis(alovaInstance, $$userConfigMap);
-globalThis.Apis = Apis;
+mountApis(Apis);
+
 export default Apis;
 ```
 
-You can write interceptors and replace request adapters as usual in `createAlova`.
+You can write interceptors or change request adapters in `createAlova` as usual.
 
-One thing to note is that since method instances are automatically generated, you cannot set method parameters such as `transform/cacheFor` directly when creating a method. To achieve the same effect, you can specify the corresponding parameters in `withConfigType({})`.
+Note: Since method instances are auto-generated, you cannot directly set method parameters like `transform` or `cacheFor` during creation. To achieve the same effect, specify these parameters in `withConfigType({})`.
 
-The following is a comparison example.
+Here’s a comparison:
 
 ```js
-// Manually define the calling function
+// Manually defined call function
 export const useProfile = () =>
   alovaInstance.Get('/user/profile', {
     cacheFor: 100 * 1000,
@@ -276,7 +393,7 @@ export const useProfile = () =>
 ```
 
 ```js
-// Set method parameters for automatically generated code
+// Setting method parameters for auto-generated code
 export const $$userConfigMap = withConfigType({
   'user.profile': {
     cacheFor: 100 * 1000,
@@ -287,24 +404,21 @@ export const $$userConfigMap = withConfigType({
 });
 ```
 
-user is tag, profile is operationId, you can open `${output}/apiDefinitions.[js/ts]` to view all api interface paths.
+Here, `user` is the tag, and `profile` is the `operationId`. You can view all API paths in `${output}/apiDefinitions.[js/ts]`.
 
-## Old project migration
+## Migrating Legacy Projects
 
-If you want to integrate the vscode extension in a project that already uses alova, you need to follow the steps below:
+If you want to integrate the VSCode extension into an existing alova project, follow these steps:
 
-1. Generate code according to the openapi specification file first.
+1. First, generate the code based on the OpenAPI specification file.
+2. Replace the alova instance in `${output}/index.[js/ts]` with your original alova instance code.
+3. In the project's existing API call functions, update the import path for the alova instance to `${output}/index.[js/ts]`.
 
-2. Replace the alova instance in `${output}/index.[js/ts]` with the original alova instance code.
-
-3. In the api call function that has been defined in the project, change the import path of the alova instance to `${output}/index.[js/ts]`.
-
-In this way, you can integrate the automatically generated code without changing the original code.
+This allows you to integrate auto-generated code without altering the original codebase.
 
 ## Notes
 
-1. In a ts project, if you find that vscode cannot correctly prompt, please set `"strictNullChecks": true` in `tsconfig.json`.
-
-2. Sometimes the api will prompt as `any` type, you can try to solve it as follows:
-   - Step 1, confirm whether this api is introduced in the entry file.
-   - Step 2, restart vscode
+1. In TypeScript projects, if VSCode fails to provide correct intellisense, set `"strictNullChecks": true` in `tsconfig.json`.
+2. If an API is incorrectly typed as `any`, try the following:
+   - First, ensure the API is imported in the entry file.
+   - Second, restart VSCode.

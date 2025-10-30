@@ -1,53 +1,45 @@
 ---
-title: 插件开发指南
+title: Plugin Development Guide
 ---
 
-开发工具插件是一个对象，内部包含了各种不同生命周期的钩子（hooks），用于在代码生成过程中注入自定义逻辑，简化代码生成的逻辑控制。
+A devtool plugin is an object that contains various lifecycle hooks for injecting custom logic during code generation, simplifying the control of code generation logic.
 
-此外，`@alova/wormhole` 中还提供了预设的插件，可直接使用。
+Additionally, `@alova/wormhole` provides preset plugins that can be used directly.
 
 import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
-接下来，我们将详细介绍如何创建和使用插件。
+Next, we will detail how to create and use plugins.
 
-### 插件接口
+### Plugin Definition
 
 ```ts
 interface ApiPlugin {
   name?: string;
 
   /**
-   * 替换或操作传递给 wormhole 的配置对象。
-   * 返回 undefined, null 不会替换任何内容。
+   * Replace or manipulate the configuration object passed to wormhole.
+   * Returning undefined or null will not replace anything.
    */
   config?: (config: GeneratorConfig) => MaybePromise<GeneratorConfig | undefined | null | void>;
 
   /**
-   * 在解析 OpenAPI 文件之前操作输入配置。
-   * 返回 undefined, null 不会替换任何内容。
+   * Called before parsing the OpenAPI file.
    */
-  beforeOpenapiParse?: (
-    inputConfig: Pick<GeneratorConfig, 'input' | 'platform' | 'plugins' | 'fetchOptions'>
-  ) => MaybePromise<
-    | Pick<GeneratorConfig, 'input' | 'platform' | 'plugins' | 'fetchOptions'>
-    | undefined
-    | null
-    | void
-  >;
+  beforeOpenapiParse?: (config: GeneratorConfig) => void;
 
   /**
-   * 在解析 OpenAPI 文件之后操作文档。
-   * 返回 undefined, null 不会替换任何内容。
+   * Manipulate the document after parsing the OpenAPI file.
+   * Returning undefined or null will not replace anything.
    */
   afterOpenapiParse?: (
     document: OpenAPIDocument
   ) => MaybePromise<OpenAPIDocument | undefined | null | void>;
 
   /**
-   * 在生成代码之前操作模板数据。
-   * 返回 undefined, null 不会替换任何内容。
+   * Manipulate template data before generating code.
+   * Returning undefined or null will not replace anything.
    */
   beforeCodeGenerate?: (
     data: any,
@@ -59,48 +51,50 @@ interface ApiPlugin {
   ) => MaybePromise<string | undefined | null | void>;
 
   /**
-   * 在代码生成完成后调用。
+   * Called after code generation is complete.
    */
   afterCodeGenerate?: (error?: Error) => void;
 }
 ```
 
-### 生命周期钩子详解
+### Lifecycle Hooks Explained
 
 1. **`config`**
 
-   - **作用**：替换或操作传递给 `wormhole` 的配置对象。
-   - **使用场景**：动态修改生成器的全局配置。
+   - **Purpose**: Replace or manipulate the configuration object passed to `wormhole`.
+   - **Use Case**: Dynamically modify the generator's global configuration.
 
 2. **`beforeOpenapiParse`**
 
-   - **作用**：在解析 OpenAPI 文件之前操作输入配置。
-   - **使用场景**：修改输入配置，例如调整请求参数或平台设置。
+   - **Purpose**: Called before parsing the OpenAPI file.
+   - **Use Case**: Access the complete config for pre-processing.
 
 3. **`afterOpenapiParse`**
 
-   - **作用**：在解析 OpenAPI 文件之后操作文档。
-   - **使用场景**：修改解析后的 OpenAPI 文档，例如添加或删除某些字段。
+   - **Purpose**: Manipulate the document after parsing the OpenAPI file.
+   - **Use Case**: Modify the parsed OpenAPI document, such as adding or removing fields.
 
 4. **`beforeCodeGenerate`**
 
-   - **作用**：在生成代码之前操作模板数据。
-   - **使用场景**：动态修改模板数据或文件名等。
+   - **Purpose**: Manipulate template data before generating code.
+   - **Use Case**: Dynamically modify template data or filenames.
 
 5. **`afterCodeGenerate`**
-   - **作用**：在代码生成完成后调用。
-   - **使用场景**：处理生成过程中的错误或执行后续操作。
+   - **Purpose**: Called after code generation is complete.
+   - **Use Case**: Handle errors during generation or perform follow-up actions.
 
-### 示例代码
+### Example Code
 
-以下是一个简单的修改tag的插件示例。
+Here is a simple plugin example for modifying tags.
 
 ```ts
+import { createPlugin } from '@alova/wormhole';
+
 interface Config {
   match: (tag: any) => boolean;
   handler: (tag: any) => any;
 }
-const createTagModifierPlugin = (config: Config): ApiPlugin => ({
+const createTagModifierPlugin = createPlugin((config: Config) => ({
   afterOpenapiParse: apiDescription => {
     if (apiDescription.tags) {
       apiDescription.tags = apiDescription.tags.map(tag => {
@@ -114,15 +108,15 @@ const createTagModifierPlugin = (config: Config): ApiPlugin => ({
   },
   afterCodeGenerate: error => {
     if (error) {
-      console.error('[tag-modifier] 生成代码时出错：', error);
+      console.error('[tag-modifier] Error during code generation:', error);
     } else {
-      console.log('[tag-modifier] 代码生成完成！');
+      console.log('[tag-modifier] Code generation complete!');
     }
   }
-});
+}));
 ```
 
-使用插件
+Using the Plugin
 
 ```javascript title="alova.config.js"
 export default defineConfig({
@@ -138,4 +132,4 @@ export default defineConfig({
 });
 ```
 
-如果希望更多示例代码，请前往[官方预设插件源码](https://github.com/alovajs/devtools/tree/main/packages%2Fwormhole%2Fsrc%2Fplugins%2Fpresets)
+For more example code, visit the [Official Preset Plugin Source](https://github.com/alovajs/devtools/tree/main/packages%2Fwormhole%2Fsrc%2Fplugins%2Fpresets).

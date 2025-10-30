@@ -72,18 +72,18 @@ function apifox(ApifoxOptions: ApifoxOptions): ApiPlugin;
 
 ### 参数说明
 
-| 参数名                             | 类型                      | 默认值   | 描述                     |
-| ---------------------------------- | ------------------------- | -------- | ------------------------ |
-| `projectId`                        | `string`                  | -        | Apifox 项目 ID           |
-| `apifoxToken`                      | `string`                  | -        | Apifox 访问令牌          |
-| `locale`                           | `string`                  | -        | 语言环境                 |
-| `apifoxVersion`                    | `string`                  | -        | Apifox API 版本          |
-| `selectedTags`                     | `string[]`                | -        | 按标签筛选接口           |
-| `excludedByTags`                   | `string[]`                | -        | 排除指定标签的接口       |
-| `oasVersion`                       | `'2.0' \| '3.0' \| '3.1'` | `'3.0'`  | OpenAPI 版本             |
-| `exportFormat`                     | `'JSON' \| 'YAML'`        | `'JSON'` | 导出格式                 |
-| `includeApifoxExtensionProperties` | `boolean`                 | `false`  | 是否包含 Apifox 扩展属性 |
-| `addFoldersToTags`                 | `boolean`                 | `false`  | 是否将文件夹路径作为标签 |
+| 参数名                             | 类型                      | 默认值         | 描述                     |
+| ---------------------------------- | ------------------------- | -------------- | ------------------------ |
+| `projectId`                        | `string`                  | -              | Apifox 项目 ID           |
+| `apifoxToken`                      | `string`                  | -              | Apifox 访问令牌          |
+| `locale`                           | `string`                  | `'zh-CN'`      | 语言环境                 |
+| `apifoxVersion`                    | `string`                  | `'2024-03-24'` | Apifox API 版本          |
+| `selectedTags`                     | `string[]`                | -              | 按标签筛选接口           |
+| `excludedByTags`                   | `string[]`                | -              | 排除指定标签的接口       |
+| `oasVersion`                       | `'2.0' \| '3.0' \| '3.1'` | `'3.0'`        | OpenAPI 版本             |
+| `exportFormat`                     | `'JSON' \| 'YAML'`        | `'JSON'`       | 导出格式                 |
+| `includeApifoxExtensionProperties` | `boolean`                 | `false`        | 是否包含 Apifox 扩展属性 |
+| `addFoldersToTags`                 | `boolean`                 | `false`        | 是否将文件夹路径作为标签 |
 
 ## 高级用法
 

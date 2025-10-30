@@ -1,12 +1,12 @@
 ---
-title: tags修改器
+title: Tag Modifier
 ---
 
-## 介绍
+## Introduction
 
-本插件用于修改来自openAPI文件中，API 的 `tags`。
+This plugin is used to modify the `tags` of APIs from OpenAPI files.
 
-## 基本使用
+## Basic Usage
 
 ```javascript title="alova.config.js"
 import { defineConfig } from '@alova/wormhole';
@@ -17,15 +17,15 @@ export default defineConfig({
     {
       // ...
       plugin: [
-        // 每个api都会调用回调函数，返回新的tag。如果不希望修改某个tag，可以直接返回原tag。
-        tagModifier(tag => tag.toUpperCase()); // 示例：将 tag 转为大写
+        // Each API will call the callback function to return a new tag. If you don't want to modify a tag, return the original tag directly.
+        tagModifier(tag => tag.toUpperCase()); // Example: Convert tag to uppercase
       ]
     }
   ]
 });
 ```
 
-## 配置参数
+## Configuration Parameters
 
 ```typescript
 type ModifierHandler = (tag: string) => string;
@@ -33,33 +33,33 @@ type ModifierHandler = (tag: string) => string;
 function tagModifier(handler: ModifierHandler): ApiPlugin;
 ```
 
-- `handler`: 一个函数，接收当前 `tag` 作为参数，返回修改后的 `tag`。如果不希望修改，可以直接返回原 `tag`。
+- `handler`: A function that takes the current `tag` as a parameter and returns the modified `tag`. If you don't want to modify it, return the original `tag` directly.
 
-## 示例
+## Examples
 
-### 示例1：统一添加前缀
+### Example 1: Add a Prefix
 
 ```javascript
-// 为所有 tags 添加 "api_" 前缀
+// Add "api_" prefix to all tags
 tagModifier(tag => `api_${tag}`);
 ```
 
-### 示例2：过滤特定 tags
+### Example 2: Filter Specific Tags
 
 ```javascript
-// 只修改包含 "user" 的 tags
+// Only modify tags containing "user"
 tagModifier(tag => {
   if (tag.includes('user')) {
     return tag.replace('user', 'member');
   }
-  return tag; // 其他 tags 保持不变
+  return tag; // Keep other tags unchanged
 });
 ```
 
-### 示例3：转换为驼峰命名
+### Example 3: Convert to Camel Case
 
 ```javascript
-// 将 tags 转换为驼峰命名
+// Convert tags to camel case
 tagModifier(tag => {
   return tag
     .split('_')

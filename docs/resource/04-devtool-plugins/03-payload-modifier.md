@@ -1,18 +1,18 @@
 ---
-title: 参数修改器
+title: Payload Modifier
 ---
 
-## 介绍
+## Introduction
 
-本插件用于灵活修改 API 接口的请求和响应参数，支持增加、删除、修改参数类型，以及通过 `flat` 修改参数层级。
+This plugin is designed to flexibly modify request and response parameters of API interfaces. It supports adding, deleting, and modifying parameter types, as well as adjusting parameter hierarchies via the `flat` feature.
 
-主要功能包括：
+Key features include:
 
-- 支持对 `params`、`pathParams`、`data`、`response` 范围的参数进行修改
-- 支持通过参数名匹配规则（`match`）精确控制修改范围
-- 支持通过 `handler` 函数动态修改参数类型和必填性
+- Supports modifying parameters in the following scopes: `params`, `pathParams`, `data`, and `response`.
+- Allows precise control over modification scope using parameter name matching rules (`match`).
+- Enables dynamic modification of parameter types and required status via the `handler` function.
 
-## 基本使用
+## Basic Usage
 
 ```javascript title="alova.config.js"
 import { defineConfig } from '@alova/wormhole';
@@ -23,17 +23,17 @@ export default defineConfig({
     {
       // ...
       plugin: [
-        // 修改请求参数中的 `userId` 字段
+        // Modify the `userId` field in request parameters
         payloadModifier([
           {
             scope: 'params',
             match: key => key === 'userId',
             handler: schema => {
               return {
-                'attr1?': 'string', // 生成为可选参数
-                attr2: 'number', // 生成为必填参数
+                'attr1?': 'string', // Mark as optional
+                attr2: 'number', // Mark as required
                 attr3: {
-                  // 嵌套数据
+                  // Nested data
                   innerAttr: ['string', 'number', 'boolean']
                 }
               };
@@ -46,18 +46,18 @@ export default defineConfig({
 });
 ```
 
-## 配置参数
+## Configuration Parameters
 
-### 类型定义
+### Type Definitions
 
 ```typescript
 /**
- * 参数修改范围
+ * Scope of parameter modification
  */
 type ModifierScope = 'params' | 'pathParams' | 'data' | 'response';
 
 /**
- * 基本类型
+ * Primitive types
  */
 type SchemaPrimitive =
   | 'number'
@@ -70,7 +70,7 @@ type SchemaPrimitive =
   | 'never';
 
 /**
- * 数组类型
+ * Array type
  */
 type SchemaArray = {
   type: 'array';
@@ -78,14 +78,14 @@ type SchemaArray = {
 };
 
 /**
- * 引用类型（可选参数通过在 key 末端添加 `?` 表示）
+ * Reference type (optional parameters are marked with `?` at the end of the key)
  */
 type SchemaReference = {
   [attr: string]: Schema;
 };
 
 /**
- * 数据 Schema（支持联合类型）
+ * Data Schema (supports union types)
  */
 type Schema =
   | SchemaPrimitive
@@ -97,28 +97,29 @@ type Schema =
   | { allOf: Schema[] };
 
 /**
- * 配置接口
+ * Configuration interface
  */
 interface Config<T extends Schema> {
   /**
-   * 生效范围
+   * Scope of application
    */
   scope: ModifierScope;
 
   /**
-   * 匹配规则
-   * - string: 原参数名包含此字符串
-   * - RegExp: 原参数名匹配此正则
-   * - function: 自定义匹配函数
+   * Matching rule
+   * - string: Parameter name contains this string
+   * - RegExp: Parameter name matches this regex
+   * - function: Custom matching function
    */
   match?: string | RegExp | ((key: string) => boolean);
 
   /**
-   * 参数修改处理器
-   * @param schema 当前参数的 Schema
-   * @returns 返回多种参数，具体为：Schema表示修改的类型；
-   * { required: boolean, value: Schema }表示可将当前值修改为是否必填；
-   * void | null | undefined表示移除当前字段
+   * Parameter modification handler
+   * @param schema Current parameter's Schema
+   * @returns Returns various parameter types:
+   * - Schema: Modified type
+   * - { required: boolean, value: Schema }: Marks the parameter as required/optional
+   * - void | null | undefined: Removes the field
    */
   handler: (
     schema: T
@@ -126,17 +127,17 @@ interface Config<T extends Schema> {
 }
 
 /**
- * 插件函数
+ * Plugin function
  */
 function payloadModifier(configs: Config<Schema>[]): ApiPlugin;
 ```
 
-### 示例配置
+### Example Configurations
 
-#### 修改参数类型
+#### Modify Parameter Type
 
 ```javascript
-// 将 `params` 中的 `age` 字段修改为 `number` 类型
+// Change the `age` field in `params` to `number` type
 payloadModifier([
   {
     scope: 'params',
@@ -146,10 +147,10 @@ payloadModifier([
 ]);
 ```
 
-#### 修改嵌套参数
+#### Modify Nested Parameters
 
 ```javascript
-// 修改 `data` 中的嵌套参数
+// Modify nested parameters in `data`
 payloadModifier([
   {
     scope: 'data',
@@ -166,10 +167,10 @@ payloadModifier([
 ]);
 ```
 
-#### 移除参数
+#### Remove a Parameter
 
 ```javascript
-// 移除 `response` 中的 `debugInfo` 字段
+// Remove the `debugInfo` field from `response`
 payloadModifier([
   {
     scope: 'response',
@@ -179,10 +180,10 @@ payloadModifier([
 ]);
 ```
 
-#### 联合类型
+#### Union Types
 
 ```javascript
-// 将 `pathParams` 中的 `id` 字段修改为 `string | number` 类型
+// Change the `id` field in `pathParams` to `string | number` type
 payloadModifier([
   {
     scope: 'pathParams',
@@ -192,91 +193,10 @@ payloadModifier([
 ]);
 ```
 
-## 高级用法
+## Advanced Usage
 
-### 动态修改必填性
-
-```javascript
-// 将 `data` 中的 `email` 字段修改为必填
-payloadModifier([
-  {
-    scope: 'data',
-    match: 'email',
-    handler: () => ({ required: true, value: 'string' })
-  }
-]);
-```
-
-### 可选参数与必填参数
-
-在 `SchemaReference` 中，通过在参数名末尾添加 `?` 表示可选参数，否则为必填参数。例如：
+### Dynamically Modify Required Status
 
 ```javascript
-// 将 `data` 中的 `username` 设为必填，`age` 设为可选
-payloadModifier([
-  {
-    scope: 'data',
-    match: 'user',
-    handler: () => ({
-      username: 'string', // 必填参数
-      'age?': 'number' // 可选参数
-    })
-  }
-]);
-```
-
-### 使用正则匹配
-
-```javascript
-// 修改所有以 `_date` 结尾的参数为 `string` 类型
-payloadModifier([
-  {
-    scope: 'params',
-    match: /_date$/,
-    handler: () => 'string'
-  }
-]);
-```
-
-### 支持 `oneOf`、`anyOf`、`allOf`
-
-```javascript
-// 使用 `oneOf` 定义多选一参数
-payloadModifier([
-  {
-    scope: 'data',
-    match: 'paymentMethod',
-    handler: () => ({
-      oneOf: [
-        { type: 'creditCard', cardNumber: 'string' },
-        { type: 'paypal', email: 'string' }
-      ]
-    })
-  }
-]);
-
-// 使用 `anyOf` 定义可选参数组合
-payloadModifier([
-  {
-    scope: 'data',
-    match: 'contactMethod',
-    handler: () => ({
-      anyOf: [
-        { type: 'email', value: 'string' },
-        { type: 'phone', value: 'string' }
-      ]
-    })
-  }
-]);
-
-// 使用 `allOf` 定义参数组合
-payloadModifier([
-  {
-    scope: 'data',
-    match: 'userProfile',
-    handler: () => ({
-      allOf: [{ name: 'string' }, { age: 'number' }]
-    })
-  }
-]);
+// Mark the `email` field in `data` as required
 ```

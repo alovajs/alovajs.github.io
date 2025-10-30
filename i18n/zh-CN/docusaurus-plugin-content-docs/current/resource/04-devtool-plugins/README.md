@@ -12,7 +12,7 @@ import DocCardList from '@theme/DocCardList';
 
 接下来，我们将详细介绍如何创建和使用插件。
 
-### 插件接口
+### 插件定义
 
 ```ts
 interface ApiPlugin {
@@ -27,7 +27,7 @@ interface ApiPlugin {
   /**
    * 在解析 OpenAPI 文件之前调用。
    */
-  beforeOpenapiParse?: (config: GeneratorConfig) =>  void;
+  beforeOpenapiParse?: (config: GeneratorConfig) => void;
 
   /**
    * 在解析 OpenAPI 文件之后操作文档。
@@ -67,7 +67,7 @@ interface ApiPlugin {
 2. **`beforeOpenapiParse`**
 
    - **作用**：在解析 OpenAPI 文件之前调用。
-   - **使用场景**：获取完整的config配置，进行一些自定义操作。
+   - **使用场景**：获取完整的config配置，进行一些前置操作。
 
 3. **`afterOpenapiParse`**
 
@@ -88,11 +88,13 @@ interface ApiPlugin {
 以下是一个简单的修改tag的插件示例。
 
 ```ts
+import { createPlugin } from '@alova/wormhole';
+
 interface Config {
   match: (tag: any) => boolean;
   handler: (tag: any) => any;
 }
-const createTagModifierPlugin = (config: Config): ApiPlugin => ({
+const createTagModifierPlugin = createPlugin((config: Config) => ({
   afterOpenapiParse: apiDescription => {
     if (apiDescription.tags) {
       apiDescription.tags = apiDescription.tags.map(tag => {
@@ -111,7 +113,7 @@ const createTagModifierPlugin = (config: Config): ApiPlugin => ({
       console.log('[tag-modifier] 代码生成完成！');
     }
   }
-});
+}));
 ```
 
 使用插件

@@ -1,5 +1,5 @@
 ---
-title: 集成openAPI
+title: 集成OpenAPI
 ---
 
 alova 的开发工具可以展现出它更强大的力量。
@@ -10,7 +10,7 @@ alova 的开发工具可以展现出它更强大的力量。
 
 ```mermaid
 flowchart LR
-R1[openAPI文件] --> S1[alova自动生成] --> W1[API函数]
+R1[OpenAPI文件] --> S1[alova自动生成] --> W1[API函数]
 S1[alova自动生成] --> W2[完整的API类型]
 S1[alova自动生成] --> W3[完整的API文档]
 ```
@@ -186,7 +186,7 @@ module.exports = defineConfig({
 
 ## handleApi钩子函数
 
-需要注意的是，`handleApi`钩子函数可以自定义修改任意的API配置，例如修改API的参数名称、类型和返回值类型等，这将在openAPI文件错误或不详细的时候非常有用。
+需要注意的是，`handleApi`钩子函数可以自定义修改任意的API配置，例如修改API的参数名称、类型和返回值类型等，这将在OpenAPI文件错误或不详细的时候非常有用。
 
 它将在生成每个api前被调用，接收`apiDescription`并返回修改后的`apiDescription`，它包含对应openapi文件中的每个api信息，具体参数可参考 [OpenAPI Spec Operation Object](https://spec.openapis.org/oas/v3.1.0.html#operation-object)
 

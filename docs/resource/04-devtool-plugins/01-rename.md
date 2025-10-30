@@ -1,17 +1,17 @@
 ---
-title: 重命名
+title: Renaming
 ---
 
-## 介绍
+## Introduction
 
-本插件用于对 API 接口的 URL 和参数进行重命名转换，支持多种命名风格和自定义转换规则。主要功能包括：
+This plugin is used to rename URLs and parameters of API interfaces, supporting multiple naming styles and custom transformation rules. Key features include:
 
-- 支持 URL/请求参数/路径参数/请求体/响应数据的重命名
-- 内置驼峰式（camelCase）和下划线式（underscore）命名转换
-- 支持自定义匹配规则和转换函数
-- 支持多规则配置
+- Renaming for URLs, request parameters, path parameters, request bodies, response data, and reference type names.
+- Built-in naming conversions: camelCase, pascalCase, kebabCase, and snakeCase.
+- Support for custom matching rules and transformation functions.
+- Support for multi-rule configurations.
 
-## 基本使用
+## Basic Usage
 
 ```javascript title="alova.config.js"
 import { defineConfig } from '@alova/wormhole';
@@ -22,7 +22,7 @@ export default defineConfig({
     {
       // ...
       plugin: [
-        // 将URL中的下划线转为驼峰命名
+        // Convert underscores in URLs to camelCase
         rename({ style: 'camelCase' })
       ]
     }
@@ -30,38 +30,41 @@ export default defineConfig({
 });
 ```
 
-## 配置参数
+## Configuration Parameters
 
 ```typescript
 interface Config {
   /**
-   * 生效范围，默认为'url'
-   * url: 接口路径
-   * params: 查询参数
-   * pathParams: 路径参数
-   * data: 请求体数据
-   * response: 响应数据
+   * Scope of application, defaults to 'url'.
+   * url: API path
+   * params: Query parameters
+   * pathParams: Path parameters
+   * data: Request body data
+   * response: Response data
+   * refName: Reference type name
    */
-  scope?: 'url' | 'params' | 'pathParams' | 'data' | 'response';
+  scope?: 'url' | 'params' | 'pathParams' | 'data' | 'response' | 'refName';
 
   /**
-   * 匹配规则，不指定则转换全部
-   * string: 包含此字符串
-   * RegExp: 匹配此正则
-   * function: 自定义匹配函数
+   * Matching rule. If not specified, all will be converted.
+   * string: Contains this string
+   * RegExp: Matches this regex
+   * function: Custom matching function
    */
   match?: string | RegExp | ((key: string) => boolean);
 
   /**
-   * 命名风格
-   * camelCase: 驼峰命名(userName)
-   * underscore: 下划线命名(user_name)
+   * Naming style.
+   * camelCase: camelCase (userName)
+   * kebabCase: kebab-case (user-name)
+   * snakeCase: snake_case (user_name)
+   * pascalCase: PascalCase (UserName)
    */
-  style?: 'camelCase' | 'underscore';
+  style?: 'camelCase' | 'kebabCase' | 'snakeCase' | 'pascalCase';
 
   /**
-   * 自定义转换函数
-   * 会在style转换前执行
+   * Custom transformation function.
+   * Executed before style conversion.
    */
   transform?: (apiDescriptor: ApiDescriptor) => string;
 }
@@ -69,17 +72,19 @@ interface Config {
 function rename(config: Config | Config[]): ApiPlugin;
 ```
 
-## 多规则配置
+> **Note** 1. `refName` and `kebabCase` cannot be configured simultaneously because type names cannot be in kebab-case format. 2. `params`, `pathParams`, `data`, and `response` only rename the first-level names.
+
+## Multi-Rule Configuration
 
 ```javascript
-// 同时配置多个转换规则
-// 转换前: /api/get_data/{item_id}
-// 转换后: /api/getData/{itemId}
+// Configure multiple transformation rules simultaneously.
+// Before: /api/get_data/{item_id}
+// After: /api/getData/{itemId}
 rename([
   {
     scope: 'url',
     style: 'camelCase',
-    match: /_/ // 只转换包含下划线的部分
+    match: /_/ // Only convert parts containing underscores
   },
   {
     scope: 'pathParams',
@@ -88,10 +93,10 @@ rename([
 ]);
 ```
 
-### 自定义匹配规则
+### Custom Matching Rules
 
 ```javascript
-// 只转换长度超过5的参数名
+// Only rename parameter names longer than 5 characters.
 rename({
   scope: 'params',
   match: key => key.length > 5,
@@ -99,10 +104,10 @@ rename({
 });
 ```
 
-### 自定义转换函数
+### Custom Transformation Function
 
 ```javascript
-// 将特定参数重命名
+// Rename specific parameters.
 rename({
   scope: 'data',
   match: ['user_info', 'order_list'],
@@ -115,5 +120,3 @@ rename({
   }
 });
 ```
-
-> **注意**：转换完成后建议检查命名是否符合规范，特别是使用自定义转换时。
