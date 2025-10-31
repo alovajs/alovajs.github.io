@@ -1,12 +1,29 @@
 ---
-title: 编辑器扩展集成
+title: 集成OpenAPI
 ---
 
-集成 alova 的编辑器扩展可以让它展现出它更强大的力量。
+alova 的开发工具可以展现出它更强大的力量。
 
 1. 自动生成请求代码和响应数据类型，在 js 项目中也能体验对接口数据的智能提示。
-2. 将 api 文档嵌入代码中，带你体验边查边用 API 的效果。
+2. 将 api 文档嵌入代码中，在编辑器中直接查看每个 API 的详细信息。
 3. 定时更新 api 并主动通知前端开发，不再依赖服务端开发人员通知。
+
+```mermaid
+flowchart LR
+R1[OpenAPI文件] --> S1[alova自动生成] --> W1[API函数]
+S1[alova自动生成] --> W2[完整的API类型]
+S1[alova自动生成] --> W3[完整的API文档]
+```
+
+这将打破过去的开发流程，在过去，当后端开发者交付 API 给你后，你需要先打开中间的 API 文档查询并复制关键信息到你的项目里，你需要不断地在中间的 API 文档与编辑器切换，但现在，alova 的开发工具可以为你消除中间的 API 文档，通过它你可以在编辑器中快速查找所需的 API 并展示这个 API 的完整文档，参照 API 参数表快速完成参数传递，像虫洞一样拉近前后端的协作距离。
+
+```mermaid
+flowchart LR
+  A[服务端部署API] --> B[<s>查看中间的API文档</s>] --> C[编写API调用代码]
+
+  class B redNode;
+  classDef redNode fill:transparent,stroke:#ee440050,color:#ee4400,stroke-width:2px;
+```
 
 ## 演示视频
 
@@ -16,7 +33,11 @@ import vscodeDemoVideo from '@site/static/video/vscode-demo-video-chinese.mp4';
 
 ## 安装
 
-<a className="button button--primary" href="vscode:extension/Alova.alova-vscode-extension">安装 VSCode 扩展（支持 swagger-v2 和 openapi-v3 规范）</a>
+安装`@alova/wormhole`和 vscode 扩展，`@alova/wormhole`提供自动生成特性，vscode 扩展可以快速调用`@alova/wormhole`的能力，并提供在编辑器中浏览 API 文档，并快速查找接口文档的快捷键。
+
+<a className="button button--primary" style={{marginBottom: '20px'}} href="vscode:extension/Alova.alova-vscode-extension">安装 VSCode 扩展</a>
+
+或者在扩展市场中搜索"alova"，支持 swagger-v2 和 openapi-v3 规范
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -45,11 +66,9 @@ pnpm add @alova/wormhole -D
 </TabItem>
 </Tabs>
 
-同时安装`@alova/wormhole`和 alova 的 vscode 扩展可以享受到完整的特性，`@alova/wormhole`提供自动生成特性，vscode 扩展可以快速调用`@alova/wormhole`的能力，并提供在编辑器中快速查找接口文档的快捷键。
-
 :::info WebStorm 编辑器说明
 
-如果你正在使用 WebStorm 等非 vscode 系列的编辑器，你可以通过 [@alova/wormhole 的命令](/api/wormhole#commands) 来自动生成 api 调用函数、api 的完整 TypeScript 类型和 api 文档信息。
+WebStorm 等非 vscode 系列的编辑器暂不提供编辑器扩展，你可以通过 [@alova/wormhole 的命令](/api/wormhole#commands) 来自动生成 api 调用函数、api 的完整 TypeScript 类型和 api 文档信息。
 
 :::
 
@@ -61,19 +80,28 @@ pnpm add @alova/wormhole -D
 2. `alova.config.js`：ESModule 规范的配置文件，使用`export default`导出配置。
 3. `alova.config.ts`：typescript 格式的配置文件，使用`export default`导出配置。
 
-> 目前在配置文件中不支持使用`import`或`require`导入其他模块。
+也可以通过`@alova/wormhole`开发工具提供的`alova init`命令快速创建配置文件模板。
 
-具体的配置参数如下，以 commonjs 为例。
+具体的配置参数和解释如下，以 commonjs 为例。
 
 ```js
-// alova.config.js
-module.exports = {
+import { defineConfig } from '@alova/wormhole';
+import { rename } from '@alova/wormhole/plugin';
+
+module.exports = defineConfig({
   // api生成设置数组，每项代表一个自动生成的规则，包含生成的输入输出目录、规范文件地址等等
   generator: [
     // 服务器1
     {
       // input参数1：openapi的json文件url地址
       input: 'http://localhost:3000/openapi.json',
+
+      // 配置一个或多个插件，每个generator项单独设置
+      plugin: [
+        rename({
+          style: 'camelCase'
+        })
+      ],
 
       // input参数2：以当前项目为相对目录的本地地址
       // input: 'openapi/api.json'
@@ -153,12 +181,86 @@ module.exports = {
     interval: 5 * 60 * 1000
   }
   */
+});
+```
+
+## handleApi钩子函数
+
+需要注意的是，`handleApi`钩子函数可以自定义修改任意的API配置，例如修改API的参数名称、类型和返回值类型等，这将在OpenAPI文件错误或不详细的时候非常有用。
+
+它将在生成每个api前被调用，接收`apiDescription`并返回修改后的`apiDescription`，它包含对应openapi文件中的每个api信息，具体参数可参考 [OpenAPI Spec Operation Object](https://spec.openapis.org/oas/v3.1.0.html#operation-object)
+
+以下是几个示例。
+
+### 修改api函数名
+
+```javascript
+// 将下划线命名改为驼峰
+const handleApi = apiDescription => {
+  apiDescription.operationId = apiDescription.operationId.replace(
+    /_([a-z])/g,
+    function (match, group) {
+      return group.toUpperCase();
+    }
+  );
+  return apiDescription;
 };
 ```
 
-## 调用 API
+### 修改tag
 
-生成的 API 代码默认通过全局的`Apis`变量访问，你可以享受编辑器为你带来的智能提示来快速预览 API 信息，让你可以边查边使用 API。
+```javascript
+const handleApi = apiDescription => {
+  if (apiDescription.url.includes('/user')) {
+    apiDescription.tags = ['userTag'];
+  }
+  return apiDescription;
+};
+```
+
+### 修改response数据生成
+
+生成`response.data`对应的类型。
+
+```javascript
+const handleApi = apiDescription => {
+  apiDescriptor.responses = apiDescriptor.responses?.properties?.data;
+  return apiDescriptor;
+};
+```
+
+## 插件
+
+为了简化生成数据的修改逻辑，alova 开发工具还支持配置`plugin`，目前提供了以下预设插件。
+
+1. [rename](/resource/devtool-plugins/rename): 重命名api调用函数和参数名，支持驼峰和下划线命名，也支持自定义修改。
+2. [tagModifier](/resource/devtool-plugins/tag-modifier): 修改api的tag名称。
+3. [payloadModifier](/resource/devtool-plugins/payload-modifier): 增加、删除和修改api的参数类型。
+4. [filterApi](/resource/devtool-plugins/filter-api): 根据url和tag匹配过滤api。
+5. [apifox](/resource/devtool-plugins/apifox): 自动导入apifox中的项目，不需要再每次手动导出。
+6. [importType](/resource/devtool-plugins/import-type): 用来排除需要自定义的类型，改用用户自定义的类型。
+
+你可以在`generator`中配置`plugin`来使用插件，它们将会按配置顺序执行。
+
+```javascript
+export default defineConfig({
+  generator: [
+    {
+      // ...
+      plugin: [
+        rename(...),
+        tagModifier(...),
+      ]
+    }
+  ]
+})
+```
+
+如果需要自定义创建插件，请查看 [插件开发指南](/resource/devtool-plugins)。
+
+## 使用
+
+生成的 API 代码可通过`Apis`变量访问，可在配置文件中的`global`自定义变量名，你可以在编辑器中快速查看每个 API 的信息。
 
 ![显示接口的详细信息](/img/vscode-api-doc.png)
 
@@ -166,11 +268,27 @@ module.exports = {
 
 ![](/img/vscode-namespace-operationid.png)
 
-首先，你需要在项目的入口文件中引入自动生成目录下的`index.[js/ts]`。
+你可以通过两种方式访问`Apis`
+
+### 全局挂载（默认）
+
+可以在`main.[js/ts]`入口文件中引入自动生成目录下的`index.[js/ts]`。
 
 ```js title="main.js"
-import './your-generating-api';
+import './your-generating-api-folder';
 ```
+
+### 导入
+
+在需要使用的文件中导入`Apis`变量。
+
+```js
+import { Apis } from './your-generating-api-folder';
+```
+
+此时你需要在`your-generating-api-folder/index.[js/ts]`文件中删除`mountApis(Apis)`，避免它被全局挂载。
+
+### 访问 API
 
 在使用接口时，可以通过`params/pathParams/data/headers`来指定请求参数，它将会智能提示此接口需要的参数。此外，你还可以指定 method 实例的其他 config 参数。
 
@@ -202,9 +320,9 @@ useRequest(() =>
 );
 ```
 
-## 快速访问 API
+## 快速查找 API
 
-通常，我们不可能知道每个 API 的 tag 和 operationId，为了快速访问不同的 API，你可以通过目标 API 的描述或 url 关键词快速定位到对应的 API，通过触发词 **`a->`** 触发快速定位。
+你可以通过目标 API 的`description`或 `url` 关键词快速定位到对应的 API，通过快捷键`ctrl+alt+p`唤起API搜索框，或者使用触发词 **`a->`** 触发快速定位。
 
 ### 通过 url 查找
 
@@ -232,7 +350,7 @@ useRequest(() =>
 import { createAlova } from 'alova';
 import GlobalFetch from 'alova/GlobalFetch';
 import VueHook from 'alova/vue';
-import { createApis, withConfigType } from './createApis';
+import { createApis, withConfigType, mountApis } from './createApis';
 
 // 当前api对应的alova实例，你可以在此修改参数。
 export const alovaInstance = createAlova({
@@ -252,7 +370,8 @@ export const $$userConfigMap = withConfigType({});
  * @type {APIS}
  */
 const Apis = createApis(alovaInstance, $$userConfigMap);
-globalThis.Apis = Apis;
+mountApis(Apis);
+
 export default Apis;
 ```
 

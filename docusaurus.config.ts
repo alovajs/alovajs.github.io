@@ -100,6 +100,10 @@ const config: Config = {
               to: 'category/framework'
             },
             {
+              label: 'Devtool plugins',
+              to: 'resource/devtool-plugins'
+            },
+            {
               label: 'Error Reference',
               to: 'error'
             }

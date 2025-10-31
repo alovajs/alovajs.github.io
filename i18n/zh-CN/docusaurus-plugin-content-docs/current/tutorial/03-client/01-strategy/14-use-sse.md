@@ -78,7 +78,7 @@ const { data, eventSource, readyState, onMessage, onError, on, send, close } = u
 );
 ```
 
-`useSSE` 目前只能连接到一个源。也就是说，当试图连接多个目标时，上一个连接总会被断开。
+每个 `useSSE` 只能创建一个连接。也就是说，当试图连接多个目标时，上一个连接总会被断开。
 
 ```javascript
 const { data, eventSource, readyState, onMessage, onError, on, send, close } =
@@ -93,7 +93,7 @@ send('value3'); // 这也会断开上一个连接
 
 ## 接收数据
 
-当接收到数据时会自动将数据赋值给状态`data`，你可以直接在视图上绑定它，或者监听它进行一些操作。
+当接收到数据时会自动将数据赋值给状态`data`，你可以直接在视图上绑定它，或者监听它进行一些操作，所有的监听绑定函数支持链式调用。
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -120,11 +120,14 @@ send('value3'); // 这也会断开上一个连接
 <script setup>
   import { ref } from 'vue';
 
-  const { data, readyState, onMessage, close, send } = useSSE(postMethodHandler);
   const dataList = ref([]);
-  onMessage(({ data }) => {
-    dataList.value.push(data);
-  });
+  const { data, readyState, close, send } = useSSE(postMethodHandler)
+    .onMessage(({ data }) => {
+      dataList.value.push(data);
+    })
+    .onError(error => {
+      // ...
+    });
 </script>
 ```
 
@@ -136,11 +139,13 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
   const [dataList, setDataList] = useState([]);
-  const { data, readyState, onMessage, onError, close, send } = useSSE(postMethodHandler);
-
-  onMessage(({ data }) => {
-    setDataList(prevList => [...prevList, data]);
-  });
+  const { data, readyState, close, send } = useSSE(postMethodHandler)
+    .onMessage(({ data }) => {
+      setDataList(prevList => [...prevList, data]);
+    })
+    .onError(error => {
+      // ...
+    });
   return (
     <div>
       <span>{readyState === 0 ? '连接中' : readyState === 1 ? '已连接' : '已断开'}</span>
@@ -163,12 +168,14 @@ const App = () => {
 ```html
 <script>
   let dataList = [];
-  const { data, readyState, onMessage, close, send } = useSSE(postMethodHandler);
-
-  onMessage(({ data: newData }) => {
-    dataList.push(newData);
-    data = newData;
-  });
+  const { data, readyState, close, send } = useSSE(postMethodHandler)
+    .onMessage(({ data }) => {
+      dataList.push(newData);
+      data = newData;
+    })
+    .onError(error => {
+      // ...
+    });
 </script>
 
 <div>
@@ -192,11 +199,13 @@ import { createSignal } from 'solid-js';
 
 const App = () => {
   const [dataList, setDataList] = createSignal([]);
-  const { data, readyState, onMessage, onError, close, send } = useSSE(postMethodHandler);
-
-  onMessage(({ data }) => {
-    setDataList(prevList => [...prevList, data]);
-  });
+  const { data, readyState, close, send } = useSSE(postMethodHandler)
+    .onMessage(({ data }) => {
+      setDataList(prevList => [...prevList, data]);
+    })
+    .onError(error => {
+      // ...
+    });
   return (
     <div>
       <span>{readyState() === 0 ? '连接中' : readyState() === 1 ? '已连接' : '已断开'}</span>
@@ -214,12 +223,31 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-### 绑定事件
+你还可以监听自定义事件接收数据。
+
+```javascript
+const { on } = useSSE(postMethodHandler);
+
+// 以下代码将监听具有字段 `event: update` 的事件
+const offUpdate = on('update', event => {
+  console.log(event.eventSource); // 当前的EventSource实例
+  console.log(event.data);
+});
+```
+
+`update`事件将在接收到以下数据的时候触发
+
+```plaintext
+event: update
+data: xxx
+```
+
+## 绑定事件
 
 `useSSE`提供了一系列的绑定事件方法，绑定时将返回解绑函数。
 
 ```javascript
-const { onMessage, onError, close } = useSSE(postMethodHandler);
+const { onMessage, onError, onOpen, on, close } = useSSE(postMethodHandler);
 
 // 对应 eventsource 的 message 事件
 const offMessage = onMessage(event => {
@@ -238,21 +266,24 @@ offMessage();
 offError();
 ```
 
-除此以外，你还可以监听自定义的 EventSource 事件，它将调用 EventSource 的`addEventListener`绑定。
+也可以通过链式调用的方式绑定事件。
 
 ```javascript
-const { on } = useSSE(postMethodHandler);
-
-// 以下代码将监听具有字段 `event: update` 的事件
-const offUpdate = on('update', event => {
-  console.log(event.eventSource); // 当前的EventSource实例
-  console.log(event.data);
-});
+const { data, readyState, close } = useSSE(postMethodHandler)
+  .onMessage(event => {
+    console.log(event.eventSource); // 当前的EventSource实例
+    console.log(event.data);
+  })
+  .onError(event => {
+    console.log(event.eventSource); // 当前的EventSource实例
+    console.error('sse error', event.error);
+    close();
+  });
 ```
 
-### 全局响应拦截
+## 全局响应拦截
 
-默认情况下，响应数据受到[全局响应拦截器的捕获](/tutorial/getting-started/basic/global-interceptor)。如果这不是你预期的行为，可以手动关闭。
+默认情况下，响应数据受到 [全局响应拦截器](/tutorial/getting-started/basic/global-interceptor) 的捕获，如果这不是你预期的行为，可以手动关闭。
 
 ```javascript
 const { data, readyState, onMessage, on } = useSSE(postMethodHandler, {
@@ -261,6 +292,50 @@ const { data, readyState, onMessage, on } = useSSE(postMethodHandler, {
   // highlight-end
 });
 ```
+
+## 断开重连
+
+当意外断开或服务端主动关闭连接时，默认将会在1秒后触发断开重连，你可以在前端或服务端设置重连时间。
+
+```javascript
+const { data, readyState, onMessage, on } = useSSE(postMethodHandler, {
+  // highlight-start
+  reconnectionTime: 2000 // 将在断开连接2秒后触发重连
+  // highlight-end
+});
+```
+
+如果想要在关闭连接时不再触发重连，可按以下方式处理。
+
+### 设置reconnectionTime为0
+
+`reconnectionTime`为0表示关闭断开重连机制。
+
+```javascript
+useSSE(postMethodHandler, {
+  reconnectionTime: 0
+});
+```
+
+### 前端主动关闭
+
+主动调用`useSSE`的`close`方法将不会触发重连，因此，可通过约定一个自定义事件通知前端主动关闭连接。
+
+```javascript
+const { close } = useSSE(postMethodHandler).on('close', () => {
+  close();
+});
+```
+
+### 在服务端声明
+
+服务端可以通过数据重连时间，例如发送以下数据将修改断开重连的延迟时间为5秒，这将覆盖前端设置的`reconnectionTime`。
+
+```plaintext
+retry: 5000
+```
+
+因此也可以在服务端关闭连接前发送`retry: 0`通知前端不再重连。
 
 ## 类型声明
 
