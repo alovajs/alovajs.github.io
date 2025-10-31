@@ -17,7 +17,7 @@ pnpm add @alova/wormhole -D
 
 :::info 扩展安装提示
 
-如果你正在使用 vscode，强烈建议你将`@alova/wormhole`配合 alova 的 vscode 扩展一起使用，安装 vscode 扩展，请参考[编辑器扩展集成](/tutorial/getting-started/extension-integration)。
+如果你正在使用 vscode，强烈建议你将`@alova/wormhole`配合 alova 的 vscode 扩展一起使用，安装 vscode 扩展，请参考[OpenAPI集成](/tutorial/getting-started/openapi-integration)。
 
 如果你正在使用其他编辑器，你也可以通过`@alova/wormhole`的命令来生成完整的 API 信息。
 
