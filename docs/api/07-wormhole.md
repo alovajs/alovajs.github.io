@@ -17,7 +17,7 @@ pnpm add @alova/wormhole -D
 
 :::info extension installation tips
 
-If you are using vscode, it is strongly recommended that you use `@alova/wormhole` with alova's vscode extension. Please refer to [Editor Extension Integration](/tutorial/getting-started/extension-integration) to install vscode extension
+If you are using vscode, it is strongly recommended that you use `@alova/wormhole` with alova's vscode extension. Please refer to [OpenAPI Integration](/tutorial/getting-started/openapi-integration) to install vscode extension
 .
 
 If you are using other editors, you can also use the `@alova/wormhole` command to generate complete API information.

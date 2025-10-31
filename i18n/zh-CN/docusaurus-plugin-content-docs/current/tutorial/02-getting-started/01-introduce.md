@@ -409,7 +409,7 @@ flowchart LR
   classDef redNode fill:transparent,stroke:#ee440050,color:#ee4400,stroke-width:2px;
 ```
 
-> 关于 alova 开发工具的详细介绍，请参考 [集成 openAPI](/tutorial/getting-started/extension-integration)。
+> 关于 alova 开发工具的详细介绍，请参考 [OpenAPI 集成](/tutorial/getting-started/openapi-integration)。
 
 ## 构建 Client-Server 交互层
 

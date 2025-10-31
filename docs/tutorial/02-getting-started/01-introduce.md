@@ -407,7 +407,7 @@ class B redNode;
 classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
 ```
 
-> For a detailed introduction to alova devtools, please refer to [Integrated Editor Extension](/tutorial/getting-started/extension-integration).
+> For a detailed introduction to alova devtools, please refer to [OpenAPI Extension](/tutorial/getting-started/openapi-integration).
 
 ## Building Client-Server Interaction Layer
 
