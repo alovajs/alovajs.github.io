@@ -4,7 +4,7 @@ title: Core useHooks
 
 ## useRequest
 
-Indicates the sending of a request. When useRequest is executed, a request is sent by default, and stateful request-related data, such as `loading/data/error`, is created and maintained. It is the most commonly used method when the page obtains initial data. It also supports turning off its default request sending, which is very useful in request scenarios triggered by click events such as submitting data.
+Indicates the sending of a request. When useRequest is executed, a request is sent by default, and stateful request-related data, such as `loading/data/error`, is created and maintained. It is the most commonly used method when the page obtains initial data. It also supports turning off its default request sending, which is very useful in request scenarios triggered by click events, such as submitting data.
 
 > Go to [useRequest](/tutorial/client/strategy/use-request) for details.
 
@@ -159,7 +159,7 @@ function useWatcher<AG extends AlovaGenerics>(
 
 ### Return value
 
-`UseHookExposure` contains states, operation functions, and event binding functions related to response data and requests. They will automatically infer the corresponding UI according to statesHook The responsive data type of the framework is Ref type in vue3, ordinary value in react, and Writable type in svelte.
+`UseHookExposure` contains states, operation functions, and event binding functions related to response data and requests. They will automatically infer the corresponding UI according to statesHook. The responsive data type of the framework is Ref type in vue3, ordinary value in react, and Writable type in svelte.
 
 #### Responsive data
 
