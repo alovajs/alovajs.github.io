@@ -141,7 +141,7 @@ module.exports = defineConfig({
       /**
        * Host object for global API mounting. Default is `globalThis` (represents `window` in browsers and `global` in Node.js).
        */
-      globalHost: 'globalThis'
+      globalHost: 'globalThis',
 
       /**
        * (Optional) Filter or transform generated API interface functions. Return a new `apiDescriptor` to generate API call functions. If not specified, the `apiDescriptor` object remains unchanged.
