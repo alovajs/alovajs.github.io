@@ -140,7 +140,7 @@ Token authentication strategy provides global interceptors that can help you mai
 const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
   refreshTokenOnError: {
     isExpired: res => res.status === 401,
-    refrshTokenOnError: async () => {
+    handler: async () => {
       const { token, refresh_token } = await refreshToken();
       localStorage.setItem('token', token);
       localStorage.setItem('refresh_token', refresh_token);
