@@ -142,7 +142,7 @@ Token 身份认证策略提供全局的拦截器，它可以帮你统一维护 T
 const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
   refreshTokenOnError: {
     isExpired: res => res.status === 401,
-    refrshTokenOnError: async () => {
+    handler: async () => {
       const { token, refresh_token } = await refreshToken();
       localStorage.setItem('token', token);
       localStorage.setItem('refresh_token', refresh_token);
