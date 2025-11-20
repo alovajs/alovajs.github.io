@@ -141,7 +141,7 @@ module.exports = defineConfig({
       /**
        * 全局api对象挂载的宿主对象，默认为 `globalThis`，在浏览器中代表 `window`，在nodejs中代表 `global`
        */
-      globalHost: 'globalThis'
+      globalHost: 'globalThis',
 
       /**
        * （可选）过滤或转换生成的api接口函数，返回一个新的apiDescriptor来生成api调用函数，未指定此函数时则不转换apiDescripor对象
