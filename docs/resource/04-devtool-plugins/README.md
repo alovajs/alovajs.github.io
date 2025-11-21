@@ -88,7 +88,7 @@ interface ApiPlugin {
 Here is a simple plugin example for modifying tags.
 
 ```ts
-import { createPlugin } from '@alova/wormhole';
+import { createPlugin } from '@alova/wormhole/plugin';
 
 interface Config {
   match: (tag: any) => boolean;
