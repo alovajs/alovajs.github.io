@@ -97,7 +97,7 @@ module.exports = defineConfig({
       input: 'http://localhost:3000/openapi.json',
 
       // 配置一个或多个插件，每个generator项单独设置
-      plugin: [
+      plugins: [
         rename({
           style: 'camelCase'
         })
