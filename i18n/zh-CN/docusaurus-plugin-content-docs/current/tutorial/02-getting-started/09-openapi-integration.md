@@ -97,7 +97,7 @@ module.exports = defineConfig({
       input: 'http://localhost:3000/openapi.json',
 
       // 配置一个或多个插件，每个generator项单独设置
-      plugin: [
+      plugins: [
         rename({
           style: 'camelCase'
         })
@@ -240,14 +240,14 @@ const handleApi = apiDescription => {
 5. [apifox](/resource/devtool-plugins/apifox): 自动导入apifox中的项目，不需要再每次手动导出。
 6. [importType](/resource/devtool-plugins/import-type): 用来排除需要自定义的类型，改用用户自定义的类型。
 
-你可以在`generator`中配置`plugin`来使用插件，它们将会按配置顺序执行。
+你可以在`generator`中配置`plugins`来使用插件，它们将会按配置顺序执行。
 
 ```javascript
 export default defineConfig({
   generator: [
     {
       // ...
-      plugin: [
+      plugins: [
         rename(...),
         tagModifier(...),
       ]

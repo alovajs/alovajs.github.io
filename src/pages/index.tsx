@@ -238,7 +238,7 @@ export default function Home(): JSX.Element {
             <div className="flex flex-col items-start md:max-w-[500px]">
               <Intro
                 section={translate({
-                  message: '# Modern openAPI solution',
+                  message: '# Modern OpenAPI solution',
                   id: 'homepage.automaticGenerate.sectionTitle'
                 })}
                 title={translate({

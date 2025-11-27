@@ -2,7 +2,7 @@
 title: wormhole API
 ---
 
-`@alova/wormhole` is a more modern openAPI generation solution for the alova library. It can generate API functions, complete API types, and complete API documents at the same time. Alova's development tools can eliminate the intermediate API documents for you, shortening the collaboration distance between the front-end and back-end like a wormhole. It is also the underlying implementation of the vscode extension.
+`@alova/wormhole` is a more modern OpenAPI generation solution for the alova library. It can generate API functions, complete API types, and complete API documents at the same time. Alova's development tools can eliminate the intermediate API documents for you, shortening the collaboration distance between the front-end and back-end like a wormhole. It is also the underlying implementation of the vscode extension.
 
 ## Installation
 
@@ -36,7 +36,7 @@ gen will look for the `alova.config.{cjs,js,mjs,ts}` configuration file and use 
 
 **Parameters:**
 
-- **-f, --force**: By default, the latest openAPI file will be checked for updates. If this parameter is specified, the check will be ignored and regeneration will be forced.
+- **-f, --force**: By default, the latest OpenAPI file will be checked for updates. If this parameter is specified, the check will be ignored and regeneration will be forced.
 
 - **-c, --cwd \<path\>**: Specify the working directory of the configuration file to be generated. The default is the current directory.
 
