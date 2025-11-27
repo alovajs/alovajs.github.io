@@ -97,7 +97,7 @@ module.exports = defineConfig({
       input: 'http://localhost:3000/openapi.json',
 
       // Configure one or more plugins, each generator item can have its own settings
-      plugin: [
+      plugins: [
         rename({
           style: 'camelCase'
         })
