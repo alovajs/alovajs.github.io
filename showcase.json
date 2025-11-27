@@ -58,5 +58,11 @@
     "logo": "/img/project/scienhub.png",
     "desc": "一个在线的Latex协作平台，丰富的在线模板、便捷的在线编辑器、支持AI编辑、在线预览、丰富的公式工具集等",
     "link": "https://scienhub.com"
+  },
+  {
+    "title": "Wot-Starter",
+    "logo": "https://starter.wot-ui.cn/logo.svg",
+    "desc": "一个基于 vitesse-uni-app 深度整合 Wot UI 组件库的 uni-app 快速启动模板，告别 HBuilderX ，拥抱现代前端开发工具链",
+    "link": "https://starter.wot-ui.cn"
   }
 ]
