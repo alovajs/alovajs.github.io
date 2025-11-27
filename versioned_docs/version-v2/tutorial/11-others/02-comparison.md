@@ -27,7 +27,7 @@ react-query is a powerful asynchronous state management library, swr is a React 
 | Fetch support                       | ✅                                | ✅                                    | ✅                                            |
 | XMLHttpRequest support              | 🟡 Restricted                     | 🟡 Restricted                         | ✅                                            |
 | Request method                      | Third-party library               | Third-party library                   | Unified Method proxy                          |
-| openAPI support                     | 🟡 Restricted third-party library | 🟡 Restricted third-party library     | 🟢 More modern solutions                      |
+| OpenAPI support                     | 🟡 Restricted third-party library | 🟡 Restricted third-party library     | 🟢 More modern solutions                      |
 | Dependency collection (performance) | ❌                                | ✅                                    | ✅                                            |
 | Data synchronization                | ✅                                | ✅                                    | ✅                                            |
 

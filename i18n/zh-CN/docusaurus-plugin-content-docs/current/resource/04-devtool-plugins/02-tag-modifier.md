@@ -4,7 +4,7 @@ title: tags修改器
 
 ## 介绍
 
-本插件用于修改来自openAPI文件中，API 的 `tags`。
+本插件用于修改来自OpenAPI文件中，API 的 `tags`。
 
 ## 基本使用
 

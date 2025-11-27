@@ -97,7 +97,7 @@ module.exports = defineConfig({
       input: 'http://localhost:3000/openapi.json',
 
       // Configure one or more plugins, each generator item can have its own settings
-      plugin: [
+      plugins: [
         rename({
           style: 'camelCase'
         })
@@ -231,7 +231,7 @@ const handleApi = apiDescription => {
 
 ## Plugins
 
-To simplify the logic of modifying generated data, alova's devtool also supports configuring `plugin`. Currently, the following preset plugins are available:
+To simplify the logic of modifying generated data, alova's devtool also supports configuring `plugins`. Currently, the following preset plugins are available:
 
 1. **[rename](/resource/devtool-plugins/rename)**: Renames API call functions and parameter names, supporting camelCase and snake_case, as well as custom modifications.
 2. **[tagModifier](/resource/devtool-plugins/tag-modifier)**: Modifies the tag names of APIs.
@@ -247,7 +247,7 @@ export default defineConfig({
   generator: [
     {
       // ...
-      plugin: [
+      plugins: [
         rename(...),
         tagModifier(...),
       ]

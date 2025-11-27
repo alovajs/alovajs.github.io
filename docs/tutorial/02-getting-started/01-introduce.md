@@ -140,7 +140,7 @@ Token authentication strategy provides global interceptors that can help you mai
 const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
   refreshTokenOnError: {
     isExpired: res => res.status === 401,
-    refrshTokenOnError: async () => {
+    handler: async () => {
       const { token, refresh_token } = await refreshToken();
       localStorage.setItem('token', token);
       localStorage.setItem('refresh_token', refresh_token);
@@ -386,13 +386,13 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 </details>
 
-### More modern openAPI solution
+### More modern OpenAPI solution
 
 1. alova's devtools can simultaneously generate API call code, TypeScript types for each API, and comprehensive API documentation, allowing you to enjoy full API type hints even in JavaScript projects.
 
 ```mermaid
 flowchart LR
-R1[openAPI file] --> S1[Alova extension] --> W1[API function]
+R1[OpenAPI file] --> S1[Alova extension] --> W1[API function]
 S1[Alova extension] --> W2[Comprehensive API type]
 S1[Alova extension] --> W3[Comprehensive API docs]
 ```

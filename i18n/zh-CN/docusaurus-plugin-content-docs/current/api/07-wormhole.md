@@ -2,7 +2,7 @@
 title: wormhole API
 ---
 
-`@alova/wormhole` 是专为 alova 库提供的更现代化的 openAPI 生成方案，它可以同时生成 API 函数、完整的 API 类型，和完整的 API 文档，alova 的开发工具可以为你消除中间的 API 文档，像虫洞一样拉近前后端的协作距离，它也是作为 vscode 扩展的底层实现。
+`@alova/wormhole` 是专为 alova 库提供的更现代化的 OpenAPI 生成方案，它可以同时生成 API 函数、完整的 API 类型，和完整的 API 文档，alova 的开发工具可以为你消除中间的 API 文档，像虫洞一样拉近前后端的协作距离，它也是作为 vscode 扩展的底层实现。
 
 ## 安装
 
@@ -35,7 +35,7 @@ gen 将会查找`alova.config.{cjs,js,mjs,ts}`配置文件并使用它自动生�
 
 **参数：**
 
-- **-f, --force**：默认情况下，将会检查最新的 openAPI 文件是否有更新，指定此参数后将会忽略检查，并强制重新生成。
+- **-f, --force**：默认情况下，将会检查最新的 OpenAPI 文件是否有更新，指定此参数后将会忽略检查，并强制重新生成。
 
 - **-c, --cwd \<path\>**：指定要生成的配置文件的工作目录，默认为当前目录。
 

@@ -113,7 +113,7 @@ const response = await alovaInstance.Get('https://alovajs.dev/user/profile');
 通过 `alovaInstance.Post`提交数据，这同样很简单。
 
 ```js
-const response = alovaInstance.Post('https://alovajs.dev/posts', {
+const response = await alovaInstance.Post('https://alovajs.dev/posts', {
   title: 'foo',
   body: 'bar',
   userId: 1

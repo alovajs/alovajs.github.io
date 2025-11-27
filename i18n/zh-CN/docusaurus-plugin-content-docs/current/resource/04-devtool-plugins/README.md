@@ -88,7 +88,7 @@ interface ApiPlugin {
 以下是一个简单的修改tag的插件示例。
 
 ```ts
-import { createPlugin } from '@alova/wormhole';
+import { createPlugin } from '@alova/wormhole/plugin';
 
 interface Config {
   match: (tag: any) => boolean;

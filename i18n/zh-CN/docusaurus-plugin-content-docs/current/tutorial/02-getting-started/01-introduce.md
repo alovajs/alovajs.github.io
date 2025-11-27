@@ -23,7 +23,7 @@ alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />） 是一个请求工具�
 - 简单易用，[观看视频](/video-tutorial)5分钟上手。
 - 完美兼容你最喜欢的技术栈。
 - 20+ 高性能的业务模块，帮助你快速开发性能更好的应用。
-- 更先进的 openAPI 解决方案，在代码中和API信息高效交互。
+- 更先进的 OpenAPI 解决方案，在代码中和API信息高效交互。
 - 请求共享和响应缓存，提升应用性能。
 - 类型安全。
 
@@ -142,7 +142,7 @@ Token 身份认证策略提供全局的拦截器，它可以帮你统一维护 T
 const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
   refreshTokenOnError: {
     isExpired: res => res.status === 401,
-    refrshTokenOnError: async () => {
+    handler: async () => {
       const { token, refresh_token } = await refreshToken();
       localStorage.setItem('token', token);
       localStorage.setItem('refresh_token', refresh_token);
@@ -388,13 +388,13 @@ const orderRes = await limit(alova.Get('/api/order'));
 
 </details>
 
-### 更先进的 openAPI 解决方案
+### 更先进的 OpenAPI 解决方案
 
-alova 的openAPI开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型和详尽的 API 文档，你可以享受完整的类型提示外，还能在vscode等编辑器中直接查看 API 的文档，即使是 JavaScript 项目也兼容。
+alova 的OpenAPI开发工具能够同时生成 API 调用代码，以及每个 API 的 TypeScript 类型和详尽的 API 文档，你可以享受完整的类型提示外，还能在vscode等编辑器中直接查看 API 的文档，即使是 JavaScript 项目也兼容。
 
 ```mermaid
 flowchart LR
-R1[openAPI文件] --> S1[alova自动生成] --> W1[API函数]
+R1[OpenAPI文件] --> S1[alova自动生成] --> W1[API函数]
 S1[alova自动生成] --> W2[完整的API类型]
 S1[alova自动生成] --> W3[完整的API文档]
 ```
@@ -409,7 +409,7 @@ flowchart LR
   classDef redNode fill:transparent,stroke:#ee440050,color:#ee4400,stroke-width:2px;
 ```
 
-> 关于 alova 开发工具的详细介绍，请参考 [OpenAPI 集成](/tutorial/getting-started/openapi-integration)。
+> 关于 alova 开发工具的详细介绍，请参考 [集成 OpenAPI](/tutorial/getting-started/extension-integration)。
 
 ## 构建 Client-Server 交互层
 
