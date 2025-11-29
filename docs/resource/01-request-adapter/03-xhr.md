@@ -258,6 +258,54 @@ const handleImageDownload = () => {
 };
 ```
 
+## Content-Type Handling
+
+The xhr adapter defaults to `application/json;charset=UTF-8` when no `Content-Type` header is specified and the request body data is not `FormData`. You can override the default behavior by setting the `Content-Type` header.
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo' },
+  {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+);
+```
+
+`[v3.4.0+]`If you do not want to set the default `Content-Type`, you can set `Content-Type` to a falsy value, i.e., `undefined`, `null`, `false`, or an empty string.
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo' },
+  {
+    headers: {
+      'Content-Type': undefined
+    }
+  }
+);
+```
+
+## Automatic Form Urlencode
+
+When using `application/x-www-form-urlencoded` as the request header, the XHR adapter automatically converts request body data to the `key1=value1&key2=value2` string format, eliminating the need for manual conversion.
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo', completed: false },
+  {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+);
+```
+
+The above request will convert the request body data to a string in the format `title=New%20Todo&completed=false` and send it to the server.
+
 ## Mock request adapter compatible
 
 When developing applications, we may still need to use simulated requests. Only by default, the response data of [Mock Request Adapter (@alova/mock)](/resource/request-adapter/alova-mock) is a `Response` instance, which is compatible with the `alova/fetch` request adapter by default. When using the XMLHttpRequest adapter, we You need to adapt the response data of the mock request adapter to the XMLHttpRequest adapter. In this case, you need to use the `xhrMockResponse` exported in the **@alova/adapter-xhr** package as the response adapter.

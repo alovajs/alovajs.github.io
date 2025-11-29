@@ -357,6 +357,19 @@ const {
 以下是部分server hooks的介绍和示例，请选择你感兴趣的展开查看。
 
 <details>
+<summary>多进程原子化请求</summary>
+
+集群模式下请求时，保证同一时间只有一个进程发起请求。
+
+```javascript
+const tokenRes = await atomize(alova.Get('/api/access_token'));
+```
+
+前往[原子化请求](/tutorial/server/strategy/atomize) 查看详情。
+
+</details>
+
+<details>
 <summary>请求重试策略</summary>
 
 请求失败时重新发起请求。

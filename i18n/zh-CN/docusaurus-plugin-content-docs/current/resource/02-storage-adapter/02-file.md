@@ -36,3 +36,19 @@ const alovaInstance = createAlova({
   l2Cache: fileAdapter
 });
 ```
+
+## 作为原子锁
+
+`[v3.4.0+]`此存储适配器内置了基于`proper-lockfile`的进程锁，可以配合`atomize`策略使用，确保多进程环境下请求的原子性，详情请参考[原子化请求](/tutorial/server/strategy/atomize)。
+
+你可以设置`proper-lockfile`的配置项，它将会传给`lock`和`unlock`，具体参数请参考[proper-lockfile#usage](https://www.npmjs.com/package/proper-lockfile#usage)。
+
+```javascript
+const fileAdapter = new FileStorageAdapter({
+  // ...
+  lockerOptions: {
+    retries: 5 // 重试次数
+    // ...
+  }
+});
+```

@@ -47,3 +47,33 @@ fetch('/todo/list', {
 ```
 
 > `fetch API`的请求体支持传递`string | FormData | Blob | ArrayBuffer | URLSearchParams | ReadableStream`参数。
+
+## Content-Type 处理
+
+fetch 适配器在未指定`Content-Type`请求头，并且请求体数据不是`FormData`时，默认设置`Content-Type`为`application/json;charset=UTF-8`。你可以设置`Content-Type`请求头来覆盖默认行为，例如：
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo' },
+  {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+);
+```
+
+`[v3.4.0+]`如果不希望设置默认的`Content-Type`，可以将`Content-Type`设置为falsy值，即`undefined`、`null`、`false`或空字符串。
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo' },
+  {
+    headers: {
+      'Content-Type': undefined
+    }
+  }
+);
+```

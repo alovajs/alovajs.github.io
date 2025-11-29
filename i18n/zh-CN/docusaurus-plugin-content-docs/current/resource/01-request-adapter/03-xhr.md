@@ -258,6 +258,54 @@ const handleImageDownload = () => {
 };
 ```
 
+## Content-Type 处理
+
+xhr适配器在未指定`Content-Type`请求头，并且请求体数据不是`FormData`时，默认设置`Content-Type`为`application/json;charset=UTF-8`。你可以设置`Content-Type`请求头来覆盖默认行为，例如：
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo' },
+  {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+);
+```
+
+`[v3.4.0+]`如果不希望设置默认的`Content-Type`，可以将`Content-Type`设置为falsy值，即`undefined`、`null`、`false`或空字符串。
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo' },
+  {
+    headers: {
+      'Content-Type': undefined
+    }
+  }
+);
+```
+
+## form urlencode自动处理
+
+当使用`application/x-www-form-urlencoded`作为请求头时，xhr适配器会自动将请求体数据转换为`key1=value1&key2=value2`格式的字符串，无需手动转换。
+
+```javascript
+alovaInstance.Post(
+  '/todo/create',
+  { title: 'New Todo', completed: false },
+  {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+);
+```
+
+以上请求会将请求体数据转换为`title=New%20Todo&completed=false`格式的字符串发送到服务端。
+
 ## 模拟请求适配器兼容
 
 在开发应用时，我们仍然可能需要用到模拟请求。只是默认情况下，[模拟请求适配器(@alova/mock)](/resource/request-adapter/alova-mock)的响应数据是一个`Response`实例，即默认兼容`alova/fetch`请求适配器，当使用 XMLHttpRequest 适配器时，我们需要让模拟请求适配器的响应数据适配 XMLHttpRequest 适配器，此时你需要使用**@alova/adapter-xhr**包中导出的`xhrMockResponse`作为响应适配器。

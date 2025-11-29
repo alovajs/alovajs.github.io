@@ -355,6 +355,19 @@ On the server-side, such as in `nodejs/deno/bun`, alova also provides server-sid
 Below are introductions and examples of some server-side request strategies. Feel free to explore the ones that catch your interest.
 
 <details>
+<summary>Multi-process Atomic Requests</summary>
+
+In cluster mode, this ensures that only one process initiates the request at a time.
+
+```javascript
+const tokenRes = await atomize(alova.Get('/api/access_token'));
+```
+
+Go to [Atomic requests](/tutorial/server/strategy/atomize) for details.
+
+</details>
+
+<details>
 <summary>Request Retry strategy</summary>
 
 Retry the request if it fails.
