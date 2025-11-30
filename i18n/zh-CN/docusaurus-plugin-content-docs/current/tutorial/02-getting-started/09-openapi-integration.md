@@ -229,7 +229,7 @@ const handleApi = apiDescription => {
 };
 ```
 
-## 插件
+## wormhole插件
 
 为了简化生成数据的修改逻辑，alova 开发工具还支持配置`plugin`，目前提供了以下预设插件。
 
@@ -320,9 +320,15 @@ useRequest(() =>
 );
 ```
 
+## 在vscode中浏览APIs
+
+`[要求安装vscode扩展]`生成APIs后，可在侧边栏查看所有APIs文档。
+
+![显示接口的详细信息](/img/vscode-api-docs.png)
+
 ## 快速查找 API
 
-你可以通过目标 API 的`description`或 `url` 关键词快速定位到对应的 API，通过快捷键`ctrl+alt+p`唤起API搜索框，或者使用触发词 **`a->`** 触发快速定位。
+`[要求安装vscode扩展]`你可以通过目标 API 的`description`或 `url` 关键词快速定位到对应的 API，通过快捷键`ctrl+alt+p(mac: command+option+p)`唤起API搜索框，或者使用触发词 **`a->`** 触发快速定位。
 
 ### 通过 url 查找
 

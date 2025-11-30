@@ -229,7 +229,7 @@ const handleApi = apiDescription => {
 };
 ```
 
-## Plugins
+## wormhole Plugins
 
 To simplify the logic of modifying generated data, alova's devtool also supports configuring `plugins`. Currently, the following preset plugins are available:
 
@@ -320,9 +320,15 @@ useRequest(() =>
 );
 ```
 
+## Browsing APIs in VSCode
+
+`[VSCode extension required]`After generating the APIs, you can view all API documentation in the sidebar.
+
+![Shows detailed information about the API](/img/vscode-api-docs.png)
+
 ## Quick API Lookup
 
-You can quickly locate the target API using keywords from its `description` or `url`. Use the shortcut `Ctrl+Alt+P` to open the API search box or trigger the quick lookup with the keyword **`a->`**.
+`[VSCode extension required]`You can quickly locate the target API using keywords from its `description` or `url`. Use the shortcut `ctrl+alt+p(mac: command+option+p)` to open the API search box or trigger the quick lookup with the keyword **`a->`**.
 
 ### Searching by URL
 

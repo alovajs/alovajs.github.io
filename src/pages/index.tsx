@@ -148,13 +148,13 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const changableVideo = {
+    browseDocs: VideoPath.browseDocs,
     locateApiByUrl: VideoPath.locateApiByUrl,
     useAndFindApi: VideoPath.useAndFindApi
   } as const;
 
   const { siteConfig } = useDocusaurusContext();
-  const [showingVideo, setShowingVideo] =
-    useState<keyof typeof changableVideo>('locateApiByUrl');
+  const [showingVideo, setShowingVideo] = useState<keyof typeof changableVideo>('browseDocs');
 
   return (
     <Layout
@@ -252,6 +252,15 @@ export default function Home(): JSX.Element {
                 })}
               />
               <div className="flex flex-col gap-5 mt-10 w-full md:w-[400px]">
+                <FeatureButton
+                  icon="📚"
+                  text={translate({
+                    message: 'Browse API docs in your editor',
+                    id: 'homepage.automaticGenerate.Browse API docs in your editor'
+                  })}
+                  onClick={() => setShowingVideo('browseDocs')}
+                  data-select={showingVideo === 'browseDocs'}
+                />
                 <FeatureButton
                   icon="🔍"
                   text={translate({

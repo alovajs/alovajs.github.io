@@ -297,6 +297,10 @@
     "message": "alova的开发工具支持API信息和代码之间的交互式通信，在编码的同时搜索API和查看其完整信息，所有这些都无需离开你的编辑器。",
     "description": "desc for automatic generate"
   },
+  "homepage.automaticGenerate.Browse API docs in your editor": {
+    "message": "在编辑器中浏览API文档",
+    "description": "desc for automatic generate"
+  },
   "homepage.automaticGenerate.Locate API by its url or description": {
     "message": "根据API的url或描述定位API",
     "description": "desc for automatic generate"

@@ -3,6 +3,7 @@ import { FeatureBlockProps } from '../pages/_indexComponent/FeatureBlock';
 import { UserDescProps } from '../pages/_indexComponent/UserDescription';
 
 export const VideoPath = {
+  browseDocs: '/video/browse-docs.mp4',
   locateApiByUrl: '/video/locate-api.mp4',
   useAndFindApi: '/video/use-and-find-api.mp4'
 } as const;
