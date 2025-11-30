@@ -17,13 +17,6 @@ alova@3.4.0+
 - Ensures atomicity of requests in multi-process environments;
 - Customizable lock channels, timeout, and retry intervals;
 
-## Notes
-
-- This strategy requires the use of `@alova/storage-redis` or `@alova/storage-file` as the `l2Cache` of the alova instance.
-  - `@alova/storage-redis` internally uses [`@sesamecare-oss/redlock`](https://www.npmjs.com/package/@sesamecare-oss/redlock) for distributed locking.
-  - `@alova/storage-file` internally uses [`proper-lockfile`](https://www.npmjs.com/package/proper-lockfile) for file-based locking.
-- Ensure that the lock is released after the request completes to avoid deadlocks.
-
 ## Usage
 
 ### Basic Usage
@@ -78,3 +71,10 @@ try {
   console.error('Failed to acquire lock:', error.message);
 }
 ```
+
+## Notes
+
+- This strategy requires `@alova/storage-redis` or `@alova/storage-file` as the `l2Cache` of the Alova instance.
+- `@alova/storage-redis` internally uses [@sesamecare-oss/redlock](https://www.npmjs.com/package/@sesamecare-oss/redlock) to implement a distributed lock. See the configuration for `redlock` in the [redis storage adapter](/resource/storage-adapter/redis) documentation.
+- `@alova/storage-file` internally uses [proper-lockfile](https://www.npmjs.com/package/proper-lockfile) to implement a file-based lock. See the configuration for `proper-lockfile` in the [file storage adapter](/resource/storage-adapter/file) documentation.
+- Ensure that the lock is released after the request is completed to avoid deadlocks.

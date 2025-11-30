@@ -17,13 +17,6 @@ alova@3.4.0+
 - 确保多进程环境中的请求原子性；
 - 可自定义锁通道、超时时间和重试间隔；
 
-## 注意事项
-
-- 此策略需要使用`@alova/storage-redis`或`@alova/storage-file`作为alova实例的`l2Cache`。
-  - `@alova/storage-redis`内部使用[`@sesamecare-oss/redlock`](https://www.npmjs.com/package/@sesamecare-oss/redlock)实现分布式锁。
-  - `@alova/storage-file`内部使用[`proper-lockfile`](https://www.npmjs.com/package/proper-lockfile)实现基于文件的锁。
-- 确保请求完成后释放锁，避免死锁。
-
 ## 使用
 
 ### 基本用法
@@ -78,3 +71,10 @@ try {
   console.error('获取锁失败:', error.message);
 }
 ```
+
+## 注意事项
+
+- 此策略需要使用`@alova/storage-redis`或`@alova/storage-file`作为alova实例的`l2Cache`。
+  - `@alova/storage-redis`内部使用[@sesamecare-oss/redlock](https://www.npmjs.com/package/@sesamecare-oss/redlock)实现分布式锁，可前往[redis存储适配器](/resource/storage-adapter/redis)查看redlock的配置方法。
+  - `@alova/storage-file`内部使用[proper-lockfile](https://www.npmjs.com/package/proper-lockfile)实现基于文件的锁，可前往[file存储适配器](/resource/storage-adapter/file)查看proper-lockfile的配置方法。
+- 确保请求完成后释放锁，避免死锁。
