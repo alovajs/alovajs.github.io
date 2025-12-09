@@ -64,5 +64,11 @@
     "logo": "https://starter.wot-ui.cn/logo.svg",
     "desc": "一个基于 vitesse-uni-app 深度整合 Wot UI 组件库的 uni-app 快速启动模板，告别 HBuilderX ，拥抱现代前端开发工具链",
     "link": "https://starter.wot-ui.cn"
+  },
+  {
+    "title": "Typing",
+    "logo": "https://typing.xiyuer.club/favicon.ico",
+    "desc": "高效英语学习平台，让语言学习变得简单有趣",
+    "link": "https://typing.xiyuer.club"
   }
 ]
