@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkalova_website=globalThis.webpackChunkalova_website||[]).push([[2325],{2325(e,a,s){s.d(a,{createPacketServices:()=>b.$});var b=s(73858);s(87960)}}]);
