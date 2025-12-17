@@ -360,7 +360,13 @@ const config: Config = {
         id: '5afa4c96fca09cb386951b736ee31e56'
       }
     ],
-    './plugin/webpack'
+    './plugin/webpack',
+    [
+      './plugin/googleAdsense',
+      {
+        id: 'ca-pub-9340608779671156'
+      }
+    ]
   ]
 };
 

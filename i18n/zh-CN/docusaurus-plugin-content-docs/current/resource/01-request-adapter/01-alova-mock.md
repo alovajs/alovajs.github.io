@@ -185,6 +185,40 @@ createAlovaMockAdapter([mockGroup1 /** ... */], {
 });
 ```
 
+### 禁用mock api
+
+mock适配器提供了三个不同粒度的接口禁用范围，分别是全局禁用、单个mock组禁用、单个mock api禁用。被禁用的api将会使用`httpAdapter`发送请求。
+
+在`createAlovaMockAdapter`中设置`enable`为false全局禁用mock请求
+
+```javascript
+createAlovaMockAdapter([mockGroup1 /** ... */], {
+  // ...
+  enable: false
+});
+```
+
+在`defineMock`中的第二个参数中设置false禁用单个mock组
+
+```javascript
+defineMock(
+  {
+    /*...*/
+  },
+  false
+);
+```
+
+在`defineMock`中的key前面添加`-`禁用单个mock api
+
+```javascript
+defineMock({
+  '-[GET]/todo': {
+    /*...*/
+  }
+});
+```
+
 ## 实践建议
 
 ### 按每个开发者每次版本分组接口

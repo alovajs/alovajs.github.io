@@ -185,6 +185,40 @@ createAlovaMockAdapter([mockGroup1 /** ... */], {
 });
 ```
 
+### Disable Mock API
+
+The mock adapter provides three different granularities for disabling APIs: global disabling, mock group disabling, and mock API disabling. Disabled APIs will use `httpAdapter` to send requests.
+
+Set `enable` to false in `createAlovaMockAdapter` to globally disable mock requests:
+
+```javascript
+createAlovaMockAdapter([mockGroup1 /** ... */], {
+  // ...
+  enable: false
+});
+```
+
+Set `false` as the second parameter in `defineMock` to disable a mock group:
+
+```javascript
+defineMock(
+  {
+    /*...*/
+  },
+  false
+);
+```
+
+Add `-` before the key in `defineMock` to disable a mock API:
+
+```javascript
+defineMock({
+  '-[GET]/todo': {
+    /*...*/
+  }
+});
+```
+
 ## Practical advice
 
 ### Group interfaces per developer per version
