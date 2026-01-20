@@ -77,3 +77,20 @@ alovaInstance.Post(
   }
 );
 ```
+
+## `[3.5.0]`custom fetch function
+
+if you need to use a custom fetch function, you can pass in the custom fetch function when creating the fetch adapter.
+
+```javascript
+import adapterFetch from 'alova/fetch';
+import fetch from 'node-fetch';
+// import { fetch } from 'expo/fetch';
+
+const alovaInst = createAlova({
+  requestAdapter: adapterFetch({
+    customFetch: fetch
+  })
+  // ...
+});
+```

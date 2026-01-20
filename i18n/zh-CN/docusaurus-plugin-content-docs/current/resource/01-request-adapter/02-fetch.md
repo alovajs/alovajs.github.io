@@ -77,3 +77,20 @@ alovaInstance.Post(
   }
 );
 ```
+
+## `[3.5.0]`自定义fetch函数
+
+如果需要使用自定义的 fetch 函数，可以在创建 fetch 适配器时传入自定义的 fetch 函数。
+
+```javascript
+import adapterFetch from 'alova/fetch';
+import fetch from 'node-fetch';
+// import { fetch } from 'expo/fetch';
+
+const alovaInst = createAlova({
+  requestAdapter: adapterFetch({
+    customFetch: fetch
+  })
+  // ...
+});
+```
