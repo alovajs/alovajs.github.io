@@ -1,8 +1,7 @@
-import Translate from '@docusaurus/Translate';
+import { Translate } from '@/lib/docusaurus-compat';
 import clsx from 'clsx';
 import React, { ReactNode } from 'react';
 import IconFont from '../IconFont';
-import styles from './index.module.css';
 
 interface TitleProps {
   text: string;
@@ -24,31 +23,29 @@ export default function PageModule({
 }: TitleProps) {
   return (
     <div className={className}>
-      <div className={clsx('row', 'container', styles.wrapper)}>
+      <div className={clsx('row', 'container')}>
         <div
           className={clsx(
             'col col--12 margin-bottom--md flex-col',
             align === 'center' ? 'align-center' : ''
           )}>
-          <div className={clsx(styles.decorator, 'margin-bottom--md')}>
+          <div className={clsx('margin-bottom--md')}>
             <IconFont
               name="a-logoline"
               size={28}></IconFont>
           </div>
-          <h2
-            className={styles.title}
-            style={{ textAlign: align }}>
+          <h2 style={{ textAlign: align }}>
             <Translate id={textTransId}>{text}</Translate>
           </h2>
         </div>
         {desc ? (
           <p
-            className={clsx('col col--12', styles.subtitle)}
+            className={clsx('col col--12')}
             style={{ textAlign: align }}>
             <Translate id={descTransId}>{desc}</Translate>
           </p>
         ) : null}
-        <div className={clsx('col col--12', styles.content)}>{children}</div>
+        <div className={clsx('col col--12')}>{children}</div>
       </div>
     </div>
   );

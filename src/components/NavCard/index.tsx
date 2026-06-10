@@ -1,5 +1,5 @@
-import Link from '@docusaurus/Link';
-import IconFont from '@site/src/components/IconFont';
+import { DLink as Link } from '@/lib/docusaurus-compat';
+import IconFont from '@/components/IconFont';
 import clsx from 'clsx';
 import styles from './style.module.css';
 

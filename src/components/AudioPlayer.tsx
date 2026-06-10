@@ -1,3 +1,4 @@
+'use client';
 import React, { useRef } from 'react';
 
 const AudioPlayer = ({ src }: { src: string }) => {

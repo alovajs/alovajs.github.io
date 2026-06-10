@@ -1,0 +1,178 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Custom styles for alova docs */
+
+/* Font setup */
+body {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Article styles */
+article a:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* File tabs */
+.file-tabs {
+  border-bottom-style: none;
+  font-size: 0.8rem;
+  color: var(--color-fd-muted-foreground);
+  background: var(--color-fd-background);
+}
+.file-tabs + div .theme-code-block {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Utility classes used by components */
+.flex-row {
+  display: flex !important;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex !important;
+  flex-direction: column;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+.align-center {
+  align-items: center !important;
+}
+.align-start {
+  align-items: flex-start !important;
+}
+.align-end {
+  align-items: flex-end !important;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+
+/* Details/summary styles */
+details {
+  --fd-alert-border-color: var(--color-fd-border) !important;
+}
+details summary {
+  font-weight: 600;
+}
+
+/* Alert/admonition styles */
+.alert {
+  background: transparent;
+  color: var(--color-fd-foreground);
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  border-radius: 2px;
+}
+
+/* Tailwind v3 compat classes used by docs */
+.use-tailwind {
+  /* These are Tailwind v3 classes that components still reference */
+}
+
+/* NavCard and related cards */
+.padding--sm {
+  padding: 0.5rem;
+}
+
+/* Grid compat */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Responsive grid */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .md\:grid-cols-\[2fr_auto_1fr\] {
+    grid-template-columns: 2fr auto 1fr;
+  }
+  .md\:mx-6 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  .md\:items-center {
+    align-items: center;
+  }
+}
+@media (min-width: 1280px) {
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .xl\:gap-4 {
+    gap: 1rem;
+  }
+}
+
+/* Gap utilities used by components */
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+
+/* Article link underline */
+article a:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: auto;
+}
+
+/* Details */
+details {
+  --ifm-alert-background-color: transparent !important;
+  --ifm-alert-border-color: var(--color-fd-border) !important;
+}
+
+/* Table styles from original */
+table th,
+table td {
+  border: none;
+}
+table thead tr {
+  border-bottom: none;
+}

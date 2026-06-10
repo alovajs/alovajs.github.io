@@ -1,58 +1,42 @@
 {
-  "name": "alova-website",
-  "version": "1.0.0",
+  "name": "alovajs-website",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
-    "format:fix": "prettier --write ."
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
+    "postinstall": "fumadocs-mdx",
+    "lint": "oxlint"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.9.0",
-    "@codesandbox/sandpack-themes": "^2.0.21",
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "@docusaurus/theme-mermaid": "^3.9.2",
-    "@docusaurus/tsconfig": "^3.9.2",
-    "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
+    "@codesandbox/sandpack-react": "^2.19.0",
+    "@codesandbox/sandpack-themes": "^2.0.0",
+    "clsx": "^2.1.1",
     "copy-text-to-clipboard": "^3.2.0",
-    "docusaurus-plugin-sass": "^0.2.5",
-    "prism-react-renderer": "^2.1.0",
-    "raw-loader": "^4.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.77.6"
+    "fumadocs-core": "16.9.2",
+    "fumadocs-mdx": "15.0.9",
+    "fumadocs-ui": "16.9.2",
+    "lucide-react": "^1.16.0",
+    "next": "16.2.6",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "remark-directive": "^3.0.0",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.9.2",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.39",
-    "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.2.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=20"
+    "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "oxlint": "^1.66.0",
+    "raw-loader": "^4.0.2"
   }
 }

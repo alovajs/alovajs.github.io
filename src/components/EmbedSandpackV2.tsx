@@ -1,11 +1,12 @@
-import alovaReact from '!!raw-loader!@site/codesandbox/00-create-alova/react';
-import alovaSvelte from '!!raw-loader!@site/codesandbox/00-create-alova/svelte';
-import alovaVueComposition from '!!raw-loader!@site/codesandbox/00-create-alova/vueComposition';
-import alovaVueOptions from '!!raw-loader!@site/codesandbox/00-create-alova/vueOptions';
+'use client';
+import { useColorMode } from '@/lib/docusaurus-compat';
 import { Sandpack } from '@codesandbox/sandpack-react';
 import { SandpackPredefinedTemplate } from '@codesandbox/sandpack-react/unstyled';
 import { amethyst, monokaiPro } from '@codesandbox/sandpack-themes';
-import { useColorMode } from '@docusaurus/theme-common';
+import alovaReact from '../../codesandbox/00-create-alova/react?raw';
+import alovaSvelte from '../../codesandbox/00-create-alova/svelte?raw';
+import alovaVueComposition from '../../codesandbox/00-create-alova/vueComposition?raw';
+import alovaVueOptions from '../../codesandbox/00-create-alova/vueOptions?raw';
 
 const fileEntry = {
   vue: {

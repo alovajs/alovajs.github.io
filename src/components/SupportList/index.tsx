@@ -1,6 +1,6 @@
-import Link from '@docusaurus/Link';
-import { useColorMode } from '@docusaurus/theme-common';
-import IconFont from '@site/src/components/IconFont';
+'use client';
+import { DLink as Link, useColorMode } from '@/lib/docusaurus-compat';
+import IconFont from '@/components/IconFont';
 import clsx from 'clsx';
 import React from 'react';
 import styles from './style.module.css';
@@ -8,7 +8,8 @@ import styles from './style.module.css';
 type SupportItem = {
   id: string;
   available: boolean;
-  Image: React.ComponentType<React.ComponentProps<'svg'>>;
+  imgSrc: string;
+  darkImgSrc?: string;
   link: string;
 };
 
@@ -18,182 +19,62 @@ interface Props {
 export default function Support({ showStatus = false }: Props): JSX.Element {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
+
   const jsEnvList: SupportItem[] = [
-    {
-      id: 'Vue3',
-      Image: require('@site/static/img/vue.svg').default,
-      available: true,
-      link: 'https://vuejs.org'
-    },
-    {
-      id: 'React',
-      available: true,
-      Image: require('@site/static/img/react.svg').default,
-      link: 'https://react.dev/'
-    },
-    {
-      id: 'Svelte',
-      available: true,
-      Image: require('@site/static/img/svelte.svg').default,
-      link: 'https://svelte.dev'
-    },
-    {
-      id: 'Vue options',
-      available: true,
-      Image: require('@site/static/img/vue.svg').default,
-      link: '/resource/framework/vue-options'
-    },
-    {
-      id: 'Next',
-      available: true,
-      Image: isDarkTheme
-        ? require('@site/static/img/next-dark.svg').default
-        : require('@site/static/img/next.svg').default,
-      link: '/tutorial/advanced/in-depth/ssr#nextjs'
-    },
-    {
-      id: 'Nuxt',
-      available: true,
-      Image: isDarkTheme
-        ? require('@site/static/img/nuxt-dark.svg').default
-        : require('@site/static/img/nuxt.svg').default,
-      link: '/tutorial/advanced/in-depth/ssr#nuxt3'
-    },
-    {
-      id: 'nodejs',
-      available: true,
-      Image: require('@site/static/img/nodejs.svg').default,
-      link: 'https://nodejs.org'
-    },
-    {
-      id: 'bun',
-      available: true,
-      Image: require('@site/static/img/bun.svg').default,
-      link: 'https://bun.sh'
-    },
-    {
-      id: 'deno',
-      available: true,
-      Image: require('@site/static/img/deno.svg').default,
-      link: 'https://deno.com'
-    },
-    {
-      id: 'Sveltekit',
-      available: true,
-      Image: require('@site/static/img/svelte.svg').default,
-      link: '/tutorial/advanced/in-depth/ssr#sveltekit'
-    },
-    {
-      id: 'Solid',
-      available: true,
-      Image: require('@site/static/img/solid.svg').default,
-      link: '/resource/framework/solid'
-    },
-    {
-      id: 'Mini program🇨🇳',
-      available: false,
-      Image: require('@site/static/img/miniprogram.svg').default,
-      link: '/resource/framework/native-mp'
-    },
-    {
-      id: 'uniapp',
-      available: true,
-      Image: require('@site/static/img/uniapp.svg').default,
-      link: '/resource/request-adapter/uniapp'
-    },
-    {
-      id: 'Taro',
-      available: true,
-      Image: require('@site/static/img/taro.svg').default,
-      link: '/resource/request-adapter/taro'
-    },
-    {
-      id: 'Angular',
-      available: false,
-      Image: require('@site/static/img/angular.svg').default,
-      link: '/resource/framework/angular'
-    },
-    {
-      id: 'Preact',
-      available: false,
-      Image: require('@site/static/img/preact.svg').default,
-      link: '/resource/framework/preact'
-    },
-    {
-      id: 'Qwik',
-      available: false,
-      Image: require('@site/static/img/qwik.svg').default,
-      link: '/resource/framework/qwik'
-    },
-    {
-      id: 'Lit',
-      available: false,
-      Image: require('@site/static/img/lit.svg').default,
-      link: '/resource/framework/lit'
-    },
-    {
-      id: 'Stencil',
-      available: false,
-      Image: isDarkTheme
-        ? require('@site/static/img/stencil-dark.svg').default
-        : require('@site/static/img/stencil.svg').default,
-      link: '/resource/framework/stencil'
-    }
+    { id: 'Vue3', imgSrc: '/img/vue.svg', available: true, link: 'https://vuejs.org' },
+    { id: 'React', imgSrc: '/img/react.svg', available: true, link: 'https://react.dev/' },
+    { id: 'Svelte', imgSrc: '/img/svelte.svg', available: true, link: 'https://svelte.dev' },
+    { id: 'Vue options', imgSrc: '/img/vue.svg', available: true, link: '/resource/framework/vue-options' },
+    { id: 'Next', imgSrc: '/img/next.svg', darkImgSrc: '/img/next-dark.svg', available: true, link: '/tutorial/advanced/in-depth/ssr#nextjs' },
+    { id: 'Nuxt', imgSrc: '/img/nuxt.svg', darkImgSrc: '/img/nuxt-dark.svg', available: true, link: '/tutorial/advanced/in-depth/ssr#nuxt3' },
+    { id: 'nodejs', imgSrc: '/img/nodejs.svg', available: true, link: 'https://nodejs.org' },
+    { id: 'bun', imgSrc: '/img/bun.svg', available: true, link: 'https://bun.sh' },
+    { id: 'deno', imgSrc: '/img/deno.svg', available: true, link: 'https://deno.com' },
+    { id: 'Sveltekit', imgSrc: '/img/svelte.svg', available: true, link: '/tutorial/advanced/in-depth/ssr#sveltekit' },
+    { id: 'Solid', imgSrc: '/img/solid.svg', available: true, link: '/resource/framework/solid' },
+    { id: 'Mini program🇨🇳', imgSrc: '/img/miniprogram.svg', available: false, link: '/resource/framework/native-mp' },
+    { id: 'uniapp', imgSrc: '/img/uniapp.svg', available: true, link: '/resource/request-adapter/uniapp' },
+    { id: 'Taro', imgSrc: '/img/taro.svg', available: true, link: '/resource/request-adapter/taro' },
+    { id: 'Angular', imgSrc: '/img/angular.svg', available: false, link: '/resource/framework/angular' },
+    { id: 'Preact', imgSrc: '/img/preact.svg', available: false, link: '/resource/framework/preact' },
+    { id: 'Qwik', imgSrc: '/img/qwik.svg', available: false, link: '/resource/framework/qwik' },
+    { id: 'Lit', imgSrc: '/img/lit.svg', available: false, link: '/resource/framework/lit' },
+    { id: 'Stencil', imgSrc: '/img/stencil.svg', darkImgSrc: '/img/stencil-dark.svg', available: false, link: '/resource/framework/stencil' }
   ];
 
   const requestTools: SupportItem[] = [
-    {
-      id: 'Fetch Api',
-      available: true,
-      Image: require('@site/static/img/fetchapi.svg').default,
-      link: '/resource/request-adapter/fetch'
-    },
-    {
-      id: 'Axios',
-      available: true,
-      Image: require('@site/static/img/axios.svg').default,
-      link: '/resource/request-adapter/axios'
-    },
-    {
-      id: 'XMLHttpRequest',
-      available: true,
-      Image: require('@site/static/img/xhr.svg').default,
-      link: '/resource/request-adapter/xhr'
-    },
-    {
-      id: 'GraphQL',
-      available: false,
-      Image: require('@site/static/img/graphql.svg').default,
-      link: 'https://graphql.org/'
-    },
-    {
-      id: 'SuperAgent',
-      available: false,
-      Image: isDarkTheme
-        ? require('@site/static/img/superagent-dark.svg').default
-        : require('@site/static/img/superagent.svg').default,
-      link: 'https://github.com/ladjs/superagent'
-    }
+    { id: 'Fetch Api', imgSrc: '/img/fetchapi.svg', available: true, link: '/resource/request-adapter/fetch' },
+    { id: 'Axios', imgSrc: '/img/axios.svg', available: true, link: '/resource/request-adapter/axios' },
+    { id: 'XMLHttpRequest', imgSrc: '/img/xhr.svg', available: true, link: '/resource/request-adapter/xhr' },
+    { id: 'GraphQL', imgSrc: '/img/graphql.svg', available: false, link: 'https://graphql.org/' },
+    { id: 'SuperAgent', imgSrc: '/img/superagent.svg', darkImgSrc: '/img/superagent-dark.svg', available: false, link: 'https://github.com/ladjs/superagent' }
   ];
+
+  const getImageSrc = (item: SupportItem) => {
+    if (isDarkTheme && item.darkImgSrc) return item.darkImgSrc;
+    return item.imgSrc;
+  };
 
   const ListView = (list: SupportItem[], className: string) => (
     <div className={`grid grid-cols-3 ${className} gap-3`}>
-      {list.map(({ id, Image, link, available }) => (
+      {list.map((item) => (
         <Link
-          to={link}
-          key={id || link}
+          to={item.link}
+          key={item.id || item.link}
           className={clsx(
             'flex-col align-center',
             styles.framework,
-            !available && showStatus ? styles.unavailableWrapper : ''
+            !item.available && showStatus ? styles.unavailableWrapper : ''
           )}>
-          <Image
+          <img
+            src={getImageSrc(item)}
+            alt={item.id}
             className={clsx(
               styles.icon,
-              !available && showStatus ? styles.iconUnavailable : ''
+              !item.available && showStatus ? styles.iconUnavailable : ''
             )}
           />
-          <span>{id}</span>
+          <span>{item.id}</span>
         </Link>
       ))}
     </div>

@@ -1,7 +1,7 @@
-import Link from '@docusaurus/Link';
-import Translate from '@docusaurus/Translate';
+'use client';
+import { DLink as Link, Translate } from '@/lib/docusaurus-compat';
 
-const EmbedCodesandbox = ({ src }) => (
+const EmbedCodesandbox = ({ src }: { src: string }) => (
   <div>
     <iframe
       src={src}

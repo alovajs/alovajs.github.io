@@ -1,0 +1,5 @@
+{
+  "title": "Documentation",
+  "root": true,
+  "pages": ["tutorial", "api", "resource", "contributing", "about", "examples", "error", "video-tutorial", "release-notes-v3", "showcase"]
+}
