@@ -8,7 +8,7 @@ const AudioPlayer = ({ src }: { src: string }) => {
 
   return (
     <span>
-      <div
+      <span
         className="inline-block cursor-pointer text-primary"
         onClick={togglePlay}>
         <svg
@@ -21,7 +21,7 @@ const AudioPlayer = ({ src }: { src: string }) => {
             d="M92.59163 7.124244v175.409681l588.077547 329.465052-460.111316 245.981852V402.176952l-127.966231-71.344766v686.04357l838.81674-504.876779z"
             fill="var(--ifm-color-primary)"></path>
         </svg>
-      </div>
+      </span>
       <audio
         ref={audioRef}
         src={src}

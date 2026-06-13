@@ -355,6 +355,12 @@ const config: Config = {
   plugins: [
     'docusaurus-plugin-sass',
     [
+      'docusaurus-markdown-source-plugin',
+      {
+        docsPath: '/',  // Show dropdown on all pages (docs-only site)
+      }
+    ],
+    [
       './plugin/baiduStatistics',
       {
         id: '5afa4c96fca09cb386951b736ee31e56'
