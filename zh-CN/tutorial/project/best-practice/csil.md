@@ -1,0 +1,121 @@
+:::tip
+
+这是一个深入使用 alova 总结的实践经验，阅读前请确保已经掌握了[alova 基础](/tutorial/getting-started/quick-start)部分的内容，你也可以观看[5 分钟快速入门视频](/video-tutorial)。
+
+:::
+
+你可以组合 alova 的各种特性实现应用的 Client-Server 交互层（CS 交互层），CS 交互层将会管理你的响应数据和 useHooks 所创建的响应式状态，它们将会在 CS 交互层中通过 method 实例建立映射关系，从而消除组件层级的限制，你可以在任意的 UI 组件中通过 method 实例来访问、修改和刷新 CS 交互层的数据，以及调用 useHooks 的 actions。
+
+```mermaid
+graph TD
+  A[Page1]
+  A --> B[Component1]
+  A --> C[Component2]
+  A --> D[Component3]
+
+  E[Page2]
+  E --> F[Component1]
+  E --> G[Component2]
+  E --> H[Component3]
+
+  B --> K[Network Layer]
+  C --> K
+  D --> K
+  F --> K
+  G --> K
+  H --> K
+  K --> L[Backend API Service]
+  subgraph UI
+    A
+    B
+    C
+    D
+    E
+    F
+    G
+    H
+  end
+
+class K specialNode;
+classDef specialNode fill:transparent,stroke:#10b13c50,color:#10b13c,stroke-width:2px;
+```
+
+让我们来看看 CS 交互层可以带来哪些好处。
+
+## 请求点分离
+
+在传统做法中，当一个页面被切分成了多个组件时，我们需要从根节点请求数据并分发到子组件中，这样无疑提高了数据传递的复杂度。
+
+```mermaid
+graph TD
+  A[Page根节点 -> 将响应数据分发给子组件]
+  A --> B[组件1]
+  A --> C[组件2]
+  A --> D[组件3]
+
+  subgraph 页面
+    A
+    B
+    C
+    D
+  end
+```
+
+现在，你可以在不同组件中发起相同的请求，CS 交互层中将会合并请求，并将数据分发到这些组件中。
+
+```mermaid
+graph TD
+  B[组件1]
+  C[组件2]
+  D[组件3]
+  B --> E[CS交互层]
+  C --> E
+  D --> E
+  E --> F[API服务]
+
+  subgraph 页面
+    B
+    C
+    D
+  end
+```
+
+让我们来具体看看示例代码。
+
+
+
+**vue:**
+
+
+
+## 响应式状态集中管理
+
+由于响应式状态在 CS 交互层管理，你可以快速实现跨组件更新状态和刷新刷新数据，例如你可以在遇到以下场景时使用：
+
+- 新增/编辑列表项后更新列表数据
+- 在 App 中通知上一页刷新数据
+- 编辑权限后刷新菜单栏
+
+### 跨组件更新状态
+
+通过 [`updateState`](/tutorial/client/in-depth/update-across-components) 并传入 method 实例实现跨组件的更新响应式状态，此外，你还可以让 CS 交互层[管理自定义的状态](/tutorial/client/in-depth/manage-extra-states)，让自定义的状态也支持跨组件更新。
+
+### 跨组件刷新数据
+
+有两种方式可以实现跨组件刷新数据。
+
+- 通过 [`useFetcher`](/tutorial/client/strategy/use-fetcher) 并传入 method 实例，它将会重新请求数据并更新这个 method 实例对应的响应式状态。
+- 跨组件触发 useHooks 的 actions 完成数据的刷新，具体请参考[action 委托中间件](/tutorial/client/strategy/action-delegation-middleware)
+
+## 响应数据集中管理
+
+当开启了响应数据缓存后，CS 交互层将会按一定规则缓存响应数据，相同请求将会复用缓存数据来提升性能，具体请参考[响应缓存](/tutorial/cache)章节。此外，你还可以预测用户接下来将要访问的数据，使用 [`useFetcher`](/tutorial/client/strategy/use-fetcher) 预先请求数据并放在缓存中。
+
+### 缓存时效性
+
+有一个大家很关心的问题，如何保证缓存的时效性呢？alova 也提供了多种方式来处理缓存的时效性。
+
+- [自动失效](/tutorial/cache/auto-invalidate)：通过设置失效规则来自动失效指定的缓存。
+- [缓存穿透](/tutorial/cache/force-request)：对于时效性较高的数据，你可以通过强制请求来获得最新数据。
+- [定时更新](/tutorial/client/strategy/use-auto-request)：通过`useAutoRequest`来实现不同场景下的自动更新数据。
+- [手动失效](/tutorial/cache/manually-invalidate)：如果以上方法都不适合的情况下，你可以手动调用失效函数。

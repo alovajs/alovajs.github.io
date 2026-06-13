@@ -1,0 +1,11 @@
+> The example uses react as an example, but you can also use alova in vue3 and svelte, please read the [Getting Started Guide](/v2/tutorial/getting-started) for details;
+
+
+
+:::info example description
+
+This example demonstrates the convenient implementation of the captcha sending function.
+
+[Captcha sending strategy document](/v2/tutorial/strategy/useCaptcha)
+
+:::

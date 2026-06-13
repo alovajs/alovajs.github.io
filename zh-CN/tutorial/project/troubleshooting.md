@@ -1,0 +1,105 @@
+## 如何通过 cdn 使用 alova？
+
+**vue:**
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/adapter/fetch.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/stateshook/vue.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="loading">Loading...</div>
+      <div v-else-if="error">{{ error.message }}</div>
+      <span v-else>responseData: {{ data }}</span>
+    </div>
+  </body>
+  <script>
+    const alovaInstance = alova.createAlova({
+      statesHook: VueHook,
+      requestAdapter: alovaFetch(),
+      responded: response => response.json()
+    });
+
+    Vue.createApp({
+      setup() {
+        return alova.useRequest(
+          alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+        );
+      }
+    }).mount('#app');
+  </script>
+</html>
+```
+
+
+---
+
+**react:**
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/alova.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/adapter/fetch.umd.min.js"></script>
+    <script src="https://unpkg.com/alova/dist/stateshook/react.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script type="text/babel">
+    const alovaInstance = alova.createAlova({
+      statesHook: ReactHook,
+      requestAdapter: alovaFetch(),
+      responded: response => response.json()
+    });
+
+    const App = () => {
+      const { loading, data, error } = alova.useRequest(
+        alovaInstance.Get('https://jsonplaceholder.typicode.com/todos/1')
+      );
+
+      if (loading) {
+        return <div>Loading...</div>;
+      } else if (error) {
+        return <div>{error.message}</div>;
+      }
+      return <span>responseData: {JSON.stringify(data)}</span>;
+    };
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<App />);
+  </script>
+</html>
+```
+
+
+---
+
+**svelte:**
+
+:::tip
+
+svelte 依赖于编译工具，不能通过 CDN 直接使用，详情见 [svelte.dev](https://svelte.dev/)
+
+:::
+
+## 在 React-Native 中要注意什么？
+
+使用 alova 开发 React-Native 应用时，你也可以使用 `alova/fetch`。
+
+但是有以下的注意事项：
+
+**metro 版本**
+
+在 alova 中的`package.json`中使用了`exports`来定义多个导出项，因此需要确保这两点：
+
+1. metro 版本高于 0.76.0
+2. 在`metro.config.js`中开启`resolver.unstable_enablePackageExports`。[详情点此查看](https://facebook.github.io/metro/docs/configuration/#unstable_enablepackageexports-experimental)
