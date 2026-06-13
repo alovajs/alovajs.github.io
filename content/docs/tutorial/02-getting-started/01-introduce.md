@@ -38,8 +38,9 @@ On the client-side, request strategies are implemented through hooks, intercepto
 
 Below are introductions and examples of some client-side request strategies. Feel free to explore the ones that catch your interest.
 
-<details>
-<summary>Watching request strategy</summary>
+<Accordions>
+
+<Accordion title="Watching request strategy">
 
 The Watching request strategy is used in scenarios where re-requests are made as data changes, such as fuzzy search, tab bar switching, etc.
 
@@ -73,10 +74,9 @@ const {
 
 See [Watcher Request Strategy](/tutorial/client/strategy/use-watcher) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Pagination request strategy</summary>
+<Accordion title="Pagination request strategy">
 
 The pagination request strategy helps you quickly implement comprehensive paging data request scenarios, including page turning, conditional query, pre-fetching of next page data, insert/replac/remov data items, refresh and reset list.
 
@@ -122,10 +122,9 @@ const {
 
 See [Pagination Request Strategy](/tutorial/client/strategy/use-pagination) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Token authentication strategy</summary>
+<Accordion title="Token authentication strategy">
 
 Token authentication strategy provides global interceptors that can help you maintain all the codes of token authentication, including login, logout, token attachment, token refresh, etc., and supports seamless token refresh.
 
@@ -148,10 +147,9 @@ const alovaInstance = createAlova({
 
 See [Token Authentication Interceptor](/tutorial/client/strategy/token-authentication) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Form submission strategy</summary>
+<Accordion title="Form submission strategy">
 
 Through the form submission strategy, you can quickly implement form drafts and multi-page (multi-step) forms. In addition, it also provides common functions such as form reset.
 
@@ -186,10 +184,9 @@ const {
 
 See [Form Submission Strategy](/tutorial/client/strategy/use-form) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Data Fetching Strategy</summary>
+<Accordion title="Data Fetching Strategy">
 
 By fetching necessary data in advance, users no longer need to wait for the data to load, thus improving the user experience.
 
@@ -225,10 +222,9 @@ const handleItemClick = itemId => {
 
 See [Data Fetching Strategy](/tutorial/client/strategy/use-fetcher) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Seamless Data interaction Strategy</summary>
+<Accordion title="Seamless Data interaction Strategy">
 
 Seamless data interaction means that when users interact with an application, relevant content can be displayed immediately without waiting, or the results of operations can be displayed without waiting when submitting information, just like interacting with local data. This greatly improves the smoothness of the application and prevents users from noticing the lag caused by data transmission.
 
@@ -266,10 +262,9 @@ const {
 
 See [Seamless Data Interaction](/tutorial/client/strategy/seamless-data-interaction) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Cross-component request triggering middleware</summary>
+<Accordion title="Cross-component request triggering middleware">
 
 Cross-component request triggering middleware can help you eliminate the limitations of component levels and quickly trigger any request actions in any component.
 
@@ -299,10 +294,9 @@ accessAction('action:todoList', delegatedActions => {
 
 See [Cross-component request trigger](/tutorial/client/strategy/action-delegation-middleware) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Captcha strategy</summary>
+<Accordion title="Captcha strategy">
 
 Quickly implement captcha sending.
 
@@ -338,7 +332,9 @@ const {
 
 See [Verification code strategy](/tutorial/client/strategy/use-captcha) for details.
 
-</details>
+</Accordion>
+
+</Accordions>
 
 alova provides total 15+ client request strategies based on the [RSM](/about/RSM) specification. Please refer [Request Strategy List](/tutorial/client/strategy) to see all client request strategies.
 
@@ -348,8 +344,9 @@ On the server-side, such as in `nodejs/deno/bun`, alova also provides server-sid
 
 Below are introductions and examples of some server-side request strategies. Feel free to explore the ones that catch your interest.
 
-<details>
-<summary>Multi-process Atomic Requests</summary>
+<Accordions>
+
+<Accordion title="Multi-process Atomic Requests">
 
 In cluster mode, this ensures that only one process initiates the request at a time.
 
@@ -359,10 +356,9 @@ const tokenRes = await atomize(alova.Get('/api/access_token'));
 
 Go to [Atomic requests](/tutorial/server/strategy/atomize) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Request Retry strategy</summary>
+<Accordion title="Request Retry strategy">
 
 Retry the request if it fails.
 
@@ -374,10 +370,9 @@ const response = await retry(alova.Get('/api/user'), {
 
 See [Request retry strategy](/tutorial/server/strategy/retry) for details.
 
-</details>
+</Accordion>
 
-<details>
-<summary>Request Rate Limit Strategy</summary>
+<Accordion title="Request Rate Limit Strategy">
 
 Limit the number of requests within a certain period of time, support cluster mode.
 
@@ -391,7 +386,9 @@ const orderRes = await limit(alova.Get('/api/order'));
 
 See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for details.
 
-</details>
+</Accordion>
+
+</Accordions>
 
 ### More modern OpenAPI solution
 

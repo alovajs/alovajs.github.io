@@ -33,7 +33,7 @@ Next, let's take the search for todo items as an example and try to change the o
 </Tab>
 <Tab value="svelte">
 
-<CodeBlock language="html">{useWatcherSearchSvelte}</CodeBlock>
+<pre><code>{useWatcherSearchSvelte}</code></pre>
 
 </Tab>
 <Tab value="solid">

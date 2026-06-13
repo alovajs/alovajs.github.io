@@ -140,7 +140,7 @@ useRequest means sending a request. By default, a request will be sent when call
 </Tab>
 <Tab value="svelte">
 
-<CodeBlock language="html">{useRequestSvelte}</CodeBlock>
+<pre><code>{useRequestSvelte}</code></pre>
 
 </Tab>
 <Tab value="solid">

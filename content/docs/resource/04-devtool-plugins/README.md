@@ -6,7 +6,14 @@ A devtool plugin is an object that contains various lifecycle hooks for injectin
 
 Additionally, `@alova/wormhole` provides preset plugins that can be used directly.
 
-<DocCardList />
+<Cards>
+  <Card title="Renaming" description="Rename APIs during code generation" href="/docs/resource/devtool-plugins/rename" />
+  <Card title="Tag Modifier" description="Modify API tags in the OpenAPI document" href="/docs/resource/devtool-plugins/tag-modifier" />
+  <Card title="Payload Modifier" description="Modify request/response payloads" href="/docs/resource/devtool-plugins/payload-modifier" />
+  <Card title="API Filter" description="Filter which APIs to include in generation" href="/docs/resource/devtool-plugins/filter-api" />
+  <Card title="Apifox Fetcher" description="Fetch OpenAPI specs directly from Apifox" href="/docs/resource/devtool-plugins/apifox" />
+  <Card title="Type Replacer" description="Replace types during code generation" href="/docs/resource/devtool-plugins/import-type" />
+</Cards>
 
 Next, we will detail how to create and use plugins.
 

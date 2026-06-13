@@ -19,4 +19,9 @@ export interface AlovaServerHook<Options extends Record<string, any>> {
 
 ## Table of contents
 
-<DocCardList />
+<Cards>
+  <Card title="Request Retry Strategy" description="Auto-retry failed requests with configurable attempts" href="/docs/tutorial/server/strategy/retry" />
+  <Card title="Distributed Captcha Sending" description="Distributed captcha sending with rate control" href="/docs/tutorial/server/strategy/send-captcha" />
+  <Card title="Request Rate Limit" description="Limit request frequency within time windows, supports cluster" href="/docs/tutorial/server/strategy/rate-limit" />
+  <Card title="Atomize Requests" description="Ensure only one process initiates a request in cluster mode" href="/docs/tutorial/server/strategy/atomize" />
+</Cards>
