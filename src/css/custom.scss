@@ -435,7 +435,7 @@ html:not(.docs-wrapper) {
   @layer components {
     .ctw-button-primary {
       transition: background-color 0.2s;
-      @apply box-content leading-[40px] h-[40px] px-5 text-white z-10 relative cursor-pointer text-base mt-3 md:mt-6 rounded-lg bg-primary-500  border-[1.5px] border-transparent font-bold;
+      @apply box-content leading-[40px] h-[40px] px-3 text-sm md:px-5 md:text-base text-white z-10 relative cursor-pointer mt-3 md:mt-6 rounded-lg bg-primary-500 border-[1.5px] border-transparent font-bold;
 
       @apply dark:bg-primary-500;
 
@@ -450,7 +450,7 @@ html:not(.docs-wrapper) {
       transition:
         color 0.2s,
         border-color 0.2s;
-      @apply box-content leading-[40px] h-[40px] px-5 z-10 relative cursor-pointer text-base mt-3 md:mt-6 rounded-lg border-[2px] border-primary-100 font-bold;
+      @apply box-content leading-[40px] h-[40px] px-3 text-sm md:px-5 md:text-base z-10 relative cursor-pointer mt-3 md:mt-6 rounded-lg border-[2px] border-primary-100 font-bold;
       // dark
       @apply dark:text-font-500 dark:border-white/15;
 

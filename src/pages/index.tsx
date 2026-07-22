@@ -2,7 +2,6 @@ import Link from '@docusaurus/Link';
 import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Copy from '@site/static/img/copy.svg';
-import Arrow from '@site/static/img/arrow.svg';
 import Github from '@site/static/img/github.svg';
 import Layout from '@theme/Layout';
 import ThemedImage from '@theme/ThemedImage';
@@ -40,12 +39,7 @@ const heroButtons = [
   },
   {
     id: 'see-less-code',
-    text: (
-      <>
-        <Translate id="homepage.hero.seeLessCode">See the 70% less code</Translate>
-        <Arrow className="ml-2 w-3 h-3" />
-      </>
-    ),
+    text: <Translate id="homepage.hero.seeLessCode">How to reduce code</Translate>,
     style: 'ctw-button-secondary',
     onClick: () =>
       document
@@ -168,7 +162,7 @@ function HomepageHeader() {
             </div>
 
             <div className="flex flex-col md:items-stretch items-center">
-              <div className="mt-8 flex md:justify-stretch justify-center gap-x-4 flex-wrap">
+              <div className="mt-8 flex md:justify-stretch justify-center gap-x-2 md:gap-x-4 flex-nowrap">
                 {heroButtons.map(({ id, text, style, link, onClick }) =>
                   onClick ? (
                     <button

@@ -887,8 +887,8 @@
     "description": "homepage hero get started CTA"
   },
   "homepage.hero.seeLessCode": {
-    "message": "看看怎么少 70% 代码",
-    "description": "homepage hero see the 70% less code CTA"
+    "message": "如何减少代码",
+    "description": "homepage hero see how to reduce code CTA"
   },
   "homepage.noBs.sectionTitle": {
     "message": "直观对比",
