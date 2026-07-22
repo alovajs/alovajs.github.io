@@ -4,7 +4,7 @@ use hook
 
 :::
 
-useRequest indicates the sending of a request. By default, a request will be sent when it is called. In enterprise-level projects, it is very important to display the data transmission status in the view. When the page obtains initial data or submits data, useRequest is one of the most commonly used use hooks.
+`useRequest` sends a request. By default, a request is sent when it is called. In real-world projects, showing the data-loading state in the view matters a lot. Whether you are fetching initial data or submitting data, `useRequest` is one of the most commonly used hooks.
 
 ## Usage
 
@@ -12,7 +12,7 @@ Its basic usage has been introduced in detail in [Basic - Combining UI Framework
 
 ### Set initial data
 
-`data` defaults to `undefined` before the request is successful, but sometimes we need data to have an initial value before the request is successful. For example, when requesting a list, it usually needs to be initialized to `[]`, otherwise it will cause an error when rendering the view because it cannot be looped.
+`data` defaults to `undefined` before the request is successful, but sometimes we need data to have an initial value before the request is successful. For example, when requesting a list, it usually needs to be initialized to `[]`, otherwise rendering the view will error because the value cannot be iterated.
 
 ```javascript
 const { data } = useRequest(todoListGetter, {
@@ -87,7 +87,7 @@ Set the first parameter of `useRequest` to a function.
 ```javascript
 const {
   // ...
-  // Function for manual sender request, call to send request
+  // Function to send the request manually; call it to send a request
   // Parameters of send function will be received here
 } = useRequest(newTodo => alovaInstance.Post('/todo', newTodo), {
   // When immediate is false, it is not sent by default
@@ -103,9 +103,7 @@ The `send` function allows you to freely repeat the request.
 
 > In react, the send function is wrapped with `useCallback`, and it is not restricted by closure traps. You can use it directly in events without worrying about performance issues.
 
-In `useRequest` and `useWatcher`, we can call the `send` function to manually trigger requests. When the send function triggers a request, you can pass in any number of parameters, which can actually be received in the following 3 locations.
-
-Calling `send` supports passing in any number of parameters, which can be received in the following 3 locations.
+In `useRequest` and `useWatcher`, calling `send` triggers a request and can take any number of arguments. Those arguments are received in the following three places.
 
 #### Received in method handler
 
@@ -146,7 +144,7 @@ send(1);
 
 #### Received in force function
 
-force is used to specify whether to penetrate the response cache. The content about response cache will be explained in the [cache mode](/tutorial/cache/mode) later.
+`force` is used to bypass the response cache. Response caching is covered later in [cache mode](/tutorial/cache/mode).
 
 ```javascript
 const { send } = useRequest(alovaInstance.Get('/todo'), {
@@ -177,7 +175,7 @@ export type Progress = {
 
 ### Abort request
 
-Use useHook to receive `abort` for manual abort request.
+Use the hook's `abort` to cancel a request manually.
 
 ```javascript
 const {

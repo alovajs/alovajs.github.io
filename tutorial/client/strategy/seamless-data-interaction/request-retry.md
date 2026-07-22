@@ -1,4 +1,4 @@
-When a request enters the silent queue, you can set request retry parameters for it to ensure its request success rate. This is valid when the behavior mode is set to **queue** and **silent**. The difference is, The request under the behavior of **silent** is persistent by default, and the request will continue to be sent even if it is refreshed before the request succeeds, while the request under the behavior of **queue** will not be persisted and will be cleared after refreshing.
+When a request enters the silent queue, you can set request retry parameters for it to ensure its request success rate. This is valid when the behavior mode is set to **queue** and **silent**. The difference is that the request under the behavior of **silent** is persistent by default, and the request will continue to be sent even if it is refreshed before the request succeeds, while the request under the behavior of **queue** will not be persisted and will be cleared after refreshing.
 
 ## Maximum number of retries
 
@@ -47,7 +47,7 @@ useSQRequest(createOrEditTodo, {
 });
 ```
 
-not enough? You can even add a random jitter value to each delay to make it look less regular
+You can even add a random jitter to each delay to make it less predictable.
 
 ```javascript
 useSQRequest(createOrEditTodo, {
@@ -84,7 +84,7 @@ By default, as long as the request fails, it will be retried. The request failur
 1. The request is wrong, and the error is not caught by the global `onError` hook;
 2. The request was successful, but an error was thrown in the global `onSuccess` hook;
 
-But in reality, not all requests need to be retried. For example, when a server error occurs or the network is disconnected, it should not be retried. In this case, it is necessary to set a retry judgment rule. When a request fails, an instance of `Error` is usually obtained. We can set a regular expression to match `error.message` or `error.name`, and if the match passes, no retry will be made.
+But in reality, not all requests need to be retried. For example, when a server error occurs or the network is disconnected, it should not be retried. In this case, you need to set a rule that decides whether to retry. When a request fails, an instance of `Error` is usually obtained. We can set a regular expression to match `error.message` or `error.name`, and if the match passes, no retry will be made.
 
 ```javascript
 useSQRequest(createOrEditTodo, {
@@ -117,7 +117,7 @@ useSQRequest(createOrEditTodo, {
 });
 ```
 
-In order not to pollute the error message, usually we will put the error code returned by the server in `error.name`, of course, you can also splice it into `error.message`, the error handling example of Response is as follows:
+In order not to pollute the error message, usually we will put the error code returned by the server in `error.name`, of course, you can also splice it into `error.message`, the error handling example of the response is as follows:
 
 ```javascript
 const alovaInst = createAlova({

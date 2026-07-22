@@ -2,7 +2,7 @@ Forced request is a mechanism that bypasses cache checks to trigger request send
 
 ## Forced request in method
 
-Forced request by calling the send function of the method instance and passing true.
+Force a request by calling the `send` function of the method instance and passing `true`.
 
 ```javascript
 const response = await alovaInstance.Get('/api/user').send(true);

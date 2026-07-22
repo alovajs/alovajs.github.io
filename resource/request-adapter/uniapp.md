@@ -1,6 +1,6 @@
 :::info Tips
 
-This plugin only supports vue3 version of uniapp application.
+This plugin only supports Vue 3 version of uniapp application.
 
 :::
 

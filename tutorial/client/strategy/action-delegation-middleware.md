@@ -8,7 +8,7 @@ middleware
 
 In the past, if you want to trigger a request in another component in one component, you need to save the data in the Store and complete it by dispatching Action. Now, you can use this middleware to **remove the limitation of component hierarchy**, and quickly trigger any request action function in any component.
 
-For example, after updating the menu data in a component, you can re-trigger the re-request of the side menu bar to refresh the data. When the list data is manipulated, the list update is triggered.
+For example, after updating the menu data in one component, you can re-trigger the request for the side menu bar to refresh its data. When list data is changed, the list update is triggered.
 
 <!-- ## Example
 
@@ -23,7 +23,7 @@ For example, after updating the menu data in a component, you can re-trigger the
 
 ### Basic usage
 
-> Take vue3 as an example, the usage is the same in react and svelte.
+> Take Vue 3 as an example, the usage is the same in react and svelte.
 
 Use `actionDelegationMiddleware` in component A to delegate the action function of `useRequest`.
 
@@ -52,7 +52,7 @@ accessAction('testAction', delegatedActions => {
 
 :::info note
 
-1. The use hook that only makes request will have its actions delegated
+1. Only the use hook that sends requests will have its actions delegated
 2. All use hooks in alova support action function delegation, but the functions delegated by different use hooks are different.
 3. When using `actionDelegationMiddleware`, the delegate name can be passed in strings, numbers, and symbol values.
 
@@ -60,7 +60,7 @@ accessAction('testAction', delegatedActions => {
 
 ### Silently access actions
 
-By default, an error will be throwed when the action delegate of `testAction` is not found, which can help you locate problems, but if you are not sure whether the target actions are delegated when calling `accessAction`, you can prevent the error by passing the third parameter `true`.
+By default, an error will be thrown when the action delegate of `testAction` is not found, which helps you locate problems. If you are not sure whether the target actions have been delegated when calling `accessAction`, you can suppress the error by passing `true` as the third parameter.
 
 ```javascript
 accessAction(
@@ -74,7 +74,7 @@ accessAction(
 
 ### Batch trigger action function
 
-In the above example, we use `accessAction` to trigger the action function of a use hook, but in fact, delegates with the same name will not override each other, but will be stored in a group, and we can use this name to trigger them at the same time The delegated function.
+In the above example, we use `accessAction` to trigger the action function of a use hook. In fact, delegates with the same name do not override each other; they are stored as a group, and we can use that name to trigger all of them at once.
 
 ```javascript title=Component C
 import { actionDelegationMiddleware } from 'alova/client';
@@ -107,7 +107,7 @@ accessAction('testAction1', delegatedActions => {
 });
 ```
 
-At the same time, regular expressions can also be used in `accessAction` to trigger batches of action functions whose delegate names meet the conditions
+You can also use regular expressions in `accessAction` to trigger batches of action functions whose delegate names match the pattern
 
 ```javascript title=Component F
 import { actionDelegationMiddleware } from 'alova/client';
@@ -142,15 +142,15 @@ accessAction(/^prefix_/, delegatedActions => {
 
 ## Action function delegation list
 
-Although the action functions delegated by most hooks are the same as the action functions themselves, this is not absolute. The following is the action function delegation list of each hook.
+Although the delegated action functions are mostly the same as the original ones, this is not always the case. The following is the action function delegation list for each hook.
 
 ### useRequest
 
 | name   | description                                             | function parameters | return value | version |
 | ------ | ------------------------------------------------------- | ------------------- | ------------ | ------- |
-| send   | Same as [useRequset](/api/core-hooks#userequest).send   |                     |              | -       |
-| abort  | Same as [useRequset](/api/core-hooks#userequest).abort  |                     |              | -       |
-| update | Same as [useRequset](/api/core-hooks#userequest).update |                     |              | -       |
+| send   | Same as [useRequest](/api/core-hooks#userequest).send   |                     |              | -       |
+| abort  | Same as [useRequest](/api/core-hooks#userequest).abort  |                     |              | -       |
+| update | Same as [useRequest](/api/core-hooks#userequest).update |                     |              | -       |
 
 ### useWatcher
 
@@ -186,9 +186,9 @@ Same as [useRequest delegate list](#userequest).
 | ---------- | ---------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
 | updateForm | For details, see [useForm action function](/tutorial/client/strategy/use-form#api) |                     |              | -       |
 | reset      | For details, see [useForm action function](/tutorial/client/strategy/use-form#api) |                     |              | -       |
-| send       | Same as [useRequset](/api/core-hooks#userequest).send                              |                     |              | -       |
-| abort      | Same as [useRequset](/api/core-hooks#userequest).abort                             |                     |              | -       |
-| update     | Same as [useRequset](/api/core-hooks#userequest).update                            |                     |              | -       |
+| send       | Same as [useRequest](/api/core-hooks#userequest).send                              |                     |              | -       |
+| abort      | Same as [useRequest](/api/core-hooks#userequest).abort                             |                     |              | -       |
+| update     | Same as [useRequest](/api/core-hooks#userequest).update                            |                     |              | -       |
 
 ### useCaptcha
 
@@ -199,9 +199,9 @@ Same as [useRequest delegate list](#userequest).
 | name   | description                                                                                                | function parameters | return value | version |
 | ------ | ---------------------------------------------------------------------------------------------------------- | ------------------- | ------------ | ------- |
 | stop   | See [useRetriableRequest action function](/tutorial/client/strategy/use-retriable-request#api) for details |                     |              | -       |
-| send   | Same as [useRequset](/api/core-hooks#userequest).send                                                      |                     |              | -       |
-| abort  | Same as [useRequset](/api/core-hooks#userequest).abort                                                     |                     |              | -       |
-| update | Same as [useRequset](/api/core-hooks#userequest).update                                                    |                     |              | -       |
+| send   | Same as [useRequest](/api/core-hooks#userequest).send                                                      |                     |              | -       |
+| abort  | Same as [useRequest](/api/core-hooks#userequest).abort                                                     |                     |              | -       |
+| update | Same as [useRequest](/api/core-hooks#userequest).update                                                    |                     |              | -       |
 
 ### useSerialRequest
 

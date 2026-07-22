@@ -151,7 +151,7 @@ const handleImageChoose = ({ target }) => {
 
 ### download
 
-Point the request url to the file address to download, you can also enable the download progress by setting `enableDownload` to true.
+Point the request URL to the file address to download, you can also enable the download progress by setting `enableDownload` to true.
 
 ```javascript
 const downloadFile = () =>

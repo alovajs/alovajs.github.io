@@ -6,7 +6,7 @@ server hook
 
 Rate limit, a maximum of N requests can be initiated within a certain period of time, such as the following scenario.
 
-1. When node is used as the middle layer to request downstream services, under the API with serious resource consumption, it is restricted by IP to avoid consuming downstream server resources
+1. When Node is used as a middle layer for downstream services, APIs with high resource consumption are restricted by IP to avoid consuming downstream server resources
 2. To prevent password brute force cracking, when the downstream server throws login errors repeatedly, it is restricted by IP or username
 3. As a sending limit for sendCaptcha, it prevents users from sending verification codes frequently
 
@@ -41,7 +41,7 @@ const rateLimit = createRateLimiter({
    */
   keyPrefix: 'user-rate-limit',
   /**
-   * Lock duration, in ms, means that when the rate limit is reached, it will be extended by [blockDuration]ms. For example, if the password is incorrect 5 times within 1 hour, it will be locked for 24 hours. This 24 hours is this parameter
+   * Lock duration, in ms, which is added when the rate limit is reached. For example, if the password is entered incorrectly 5 times within 1 hour, the account is locked for 24 hours; this 24-hour period is controlled by this parameter
    */
   blockDuration: 24 * 60 * 60 * 1000,
 

@@ -3,7 +3,7 @@
 Since method is a PromiseLike instance, to send parallel requests through method, you only need to use `Promise.all` to wait.
 
 ```javascript
-const [todoList, todoCounter] = await Promise.all[(todoListGetter, todoCountGetter)];
+const [todoList, todoCounter] = await Promise.all([todoListGetter, todoCountGetter]);
 ```
 
 ## Use useRequest
@@ -15,7 +15,7 @@ const { data: todoList } = useRequest(todoListGetter);
 const { data: todoCounter } = useRequest(todoCountGetter);
 ```
 
-However, such requests are only applicable to simple parallel requests. If you need to perform some operations after all parallel requests are completed, there are two ways to achieve it:
+However, such requests are only applicable to simple parallel requests. If you need to perform some operations after all parallel requests are completed, there are two ways to do so:
 
 ### Method 1
 

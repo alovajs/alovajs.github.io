@@ -1,4 +1,4 @@
-A method instance corresponds to a request information description. It has a request URL, request header, request parameters, and request behavior parameters such as response data processing and cache data processing. Through the method instance, you can experience a unified usage experience in any JS environment, and it can run normally with very few changes. In addition, the method instance puts the request parameters and request behavior parameters together, which is more convenient for API management, rather than being scattered in multiple code files.
+A method instance corresponds to a request information description. It has a request URL, request headers, request parameters, and request behavior parameters such as response data processing and cache data processing. Through the method instance, you can experience a unified usage experience in any JS environment, and it can run normally with very few changes. In addition, the method instance puts the request parameters and request behavior parameters together, which is more convenient for API management, rather than being scattered in multiple code files.
 
 ## PromiseLike feature
 
@@ -48,9 +48,9 @@ interface MethodConstructor {
 
 2. `context`: alova instance
 
-3. `url`: request url
+3. `url`: request URL
 
-4. `config`: configuration parameters, the type is consistent with the config parameter type of [alova.Get](/api/alova#alovaget)
+4. `config`: configuration options, the type is consistent with the config parameter type of [alova.Get](/api/alova#alovaget)
 
 5. `data`: request body data
 
@@ -69,7 +69,7 @@ const method = new Method('GET', alovaInstance, '/api/users', {
 
 ## method.headers
 
-Request headers.
+request headers.
 
 - **Type**
 
@@ -93,7 +93,7 @@ interface Method {
 
 ## method.url
 
-The url to create a method instance.
+The URL to create a method instance.
 
 - **Type**
 
@@ -105,7 +105,7 @@ interface Method {
 
 ## method.type
 
-Request type.
+The request method (GET, POST, etc.).
 
 - **Type**:
 
@@ -117,7 +117,7 @@ interface Method {
 
 ## method.data
 
-Request body.
+The request body.
 
 - **Type**
 
@@ -129,7 +129,7 @@ interface Method {
 
 ## method.context
 
-Create an Alova instance for the current method.
+The alova instance associated with the current method.
 
 - **Type**
 
@@ -312,9 +312,9 @@ interface Method {
 
 - **Parameter**
 
-1. `onFulfilled`: callback function when the request is successful
+1. `onFulfilled`: called when the request succeeds
 
-2. `onRejected`: callback function when the request fails
+2. `onRejected`: called when the request fails
 
 - **Return**
 
@@ -343,7 +343,7 @@ interface Method {
 
 - **Parameter**
 
-1. `onrejected`: callback function when request error occurs
+1. `onrejected`: called when a request error occurs
 
 - **Return**
 

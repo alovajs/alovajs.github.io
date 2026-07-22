@@ -1,4 +1,4 @@
-In the previous chapter we tried to send a request and obtain the response data. In fact, `alovaInstance.Get(...)` is not a function that initiates a request, but creates a method instance, which is a PromiseLike instance. You can use `then, catch, finally` methods or `await` Send the request just like a Promise object.
+In the previous chapter we tried to send a request and obtain the response data. In fact, `alovaInstance.Get(...)` is not a function that initiates a request, but creates a method instance, which is a PromiseLike instance. You can use the `then`, `catch`, and `finally` methods, or `await`, to send the request just like a Promise object.
 
 ```javascript
 const userMethodInstance = alovaInstance.Get('/api/user');
@@ -52,14 +52,14 @@ Parameter Description:
 - `data` is the request body data;
 - `config` is the request configuration object, which includes configurations such as request headers, params parameters, request behavior parameters, etc.;
 
-you can also create a method instance customly. This is useful when you need to dynamically specify the request type.
+you can also create a method instance manually. This is useful when you need to dynamically specify the request type.
 
 ```javascript
 import { Method } from 'alova';
 
 const method = new Method('GET', alovaInstance, '/api/users', {
   params: {
-    ID: 1
+    id: 1
   }
 });
 ```
@@ -121,7 +121,7 @@ alovaInstance.Get('/user', {
 
 ### Other parameters supported by the request adapter
 
-In addition to request headers, params parameters, etc., it also supports configuring parameters supported by the corresponding request adapter. When using `GlobalFetch` as the request adapter of alova, you can configure any `fetch API` supported parameters on the `method` instance. These Parameters will be passed to the `fetch` function during request.
+In addition to request headers and params, it also supports configuring parameters supported by the corresponding request adapter. When using `GlobalFetch` as the request adapter of alova, you can configure any `fetch API` supported parameters on the `method` instance. These parameters will be passed to the `fetch` function when the request is sent.
 
 ```javascript
 alovaInstance.Get('/todo/list', {
@@ -155,7 +155,7 @@ If you use other request adapters, you can also pass the parameters they support
 
 In [RSM](/v2/tutorial/others/RSM), request behavior is used to describe how the request will be handled.
 
-### overtime time
+### Timeout
 
 Set request timeout.
 
@@ -171,7 +171,7 @@ alovaInstance.Get('/todo/list', {
 
 ### Request sharing
 
-We will always encounter this situation. When a request is issued but has not yet been responded to, the same request is issued again, resulting in a waste of requests or repeated submission of problems, such as the following three scenarios:
+We will always encounter this situation. When a request is issued but has not yet been responded to, the same request may be issued again, resulting in wasted requests or duplicate-submission issues, such as in the following scenarios:
 
 1. A component will obtain initialization data when it is created. When a page renders multiple components at the same time, multiple identical requests will be issued at the same time;
 2. The submit button is not disabled and the user clicks the submit button multiple times;
@@ -283,7 +283,7 @@ const handleOffEvent = () => {
 
 :::warning Things to note when using the `GlobalFetch` adapter
 
-Due to fetch api limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/v2/tutorial/request-adapter/alova-adapter-xhr) or [axios Adapter](/v2/tutorial/request-adapter/alova-adapter-axios).
+Due to fetch API limitations, the **GlobalFetch** adapter provided by alova does not support upload progress. If you need to upload progress, please use [XMLHttpRequest Adapter](/v2/tutorial/request-adapter/alova-adapter-xhr) or [axios Adapter](/v2/tutorial/request-adapter/alova-adapter-axios).
 
 You can also write your own request adapter, see [Writing Request Adapter](/v2/tutorial/custom/custom-http-adapter) for details.
 

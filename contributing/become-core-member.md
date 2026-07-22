@@ -15,7 +15,7 @@
 4. Decision-making power on projects.
 5. Profit sharing.
 
-## Require
+## Requirements
 
 1. Agree with alova’s design philosophy and development direction, and be willing to work hard to move forward together.
 2. Passion for technology, sense of responsibility, and teamwork.

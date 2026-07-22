@@ -4,7 +4,7 @@ server hook
 
 :::
 
-Request retry strategy, you can use it for important requests.
+The request retry strategy lets you retry failed requests. Use it for important requests.
 
 ## Features
 
@@ -75,7 +75,7 @@ retry(request, {
 
 ### Set an unfixed retry delay time
 
-Sometimes you want the delay time of each request to be not fixed. You can set the delay growth multiple as follows. The delay time will increase exponentially according to the number of retries.
+Sometimes you want each retry's delay to vary. You can set a delay growth multiple as follows, and the delay will increase exponentially with the number of retries.
 
 ```javascript
 retry(request, {
@@ -90,7 +90,7 @@ retry(request, {
 });
 ```
 
-Not enough? You can even add a random jitter value to each delay time to make it look less regular.
+You can even add a random jitter to each delay to make it less predictable.
 
 ```javascript
 retry(request, {

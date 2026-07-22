@@ -25,15 +25,15 @@ onSuccess(event => {
 
 ## New events in useSQRequest
 
-In order to better monitor the behavior of requests in the queue, `useSQRequset` also provides the following 3 additional event monitoring functions, you can obtain the binding functions in the following ways.
+In order to better monitor the behavior of requests in the queue, `useSQRequest` also provides the following 3 additional event monitoring functions, you can obtain the binding functions in the following ways.
 
 ```javascript
 const { onBeforePushQueue, onPushedQueue, onFallback } = useSQRequest(/* ... */);
 ```
 
-###onBeforePushQueue
+### onBeforePushQueue
 
-silentMethod is an event before entering the request queue. It is valid when the behavior mode is `queue` or `silent`. You can return `false` in this event callback to prevent the current silentMethod from entering the queue. For example, you may want to replace the current silentMethod with another one. It can be done like this:
+It is an event triggered before the silentMethod enters the request queue. It is valid when the behavior mode is `queue` or `silent`. You can return `false` in this event callback to prevent the current silentMethod from entering the queue. For example, you may want to replace the current silentMethod with another one. It can be done like this:
 
 ```javascript
 //...
@@ -47,9 +47,9 @@ onBeforePushQueue(event => {
 });
 ```
 
-###onPushedQueue
+### onPushedQueue
 
-silentMethod The event after entering the queue. It is valid when the behavior mode is `queue` or `silent`. If the queue is blocked in the **onBeforePushQueue** event, this function will not trigger.
+It is the event triggered after the silentMethod enters the queue. It is valid when the behavior mode is `queue` or `silent`. If the queue is blocked in the **onBeforePushQueue** event, this function will not trigger.
 
 ### onFallback
 
@@ -63,7 +63,7 @@ When the fallback event is bound, even if the behavior mode is `silent`, the req
 
 ## Save additional operation data
 
-When creating or editing a data item, the previous chapters only saved the echo data to `silentMethod.reviewData`, if there are some additional data that need to be recorded, such as the menu options of the edit page, etc., we also need to record them to ensure They can also be selected when the network is disconnected. At this time, these data are mounted on the silentMethod instance and persisted together.
+When creating or editing a data item, the previous chapters only saved the echo data to `silentMethod.reviewData`, if there are some additional data that need to be recorded, such as the menu options of the edit page, etc.  we also need to record them to ensure They can also be selected when the network is disconnected. At this time, these data are mounted on the silentMethod instance and persisted together.
 
 Generally speaking, you can save persistent data with any property name, but an error will be reported in typescript, so the `silentMethod.extraData` attribute is specified for you as the storage field for extra data, remember to use `silentMethod.save()` for persistence data.
 
@@ -245,7 +245,7 @@ bootSilentFactory({
    // highlight-start
    requestWait: [
      {
-       queue: /^delay,
+       queue: /^delay/,
        // Only delay 5000ms for post requests with url /edit
        wait: (silentMethod, queueName) => {
          const { type, url, data } = silentMethod.entity;
@@ -298,7 +298,7 @@ Silent factory start event, triggered after the silent factory is started.
 function onSilentSubmitBoot(handler: () => void): OffEventCallback;
 ```
 
-###onBeforeSilentSubmit
+### onBeforeSilentSubmit
 
 Fired before a silentMethod request with `behavior=silent`.
 
@@ -306,7 +306,7 @@ Fired before a silentMethod request with `behavior=silent`.
 function onBeforeSilentSubmit(handler: (event: GlobalSQEvent)): OffEventCallback;
 ```
 
-###onSilentSubmitSuccess
+### onSilentSubmitSuccess
 
 Fired when a silentMethod request with `behavior=silent` succeeds.
 

@@ -11,7 +11,7 @@ And here we will focus on the case of **2-2**.
 
 ## Edit silent submit items
 
-In the previous chapters, we know that when the newly created data item has not been successfully submitted, the virtual data will be used as the placeholder for the id. Usually, we also get the data item through the id. At this time, we are in `useSQRequeset` Virtual data interception is implemented on the above, if a request is accompanied by virtual data information, it will be intercepted before sending and the data can be specified to replace the response data, and the request will be abandoned.
+In the previous chapters, we know that when the newly created data item has not been successfully submitted, the virtual data will be used as the placeholder for the id. Usually, we also get the data item through the id. At this time, we implement virtual data interception on `useSQRequest`. If a request is accompanied by virtual data information, it will be intercepted before sending, and the specified data can replace the response data, and the request will be abandoned.
 
 Remember the **silentMethod.reviewData** saved in [Step 2 - Adjust Response Handling](/v2/tutorial/strategy/seamless-data-interaction/modify-response)?
 
@@ -67,7 +67,7 @@ You can save enough data in **silentMethod.reviewData** to satisfy both list dat
 
 :::
 
-So far, data items created through silent submit mode also support editing! What's the problem, um... and one last one.
+So far, data items created through silent submit mode also support editing! That's one problem solved — and there's one last one.
 
 ## When the data item being edited is submitted successfully
 
@@ -88,7 +88,7 @@ const unbindEvent = onSilentSubmitSuccess(event => {
      id = event.vDataResponse[vDataId];
 
      // The following is to change the virtual id in the url to the actual id
-     history.replaceState(null, '', '?id=' + currentId);
+     history.replaceState(null, '', '?id=' + id);
    }
 });
 // highlight-end
@@ -103,4 +103,4 @@ Here, the `event.vDataResponse` value is a collection of virtual data id and act
 }
 ```
 
-So far, we have completed all the content of a simple list of non-inductive interaction, but in other application scenarios such as editing applications, complex list management, etc., we may encounter more different needs. What else does alova have at this time? What are the features we can use? Please read the next chapter!
+So far, we have completed all the content of a simple list of non-inductive interaction, but in other application scenarios such as editing applications, complex list management, etc.  we may encounter more different needs. What else does alova have at this time? What are the features we can use? Please read the next chapter!

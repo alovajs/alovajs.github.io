@@ -62,9 +62,9 @@ alova.Get('/todo/1', {
 });
 ```
 
-### Combining failure sources
+### Combining invalidation sources
 
-If you want to use multiple rules above to match failure sources, you can specify hitSource as an array, where the array item is any of the above 3 rules, and method instances that meet any of the rules in the array will be matched.
+If you want to use multiple rules above to match invalidation sources, you can specify hitSource as an array, where the array item is any of the above 3 rules, and method instances that meet any of the rules in the array will be matched.
 
 ```javascript
 alova.Get('/todo/1', {

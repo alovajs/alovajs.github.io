@@ -1,8 +1,8 @@
 In fact, virtual data is a reference object with a unique id, and its tracking mechanism is realized by first generating a mapping between virtual data id and response data, and then finding and replacing it with the actual value through virtual data id.
 
-When the original value is a reference type, the performance is the same as the original value, but the virtual data of the basic type uses `Number, String, Boolean` encapsulation classes, as well as custom `Undefined, Null` encapsulation classes, and their expressions are the same as There are some deviations from the original value. The characteristics of the virtual data and the use of auxiliary functions for the virtual data are listed below. The details of the auxiliary functions will be introduced at the end of the chapter.
+When the original value is a reference type, the performance is the same as the original value, but the virtual data of the basic type uses `Number, String, Boolean` encapsulation classes, as well as custom `Undefined, Null` encapsulation classes, and their behavior differs slightly from the original values. The characteristics of the virtual data and the use of auxiliary functions for the virtual data are listed below. The details of the auxiliary functions will be introduced at the end of the chapter.
 
-## string concatenation
+## String concatenation
 
 When virtual data is concatenated, it will be converted to virtual data id for splicing.
 
@@ -39,7 +39,7 @@ dehydrateVData(virtualData) + 1; // 2
 dehydrateVData(virtualData) > 0; // true
 ```
 
-## type operator
+## Type operator
 
 Because the virtual data is implemented using the encapsulation class on the basic data type, `object` will always be returned when using `typeof` to get the type, and it can also be converted to the original value by `dehydrateVData` to get the type
 
@@ -72,7 +72,7 @@ Uncaught Error: Objects are not valid as a React child (found: object with keys 
 
 Therefore, it is recommended to use `dehydrateVData` to convert to raw data for display.
 
-## virtual data helper functions
+## Virtual data helper functions
 
 ### dehydrateVData
 
@@ -106,7 +106,7 @@ stringifyVData(virtualData); // [vd:xxxxxx]
 
 ### equals
 
-Judge whether two values are equal in a way that is compatible with virtual data. When there is no virtual data to participate in the comparison, it will be strictly compared. Otherwise, it will be compared whether the virtual data id is the same. If there may be virtual data involved in the comparison data, it is recommended to use this function for comparison.
+Determine whether two values are equal in a way that is compatible with virtual data. When there is no virtual data to participate in the comparison, it will be strictly compared. Otherwise, it will be compared whether the virtual data id is the same. If there may be virtual data involved in the comparison data, it is recommended to use this function for comparison.
 
 ```typescript
 // type
@@ -120,7 +120,7 @@ equals(virtualData1, virtualData2); // true when the ids of virtualData1 and vir
 equals(virtualData1, '[vd:xxxxxx]'); // true when the id of virtualData1 is also [vd:xxxxxx]
 ```
 
-###isVData
+### isVData
 
 Determine whether the target data is virtual data
 

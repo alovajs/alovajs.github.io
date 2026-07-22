@@ -2,8 +2,7 @@
 
 Create an alova instance.
 
-- **type**
-
+- **Type**
 ```ts
 function createAlova(options?: AlovaOptions): Alova;
 ```
@@ -26,8 +25,7 @@ function createAlova(options?: AlovaOptions): Alova;
 | errorLogger    | boolean\| null \| function  | Error log, [View details](/v2/tutorial/advanced/error-logger)                                                |
 | cacheLogger    | boolean \| null \| function | Cache log, [View details](/v2/tutorial/advanced/cache-logger)                                                |
 
-- **return**
-
+- **Return**
 Alova instance
 
 - **Example**
@@ -54,8 +52,7 @@ The alova instance id is used to distinguish different alova instances. It can a
 
 When creating an alova instance through `createAlova`, the default configuration is merged with the passed-in configuration object.
 
-- **type**
-
+- **Type**
 ```ts
 interface AlovaOptions {
   statesHook: StatesHook;
@@ -76,8 +73,7 @@ interface AlovaOptions {
 
 The storage adapter instance corresponding to the alova instance defaults to `AlovaGlobalStorage`, which uses `localStorage`.
 
-- **type**
-
+- **Type**
 ```ts
 interface AlovaStorageAdapter {
   get(key: string): any;
@@ -90,8 +86,7 @@ interface AlovaStorageAdapter {
 
 Create a method instance for the GET request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Get(url: string, config?: AlovaMethodCreateConfig): Method;
@@ -118,8 +113,7 @@ interface Alova {
 
 > In addition to the configurable parameters above, other parameters supported by the request adapter are also supported.
 
-- **return**
-
+- **Return**
 method instance
 
 - **Example**
@@ -137,8 +131,7 @@ const getUsers = alovaInstance.Get('/users', {
 
 Create a method instance for the POST request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Post(
@@ -155,8 +148,7 @@ interface Alova {
 2. data: request body
 3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
-
+- **Return**
 method instance
 
 - **Example**
@@ -179,8 +171,7 @@ const postUsers = alovaInstance.Post(
 
 Create a method instance for the DELETE request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Delete(
@@ -197,8 +188,7 @@ interface Alova {
 2. data: request body
 3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
-
+- **Return**
 method instance
 
 - **Example**
@@ -219,8 +209,7 @@ const deleteUsers = alovaInstance.Delete(
 
 Create a method instance for the PUT request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Put(
@@ -237,8 +226,7 @@ interface Alova {
 2. data: request body
 3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
-
+- **Return**
 method instance
 
 - **Example**
@@ -260,8 +248,7 @@ const putUsers = alovaInstance.Put(
 
 Create a method instance of the HEAD request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Head(url: string, config?: AlovaMethodCreateConfig): Method;
@@ -273,16 +260,14 @@ interface Alova {
 1. url: request address
 2. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
-
+- **Return**
 method instance
 
 ## alova.Patch()
 
 Create a method instance for the PATCH request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Patch(
@@ -299,16 +284,14 @@ interface Alova {
 2. data: request body
 3. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
-
+- **Return**
 method instance
 
 ## alova.Options()
 
 Create a method instance of the OPTIONS request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Alova {
   Options(url: string, config?: AlovaMethodCreateConfig): Method;
@@ -320,6 +303,5 @@ interface Alova {
 1. url: request address
 2. config: configuration parameters, the parameter type is the same as [alova.Get](#alovaget)
 
-- **return**
-
+- **Return**
 method instance

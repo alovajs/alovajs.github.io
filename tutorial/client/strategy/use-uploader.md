@@ -1,12 +1,12 @@
 :::info strategy type
 
-use hook
+useUploader
 
 alova@3.3+
 
 :::
 
-> Before using extended hooks, make sure you are familiar with the basic use of alova.
+> Before using extended hooks, make sure you are familiar with the basic usage of alova.
 
 Simple file upload, base64, file object, blob object, arraybuffer object, Canvas can be directly uploaded.
 
@@ -572,7 +572,7 @@ useUploader(({ file, name }) => uploadFile(file, name), {
 
 ### Customize file selection
 
-As mentioned in `appendFile`, if `files` is not passed in, a dialog box will be opened to select the file. This default is valid on the browser side. When you use this request strategy in a non-browser environment, you can customize the file selection.
+As mentioned in `appendFiles`, if `files` is not passed in, a dialog box will be opened to select the file. This default is valid on the browser side. When you use this request strategy in a non-browser environment, you can customize the file selection.
 
 The following is an example of selecting an image in react-native.
 

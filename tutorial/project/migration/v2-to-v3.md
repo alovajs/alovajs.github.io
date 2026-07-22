@@ -81,7 +81,7 @@ useWatcher(() => method, [xxx], { sendable: () => sendable });
 
 // v3
 useWatcher(() => method, [xxx], {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     if (sendable) {
       return next();
     }
@@ -106,7 +106,7 @@ alova.Get('/api/file');
 ```javascript
 // v2
 createAlova({
-  respondedd() {
+  responsed() {
     // ...
   }
 });
@@ -251,7 +251,7 @@ accessAction(
 // v2
 method.__key__ = 'custom-key';
 // v3
-method.key = 'custom-key ';
+method.key = 'custom-key';
 ```
 
 19. `method.transformData` is simplified to method.transform:
@@ -347,6 +347,6 @@ const { loading, data } = useRequest(method).onSuccess(() => {
 // v2
 const methodSnapshots = matchSnapshotMethod('method-name');
 
-// V3
+// v3
 const methodSnapshots = alova.snapshots.match('method-name');
 ```

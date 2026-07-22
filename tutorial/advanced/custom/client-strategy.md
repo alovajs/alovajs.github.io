@@ -141,7 +141,7 @@ onUnmount(() => {});
 ### Monitor state changes
 
 ```js
-// Parameter 1: Monitor item, used for compatibility with react, can pass platform-related state values ​​and FrameworkState
+// Parameter 1: Monitor item, used for compatibility with react, can pass platform-related state values and FrameworkState
 // Parameter 2: Callback function
 watch([loading, computedState.e], () => {});
 ```
@@ -219,7 +219,7 @@ const {__referingObj,
 // ...
 } = statesHookHelper(promiseStatesHook());
 
-const states = useReqest(methodHandler, {
+const states = useRequest(methodHandler, {
 __referingObj
 });
 

@@ -2,7 +2,7 @@
 
 ## 在 method 中强制请求
 
-通过调用 method 实例的 send 函数，并传入 true 来强制请求。
+通过调用 method 实例的 `send` 函数，并传入 `true` 来强制请求。
 
 ```javascript
 const response = await alovaInstance.Get('/api/user').send(true);

@@ -1,3 +1,3 @@
-🎉 Congratulations! You have completed the basic use of alova. So far, you can use alova to meet your daily project development. You can freely choose the next learning content according to your own interests.
+🎉 Congratulations! You have completed the basics of alova. By now, you can use alova for your everyday project development. Feel free to pick the next topic based on your interests.
 
 

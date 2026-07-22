@@ -1,6 +1,6 @@
 :::info 策略类型
 
-use hook
+useFetcher
 
 :::
 

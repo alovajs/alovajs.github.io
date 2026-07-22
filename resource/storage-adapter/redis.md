@@ -64,7 +64,7 @@ const redisAdapter = new RedisStorageAdapter({
 
 ### Configuring Redis Cluster
 
-`[v3.4.0+]`You can set Redis cluster nodes via `nodes` and configure ioredis options via `options`.
+`[v3.4.0+]` You can set Redis cluster nodes via `nodes` and configure ioredis options via `options`.
 
 ```javascript
 const redisAdapter = new RedisStorageAdapter({
@@ -97,7 +97,7 @@ const redisAdapter = new RedisStorageAdapter({
 
 ## As an Atomic Lock
 
-`[v3.4.0+]`This storage adapter includes a process lock based on `@sesamecare-oss/redlock`, which can be used with the `atomize` strategy to ensure request atomicity in multi-process environments. For details, refer to [Atomic Requests](/tutorial/server/strategy/atomize).
+`[v3.4.0+]` This storage adapter includes a process lock based on `@sesamecare-oss/redlock`, which can be used with the `atomize` strategy to ensure request atomicity in multi-process environments. For details, refer to [Atomic Requests](/tutorial/server/strategy/atomize).
 
 You can configure `@sesamecare-oss/redlock` options. For specific parameters, refer to [@sesamecare-oss/redlock#configuration](https://www.npmjs.com/package/@sesamecare-oss/redlock#configuration).
 

@@ -1,6 +1,6 @@
 ## Delay update loading
 
-When the response is very fast, the loading status will flash once, which will bring a bad experience to the user. Delaying the loading update can make the loading status display after a period of time. If the response is completed within this period, it will not appear. Loading status. Let's implement a middleware with delayed update loading.
+When the response is very fast, the loading status flashes briefly, which gives a poor user experience. Delaying the loading update keeps the loading status hidden for a short period; if the response completes within that period, the loading status will not appear at all. Let's implement a middleware with delayed loading updates.
 
 ```javascript
 const delayLoadingMiddleware =

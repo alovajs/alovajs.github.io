@@ -1,4 +1,4 @@
-Method instances run through the entire request life cycle of alova, and there will be a large number of different method instances in the project. Sometimes we need to add additional information to specific method instances to facilitate their identification or additional information transfer. Wait, at this point, we need to use method metadata.
+Method instances exist throughout alova's whole request lifecycle, and a project typically has many of them. Sometimes you need to attach extra information to a specific method instance to identify it or pass data along — that is what method metadata is for.
 
 ## Use metadata to identify identities
 
@@ -100,7 +100,7 @@ const downloadAPI = filePath => {
 ```javascript
 createAlova({
    // ...
-   responded:
+   responded: {
      onSuccess: (response, method) => method.meta?.isDownload ? response.blob() : response.json()
      onError: (error, method) => {
        //Metadata of method instances can also be accessed when responding to errors
@@ -143,4 +143,4 @@ methodInstance.showResponseMsg = true;
 methodInstance.others = 'abc';
 ```
 
-Only in the typescript environment, any attribute name will report that the attribute "$0" does not exist. ts(2339)`, so in the type we specify the `meta` attribute as the information carrier.
+Only in a TypeScript environment will an arbitrary property name raise the error `Property '$0' does not exist` (ts(2339)), so in the type we designate `meta` as the information carrier.

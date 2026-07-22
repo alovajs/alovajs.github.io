@@ -63,7 +63,7 @@ export default App;
 
 **Pages Router:**
 
-In tranditional pages router mode, nextjs providers fixed server-side initialization page data functions, such as `getStaticProps`, `getServerSideProps` and `getStaticPaths`, etc., you can [directly use the method instance](/v2/tutorial/getting-started/quick-start) call apis in the function.
+In tranditional pages router mode, nextjs providers fixed server-side initialization page data functions, such as `getStaticProps`, `getServerSideProps` and `getStaticPaths`, etc.  you can [directly use the method instance](/v2/tutorial/getting-started/quick-start) call apis in the function.
 
 ```jsx
 const todoListGetter = alovaInstance.Get('/todo/list', {

@@ -4,19 +4,18 @@ Manually update existing response data or additional status under any module/pag
 
 **⚠️ Please make sure the component is not destroyed**
 
-By default, `updateState` will look for the response state created by alova's useHooks when sending a request, but to prevent memory overflow, the destruction of a component will also recycle all the states created internally, so please make sure you use `updateState` It is hoped that the container component corresponding to the updated response status has not been destroyed, otherwise the corresponding response status will not be found and the update will fail.
+By default, `updateState` will look for the response state created by alova's useHooks when a request is sent. However, to prevent memory overflow, a destroyed component also recycles all internally created states. Therefore, make sure the container component corresponding to the response state you are updating with `updateState` has not been destroyed; otherwise the corresponding response state will not be found and the update will fail.
 
-This problem often occurs when updating status across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update status across pages, here are two suggestions :
+This problem often occurs when updating status across pages, because what we tend to overlook when the page jumps is that the previous page has been destroyed by default. Therefore, if you want to update status across pages, here are two suggestions:
 
 1. Persist the page components to ensure that the updated status can still be found;
-2. Use [setCache](/v2/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the The request can hit the updated cache to achieve the same effect.
+2. Use [setCache](/v2/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request for the previous page exists in the cache, update its cache to ensure that when the page is created again, the request can hit the updated cache to achieve the same effect.
 
 > Go to [Cross-page/module update response states](/v2/tutorial/advanced/update-across-components) for details.
 
 > To use updateState to manage extra states, please refer to [Extra State Management](/v2/tutorial/advanced/manage-extra-states).
 
-- **type**
-
+- **Type**
 ```ts
 type MethodFilter =
   | string
@@ -43,8 +42,7 @@ function updateState(
 | -------------- | -------- | -------------------------------------------------- |
 | onMatch        | Function | After matching method, the function will be called |
 
-- **return**
-
+- **Return**
 Whether the update is successful.
 
 - **Example**
@@ -84,7 +82,7 @@ updateState('user', oldData => {
        name: 'Alova',
      },
    ];
-}
+});
 
 // Regular matching through method name
 updateState(/^us/, oldData => {

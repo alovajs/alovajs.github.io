@@ -35,7 +35,7 @@ const handleSubmit = () => {
     title: 'new todo',
     content: 'new todo content'
   });
-}；
+};
 ```
 
 ## Invalidate multiple caches

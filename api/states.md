@@ -1,16 +1,16 @@
 ## updateState
 
-Manually update the existing response data or additional status under any module/page.
+Manually update existing response data or extra states from any module or page.
 
 **⚠️ Make sure the component is not destroyed**
 
-`updateState` will search for the response status created by alova's useHooks when sending a request by default, but to prevent memory overflow, the destruction of a component will also recycle all the status created inside it. Therefore, when using `updateState`, make sure that the container component corresponding to the response status you want to update is not destroyed, otherwise the corresponding response status will not be found and the update will fail.
+`updateState` will search for the response status created by alova's useHooks when sending a request by default, but to prevent memory overflow, the destruction of a component will also recycle all the status created inside it. Therefore, when using `updateState`, make sure the container component that holds the response state you want to update is still mounted; otherwise the state cannot be found and the update fails.
 
-This problem often occurs when updating state across pages, because when the page jumps, we tend to overlook that the previous page has been destroyed by default. Therefore, if you want to update the state across pages, here are two suggestions:
+This often happens when updating state across pages, because when navigating away, the previous page is usually destroyed without you noticing. If you want to update state across pages, here are two suggestions:
 
-1. Persist the page components to ensure that the updated state can still be found;
+1. Keep the page component mounted so the updated state can still be found;
 
-2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. The principle is that when the request of the previous page is cached, update its cache to ensure that when the page is created again, the triggered request can hit the updated cache and achieve the same effect.
+2. Use [setCache](/tutorial/cache/set-and-query) instead of `updateState`. When the previous page's request is cached, update its cache so that when the page is created again, the request hits the updated cache and produces the same result.
 
 > Go to [Update response status across pages/modules](/tutorial/client/in-depth/update-across-components) for details.
 
@@ -28,17 +28,17 @@ function updateState(
 
 - **Parameter**
 
-- `matcher`: The value is a method instance.
+- `matcher`: A method instance.
 
-- `handleUpdate`: Update function or update function collection. If it is a function collection, the corresponding update function on the collection will be called and the return value will be used as the update result.
+- `handleUpdate`: An update function, or a collection of update functions. For a collection, the matching update function is called and its return value is used as the update result.
 
 - **Return**
 
-Whether the update is successful.
+Whether the update succeeded (`true`/`false`).
 
 - **Example**
 
-Use `useRequest` in page or component A to send a request and get the response data.
+Use `useRequest` in page or component A to send a request and receive the response data.
 
 ```ts
 const { data } = useRequest(
@@ -48,7 +48,7 @@ const { data } = useRequest(
 );
 ```
 
-Use `updateState` in page or component B to update the response status.
+Use `updateState` in page or component B to update the response state.
 
 ```javascript
 import { updateState } from 'alova';

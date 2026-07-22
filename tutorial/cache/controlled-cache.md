@@ -48,4 +48,4 @@ const fileGetter = alovaInstance.Get('/file/file_name', {
 
 ## Notes
 
-When used in usehooks, throwing an error in the `cacheFor` function will trigger `onError`. When using the method instance to directly initiate a request, the promise will be rejected.
+When used in use hooks, throwing an error in the `cacheFor` function will trigger `onError`. When using the method instance to send a request directly, the returned promise will be rejected.

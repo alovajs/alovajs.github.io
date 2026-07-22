@@ -4,7 +4,7 @@ Represents the sending of a request. When executing useRequest, a request will b
 
 > Go to [Send Request](/v2/tutorial/combine-framework/use-request) for details.
 
-### type
+### Type
 
 ```ts
 function useRequest(
@@ -24,7 +24,7 @@ function useRequest(
 | initialData   | The initial data value. The data value is the initial value before the first response. If it is not set, it is `undefined` | any                                                                                                                                | -       | -       |
 | force         | Whether to force the request, it can be set to the function to dynamically return a boolean value                          | boolean \| (...args: any[]) => boolean \| false                                                                                    | -       | -       |
 | managedStates | Additional managed states, which can be updated via updateState                                                            | Record\<string \|number \| symbol, any\>                                                                                           | -       | -       |
-| middleware    | Middleware function, [Understanding alova middleware](/v2/tutorial/advanced/middleware)                                    | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -       | -       |
+| middleware    | Middleware function, [Understanding alova middleware](/v2/tutorial/advanced/middleware)                                    | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -       | -       |
 
 #### AlovaFrontMiddlewareContext
 
@@ -92,9 +92,9 @@ The following attribute values will automatically infer the responsive data type
 | fromCache | Whether the response data comes from the cache, a value if successful                    | boolean              | -       |
 | error     | Response error instance, with value in case of failure                                   | Error                | -       |
 
-### return value
+### Return value
 
-`UseHookReturnType` contains response data and request-related states, operation functions and event binding functions. They will automatically infer the responsive data type of the corresponding UI framework based on `statesHook`, which is the `Ref` type in vue3 and the `Ref` type in react. It is a normal value and is of `Writable` type in svelte.
+`UseHookReturnType` contains response data and request-related states, operation functions and event binding functions. They will automatically infer the responsive data type of the corresponding UI framework based on `statesHook`: the `Ref` type in vue3, a normal value in react, and the `Writable` type in svelte.
 
 #### Responsive data
 
@@ -128,7 +128,7 @@ Monitor the status and initiate a request after the status changes. In some scen
 
 > Go to [State Change Request](/v2/tutorial/combine-framework/use-watcher) for details.
 
-### type
+### Type
 
 ```typescript
 function useWatcher(
@@ -150,13 +150,13 @@ function useWatcher(
 | force         | Whether to force the request, it can be set to the function to dynamically return a boolean value                                          | boolean \| (...args: any[]) => boolean \| false                                                                                    |
 | managedStates | Additional managed states, which can be updated via updateState                                                                            | Record\<string \| number \| symbol, any\>                                                                                          | -          |
 | debounce      | Request debounce time (milliseconds), when passing in the array, you can set the debounce time individually in the order of watchingStates | number \| number[]                                                                                                                 | -          |
-| middleware    | Middleware function, [Understanding alova middleware](/v2/tutorial/advanced/middleware)                                                    | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -          | -       |
+| middleware    | Middleware function, [Understanding alova middleware](/v2/tutorial/advanced/middleware)                                                    | (context: [AlovaFrontMiddlewareContext](#alovafrontmiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -          | -       |
 | sendable      | Whether to send a request when the monitored state changes                                                                                 | (methodInstance: AlovaEvent) => boolean                                                                                            | () => true | -       |
 | abortLast     | Whether to abort the last unresponsive request                                                                                             | boolean                                                                                                                            | true       | -       |
 
-### return value
+### Return value
 
-`UseHookReturnType` contains response data and request-related states, operation functions and event binding functions. They will automatically infer the responsive data type of the corresponding UI framework based on statesHook. It is Ref type in vue3 and ordinary value in react. In svelte it is Writable type.
+`UseHookReturnType` contains response data and request-related states, operation functions and event binding functions. They will automatically infer the responsive data type of the corresponding UI framework based on `statesHook`: the `Ref` type in vue3, an ordinary value in react, and the `Writable` type in svelte.
 
 #### Responsive data
 
@@ -190,7 +190,7 @@ It is used to pull data through `useFetcher`, which is useful when preloading da
 
 > Go to [Data Fetching](/v2/tutorial/advanced/use-fetcher) to view details.
 
-### type
+### Type
 
 ```typescript
 function useFetcher(config?: FetcherHookConfig): UseFetchHookReturnType;
@@ -203,7 +203,7 @@ function useFetcher(config?: FetcherHookConfig): UseFetchHookReturnType;
 | Name       | Description                                                                                       | Type                                                                                                                                   | Default                              | Version |
 | ---------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
 | force      | Whether to force the request, it can be set to the function to dynamically return a boolean value | boolean                                                                                                                                | (...args: any[]) => boolean \| false | -       |
-| middleware | Middleware function, [Understand alova middleware](/v2/tutorial/advanced/middleware)              | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\ > | -                                    | -       |
+| middleware | Middleware function, [Understand alova middleware](/v2/tutorial/advanced/middleware)              | (context: [AlovaFetcherMiddlewareContext](#alovafetchermiddlewarecontext), next: [AlovaGuardNext](#alovaguardnext)) => Promise\<any\> | -                                    | -       |
 
 #### AlovaFetcherMiddlewareContext
 
@@ -233,9 +233,9 @@ The following attribute values will automatically infer the responsive data type
 | downloading | Download progress information | Object             | -       |
 | uploading   | Upload progress information   | Object             | -       |
 
-### return value
+### Return value
 
-`UseFetchHookReturnType` contains request-related states, operation functions and event binding functions. They will automatically infer the responsive data type of the corresponding UI framework based on statesHook. It is Ref type in vue3, ordinary value in react, and ordinary value in svelte. For Writable type.
+`UseFetchHookReturnType` contains request-related states, operation functions and event binding functions. They will automatically infer the responsive data type of the corresponding UI framework based on `statesHook`: the `Ref` type in vue3, an ordinary value in react, and the `Writable` type in svelte.
 
 #### Responsive data
 
@@ -258,6 +258,6 @@ The following attribute values will automatically infer the responsive data type
 
 | name       | description                      | callback parameters                                                                                              | version |
 | ---------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| onSuccess  | Request success event binding    | event: [AlovaSuccessEvent](#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](#alovasuccessevent)   | -       |
-| onError    | Request error event binding      | event: [AlovaErrorEvent](#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](#alovaerrorevent)       | -       |
-| onComplete | Request completion event binding | event: [AlovaCompleteEvent](#alovacompleteevent)) => void, <br/>event: [AlovaCompleteEvent](#alovacompleteevent) | -       |
+| onSuccess  | Request success event binding    | event: [AlovaSuccessEvent](#alovasuccessevent) => void   | -       |
+| onError    | Request error event binding      | event: [AlovaErrorEvent](#alovaerrorevent) => void       | -       |
+| onComplete | Request completion event binding | event: [AlovaCompleteEvent](#alovacompleteevent) => void | -       |

@@ -70,7 +70,7 @@ const alovaInstance = createAlova({
 ```
 
 
-> For more information about response caching, please refer to [Detailed of Cache](/tutorial/cache/mode).
+> For more information about response caching, please refer to [Cache Details](/tutorial/cache/mode).
 
 ## SessionStorage Storage Adapter Example
 

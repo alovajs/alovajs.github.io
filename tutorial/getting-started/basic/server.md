@@ -26,7 +26,7 @@ const { sendCaptcha } = createCaptchaProvider({
 });
 
 // step1: create a method instance to send code.
-const createCaptchaMethod = (code, key) = > alovaInstance.Post('/api/captcha', {
+const createCaptchaMethod = (code, key) => alovaInstance.Post('/api/captcha', {
   code,
   email: key,
 });
@@ -94,7 +94,7 @@ Some application scenarios are as follows:
 3. Integrate data merging and processing of multiple downstream servers. Multiple serial requests may lead to longer response time and may consume performance due to complex data conversion. The converted data can be cached.
 4. API rate limit and billing. Weather forecast service API updates weather information every hour, geographic location data API, etc.
 
-By default, alova's first-level cache is a simple object cache in a key-value manner, without a second-level cache. You can configure it yourself. The following is an example of using an inter-process memory sharing adapter plus lru cache as the first-level cache and redis as the second-level cache.
+By default, alova's level-1 cache is a simple key-value object cache, and there is no level-2 cache. You can configure it yourself. The following is an example of using an inter-process memory sharing adapter plus lru cache as the first-level cache and redis as the second-level cache.
 
 ```js
 const { createPSCAdapter, NodeSyncAdapter } = require('@alova/psc');
@@ -145,6 +145,6 @@ const alovaInstance = createAlova({
 });
 ```
 
-The source code of the redis adapter mentioned above can be found in [Best Practice - L2 Cache Adapter](/tutorial/project/best-practice/l2-storage), and the adapter for shared memory between processes can be found here(/resource/storage-adapter/psc)
+The source code of the redis adapter mentioned above can be found in [Best Practice - L2 Cache Adapter](/tutorial/project/best-practice/l2-storage), and the adapter for shared memory between processes can be found here (/resource/storage-adapter/psc)
 
 > For more detail of response cache, please refer to [Detailed Explanation of Cache](/tutorial/cache/mode).

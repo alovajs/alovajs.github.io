@@ -35,7 +35,7 @@ const alovaInstance = createAlova({
 
 ## As an Atomic Lock
 
-`[v3.4.0+]`this storage adapter includes a process lock based on `proper-lockfile`, which can be used with the `atomize` strategy to ensure request atomicity in multi-process environments. For details, refer to [Atomic Requests](/tutorial/server/strategy/atomize).
+`[v3.4.0+]` this storage adapter includes a process lock based on `proper-lockfile`, which can be used with the `atomize` strategy to ensure request atomicity in multi-process environments. For details, refer to [Atomic Requests](/tutorial/server/strategy/atomize).
 
 You can configure `proper-lockfile` options, which will be passed to `lock` and `unlock`. For specific parameters, see [proper-lockfile#usage](https://www.npmjs.com/package/proper-lockfile#usage).
 

@@ -4,7 +4,7 @@ Cache also supports update and search. In [cache mode](/tutorial/cache/mode), we
 
 ### Update static values
 
-Use `setCache` to update cache data. Its first parameter is the method instance, the second is the new cache data, and returns a Promise instance to indicate whether the execution is completed.
+Use `setCache` to update cache data. Its first parameter is the method instance, the second is the new cache data, and it returns a Promise that resolves once the update is complete.
 
 ```js
 import { setCache } from 'alova';

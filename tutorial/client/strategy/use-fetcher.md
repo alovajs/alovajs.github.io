@@ -6,10 +6,10 @@ use hook
 
 When you have the following needs:
 
-1. Preload the data that will be used in subsequent processes and store it in the cache, so that users no longer have to wait for the data loading process;
-2. Conveniently implement cross-page data update (similar to global state), for example, modify an item in the todo list and then re-fetch the latest data, and the interface will be refreshed after the response.
+1. Preload data that will be used later and store it in the cache, so users no longer wait for data to load;
+2. Easily update data across pages (like global state) — for example, edit an item in the todo list, then re-fetch the latest data and let the view refresh after the response.
 
-`useFetcher` is the hook used to implement the above scenario. The response data obtained through it cannot be received directly, but the data fetched through it will not only update the cache, but also update the corresponding state, thereby re-rendering the view.
+`useFetcher` is the hook for these scenarios. The response data it fetches cannot be read directly, but it updates both the cache and the matching state, which re-renders the view.
 
 ## Preload data
 
@@ -183,14 +183,14 @@ const getTodoList = currentPage => {
 
 const App = () => {
   const {
-    // loading indicates the status of sending a pull request
+    // loading indicates the status of the fetch request
     loading,
     error,
     onSuccess,
     onError,
     onComplete,
 
-    // Only after calling fetch will a request be sent to pull data. You can call fetch repeatedly to pull data from different interfaces
+    // A request is only sent after you call `fetch`. You can call `fetch` repeatedly to pull data from different interfaces.
     fetch
   } = useFetcher({
     updateState: false
@@ -215,7 +215,7 @@ const App = () => {
 
 :::warning
 
-The above example is set `updateState` to false when calling `useFetcher`. This is because the data fetching will automatically trigger a states cross-component updating by default, causing the view to be re-rendered. When preload data is the same as the currently requested data. You can set it to false to avoid affecting view errors.
+The example above sets `updateState` to `false` when calling `useFetcher`. By default, fetching automatically triggers a cross-component state update and re-renders the view. When the preloaded data matches the data currently being requested, set this to `false` to avoid unexpected view updates.
 
 :::
 
@@ -266,7 +266,7 @@ const handleSubmit = () => {
 
 :::warning Notes
 
-useFetcher only updates the cache after the request is completed, and if this Method is foundIf the instance has been requested using useHook before, the `data` state created by this useHook will also be updated to ensure that the page data is consistent. This is the guarantee that `useFetcher` is used to update views across modules/components.
+`useFetcher` updates the cache only after the request completes, and if that Method instance was previously used by a hook, the `data` state created by that hook is also updated to keep the page data consistent. This is what makes `useFetcher` reliable for updating views across modules or components.
 
 :::
 

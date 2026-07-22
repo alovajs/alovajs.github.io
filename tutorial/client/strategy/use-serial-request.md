@@ -53,7 +53,7 @@ const {
     // args is the parameter passed in by the send function
     (...args) => request1(args),
 
-    // Starting from the second handler, the first parameter is the response data of the previous request, and args is received from the second
+    // Starting from the second handler, the first parameter is the response data of the previous request, and the remaining args are received from the second parameter onward
     (response1, ...args) => request2(response1, args),
     (response2, ...args) => request3(response2, args)
   ],

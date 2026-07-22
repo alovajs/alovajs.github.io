@@ -1,6 +1,6 @@
 ## What is the request scene model
 
-The request scenario model is based on the perspective of the client. It describes the abstract model of the client from triggering the request intent to receiving the request result. It consists of four stages: request timing, request behavior, request event, and response management. For example, when making a request, you often need to think about the following questions,
+The Request Scenario Model views things from the client's perspective. It abstracts the client's journey from triggering a request to receiving the result, and consists of four stages: request timing, request behavior, request events, and response management. For example, when making a request you often need to consider questions like:
 
 1. When the request is made;
 2. Whether to display the request status;
@@ -12,45 +12,45 @@ The request scenario model is based on the perspective of the client. It describ
 8. How to process requests in a weak or disconnected network environment;
 9. ...
 
-`fetch` or `axios` are often more focused on how to interact with the server, but we always need to deal with the above problems by ourselves. These functions that are beneficial to application performance and stability will always allow programmers to write low-maintenance sexual code. The request scene model is to abstract all links from preparing the request to processing the response data, so as to cover the model of the entire CS interaction life cycle from the perspective of the front end. `alova` is a library that requests scene models, it is a supplement to request libraries such as `axios`, not a substitute.
+Libraries like `fetch` and `axios` focus mainly on how to talk to the server, yet we still have to handle all the above concerns ourselves. Features that improve an application's performance and stability often force developers to write hard-to-maintain code. The Request Scenario Model abstracts every step from preparing a request to processing its response, covering the entire client-server interaction lifecycle from the front end's point of view. `alova` is a library built around this model; it complements request libraries such as `axios` rather than replacing them.
 
-> CS interaction: generally refers to data interaction between all client types and servers
+> Client-Server interaction: data exchange between any type of client and the server.
 
 ## Request scene model
 
 ![RSM](/img/rsm-en.png)
 
-## request timing
+## Request timing
 
-Describe when a request needs to be made, implemented with `useHook` in `alova`.
+Describes when a request should be made. Implemented with a `useHook` from `alova`.
 
-- Initialize display data, such as just entering a certain interface or sub-interface;
-- Human-computer interaction triggers CS interaction, and the request needs to be changed again, such as page turning, filtering, sorting, fuzzy search, etc.;
-- Send requests in an anti-shake manner, avoid view data flickering, and reduce server pressure
-- Preloading data, such as preloading the content of the next page in a page, predicting that the user clicks a button to pre-fetch data;
-- To operate server data, it is necessary to issue a request for addition, deletion, modification and query, such as submitting data, deleting data, etc.;
-- Synchronize server status, such as polling requests in scenarios where data changes rapidly, and re-pull data after operating a certain data;
+- Initialize display data, such as when first entering a page or sub-view;
+- User interaction triggers a client-server interaction that needs a new request, such as paging, filtering, sorting, or fuzzy search;
+- Send requests in a debounced manner to avoid view flicker and reduce server load;
+- Preload data, such as prefetching the next page's content or predicting a button click to fetch data early;
+- Operate server data by sending create, read, update, or delete requests, such as submitting or deleting data;
+- Sync server state, such as polling when data changes quickly, or re-fetching after modifying something;
 
 ## Request Behavior
 
-Describes how to process the request, implemented as a Method abstraction in `alova`.
+Describes how a request is processed, implemented as a Method abstraction in `alova`.
 
-- Placeholder request, when requesting, display loading, skeleton diagram, or real data used last time;
-- Cache high-frequency responses, multiple execution requests will use fresh data;
-- Multi-request serial and parallel;
-- The retry mechanism of important interfaces reduces the probability of request failure caused by network instability;
-- Submit silently. When you only care about submitting data, directly respond to the success event after submitting the request, and the background guarantees that the request is successful;
-- Offline submission, the submitted data will be temporarily stored locally when offline, and then submitted after the network connection;
+- Placeholder requests: show a loading state, a skeleton, or the previously fetched real data while the request is in flight;
+- Cache frequently used responses so repeated requests reuse fresh data;
+- Run multiple requests sequentially or in parallel;
+- Retry important requests to reduce failures caused by unstable networks;
+- Silent submission: when you only care about sending data, respond to the success event immediately after submitting, while the request is guaranteed to succeed in the background;
+- Offline submission: store submitted data locally while offline and send it once the connection is restored;
 
-## request event
+## Request event
 
-Indicates sending a request with request parameters and getting a response. `alova` can work with any request library or native solution such as `axios`, `fetch`, `XMLHttpRequest`.
+Represents sending a request with its parameters and receiving a response. `alova` works with any request library or native solution such as `axios`, `fetch`, or `XMLHttpRequest`.
 
 ## Response management
 
-`alova` makes the response data stateful and manages it in a unified manner, refreshes the view data and operates the cache at the request level, avoids operations at the component level, and is more elegant and unified.
+`alova` turns response data into managed state, handling view updates and cache operations at the request level instead of the component level, which is cleaner and more consistent.
 
-- Remove the cached response data, which will be pulled from the server when the request is made again;
-- Update the cached response data, which can update the response data at any location, which is very helpful for updating data across pages;
-- Refresh the response data, which can re-refresh the response data at any position, and is also very helpful for updating data across pages;
-- Customize the cache setting. When requesting batch data, you can manually set the cache for the batch data one by one, so as to meet the cache hit of subsequent single data;
+- Remove cached response data; it will be fetched from the server on the next request;
+- Update cached response data from anywhere, which is especially useful for cross-page updates;
+- Refresh response data from anywhere, also useful for cross-page updates;
+- Customize caching: when fetching a batch, you can cache each item individually so later single-item requests hit the cache;

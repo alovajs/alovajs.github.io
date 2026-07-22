@@ -4,7 +4,7 @@ In terms of Typescript, we have indeed spent a lot of effort on optimization in 
 
 When createAlova creates an alova instance, the state types created by all useHooks such as `useRequest`, `useWatcher`, and `useFetcher` are automatically inferred based on the passed `statesHook`.
 
-The following are the status types returned by useHooks by default.
+The following are the state types returned by use hooks by default.
 
 **VueHook:**
 
@@ -134,7 +134,7 @@ The response data is converted by the global response interceptor, so when setti
 
 Because alova supports custom request adapters, and the request configuration objects, response objects, and response headers of different adapters may be different, so the global `beforeRequest`, `responded` interceptors, and the configuration object when the `Method` instance is created The types will be automatically inferred based on the types provided by the request adapter. Let's look at these types first.
 
-If you are using `alova/fetch`, alova will automatically infer the type using `fetch api`, The types of fetch api are as follows.
+If you are using `alova/fetch`, alova will automatically infer the type using the `fetch` API. The `fetch` API types are as follows.
 
 ```typescript
 declare function fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
@@ -156,7 +156,7 @@ alovaInstance.Get('/api/user', methodConfig);
 
 ### Global response interceptor parameter type
 
-The type of responded interceptor will be automatically inferred as:
+The type of the `responded` interceptor will be automatically inferred as:
 
 ```typescript
 createAlova({

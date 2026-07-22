@@ -1,4 +1,4 @@
-Server strategy is also called `Server hook`, which is a decorated function of a method instance.
+Server strategy is also called `Server hook`, which is a decorator function that wraps a method instance.
 
 The following is the specification of server hooks, which receives a method instance and returns a new method instance, so it is very convenient to combine multiple server hooks.
 

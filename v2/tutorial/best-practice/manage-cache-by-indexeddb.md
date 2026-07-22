@@ -1,4 +1,4 @@
-If you are developing applications that require extensive use of local cache, such as graphics editing applications, file management applications, etc., the low-capacity localStorage can no longer meet the development needs. At this time, you can use IndexedDB and alova for large-capacity local cache management.
+If you are developing applications that require extensive use of local cache, such as graphics editing applications, file management applications, etc.  the low-capacity localStorage can no longer meet the development needs. At this time, you can use IndexedDB and alova for large-capacity local cache management.
 
 This feature is mainly due to alova's [Controlled Cache](/v2/tutorial/cache/controlled-cache) function, which can implement custom cache management. Let's take a look at the practical steps.
 

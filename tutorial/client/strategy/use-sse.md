@@ -1,6 +1,6 @@
 :::info Strategy Type
 
-use hook
+useSSE
 
 :::
 

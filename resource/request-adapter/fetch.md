@@ -60,7 +60,7 @@ alovaInstance.Post(
 );
 ```
 
-`[v3.4.0+]`If you do not want to set the default `Content-Type`, you can set `Content-Type` to a falsy value, i.e., `undefined`, `null`, `false`, or an empty string.
+`[v3.4.0+]` If you do not want to set the default `Content-Type`, you can set `Content-Type` to a falsy value, i.e., `undefined`, `null`, `false`, or an empty string.
 
 ```javascript
 alovaInstance.Post(
@@ -74,9 +74,9 @@ alovaInstance.Post(
 );
 ```
 
-## `[3.5.0]`custom fetch function
+## `[3.5.0]` custom fetch function
 
-if you need to use a custom fetch function, you can pass in the custom fetch function when creating the fetch adapter.
+If you need to use a custom fetch function, you can pass it in when creating the fetch adapter.
 
 ```javascript
 import adapterFetch from 'alova/fetch';

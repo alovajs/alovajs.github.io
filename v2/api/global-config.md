@@ -2,8 +2,7 @@
 
 Global configuration.
 
-- **type**
-
+- **Type**
 ```ts
 function globalConfig(config: AlovaGlobalConfig): void;
 ```
@@ -16,8 +15,7 @@ function globalConfig(config: AlovaGlobalConfig): void;
 | -------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | limitSnapshots | number | method snapshot number limit, set to 0 to disable saving snapshots. After closing, the method snapshot matcher will be unavailable |
 
-- **return**
-
+- **Return**
 none
 
 - **Example**

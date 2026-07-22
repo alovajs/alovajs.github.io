@@ -1,6 +1,6 @@
 ## invalidateCache()
 
-Actively invalidate the cache.
+Actively invalidates the cache.
 
 > Go to [Manually Invalidate Cache](/tutorial/cache/manually-invalidate) for details.
 
@@ -12,7 +12,7 @@ function invalidateCache(matcher?: Method | Method[]): Promise<void>;
 
 - **Parameter**
 
-1. `matcher`: method instance or array for cache invalidation.
+1. `matcher`: A method instance or an array of method instances whose cache should be invalidated.
 
 - **Return**
 
@@ -31,7 +31,7 @@ await invalidateCache(methodSnapshots);
 
 ## setCache()
 
-Set the response cache.
+Sets the response cache.
 
 > Go to [Cache Update and Lookup](/tutorial/cache/set-and-query) for details.
 
@@ -47,17 +47,17 @@ function setCache(
 
 - **Parameter**
 
-1. `matcher`: value is method instance or instance array.
-2. `dataOrUpdater`: cache data or update function. If it is a function, it needs to return the new cache data. If it returns `undefined` or does not return, the update is canceled.
-3. `options`: Configuration parameters
+1. `matcher`: A method instance or an array of method instances.
+2. `dataOrUpdater`: The cache data, or an updater function. If a function is provided, it must return the new cache data. Returning `undefined` (or nothing) cancels the update.
+3. `options`: Cache update options.
 
 | Parameter name | Type                  | Description                                                                                                                                                              |
 | -------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| policy         | 'l1' \| 'l2' \| 'all' | Cache update policy, `l1` means only updating the l1 layer cache, `l2` means only updating the l2 layer cache, and `all` means updating both the l1 and l2 layers cache. |
+| policy         | 'l1' \| 'l2' \| 'all' | The cache update policy. `l1` updates only the level-1 cache, `l2` updates only the level-2 cache, and `all` updates both. |
 
 - **Return**
 
-Promise instance
+A `Promise` that resolves once the cache has been updated.
 
 - **Example**
 
@@ -81,7 +81,7 @@ await setCache(
 
 ## queryCache()
 
-Query cache.
+Queries the cache.
 
 > Go to [Cache Update and Lookup](/tutorial/cache/set-and-query) for details.
 
@@ -96,16 +96,16 @@ function queryCache(
 
 - **Parameter**
 
-1. `matcher`: The value is a method instance, a method name string, or a method name regular expression. It can also be set to a [method matcher](/tutorial/client/in-depth/method-matcher). The cache data will be queried for the first method instance that meets the conditions.
-2. `options`: Configuration parameters
+1. `matcher`: A method instance, a method name string, or a method name regular expression. You can also pass a [method matcher](/tutorial/client/in-depth/method-matcher). The cache of the first matching method instance is queried.
+2. `options`: Cache query options.
 
 | Parameter name | Type                  | Description                                                                                                                                                                       |
 | -------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| policy         | 'l1' \| 'l2' \| 'all' | Cache acquisition strategy, `l1` means only obtaining the l1 layer cache, `l2` means only obtaining the l2 layer cache, and `all` means querying both the l1 and l2 layer caches. |
+| policy         | 'l1' \| 'l2' \| 'all' | The cache retrieval strategy. `l1` retrieves only the level-1 cache, `l2` retrieves only the level-2 cache, and `all` queries both. |
 
 - **Return**
 
-Promise instance of cache data, returns `undefined` if there is no cache.
+A `Promise` resolving to the cache data, or `undefined` if no cache is found.
 
 - **Example**
 

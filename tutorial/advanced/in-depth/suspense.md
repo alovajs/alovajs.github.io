@@ -19,12 +19,12 @@ The Suspense component displays loading states for async components. When used w
 
 ```html title="App.vue"
 <template>
-  <suspense>
+  <Suspense>
     <profile></profile>
     <template #fallback>
       <div>Loading...</div>
     </template>
-  </suspense>
+  </Suspense>
 </template>
 ```
 

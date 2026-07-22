@@ -1,6 +1,6 @@
 Usually, use hook can only be used in vue's setup, but through the auxiliary function provided by `@alova/vue-options`, you can also use alova's use hook in vue's options, which is perfectly compatible with almost all functions of alova. You can use all [client request strategies](/tutorial/client/strategy) of `alova/client` under options.
 
-> It can be used in both vue2 and vue3.
+> It can be used in both vue2 and Vue 3.
 
 [![npm](https://img.shields.io/npm/v/@alova/vue-options)](https://www.npmjs.com/package/@alova/vue-options)
 [![build](https://github.com/alovajs/vue-options/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/alovajs/vue-options/actions/workflows/release.yml)
@@ -202,7 +202,7 @@ this.todoRequest$onComplete; // (handler: CompleteHandler) => void
 
 ### Add types to response data
 
-Except for `this.todoRequest.data`, other values ​​have the correct type, so how to set the type for `data`? In fact, it is the same as alova in other environments.
+Except for `this.todoRequest.data`, other values have the correct type, so how to set the type for `data`? In fact, it is the same as alova in other environments.
 
 **javascript**
 

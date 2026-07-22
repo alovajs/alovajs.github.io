@@ -1,6 +1,6 @@
 :::info Tips
 
-This plugin only supports the taro application of react 16.8+, vue3 version.
+This plugin only supports the taro application of react 16.8+, Vue 3 version.
 
 :::
 

@@ -12,10 +12,10 @@ Request middleware is an asynchronous function. The following is a simple reques
 
 ```javascript
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     console.log('before request');
     await next();
-    console.log('after requeste');
+    console.log('after request');
   }
 });
 ```
@@ -43,7 +43,7 @@ The return value of the middleware function will be used as the response data of
 ```javascript
 // Convert response data and return
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     const result = await next();
     result.code = 500;
     return result;
@@ -52,14 +52,14 @@ useRequest(todoList, {
 
 // The response data of this request will be used for subsequent processing
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     await next();
   }
 });
 
 // The string abc will be used as the response data
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     await next();
     return 'abc';
   }
@@ -72,7 +72,7 @@ Sometimes you want to change the request. At this time, you can specify another 
 
 ```javascript
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     await next({
       // Change the method instance of the request
       method: newMethodInstance,
@@ -92,7 +92,7 @@ In the middleware, you can capture the request error generated in `next`. After 
 
 ```javascript
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     try {
       await next();
     } catch (e) {
@@ -109,7 +109,7 @@ Of course, you can also throw a custom error in the middleware, and even if the 
 ```javascript
 // No request is sent, and global and request-level onError will be triggered. If the request is sent through `method.send`, a reject promise instance will be returned
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     throw new Error('error on before request');
     await next();
   }
@@ -117,7 +117,7 @@ useRequest(todoList, {
 
 // After the request is successful, global and request-level onError will be triggered. If the request is sent through `method.send`, a reject promise instance will be returned
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     await next();
     throw new Error('error on after request');
   }
@@ -131,7 +131,7 @@ In the middleware, we can delay the response or respond in advance. In the case 
 ```javascript
 // Delay response for 1 second
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     await new Promise(resolve => {
       setTimeout(resolve, 1000);
     });
@@ -141,7 +141,7 @@ useRequest(todoList, {
 
 // Respond immediately and use string abc as response data
 useRequest(todoList, {
-  async middleware(_, ​​next) {
+  async middleware(_, next) {
     return 'abc';
   }
 });

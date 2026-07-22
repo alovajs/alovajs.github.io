@@ -13,7 +13,7 @@ Serial requests also have two modes.
 
 ### Method 1
 
-Let the first request be automatically sent, and the second request is triggered in the `onSuccess` callback of the first request to complete the serial request. The serial request can be completed by writing as follows:
+Let the first request be automatically sent, and the second request is triggered in the `onSuccess` callback of the first request to complete the serial request, as shown below:
 
 ```javascript
 //

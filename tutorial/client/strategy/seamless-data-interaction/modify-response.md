@@ -38,7 +38,7 @@ const { send } = useSQRequest(createOrEditTodo, {
 
 ## Silent queue description
 
-After setting the behavior parameter to `queue` or `silent`, the request will enter the silent queue and wait for the request to be initiated. By default, they will enter the queue named `default`. You can also specify other queues to save silentMethod instances. without interfering with each other.
+After setting the behavior parameter to `queue` or `silent`, the request will enter the silent queue and wait for the request to be initiated. By default, they will enter the queue named `default`. You can also specify other queues to save SilentMethod instances without interfering with each other.
 
 ```javascript
 useSQRequest(createOrEditTodo, {
@@ -187,7 +187,7 @@ const handleDelete = deletingId => {
 
 ## Save the operation record
 
-It is not enough to just update the list manually. We also need to consider that when the network is restored and there are still waiting requests in the request queue, the list data loaded at this time does not include the part of the unsubmitted request, which will cause certain problems for the user. Puzzled:
+It is not enough to just update the list manually. We also need to consider that when the network is restored and there are still waiting requests in the request queue, the list data loaded at this time does not include the part of the unsubmitted request, which can confuse the user:
 
 > "I have clearly added multiple pieces of data, why is it not in the list?"
 
@@ -244,7 +244,7 @@ onSuccess(({ args: [deletingId], silentMethod }) => {
 ### Precautions
 
 1. In the onSuccess callback function, silentMethod has a value only in the `queue` and `silent` behavior modes;
-2. Generally speaking, you can use `silentMethod.a = ...` or `silentMethod.b = ...` to save operation records, but it will report an error in typescript, so _reviewData_ is specially provided as a silent Submit the save attribute of the operation record;
+2. Generally speaking, you can use `silentMethod.a = ...` or `silentMethod.b = ...` to save operation records, but it will report an error in typescript, so _reviewData_ is specially provided as a silent submit save attribute for the operation record;
 3. After modifying the silentMethod data, you need to save the modification through `silentMethod.save()`;
 
 The next step is to set retry parameters on silent submit requests.

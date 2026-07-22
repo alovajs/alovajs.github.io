@@ -4,8 +4,7 @@ Active cache invalidation.
 
 > Go to [Manually invalidate cache](/v2/tutorial/cache/manually-invalidate) for details.
 
-- **type**
-
+- **Type**
 ```ts
 type MethodFilter =
   | string
@@ -22,8 +21,7 @@ function invalidateCache(matcher?: Method | Method[] | MethodFilter): void;
 
 1. `matcher`: Cache invalid matcher, the value is a method instance or array, or it can be set to [method instance matcher](/v2/tutorial/advanced/method-matcher).
 
-- **return**
-
+- **Return**
 none
 
 - **Example**
@@ -45,8 +43,7 @@ Set up response caching.
 
 > Go to [Cache Update and Query](/v2/tutorial/cache/set-and-query) for details.
 
-- **type**
-
+- **Type**
 ```ts
 type MethodFilter =
   | string
@@ -64,11 +61,10 @@ function setCache(
 
 - **Parameters**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher](/v2/tutorial/advanced/method-matcher), which will match all matching The method instance of the condition sets the cached data.
+1. `matcher`: The value can be a method instance, a method name string, or a method name regular expression. It can also be set to a [method instance matcher](/v2/tutorial/advanced/method-matcher), which sets the cached data for all matching method instances.
 2. `dataOrUpdater`: Cache data or update function. If it is a function, it needs to return new cached data. If it returns `undefined` or does not return, the update will be cancelled.
 
-- **return**
-
+- **Return**
 none
 
 - **Example**
@@ -93,8 +89,7 @@ Query cache.
 
 > Go to [Cache Update and Query](/v2/tutorial/cache/set-and-query) for details.
 
-- **type**
-
+- **Type**
 ```ts
 type MethodFilter =
   | string
@@ -109,10 +104,9 @@ function queryCache(matcher?: Method | MethodFilter): R | undefined;
 
 - **Parameters**
 
-1. `matcher`: The value is method instance, method name string, method name regular expression. It can also be set to [method instance matcher](/v2/tutorial/advanced/method-matcher), which will meet the conditions. The first method instance queries cached data.
+1. `matcher`: The value can be a method instance, a method name string, or a method name regular expression. It can also be set to a [method instance matcher](/v2/tutorial/advanced/method-matcher), which queries the cached data of the first matching method instance.
 
-- **return**
-
+- **Return**
 Cache data, or return `undefined` if not cached.
 
 - **Example**

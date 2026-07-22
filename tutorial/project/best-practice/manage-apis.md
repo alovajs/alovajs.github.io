@@ -1,6 +1,6 @@
 In a project, we may need to use hundreds or thousands of request APIs, so managing these request APIs becomes particularly important.
 
-You may write the request code like the code snippet in [quick start](/tutorial/getting-started/quick-start). all codes in one file.
+You may write request code like the snippet in the [quick start](/tutorial/getting-started/quick-start), with all the code in one file.
 
 ```javascript
 const { loading, data, error } = useRequest(
@@ -12,9 +12,9 @@ const { loading, data, error } = useRequest(
 );
 ```
 
-This is just for beginners to understand, but in actual projects, we do not recommend this, because the method instance is not only used to send requests, it can also be used to operate cache and state, the above usage will make these request api become It's unmanageable, and if you think it's wrong, you might forget a little:
+This is only for beginners to understand. In real projects, we do not recommend it, because a method instance is used not only to send requests but also to operate on cache and state. The usage above makes these request APIs unmanageable, and you might overlook one important detail:
 
-> The key of the response data cache is uniquely identified by the combination of the method instance’s request method (method), request address (url), request header parameters (headers), url parameters (params), and request body parameters (requestBody). Or different positions will be treated as different keys.
+> The response data cache key is uniquely identified by combining the method instance's request method (method), request URL (url), request headers (headers), url parameters (params), and request body (requestBody). Otherwise, a different position will be treated as a different key.
 
 Therefore, in actual projects, method instances should be managed, and alova instances can also be managed uniformly.
 
@@ -39,7 +39,7 @@ In short, your project should use a suitable folder structure to organize them.
 
 ## Manage alova instance
 
-Your project may need to communicate with different servers, or you may need to use special request schemes in specific requests, or use different response interceptors, etc. All of these require creating and maintaining multiple alova instances in the project. It is recommended to Use a separate file to manage them, for example in the above api management structure, will use `api/index.js` to manage.
+Your project may need to communicate with different servers, or you may need to use special request schemes in specific requests, or use different response interceptors, etc. All of these require creating and maintaining multiple alova instances in the project. It is recommended to use a separate file to manage them; for example, in the api management structure above, `api/index.js` is used to manage them.
 
 ```javascript title=api/index.js
 import { createAlova } from 'alova';
@@ -77,9 +77,9 @@ export const uploadAlova = createAlova({
 
 ## Manage method instances
 
-We can use different js files to classify and manage method instances. For example, in the above api management structure, `api/methods/user.js` will be used to manage method instances related to user information, and `api/methods/order.js` will be used `A method instance related to order management.
+We can use different js files to classify and manage method instances. For example, in the api management structure above, `api/methods/user.js` manages method instances related to user information, and `api/methods/order.js` manages method instances related to order management.
 
-In addition, as mentioned above, in addition to sending requests, method instances can also be used to operate caches and states. In order to ensure the number and order of request parameters, we can use a function to correspond to a request API, through The corresponding method instance is returned in the form of incoming request parameters. As long as the incoming parameters are the same, the request information and parameter order of the method instance are also the same, so as to ensure that the method instance used to operate the cache and state is correct.
+In addition, as mentioned above, method instances do more than send requests; they also operate on caches and states. To keep the number and order of request parameters consistent, map each request API to a function that returns the corresponding method instance based on the incoming request parameters. As long as the incoming parameters are the same, the method instance's request info and parameter order stay the same, which ensures that the correct method instance is used for cache and state operations.
 
 ```javascript title=api/methods/user.js
 import { userAlova } from '..';
