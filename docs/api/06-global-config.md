@@ -4,7 +4,7 @@ title: Global Configuration
 
 ## globalConfig()
 
-Global Configuration.
+Configures alova globally.
 
 - **Type**
 
@@ -14,12 +14,12 @@ function globalConfig(config: AlovaGlobalConfig): void;
 
 - **Parameter**
 
-1. config: Configuration
+1. `config`: The global configuration.
 
 | Parameter name | Type                          | Description                                                                                                                                                                                                                                             |
 | -------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| autoHitCache   | 'global' \| 'self' \| 'close' | Default is `global`, `global` means that cache can be invalidated across multiple Alova instances, `self` means that only the cache of the current Alova instance is invalidated, and `close` means that the automatic invalidation cache is turned off |
-| ssr            | boolean \| undefined          | Default is `undefined`, which means that it is up to alova to determine whether it is running on the server.                                                                                                                                            |
+| autoHitCache   | 'global' \| 'self' \| 'close' | Defaults to `global`. `global` invalidates the cache across multiple alova instances; `self` invalidates only the current alova instance's cache; `close` disables automatic cache invalidation. |
+| ssr            | boolean \| undefined          | Defaults to `undefined`, letting alova decide whether it is running on the server.                                                                                                                                            |
 
 - **Return**
 

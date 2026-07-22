@@ -79,7 +79,7 @@ The XMLHttpRequest adapter provides basic configuration parameters, including `r
        * This will set an `Authorization` header, overriding any existing
        * Custom headers for `Authorization` set using `headers`.
        * Note that only HTTP Basic authentication can be configured via this parameter.
-       * For Bearer tokens etc., use the `Authorization` custom header instead.
+       * For Bearer tokens etc.  use the `Authorization` custom header instead.
        */
       auth: {
         username: 'name1',
@@ -118,7 +118,7 @@ const list = () =>
         * This will set an `Authorization` header, overriding any existing
         * Custom headers for `Authorization` set using `headers`.
         * Note that only HTTP Basic authentication can be configured via this parameter.
-        * For Bearer tokens etc., use the `Authorization` custom header instead.
+        * For Bearer tokens etc.  use the `Authorization` custom header instead.
         */
        auth: {
          username: 'name1',
@@ -165,7 +165,7 @@ const App = () => {
        * This will set an `Authorization` header, overriding any existing
        * Custom headers for `Authorization` set using `headers`.
        * Note that only HTTP Basic authentication can be configured via this parameter.
-       * For Bearer tokens etc., use the `Authorization` custom header instead.
+       * For Bearer tokens etc.  use the `Authorization` custom header instead.
        */
       auth: {
         username: 'name1',
@@ -310,7 +310,7 @@ interface AlovaXHRRequestConfig {
    * This will set an `Authorization` header, overriding any existing
    * Custom headers for `Authorization` set using `headers`.
    * Note that only HTTP Basic authentication can be configured via this parameter.
-   * For Bearer tokens etc., use the `Authorization` custom header instead.
+   * For Bearer tokens etc.  use the `Authorization` custom header instead.
    */
   auth?: {
     username: string;

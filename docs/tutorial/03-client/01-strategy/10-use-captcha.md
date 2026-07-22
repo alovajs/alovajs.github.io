@@ -29,7 +29,7 @@ The verification code sending hook saves you the trouble of developing the verif
 
 ## Basic usage
 
-Demonstrates basic use of form hooks.
+Demonstrates the basic usage of the captcha hook.
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -203,7 +203,7 @@ Inherit all configurations of [**useRequest**](/api/core-hooks#userequest) excep
 
 | Name             | Description                                                                                                | Type   | Default | Version |
 | ---------------- | ---------------------------------------------------------------------------------------------------------- | ------ | ------- | ------- |
-| initialCountdown | Initial countdown, when the verification code is sent successfully, it will start countdown with this data | number | 60      | -       |
+| initialCountdown | Initial countdown; when the verification code is sent successfully, the countdown starts from this value | number | 60      | -       |
 
 ### Responsive data
 
@@ -211,7 +211,7 @@ Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 | Name      | Description                                                                                                 | Type   | Version |
 | --------- | ----------------------------------------------------------------------------------------------------------- | ------ | ------- |
-| countdown | The current countdown, -1 per second, the verification code can only be sent again after the countdown ends | number | -       |
+| countdown | The current countdown value, which decreases by 1 every second; the verification code can only be sent again after the countdown reaches 0 | number | -       |
 
 ### Action function
 

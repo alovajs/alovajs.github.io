@@ -14,7 +14,6 @@ const config: Config = {
   url: 'https://alova.js.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -346,7 +345,10 @@ const config: Config = {
   },
 
   markdown: {
-    mermaid: true
+    mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'throw'
+    }
   },
   // 主题
   themes: ['@docusaurus/theme-mermaid'],

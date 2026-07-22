@@ -12,7 +12,7 @@ import useRequestReact from '!!raw-loader!@site/codesandbox/01-getting-started/0
 import useRequestSvelte from '!!raw-loader!@site/codesandbox/01-getting-started/03-combine-framework/svelte-useRequest.zh.svelte';
 import useRequestVueOptions from '!!raw-loader!@site/codesandbox/01-getting-started/03-combine-framework/vueOptions-useRequest.zh.vue';
 
-In enterprise-level projects, it is very important to display the transfer status of data in the view, which can let users clearly know what they want now. When the page obtains initial data or submits data, you can usually use useRequest to automatically manage the status of the request.
+In enterprise-level projects, it is very important to display the transfer status of data in the view, which lets users clearly know the current data transfer status. When the page obtains initial data or submits data, you can usually use useRequest to automatically manage the status of the request.
 
 :::info reminder
 
@@ -132,9 +132,9 @@ export default {
 
 ### UseHook usage specifications
 
-Please note that `useRequest` can only be used to send requests within the component. Outside the component, you can send requests directly through the method instance, and the use of `useRequest` needs to comply with the use hook usage rules, that is, it can only be called in the outermost layer of the function. .
+Please note that `useRequest` can only be used to send requests within the component. Outside the component, you can send requests directly through the method instance, and the use of `useRequest` needs to comply with the use hook usage rules, that is, it can only be called in the outermost layer of the function.
 
-**❌❌❌ It is not recommended to call** in a loop, conditional judgment or sub-function. For example, the following usage example in the click callback. When used in the callback function, although the request can be initiated normally, the response returned by use hook Formula data cannot be used in views, nor can it be used in loops and conditional judgments.
+**❌ It is not recommended to call** `useRequest` in a loop, conditional statement, or sub-function. For example, calling it inside a click callback: although the request can still be initiated normally, the reactive data returned by the useHook cannot be used in views, nor can it be used in loops or conditional statements.
 
 ```javascript
 // ❌ bad
@@ -154,17 +154,17 @@ const handleClick = () => {
 
 ## Manually send request
 
-When you need to create a new todo item, you can first turn off the default send request, switch to manually triggering the request, and receive the `send` function in useRequest to send the request manually. The `send` function will return a Promise with response data instance, it will change to resolve state after request response.
+When you need to create a new todo item, you can first turn off the default send request, switch to manually triggering the request, and receive the `send` function in useRequest to send the request manually. The `send` function returns a Promise of the response data; it resolves after the request responds.
 
 At this time, in order to receive the parameters passed by the `send` function, you can set the first parameter of `useRequest` to a function. We call this function **method handler**.
 
 ```javascript
 const {
   // ...
-  // Manual sender request function, send the request after calling
+  // Manual send function — call it to send the request
   send: addTodo
 
-  //The parameters of the send function will be received here
+  // The parameters of the send function will be received here
 } = useRequest(newTodo => alovaInstance.Post('/todo', newTodo), {
   // When immediate is false, it will not be emitted by default.
   immediate: false

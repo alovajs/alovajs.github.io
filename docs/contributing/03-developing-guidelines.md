@@ -52,9 +52,9 @@ alova is a monorepo project with the following structure:
 |-.husky -> husky configuration
 |-.vscode -> vscode configuration
 |-examples -> alova example project
-|-internal -> Public module for test cases
+|-internal -> shared module for test cases
 |-packages -> Project source code
-|-scripts -> alova-scripts scripts
+|-scripts -> alova-scripts
 |-Other configuration files
 
 ```

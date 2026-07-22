@@ -236,8 +236,8 @@ const { loading, data, error } = useWatcher(
   [keyword, date],
   {
     // highlight-start
-    // When debounce is set to a number, it represents the anti-bounce time of all watching states, in milliseconds.
-    // This means that when one or more of the states keyword and date change, the request will be sent after 500ms.beg
+    // When debounce is set to a number, it represents the debounce time of all watching states, in milliseconds.
+    // This means that when one or more of the states keyword and date change, the request will be sent after 500ms.
     debounce: 500
     // highlight-end
   }
@@ -256,7 +256,7 @@ const { loading, data, error } = useWatcher(
     // highlight-start
     // Set debounce time in the order of the array of watching states. 0 or not passed means no debounce.
     // The order of the watching states here is [keyword, date], and the debounce array setting is [500, 0], which means that only the debounce is set separately for the keyword.
-    Debounce: [500, 0]
+    debounce: [500, 0]
     // You can also set it as follows:
     // debounce: [500],
     // highlight-end
@@ -287,7 +287,7 @@ useWatcher(
 
 ## Request timing
 
-Sometimes when the states watched by `useWatcher` changes continuously resulting in the initiation of consecutive requests, the latter request gets a response before the previous request, but when the previous request gets a response, it will overwrite the response of the latter request. Resulting in getting a response that does not match the state; for example, if the state `state` changes, a request `1` is issued, and then when the request `1` has not responded, the value of `state` is changed and a request` is issued. 2`, if request `1` is returned after request `2`, the final response data will remain at request `1`.
+Sometimes the states watched by `useWatcher` change continuously, initiating consecutive requests. If a later request responds before an earlier one, the earlier response will overwrite the later one when it arrives, resulting in a response that does not match the state. For example, when the `state` changes, request `1` is issued. Before request `1` responds, `state` changes again and request `2` is issued. If request `1` returns after request `2`, the final response data will remain at request `1`.
 So we designed the `abortLast` parameter, which is used to mark whether to abort the last unresponsive request when the next request is issued. The default is `true`, so that the request issued by `useWatcher` is only valid for the last time.
 
 ```mermaid

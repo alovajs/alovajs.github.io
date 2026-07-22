@@ -96,7 +96,7 @@ A hook designed for paging scenarios, it can help you automatically manage pagin
     total,
 
     // [3.3.0+]
-    // action status. This status will be changed only when the corresponding action is triggered. The specific values ​​are as follows:
+    // action status. This status will be changed only when the corresponding action is triggered. The specific values are as follows:
     // empty string: default status
     // loading: list data request
     // removing: list data deletion
@@ -190,7 +190,7 @@ const App = () => {
     total,
 
     // [3.3.0+]
-    // action status, this status will be changed only when the corresponding action is triggered, the specific values ​​are as follows:
+    // action status, this status will be changed only when the corresponding action is triggered, the specific values are as follows:
     // empty string: default status
     // loading: list data request
     // removing: list data deletion
@@ -313,7 +313,7 @@ const App = () => {
     total,
 
     // [3.3.0+]
-    // action status. This status will be changed only when the corresponding action is triggered. The specific values ​​are as follows:
+    // action status. This status will be changed only when the corresponding action is triggered. The specific values are as follows:
     // empty string: default status
     // loading: list data request
     // removing: list data removal
@@ -422,7 +422,7 @@ const App = () => {
     total,
 
     // [3.3.0+]
-    // action status, this status will be changed only when the corresponding action is triggered, the specific values ​​are as follows:
+    // action status, this status will be changed only when the corresponding action is triggered, the specific values are as follows:
     // empty string: default status
     // loading: list data request
     // removing: list data removal
@@ -550,7 +550,7 @@ const data = response => response.data;
 
 :::warning Note
 
-The data callback function must return a list data, which represents the data set used in paging, and total is mainly used to calculate the current page number. If no number is returned in the total callback function, it will be determined whether the current page is the last page by whether the number of lists requested is less than the pageSize value. This is generally used for pull-down loading.
+The `data` callback must return a list, which is the data set used for paging, and `total` is mainly used to compute the current page number. If the `total` callback returns no number, alova decides whether the current page is the last one by checking whether the requested list is shorter than `pageSize`. This is typically used for pull-to-load.
 
 :::
 
@@ -777,7 +777,7 @@ usePagination((page, pageSize) => queryStudents(page, pageSize, studentName, cls
 });
 ```
 
-It should be noted that `debounce` is implemented through request anti-shake in [**useWatcher**](/api/core-hooks#usewatcher). **There are two hidden monitoring states, page and pageSize, at the end of the monitoring state, which can also be set through debounce. **
+Note that `debounce` is implemented via request-level debouncing in [**useWatcher**](/api/core-hooks#usewatcher). **There are two implicit watched states at the end of the watched-state list — `page` and `pageSize` — and you can set their debounce through the array as well.**
 
 For example, when `watchingStates` sets `[studentName, clsName]`, `[studentName, clsName, page, pageSize]` will be monitored internally, so if you need to set anti-shake for page and pageSize, you can specify `[0, 0, 500, 500]`.
 
@@ -1000,7 +1000,7 @@ updateState(listMethod, {
 });
 ```
 
-[Click here to view](/tutorial/client/in-depth/update-across-components)Detailed usage of `updateState`.
+[Click here to view](/tutorial/client/in-depth/update-across-components) the detailed usage of `updateState`.
 
 Since the `data` type of `usePagination` is not directly inferred from method, the type needs to be manually specified in `updateState`.
 
@@ -1048,9 +1048,9 @@ Inherits all responsive data from [**useWatcher**](/api/core-hooks#usewatcher).
 | data       | Paginated list array data, configured by data                                                                                                                                                                                                                                                                                                        | any[]    | -       |
 | total      | Total number of data, configured by total, can be empty                                                                                                                                                                                                                                                                                              | number   | -       |
 | pageCount  | Total number of pages, calculated by total and pageSize                                                                                                                                                                                                                                                                                              | number   | -       |
-| isLastPage | Whether the current page is the last page, when pageCount has a value, it will be compared with pageCount, otherwise it will be determined by whether the length of the list data is less than pagSize                                                                                                                                               | number   | -       |
+| isLastPage | Whether the current page is the last page. When `pageCount` has a value it is compared against `pageCount`; otherwise it is determined by whether the list data length is less than `pageSize`                                                                                                                                                       | boolean  | -       |
 | fetching   | Whether data is being preloaded                                                                                                                                                                                                                                                                                                                      | boolean  | -       |
-| status     | action status. This status will be changed only when the corresponding action is triggered. The specific values ​​are as follows: <br/>empty string: default status; <br/>loading: list data is being requested; <br/>removing: list data is being deleted; <br/>inserting: list data is being inserted; <br/>replacing: list data is being replaced | string   | 3.3.0   |
+| status     | action status. This status will be changed only when the corresponding action is triggered. The specific values are as follows: <br/>empty string: default status; <br/>loading: list data is being requested; <br/>removing: list data is being deleted; <br/>inserting: list data is being inserted; <br/>replacing: list data is being replaced | string   | 3.3.0   |
 | removing   | The row index array being removed, used to control the delete button status of the corresponding column                                                                                                                                                                                                                                              | number[] | 3.3.0   |
 | replacing  | The row index being replaced, used to control the replacement button status of the corresponding column                                                                                                                                                                                                                                              | number   | 3.3.0   |
 

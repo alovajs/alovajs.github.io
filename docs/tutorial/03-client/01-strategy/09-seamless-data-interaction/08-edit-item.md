@@ -15,7 +15,7 @@ And here we will focus on the case of **2-2**.
 
 ## Edit silent submit items
 
-In the previous chapters, we know that when the newly created data item has not been successfully submitted, the virtual data will be used as the placeholder for the id. Usually, we also get the data item through the id. At this time, we are in `useSQRequeset` Virtual data interception is implemented on the above, if a request is accompanied by virtual data information, it will be intercepted before sending and the data can be specified to replace the response data, and the request will be abandoned.
+In the previous chapters, we know that when the newly created data item has not been successfully submitted, the virtual data will be used as the placeholder for the id. Usually, we also get the data item through the id. At this time, we implement virtual data interception on `useSQRequest`. If a request carries virtual data information, it will be intercepted before being sent, and you can specify data to replace the response and abandon the request.
 
 Remember the **silentMethod.reviewData** saved in [Step 2 - Adjust Response Handling](/tutorial/client/strategy/seamless-data-interaction/modify-response)?
 
@@ -71,11 +71,11 @@ You can save enough data in **silentMethod.reviewData** to satisfy both list dat
 
 :::
 
-So far, data items created through silent submit mode also support editing! What's the problem, um... and one last one.
+So far, data items created through silent submit mode also support editing. There is just one more thing to cover.
 
 ## When the data item being edited is submitted successfully
 
-When the user is editing a data item that has not been successfully submitted, it suddenly submits successfully! At this time, we need to replace the virtual data used in the edit page with actual data, for example, replace the virtual id with the actual id, and use the actual id to submit in the next edit. This is also very simple, we only need to monitor This is done by silently submitting the success event, which will receive a data collection consisting of virtual data and real data.
+When the user is editing a data item that has not been successfully submitted, it suddenly submits successfully! At this time, we need to replace the virtual data used in the edit page with actual data, for example, replace the virtual id with the actual id, and use the actual id to submit in the next edit. This is also very simple. We only need to listen for the silent submit success event, which receives a collection of virtual data and real data.
 
 ```javascript
 import { onSilentSubmitSuccess, stringifyVData } from 'alova/client';
@@ -107,4 +107,4 @@ Here, the `event.vDataResponse` value is a collection of virtual data id and act
 }
 ```
 
-So far, we have completed all the content of a simple list of non-inductive interaction, but in other application scenarios such as editing applications, complex list management, etc., we may encounter more different needs. What else does alova have at this time? What are the features we can use? Please read the next chapter!
+So far, we have completed all the content of a simple list of non-inductive interaction, but in other scenarios such as editing apps and complex list management, you may encounter different needs. What other features does alova offer? Please read the next chapter!

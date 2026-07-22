@@ -11,7 +11,7 @@ To be compatible with server-side rendering of UI frameworks such as [Nuxt3](htt
 
 ## CSR mode in SSR
 
-When the code runs on the server side, the `useRequest` and `useWatcher` and other use hooks in the component will not send requests, even if `immediate` is set to `true`. Instead, requests will be sent when the code runs in the browser. You can use all the features of alova as usual. This is a same behavior in all SSR frameworks.
+When the code runs on the server side, the `useRequest` and `useWatcher` and other use hooks in the component will not send requests, even if `immediate` is set to `true`. Instead, requests will be sent when the code runs in the browser. You can use all the features of alova as usual. This is the same behavior in all SSR frameworks.
 
 However, there are differences when using each SSR framework. Now, we will demonstrate how to use them one by one.
 
@@ -38,7 +38,7 @@ export const alovaInstance = createAlova({
 
 #### Fetch data on the server side
 
-When using almost all hooks such as `useRequest` and `useWatcher`, data is fetched on the server side through `await`. it has the following features:
+When using almost all hooks such as `useRequest` and `useWatcher`, data is fetched on the server side through `await`. It has the following features:
 
 1. The server-side data will be synchronized to the states in browser, keeping the states on both ends in sync, and all states are reactive.
 2. By default, it supports the serialization of `Date`, `Error`, and `RegExp` object of data, and also supports the serialization of custom data.

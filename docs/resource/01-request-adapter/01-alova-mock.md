@@ -5,12 +5,12 @@ title: Mock data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This mock plug-in is an alova request adapter. Different from the traditional Proxy form, you can control the Scope of usage of mock data. You can control the global scope, a group of interface scopes, and even the enabling and use of a certain interface. Disabled, which is very useful in our actual business scenarios. Each iteration will add or modify a set of interfaces. We hope that the previous functions will still follow the developed interfaces, and let the new or modified interfaces Taking the simulation data, at this time, each developer can group the interfaces involved in this iteration into a group, and turn them on or off.
+This mock plugin is an alova request adapter. Unlike the traditional proxy approach, you can control the usage scope of mock data—globally, per group of interfaces, or even enabling/disabling a single interface. This is very useful in real business scenarios: each iteration adds or modifies a set of interfaces, and you usually want previous features to keep using the already-developed interfaces while new or modified ones use the mock data. In that case, each developer can group the interfaces of their iteration and toggle them on or off.
 
 ## Features
 
 - Works seamlessly with alova
-- Arbitrary grouping of simulation requests to control global, group, and individual simulation interface enable and disable
+- Freely group simulated requests to enable or disable mock interfaces globally, by group, or individually
 - Works with mockjs
 - Do not pollute the production environment
 
@@ -99,7 +99,7 @@ export default defineMock(
     }
   },
   true
-); // The second parameter indicates whether to enable this group of mock interfaces, the default is true, and can be specified as false to close
+); // The second parameter indicates whether to enable this group of mock interfaces, the default is true, and can be set to false to disable it
 ```
 
 ### Create mock request adapter
@@ -172,9 +172,9 @@ const alovaInst = createAlova({
 alovaInst.Get('/user?id=1').send();
 ```
 
-In this example, the request path is `https://api.alovajs.org/v1/subname/user?id=1`, the matching path of the mock is `/v1/subname/user`, and `/ in the baseURL needs to be v1/subname` is also written together, which is slightly redundant when the number of interfaces is large.
+In this example, the request path is `https://api.alovajs.org/v1/subname/user?id=1`, and the mock matching path is `/v1/subname/user`. The `/v1/subname` part of the baseURL also needs to be included, which is slightly redundant when there are many interfaces.
 
-At this point, you can set `matchMode` to `methodurl` in `createAlovaMockAdapter`, it will only match the url defined in the method instance, for example, the above instance will match `/user?id=1` instead of The part in baseURL needs to be written. On the contrary, if the url in the method instance has a get parameter, it also needs to be written in the matching path of `defineMock`, just like `?id=1` here.
+At this point, you can set `matchMode` to `methodurl` in `createAlovaMockAdapter`. It will then match only the URL defined in the method instance; for example, the instance above will match `/user?id=1` without requiring the baseURL part to be written. Conversely, if the method instance's URL has a query parameter, it must also be included in the matching path of `defineMock`, such as `?id=1` here.
 
 ```javascript
 createAlovaMockAdapter([mockGroup1 /** ... */], {
@@ -223,7 +223,7 @@ defineMock({
 
 ### Group interfaces per developer per version
 
-In the team development scenario, we often only need to simulate some undeveloped interfaces for each version development, and use the test environment interface for the interface of the previous version. At this time, in order to achieve better simulation interface management, you can use The two dimensions, development version and developer, group interfaces.
+In the team development scenario, we often only need to simulate some undeveloped interfaces for each version development, and use the test environment interface for the interface of the previous version. To manage mock interfaces more effectively, you can group them by two dimensions: development version and developer.
 
 For example, there are two developers named _August_, _kevin_, they are developing v1.1 product features, they can manage the mock interface like this.
 
@@ -275,7 +275,7 @@ export const alovaInst = createAlova({
 
 ### Exclude mock code in production
 
-The mock data is generally only used in the development environment, and will be switched to the actual interface in the production environment, so this mock code becomes useless in the production environment. At this time, we can exclude this code by judging the environment variables. , you just need to do:
+Mock data is generally used only in the development environment and is replaced by the real interface in production, so this mock code becomes useless there. You can exclude it by checking environment variables, as shown below:
 
 ```javascript
 const alovaFetch = adapterFetch();
@@ -313,13 +313,13 @@ export default defineMock({
 
 ## Convert mock data
 
-**@alova/mock** By default, the response data is packaged as a Response instance, and the response header is packaged as a Headers instance by default, which is adapted for `adapterFetch`, but if you use other request adapters, you need to mock the data Convert to the corresponding format.
+By default, **@alova/mock** packages the response data as a Response instance and the response header as a Headers instance, which is adapted for `adapterFetch`. If you use other request adapters, you need to convert the mock data to the corresponding format.
 
 ### Convert response data
 
 You can intercept the mock response data in the `onMockResponse` field and return the transformed response data and response headers.
 
-> You can also throw an ERROR in onMockResponse to indicate a failure request.
+> You can also throw an error in onMockResponse to indicate a failed request.
 
 ```javascript
 const mockAdapter = createAlovaMockAdapter(
@@ -349,7 +349,7 @@ const mockAdapter = createAlovaMockAdapter(
 
 You can intercept the error instance in the `onMockError` field and return the converted error message.
 
-> You can also throw an ERROR in onMockResponse to indicate failure request.
+> You can also throw an error in onMockError to indicate a failed request.
 
 ```javascript
 const mockAdapter = createAlovaMockAdapter(

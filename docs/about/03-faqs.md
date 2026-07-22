@@ -4,27 +4,27 @@ title: FAQs
 
 ## Why to create alova?
 
-Data requests have always been an indispensable and important part of applications. Since the birth of XMLHttpRequest, request schemes have emerged in endlessly. Client-side data interaction exploration has always focused on the simplicity of requests, such as `$.ajax`, `axios`, `fetch api` and Request tools such as `react-query`, the coding form continues to evolve from callback functions, Promise, to usehook. These js libraries have done a good job in making requests simple, but they only provide common functions, which means For different request scenarios such as sharing requests, paging requests, form submissions, uploading and downloading files, etc., developers still need to write complex codes themselves, which reduces development efficiency and performance cannot be guaranteed. As user experience becomes more and more important, In this era, application fluency has become more and more important.
+Data requests have always been an essential part of applications. Since the advent of XMLHttpRequest, countless request solutions have appeared. The focus of client-server data interaction has been on making requests simple — from `$.ajax` and `axios` to the `fetch` API and tools like `react-query`, the coding style has evolved from callbacks to Promises to hooks. These libraries do a great job of simplifying requests, but they only provide generic features. That means for specific scenarios such as shared requests, pagination, form submission, and file upload/download, developers still have to write complex code themselves, which hurts both efficiency and performance. As user experience matters more and more, application smoothness has become increasingly important.
 
-Additionally, the collaboration between client and server is also separated. Front-end engineers need to consult API documents and manually write API functions, and any changes of APIs need to actively notify front-end engineers, which will make your product more uncontrollable.
+In addition, the client and server are developed separately. Front-end engineers must read API docs and write API functions by hand, and any API change needs to be communicated to them actively — otherwise your product becomes harder to control.
 
-**We think there is a simpler solution is that based on your request scenarios such as pagination, form submission, breakpoint resumption, etc., select the corresponding useHook, which will help you manage data and control when requests should be sent**. This allows developers to achieve more efficient Client-Server data interaction while writing little code.
+**We believe there is a simpler approach: based on your request scenario — pagination, form submission, resumable uploads, and so on — pick the matching useHook, and it will manage your data and decide when to send requests.** This lets developers achieve more efficient client-server interaction while writing very little code.
 
-Additionally, alova has very flexible expansion capabilities to implement request strategies in different scenarios. You can also customize your own request scenarios. This part is in [Custom Chapter](/tutorial/advanced/custom).
+alova is also highly extensible, letting you implement request strategies for different scenarios or even define your own. See the [Customization guide](/tutorial/advanced/custom).
 
-In order to cover more request scenarios, we also abstracted the request scenarios into [Request scene model(RSM)](/about/RSM), which explains alova's request strategy scheme well. In the future, alova will continue to carry forward our exploration of request strategies.
+To cover even more scenarios, we abstracted request scenarios into the [Request Scenario Model (RSM)](/about/RSM), which explains alova's request strategy approach well. alova will keep exploring new request strategies in the future.
 
-## Alternative to the request libraries?
+## Is alova a replacement for request libraries?
 
-alova is a request strategy library, which was originally created to provide specific request strategy solutions for different request scenarios, so as to achieve a smooth request experience more concisely and elegantly, such as `$.ajax`, `axios` and `fetch- api`, etc. provide good support for request sending and response receiving, they are an essential part of the [RSM](/about/RSM) process (request events), alova still needs to dependent on them to make requests, so we can Think of alova as an weaponry of the request library, making the request library more powerful.
+alova is a request strategy library. It was created to provide tailored request-strategy solutions for different scenarios, delivering a smoother experience more concisely and elegantly. Libraries like `$.ajax`, `axios`, and the `fetch` API handle sending requests and receiving responses well; they are an essential part of the [RSM](/about/RSM) process (request events). alova still depends on them to actually make requests, so you can think of alova as an enhancement layered on top of a request library, making it more powerful.
 
-## Why binding UI framework?
+## Why is alova tied to a UI framework?
 
-Decoupling a js library means using it in more scenarios. For example, axios can be used in nodejs, but it also means that developers need to write more template code, such as using useHooks to encapsulate axios. However, alova abandons more usage scenarios brought about by decoupling, and positions the Scope of usage in conjunction with the UI framework to use alova in the most streamlined way. This is for the benefit of developers and is prevalent in a UI framework. Sometimes, deep binding can provide developers with direct-use functions and improve the developer's experience without requiring too much template code.
+Decoupling a JS library lets it be used in more scenarios — for example, axios runs in Node.js — but it also means developers must write more boilerplate, such as wrapping axios in hooks. alova gives up some of those decoupled use cases and instead targets usage alongside a UI framework, so you can use it in the most concise way. This benefits developers who already work within a UI framework: a tight integration provides ready-to-use features and a better experience without much boilerplate.
 
-## Why does the request function use PascalCase specification?
+## Why do request functions use PascalCase?
 
-Different from the axios, taking the GET method as an example, `axios.get` is a request action, while `alova.Get` creates a method instance but actually does not send request.
+Unlike axios, where `axios.get` is a request action, `alova.Get` creates a method instance but does not actually send a request.
 
 ## Troubleshooting
 

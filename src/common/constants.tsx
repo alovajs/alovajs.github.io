@@ -22,12 +22,10 @@ export const Strategy: FeatureBlockProps[] = [
       id: 'homepage.requestStrategy.Pagination Request.description'
     }),
     className: 'col-span-8 row-span-3',
-    snippet: `const todoList = (page, size) => alova.Get('/todos', {
-  params: { page, size }
-});
-const {
-  loading, data, page, pageSize, pageCount, total
-} = usePagination(todoList);`
+    snippet: `const todoList = (page, size) =>
+  alova.Get('/todos', { params: { page, size } });
+const { loading, data, page, pageSize, pageCount, total } =
+  usePagination(todoList);`
   },
   {
     type: 'Client',
@@ -161,6 +159,56 @@ const alovaInstance = createAlova({
       id: 'homepage.requestStrategy.Auto refresh data.description'
     }),
     className: 'col-span-4 row-span-1'
+  },
+  {
+    type: 'Server',
+    title: translate({
+      message: 'Atomize Requests',
+      id: 'homepage.requestStrategy.Atomize Requests.title'
+    }),
+    to: '/tutorial/server/strategy/atomize',
+    description: translate({
+      message:
+        'Guarantee request atomicity in multi-process environments with a distributed lock — no hand-written locking code.',
+      id: 'homepage.requestStrategy.Atomize Requests.description'
+    }),
+    className: 'col-span-4 row-span-3',
+    snippet: `import { atomize } from 'alova/server';
+
+// a distributed lock keeps the request atomic
+const res = await atomize(
+  alova.Get('/api/user'),
+  {
+    channel: 'user_lock',
+    timeout: 5000
+  }
+)`
+  },
+  {
+    type: 'Cross',
+    title: translate({
+      message: 'Action Delegation',
+      id: 'homepage.requestStrategy.Action Delegation.title'
+    }),
+    to: '/tutorial/client/strategy/action-delegation-middleware',
+    description: translate({
+      message:
+        'Trigger, abort and share requests across components and modules — no extra state plumbing.',
+      id: 'homepage.requestStrategy.Action Delegation.description'
+    })
+  },
+  {
+    type: 'Cross',
+    title: translate({
+      message: 'Seamless Data Interaction',
+      id: 'homepage.requestStrategy.Seamless Data Interaction.title'
+    }),
+    to: '/tutorial/client/strategy/seamless-data-interaction',
+    description: translate({
+      message:
+        'Keep shared data consistent across components with automatic state synchronization.',
+      id: 'homepage.requestStrategy.Seamless Data Interaction.description'
+    })
   }
 ];
 

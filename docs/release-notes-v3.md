@@ -62,13 +62,12 @@ try {
 
 ### Redesign cache mode
 
-In order to make alova shine on the server side and simplify alova's API, we considered the following cache application scenarios
-Application scenarios
+In order to make alova shine on the server side and simplify alova's API, we considered the following cache application scenarios:
 
 1. High access frequency and low latency requirements, such as hot news and product details, can further reduce network overhead and maintain faster response when the network is unstable.
 2. Reduce the pressure on downstream servers. For example, for services with peak access periods, the upper-level cache can effectively reduce the pressure on the backend database and microservices.
 3. Integrate data merging and processing of multiple downstream servers. Multiple serial requests may lead to longer response time and may consume performance due to complex data conversion. The converted data can be cached.
-4. API rate limit and billing. Weather forecast service API updates weather information every hour, geographic location data API, etc.
+4. API rate limiting and billing, such as a weather forecast API that refreshes hourly or a geolocation data API.
 
 As well as most asynchronous cache processing mechanisms, the following redesigns have been made:
 
@@ -210,7 +209,7 @@ alovaInst.Get('/user/profile', {
 
 ### method snapshot matcher modification
 
-The original method matcher can be used in `setCache`, `queryCache`, `invalidateCache`ache`, `useFetcher.fetch`, `updateState`, but the number of method instances they require is different. In addition, there is an ambiguity problem. Only method instances that have been requested are saved in the matcher container (memory). However, when the page is refreshed, when the persistent cache is obtained or invalidated, for example, `queryCache('method-name')`or`invalidateCache('method-name')` may be invalid because the method instance cannot be found in the snapshot, causing ambiguity.
+The original method matcher could be used in `setCache`, `queryCache`, `invalidateCache`, `useFetcher.fetch`, and `updateState`, but the number of method instances they require is different. In addition, there is an ambiguity problem. Only method instances that have been requested are saved in the matcher container (memory). However, when the page is refreshed, when the persistent cache is obtained or invalidated, for example, `queryCache('method-name')` or `invalidateCache('method-name')` may fail because the method instance cannot be found in the snapshot, causing ambiguity.
 
 Therefore, in alova@3, the method matcher is externalized, and the above five functions are changed to only support the passing of method instances. Users can clearly know whether the method instance snapshot has been found, which is more unified in usage and does not cause ambiguity. The code design is as follows:
 
@@ -229,7 +228,7 @@ const data = await queryCache(oneSnapshot);
 ### Rewrite snapshot matching and automatic invalidation cache algorithm
 
 In 2.x, snapshot matching and automatic invalidation cache algorithms both search for the target method by traversing method snapshots. On the server side or long-running clients, the matching efficiency may be reduced due to too many snapshots, which will cause performance loss. In 3.x, the search steps will be reduced to improve the search efficiency.
-Export new function:
+A new function is exported:
 
 ```js
 declare function hitCacheBySource(sourceMethod: Method): Promise<void>;
@@ -389,9 +388,9 @@ usePagination({
 });
 ```
 
-#### Optimize the use under react
+#### Optimize usage under React
 
-Under react, the page and pageSize export items are no longer a reactState, and now update is used uniformly to change the state.
+Under React, `page` and `pageSize` are no longer React states; now `update` is used uniformly to change them.
 
 ```js
 // 2.x
@@ -457,7 +456,7 @@ await silentMethod.save();
 
 ### accessAction
 
-Added silent parameter, controlled by silent parameter, no error is thrown when delegation is not matched
+A `silent` parameter was added. When it is set to true, no error is thrown if the delegation is not matched.
 
 ```js
 // Error is thrown when method-name is not matched

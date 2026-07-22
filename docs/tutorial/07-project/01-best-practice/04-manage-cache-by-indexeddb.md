@@ -68,7 +68,7 @@ export const getImageFromCache = async fileName => {
 
 ## save data
 
-When saving data, we can save the cache in the `transform` of the method, because `transform` will only be triggered when the network request responds, but will not be triggered when the cache is hit. In the sample code, convert the image blob instance to base64 data, cache and return this base64 data.
+When saving data, we can save the cache in the `transform` of the method, because `transform` is triggered only when the network request responds, not when the cache is hit. In the sample code, the image Blob is converted to base64 data, which is then cached and returned.
 
 ```javascript-api.js
 import { addImage2Cache } from './db';
@@ -117,6 +117,6 @@ export const image = fileName =>
   });
 ```
 
-In this way, a basic custom cache management is basically completed. You can also save the expiration time of the cache, and judge whether it has expired when the cache is matched in `cacheFor`, so as to realize the cache expiration function.
+In this way, basic custom cache management is complete. You can also store the cache expiration time and check it when matching the cache in `cacheFor`, thereby implementing cache expiration.
 
 IndexedDB is just one example of managing caches asynchronously, you can also connect to your cache servers to manage them.

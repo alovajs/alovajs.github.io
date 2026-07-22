@@ -8,7 +8,7 @@ This is a practical experience summarized by using alova in depth. Please make s
 
 :::
 
-You can combine various features of alova to implement the Client-Server Interaction Layer(CSIL) of your application. The CSIL will manage your response data and the responsive states created by useHooks. They will establish a mapping relationship in the CSIL through method instances, thereby eliminating the limitation of component hierarchy. You can access, modify and refresh the data of the CSIL through method instances in any UI component, and call the actions of useHooks.
+You can combine various features of alova to implement the Client-Server Interaction Layer (CSIL) of your application. The CSIL will manage your response data and the responsive states created by useHooks. They will establish a mapping relationship in the CSIL through method instances, thereby eliminating the limitation of component hierarchy. You can access, modify and refresh the data of the CSIL through method instances in any UI component, and call the actions of useHooks.
 
 ```mermaid
 graph TD
@@ -46,7 +46,7 @@ classDef specialNode fill:transparent,stroke:#10b13c50,color:#10b13c,stroke-widt
 
 Let's see what benefits the CSIL can bring us.
 
-## Request point separation
+## Request decoupling
 
 In traditional practice, when a page is divided into multiple components, we need to request data from the root node and distribute it to the subcomponents, which undoubtedly increases the complexity of data transmission.
 
@@ -271,7 +271,7 @@ const Assets = () => {
 
 ## Responsive states centralized management
 
-Since responsive states is managed in the CSIL, you can quickly update or refresh them across components. For example, you can use it in the following scenarios:
+Since responsive states are managed in the CSIL, you can quickly update or refresh them across components. For example, you can use it in the following scenarios:
 
 - Update list after adding/editing list items
 - Notify the previous page to refresh data in the App

@@ -4,6 +4,6 @@ title: Best Practices
 
 import DocCardList from '@theme/DocCardList';
 
-Best practices practiced and refined in real projects, I hope it will be helpful to you.
+These best practices have been tested and refined in real-world projects, and we hope they will be helpful to you.
 
 <DocCardList />

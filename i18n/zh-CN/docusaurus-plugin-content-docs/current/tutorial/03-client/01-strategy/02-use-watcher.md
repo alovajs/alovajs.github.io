@@ -13,7 +13,7 @@ import useWatcherSearchSolid from '!!raw-loader!@site/codesandbox@3/02-client/02
 
 :::info 策略类型
 
-use hook
+useWatcher
 
 :::
 

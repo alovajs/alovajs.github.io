@@ -23,7 +23,7 @@ Automatically fetch data through browser events or polling, allowing the interfa
 
 ## Basic usage
 
-By default, useHook`useAutoRequest` that automatically fetches data will automatically fetch the newest data when browser is visible, hidden, focused, and the network is reconnected, and will automatically cancel the listening event when the component is uninstalled.
+By default, the `useAutoRequest` hook that automatically fetches data will fetch the newest data when the browser becomes visible, hidden, or focused, or when the network reconnects, and it will automatically stop listening when the component is unmounted.
 
 ```javascript
 import { useAutoRequest } from 'alova/client';
@@ -33,7 +33,7 @@ const { loading, data, error } = useAutoRequest(() => method());
 
 The return value of `useAutoRequest` is the same as [useRequest](/api/core-hooks#userequest).
 
-In addition to supporting all configuration parameters of [useRequest](/api/core-hooks#userequest), it also supports automatically fetched configuration parameters. You can turn on or off some events through the following configuration, or modify request throttling events.
+In addition to supporting all the configuration options of [useRequest](/api/core-hooks#userequest), it also supports the following auto-fetch configuration options. You can enable or disable specific events through these options, or adjust the request throttling.
 
 ```javascript
 const { loading, data, error, onSuccess, onError, onComplete } = useAutoRequest(
@@ -88,7 +88,7 @@ When the user leaves the page but the component is not destroyed, `useAutoReques
 let pause = false;
 useAutoRequest({
   // ...
-  middleware(_, ​​next) {
+  middleware(_, next) {
     if (!pause) {
       next();
     }
@@ -100,10 +100,9 @@ You can pause or resume the automatic request by controlling the `pause` variabl
 
 ## Custom listening functions
 
-The above 4 methods of automatically fetching data are implemented by listening browser's events by default. When users use it in a non-browser environment, you may need to customize the listening function. This function receives the notification request function and useHook config as parameters, and returns a cancel listening function.
-.
+The above 4 methods of automatically fetching data are implemented by listening browser's events by default. When used in a non-browser environment, you may need to customize the listening function. This function receives the notify function and the use hook config as parameters, and returns a function to stop listening.
 
-The following is an example of custom listening function in `react-native`:
+The following is an example of a custom listening function in `react-native`:
 
 ### Network reconnection custom function
 
@@ -140,7 +139,7 @@ useAutoRequest.onVisibility = (notify, config) => {
 
 ### App focus custom function
 
-Since the App doesn't have a focus event, it can be set to an empty function to avoid throwing error.
+Since the App doesn't have a focus event, it can be set to an empty function to avoid throwing an error.
 
 ```javascript
 useAutoRequest.onFocus = (notify, config) => {

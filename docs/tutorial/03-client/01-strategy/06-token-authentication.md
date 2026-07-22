@@ -28,7 +28,7 @@ Token authentication interceptor provides unified management of token-based logi
 Token identity authentication is completed through global interceptors, which provide `createClientTokenAuthentication` and `createServerTokenAuthentication` for client- and server-based identity authentication respectively.
 
 - Client-based identity authentication: means judging whether the token has expired from the client, such as the token expiration time obtained during login;
-- Server-based identity authentication: It indicates whether the token has expired based on the status returned from the server. For example, when `status` is 401, it means it has expired;
+- Server-based identity authentication: It determines whether the token has expired based on the status returned from the server. For example, when `status` is 401, it means the token has expired;
 
 ### Bind client-based authentication interceptor
 
@@ -330,7 +330,7 @@ createClientTokenAuthentication({
 });
 ```
 
-> The login interceptor usage of `createServerTokenAuthentication` is the same.
+> The logout interceptor usage of `createServerTokenAuthentication` is the same.
 
 ## Custom identification identity
 
@@ -384,7 +384,7 @@ export const refreshToken = () => {
 };
 ```
 
-### Visitor identify
+### Visitor identity
 
 ```javascript
 createClientTokenAuthentication({
@@ -464,11 +464,11 @@ export const logout = () => {
 };
 ```
 
-> The login interceptor usage of `createServerTokenAuthentication` is the same.
+> The logout interceptor usage of `createServerTokenAuthentication` is the same.
 
 ## Typescript
 
-By default, `createClientServerTokenAuthentication` and `createServerTokenAuthentication` are adapted to the `alova/fetch` request adapter, you can only specify the type of `StatesHook`, as follows:
+By default, `createClientTokenAuthentication` and `createServerTokenAuthentication` are adapted to the `alova/fetch` request adapter, so you only need to specify the type of `StatesHook`, as follows:
 
 ```typescript
 // highlight-start
@@ -491,7 +491,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-If you are not using the `alova/fetch` request adapter, You also need to specify the type of request adapter, which is also simple.
+If you are not using the `alova/fetch` request adapter, you also need to specify the type of request adapter, which is just as simple.
 
 The following is an example of the axios request adapter. Specify the request adapter type in `createClientTokenAuthentication`.
 

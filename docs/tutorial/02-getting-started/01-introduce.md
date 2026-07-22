@@ -14,20 +14,66 @@ import TabItem from '@theme/TabItem';
 
 ## What is alova?
 
-alova​​ (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a request toolkit design for API integrating with ​​ultimate efficiency. it seamlessly works with your favorite HTTP clients and UI frameworks, accelerating business logic development for both client and server apps, while enabling interactive API information within your code. bridging the backend collaboration gap like a wormhole.
+alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is the **request strategy layer** for JavaScript. Instead of hand-writing pagination, forms, uploads and retries over and over, you reach for 20+ ready-made request strategies that cut your request code by up to 70%. It works seamlessly with your favorite HTTP clients and UI frameworks, so you can focus on business logic on both the client and the server.
+
+You don't have to throw away the axios or fetch you already know. alova builds right on top of the request library you're using and takes over the repetitive request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and ship everywhere.
 
 Learn about our story in [why built alova](/about/faqs), and explore how we differ in our detailed [comparison with other request libraries](/about/comparison).
 
 ## Features
 
-- ​​Easy to use, [watching video](/video-tutorial) to get started in 5 mins.
-- ​​Full compatibility​​ with your favorite technology stack.
-- ​​20+ high-performance business modules​​ for building faster apps.
-- ​​Advanced OpenAPI solution​​ for efficient APIs information interaction within your code.
-- Request sharing and response cache to improve app performance.
-- Type safety.
+Rather than listing what alova *is*, here is what it *does for you* — each scenario mapped to the concrete gain:
+
+| Scenario you're tired of | What alova gives you |
+| --- | --- |
+| Hand-writing pagination, forms, uploads, SSE state | `usePagination` / `useForm` / `useUploader` / `useSSE` — up to 70% less boilerplate |
+| Server-side rate limiting & retry (incl. distributed) | `alova/server` — capabilities React Query / SWR simply don't cover |
+| Rebuilding the same logic for every framework | One API set across React / Vue / Svelte / Solid / mini-programs |
+| Manual cache invalidation | Multi-level cache (L1/L2) + declarative auto-invalidation via `hitSource` |
+| Copy-pasting API info between docs and editor | [worma](https://worma.js.org) — API hints and docs right inside your editor |
+
+And of course: easy to use ([watch the 5-min video](/video-tutorial)), full compatibility with your favorite technology stack, request sharing, response cache, and end-to-end type safety.
 
 <SupportList showStatus></SupportList>
+
+## When should you use alova?
+
+alova is honest about where it shines and where a simpler tool is enough:
+
+| Your scenario | Recommendation |
+| --- | --- |
+| Simple CRUD with caching | React Query / SWR is perfectly fine |
+| Complex admin panels / forms / pagination / uploads | ✅ alova is a clear step ahead |
+| Cross-platform (Web + mini-program / uni-app / Taro) | ✅ one API set for all of them |
+| Server-side request governance (rate limit / retry / distributed) | ✅ alova is effectively the only option |
+| OpenAPI → type-safe code + AI-friendly API knowledge | ✅ pair it with [worma](https://worma.js.org) (works out of the box with alova) |
+
+## worma: write one API spec, and let it do the rest
+
+You know the drill: the backend ships an API, and you're stuck bouncing between the API docs and your editor — copying parameters, hand-writing call code. worma is built to end that.
+
+Point it at a single OpenAPI spec and it generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can actually read** — so your agent stops guessing and finds the right endpoint directly.
+
+```mermaid
+flowchart LR
+R1[OpenAPI spec] --> S1[worma] --> W1[API call function]
+S1[worma] --> W2[Complete API types]
+S1[worma] --> W3[Complete API docs]
+```
+
+In the old flow you'd open the intermediate docs, look up the parameters, then go back to the editor and hand-write the code. worma removes that middle step: right inside your editor you find the endpoint you need, read its full docs, and fill in parameters against the parameter table — making frontend-backend collaboration feel like passing through a wormhole.
+
+```mermaid
+flowchart LR
+A[Server ships API] --> B[<s>Open the intermediate API docs</s>] --> C[Write the API call code]
+
+class B redNode;
+classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
+```
+
+And if you're already using alova, it gets even easier — worma works out of the box. Install it and you get those API hints, hover docs and one-click code insertion without any extra wiring.
+
+> Learn more at [worma.js.org](https://worma.js.org), or see how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
 
 ## Live Demo
 
@@ -35,20 +81,18 @@ We've prepared a rich set of examples to help you quickly explore alova's capabi
 
 <Examples />
 
-## How It Works?
+## Request Strategies in Action
 
-alova provides comprehensive solutions for complex request scenarios, which we call **Request Strategy** , encompassing both client-side and server-side request strategies.
+Here are a few of the most common request strategies so you can get a feel for the actual code — just expand any item you like.
 
 ### Client request strategy
-
-On the client-side, request strategies are implemented through hooks, interceptors, and middleware, allowing you to tackle different request scenarios with precision. These strategies provide comprehensive, stateful parameters, events, and operational functions for every request scenario, enabling you to implement complex request logic with just a single line of code. Not only do they boost your development efficiency, but they also optimize your app's performance and reduce server-side load.
 
 Below are introductions and examples of some client-side request strategies. Feel free to explore the ones that catch your interest.
 
 <details>
 <summary>Watching request strategy</summary>
 
-The Watching request strategy is used in scenarios where re-requests are made as data changes, such as fuzzy search, tab bar switching, etc.
+Re-request as your data changes — e.g. fuzzy search or tab switching.
 
 ```javascript
 const {
@@ -85,7 +129,7 @@ See [Watcher Request Strategy](/tutorial/client/strategy/use-watcher) for detail
 <details>
 <summary>Pagination request strategy</summary>
 
-The pagination request strategy helps you quickly implement comprehensive paging data request scenarios, including page turning, conditional query, pre-fetching of next page data, insert/replac/remov data items, refresh and reset list.
+Full pagination coverage: page turning, conditional query, next-page pre-fetch, insert/replace/remove, refresh and reset.
 
 ```javascript
 const {
@@ -134,7 +178,7 @@ See [Pagination Request Strategy](/tutorial/client/strategy/use-pagination) for 
 <details>
 <summary>Token authentication strategy</summary>
 
-Token authentication strategy provides global interceptors that can help you maintain all the codes of token authentication, including login, logout, token attachment, token refresh, etc., and supports seamless token refresh.
+Global interceptors that centralize login, logout, token attachment and seamless token refresh.
 
 ```javascript
 const { onAuthRequired, onResponseRefreshToken } = createServerTokenAuthentication({
@@ -160,7 +204,7 @@ See [Token Authentication Interceptor](/tutorial/client/strategy/token-authentic
 <details>
 <summary>Form submission strategy</summary>
 
-Through the form submission strategy, you can quickly implement form drafts and multi-page (multi-step) forms. In addition, it also provides common functions such as form reset.
+Quickly build form drafts and multi-step forms, with built-in reset and other common helpers.
 
 ```javascript
 const {
@@ -198,7 +242,7 @@ See [Form Submission Strategy](/tutorial/client/strategy/use-form) for details.
 <details>
 <summary>Data Fetching Strategy</summary>
 
-By fetching necessary data in advance, users no longer need to wait for the data to load, thus improving the user experience.
+Fetch data ahead of time so users never wait for loading — a smoother experience.
 
 ```javascript
 const {
@@ -221,7 +265,7 @@ const {
 
 const handleItemClick = itemId => {
   fetch(
-    alova.Get('/ api/user/detail', {
+    alova.Get('/api/user/detail', {
       params: {
         id: itemId
       }
@@ -237,7 +281,7 @@ See [Data Fetching Strategy](/tutorial/client/strategy/use-fetcher) for details.
 <details>
 <summary>Seamless Data interaction Strategy</summary>
 
-Seamless data interaction means that when users interact with an application, relevant content can be displayed immediately without waiting, or the results of operations can be displayed without waiting when submitting information, just like interacting with local data. This greatly improves the smoothness of the application and prevents users from noticing the lag caused by data transmission.
+Respond as instantly as local data — both content display and submission happen without waiting, eliminating perceived lag.
 
 ```javascript
 const {
@@ -278,7 +322,7 @@ See [Seamless Data Interaction](/tutorial/client/strategy/seamless-data-interact
 <details>
 <summary>Cross-component request triggering middleware</summary>
 
-Cross-component request triggering middleware can help you eliminate the limitations of component levels and quickly trigger any request actions in any component.
+Break free of component hierarchy — trigger any request action from any component.
 
 <Tabs className="file-tabs">
 <TabItem value="1" label="ComponentA">
@@ -346,11 +390,11 @@ See [Verification code strategy](/tutorial/client/strategy/use-captcha) for deta
 
 </details>
 
-alova provides total 15+ client request strategies based on the [RSM](/about/RSM) specification. Please refer [Request Strategy List](/tutorial/client/strategy) to see all client request strategies.
+alova ships 15+ client request strategies built on the [RSM](/about/RSM) specification. See the full [Request Strategy List](/tutorial/client/strategy).
 
 ### Server Request Strategy
 
-On the server-side, such as in `nodejs/deno/bun`, alova also provides server-side request strategies, which we call **server hooks**, all of which support cluster mode.
+On the server (nodejs/deno/bun), alova also provides server-side request strategies we call **server hooks**, all with cluster-mode support.
 
 Below are introductions and examples of some server-side request strategies. Feel free to explore the ones that catch your interest.
 
@@ -385,7 +429,7 @@ See [Request retry strategy](/tutorial/server/strategy/retry) for details.
 <details>
 <summary>Request Rate Limit Strategy</summary>
 
-Limit the number of requests within a certain period of time, support cluster mode.
+Limit the number of requests within a certain period of time; supports cluster mode.
 
 ```javascript
 const limit = createRateLimiter({
@@ -399,32 +443,13 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 </details>
 
-### More modern OpenAPI solution
+## Write alova with an AI Agent (Agent Skills)
 
-1. alova's devtools can simultaneously generate API call code, TypeScript types for each API, and comprehensive API documentation, allowing you to enjoy full API type hints even in JavaScript projects.
-
-```mermaid
-flowchart LR
-R1[OpenAPI file] --> S1[Alova extension] --> W1[API function]
-S1[Alova extension] --> W2[Comprehensive API type]
-S1[Alova extension] --> W3[Comprehensive API docs]
-```
-
-2. In the past, when backend developers delivered APIs, you had to open the intermediate API documentation, search for and copy key information into your project, constantly switching between the API docs and your editor. Now, Alova's development tools can eliminate this intermediary documentation, bridging the frontend and backend collaboration like a wormhole. Through this tool, you can quickly find the APIs you need directly in your editor, display the API's complete documentation, and rapidly complete parameter passing by referencing the API parameter table - offering you an entirely new API integration experience.
-
-```mermaid
-flowchart LR
-A[Received the delivered API] --> B[<s>View the intermediate API document</s>] --> C[Write the API calling code]
-
-class B redNode;
-classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
-```
-
-> For a detailed introduction to alova devtools, please refer to [OpenAPI Extension](/tutorial/getting-started/openapi-integration).
+Developing with an AI coding assistant? Install alova's [Agent Skills](/tutorial/getting-started/agent-skills) so your agent writes code following official best practices.
 
 ## Building Client-Server Interaction Layer
 
-With the various features of alova, you can also build a Client-Server interaction layer(CSIL) for your project. The CSIL will distribute response data to various components by merging same requests. Additionally, the CSIL also manages response data and the responsive states created by useHooks. You can access and modify the datas in CSIL in any UI component, as well as refresh the data in CSIL.
+With the various features of alova, you can also build a Client-Server Interaction Layer (CSIL) for your project. The CSIL distributes response data to various components by merging identical requests. Additionally, it manages response data and the reactive states created by useHooks. You can access and modify the data in the CSIL from any UI component, as well as refresh it.
 
 > To learn how to build a CS Interaction Layer, refer to [Building the Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
 

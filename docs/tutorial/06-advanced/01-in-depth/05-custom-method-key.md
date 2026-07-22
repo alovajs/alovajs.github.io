@@ -4,14 +4,14 @@ title: Custom Method Key
 
 :::info Usage scope
 
-Fully
+Fully customizable.
 
 :::
 
 Method key is used to identify all data associated with method instances and has a great effect, for example:
 
 - Caching of associated response data
-- Identity sharing request
+- Shared request identity
 - Associate the states returned by useHooks such as `useRequest`, so that it can match these states with `updateState`.
 
 By default, the method key is generated from the relevant request parameters of the method instance, which can accurately identify a request.

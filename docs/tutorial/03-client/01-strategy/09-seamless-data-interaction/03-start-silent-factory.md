@@ -5,7 +5,7 @@ title: Boot silent factory
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The silent queue is not started by default, and we need to specify the startup parameters for initialization. In general, call `bootSilentFactory` in the entry file to initialize the silent factory, which will read unexecuted requests to the corresponding silent through the specified configuration items queues and start those queues.
+The silent queue is not started by default, and we need to specify the startup parameters for initialization. In general, call `bootSilentFactory` in the entry file to initialize the silent factory, which will read unexecuted requests into the corresponding silent queues through the specified configuration items and start those queues.
 
 ```javascript title="main.js"
 import { bootSilentFactory } from 'alova/client';
@@ -22,6 +22,6 @@ bootSilentFactory({
 
 :::warning `delay` parameter description
 
-In actual scenarios, when entering the current page, a request is also sent to load the page data. In order to ensure that the user can see the page data faster, the request to load the data needs to be forwarded to the beginning of the queue, otherwise it may cause the loading data to fail. The request is placed at the end of the queue. At this time, it is necessary to wait until all the previous requests are completed before loading the page data. This is obviously inappropriate. Therefore, by delaying initialization for a period of time, the request for loading data enters the queue first to achieve "queue jumping" effect, the specific delay time depends on the time required for page rendering.
+In actual scenarios, when entering the current page, a request is also sent to load the page data. In order to ensure that the user can see the page data faster, the request to load the data needs to be forwarded to the beginning of the queue, otherwise it may cause the page data to fail to load. The request is placed at the end of the queue. At this time, it is necessary to wait until all the previous requests are completed before loading the page data. This is obviously inappropriate. Therefore, by delaying initialization for a period of time, the request for loading data enters the queue first to achieve "queue jumping" effect, the specific delay time depends on the time required for page rendering.
 
 :::

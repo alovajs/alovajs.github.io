@@ -8,14 +8,14 @@ import TabItem from '@theme/TabItem';
 
 ## react-query/swr/alova comparison
 
-react-query is a powerful asynchronous state management library, swr is a React Hooks library for data requests, their common features are also using use hook to send and manage requests, and data caching function, the following is a comparison table of the three.
+react-query is a powerful asynchronous state management library, and swr is a React Hooks library for data fetching. They share common traits: both use hooks to send and manage requests, and both cache data. Here is a comparison table of the three.
 
 | Features ↓/Library →                | react-query                       | swr                                   | alova                                         |
 | ----------------------------------- | --------------------------------- | ------------------------------------- | --------------------------------------------- |
-| Positioning                         | Asynchronous state management     | React Hooks library for data requests | Extremely simplified API integration workflow |
+| Positioning                         | Asynchronous state management     | React Hooks library for data requests | Streamlined API integration workflow |
 | Usage mode                          | hooks                             | hooks                                 | Complete request scheme                       |
 | Applicable environment              | client                            | client                                | client/server                                 |
-| Framework support                   | Multi-package support             | React only                            | Adapter support                               |
+| Framework support                   | Multi-package support             | React only                            | Any framework (via adapters)                  |
 | SSR                                 | ✅                                | ✅                                    | ✅                                            |
 | Number of hooks                     | 2-3                               | 2-3                                   | 15+                                           |
 | Hooks operation function            | ❌                                | ❌                                    | ✅                                            |
@@ -34,11 +34,11 @@ react-query is a powerful asynchronous state management library, swr is a React 
 
 ## Compare with traditional request tools such as axios/fetch/XMLHttpRequest
 
-Traditional request tools such as `axios/fetch/XMLHttpRequest` and the next-generation request tool alova solve different problems. The former focuses on sending requests and receiving responses, while the latter is used to improve APIs The consumption efficiency of alova is improved. They complement each other. Combining alova with traditional request tools can obtain more powerful request features. Let's take axios as an example.
+Traditional request tools such as `axios`, `fetch`, and `XMLHttpRequest`, and the next-generation tool alova solve different problems. The former focus on sending requests and receiving responses, while alova improves how efficiently you consume APIs. They complement each other, and combining alova with a traditional tool gives you more powerful request capabilities. Let's use axios as an example.
 
 ### alova provides automated request status management for axios
 
-When you only use axios, you usually need to maintain request-related status by yourself. You can get automated request status management capabilities by using alova's use hook.
+When using axios alone, you usually maintain request-related state yourself. With alova's hooks, you get automated request state management.
 
 <Tabs>
 <TabItem value="1" label="axios only">
@@ -77,16 +77,16 @@ alova provides you with [multiple high-performance request strategy modules](/tu
 
 ### alova provides response data cache for axios
 
-alova provides 3 caching modes to meet different caching scenarios, namely memory mode, cache occupying mode, and recovery mode. They are component-independent and can hit the cache as long as the request address and parameters are the same, unless you turn it off. Response data caching can greatly improve request fluency and reduce server pressure.
+alova provides three caching modes for different scenarios: memory mode, cache-occupying mode, and recovery mode. They are component-independent and hit the cache whenever the request URL and parameters match, unless you disable them. Response caching greatly improves responsiveness and reduces server load.
 
 ### alova provides request sharing function for axios
 
-Request sharing will reuse the same request when sending multiple identical requests at the same time. It can also improve application fluency and reduce server pressure.
+Request sharing reuses the same request when several identical requests are sent at once. It improves responsiveness and reduces server load.
 
 ### alova provides data pre-fetching for axios
 
-Requesting the data to be used in advance can also greatly improve application fluency.
+Fetching data ahead of time also greatly improves responsiveness.
 
 ### alova can manage request states
 
-You can use alova across any component hierarchy to access stateful data in other components, which allows you to reduce some of the trouble of cross-component communication.
+You can use alova at any component level to access stateful data from other components, reducing some cross-component communication headaches.

@@ -4,13 +4,13 @@ title: Cache Logger
 
 :::info Usage scope
 
-Fully
+Fully customizable.
 
 :::
 
 In order to facilitate debugging when using the interface cache, when the request hits the cache without sending a network request, the hit cache information will be printed on the console by default, which can solve some confusion when using the cache.
 
-If you don't want to print cache information or custom control print cache information in some cases (such as production environment), you can also close it.
+If you don't want to print cache information, or want to control it in certain cases (such as a production environment), you can also turn it off.
 
 ## Close cache logger printing
 

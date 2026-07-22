@@ -13,7 +13,7 @@ use hook
 
 > Before using extension hooks, make sure you are familiar with the basic usage of alova.
 
-A use hook that can automatically retry a request failure, you can use it for important requests.
+A use hook that automatically retries failed requests. Use it for important requests.
 
 <!-- ## Example
 
@@ -21,7 +21,7 @@ A use hook that can automatically retry a request failure, you can use it for im
 
 ## Features
 
-- Customize the number of retries or judge whether retry is required according to the conditions;
+- Customize the number of retries, or decide whether to retry based on a condition;
 - Retry delay mechanism;
 - Manually stop retrying;
 
@@ -61,13 +61,13 @@ const {
 } = useRetriableRequest(request);
 ```
 
-The maximum number of request retries for `useRetriableRequest` defaults to 3, and each retry will be delayed by 1 second. It will also make a request by default, you can change the behavior by setting `immediate` to false.
+The maximum number of request retries for `useRetriableRequest` defaults to 3, and each retry is delayed by 1 second. It also sends a request by default; you can change this by setting `immediate` to false.
 
 ### Set the static maximum number of retries
 
 The maximum number of retries indicates the maximum number of times to retry the request after the first request fails. During this period, if the request succeeds, it will stop continuing to retry. The default maximum number of retries is 3, and you can customize the settings in the following ways.
 
-When the request reaches the maximum number of retries and still fails, the `onFail` event will be triggered and the request retry will stop. If you want to continue to retry after the failure, you can call the `send` function, and it will perform a new round request and retry.
+When the request reaches the maximum number of retries and still fails, the `onFail` event is triggered and retrying stops. If you want to keep retrying after a failure, call the `send` function to start a new round of retries.
 
 ```javascript
 const { send } = useRetriableRequest(request, {
@@ -81,7 +81,7 @@ const { send } = useRetriableRequest(request, {
 
 ### Dynamically set the maximum number of retries
 
-Maybe sometimes you want to use a certain condition to determine whether to continue to retry. At this time, you can set `retry` as a function that returns a boolean value to dynamically determine whether to continue to retry.
+Sometimes you may want to use a condition to decide whether to keep retrying. In that case, set `retry` to a function that returns a boolean value to decide dynamically whether to continue retrying.
 
 ```javascript
 useRetriableRequest(request, {
@@ -114,7 +114,7 @@ useRetriableRequest(request, {
 
 ### Set an unfixed retry delay time
 
-Sometimes you want that the delay time of each request is not fixed, you can set the delay growth multiple in the following way, and the delay time will increase exponentially according to the number of retries.
+Sometimes you may want each retry's delay to vary. You can set a delay multiplier so the delay grows exponentially with the number of retries.
 
 ```javascript
 useRetriableRequest(request, {
@@ -129,7 +129,7 @@ useRetriableRequest(request, {
 });
 ```
 
-not enough? You can even add a random jitter value to each delay to make it look less regular.
+You can even add a random jitter to each delay to make it less predictable.
 
 ```javascript
 useRetriableRequest(request, {
@@ -189,8 +189,8 @@ Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------- | ------- |
 | delay       | Delay time for another request, in milliseconds                                                                                                                                                                                                                                                                                                                   | number | 1000    | -       |
 | multiplier  | Specify the delay multiplier, for example, when multiplier is set to 2 and delay is 1 second, the first retry is 1 second, the second is 2 seconds, the third is 4 seconds, and so on                                                                                                                                                                             | number | 1       | -       |
-| startQuiver | The initial jitter percentage value of the delay request, ranging from 0-1. When only startQuiver is set, endQuiver defaults to 1. For example, if it is set to 0.5, it will increase the current delay time by 50% to 100% randomly Time, if endQuiver has a value, the delay time will be increased by a random value in the range of startQuiver and endQuiver | number | 0       | -       |
-| endQuiver   | The jitter end percentage value of the delayed request, the range is 0-1, when onlyWhen endQuiver is set, startQuiver defaults to 0. For example, if it is set to 0.5, it will add a random time from 0% to 50% to the current delay time. If startQuiver has a value, the delay time will increase the random value in the range of startQuiver and endQuiver    | number | 0       | -       |
+| startQuiver | The initial jitter percentage value of the delay request, ranging from 0-1. When only startQuiver is set, endQuiver defaults to 1. For example, if it is set to 0.5, it will increase the current delay time by 50% to 100% randomly; if endQuiver has a value, the delay time will be increased by a random value in the range of startQuiver and endQuiver | number | 0       | -       |
+| endQuiver   | The jitter end percentage value of the delayed request, the range is 0-1; when only endQuiver is set, startQuiver defaults to 0. For example, if it is set to 0.5, it will add a random time from 0% to 50% to the current delay time. If startQuiver has a value, the delay time will increase the random value in the range of startQuiver and endQuiver    | number | 0       | -       |
 
 ### Responsive data
 
@@ -211,7 +211,7 @@ Inherit all events from [**useRequest**](/api/core-hooks#userequest).
 | Name    | Description                                                                                                                                                                                                                                                                                                                                                                                                          | Callback Parameters                                              | Version |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------- |
 | onRetry | Retry event bindings, they will fire after a retry is initiated                                                                                                                                                                                                                                                                                                                                                      | Retry event instance [RetriableRetryEvent](#retriableretryevent) | -       |
-| onFail  | Triggered when the request fails. It will be triggered when no more retries are made. For example, when the maximum number of retries is reached, when the retry callback returns false, manually call stop to stop retrying<br/>Note:<br/>1 The .onError event will be triggered every time an error is reported.<br/>2. If there are no retries, onError, onComplete and onFail will be triggered at the same time | Retry event instance [RetriableFailEvent](#retriablefailevent)   | -       |
+| onFail  | Triggered when the request fails. It will be triggered when no more retries are made. For example, when the maximum number of retries is reached, when the retry callback returns false, manually call stop to stop retrying<br/>Note:<br/>1. The `onError` event will be triggered every time an error is reported.<br/>2. If there are no retries, onError, onComplete and onFail will be triggered at the same time | Retry event instance [RetriableFailEvent](#retriablefailevent)   | -       |
 
 #### RetriableRetryEvent
 

@@ -10,6 +10,6 @@ import ConditionSearch from '@site/example-links/ConditionSearch';
 
 :::info example description
 
-This example mainly shows the simplicity of data search. There is no need for the developer to maintain the state of the request, data, etc., and there is no need to manually trigger the request to send. Just bind the state of the search conditions.
+This example mainly shows the simplicity of data search. There is no need for the developer to maintain the state of the request, data, etc.  and there is no need to manually trigger the request to send. Just bind the state of the search conditions.
 
 :::

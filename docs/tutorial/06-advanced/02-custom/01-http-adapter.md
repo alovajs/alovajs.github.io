@@ -13,7 +13,7 @@ const alovaInstance = createAlova({
 });
 ```
 
-`requestAdapter` is the request adapter. The internal request sending and receiving will rely on the request adapter. `alova/fetch` manages requests through the fetch api. In most cases, we can use it. However, when `alova` runs in an environment where the fetch api is not available (such as app, mini program), you need to replace a request adapter that supports the current environment.
+`requestAdapter` is the request adapter. The internal request sending and receiving will rely on the request adapter. `alova/fetch` manages requests through the fetch API. In most cases, we can use it. However, when `alova` runs in an environment where the fetch api is not available (such as app, mini program), you need to replace a request adapter that supports the current environment.
 
 So how should you customize a request adapter? It's very simple. It is actually a function that will be called every time a request is initiated and returns an object. This object contains request-related data sets such as `url`, `method`, `data`, `headers`, `timeout`, etc. Although there are many fields, we only need to access the data we need.
 
@@ -79,7 +79,7 @@ An asynchronous function, the function returns a response value, which will be p
 
 **headers (required)**
 
-An asynchronous function, the response header object returned by the function will be passed to the transform of the Method instance Conversion hook function;
+An asynchronous function, the response header object returned by the function will be passed to the transform of the Method instance conversion hook function;
 
 **abort (required)**
 
@@ -100,7 +100,7 @@ The following is an example of an adapter that sends a request through XMLHttpRe
 ```javascript
 function XMLHttpRequestAdapter(requestElements, methodInstance) {
   // Deconstruct the data needed
-  const { url, type, data, headers } = config;
+  const { url, type, data, headers } = requestElements;
 
   // Send request
   const xhr = new XMLHttpRequest();
@@ -165,7 +165,7 @@ import type { AlovaRequestAdapter } from 'alova';
 export type AdapterFetch = () => AlovaRequestAdapter<FetchRequestInit, Response, Headers>;
 ```
 
-The generic parameters in `AlovaRequestAdapter` are values ​​of three types: `RequestConfig`, `Response`, and `ResponseHeader`, which are automatically inferred to the types given by the request adapter in global interceptors, method instance configurations, etc.
+The generic parameters in `AlovaRequestAdapter` are values of three types: `RequestConfig`, `Response`, and `ResponseHeader`, which are automatically inferred to the types given by the request adapter in global interceptors, method instance configurations, etc.
 
 They are represented as follows:
 

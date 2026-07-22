@@ -2,15 +2,17 @@ import Link from '@docusaurus/Link';
 import Translate, { translate } from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Copy from '@site/static/img/copy.svg';
+import Arrow from '@site/static/img/arrow.svg';
 import Github from '@site/static/img/github.svg';
 import Layout from '@theme/Layout';
 import ThemedImage from '@theme/ThemedImage';
 import clsx from 'clsx';
 import copy from 'copy-text-to-clipboard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from '../common/constants';
 import SupportList from '../components/SupportList';
-import FeatureBlock, { ArrowTextLink } from './_indexComponent/FeatureBlock';
+import FeatureBlock, { ArrowTextLink, FeatureBlockProps } from './_indexComponent/FeatureBlock';
+import CodeBlock from './_indexComponent/CodeBlock';
 import Intro from './_indexComponent/Intro';
 import UserDescription from './_indexComponent/UserDescription';
 import styles from './_indexComponent/index.module.css';
@@ -29,7 +31,37 @@ const buttons = [
     link: '/examples'
   }
 ];
+const heroButtons = [
+  {
+    id: 'get-started',
+    text: <Translate id="homepage.hero.getStarted">Get Started</Translate>,
+    style: 'ctw-button-primary',
+    link: '/tutorial/getting-started/introduce'
+  },
+  {
+    id: 'see-less-code',
+    text: (
+      <>
+        <Translate id="homepage.hero.seeLessCode">See the 70% less code</Translate>
+        <Arrow className="ml-2 w-3 h-3" />
+      </>
+    ),
+    style: 'ctw-button-secondary',
+    onClick: () =>
+      document
+        .getElementById('no-bs-comparison')
+        ?.scrollIntoView({ behavior: 'smooth' })
+  }
+];
 const installCmd = 'npm i alova';
+
+function formatStars(stars: number | null): string {
+  if (!stars) return '';
+  if (stars >= 1000) {
+    return '★ ' + (stars / 1000).toFixed(1).replace(/\.0$/, '') + 'k+';
+  }
+  return '★ ' + stars + '+';
+}
 
 function FeatureButton({
   icon,
@@ -69,6 +101,38 @@ function FeatureButton({
   );
 }
 
+function StrategyLayer({
+  eyebrow,
+  note,
+  items
+}: {
+  eyebrow: string;
+  note: string;
+  items: FeatureBlockProps[];
+}) {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200">{eyebrow}</h3>
+        <p className="text-sm text-slate-500 dark:text-slate-400">{note}</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {items.map(({ title, type, description, snippet, to }) => (
+          <FeatureBlock
+            key={title}
+            title={title}
+            type={type}
+            to={to}
+            description={description}
+            snippet={snippet}
+            showLearnMore
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function HomepageHeader() {
   return (
     <header className="container mx-auto antialiased text-slate-500 dark:text-slate-400">
@@ -87,27 +151,42 @@ function HomepageHeader() {
                   }
                 }}>
                 <Translate id="homepage.title.position">
-                  The Request Toolkit For Ultimate Efficiency
+                  Stop building request logic. Start shipping features.
                 </Translate>
               </p>
             </div>
-            <p className="mt-4 max-w-4xl text-lg space-y-6">
-              <Translate id="homepage.tagline">
-                alova is perfectly compatible with your favorite HTTP clients and UI frameworks,
-                makes ultimate efficiency in APIs integration with its business modules and
-                devtools.
-              </Translate>
-            </p>
+<p className="mt-4 max-w-4xl text-lg space-y-6">
+  <Translate id="homepage.tagline">
+    The request strategy layer for JavaScript. Stop hand-writing pagination,
+    retry, and form boilerplate — alova ships them as ready-made strategies.
+  </Translate>
+</p>
+
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary-100 dark:border-primary-900 bg-primary-100/20 dark:bg-white/5 px-4 py-1.5 text-sm font-semibold text-primary-500">
+              <span className="inline-block h-3.5 w-1 rounded-full bg-primary-500"></span>
+              <Translate id="homepage.hero.badge">up to 70% less request code</Translate>
+            </div>
+
             <div className="flex flex-col md:items-stretch items-center">
               <div className="mt-8 flex md:justify-stretch justify-center gap-x-4 flex-wrap">
-                {buttons.map(({ text, style, link }, i) => (
-                  <Link
-                    key={link}
-                    className={style}
-                    to={link}>
-                    {text}
-                  </Link>
-                ))}
+                {heroButtons.map(({ id, text, style, link, onClick }) =>
+                  onClick ? (
+                    <button
+                      key={id}
+                      type="button"
+                      className={clsx('inline-flex items-center', style)}
+                      onClick={onClick}>
+                      {text}
+                    </button>
+                  ) : (
+                    <Link
+                      key={id}
+                      className={clsx('inline-flex items-center', style)}
+                      to={link}>
+                      {text}
+                    </Link>
+                  )
+                )}
               </div>
 
               <div className="ctw-card flex items-center justify-between mt-4 border border-primary-100 dark:border-primary-900 bg-primary-100/20 dark:bg-white/5 text-slate-500 max-w-sm font-mono text-sm py-2 px-4 w-[200px] rounded-md">
@@ -122,6 +201,7 @@ function HomepageHeader() {
                 </button>
               </div>
             </div>
+
           </div>
           <div className="relative w-full md:max-w-[800px] scale-125 sm:scale-100">
             <div className="relative overflow-hidden min-h-[300px] h-full w-full transform translate-x-[-5%] lg:translate-x-0">
@@ -155,6 +235,18 @@ export default function Home(): JSX.Element {
 
   const { siteConfig } = useDocusaurusContext();
   const [showingVideo, setShowingVideo] = useState<keyof typeof changableVideo>('browseDocs');
+  const [gitHubStars, setGitHubStars] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/alovajs/alova')
+      .then(r => r.json())
+      .then(data => {
+        if (typeof data.stargazers_count === 'number') {
+          setGitHubStars(data.stargazers_count);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <Layout
@@ -163,15 +255,98 @@ export default function Home(): JSX.Element {
         siteConfig.title +
         ' - ' +
         translate({
-          message:
-            'Efficient Request Toolkit that helps you integrate APIs with ultimate efficiency',
+          message: 'Stop building request logic. Start shipping features.',
           id: 'homepage.title'
         })
       }
-      description="alova is a Efficient Request Toolkit, which is perfectly compatible with your favorite HTTP clients and UI frameworks, accelerates business logic for both client and server apps, while making API documentation and and code interactive with each other. delivering ultimate efficiency in APIs integration.">
+      description="alova is the request strategy layer for JavaScript — 20+ ready-made strategies that cut request code by up to 70%. Compatible with any HTTP client and any UI framework, for both client and server.">
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
         <main className="mx-auto mt-20 md:mt-40">
+          {/* No-BS comparison */}
+          <section id="no-bs-comparison" className="container mx-auto py-16 flex flex-col gap-10 justify-between">
+            <Intro
+              section={translate({
+                message: '# No-BS comparison',
+                id: 'homepage.noBs.sectionTitle'
+              })}
+              title={translate({
+                message: 'React Query gives you primitives. alova gives you the finished strategy.',
+                id: 'homepage.noBs.title'
+              })}
+              description={translate({
+                message: 'The same paginated list — side by side. No framework war, just less code.',
+                id: 'homepage.noBs.description'
+              })}
+              className="max-w-[760px]"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Before */}
+              <div className="ctw-card flex flex-col border border-solid border-primary-100 dark:border-primary-900 rounded-2xl md:p-8 p-4">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center px-3 font-bold bg-primary-100/20 border dark:bg-white/5 border-primary-100 dark:border-primary-900 rounded-full text-nowrap text-xs md:text-sm">
+                    React Query / hand-written
+                  </span>
+                  <span className="text-sm font-semibold text-slate-400">~25 lines</span>
+                </div>
+                <CodeBlock
+                  fontSize={14}
+                  className="mt-8"
+                  code={`const [page, setPage] = useState(1);
+const queryClient = useQueryClient();
+
+const { data, isPreviousData } = useQuery({
+  queryKey: ['todos', page],
+  queryFn: () => fetch(\`/api/todos?page=\${page}\`)
+    .then(r => r.json()),
+  keepPreviousData: true
+});
+
+// manual pre-fetch of next page
+useEffect(() => {
+  queryClient.prefetchQuery({
+    queryKey: ['todos', page + 1],
+    queryFn: () => fetch(\`/api/todos?page=\${page + 1}\`)
+      .then(r => r.json())
+  });
+}, [page, data]);
+
+// manual delete + cache sync
+const del = useMutation({
+  mutationFn: id => fetch(\`/api/todos/\${id}\`, { method: 'DELETE' }),
+  onSuccess: () => queryClient.invalidateQueries(['todos'])
+});
+
+// manual add + cache sync
+const add = useMutation({
+  mutationFn: body => fetch('/api/todos', {
+    method: 'POST', body: JSON.stringify(body)
+  }),
+  onSuccess: () => queryClient.invalidateQueries(['todos'])
+});`}
+                />
+              </div>
+              {/* After */}
+              <div className="ctw-card flex flex-col border border-solid border-primary-100 dark:border-primary-900 rounded-2xl md:p-8 p-4">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center px-3 font-bold bg-primary-100/20 border dark:bg-white/5 border-primary-100 dark:border-primary-900 rounded-full text-nowrap text-xs md:text-sm">
+                    alova · usePagination
+                  </span>
+                  <span className="text-sm font-semibold text-primary-500">~5 lines</span>
+                </div>
+                <CodeBlock
+                  fontSize={14}
+                  className="mt-8"
+                  code={`const todoList = (page, size) =>
+  alova.Get('/api/todos', { params: { page, size } });
+const { loading, data, page, pageSize, pageCount, total } =
+  usePagination(todoList);
+// auto paging · preload · add/remove sync`}
+                />
+              </div>
+            </div>
+          </section>
+
           {/* Request Strategy */}
           <div className="bg-gray-100/30 dark:bg-gray-500/10">
             <section className="container mx-auto py-16 flex flex-col gap-16 justify-between">
@@ -181,54 +356,96 @@ export default function Home(): JSX.Element {
                   id: 'homepage.requestStrategy.sectionTitle'
                 })}
                 title={translate({
-                  message: 'Business development killer',
+                  message: 'Stop writing request logic. Use a strategy.',
                   id: 'homepage.requestStrategy.title'
                 })}
                 description={translate({
-                  message: `alova privides 20+ business modules which we call request strategy, to help you accelerate business logic development for both client-side and server-side applications.`,
+                  message: `alova provides 20+ request strategies — finished business modules for client, server, and cross-component scenarios. Pick one, ship faster.`,
                   id: 'homepage.requestStrategy.description'
                 })}
-                className="max-w-[600px]"
+                className="max-w-[760px]"
               />
 
-              <div className="flex flex-col lg:!grid grid-cols-4 md:grid-cols-12 gap-4">
-                {Strategy.map(({ title, type, description, className, snippet, to }) => (
-                  <FeatureBlock
-                    title={title}
-                    to={to}
-                    type={type}
-                    className={className + ' dark:bg-[#040f26]'}
-                    description={description}
-                    snippet={snippet}
-                    key={title}
-                    showLearnMore
-                  />
-                ))}
-                <div className={clsx('relative col-span-4 row-span-1', styles.borderGradient)}>
-                  <FeatureBlock
-                    title={translate({
-                      message: 'Learn total 20+ strategies',
-                      id: 'homepage.requestStrategy.More Strategy.title'
-                    })}
-                    className="dark:bg-[#040f26] items-center h-full w-full rounded-2xl">
-                    <div className="flex flex-1 flex-wrap gap-y-4 mt-5 leading-[16px] w-full justify-around text-sm">
-                      <ArrowTextLink
-                        to="/tutorial/client/strategy/"
-                        keepText>
-                        <Translate id="homepage.requestStrategy.More Strategy.Client">
-                          Client strategies
-                        </Translate>
-                      </ArrowTextLink>
-                      <ArrowTextLink
-                        to="/tutorial/server/strategy/"
-                        keepText>
-                        <Translate id="homepage.requestStrategy.More Strategy.Server">
-                          Server strategies
-                        </Translate>
-                      </ArrowTextLink>
-                    </div>
-                  </FeatureBlock>
+              <StrategyLayer
+                eyebrow={translate({
+                  message: 'Client strategies',
+                  id: 'homepage.requestStrategy.layer.client'
+                })}
+                note={translate({
+                  message:
+                    'Built-in hooks that replace the boilerplate you would otherwise hand-write with React Query or axios.',
+                  id: 'homepage.requestStrategy.layer.client.note'
+                })}
+                items={Strategy.filter(item => item.type === 'Client')}
+              />
+              <StrategyLayer
+                eyebrow={translate({
+                  message: 'Server strategies',
+                  id: 'homepage.requestStrategy.layer.server'
+                })}
+                note={translate({
+                  message:
+                    'Server-side control — retry, rate limiting, atomic requests and more — without adding middleware.',
+                  id: 'homepage.requestStrategy.layer.server.note'
+                })}
+                items={Strategy.filter(item => item.type === 'Server')}
+              />
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200">
+                    <Translate id="homepage.requestStrategy.layer.cross">
+                      Cross-component, zero wiring
+                    </Translate>
+                  </h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <Translate id="homepage.requestStrategy.layer.cross.note">
+                      Trigger and sync requests across any component — no prop drilling, no global store.
+                    </Translate>
+                  </p>
                 </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {Strategy.filter(item => item.type === 'Cross').map(
+                    ({ title, to, description }) => (
+                      <Link
+                        key={title}
+                        to={to}
+                        className="ctw-card flex flex-col gap-1 rounded-2xl border border-primary-100 dark:border-primary-900 px-6 py-5 transition hover:border-primary-500">
+                        <span className="text-base font-semibold text-slate-800 dark:text-slate-100">
+                          {title}
+                        </span>
+                        <span className="text-sm text-slate-500 dark:text-slate-400">
+                          {description}
+                        </span>
+                      </Link>
+                    )
+                  )}
+                </div>
+              </div>
+
+              <div className={clsx('relative col-span-12', styles.borderGradient)}>
+                <FeatureBlock
+                  title={translate({
+                    message: 'Learn total 20+ strategies',
+                    id: 'homepage.requestStrategy.More Strategy.title'
+                  })}
+                  className="dark:bg-[#040f26] items-center h-full w-full rounded-2xl">
+                  <div className="flex flex-1 flex-wrap gap-y-4 mt-5 leading-[16px] w-full justify-around text-sm">
+                    <ArrowTextLink
+                      to="/tutorial/client/strategy/"
+                      keepText>
+                      <Translate id="homepage.requestStrategy.More Strategy.Client">
+                        Client strategies
+                      </Translate>
+                    </ArrowTextLink>
+                    <ArrowTextLink
+                      to="/tutorial/server/strategy/"
+                      keepText>
+                      <Translate id="homepage.requestStrategy.More Strategy.Server">
+                        Server strategies
+                      </Translate>
+                    </ArrowTextLink>
+                  </div>
+                </FeatureBlock>
               </div>
             </section>
           </div>
@@ -238,16 +455,16 @@ export default function Home(): JSX.Element {
             <div className="flex flex-col items-start md:max-w-[500px]">
               <Intro
                 section={translate({
-                  message: '# Modern OpenAPI solution',
+                  message: '# OpenAPI → Code · powered by worma',
                   id: 'homepage.automaticGenerate.sectionTitle'
                 })}
                 title={translate({
-                  message: 'Move API docs to Editor',
+                  message: 'One API spec. From human to AI.',
                   id: 'homepage.automaticGenerate.title'
                 })}
                 description={translate({
                   message:
-                    "alova's devtools enable interactive communication between API information and your code, search API and view its full information while coding, all without leaving your editor.",
+                    'worma is an independent OpenAPI code-generation tool that works out-of-the-box with alova. Turn one API spec into type-safe runtime code, TS types, docs, and AI knowledge — get API hints, hover-docs, and one-click code insertion right in your editor. (Also supports axios, ky, and fetch.)',
                   id: 'homepage.automaticGenerate.description'
                 })}
               />
@@ -279,6 +496,13 @@ export default function Home(): JSX.Element {
                   onClick={() => setShowingVideo('useAndFindApi')}
                   data-select={showingVideo === 'useAndFindApi'}
                 />
+              </div>
+              <div className="mt-6 flex flex-wrap gap-4">
+                <Link
+                  to="https://worma.js.org"
+                  className="ctw-button-secondary inline-flex items-center text-sm">
+                  <Translate id="homepage.automaticGenerate.wormaSite">worma website →</Translate>
+                </Link>
               </div>
             </div>
             <div className="flex-1 max-w-full lg:max-w-[800px] self-end">
@@ -321,6 +545,141 @@ export default function Home(): JSX.Element {
             </div>
           </section>
 
+          {/* Social proof + honest boundary */}
+          <section className="container mx-auto py-16 flex flex-col gap-12 justify-between">
+            <Intro
+              section={translate({
+                message: '# Trusted & honest',
+                id: 'homepage.trust.sectionTitle'
+              })}
+              title={translate({
+                message: 'Built for real apps — and honest about when not to use it.',
+                id: 'homepage.trust.title'
+              })}
+              className="max-w-[760px]"
+            />
+
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              {[
+                {
+                  value: formatStars(gitHubStars),
+                  label: translate({
+                    message: 'GitHub stars',
+                    id: 'homepage.trust.stars'
+                  }),
+                  secondary: {
+                    value: '1000+',
+                    label: translate({
+                      message: 'dependent repos on GitHub',
+                      id: 'homepage.trust.dependents'
+                    }),
+                    href: 'https://github.com/alovajs/alova/network/dependents'
+                  }
+                },
+                {
+                  value: '15+',
+                  label: translate({
+                    message: 'frameworks supported',
+                    id: 'homepage.trust.frameworks'
+                  })
+                },
+                {
+                  value: 'client + server',
+                  label: translate({
+                    message: 'one library, both sides',
+                    id: 'homepage.trust.sides'
+                  })
+                },
+                {
+                  value: 'MIT',
+                  label: translate({
+                    message: 'free & open source',
+                    id: 'homepage.trust.license'
+                  })
+                }
+              ].map(stat => (
+                <div
+                  key={stat.label}
+                  className="ctw-card flex flex-col gap-1 rounded-2xl border border-primary-100 dark:border-primary-900 px-6 py-5">
+                  <span className="text-xl font-bold text-slate-800 dark:text-slate-100">
+                    {stat.value}
+                  </span>
+                  <span className="text-sm text-slate-500 dark:text-slate-400">
+                    {stat.label}
+                  </span>
+                  {stat.secondary ? (
+                    <Link
+                      to={stat.secondary.href}
+                      className="group mt-3 block border-t border-primary-100 pt-3 transition-colors hover:border-primary-300 dark:border-primary-900 dark:hover:border-primary-700">
+                      <span className="block text-xl font-bold text-slate-800 transition-colors group-hover:text-primary-500 dark:text-slate-100">
+                        {stat.secondary.value}
+                      </span>
+                      <span className="mt-1 block text-sm text-slate-500 transition-colors group-hover:text-primary-500 dark:text-slate-400">
+                        {stat.secondary.label} ↗
+                      </span>
+                    </Link>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+
+            <div className="ctw-card flex flex-col gap-6 rounded-2xl border border-primary-100 dark:border-primary-900 p-8 md:p-10">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">
+                <Translate id="homepage.trust.boundary.title">
+                  When should you NOT use alova?
+                </Translate>
+              </h3>
+              <div className="grid gap-8 md:grid-cols-2">
+                <div className="flex flex-col gap-3">
+                  <p className="font-semibold text-emerald-600 dark:text-emerald-400">
+                    <Translate id="homepage.trust.boundary.useOthers">
+                      Stick with React Query / axios when
+                    </Translate>
+                  </p>
+                  <ul className="flex flex-col gap-2 text-sm text-slate-600 dark:text-slate-300">
+                    <li>
+                      <Translate id="homepage.trust.boundary.useOthers.1">
+                        You only need simple CRUD + basic caching
+                      </Translate>
+                    </li>
+                    <li>
+                      <Translate id="homepage.trust.boundary.useOthers.2">
+                        Your team already standardised on one of them
+                      </Translate>
+                    </li>
+                    <li>
+                      <Translate id="homepage.trust.boundary.useOthers.3">
+                        The app is small and request logic is minimal
+                      </Translate>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <p className="font-semibold text-primary-500">
+                    <Translate id="homepage.trust.boundary.useAlova">alova wins when</Translate>
+                  </p>
+                  <ul className="flex flex-col gap-2 text-sm text-slate-600 dark:text-slate-300">
+                    <li>
+                      <Translate id="homepage.trust.boundary.useAlova.1">
+                        You want 70% less request code out of the box
+                      </Translate>
+                    </li>
+                    <li>
+                      <Translate id="homepage.trust.boundary.useAlova.2">
+                        Complex admin / BFF / cross-platform / server-side control
+                      </Translate>
+                    </li>
+                    <li>
+                      <Translate id="homepage.trust.boundary.useAlova.3">
+                        You need built-in strategies (pagination, auth, retry, SSE…)
+                      </Translate>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Join the community */}
           <section className="container mx-auto py-16 flex flex-col mt-10 md:mt-32 gap-24 justify-between">
             <Intro
@@ -329,7 +688,7 @@ export default function Home(): JSX.Element {
                 id: 'homepage.Join the community.sectionTitle'
               })}
               title={translate({
-                message: 'Trusted by developers around the world',
+                message: 'Used in production by real teams',
                 id: 'homepage.Join the community.title'
               })}
               description={translate({
@@ -424,7 +783,7 @@ export default function Home(): JSX.Element {
                 className="items-center text-white text-center"
               />
               <div className="mt-8 flex gap-x-4">
-                {buttons.map(({ text, style, link, type }, i) => (
+                {buttons.map(({ text, style, link, type }) => (
                   <Link
                     key={link}
                     className={clsx(

@@ -274,27 +274,27 @@
     "message": "查看详情"
   },
   "homepage.title": {
-    "message": "极致高效的请求工具集，助你极致高效集成API",
+    "message": "少写请求代码，多做业务功能",
     "description": "网站title"
   },
   "homepage.title.position": {
-    "message": "极致高效的请求工具集",
+    "message": "少写请求代码，多做业务功能",
     "description": "网站title"
   },
   "homepage.tagline": {
-    "message": "alova完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离，极致高效地集成你的APIs",
+    "message": "JavaScript 请求策略层。别再在每个项目里手写分页、重试、表单的样板代码——alova 已为你打包成开箱即用的策略",
     "description": "网站tagline"
   },
   "homepage.automaticGenerate.sectionTitle": {
-    "message": "先进的OpenAPI方案",
+    "message": "OpenAPI 生成代码 · 由 worma 驱动",
     "description": "section title for automatic generate"
   },
   "homepage.automaticGenerate.title": {
-    "message": "把API文档搬到编辑器",
+    "message": "一份 OpenAPI 规范，从人类到 AI",
     "description": "title for automatic generate"
   },
   "homepage.automaticGenerate.description": {
-    "message": "alova的开发工具支持API信息和代码之间的交互式通信，在编码的同时搜索API和查看其完整信息，所有这些都无需离开你的编辑器。",
+    "message": "worma 是一个独立的 OpenAPI 代码生成工具，对 alova 开箱即用。只要有一份接口规范，它就能生成类型安全的运行时代码、TypeScript 类型、文档和 AI 知识——在编辑器里直接获得接口提示、悬浮查看文档，还能一键插入调用代码。（同时也支持 axios、ky 与 fetch。）",
     "description": "desc for automatic generate"
   },
   "homepage.automaticGenerate.Browse API docs in your editor": {
@@ -309,16 +309,20 @@
     "message": "API参数和响应一目了然",
     "description": "desc for automatic generate"
   },
+  "homepage.automaticGenerate.wormaSite": {
+    "message": "前往 worma 官网 →",
+    "description": "worma website link"
+  },
   "homepage.requestStrategy.sectionTitle": {
     "message": "请求策略",
     "description": "section title for requestStrategy"
   },
   "homepage.requestStrategy.title": {
-    "message": "业务开发杀手锏",
+    "message": "别再手写请求逻辑，直接使用策略",
     "description": "title for requestStrategy"
   },
   "homepage.requestStrategy.description": {
-    "message": "alova提供了20+业务模块，我们称之为请求策略，可以帮你快速实现客户端和服务端应用的业务逻辑开发。",
+    "message": "alova 提供 20+ 请求策略——面向客户端、服务端、跨组件场景的完整业务模块。选一个，马上上线。",
     "description": "desc for requestStrategy"
   },
   "homepage.requestStrategy.Pagination Request.title": {
@@ -326,7 +330,7 @@
     "description": "title for Pagination Request"
   },
   "homepage.requestStrategy.Pagination Request.description": {
-    "message": "自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅度提高300%，编码难度降低50%",
+    "message": "自动管理分页数据、预加载下一页并减少无效刷新，流畅度提升 300%，编码量减少 50%。",
     "description": "desc for Pagination Request"
   },
   "homepage.requestStrategy.Watching Request.title": {
@@ -334,7 +338,7 @@
     "description": "title for Pagination Request"
   },
   "homepage.requestStrategy.Watching Request.description": {
-    "message": "状态变化立即发送请求，这在tabs切换和条件查询中很有用。",
+    "message": "状态变化立即发送请求，这在标签页切换与条件查询中尤为实用。",
     "description": "desc for Pagination Request"
   },
   "homepage.requestStrategy.Retry Request.title": {
@@ -350,8 +354,16 @@
     "description": "title for Rate Limit"
   },
   "homepage.requestStrategy.Rate Limit.description": {
-    "message": "将请求率限制在一定时间内",
+    "message": "在限定时间内控制请求频率。",
     "description": "desc for Rate Limit"
+  },
+  "homepage.requestStrategy.Atomize Requests.title": {
+    "message": "原子化请求",
+    "description": "title for Atomize Requests"
+  },
+  "homepage.requestStrategy.Atomize Requests.description": {
+    "message": "在多进程环境下，用分布式锁保证请求的原子性——无需手写加锁逻辑。",
+    "description": "desc for Atomize Requests"
   },
   "homepage.requestStrategy.Fetch Data.title": {
     "message": "预加载数据",
@@ -366,7 +378,7 @@
     "description": "title for Token authentication"
   },
   "homepage.requestStrategy.Token authentication.description": {
-    "message": "支持无感刷新Token的全局拦截器，并提供基于令牌的登录、注销、令牌分配和令牌刷新的统一管理",
+    "message": "支持无感刷新 Token 的全局拦截器，并统一管理基于令牌的登录、登出、令牌分配与刷新。",
     "description": "desc for Token authentication"
   },
   "homepage.requestStrategy.Form Submission.title": {
@@ -385,8 +397,24 @@
     "message": "通过浏览器事件自动刷新数据，界面始终显示最新数据",
     "description": "desc for Auto refresh data"
   },
+  "homepage.requestStrategy.Action Delegation.title": {
+    "message": "操作委派",
+    "description": "title for Action Delegation"
+  },
+  "homepage.requestStrategy.Action Delegation.description": {
+    "message": "跨组件触发、中止和共享请求——无需额外状态管理。",
+    "description": "desc for Action Delegation"
+  },
+  "homepage.requestStrategy.Seamless Data Interaction.title": {
+    "message": "无感数据交互",
+    "description": "title for Seamless Data Interaction"
+  },
+  "homepage.requestStrategy.Seamless Data Interaction.description": {
+    "message": "自动状态同步，让跨组件共享数据保持一致。",
+    "description": "desc for Seamless Data Interaction"
+  },
   "homepage.requestStrategy.More Strategy.title": {
-    "message": "学习共20+个请求策略"
+    "message": "查看全部 20+ 个请求策略"
   },
   "homepage.requestStrategy.More Strategy.Client": {
     "message": "客户端策略"
@@ -403,7 +431,7 @@
     "description": "title for Flexible"
   },
   "homepage.Flexible.description": {
-    "message": "Use hooks起源于functional组件，但alova创新性地使其与options和class风格的UI框架兼容，这意味着alova的客户端请求策略几乎不受JS环境和UI框架的限制，可以与您熟悉的请求工具一起使用",
+    "message": "alova 的 use hooks 最初是为函数式组件设计的，但它同样兼容 Vue(options) 与 class 风格（如 Angular）的 UI 框架，这意味着你几乎可以在任何 JS 环境、任何 UI 框架中使用，还能搭配你熟悉的请求工具。",
     "description": "desc for Flexible"
   },
   "homepage.Join the community.sectionTitle": {
@@ -411,11 +439,11 @@
     "description": "section title for Join the community"
   },
   "homepage.Join the community.title": {
-    "message": "深受全球开发者的信赖",
+    "message": "已在真实生产环境中使用",
     "description": "title for Join the community"
   },
   "homepage.Join the community.description": {
-    "message": "依赖alova的开源项目",
+    "message": "正在使用 alova 的开源项目",
     "description": "desc for Join the community"
   },
   "homepage.projects.Scott Hu.desc": {
@@ -451,11 +479,11 @@
     "description": "关系标题"
   },
   "homepage.relationDesc": {
-    "message": "传统promise式的请求库很好地解决了请求发送的问题，只是...它们只是单纯的请求发送工具",
+    "message": "传统的基于 Promise 的请求库很好地解决了“怎么发请求”的问题，但它们仅仅是发请求的工具",
     "description": "关系描述"
   },
   "homepage.relationAuxi": {
-    "message": "alova像它们的武器装备，通过alova可以获得更强大的能力，不管您喜欢使用axios、superagent，还是浏览器的fetch-api，alova都可以完美兼容",
+    "message": "alova 就像给它们配套的增强工具，能让你获得更强大的能力。无论你习惯用 axios、superagent，还是浏览器的 fetch-api，alova 都能完美兼容",
     "description": "关系附加信息"
   },
   "homepage.Examples": {
@@ -849,5 +877,117 @@
   "example.open in new tab": {
     "message": "遇到问题？点此在新页面中打开示例",
     "description": "description of example open in new tab"
+  },
+  "homepage.hero.badge": {
+    "message": "请求代码最多减少 70%",
+    "description": "homepage hero data badge"
+  },
+  "homepage.hero.getStarted": {
+    "message": "快速开始",
+    "description": "homepage hero get started CTA"
+  },
+  "homepage.hero.seeLessCode": {
+    "message": "看看怎么少 70% 代码",
+    "description": "homepage hero see the 70% less code CTA"
+  },
+  "homepage.noBs.sectionTitle": {
+    "message": "直观对比",
+    "description": "section title for no-BS comparison"
+  },
+  "homepage.noBs.title": {
+    "message": "React Query 提供基础构件，alova 提供完整方案",
+    "description": "title for no-BS comparison"
+  },
+  "homepage.noBs.description": {
+    "message": "同一个分页列表，并排对比；不谈孰优孰劣，只比代码量。",
+    "description": "desc for no-BS comparison"
+  },
+  "homepage.requestStrategy.layer.client": {
+    "message": "客户端策略",
+    "description": "heading for client strategy layer"
+  },
+  "homepage.requestStrategy.layer.client.note": {
+    "message": "内置的 hooks，替代你在 React Query / axios 里手写的样板代码。",
+    "description": "note for client strategy layer"
+  },
+  "homepage.requestStrategy.layer.server": {
+    "message": "服务端策略",
+    "description": "heading for server strategy layer"
+  },
+  "homepage.requestStrategy.layer.server.note": {
+    "message": "服务端控制——重试、限流、原子化请求等——无需额外中间件。",
+    "description": "note for server strategy layer"
+  },
+  "homepage.requestStrategy.layer.cross": {
+    "message": "跨组件，免接线",
+    "description": "heading for cross-component layer"
+  },
+  "homepage.requestStrategy.layer.cross.note": {
+    "message": "在任意组件中触发并同步请求——无需层层传递 props，也无需引入全局状态管理。",
+    "description": "note for cross-component layer"
+  },
+  "homepage.trust.sectionTitle": {
+    "message": "受信赖，且诚实",
+    "description": "section title for trust & honest boundary"
+  },
+  "homepage.trust.title": {
+    "message": "为真实应用而生——诚实告诉你什么时候不该用它",
+    "description": "title for trust & honest boundary"
+  },
+  "homepage.trust.stars": {
+    "message": "GitHub stars",
+    "description": "stars stat label"
+  },
+  "homepage.trust.frameworks": {
+    "message": "支持的框架",
+    "description": "frameworks stat label"
+  },
+  "homepage.trust.sides": {
+    "message": "一个库，两端通用",
+    "description": "client+server stat label"
+  },
+  "homepage.trust.license": {
+    "message": "免费开源",
+    "description": "MIT license stat label"
+  },
+  "homepage.trust.dependents": {
+    "message": "GitHub 上依赖 alova 的开源项目",
+    "description": "dependent repos stat label"
+  },
+  "homepage.trust.boundary.title": {
+    "message": "什么时候不该用 alova？",
+    "description": "honest boundary card title"
+  },
+  "homepage.trust.boundary.useOthers": {
+    "message": "继续用 React Query / axios，当",
+    "description": "when to use others heading"
+  },
+  "homepage.trust.boundary.useOthers.1": {
+    "message": "你只需要简单的增删改查 + 基础缓存",
+    "description": "when to use others item 1"
+  },
+  "homepage.trust.boundary.useOthers.2": {
+    "message": "你的团队已经统一使用其中一个",
+    "description": "when to use others item 2"
+  },
+  "homepage.trust.boundary.useOthers.3": {
+    "message": "项目很小，请求逻辑极简",
+    "description": "when to use others item 3"
+  },
+  "homepage.trust.boundary.useAlova": {
+    "message": "alova 胜出，当",
+    "description": "when alova wins heading"
+  },
+  "homepage.trust.boundary.useAlova.1": {
+    "message": "你想开箱即用减少 70% 请求代码",
+    "description": "when alova wins item 1"
+  },
+  "homepage.trust.boundary.useAlova.2": {
+    "message": "复杂中后台 / BFF（接口聚合层）/ 跨端 / 服务端控制",
+    "description": "when alova wins item 2"
+  },
+  "homepage.trust.boundary.useAlova.3": {
+    "message": "你需要内置策略（分页、鉴权、重试、SSE 服务端推送等）",
+    "description": "when alova wins item 3"
   }
 }

@@ -31,8 +31,7 @@ In addition, requests can also be sent through the `await method`.
 
 Create a custom method instance.
 
-- **type**
-
+- **Type**
 ```ts
 interface MethodConstructor {
   new (
@@ -62,7 +61,7 @@ import { alovaInstance } from './api';
 
 const method = new Method('GET', alovaInstance, '/api/users', {
   params: {
-    ID: 1
+    id: 1
   }
 });
 ```
@@ -71,8 +70,7 @@ const method = new Method('GET', alovaInstance, '/api/users', {
 
 Get the key value of method. This key value is used as alova internal cache key.
 
-- **type**
-
+- **Type**
 ```ts
 function getMethodKey(method: Method): string;
 ```
@@ -81,8 +79,7 @@ function getMethodKey(method: Method): string;
 
 1. `method`: method instance
 
-- **return**
-
+- **Return**
 The key value of the method instance passed in.
 
 - **Example**
@@ -98,8 +95,7 @@ const methodKey = getMethodKey(method);
 
 Obtain the requested method instance snapshot using the matching method of [method instance matcher](/v2/tutorial/advanced/method-matcher) and return the matching result.
 
-- **type**
-
+- **Type**
 ```ts
 type MethodFilter =
   | string
@@ -120,8 +116,7 @@ function matchSnapshotMethod(
 1. `matcher`: method instance matcher
 2. `matchAll`: Whether to match all, the default is true
 
-- **return**
-
+- **Return**
 Returns an array of method instances when `matchAll` is true, otherwise returns a method instance or undefined
 
 - **Example**
@@ -143,8 +138,7 @@ const snapshotMethod = matchSnapshotMethod({
 
 Request header.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   headers?: any;
@@ -155,8 +149,7 @@ interface Method {
 
 The base path of the request, inherited from [alova instance](/api/alova).
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   baseURL: string;
@@ -167,8 +160,7 @@ interface Method {
 
 Create the url of the method instance.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   url: string;
@@ -179,7 +171,7 @@ interface Method {
 
 Request type.
 
-- **type**:
+- **Type**:
 
 ```ts
 interface Method {
@@ -191,8 +183,7 @@ interface Method {
 
 Request body.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   data?: any;
@@ -203,8 +194,7 @@ interface Method {
 
 Create an alova instance of the current method.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   context: Alova;
@@ -215,8 +205,7 @@ interface Method {
 
 Hitting the source method instance, when the source method instance request succeeds, the cache of the current method instance will be invalidated. As an automatic invalidation function, you only need to set the hit source instead of manually calling `invalidateCache` to invalidate the cache. In addition, this function is more concise and effective than the `invalidateCache` method in complex invalidation relationships. The field value can be set to the name of the method instance, other method instances, name regular matching, or their array.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   hitSource?: Method | string | RegExp | (Method | string | RegExp)[];
@@ -227,8 +216,7 @@ interface Method {
 
 The metadata of method is used to record request feature information, [View details](/v2/tutorial/getting-started/method-metadata).
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   meta?: any;
@@ -239,8 +227,7 @@ interface Method {
 
 Configuration information when creating a method through `alova.Get/alova.Post` and other methods, [View details](/api/alova#alovaget).
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   config: AlovaMethodCreateConfig;
@@ -251,8 +238,7 @@ interface Method {
 
 Is the response of current request from cache.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   fromCache: boolean;
@@ -263,8 +249,7 @@ interface Method {
 
 Use this method instance to send the request directly. If you send the request after `[v2.16.0]`, you can omit calling this method.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   send(forceRequest?: boolean): Promise<Response>;
@@ -275,8 +260,7 @@ interface Method {
 
 1. `forceRequest`: whether to force the request, the default is false
 
-- **return**
-
+- **Return**
 A Promise instance with response data.
 
 - **Example**
@@ -290,8 +274,7 @@ const response = await method.send();
 
 Abort the current request.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   abort(): void;
@@ -309,8 +292,7 @@ method.abort();
 
 After `[v2.16.0]`, the method instance is a PromiseLike instance. You can directly call this method or `await method` to send a request and obtain the response data.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   then(
@@ -325,8 +307,7 @@ interface Method {
 1. `onFulfilled`: callback function when the request is successful
 2. `onRejected`: callback function when the request fails
 
-- **return**
-
+- **Return**
 A Promise instance with response data.
 
 - **Example**
@@ -340,8 +321,7 @@ const response = await method;
 
 After `[v2.16.0]`, the method instance is a PromiseLike instance. This method can be called directly to send requests and catch errors.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   catch<TResult = never>(
@@ -354,8 +334,7 @@ interface Method {
 
 1. `onrejected`: callback function when request error
 
-- **return**
-
+- **Return**
 Promise instance.
 
 - **Example**
@@ -371,16 +350,14 @@ const response = await method.catch(error => {
 
 After `[v2.16.0]`, the method instance is a PromiseLike instance. This method can be called directly to send the request and handle the response completion.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   finally(onfinally?: (() => void) | undefined | null): Promise<Response>;
 }
 ```
 
-- **return**
-
+- **Return**
 Promise instance.
 
 - **Example**
@@ -396,8 +373,7 @@ const response = await method.finally(() => {
 
 Bind the download event to obtain download progress information.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   onDownload(handler: ProgressHandler): () => void;
@@ -408,8 +384,7 @@ interface Method {
 
 1. `handler` download event callback function
 
-- **return**
-
+- **Return**
 unbind function
 
 - **Example**
@@ -428,8 +403,7 @@ offEvent();
 
 Bind the upload event to obtain upload progress information.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   onUpload(handler: ProgressHandler): () => void;
@@ -440,8 +414,7 @@ interface Method {
 
 1. `handler` upload event callback function
 
-- **return**
-
+- **Return**
 unbind function
 
 - **Example**
@@ -460,8 +433,7 @@ offEvent();
 
 Set the name of the method instance.
 
-- **type**
-
+- **Type**
 ```ts
 interface Method {
   setName(name: string | number): void;
@@ -472,8 +444,7 @@ interface Method {
 
 1. `name`: the name of the method instance
 
-- **return**
-
+- **Return**
 none
 
 - **Example**

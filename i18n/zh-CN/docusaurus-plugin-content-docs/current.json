@@ -39,6 +39,14 @@
     "message": "请求策略",
     "description": "The label for category Request Strategy in sidebar tutorial"
   },
+  "sidebar.tutorial.category.client-request-strategy": {
+    "message": "请求策略",
+    "description": "The label for category client-request-strategy in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.server-request-strategy": {
+    "message": "请求策略",
+    "description": "The label for category server-request-strategy in sidebar tutorial"
+  },
   "sidebar.tutorial.category.Server": {
     "message": "服务端",
     "description": "The label for category Server in sidebar tutorial"

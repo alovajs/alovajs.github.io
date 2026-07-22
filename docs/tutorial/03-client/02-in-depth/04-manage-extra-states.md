@@ -2,7 +2,7 @@
 title: Manage Extra states
 ---
 
-:::info Scope of usage
+:::info Usage scope
 
 Client useHook
 

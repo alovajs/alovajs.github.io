@@ -234,7 +234,7 @@ export const alovaInst = createAlova({
 
 ### Exclude mock code in production
 
-The mock data is generally only used in the development environment, and will be switched to the actual interface in the production environment, so this mock code becomes useless in the production environment. At this time, we can exclude this code by judging the environment variables. , you just need to do:
+The mock data is generally only used in the development environment, and will be switched to the actual interface in the production environment, so this mock code becomes useless in the production environment. At this time, we can exclude this code by judging the environment variables.  you just need to do:
 
 ```javascript
 const globalFetch = GlobalFetch();

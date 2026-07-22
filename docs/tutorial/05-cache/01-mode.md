@@ -34,7 +34,7 @@ By default, GET request has a memory cache time of 300000ms (5 minutes). Develop
 
 ### Client
 
-In the client, refreshing the page cache will invalidate it. The memory mode is generally used to solve the performance consumption caused by frequent requests for the same data in a short period of time (several minutes or seconds). For example, when you are writing a todo detail page, you may think that users will frequently click to view details in the todo list. If the user repeatedly views a certain detail, the interface will no longer be requested repeatedly, and the data can be returned immediately, which improves the response speed and reduces the server pressure. At this time, we can set the response data cache for a todo detail method instance.
+In the client, refreshing the page cache will invalidate it. The memory mode is generally used to solve the performance consumption caused by frequent requests for the same data in a short period of time (several minutes or seconds). For example, when you are writing a todo detail page, you may think that users will frequently click to see details in the todo list. If the user repeatedly views a certain detail, the interface will no longer be requested repeatedly, and the data can be returned immediately, which improves the response speed and reduces the server pressure. At this time, we can set the response data cache for a todo detail method instance.
 
 ```javascript
 alovaInstance.GET('/todo/list', {
@@ -242,7 +242,7 @@ After this, method instances created through the `alovaInstance` instance will u
 
 ## Globally turn off cache mode
 
-If you don't want to use anyIf you want to use any request cache, you can turn it off globally. If you want to use it only for a few specific requests, you can also turn it off globally and set it in the specified method instance.
+If you don't want to use any request cache, you can turn it off globally. If you want to use it only for a few specific requests, you can also turn it off globally and set it in the specified method instance.
 
 ```javascript
 const alovaInstance = createAlova({
@@ -327,9 +327,9 @@ cacheFor: {
 
 ## Automatic response maintenance instructions
 
-The key of the response data cache is a combination of the request method (method), request address (url), request header parameters (headers), url parameters (params), and request body parameters (requestBody) of the method instance as a unique identifier. Any information or location will be treated as a different key. If you want to customize the cache key, you can refer to [Custom method key](/tutorial/advanced/in-depth/custom-method-key).
+The key of the response data cache is a combination of the request method (method), request URL (url), request headers (headers), url parameters (params), and request body parameters (requestBody) of the method instance as a unique identifier. Any information or location will be treated as a different key. If you want to customize the cache key, you can refer to [Custom method key](/tutorial/advanced/in-depth/custom-method-key).
 
-Note that the key of the response data cache (or method) is **only** determined when the method created. After the method instance is created, modifying any of the following: request method (method), request address (url), request header parameters (headers), url parameters (params), or request body parameters (requestBody) will not cause the key to change, which will result in the cache pointing to the same value.
+Note that the key of the response data cache (or method) is **only** determined when the method is created. After the method instance is created, modifying any of the following: request method (method), request URL (url), request headers (headers), url parameters (params), or request body (requestBody) will not cause the key to change, which will result in the cache pointing to the same value.
 
 In this case, if you need to cache separately pointing to different values, consider dynamically creating methods.
 

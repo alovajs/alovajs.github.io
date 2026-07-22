@@ -34,7 +34,7 @@ Simple way to write:
 const response = await alovaInstance.Get('/api/user');
 ```
 
-Each method instance describes the type of each request, request url, request header, request parameters, etc. In addition, you can also define request behavior on the method instance to control how the method handles the request.
+Each method instance describes the type of each request, request URL, request headers, request parameters, etc. In addition, you can also define request behavior on the method instance to control how the method handles the request.
 
 ## Request type
 
@@ -54,7 +54,7 @@ Parameter description:
 
 - `url` is the request path;
 - `data` is the request body data;
-- `config` is the request configuration object, which includes the request header, params parameters, request behavior parameters and other configurations;
+- `config` is the request configuration object, which includes the request headers, params parameters, request behavior parameters and other configurations;
 
 You can also create your own custom method instance by `alova.Request`, which is useful when dynamically specifying the request type.
 
@@ -111,9 +111,9 @@ alovaInstance.Post(
 );
 ```
 
-### Request header
+### request headers
 
-Specify the request header through headers.
+Specify the request headers through headers.
 
 ```javascript
 alovaInstance.Get('/user', {
@@ -209,7 +209,7 @@ However, it should be noted that when the request body is `FormData`, it will be
 
 :::warning How to identify the same request
 
-The request method, request url, request header, url parameter, and request body of the method instance are used as unique identifiers. Identical identifiers indicate the same request, rather than comparing the reference address of the method instance.
+The request method, request URL, request headers, url parameter, and request body of the method instance are used as unique identifiers. Identical identifiers indicate the same request, rather than comparing the reference address of the method instance.
 
 :::
 

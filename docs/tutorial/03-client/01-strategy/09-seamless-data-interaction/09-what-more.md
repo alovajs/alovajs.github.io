@@ -4,7 +4,7 @@ title: What more?
 
 ## Description of the role of virtual data
 
-In the previous chapters we used virtual data as the id placeholder, but its function is more than that, it can occupy any response data, for example, in a complex list, when creating a data item, the server needs to calculate additional Data, at this time, these additional data can also be occupied by virtual data, but this requires that the additional data needs to be returned together when the data item is created. See the following example:
+In the previous chapters we used virtual data as the id placeholder, but its function is more than that, it can occupy any response data, for example, in a complex list, when creating a data item, the server needs to calculate additional data. At this time, these additional data can also be occupied by virtual data, but this requires that the additional data is returned together when the data item is created. See the following example:
 
 ```javascript
 const { onSuccess, send } = useSQRequest(createOrEditData, {
@@ -29,13 +29,13 @@ onSuccess(event => {
 
 ## New events in useSQRequest
 
-In order to better monitor the behavior of requests in the queue, `useSQRequset` also provides the following 3 additional event monitoring functions, you can obtain the binding functions in the following ways.
+In order to better monitor the behavior of requests in the queue, `useSQRequest` also provides the following 3 additional event monitoring functions, which you can obtain as follows.
 
 ```javascript
 const { onBeforePushQueue, onPushedQueue, onFallback } = useSQRequest(/* ... */);
 ```
 
-###onBeforePushQueue
+### onBeforePushQueue
 
 silentMethod is an event before entering the request queue. It is valid when the behavior mode is `queue` or `silent`. You can return `false` in this event callback to prevent the current silentMethod from entering the queue. For example, you may want to replace the current silentMethod with another one. It can be done like this:
 
@@ -53,15 +53,15 @@ onBeforePushQueue(event => {
 
 ###onPushedQueue
 
-silentMethod The event after entering the queue. It is valid when the behavior mode is `queue` or `silent`. If the queue is blocked in the **onBeforePushQueue** event, this function will not trigger.
+The event after a silentMethod enters the queue. It is valid when the behavior mode is `queue` or `silent`. If the queue is blocked in the **onBeforePushQueue** event, this function will not trigger.
 
 ### onFallback
 
-Similar to the traditional optimistic ui solution, we also provide a request rollback event, which will be triggered when the request reaches the maximum number of retries or the retry judgment fails. You can use it to handle some rollback operations.
+Similar to the traditional optimistic UI solution, we also provide a request rollback event, which is triggered when the request reaches the maximum number of retries or the retry condition is not met. You can use it to handle some rollback operations.
 
 :::warning Warning
 
-When the fallback event is bound, even if the behavior mode is `silent`, the request will no longer be persisted, and it will be lost after refreshing the page. This is because the persistent silentMethod usually needs to ensure completion, not Rollbacks allow the user to re-process, in which case the rollback function should not be used.
+When the fallback event is bound, even if the behavior mode is `silent`, the request will no longer be persisted and will be lost after refreshing the page. This is because the persisted silentMethod usually needs to ensure completion; rollbacks, which allow the user to re-process, should not be used in this case.
 
 :::
 
@@ -73,7 +73,7 @@ Generally speaking, you can save persistent data with any property name, but an 
 
 ## Custom serializer
 
-By default, alova uses localStorage for silentMethod data persistence, so it will call `JSON.stringify` to convert to a string when persisting, but json data only supports basic data types, pure objects and arrays, if you want Serialize special data structures such as Date instances, RegExp instances, functions, and custom class instances. Alova supports custom serializers to handle them. How to convert it to a data structure supported by json when storing it? How to convert to the original object structure.
+By default, alova uses localStorage for silentMethod data persistence, so it will call `JSON.stringify` to convert to a string when persisting, but json data only supports basic data types, pure objects and arrays, if you want to serialize special data structures such as Date, RegExp, functions, and custom class instances. Alova supports custom serializers to handle them: you define how to convert them into a JSON-compatible structure when storing, and how to convert them back to the original object structure when reading.
 
 ```javascript
 const regExpSerializer = {
@@ -107,7 +107,7 @@ const defaultSerializers = {
 
 ## Manipulate the silent queue
 
-Silent queues are used to ensure the timing of requests. We can create queues arbitrarily, and all requests entering the queue will be stored in the queue in the form of **SilentMethod** instances. Each **SilentMethod** not only contains request information, but also Contains relevant configuration for silent submission. Any number of silent queues can be generated, and it supports searching, modifying, and deleting silentMethod instances in the queue.
+Silent queues are used to ensure the timing of requests. We can create queues arbitrarily, and all requests entering the queue will be stored in the queue in the form of **SilentMethod** instances. Each **SilentMethod** not only contains request information, but also contains relevant configuration for silent submission. Any number of silent queues can be generated, and it supports searching, modifying, and deleting silentMethod instances in the queue.
 
 ### Using multiple silent queues
 
@@ -146,7 +146,7 @@ In the previous [data compensation](/tutorial/client/strategy/seamless-data-inte
 Use `getSilentMethod` to query the first matching silentMethod instance, the usage is the same as [filterSilentMethods](/tutorial/client/strategy/seamless-data-interaction/data-compensation#filtersilentmethods).
 
 ```typescript
-function filterSilentMethods(
+function getSilentMethod(
   methodNameMatcher?: string | number | RegExp,
   queueName?: string,
   filterActive?: boolean
@@ -311,7 +311,7 @@ Silent factory start event, triggered after the silent factory is started.
 function onSilentSubmitBoot(handler: () => void): OffEventCallback;
 ```
 
-###onBeforeSilentSubmit
+### onBeforeSilentSubmit
 
 Fired before a silentMethod request with `behavior=silent`.
 
@@ -319,7 +319,7 @@ Fired before a silentMethod request with `behavior=silent`.
 function onBeforeSilentSubmit(handler: (event: GlobalSQEvent)): OffEventCallback;
 ```
 
-###onSilentSubmitSuccess
+### onSilentSubmitSuccess
 
 Fired when a silentMethod request with `behavior=silent` succeeds.
 

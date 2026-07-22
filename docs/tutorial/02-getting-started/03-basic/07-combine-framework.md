@@ -12,7 +12,7 @@ import useRequestReact from '!!raw-loader!@site/codesandbox@3/01-getting-started
 import useRequestSvelte from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/svelte-useRequest.en.svelte';
 import useRequestSolid from '!!raw-loader!@site/codesandbox@3/01-getting-started/07-combine-framework/solid-useRequest.en.jsx';
 
-Next, we will learn how to use it in conjunction with the client UI framework, which can allow alova to exert its true power. When used in the UI framework, not only can alova automatically manage the responsive request status, but also automatically control when the request should be sent through certain rules.
+Next, let's see how to use alova with a client UI framework, so it can show its real power. Inside a UI framework, alova not only manages the reactive request state automatically, but also controls when a request should be sent through certain rules.
 
 `alova` provides 15+ client request strategies, which help you implement complex requests in a simple and elegant way. Let's continue to look down!
 
@@ -159,7 +159,7 @@ useRequest means sending a request. By default, a request will be sent when call
 
 Please note that `useRequest` can only be used to send requests within a component. Outside a component, you can send requests directly through a method instance, and the use of `useRequest` must comply with the use hook usage rules, that is, it can only be called at the outermost level of a function.
 
-**❌❌❌ It is not recommended to call it in a loop, conditional judgment, or sub-function**. For example, the following example of use in a click callback, when used in a callback function, although the request can be initiated normally, the responsive data returned by the use hook cannot be used in the view, and the same is true for loops and conditional judgments.
+**❌ Do not call it inside a loop, conditional, or nested function.** For example, calling it inside a click callback can start the request normally, but the reactive data returned by the hook cannot be used in the view — the same applies to loops and conditionals.
 
 ```javascript
 // ❌ bad
@@ -181,7 +181,7 @@ const handleClick = () => {
 
 ## Submit data
 
-When you need to submit a new todo item, you can first turn off the default send request, switch to manual trigger request, and receive the `send` function in useRequest for manual request sending. The `send` function will return a Promise instance with response data, which will be changed to resolve state after the request response.
+When you need to submit a new todo item, you can first disable the automatic request and switch to manual triggering, then take the `send` function from `useRequest` to send requests yourself. `send` returns a Promise that resolves with the response data once the request completes.
 
 At this time, in order to receive the parameters passed in by the `send` function, you can set the first parameter of `useRequest` to a function, which we call **method handler**.
 

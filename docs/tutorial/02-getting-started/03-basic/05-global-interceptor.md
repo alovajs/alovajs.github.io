@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 ## Global request interceptor
 
-Usually, we need to use the same configuration for all requests, such as adding token and timestamp to the request header. At this time, we can set a global request interceptor, which will be triggered before all requests. We can set this interceptor Set request parameters uniformly.
+Usually, we need the same configuration for all requests, such as adding a token and timestamp to the request headers. In that case, we can set a global request interceptor, which runs before every request. Use it to set request parameters uniformly.
 
 ```mermaid
 flowchart LR
@@ -48,7 +48,7 @@ const alovaInstance = createAlova({
 
 ## Global response interceptor
 
-When we want to uniformly parse response data, uniformly handle errors, and uniformly handle request completion, we can specify a global response interceptor when creating an alova instance. The response interceptor includes an interceptor for successful requests and an interceptor for failed requests. and request completion interceptors.
+When we want to uniformly parse response data, uniformly handle errors, and uniformly handle request completion, we can specify a global response interceptor when creating an alova instance. The response interceptor includes an `onSuccess` interceptor for successful requests, an `onError` interceptor for failed requests, and an `onComplete` interceptor.
 
 ```mermaid
 flowchart LR
@@ -92,7 +92,7 @@ const alovaInstance = createAlova({
     // This interceptor will be entered when a request error occurs.
     // The second parameter is the method instance of the current request. You can use it to synchronize the configuration information before and after the request.
     onError: (err, method) => {
-      alert(error.message);
+      alert(err.message);
     },
     // highlight-end
 
@@ -123,7 +123,7 @@ const alovaInstance = createAlova({
 
 :::info Interceptor triggering instructions
 
-When you use `alova/fetch` to request the adapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or the connection is aborted. In other cases, the `onSuccess` interceptor will be triggered. [For details, please Check here](https://developer.mozilla.org/docs/Web/API/fetch)
+When you use `alova/fetch` to request the adapter, due to the characteristics of `window.fetch`, the `onError` interceptor will only be triggered when the connection times out or the connection is aborted. In other cases, the `onSuccess` interceptor will be triggered. [For details, please check here](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::
 

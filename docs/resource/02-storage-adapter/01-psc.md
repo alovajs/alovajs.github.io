@@ -188,7 +188,7 @@ const EventName = {
 } as const;
 
 /**
- * Use this function in payload.js/
+ * Use this function in payload.js
  */
 export function MyElectronSyncAdapter(ipcRenderer: IpcRenderer) {
   // createSyncAdapter is a helper to implement SyncAdapter. do nothing
@@ -226,4 +226,4 @@ export function createMyElectronSharedCacheSynchronizer(ipcMain: IpcMain) {
 }
 ```
 
-And refer the example above.
+Refer to the example above.

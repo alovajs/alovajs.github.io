@@ -65,7 +65,7 @@ const alovaInst = createAlova({
 
 ### Request
 
-The XMLHttpRequest adapter provides basic configuration parameters, including `responseType`, `withCredentials`, `mimeType`, `auth`, as follows:
+The XMLHttpRequest adapter provides basic configuration options, including `responseType`, `withCredentials`, `mimeType`, `auth`, as follows:
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -234,7 +234,7 @@ const handleImageChoose = ({ target }) => {
 
 ### download
 
-Point the request url to the file address to download.
+Point the request URL to the file address to download.
 
 ```javascript
 const downloadFile = () =>
@@ -290,7 +290,7 @@ alovaInstance.Post(
 
 ## Automatic Form Urlencode
 
-When using `application/x-www-form-urlencoded` as the request header, the XHR adapter automatically converts request body data to the `key1=value1&key2=value2` string format, eliminating the need for manual conversion.
+When using `application/x-www-form-urlencoded` as the request headers, the XHR adapter automatically converts request body data to the `key1=value1&key2=value2` string format, eliminating the need for manual conversion.
 
 ```javascript
 alovaInstance.Post(

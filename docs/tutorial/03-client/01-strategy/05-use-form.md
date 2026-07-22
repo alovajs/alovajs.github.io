@@ -1,5 +1,5 @@
 ---
-title: Form submiting strategy
+title: Form submitting strategy
 ---
 
 import Tabs from '@theme/Tabs';
@@ -21,7 +21,7 @@ A hook designed for form submission. Through this hook, you can easily implement
 
 ## Features
 
-- draft form;
+- Form drafts;
 - Multi-page (multi-step) forms;
 - Form submission automatically resets data;
 - Reset form data manually;
@@ -301,7 +301,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-`useForm` will not request by default, and the request will be sent after calling `send`. At the same time, the callback function of `useForm` will pass in the latest form data. If you need to convert the data before submitting, you can convert it here, or Can be converted in the `formSubmit` function.
+`useForm` does not send a request by default; the request is sent after you call `send`. The callback also receives the latest form data, so you can transform it here, or transform it inside the `formSubmit` function.
 
 :::warning Caution
 
@@ -387,9 +387,9 @@ useForm(submitData, {
 });
 ```
 
-Before the data is persisted, `JSON.stringify` will be called to convert it into a JSON string. By default, the form data will be serialized when it is persisted. `useForm` has built-in `Date` and `RegExp` instances , which will be useful when using timepickers.
+Before the data is persisted, `JSON.stringify` converts it into a JSON string, so the form data is serialized by default. `useForm` has built-in serializers for `Date` and `RegExp` instances, which are handy when using time pickers.
 
-In the form data only involves `Date` and `RegEYou don’t need to do more for xp` instances, but if there are other non-JSON data, such as `moment` instances, we need to customize the serializer, but don’t worry, the custom serializer is very simple, the following will show the settings A `moment` serializer.
+When your form data only involves `Date` and `RegExp` instances, you don't need to do anything more. But if you have other non-JSON data, such as `moment` instances, you need a custom serializer. Don't worry — it is very simple, as the following `moment` serializer shows.
 
 ```javascript
 import moment from 'moment';
@@ -417,7 +417,7 @@ useForm(
 
 ### Multi-page/multi-step forms
 
-Many times we encounter situations where form items are divided into multiple pages, or filled in multiple steps, and submitted in a unified manner at the end, such as multi-step user registration, questionnaire filling, etc., and forms with multiple steps may have interdependence Relationship, if realized by itself will bring some trouble. And `useForm` realizes form data sharing, you can get the same form data in different pages or components, which solves the problem of multi-step form data dependence, and does not need to summarize form data when submitting, and can submit directly.
+Often you split a form across multiple pages or steps and submit it all at the end — for example, multi-step registration or a questionnaire. Multi-step forms may depend on each other, which is troublesome to implement by hand. `useForm` shares form data, so the same data is available in different pages or components. This solves the multi-step dependency and lets you submit directly without gathering the data yourself.
 
 When using, you need to set the id through `useForm`, and you can share the same form data between different pages with the same id. For example, we have a form that needs to go through 3 steps to fill out the form, and they will go through component A, component B, and component C respectively.
 
@@ -441,7 +441,7 @@ const returnStates = useForm(submitData, {
 const { form, send } = returnStates;
 ```
 
-In component B and component C, you can get the shared data by specifing the same id in component A.
+In component B and component C, you can get the shared data by specifying the same id as component A.
 
 ```javascript title=Component B, Component C
 const returnStates = useForm(submitData, {
@@ -488,7 +488,7 @@ In this way, no matter which component is rendered first, the form with the id o
 
 ### Conditional filter
 
-`useForm` can also be used in the filtering form used in data filtering scenarios, for example, if you want to search city information by city name, you can set `immediate=true`, it will start querying data at initialization, and then In the operation, call `send` to repeatedly query the data.
+`useForm` also works as a filter form for data filtering. For example, to search city information by name, set `immediate=true` so it queries at initialization; then call `send` again to re-query as needed.
 
 ```javascript
 const { send: searchData } = useForm(queryCity, {
@@ -516,7 +516,7 @@ Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 | initialForm         | initial form data                                                                                                                                                            | any                                                         | -       | -       |
 | id                  | form id, the data data of the same id is the same reference, which can be used to share the same form data in multi-page forms. Single page form does not need to specify id | string \| number                                            | -       | -       |
 | store               | Whether to save data persistently, after setting to true, uncommitted data will be persisted in real time                                                                    | boolean \| [StoreDetailConfig](#storedetailconfig) \| false | -       |
-| resetAfterSubmiting | reset data after submission                                                                                                                                                  | boolean                                                     | false   | -       |
+| resetAfterSubmitting | reset data after submission                                                                                                                                                 | boolean                                                     | false   | -       |
 
 ### Responsive data
 
@@ -531,11 +531,11 @@ Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 | Name        | Description                                                                                                                                                                                                                                                             | Type                                                          | Default  | Version |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | -------- | ------- |
 | enable      | Whether to enable persistent data                                                                                                                                                                                                                                       | boolean                                                       | required | -       |
-| serializers | A collection of custom serializers, built-in serializers:<br/>1. The date serializer is used to convert dates<br/>2. The regexp serializer is used to convert regular expressions<br/>Yes Override the built-in serializer by setting the serializer with the same name | Record\<string \| number, [DataSerializer](#dataserializer)\> | -        | -       |
+| serializers | A collection of custom serializers. Built-in serializers:<br/>1. The date serializer converts dates<br/>2. The regexp serializer converts regular expressions<br/>You can override a built-in serializer by using the same name | Record\<string \| number, [DataSerializer](#dataserializer)\> | -        | -       |
 
 #### DataSerializer
 
-| Name     | Description                                                                                                                                                                      | Type                                    | Default  | Versionthis |
+| Name     | Description                                                                                                                                                                      | Type                                    | Default  | Version     |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- | ----------- |
 | forward  | Serialization function, when serializing in forward, it needs to judge whether it is the specified data, and return the converted data, otherwise return undefined or not return | (data: any) => any \| undefined \| void | required | -           |
 | backward | deserialization function, deserialization data directly                                                                                                                          | (data: any) => any \| undefined \| void | required | -           |

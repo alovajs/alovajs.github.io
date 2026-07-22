@@ -8,7 +8,7 @@ Client useHook
 
 :::
 
-There is a scenario where when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated without resetting the situation. For edited content, `useFetcher` is no longer applicable.
+There is a scenario where when the user clicks on an item in the todo list, enters the todo details page and edits it, at this time we hope that the todo list data on the previous page will also be updated without needing to re-fetch the data. For edited content, `useFetcher` is no longer applicable.
 
 At this time, you can use `updateState` to update the existing responsive state under any module/page. It can find and modify the responsive state in other modules.
 
@@ -16,7 +16,7 @@ At this time, you can use `updateState` to update the existing responsive state 
 
 ## Use method instance to find response states
 
-When determining the method instance corresponding to the updated response state, you can pass in this method instance in `updateState`. It will find whether there is a corresponding response state under this instance and provide it to you for modification in the callback function. Finally Just return the modified data.
+When determining the method instance corresponding to the updated response state, you can pass in this method instance in `updateState`. It will find whether there is a corresponding response state under this instance and provide it to you for modification in the callback function. Finally, just return the modified data.
 
 ```javascript
 import { updateState } from 'alova';
@@ -51,13 +51,13 @@ onSuccess(() => {
 :::warning note
 
 1. When updating the state through `updateState`, if the cache (memory cache and persistent cache) is detected, the new data update cache will also be updated.
-2. Only when a request has been initiated using useRequest or useWatcher, alova will manage the states returned by the hook. The reason is that the response states is generated and saved through a Method instance, but when no request is initiated, the url and URL in the Method instance are Parameters such as params, query, and headers are still uncertain.
+2. Only when a request has been initiated using useRequest or useWatcher, alova will manage the states returned by the hook. The reason is that the response states are generated and saved through a Method instance, but when no request has been initiated, parameters such as the url, params, query, and headers of the Method instance are still undetermined.
 
 :::
 
 ## Dynamically update response states
 
-Maybe sometimes you are not sure that you need to update the response states under the method, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/client/in-depth/method-matcher) to dynamically Find the corresponding method instance. The following example shows adding a piece of data to the list corresponding to the method instance named todoList.
+Maybe sometimes you are not sure that you need to update the response states under the method, but you know how to find the cached data that needs to be invalidated. We can use [Method instance matcher](/tutorial/client/in-depth/method-matcher) to dynamically find the corresponding method instance. The following example shows adding a piece of data to the list corresponding to the method instance named todoList.
 
 ```javascript
 updateState('todoList', todoListRaw => {
@@ -73,7 +73,7 @@ The [Method instance matcher](/tutorial/client/in-depth/method-matcher) will be 
 
 ## Listen for matching events
 
-When dynamically updating the response state, sometimes you may want to do some processing when a method instance is matched, or you may want to obtain the matching method instance. `updateState` can also pass in a third parameter to set a matching event to achieve these purposes. .
+When dynamically updating the response state, sometimes you may want to do some processing when a method instance is matched, or you may want to obtain the matching method instance. `updateState` can also pass in a third parameter to set a matching event to achieve these purposes.
 
 ```javascript
 updateState(
@@ -92,7 +92,7 @@ updateState(
 
 :::warning ⚠️ Please make sure the component is not destroyed
 
-By default, `updateState` will look for the response state created by alova's useHooks when sending a request. However, to prevent memory overflow, the destruction of a component will also recycle all the states created internally, so please make sure you use `updateState` It is hoped that the container component corresponding to the updated response states has not been destroyed, otherwise the corresponding response states will not be found and the update will fail.
+By default, `updateState` will look for the response state created by alova's useHooks when sending a request. However, to prevent memory overflow, the destruction of a component will also recycle all the states created internally, so please make sure the container component for the response states you want to update with `updateState` has not been destroyed, otherwise the corresponding response states will not be found and the update will fail.
 
 This problem often occurs when updating states across pages. What we tend to overlook is that by default, the previous page has been destroyed when the page jumps. Therefore, if you want to update states across pages, here are two suggestions:
 
@@ -103,5 +103,5 @@ This problem often occurs when updating states across pages. What we tend to ove
 
 ## Notes
 
-1. In actual use, whether you use `useRequest` or `useWatcher` to send a request, you can call the `send` function to specify different parameters to send the request repeatedly. The response states returned by these use hooks will be used by multiple method instances. Reference, so you can choose any method instance to match the same response states value;
+1. In actual use, whether you use `useRequest` or `useWatcher` to send a request, you can call the `send` function to specify different parameters to send the request repeatedly. The response states returned by these use hooks will be referenced by multiple method instances, so you can choose any method instance to match the same response states value;
 2. When dynamically searching and updating the response states, the method instance matcher finds multiple method instances, and the first instance will prevail;

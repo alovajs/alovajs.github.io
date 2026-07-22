@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "node --max-old-space-size=4096 ./node_modules/@docusaurus/core/bin/docusaurus.mjs build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -18,10 +18,10 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.9.0",
     "@codesandbox/sandpack-themes": "^2.0.21",
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "@docusaurus/theme-mermaid": "^3.9.2",
-    "@docusaurus/tsconfig": "^3.9.2",
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@docusaurus/theme-mermaid": "^3.10.2",
+    "@docusaurus/tsconfig": "^3.10.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "copy-text-to-clipboard": "^3.2.0",
@@ -34,7 +34,7 @@
     "sass": "^1.77.6"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.9.2",
+    "@docusaurus/module-type-aliases": "^3.10.2",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",

@@ -12,7 +12,7 @@ const userAlova = createAlova({
   baseURL: VITE_API_USER
 });
 
-//Create order-related alova instances
+// Create another alova instance for order requests
 const alova2 = createAlova({
   baseURL: VITE_API_ORDER
 });

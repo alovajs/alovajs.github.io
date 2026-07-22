@@ -68,7 +68,7 @@ yarn add @alova/scene-svelte
 
 ## Basic usage
 
-Demonstrates basic use of form hooks.
+Demonstrates basic use of the captcha hook.
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -110,7 +110,7 @@ import { apiSendCaptcha } from './api.js';
 import { useCaptcha } from '@alova/scene-react';
 
 const App = () => {
-  const [mobile, setMobile] = ref('');
+  const [mobile, setMobile] = useState('');
   const {
     // send status
     loading: sending,
@@ -203,7 +203,7 @@ Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 | Name      | Description                                                                                                 | Type   | Version |
 | --------- | ----------------------------------------------------------------------------------------------------------- | ------ | ------- |
-| countdown | The current countdown, -1 per second, the verification code can only be sent again after the countdown ends | number | -       |
+| countdown | The current countdown, decreases by 1 every second, the verification code can only be sent again after the countdown ends | number | -       |
 
 ### Action function
 

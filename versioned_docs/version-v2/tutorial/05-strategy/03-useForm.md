@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 :::info strategy type
 
-use hook
+useForm
 
 :::
 
@@ -69,7 +69,7 @@ yarn add @alova/scene-svelte
 
 ### Basic usage
 
-Demonstrates basic use of form hooks.
+Demonstrates basic use of the form submission hook.
 
 <Tabs groupId="framework">
 <TabItem value="1" label="vue">
@@ -268,7 +268,7 @@ const App = () => {
 </TabItem>
 </Tabs>
 
-`useForm` will not request by default, and the request will be sent after calling `send`. At the same time, the callback function of `useForm` will pass in the latest form data. If you need to convert the data before submitting, you can convert it here, or Can be converted in the `formSubmit` function.
+`useForm` will not request by default, and the request will be sent after calling `send`. At the same time, the callback function of `useForm` will pass in the latest form data. If you need to convert the data before submitting, you can convert it here, or it can be converted in the `formSubmit` function.
 
 :::warning Caution
 
@@ -355,9 +355,9 @@ useForm(submitData, {
 });
 ```
 
-Before the data is persisted, `JSON.stringify` will be called to convert it into a JSON string. By default, the form data will be serialized when it is persisted. `useForm` has built-in `Date` and `RegExp` instances , which will be useful when using timepickers.
+Before the data is persisted, `JSON.stringify` will be called to convert it into a JSON string. By default, the form data will be serialized when it is persisted. `useForm` has built-in `Date` and `RegExp` instances, which will be useful when using timepickers.
 
-In the form data only involves `Date` and `RegEYou don’t need to do more for xp` instances, but if there are other non-JSON data, such as `moment` instances, we need to customize the serializer, but don’t worry, the custom serializer is very simple, the following will show the settings A `moment` serializer.
+If your form data only involves `Date` and `RegExp` instances, you don't need to do anything more. But if there are other non-JSON data, such as `moment` instances, you need to customize the serializer. Don't worry — the custom serializer is very simple, and the following shows how to set a `moment` serializer.
 
 ```javascript
 import moment from 'moment';
@@ -385,7 +385,7 @@ useForm(
 
 ### Multi-page/multi-step forms
 
-Many times we encounter situations where form items are divided into multiple pages, or filled in multiple steps, and submitted in a unified manner at the end, such as multi-step user registration, questionnaire filling, etc., and forms with multiple steps may have interdependence Relationship, if realized by itself will bring some trouble. And `useForm` realizes form data sharing, you can get the same form data in different pages or components, which solves the problem of multi-step form data dependence, and does not need to summarize form data when submitting, and can submit directly.
+Many times we encounter situations where form items are divided into multiple pages, or filled in multiple steps, and submitted in a unified manner at the end, such as multi-step user registration and questionnaire filling, and forms with multiple steps may have interdependent relationships. Implementing this yourself would bring some trouble. And `useForm` realizes form data sharing, you can get the same form data in different pages or components, which solves the problem of multi-step form data dependence, and does not need to summarize form data when submitting, and can submit directly.
 
 When using, you need to set the id through `useForm`, and you can share the same form data between different pages with the same id. For example, we have a form that needs to go through 3 steps to fill out the form, and they will go through component A, component B, and component C respectively.
 
@@ -418,9 +418,9 @@ const { form, send } = returnStates;
 
 The `returnStates` returned by id in components B and C are the same reference as the `returnStates` in component A. You can use the same `form`, or you can call `send` in any component to submit the form data uniformly.
 
-**additional**
+**Note**
 
-When obtaining shared data by directly specifying the id in components B and C, the id must first initialize the form data, just like in component A, otherwise `the form data of id {1} is not initial` will be thrown mistake. If your multi-step form is not in a certain order, but in random order according to certain conditions, for example:
+When obtaining shared data by directly specifying the id in components B and C, the id must first initialize the form data, just like in component A, otherwise an error `the form data of id {1} is not initialized` will be thrown. If your multi-step form is not in a certain order, but in random order according to certain conditions, for example:
 
 ```bash
 # possible order 1
@@ -482,7 +482,7 @@ Inherit all configurations from [**useRequest**](/api/core-hooks#userequest).
 | initialForm         | initial form data                                                                                                                                                            | any                                                         | -       | -       |
 | id                  | form id, the data data of the same id is the same reference, which can be used to share the same form data in multi-page forms. Single page form does not need to specify id | string \| number                                            | -       | -       |
 | store               | Whether to save data persistently, after setting to true, uncommitted data will be persisted in real time                                                                    | boolean \| [StoreDetailConfig](#storedetailconfig) \| false | -       |
-| resetAfterSubmiting | reset data after submission                                                                                                                                                  | boolean                                                     | false   | -       |
+| resetAfterSubmitting | reset data after submission                                                                                                                                                  | boolean                                                     | false   | -       |
 
 ### Responsive data
 
@@ -501,7 +501,7 @@ Inherit all responsive data from [**useRequest**](/api/core-hooks#userequest).
 
 #### DataSerializer
 
-| Name     | Description                                                                                                                                                                      | Type                                    | Default  | Versionthis |
+| Name     | Description                                                                                                                                                                      | Type                                    | Default  | Version |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- | ----------- |
 | forward  | Serialization function, when serializing in forward, it needs to judge whether it is the specified data, and return the converted data, otherwise return undefined or not return | (data: any) => any \| undefined \| void | required | -           |
 | backward | deserialization function, deserialization data directly                                                                                                                          | (data: any) => any \| undefined \| void | required | -           |

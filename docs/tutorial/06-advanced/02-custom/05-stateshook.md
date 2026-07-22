@@ -50,7 +50,7 @@ interface StatesHook<State, Computed, Watched = State | Computed, Export = State
    * Update state value
    * @param newVal new data set
    * @param state original state value
-   * @param @param referingObject refering object
+   * @param referingObject refering object
    */
   update: (newVal: any, state: State, key: string, referingObject: ReferingObject) => void;
 
@@ -113,7 +113,7 @@ If statesHook involves something similar to `react`, when `alova`'s use hook is 
 
 :::
 
-The following is the statesHook source code that leaves the UI framework.
+The following is the framework-agnostic statesHook source code.
 
 - [react hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/react.ts)
 - [vue hook](https://github.com/alovajs/alova/blob/main/packages/client/src/statesHook/vue.ts)

@@ -9,7 +9,7 @@ The following are the better usage skills used by alova developers when using al
 
 ## Send request useRequest OR method
 
-The `useRequest` provided by alova will only send a request and get the response data under normal circumstances, so why not use the method instance to send the request directly, because `useRequest` can help us automatically manage `loading` and `data` , `error` and other responsive data that can be used directly, so if you need to use these states, use `useRequest` without maintaining the data yourself. But on the contrary, you don't need to only apply `useRequest` in the whole project. For example, when you only care about getting information and don't need to use `loading`, `error`, etc., when getting data outside the component, you can use method instance to send the request.
+The `useRequest` provided by alova will only send a request and get the response data under normal circumstances, so why not use the method instance to send the request directly, because `useRequest` can help us automatically manage `loading`, `data`, `error`, and other responsive data that can be used directly, so if you need to use these states, use `useRequest` without maintaining the data yourself. But on the contrary, you don't need to only apply `useRequest` in the whole project. For example, when you only care about getting information and don't need to use `loading`, `error`, etc., when getting data outside the component, you can use method instance to send the request.
 
 ## Update state and cache at the same time
 
@@ -192,7 +192,7 @@ onSuccess(({ args: [content] }) => {
 
 ## Use prefixes to manage similar method instances
 
-In many scenarios, we need to invalidate multiple caches at the same time. For example, the data of a page comes from multiple interfaces. When editing the data of this page, it is necessary to invalidate the cached data of these interfaces at the same time. You can method instances with the same prefix to classify them, and use this regex to invalidate caches with the same prefix.
+In many scenarios, we need to invalidate multiple caches at the same time. For example, the data of a page comes from multiple interfaces. When editing the data of this page, it is necessary to invalidate the cached data of these interfaces at the same time. You can classify method instances with the same prefix, and use this regex to invalidate caches with the same prefix.
 
 ```javascript
 const getData1 = id => alovaInstance.Get('/data1', {
@@ -216,7 +216,7 @@ const getData3 = id => alovaInstance.Get('/data3', {
 
 const handleInvalidateCache = id => {
    // Simultaneously invalidate the 3 cached data of the specified id
-   invalidateCache(new RegExp(`^data-${id}`);
+   invalidateCache(new RegExp(`^data-${id}`));
 }
 ```
 
@@ -253,7 +253,7 @@ const { data: todoCounter } = useRequest(todoCountGetter);
 
 But such a request only applies to simple parallel requests. If you need to perform certain operations after all parallel requests are completed, there are two ways to achieve it:
 
-### method 1
+### Method 1
 
 Manually create a promise object and use `Promise.all` to complete the effect.
 
@@ -298,11 +298,11 @@ const parallelRequest = async () => {
 };
 ```
 
-## Use useRequest serial request
+## Use useRequest for serial requests
 
 Serial requests also have two modes.
 
-### method 1
+### Method 1
 
 Let the first request be sent automatically, and the second request be triggered in the `onSuccess` callback of the first request to complete the serial request. The serial request can be completed by the following writing method:
 

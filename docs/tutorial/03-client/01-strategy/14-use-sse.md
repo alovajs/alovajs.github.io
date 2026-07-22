@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 :::info Strategy Type
 
-use hook
+useSSE
 
 :::
 

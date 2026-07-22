@@ -8,7 +8,7 @@ server hook
 
 :::
 
-Captcha code sending and captcha, support cluster management captcha code
+Supports sending and verifying captcha codes, with cluster-based management of captcha codes
 
 ## Features
 

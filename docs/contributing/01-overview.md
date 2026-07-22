@@ -2,19 +2,19 @@
 title: Contribution Guidelines
 ---
 
-Hello, I'm glad to meet you here. This is a detailed alova contribution guide, which contains detailed guidance on contributions to all aspects of alova. Please continue reading.
+Hello, and welcome! This is alova's detailed contribution guide, covering how to contribute in all areas. Please keep reading.
 
 ## Preface
 
-In the past period of time, we have received active participation from developers around the world in Github issues and Github Discussions. We are deeply honored, which means that alova is being loved by more and more developers. Even so, alova is still a rookie, and it still has a long way to go.
+Over the past while, we have received active participation from developers around the world through GitHub issues and GitHub Discussions. We are deeply honored that alova is loved by more and more developers. Even so, alova is still young and has a long way to go.
 
-**We hope to make alova a common project for everyone who is willing to participate. We encourage everyone to become a contributor to the alova community with an open and inclusive attitude. Moreover, we believe that contributing to Alova is not limited to code contribution, but participating in any activities that are beneficial to the development of Alova is contributing to Alova. ** Now participating in contributions can win you more effective contribution opportunities. It allows you to provide your value to developers all over the world. Even if you are a junior developer, as long as your ideas are in line with [Alova's mission and design concept](#alova-mission and design concept), please participate generously!
+**We hope to make alova a shared project for everyone willing to take part. We welcome everyone to become an alova community contributor with an open and inclusive attitude. We also believe contributing to alova is not limited to code — any activity that helps alova grow counts as a contribution. ** Contributing now gives you more meaningful opportunities to create value for developers worldwide. Even if you are a junior developer, as long as your ideas align with [Alova's mission and design concept](#alova-mission and design concept), please join us!**
 
 > Here is a [Community Code of Conduct](./code-of-conduct), please refer to it.
 
 ## Contribution Directory
 
-Here are 13 possible contributions for you to choose from, but not limited to these. You can choose the part you want to participate in and link to the corresponding location for detailed reading:
+Here are 13 possible ways to contribute (not an exhaustive list). Pick the area you want to help with and follow the link for details:
 
 - [use alova in your project](#use-alova-in-your-project)
 - [star alova](#star-alova)
@@ -36,9 +36,9 @@ Here are 13 possible contributions for you to choose from, but not limited to th
 
 Alova's mission points out a clear development direction for it, and it clearly defines what Alova should do.
 
-Alova is a request tool that can run in a full JS environment and focuses on request strategies. It mainly helps developers to reduce the consumption process of APIs to the extreme and improve efficiency. We believe that this is the direction of the next generation of request tools. **Its mission is to enable developers to achieve more efficient Client-Server data interaction while writing a small amount of code**.
+Alova is a request tool that runs in any JS environment and focuses on request strategies. It helps developers minimize the effort of consuming APIs and boosts efficiency. We believe this is the direction of the next generation of request tools. **Its mission is to let developers achieve more efficient client-server data interaction while writing very little code.**
 
-For developers, alova provides them with simple APIs and out-of-the-box advanced request functions, as well as various simple and high-performance request strategy modules. For application users, they can enjoy the smooth experience brought by alova's high-performance data interaction. Therefore, alova has the following features:
+For developers, alova provides simple APIs, out-of-the-box advanced request features, and various lightweight, high-performance request strategy modules. For end users, it delivers the smooth experience of high-performance data interaction. As a result, alova has these features:
 
 1. The API design similar to axios makes the learning cost of users lower;
 
@@ -54,14 +54,14 @@ For developers, alova provides them with simple APIs and out-of-the-box advanced
 
 ### alova design concept
 
-The design concept points out how it should be designed. The following is the core design concept of alova.
+The design philosophy explains how alova should be designed. The following are its core design concepts.
 
-1. Method proxy design, a highly aggregated, platform-independent design that runs through the request. You should be able to access it in any request function. From another perspective, request-related information should also be placed in the method instance;
-2. State proxy design, which is our key technology to achieve UI framework independence. It allows alova's useHooks to run in different UI frameworks, so please use state proxy when writing useHooks;
-3. High scalability design. First, alova's design uses a lot of adapter patterns and hook functions, such as adapters such as `requestAdapter`, `l1Cache/l2Cache`, etc., and hook functions such as `beforeRequest`, `reseponded`, `transform`, `cacheFor`, etc., and most of them have default behaviors. The purpose of this design is to keep high scalability while being simple enough to use; second, global request parameters can be overwritten, such as `timeout`, `shareRequest`, etc., and these parameters can be set separately for special requests.
-4. The API design is universal. First, it means that the API function has a higher level of abstraction, rather than being proposed for a specific business; second, the API design is extensible to adapt to the iteration of the API
+1. Method proxy design: a highly cohesive, platform-independent design that runs through the whole request. You should be able to access it from any request function, and request-related data should live on the method instance;
+2. State proxy design: the key technique behind UI-framework independence. It lets alova's useHooks run in different UI frameworks, so use state proxies when writing useHooks;
+3. Highly extensible design. First, alova uses many adapter patterns and hooks, such as the `requestAdapter` and `l1Cache`/`l2Cache` adapters and the `beforeRequest`, `responded`, `transform`, and `cacheFor` hooks, most of which have default behavior. This keeps alova extensible while staying simple to use. Second, global request parameters such as `timeout` and `shareRequest` can be overridden per request.
+4. A universal API design. First, it means the API is highly abstracted rather than built for one specific business; second, it is extensible enough to adapt as the API evolves.
 
-> The universal API design is only applicable to the Alova library. If you are conceiving a request strategy, you can design it according to the specific business.
+> The universal API design applies only to the alova library. When designing a request strategy, you can tailor it to your specific business.
 
 ## Select the contribution point you are interested in
 
@@ -103,7 +103,7 @@ If you have an idea for adding a new feature, please [submit an issue for a new 
 
 #### Project Configuration
 
-If you are good at project configuration and find the shortcomings of the alova project, such as incomplete configuration, old configuration version, insufficient automation (including project development automation and Github repository management automation), you can also contribute according to the [New Feature Development](#New Feature Development) process.
+If you are skilled at project configuration and spot gaps in the alova project — incomplete or outdated config, or missing automation (for development or GitHub repo management) — you can contribute following the [New Feature Development](#New Feature Development) process.
 
 :::warning Important
 
@@ -131,7 +131,7 @@ Customize various adapters to meet the operating requirements in different envir
 
 #### Custom request strategy
 
-Request strategy can help developers write high-performance functions more efficiently. Although the official [alova/client](/tutorial/client/strategy) and [alova/server](/tutorial/server/strategy) provide some commonly used request strategies, they are not enough to meet the various request-related business scenarios of developers. It is a good choice to customize your own reusable request strategy based on alova. You can also publish them to npm for everyone to use. Please read [Custom client strategy](/tutorial/advanced/custom/client-strategy) and [Custom server strategy](/tutorial/advanced/custom/server-strategy).
+Request strategies help developers write high-performance features more efficiently. The official [alova/client](/tutorial/client/strategy) and [alova/server](/tutorial/server/strategy) provide common strategies, but they may not cover every business scenario. Customizing your own reusable strategy on top of alova is a great option, and you can publish it to npm for others to use. See [Custom client strategy](/tutorial/advanced/custom/client-strategy) and [Custom server strategy](/tutorial/advanced/custom/server-strategy).
 
 :::tip Submit your project
 
@@ -141,7 +141,7 @@ If you have written a JS library based on alova, please submit your project in [
 
 ### Participate in community/PR review
 
-If you are interested in technical communication, then participating in more community communication may be more suitable for you. You can participate in the discussion of bugs and new features in Github issues, or answer questions for others in [Github Discussion](https://github.com/alovajs/alova/discussions), [Discord](https://discord.gg/S47QGJgkVb) or [WeChat group chat](/img/wechat_qrcode.jpg), which allows you to communicate with people from all over the world, which is a very interesting thing.
+If you enjoy technical discussion, community participation may suit you best. You can discuss bugs and features in GitHub issues, or help others in [GitHub Discussions](https://github.com/alovajs/alova/discussions), [Discord](https://discord.gg/S47QGJgkVb), or our [WeChat group](/img/wechat_qrcode.jpg). You'll meet people worldwide, which is a lot of fun.
 
 At the same time, you can also participate in PR review in [pull request](https://github.com/alovajs/alova/pulls), which is also a topic of communication.
 
@@ -170,7 +170,7 @@ You can donate to the project through the following three channels. Please visit
 
 ### Correct or add docs
 
-If you need to add new document content, or find errors in alova's documents, such as wrong examples, wrong words, incorrect descriptions, or unmentioned content, you can [create a new document repository issue](https://github.com/alovajs/alovajs.github.io/issues/new) or [create a new document repository pull request](https://github.com/alovajs/alovajs.github.io/fork) to modify the error directly. This should be a better choice. We welcome any suggestions or contributions to the document.
+If you want to add documentation or found errors — wrong examples, typos, inaccurate descriptions, or missing content — you can [open a docs repo issue](https://github.com/alovajs/alovajs.github.io/issues/new) or [open a docs repo pull request](https://github.com/alovajs/alovajs.github.io/fork) to fix it directly. Either way is welcome; we appreciate any documentation suggestions or contributions.
 
 ### Translate docs
 
