@@ -1,0 +1,72 @@
+# alova.js
+
+> alova is the request strategy layer for JavaScript. It ships 20+ ready-made request strategies (pagination, forms, uploads, retry, rate-limit, SSE, token auth, and more) that cut your request code by up to 70%. One API set spans React, Vue, Svelte, Solid, mini-programs and the server — learn once, use everywhere. It works on top of your existing request library (fetch, axios, XHR, GraphQL).
+
+## Getting started
+- [Documentation home](https://alova.js.org/): Full alova docs, guides and API reference.
+- [Examples / Demos](https://alova.js.org/examples): Runnable demos for each strategy and framework.
+- [Video tutorial](https://alova.js.org/video-tutorial.md): Get started with alova in 5 minutes.
+- [GitHub repository](https://github.com/alovajs/alova): Source, issues, discussions, releases.
+
+## Core concept
+- [What is alova / request strategy layer](https://alova.js.org/about/.md): The mental model — strategies instead of hand-written request logic, client + server in one library.
+- [Comparison with other request libraries](https://alova.js.org/about/comparison.md): alova vs React Query, SWR, ahooks useRequest — differences and when to use each.
+- [When to use / when NOT to use](https://alova.js.org/about/comparison.md): Honest guidance — simple CRUD+cache may be fine with React Query/SWR; alova wins on complex admin, BFF, cross-platform and server-side governance.
+
+## Client strategies
+- [Client strategy index](https://alova.js.org/tutorial/client/strategy/): All 20+ client-side request strategies.
+- [usePagination](https://alova.js.org/tutorial/client/strategy/use-pagination.md): Auto paging, data preloading, add/remove cache sync — ~5 lines vs ~25 hand-written.
+- [useWatcher](https://alova.js.org/tutorial/client/strategy/use-watcher.md): Send requests on watched state changes (tab switch, conditional query), with debounce.
+- [useFetcher](https://alova.js.org/tutorial/client/strategy/use-fetcher.md): Preload / re-fetch data across components.
+- [Token authentication](https://alova.js.org/tutorial/client/strategy/token-authentication.md): Global interceptor with silent token refresh and unified login/logout.
+- [useForm](https://alova.js.org/tutorial/client/strategy/use-form.md): Auto-manage form data and submissions.
+- [useAutoRequest](https://alova.js.org/tutorial/client/strategy/use-auto-request.md): Auto refresh data via browser events.
+- [useUploader](https://alova.js.org/tutorial/client/strategy/): File upload strategy (see client strategy index).
+- [useSSE](https://alova.js.org/tutorial/client/strategy/): Server-Sent-Events strategy (see client strategy index).
+- [Action delegation](https://alova.js.org/tutorial/client/strategy/action-delegation-middleware.md): Trigger, abort and share requests across components — no prop drilling.
+- [Seamless data interaction](https://alova.js.org/tutorial/client/strategy/seamless-data-interaction.md): Keep shared data consistent across components with automatic state sync.
+
+## Server strategies (alova/server)
+- [Server strategy index](https://alova.js.org/tutorial/server/strategy/): Server-side request governance strategies.
+- [retry](https://alova.js.org/tutorial/server/strategy/retry.md): Retry important requests with backoff.
+- [rate-limit](https://alova.js.org/tutorial/server/strategy/rate-limit.md): Limit request rate within a period.
+- [atomize](https://alova.js.org/tutorial/server/strategy/atomize.md): Guarantee request atomicity in multi-process environments via a distributed lock — no hand-written locking.
+
+## Request adapters
+- [Fetch API adapter](https://alova.js.org/resource/request-adapter/fetch.md): Use the native Fetch API.
+- [Axios adapter](https://alova.js.org/resource/request-adapter/axios.md): Use axios as the request layer.
+- [XMLHttpRequest adapter](https://alova.js.org/resource/request-adapter/xhr.md): Use XHR.
+- [GraphQL](https://graphql.org/): alova works with GraphQL requests.
+
+## Framework guides
+- [Vue 3](https://vuejs.org): Primary supported UI framework.
+- [Vue options API](https://alova.js.org/resource/framework/vue-options.md): Options-style Vue support.
+- [React](https://react.dev/): Primary supported UI framework.
+- [Svelte](https://svelte.dev): Primary supported UI framework.
+- [Solid](https://alova.js.org/resource/framework/solid.md): SolidJS support.
+- [Next.js (SSR)](https://alova.js.org/tutorial/advanced/in-depth/ssr.md): SSR setup.
+- [Nuxt (SSR)](https://alova.js.org/tutorial/advanced/in-depth/ssr.md): SSR setup.
+- [SvelteKit (SSR)](https://alova.js.org/tutorial/advanced/in-depth/ssr.md): SSR setup.
+- [Angular](https://alova.js.org/resource/framework/angular.md): Angular support.
+- [Preact](https://alova.js.org/resource/framework/preact.md): Preact support.
+- [Qwik](https://alova.js.org/resource/framework/qwik.md): Qwik support.
+- [Lit](https://alova.js.org/resource/framework/lit.md): Lit support.
+- [Stencil](https://alova.js.org/resource/framework/stencil.md): Stencil support.
+- [Native mini-program](https://alova.js.org/resource/framework/native-mp.md): WeChat / native mini-program support.
+- [uni-app](https://alova.js.org/resource/request-adapter/uniapp.md): uni-app cross-platform support.
+- [Taro](https://alova.js.org/resource/request-adapter/taro.md): Taro cross-platform support.
+- [Node / Bun / Deno](https://nodejs.org): Server-side runtimes; alova/server strategies run anywhere.
+
+## Related projects
+- [worma](https://worma.js.org): Independent OpenAPI code-generation tool that works out of the box with alova — turn one API spec into type-safe runtime code, TS types, docs, and AI-friendly API knowledge. (Lightweight companion; not part of alova's core positioning.)
+
+## Community & contributing
+- [Contributing guide](https://github.com/alovajs/alova/blob/main/CONTRIBUTING.md): How to contribute code, docs and translations.
+- [Discussions](https://github.com/alovajs/alova/discussions): Community Q&A and proposals.
+- [Discord](https://discord.gg/S47QGJgkVb): Chat with the community.
+
+## Optional
+- [Full client strategy reference](https://alova.js.org/tutorial/client/strategy/)
+- [Full server strategy reference](https://alova.js.org/tutorial/server/strategy/)
+- [SSR deep dive](https://alova.js.org/tutorial/advanced/in-depth/ssr.md)
+- [API reference / typings](https://alova.js.org/)
