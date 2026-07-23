@@ -9,7 +9,7 @@
 - [GitHub repository](https://github.com/alovajs/alova): Source, issues, discussions, releases.
 
 ## Core concept
-- [What is alova / request strategy layer](https://alova.js.org/about/.md): The mental model — strategies instead of hand-written request logic, client + server in one library.
+- [What is alova / request strategy layer (RSM)](https://alova.js.org/about/RSM.md): The mental model — strategies instead of hand-written request logic, client + server in one library.
 - [Comparison with other request libraries](https://alova.js.org/about/comparison.md): alova vs React Query, SWR, ahooks useRequest — differences and when to use each.
 - [When to use / when NOT to use](https://alova.js.org/about/comparison.md): Honest guidance — simple CRUD+cache may be fine with React Query/SWR; alova wins on complex admin, BFF, cross-platform and server-side governance.
 
@@ -21,10 +21,10 @@
 - [Token authentication](https://alova.js.org/tutorial/client/strategy/token-authentication.md): Global interceptor with silent token refresh and unified login/logout.
 - [useForm](https://alova.js.org/tutorial/client/strategy/use-form.md): Auto-manage form data and submissions.
 - [useAutoRequest](https://alova.js.org/tutorial/client/strategy/use-auto-request.md): Auto refresh data via browser events.
-- [useUploader](https://alova.js.org/tutorial/client/strategy/): File upload strategy (see client strategy index).
-- [useSSE](https://alova.js.org/tutorial/client/strategy/): Server-Sent-Events strategy (see client strategy index).
+- [useUploader](https://alova.js.org/tutorial/client/strategy/use-uploader.md): File upload strategy.
+- [useSSE](https://alova.js.org/tutorial/client/strategy/use-sse.md): Server-Sent-Events (SSE) strategy.
 - [Action delegation](https://alova.js.org/tutorial/client/strategy/action-delegation-middleware.md): Trigger, abort and share requests across components — no prop drilling.
-- [Seamless data interaction](https://alova.js.org/tutorial/client/strategy/seamless-data-interaction.md): Keep shared data consistent across components with automatic state sync.
+- [Seamless data interaction](https://alova.js.org/tutorial/client/strategy/seamless-data-interaction/): Keep shared data consistent across components with automatic state sync.
 
 ## Server strategies (alova/server)
 - [Server strategy index](https://alova.js.org/tutorial/server/strategy/): Server-side request governance strategies.
