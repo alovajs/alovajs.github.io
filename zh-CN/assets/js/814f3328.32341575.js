@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkalova_website=globalThis.webpackChunkalova_website||[]).push([[7472],{55513(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"axios \u548c alova \u4e00\u8d77\u7528\uff0c\u8c01\u7ba1\u4ec0\u4e48","permalink":"/zh-CN/blog/compare/axios","unlisted":false,"date":"2026-07-30T00:00:00.000Z"}]}')}}]);

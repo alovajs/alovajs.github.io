@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkalova_website=globalThis.webpackChunkalova_website||[]).push([[7472],{55513(a){a.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"axios and alova, who handles what","permalink":"/blog/compare/axios","unlisted":false,"date":"2026-07-30T00:00:00.000Z"}]}')}}]);
