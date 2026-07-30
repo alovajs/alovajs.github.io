@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkalova_website=globalThis.webpackChunkalova_website||[]).push([[8121],{68070(a){a.exports=JSON.parse('{"tags":[{"label":"axios","permalink":"/blog/tags/axios","count":1},{"label":"comparison","permalink":"/blog/tags/comparison","count":1}]}')}}]);
