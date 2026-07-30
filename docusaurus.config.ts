@@ -51,8 +51,10 @@ const config: Config = {
             }
           }
         },
-        // disable blog
-        blog: false,
+        // blog
+        blog: {
+          routeBasePath: 'blog'
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.scss')
         },
@@ -168,6 +170,11 @@ const config: Config = {
           to: 'showcase',
           position: 'left',
           label: 'Showcase'
+        },
+        {
+          to: 'blog',
+          position: 'left',
+          label: 'Blog'
         },
         {
           type: 'search',
