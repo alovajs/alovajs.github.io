@@ -1,6 +1,6 @@
 ---
 slug: /blog/uniapp-pagination
-title: uni-app pagination with one hook: race conditions, duplicate requests, loading state
+title: "uni-app pagination with one hook: race conditions, duplicate requests, loading state"
 authors:
   - name: Alova Team
 tags: [uniapp, pagination, usePagination]
