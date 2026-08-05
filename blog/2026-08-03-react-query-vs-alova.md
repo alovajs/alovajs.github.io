@@ -1,3 +1,4 @@
+
 ---
 slug: /compare/react-query
 title: "react-query or alova: does the request leave the browser?"
@@ -59,10 +60,6 @@ On the last row: neither library replaces axios. Both sit above a request adapte
 - You maintain the same request logic across web, a non-React-Native app, and a Node BFF.
 - Your BFF needs retry with backoff and a client-side rate limit for downstream calls (see the [BFF retry post](/blog/bff-retry)).
 - You're on Vue, Svelte, or Solid, or a mixed stack, and want one strategy layer.
-
-## When you don't need either
-
-If you fire a handful of requests and hand-write three states (`loading`/`data`/`error`) without repeating yourself, a raw `fetch` plus a small wrapper is enough. Both libraries earn their keep only when the same request patterns keep showing up.
 
 - [alova vs other libraries](https://alova.js.org/about/comparison)
 - [Server retry strategy](https://alova.js.org/tutorial/server/strategy/retry)
