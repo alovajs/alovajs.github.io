@@ -1,3 +1,4 @@
+
 ---
 slug: /blog/react-query-bff-gap
 title: "react-query stops at the browser. alova/server handles your BFF."
@@ -90,12 +91,6 @@ This is the part people mix up. react-query's cache is per browser. It keeps a u
 alova's caching is a client-side strategy feature too. `cacheFor` controls how long a method response is kept, with modes `memory` and `restore`, and non-GET requests default to `null` (no cache). On the server, `alova/server` gives you `retry` and `createRateLimiter`; it does not hand you a server-side response cache for downstream calls. If you want to skip a slow downstream for repeated GETs, you add your own cache (or lean on the downstream's own), and layer `retry`/`rateLimit` on top.
 
 So the split is clean: react-query owns the browser cache, alova/server owns the BFF's outbound retry and throttle. Neither steps on the other.
-
-## When you don't need alova/server here
-
-- **You only have a browser frontend, no BFF.** react-query already covers you. Don't add a server layer you don't have.
-- **One endpoint, single instance.** A `p-retry` wrapper handles the occasional transient failure with no new dependency.
-- **You need queueing, not rejecting.** `createRateLimiter` throws when the budget is spent. For "hold and run later" use `execEvenly` or a real queue.
 
 The two tools solve different layers. Use react-query where the request ends in the browser, and [alova/server for the BFF](/blog/bff-retry). For the full选型 view, see the [react-query vs alova comparison](/compare/react-query).
 

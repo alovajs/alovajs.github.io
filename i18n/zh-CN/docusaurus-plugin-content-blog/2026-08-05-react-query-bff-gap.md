@@ -1,3 +1,4 @@
+
 ---
 slug: /blog/react-query-bff-gap
 title: react-query 管不到 BFF？alova/server 补上重试限流
@@ -90,12 +91,6 @@ app.get('/api/resource/:id', async (req, res) => {
 alova 的缓存也是客户端策略特性：`cacheFor` 控制响应保留多久，模式只有 `memory` 和 `restore`，非 GET 请求默认是 `null`（不缓存）。在服务端，`alova/server` 给你的是 `retry` 和 `createRateLimiter`，它并不顺手塞给你一个下游响应的服务端缓存。如果你不想对重复的慢 GET 反复打下游，得自己加一层缓存（或倚仗下游自己带的），再把 `retry`/`rateLimit` 叠上去。
 
 所以分工很干净：react-query 守浏览器缓存，alova/server 守 BFF 出站的重试和限流，互不相踩。
-
-## 什么情况下你其实不需要 alova/server
-
-- **你只有浏览器前端、没有 BFF。** react-query 已经 cover 你了，别给自己加一个不存在的服务端层。
-- **一个接口、单实例。** 一个 `p-retry` 小包裹就能应付偶发瞬时失败，不用引入新依赖。
-- **你要的是排队，不是拒绝。** `createRateLimiter` 额度用尽是抛错。想要「按住稍后跑」用 `execEvenly` 或真正的队列。
 
 两个工具管的是不同层。请求止步于浏览器的地方用 react-query，[BFF 那层交给 alova/server](/blog/bff-retry)。要完整选型视角，见 [react-query 与 alova 对比](/compare/react-query)。
 
