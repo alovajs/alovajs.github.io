@@ -1,6 +1,6 @@
 
 ---
-slug: /blog/react-query-bff-gap
+slug: /react-query-bff-gap
 title: "react-query stops at the browser. alova/server handles your BFF."
 authors:
   - name: Alova Team

@@ -1,6 +1,6 @@
 
 ---
-slug: /blog/react-query-bff-gap
+slug: /react-query-bff-gap
 title: react-query 管不到 BFF？alova/server 补上重试限流
 authors:
   - name: Alova Team
