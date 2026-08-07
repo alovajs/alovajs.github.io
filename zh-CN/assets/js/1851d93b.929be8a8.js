@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkalova_website=globalThis.webpackChunkalova_website||[]).push([[7968],{1671(a){a.exports=JSON.parse('{"metadata":{"permalink":"/zh-CN/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":5,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

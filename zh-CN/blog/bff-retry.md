@@ -1,0 +1,105 @@
+# 你的 BFF 被限流打挂，加一层重试就好
+
+你跑着一个 Node BFF，夹在前端和三个下游服务中间。某天下午最大的那个下游开始回 429，你的 BFF 对每个 429 的回应是：立刻把同一个请求再发一遍。一分钟之内，下游被「它已经拒绝过的请求的重试」埋了，你的前端看到一整面 500。这场景熟不熟悉？
+
+下面这种写法最容易把你带到沟里：
+
+```js
+app.get('/api/resource/:id', async (req, res) => {
+  try {
+    const data = await fetch(`https://downstream.internal/resource/${req.params.id}`);
+    res.json(await data.json());
+  } catch (err) {
+    // 朴素重试：现在就再发一次
+    const retry = await fetch(`https://downstream.internal/resource/${req.params.id}`);
+    res.json(await retry.json());
+  }
+});
+```
+
+它看起来人畜无害，直到出事。里面藏着两个问题：
+
+1. **重试不看为什么失败。** 429 的意思是「慢点」。立刻重试是慢点的反义词，你把你刚搞砸的那个状态又放大了一遍。
+2. **没有客户端限流。** BFF 不管不顾地把每个进来的请求都转发给已经喘不上气的下游，没有任何东西给下游兜底。
+
+如果你跑了不止一个 BFF 实例，手写计数器（模块级变量、内存 Map）也救不了你。每个进程各算各的，于是你以为的「每秒 4 次」上限，实际变成了每个实例每秒 4 次。三个节点加起来就是每秒 12 次。
+
+## 这一层到底需要什么
+
+先别管库。一个扛得住限流的下游调用层，至少得有这些能力：
+
+- **退避，而不是立刻重发。** 等一会儿，再等比刚才更久。指数退避加一点抖动，能让所有实例别踩着同一个拍子重试。
+- **重试要封顶、要挑失败。** 试几次就停，而且只针对值得重试的失败（超时、5xx、429），对永远不成的 4xx 别浪费次数。
+- **客户端限流。** 在真正调用下游之前先查一份大家共享的额度，别往火里添柴。
+- **计数器要跨进程。** 这个额度得放在所有实例都认的地方，不是某个进程的内存里。
+
+全手写的话，上面的 plumbing 不小。alova 的 server 端给了两个 hook，前三项直接覆盖，第四项靠一个可插拔的存储。
+
+## retry + createRateLimiter，一个中间件
+
+alova 是一套请求策略层。在服务端，`alova/server` 提供了包裹请求 method 的 hook：`retry` 加退避，`createRateLimiter` 加客户端限流。它们包的都是你本来就拿去调下游的那个 method 实例。
+
+先建一个 alova 实例。服务端我用 axios 适配器，请求还是从 axios 出去，alova 只负责「怎么请求」这一层：
+
+```js
+const { createAlova } = require('alova');
+const { axiosRequestAdapter } = require('@alova/adapter-axios');
+const { retry, createRateLimiter } = require('alova/server');
+
+const alovaInst = createAlova({
+  baseURL: 'https://downstream.internal',
+  requestAdapter: axiosRequestAdapter()
+});
+
+// 每 4 秒窗口 4 个点，额度记在 method 的缓存存储里
+const rateLimit = createRateLimiter({ duration: 4000, points: 4 });
+```
+
+然后包住下游调用。`retry` 放里面，`rateLimit` 放外面：
+
+```js
+app.get('/api/resource/:id', async (req, res) => {
+  try {
+    const data = await rateLimit(
+      retry(alovaInst.Get(`/resource/${req.params.id}`), {
+        retry: 5,
+        backoff: { delay: 1000, multiplier: 2 }
+      }),
+      { key: `downstream:${req.params.id}` }
+    );
+    res.json(data);
+  } catch (err) {
+    // 触发限流，或重试耗尽
+    res.status(429).json({ error: 'downstream busy, retry later' });
+  }
+});
+```
+
+和朴素版比，改动在这几处：
+
+- `retry: 5` 封了次数。`backoff.delay: 1000` 配 `multiplier: 2`，间隔拉成 1s、2s、4s、8s，被下游打趴的时候它喘口气，而不是立刻补第二刀。
+- `rateLimit` 在请求真正到达下游之前先扣一个点。一个窗口里只有 4 个能过去，其余的会抛错、你早早回 429，下游不被你自己的流量压垮。
+- `key` 把额度按下游资源分开，一个热点 key 不会把别的资源饿死。
+
+retry 的默认值在这里也有意义：不传参数时它重试 3 次、每次隔 1 秒。我们改大，是因为这个下游够不稳定、值得多试几次。
+
+### 集群那一块
+
+默认的限流存储是 method 的 `l2Cache`。单进程下就是内存，够用。跨实例时你把 `store` 指到一份共享存储，比如 `@alova/psc` 或 redis 适配器，所有节点从同一个额度里扣。这一块是手写内存计数器自己永远造不出来的，除非你专门去搭。
+
+## 你能拿到什么
+
+不是基准测试，只是这份配置实际产生的行为：
+
+| 场景 | 朴素 handler | 加 retry + rateLimit |
+| --- | --- | --- |
+| 下游回 429 | 立刻重试，更重的负载 | 退避等待，5 次后停 |
+| 三个 BFF 节点，上限 4/s | 实际发了 12/s | 跨节点共 4/s（共享存储下） |
+| 同一请求来了两次 | 两个都在飞 | 第二次复用第一次在途的请求 |
+
+最后一行是请求共享：alova 会把完全相同的并发请求去重，两个用户要同一个资源，不会触发两次下游调用。
+
+如果你的 BFF 调的下游会限流，而且你跑了不止一个实例，上面这套组合值得花一个下午。
+
+- [服务端重试策略](https://alova.js.org/tutorial/server/strategy/retry)
+- [服务端限流](https://alova.js.org/tutorial/server/strategy/rate-limit)
