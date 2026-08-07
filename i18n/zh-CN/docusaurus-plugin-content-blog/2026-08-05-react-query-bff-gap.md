@@ -1,4 +1,3 @@
-
 ---
 slug: /react-query-bff-gap
 title: react-query 管不到 BFF？alova/server 补上重试限流
@@ -92,7 +91,7 @@ alova 的缓存也是客户端策略特性：`cacheFor` 控制响应保留多久
 
 所以分工很干净：react-query 守浏览器缓存，alova/server 守 BFF 出站的重试和限流，互不相踩。
 
-两个工具管的是不同层。请求止步于浏览器的地方用 react-query，[BFF 那层交给 alova/server](/blog/bff-retry)。要完整选型视角，见 [react-query 与 alova 对比](/compare/react-query)。
+两个工具管的是不同层。请求止步于浏览器的地方用 react-query，[BFF 那层交给 alova/server](/blog/bff-retry)。要完整选型视角，见 [react-query 与 alova 对比](/blog/compare/react-query)。
 
 - [服务端重试策略](https://alova.js.org/tutorial/server/strategy/retry)
 - [服务端限流](https://alova.js.org/tutorial/server/strategy/rate-limit)

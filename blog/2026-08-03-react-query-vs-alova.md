@@ -1,4 +1,3 @@
-
 ---
 slug: /compare/react-query
 title: "react-query or alova: does the request leave the browser?"

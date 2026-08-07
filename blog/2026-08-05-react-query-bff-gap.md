@@ -1,4 +1,3 @@
-
 ---
 slug: /react-query-bff-gap
 title: "react-query stops at the browser. alova/server handles your BFF."
@@ -92,7 +91,7 @@ alova's caching is a client-side strategy feature too. `cacheFor` controls how l
 
 So the split is clean: react-query owns the browser cache, alova/server owns the BFF's outbound retry and throttle. Neither steps on the other.
 
-The two tools solve different layers. Use react-query where the request ends in the browser, and [alova/server for the BFF](/blog/bff-retry). For the full选型 view, see the [react-query vs alova comparison](/compare/react-query).
+The two tools solve different layers. Use react-query where the request ends in the browser, and [alova/server for the BFF](/blog/bff-retry). For the full选型 view, see the [react-query vs alova comparison](/blog/compare/react-query).
 
 - [Server retry strategy](https://alova.js.org/tutorial/server/strategy/retry)
 - [Server rate limit](https://alova.js.org/tutorial/server/strategy/rate-limit)
