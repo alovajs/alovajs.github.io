@@ -11,6 +11,7 @@ import AudioPlayer from '@site/src/components/AudioPlayer';
 import IconFont from '@site/src/components/IconFont';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import SponsorStrip from '@site/src/components/SponsorStrip';
 
 ## alova 是什么？
 
@@ -490,6 +491,8 @@ link: 'https://x.com/alovajs',
 target: '__blank'
 }
 ]}></NavCard>
+
+<SponsorStrip hideSection />
 
 ## 欢迎参与贡献
 

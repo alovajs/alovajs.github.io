@@ -12,14 +12,17 @@ interface IntroProps {
   children?: ReactNode;
   className?: string;
   sectionClassName?: string;
+  hideSection?: boolean;
 }
 
 export default function Intro(props: IntroProps) {
   return (
     <div className={clsx('flex flex-col', props.className)}>
-      <span className={clsx('text-primary-500 text-md font-bold', props.sectionClassName)}>
-        <Translate id={props.sectionTransId}>{props.section}</Translate>
-      </span>
+      {props.hideSection ? null : (
+        <span className={clsx('text-primary-500 text-md font-bold', props.sectionClassName)}>
+          <Translate id={props.sectionTransId}>{props.section}</Translate>
+        </span>
+      )}
       <span className="mt-3 dark:text-white text-2xl md:text-3xl font-bold">
         <Translate id={props.titleTransId}>{props.title}</Translate>
       </span>

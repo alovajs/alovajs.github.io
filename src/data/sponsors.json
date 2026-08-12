@@ -3,12 +3,12 @@
     "name": "watchthis.dev",
     "logo": "/img/sponsors/watchthis-dev-500.png",
     "url": "https://watchthis.dev",
-    "tier": "gold"
+    "tier": "bronze"
   },
   {
     "name": "worma",
     "logo": "https://worma.js.org/img/logo.svg",
     "url": "https://worma.js.org",
-    "tier": "gold"
+    "tier": "bronze"
   }
 ]

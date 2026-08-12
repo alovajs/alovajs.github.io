@@ -16,7 +16,7 @@ function resolveLogo(logo: string): string {
   return localLogos[fileName] ?? logo;
 }
 
-export default function SponsorStrip() {
+export default function SponsorStrip({ hideSection = false }: { hideSection?: boolean }) {
   if (!sponsors || sponsors.length === 0) {
     return null;
   }
@@ -38,6 +38,7 @@ export default function SponsorStrip() {
               id: 'homepage.sponsors.title'
             })}
             className="items-center text-center"
+            hideSection={hideSection}
           />
         </div>
 
