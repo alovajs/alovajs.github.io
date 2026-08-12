@@ -10,6 +10,7 @@ import copy from 'copy-text-to-clipboard';
 import { useEffect, useState } from 'react';
 import { CoreDevs, DeveloperComments, Project, Strategy, VideoPath } from '../common/constants';
 import SupportList from '../components/SupportList';
+import SponsorStrip from '../components/SponsorStrip';
 import FeatureBlock, { ArrowTextLink, FeatureBlockProps } from './_indexComponent/FeatureBlock';
 import CodeBlock from './_indexComponent/CodeBlock';
 import Intro from './_indexComponent/Intro';
@@ -256,6 +257,7 @@ export default function Home(): JSX.Element {
       description="alova is the request strategy layer for JavaScript — 20+ ready-made strategies that cut request code by up to 70%. Compatible with any HTTP client and any UI framework, for both client and server.">
       <div className="dark:bg-[#040f26] overflow-hidden">
         <HomepageHeader></HomepageHeader>
+        <SponsorStrip />
         <main className="mx-auto mt-20 md:mt-40">
           {/* No-BS comparison */}
           <section id="no-bs-comparison" className="container mx-auto py-16 flex flex-col gap-10 justify-between">

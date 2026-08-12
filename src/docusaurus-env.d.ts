@@ -17,3 +17,25 @@ declare module '@theme/Layout' {
     description?: string;
   }
 }
+
+// Raster images are bundled by webpack and imported as URL strings.
+declare module '*.png' {
+  const src: string;
+  export default src;
+}
+declare module '*.jpg' {
+  const src: string;
+  export default src;
+}
+declare module '*.jpeg' {
+  const src: string;
+  export default src;
+}
+declare module '*.gif' {
+  const src: string;
+  export default src;
+}
+declare module '*.webp' {
+  const src: string;
+  export default src;
+}

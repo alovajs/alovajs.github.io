@@ -890,6 +890,14 @@
     "message": "如何减少代码",
     "description": "homepage hero see how to reduce code CTA"
   },
+  "homepage.sponsors.sectionTitle": {
+    "message": "赞助商",
+    "description": "Section label for the sponsors section"
+  },
+  "homepage.sponsors.title": {
+    "message": "特别感谢我们的赞助商",
+    "description": "Title for the sponsors section"
+  },
   "homepage.noBs.sectionTitle": {
     "message": "直观对比",
     "description": "section title for no-BS comparison"
