@@ -2,10 +2,12 @@ import Translate, { translate } from '@docusaurus/Translate';
 import Intro from '../../pages/_indexComponent/Intro';
 import sponsors from '@site/src/data/sponsors.json';
 import watchthisLogo from '@site/static/img/sponsors/watchthis-dev-500.png';
+import sealedRoseLogo from '@site/static/img/sponsors/mark-pure-white-wax.png';
 
 // Local logos are bundled by webpack so they always resolve (static-serving safe).
 const localLogos: Record<string, string> = {
-  'watchthis-dev-500.png': watchthisLogo
+  'watchthis-dev-500.png': watchthisLogo,
+  'mark-pure-white-wax.png': sealedRoseLogo
 };
 
 function resolveLogo(logo: string): string {
@@ -15,6 +17,14 @@ function resolveLogo(logo: string): string {
   const fileName = logo.split('/').pop() ?? logo;
   return localLogos[fileName] ?? logo;
 }
+
+type Sponsor = {
+  name: string;
+  logo: string;
+  url?: string;
+  title?: string;
+  tier?: string;
+};
 
 export default function SponsorStrip({ hideSection = false }: { hideSection?: boolean }) {
   if (!sponsors || sponsors.length === 0) {
@@ -43,21 +53,34 @@ export default function SponsorStrip({ hideSection = false }: { hideSection?: bo
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-          {sponsors.map(sponsor => (
-            <a
-              key={sponsor.url}
-              href={sponsor.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={sponsor.name}
-              className="group flex items-center justify-center rounded-2xl bg-primary-100/20 px-8 py-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-white/5">
+          {(sponsors as Sponsor[]).map(sponsor => {
+            const label = sponsor.title ?? sponsor.name;
+            const cardClass =
+              'group flex items-center justify-center rounded-2xl bg-primary-100/20 px-8 py-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-white/5';
+            const logoEl = (
               <img
                 src={resolveLogo(sponsor.logo)}
-                alt={sponsor.name}
+                alt={label}
                 className="h-[54px] w-auto object-contain transition group-hover:opacity-80"
               />
-            </a>
-          ))}
+            );
+
+            return sponsor.url ? (
+              <a
+                key={sponsor.name}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={label}
+                className={cardClass}>
+                {logoEl}
+              </a>
+            ) : (
+              <div key={sponsor.name} title={label} className={cardClass}>
+                {logoEl}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

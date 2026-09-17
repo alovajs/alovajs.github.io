@@ -10,5 +10,12 @@
     "logo": "https://worma.js.org/img/logo.svg",
     "url": "https://worma.js.org",
     "tier": "bronze"
+  },
+  {
+    "name": "Sealed Rose",
+    "logo": "/img/sponsors/mark-pure-white-wax.png",
+    "url": "https://sealedrose.com/verify-video",
+    "title": "Sealed Rose — AI Deepfake Detector",
+    "tier": "bronze"
   }
 ]
