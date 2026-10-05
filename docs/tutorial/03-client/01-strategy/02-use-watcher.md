@@ -72,7 +72,9 @@ Usually you would debounce at the event level. Here, debouncing happens at the r
 
 :::info What is debounce?
 
-Debounce means that after an event is triggered, a function can only be executed once within n seconds. If another event is triggered within n seconds after the event is triggered, the function execution delay time will be recalculated (distinguished from throttling here. Throttling means that the event cannot be triggered again within a period of time after the event is triggered)
+Debounce waits for a quiet period before executing a function. With `debounce: 500`, each change to a watched state restarts the 500 ms delay, so the request is sent only after no further watched changes occur for that duration. Continuous changes can keep postponing the request. Throttling instead limits how often a function executes while events continue to arrive.
+
+For a search-input comparison of these timing strategies, see [debounce versus throttle](https://frontendatlas.com/javascript/trivia/debounce-vs-throttle-search-input).
 
 :::
 
