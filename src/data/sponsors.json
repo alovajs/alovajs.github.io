@@ -17,5 +17,12 @@
     "url": "https://sealedrose.com/verify-video",
     "title": "Sealed Rose — AI Deepfake Detector",
     "tier": "bronze"
+  },
+  {
+    "name": "JamFeed",
+    "logo": "/img/sponsors/jamfeed.png",
+    "url": "https://jamfeed.com/tools/instagram-account-analyzer-for-musicians/",
+    "title": "JamFeed — Instagram Account Analyzer for Musicians",
+    "tier": "bronze"
   }
 ]
