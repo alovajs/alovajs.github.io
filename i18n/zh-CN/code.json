@@ -314,15 +314,15 @@
     "description": "worma website link"
   },
   "homepage.requestStrategy.sectionTitle": {
-    "message": "请求策略",
+    "message": "场景策略库",
     "description": "section title for requestStrategy"
   },
   "homepage.requestStrategy.title": {
-    "message": "别再手写请求逻辑，直接使用策略",
+    "message": "每个策略，都是一个完整场景。",
     "description": "title for requestStrategy"
   },
   "homepage.requestStrategy.description": {
-    "message": "alova 提供 20+ 请求策略——面向客户端、服务端、跨组件场景的完整业务模块。选一个，马上上线。",
+    "message": "一次声明，预编排请求触发、决策、执行与数据应用的相关行为。",
     "description": "desc for requestStrategy"
   },
   "homepage.requestStrategy.Pagination Request.title": {
@@ -997,5 +997,225 @@
   "homepage.trust.boundary.useAlova.3": {
     "message": "你需要内置策略（分页、鉴权、重试、SSE 服务端推送等）",
     "description": "when alova wins item 3"
+  },
+  "homepage.hero.title": {
+    "message": "请求的单元，不是一次调用，是一个场景。",
+    "description": "S1 hero main title"
+  },
+  "homepage.hero.tagline": {
+    "message": "请求有生命周期，你的代码却把它切碎在组件里——AI 只会照着复制。",
+    "description": "S1 hero tagline"
+  },
+  "homepage.hero.github": {
+    "message": "GitHub",
+    "description": "S1 hero GitHub button"
+  },
+  "homepage.hero.tabHandwritten": {
+    "message": "手写实现",
+    "description": "S1 hero code panel handwritten tab"
+  },
+  "homepage.hero.tabAlova": {
+    "message": "alova 场景声明",
+    "description": "S1 hero code panel alova tab"
+  },
+  "homepage.hero.stageTrigger": {
+    "message": "触发",
+    "description": "S1 hero stage legend: trigger"
+  },
+  "homepage.hero.stageDecision": {
+    "message": "决策",
+    "description": "S1 hero stage legend: decision"
+  },
+  "homepage.hero.stageExecution": {
+    "message": "执行",
+    "description": "S1 hero stage legend: execution"
+  },
+  "homepage.hero.stageDataApplication": {
+    "message": "数据应用",
+    "description": "S1 hero stage legend: data application"
+  },
+  "homepage.hero.tagPagination": {
+    "message": "翻页管理",
+    "description": "S1 hero alova capability tag: pagination"
+  },
+  "homepage.hero.tagDebounce": {
+    "message": "防抖",
+    "description": "S1 hero alova capability tag: debounce"
+  },
+  "homepage.hero.tagCache": {
+    "message": "缓存",
+    "description": "S1 hero alova capability tag: cache"
+  },
+  "homepage.hero.tagDataPreloading": {
+    "message": "数据预加载",
+    "description": "S1 hero alova capability tag: data preloading"
+  },
+  "homepage.hero.tagStaleResponse": {
+    "message": "过期响应处理",
+    "description": "S1 hero alova capability tag: stale-response handling"
+  },
+  "homepage.hero.compareToggle": {
+    "message": "对照手写实现",
+    "description": "S1 hero mobile toggle to compare with handwritten"
+  },
+  "homepage.rsm.section": {
+    "message": "请求场景模型",
+    "description": "S2 section label"
+  },
+  "homepage.rsm.title": {
+    "message": "alova 是一个请求策略库。",
+    "description": "S2 title"
+  },
+  "homepage.rsm.description": {
+    "message": "以场景为请求的基本单元，提供可复用的场景策略，组织请求从触发到数据应用的完整过程。",
+    "description": "S2 description"
+  },
+  "homepage.rsm.trigger.name": {
+    "message": "请求触发",
+    "description": "S2 stage 1 name"
+  },
+  "homepage.rsm.trigger.question": {
+    "message": "什么时候需要请求？",
+    "description": "S2 stage 1 question"
+  },
+  "homepage.rsm.trigger.desc": {
+    "message": "状态变化、用户操作、定时刷新等条件产生数据交互需求。",
+    "description": "S2 stage 1 description"
+  },
+  "homepage.rsm.decision.name": {
+    "message": "请求决策",
+    "description": "S2 stage 2 name"
+  },
+  "homepage.rsm.decision.question": {
+    "message": "这次请求应该如何处理？",
+    "description": "S2 stage 2 question"
+  },
+  "homepage.rsm.decision.desc": {
+    "message": "判断是否需要真正发送请求，以及如何处理缓存、请求共享等情况。",
+    "description": "S2 stage 2 description"
+  },
+  "homepage.rsm.execution.name": {
+    "message": "请求执行",
+    "description": "S2 stage 3 name"
+  },
+  "homepage.rsm.execution.question": {
+    "message": "如何与服务端通信？",
+    "description": "S2 stage 3 question"
+  },
+  "homepage.rsm.execution.desc": {
+    "message": "通过 axios、fetch、XHR 等请求工具发送请求并获取响应。",
+    "description": "S2 stage 3 description"
+  },
+  "homepage.rsm.execNote": {
+    "message": "仅此一段，交给请求工具。",
+    "description": "S2 execution stage note"
+  },
+  "homepage.rsm.apply.name": {
+    "message": "数据应用",
+    "description": "S2 stage 4 name"
+  },
+  "homepage.rsm.apply.question": {
+    "message": "响应如何进入业务？",
+    "description": "S2 stage 4 question"
+  },
+  "homepage.rsm.apply.desc": {
+    "message": "完成数据转换、状态更新、缓存管理，以及跨组件的数据交互。",
+    "description": "S2 stage 4 description"
+  },
+  "homepage.rsm.link": {
+    "message": "了解请求场景模型",
+    "description": "S2 link to RSM doc page"
+  },
+  "homepage.capability.section": {
+    "message": "请求能力",
+    "description": "S3 section label"
+  },
+  "homepage.capability.title": {
+    "message": "默认，超出预期。",
+    "description": "S3 title"
+  },
+  "homepage.capability.description": {
+    "message": "alova 的请求策略默认提供超出预期的完整请求功能——防抖、缓存、竞态、重试，无需在提示词里额外说明。",
+    "description": "S3 description"
+  },
+  "homepage.capability.defaultBadge": {
+    "message": "默认在场",
+    "description": "S3 highlighted chip badge"
+  },
+  "homepage.capability.chip.debounce": {
+    "message": "防抖",
+    "description": "S3 capability chip: debounce"
+  },
+  "homepage.capability.chip.autoRefresh": {
+    "message": "自动刷新",
+    "description": "S3 capability chip: auto refresh"
+  },
+  "homepage.capability.chip.polling": {
+    "message": "定时轮询",
+    "description": "S3 capability chip: polling"
+  },
+  "homepage.capability.chip.retry": {
+    "message": "失败重试",
+    "description": "S3 capability chip: retry"
+  },
+  "homepage.capability.chip.requestSharing": {
+    "message": "请求共享",
+    "description": "S3 capability chip: request sharing"
+  },
+  "homepage.capability.chip.multiLevelCache": {
+    "message": "多级缓存",
+    "description": "S3 capability chip: multi-level cache"
+  },
+  "homepage.capability.chip.dataPreloading": {
+    "message": "数据预加载",
+    "description": "S3 capability chip: data preloading"
+  },
+  "homepage.capability.chip.formDraft": {
+    "message": "表单草稿",
+    "description": "S3 capability chip: form draft"
+  },
+  "homepage.capability.chip.atomicRequest": {
+    "message": "原子化请求",
+    "description": "S3 capability chip: atomic request"
+  },
+  "homepage.capability.chip.transferProgress": {
+    "message": "上传下载进度",
+    "description": "S3 capability chip: upload & download progress"
+  },
+  "homepage.capability.chip.requestSequencing": {
+    "message": "请求时序",
+    "description": "S3 capability chip: request sequencing"
+  },
+  "homepage.capability.chip.stateDrivenRequest": {
+    "message": "变化请求",
+    "description": "S3 capability chip: state-driven request"
+  },
+  "homepage.stack.wormaHint": {
+    "message": "需要从 API 规范生成请求代码？",
+    "description": "S5 worma hint"
+  },
+  "homepage.stack.worma": {
+    "message": "worma",
+    "description": "S5 worma link"
+  },
+  "homepage.trust.strategies": {
+    "message": "请求策略",
+    "description": "S6 stat: request strategies"
+  },
+  "homepage.team.github": {
+    "message": "GitHub",
+    "description": "S6 core team github link"
+  },
+  "homepage.closing.lead": {
+    "message": "打开你最近写的列表页，",
+    "description": "S7 closing lead"
+  },
+  "homepage.closing.strong": {
+    "message": "把代码按四段标一遍。",
+    "description": "S7 closing emphasised sentence"
+  },
+  "homepage.closing.tail": {
+    "message": "看看请求执行占了几行，其余逻辑又散落在哪里。",
+    "description": "S7 closing tail"
   }
 }

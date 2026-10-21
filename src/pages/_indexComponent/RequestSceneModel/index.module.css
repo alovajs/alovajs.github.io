@@ -1,0 +1,304 @@
+/* //////// S2 请求场景模型 //////// */
+
+.section {
+  position: relative;
+}
+
+/* 头部链接 */
+.headerLink {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  transition: opacity 0.2s;
+}
+
+.headerLink:hover {
+  opacity: 0.75;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* 四阶段轨道 */
+.track {
+  position: relative;
+  margin-top: 3.5rem;
+  padding-left: 26px;
+}
+
+/* 轨道：底色槽 + 渐进填充 */
+.railTrack {
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--ifm-color-emphasis-200);
+}
+
+.railFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transform: scaleY(var(--p, 0));
+  background: linear-gradient(
+    180deg,
+    var(--stage-trigger),
+    var(--stage-decision),
+    var(--stage-execution),
+    var(--stage-apply)
+  );
+  transition: transform 0.18s linear;
+}
+
+@media (min-width: 1024px) {
+  .track {
+    margin-top: 4.5rem;
+    padding-left: 0;
+  }
+  .railTrack {
+    left: 0;
+    right: 0;
+    top: 15px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+  .railFill {
+    transform: scaleX(var(--p, 0));
+    background: linear-gradient(
+      90deg,
+      var(--stage-trigger),
+      var(--stage-decision),
+      var(--stage-execution),
+      var(--stage-apply)
+    );
+  }
+}
+
+/* 阶段模块 */
+.module {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.module:last-child {
+  padding-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .module {
+    padding-top: 44px;
+    padding-bottom: 0;
+    padding-right: 26px;
+  }
+  .module:last-child {
+    padding-right: 0;
+  }
+}
+
+/* 轨道节点 */
+.node {
+  position: absolute;
+  top: 0;
+  left: -26px;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 0 0 4px var(--ifm-background-color);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.55s ease;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .node {
+    top: 8px;
+    left: 0;
+  }
+}
+
+.module:hover .node {
+  transform: scale(1.35);
+}
+
+/* 点亮时的冲击波 */
+.nodeRing {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  opacity: 0;
+  box-shadow: 0 0 0 0 currentColor;
+  pointer-events: none;
+}
+
+.nodeRingOn {
+  animation: rsm-ring 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) 1;
+}
+
+/* 卡片 */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 1.35rem 1.4rem 1.6rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 1.1rem;
+  background: var(--rsm-panel-bg);
+  transform:
+    translateY(var(--lift, 0))
+    perspective(900px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  transition:
+    transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.35s,
+    box-shadow 0.35s,
+    background-color 0.35s;
+}
+
+.module:hover .card {
+  --lift: -7px;
+  border-color: rgba(var(--ifm-color-primary-rgb), 0.5);
+  background: rgba(var(--ifm-color-primary-rgb), 0.045);
+  box-shadow: var(--rsm-panel-shadow);
+}
+
+/* 请求执行：占位最小、弱化配色 */
+.cardMuted {
+  border-style: dashed;
+  background: transparent;
+}
+
+.module:hover .cardMuted {
+  border-color: rgba(var(--ifm-color-primary-rgb), 0.4);
+  background: transparent;
+}
+
+/* 巨型水印序号 */
+.watermark {
+  position: absolute;
+  top: -18px;
+  right: 2px;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ifm-color-emphasis-300);
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    opacity 0.55s ease,
+    -webkit-text-stroke-color 0.55s ease;
+}
+
+/* 执行段最窄，水印相应收小，避免压住标题 */
+.cardMuted .watermark {
+  top: -10px;
+  right: 0;
+  font-size: 3.4rem;
+}
+
+.watermarkOn {
+  opacity: 1;
+  -webkit-text-stroke-color: rgba(var(--ifm-color-primary-rgb), 0.55);
+}
+
+/* 光标镜面高光 */
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--glare, 0);
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    240px 240px at var(--gx, 50%) var(--gy, 50%),
+    rgba(var(--ifm-color-primary-rgb), 0.16),
+    transparent 70%
+  );
+}
+
+[data-theme='dark'] .glare {
+  background: radial-gradient(
+    240px 240px at var(--gx, 50%) var(--gy, 50%),
+    rgba(var(--ifm-color-primary-rgb), 0.3),
+    transparent 70%
+  );
+}
+
+/* 文案 */
+.name {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.name::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--stage-color, var(--ifm-color-emphasis-400));
+}
+
+.question {
+  position: relative;
+  margin-top: 0.95rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.desc {
+  position: relative;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.cardMuted .name,
+.cardMuted .question {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cardMuted .desc {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.execNote {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--stage-execution);
+}
+
+.execNote::before {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}

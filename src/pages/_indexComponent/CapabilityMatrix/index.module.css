@@ -1,0 +1,268 @@
+/* //////// S3 请求能力矩阵 //////// */
+
+.section {
+  position: relative;
+}
+
+.wrap {
+  position: relative;
+  max-width: 60rem;
+  margin: 4.5rem auto 0;
+}
+
+/* 品牌渐变光斑：8s 呼吸 + 漂移 */
+.glow {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: -16%;
+  height: 68%;
+  border-radius: 9999px;
+  background:
+    radial-gradient(closest-side, rgba(44, 146, 255, 0.4), transparent 100%) left center / 58% 100%
+      no-repeat,
+    radial-gradient(closest-side, rgba(255, 65, 198, 0.3), transparent 100%) center center / 62% 100%
+      no-repeat,
+    radial-gradient(closest-side, rgba(113, 30, 255, 0.4), transparent 100%) right center / 58% 100%
+      no-repeat;
+  filter: blur(54px);
+  animation:
+    blobDrift 8s ease-in-out infinite,
+    breathe 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 虚线矩阵卡 */
+.matrix {
+  --pad-x: 1.25rem;
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem var(--pad-x);
+  border: 2px dashed #e2eef7;
+  border-radius: 1.5rem;
+  overflow: visible;
+}
+
+[data-theme='dark'] .matrix {
+  border-color: #222e49;
+}
+
+@media (min-width: 768px) {
+  .matrix {
+    --pad-x: 4.5rem;
+    padding: 3.5rem var(--pad-x);
+  }
+}
+
+/* 网点底纹：呼应亮色的「墨」语法 */
+.halftone {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(var(--ifm-color-emphasis-400) 1px, transparent 1px);
+  background-size: 15px 15px;
+  -webkit-mask-image: radial-gradient(88% 78% at 50% 42%, #000 0%, transparent 74%);
+  mask-image: radial-gradient(88% 78% at 50% 42%, #000 0%, transparent 74%);
+}
+
+/* 光标扫描线 */
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--my, 50%) - 70px);
+  height: 140px;
+  pointer-events: none;
+  opacity: var(--glare, 0);
+  transition: opacity 0.35s ease;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(var(--ifm-color-primary-rgb), 0.09),
+    transparent
+  );
+}
+
+/* 四角 L 形刻度 */
+.corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-color: rgba(var(--ifm-color-primary-rgb), 0.65);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cornerTL {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-top-left-radius: 1.5rem;
+}
+
+.cornerTR {
+  top: -2px;
+  right: -2px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-top-right-radius: 1.5rem;
+}
+
+.cornerBL {
+  bottom: -2px;
+  left: -2px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-bottom-left-radius: 1.5rem;
+}
+
+.cornerBR {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  border-bottom-right-radius: 1.5rem;
+}
+
+/* ---- 能力墙：3 行无缝 marquee ---- */
+.wall {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-inline: calc(-1 * var(--pad-x));
+  margin-bottom: 2.75rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 11%, #000 89%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 11%, #000 89%, transparent);
+}
+
+.row {
+  display: flex;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: rsm-marquee 46s linear infinite;
+}
+
+.trackReverse {
+  animation-name: rsm-marquee-reverse;
+  animation-duration: 58s;
+}
+
+.row:nth-child(3) .track {
+  animation-duration: 52s;
+}
+
+/* 悬停暂停，方便阅读 */
+.row:hover .track {
+  animation-play-state: paused;
+}
+
+.group {
+  display: flex;
+  flex: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.75rem;
+  padding: 0.5rem 1.05rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 9999px;
+  background: var(--ifm-background-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--ifm-color-emphasis-700);
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+
+.row:hover .chip {
+  border-color: rgba(var(--ifm-color-primary-rgb), 0.45);
+  color: var(--ifm-color-primary);
+}
+
+.chipDot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--chip-color, var(--ifm-color-emphasis-400));
+}
+
+/* ---- 默认在场：从墙里抬出的 4 张卡 ---- */
+.defaults {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .defaults {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.defaultCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.05rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--chip-color) 45%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--chip-color) 8%, transparent);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.3s;
+}
+
+.defaultCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px -22px var(--chip-color);
+}
+
+.defaultCardTitle {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-900);
+}
+
+.badge {
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--chip-color) 18%, transparent);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--chip-color);
+}
+
+/* color-mix 不支持时的稳妥底色 */
+@supports not (background: color-mix(in srgb, red 10%, transparent)) {
+  .defaultCard {
+    border-color: rgba(var(--ifm-color-primary-rgb), 0.35);
+    background: rgba(var(--ifm-color-primary-rgb), 0.06);
+  }
+  .badge {
+    background: rgba(var(--ifm-color-primary-rgb), 0.16);
+    color: var(--ifm-color-primary);
+  }
+}

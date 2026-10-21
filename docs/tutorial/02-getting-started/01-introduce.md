@@ -15,72 +15,57 @@ import SponsorStrip from '@site/src/components/SponsorStrip';
 
 ## What is alova?
 
-alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is the **request strategy layer** for JavaScript. Instead of hand-writing pagination, forms, uploads and retries over and over, you reach for 20+ ready-made request strategies that cut your request code by up to 70%. It works seamlessly with your favorite HTTP clients and UI frameworks, so you can focus on business logic on both the client and the server.
+alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a **request strategy library**: it treats the scenario as the basic unit of a request, packaging the request logic you've hand-written countless times — pagination, forms, uploads, retries — into 20+ ready-to-use request strategies.
 
-You don't have to throw away the axios or fetch you already know. alova builds right on top of the request library you're using and takes over the repetitive request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and ship everywhere.
+A request is not an instantaneous call — it is a scenario with a lifecycle. You don't have to throw away the axios or fetch you already know: alova builds right on top of your existing request library and takes over the request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and use it everywhere.
 
-Learn about our story in [why built alova](/about/faqs), and explore how we differ in our detailed [comparison with other request libraries](/about/comparison).
+Learn about our story in [why built alova](/about/faqs), explore how we differ in our detailed [comparison with other request libraries](/about/comparison), or check out the [Request Scenario Model (RSM)](/about/RSM) — the conceptual foundation of alova.
+
+### Introduction to the Request Scenario Model (RSM)
+
+RSM (Request Scenario Model) expands a request scenario into four stages, each answering one question:
+
+| Stage | What it answers | Details |
+| --- | --- | --- |
+| **Request Trigger** | What condition creates the need for data exchange? | Initialization, state changes, auto-refresh, retry on failure, debounce, polling — triggering doesn't mean sending: the need arises, but the network doesn't necessarily move |
+| **Request Decision** | How should this need be met? Does a request actually need to be sent? | Cache hits, reusing in-flight requests, suspending until conditions are met, discarding stale responses — all of this happens here |
+| **Request Execution** | How is the communication carried out and the response obtained? | Handed to axios / fetch / XHR — **usually just one line of code** |
+| **Data Application** | How does data enter the business, state and view? | Data transformation, state updates, cross-component/cross-page sync, cache persistence |
+
+Worth noticing: across the four stages, "execution" is usually just one line, while "trigger" is scattered in your components' data listeners and "application" is scattered in state assignments and view updates — and "decision" tends to be overlooked. See the full [Request Scenario Model (RSM)](/about/RSM).
+
+### What you get with alova
+
+#### 1. A complete scenario, not just a working request
+
+Let AI write it from scratch, and these words will most likely never show up in your prompt — not because AI isn't capable enough, but because you didn't mention them. And as for "which words should be mentioned", nobody has ever handed you a checklist. RSM is that checklist, and alova maps it onto the configuration options of scenario hooks: one declaration, and the whole scenario is in place.
+
+- **Input debounce**: without it, fast typing fires requests back to back
+- **Cache hits for identical conditions**: without it, the same endpoint is called over and over
+- **Discarding stale responses**: without it, an older response may overwrite a newer one
+- **Automatic retry on failure**: without it, a single failed request leaves the page blank
+- **Next-page preloading**: without it, users stare at the loading state on every page turn
+
+#### 2. No need to review AI-written code
+
+Request-layer code takes up a large share of your pages, and AI-written code always needs another round of review. With alova, the request layer is reduced to configuration you only need to verify — saving you time while improving stability.
+
+### When should you use alova?
+
+alova runs in virtually any JavaScript runtime. If your frontend app includes authentication, pagination, forms, uploads or captcha sending, or you need to reuse one API set across Web, React Native and mini-programs, or you need request governance such as rate limiting and BFF on Node.js or Bun servers, alova handles it all perfectly.
 
 ## Features
 
-Rather than listing what alova *is*, here is what it *does for you* — each scenario mapped to the concrete gain:
+- Easy to use — [watch the video](/video-tutorial) and get started in 5 minutes.
+- Perfect compatibility with your favorite tech stack.
+- 20+ high-performance business modules to help you build better-performing apps faster.
+- A more advanced OpenAPI solution for efficient interaction with API information right in your code.
+- Request sharing and response caching to boost performance.
+- Type safety.
 
-| Scenario you're tired of | What alova gives you |
-| --- | --- |
-| Hand-writing pagination, forms, uploads, SSE state | `usePagination` / `useForm` / `useUploader` / `useSSE` — up to 70% less boilerplate |
-| Server-side rate limiting & retry (incl. distributed) | `alova/server` — capabilities React Query / SWR simply don't cover |
-| Rebuilding the same logic for every framework | One API set across React / Vue / Svelte / Solid / mini-programs |
-| Manual cache invalidation | Multi-level cache (L1/L2) + declarative auto-invalidation via `hitSource` |
-| Copy-pasting API info between docs and editor | [worma](https://worma.js.org) — API hints and docs right inside your editor |
-
-And of course: easy to use ([watch the 5-min video](/video-tutorial)), full compatibility with your favorite technology stack, request sharing, response cache, and end-to-end type safety.
+alova is compatible with the following tech stacks; the grayed-out parts will be supported gradually in the future.
 
 <SupportList showStatus></SupportList>
-
-## When should you use alova?
-
-alova is honest about where it shines and where a simpler tool is enough:
-
-| Your scenario | Recommendation |
-| --- | --- |
-| Simple CRUD with caching | React Query / SWR is perfectly fine |
-| Complex admin panels / forms / pagination / uploads | ✅ alova is a clear step ahead |
-| Cross-platform (Web + mini-program / uni-app / Taro) | ✅ one API set for all of them |
-| Server-side request governance (rate limit / retry / distributed) | ✅ alova is effectively the only option |
-| OpenAPI → type-safe code + AI-friendly API knowledge | ✅ pair it with [worma](https://worma.js.org) (works out of the box with alova) |
-
-## worma: write one API spec, and let it do the rest
-
-You know the drill: the backend ships an API, and you're stuck bouncing between the API docs and your editor — copying parameters, hand-writing call code. worma is built to end that.
-
-Point it at a single OpenAPI spec and it generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can actually read** — so your agent stops guessing and finds the right endpoint directly.
-
-```mermaid
-flowchart LR
-R1[OpenAPI spec] --> S1[worma] --> W1[API call function]
-S1[worma] --> W2[Complete API types]
-S1[worma] --> W3[Complete API docs]
-```
-
-In the old flow you'd open the intermediate docs, look up the parameters, then go back to the editor and hand-write the code. worma removes that middle step: right inside your editor you find the endpoint you need, read its full docs, and fill in parameters against the parameter table — making frontend-backend collaboration feel like passing through a wormhole.
-
-```mermaid
-flowchart LR
-A[Server ships API] --> B[<s>Open the intermediate API docs</s>] --> C[Write the API call code]
-
-class B redNode;
-classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
-```
-
-And if you're already using alova, it gets even easier — worma works out of the box. Install it and you get those API hints, hover docs and one-click code insertion without any extra wiring.
-
-> Learn more at [worma.js.org](https://worma.js.org), or see how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
-
-## Live Demo
-
-We've prepared a rich set of examples to help you quickly explore alova's capabilities.
-
-<Examples />
 
 ## Request Strategies in Action
 
@@ -323,7 +308,7 @@ See [Seamless Data Interaction](/tutorial/client/strategy/seamless-data-interact
 <details>
 <summary>Cross-component request triggering middleware</summary>
 
-Break free of component hierarchy — trigger any request action from any component.
+Break free from component hierarchy — trigger any request action from any component.
 
 <Tabs className="file-tabs">
 <TabItem value="1" label="ComponentA">
@@ -391,7 +376,7 @@ See [Verification code strategy](/tutorial/client/strategy/use-captcha) for deta
 
 </details>
 
-alova ships 15+ client request strategies built on the [RSM](/about/RSM) specification. See the full [Request Strategy List](/tutorial/client/strategy).
+See the [Request Strategy List](/tutorial/client/strategy) for all client request strategies.
 
 ### Server Request Strategy
 
@@ -443,6 +428,35 @@ const orderRes = await limit(alova.Get('/api/order'));
 See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for details.
 
 </details>
+
+## worma: write one API spec, and let it do the rest
+
+worma is a request code generator based on AI skills, and it works out of the box with alova. It reads your OpenAPI spec and generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can read directly** — your agent no longer has to guess; it can find the endpoint it needs directly.
+
+```mermaid
+flowchart LR
+R1[OpenAPI spec] --> S1[worma] --> W1[API call function]
+S1[worma] --> W2[Complete API types]
+S1[worma] --> W3[Complete API docs]
+```
+
+In the old flow you'd open the intermediate docs, look up the parameters, then go back to the editor and hand-write the code. worma removes that middle step: right inside your editor you find the endpoint you need, read its full docs, and fill in parameters against the parameter table — making frontend-backend collaboration feel like passing through a wormhole.
+
+```mermaid
+flowchart LR
+A[Server ships API] --> B[<s>Open the intermediate API docs</s>] --> C[Write the API call code]
+
+class B redNode;
+classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
+```
+
+> Learn more at [worma.js.org](https://worma.js.org), or see how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
+
+## Live Demo
+
+We've prepared a rich set of examples to help you quickly explore alova's capabilities.
+
+<Examples />
 
 ## Write alova with an AI Agent (Agent Skills)
 
