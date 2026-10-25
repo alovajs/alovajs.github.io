@@ -1,83 +1,87 @@
-import Translate, { translate } from '@docusaurus/Translate';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Head from '@docusaurus/Head';
+import useBrokenLinks from '@docusaurus/useBrokenLinks';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { GrainLayer } from './_indexComponent/_decor/atoms';
-import SectionIndexRail, { type RailItem } from './_indexComponent/_decor/SectionIndexRail';
-import ScrollProgress from './_indexComponent/_decor/ScrollProgress';
-import CapabilityMatrix from './_indexComponent/CapabilityMatrix';
+import { useEffect } from 'react';
+import Capabilities from './_indexComponent/Capabilities';
+import Closing from './_indexComponent/Closing';
+import Ecosystem from './_indexComponent/Ecosystem';
 import Hero from './_indexComponent/Hero';
 import RequestSceneModel from './_indexComponent/RequestSceneModel';
-import { Closing, StrategyLibrary, TechStack, Trust } from './_indexComponent/Sections';
-import styles from './_indexComponent/index.module.css';
+import StrategyLibrary from './_indexComponent/StrategyLibrary';
+import Trust from './_indexComponent/Trust';
+import styles from './_indexComponent/page.module.css';
 
-/** 左侧章节轨：序号与各区 Intro 的 index 保持一致 */
-const railItems: RailItem[] = [
-  { id: 'hero', index: '01', label: 'Scenario', color: 'var(--stage-trigger)' },
-  { id: 'rsm', index: '02', label: 'Request Scene Model', color: 'var(--stage-decision)' },
-  { id: 'capability', index: '03', label: 'Capabilities', color: 'var(--stage-execution)' },
-  { id: 'strategy', index: '04', label: 'Strategy library', color: 'var(--stage-apply)' },
-  { id: 'stack', index: '05', label: 'Tech stack', color: 'var(--stage-trigger)' },
-  { id: 'trust', index: '06', label: 'Trust', color: 'var(--stage-decision)' },
-  { id: 'closing', index: '07', label: 'Get started', color: 'var(--stage-execution)' }
-];
+const bodyFontsHref =
+  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap';
 
-export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  const [gitHubStars, setGitHubStars] = useState<number | null>(null);
+/**
+ * Next-Generation Request Strategy Library 落地页。
+ * 导航栏 / 公告条 / 页脚全部使用站点统一实现（页脚内容由 docusaurus.config.ts 的
+ * themeConfig.footer 配置），页面只负责正文的 7 个区块。
+ *
+ * 注：Material Symbols 图标字体已在 docusaurus.config.ts 的 stylesheets 中全站注入，
+ * 这里只需补充页面用到的正文字体。
+ */
 
+/** 页面内锚点：自定义页面不会被自动收集，注册后站内锚点链接才能通过构建校验 */
+const sectionAnchors = ['rsm-model', 'capabilities', 'strategies', 'ecosystem'] as const;
+
+export default function LandingPage() {
+  const brokenLinks = useBrokenLinks();
+  sectionAnchors.forEach(anchor => brokenLinks.collectAnchor(anchor));
+
+  // 锚点平滑滚动（对应 mock 的 html.scroll-smooth），离开页面时还原
   useEffect(() => {
-    fetch('https://api.github.com/repos/alovajs/alova')
-      .then(r => r.json())
-      .then(data => {
-        if (typeof data.stargazers_count === 'number') {
-          setGitHubStars(data.stargazers_count);
-        }
-      })
-      .catch(() => {});
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'smooth';
+
+    return () => {
+      root.style.scrollBehavior = previous;
+    };
   }, []);
 
   return (
     <Layout
-      wrapperClassName={clsx('use-tailwind', styles.decoratedPurple)}
-      title={
-        siteConfig.title +
-        ' - ' +
-        translate({
-          message: "The unit of a request isn't a call — it's a scenario.",
-          id: 'homepage.hero.title'
-        })
-      }
-      description="alova is a request strategy library. It treats the scenario as the basic unit of a request, with reusable strategies organizing the complete journey from trigger to data application.">
-      <div className="bg-canvas overflow-hidden">
-        {/* 全局装饰：光谱滚动进度 + 噪点颗粒 + 章节轨 */}
-        <ScrollProgress />
-        <GrainLayer />
-        <SectionIndexRail items={railItems} />
+      title="alova.js - Next-Generation Request Strategy Library"
+      description="alova orchestrates trigger, decision, execution and data application into unified request scenarios — one declaration per scenario."
+      wrapperClassName={clsx(
+        styles.page,
+        'landing-page use-tailwind bg-white text-zinc-900 selection:bg-brand-blue selection:text-white'
+      )}>
+      <Head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href={bodyFontsHref}
+        />
+      </Head>
 
+      <main>
         {/* S1 · 请求的单元，是一个场景 */}
         <Hero />
-        <main className="mx-auto">
-          {/* S2 · 请求场景模型 */}
-          <RequestSceneModel />
-
-          {/* S3 · 请求能力矩阵 */}
-          <CapabilityMatrix />
-
-          {/* S4 · 场景策略库 */}
-          <StrategyLibrary />
-
-          {/* S5 · 兼容现有技术栈 */}
-          <TechStack />
-
-          {/* S6 · 信任与数字 */}
-          <Trust stars={gitHubStars} />
-
-          {/* S7 · 收尾与行动召唤 */}
-          <Closing />
-        </main>
-      </div>
+        {/* S2 · 请求场景模型 */}
+        <RequestSceneModel />
+        {/* S3 · 12 项请求能力 */}
+        <Capabilities />
+        {/* S4 · 场景策略库 */}
+        <StrategyLibrary />
+        {/* S5 · 弹性运行时 */}
+        <Ecosystem />
+        {/* S6 · 信任与数字 */}
+        <Trust />
+        {/* S7 · 收尾行动召唤 */}
+        <Closing />
+      </main>
     </Layout>
   );
 }

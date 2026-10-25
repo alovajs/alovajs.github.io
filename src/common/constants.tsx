@@ -1,6 +1,28 @@
 import Translate, { translate } from '@docusaurus/Translate';
-import { FeatureBlockProps } from '../pages/_indexComponent/FeatureBlock';
-import { UserDescProps } from '../pages/_indexComponent/UserDescription';
+import type { ReactNode } from 'react';
+
+export interface FeatureBlockProps {
+  type?: string;
+  title: string;
+  description?: string;
+  snippet?: string;
+  className?: string;
+  children?: ReactNode;
+  showLearnMore?: boolean;
+  to?: string;
+}
+
+export interface UserDescProps {
+  avatar: string | ReactNode;
+  avatarSize?: number;
+  avatarRadius?: number;
+  name: string;
+  description?: string;
+  className?: string;
+  children?: ReactNode;
+  vertical?: boolean;
+  to?: string;
+}
 
 export const VideoPath = {
   browseDocs: '/video/browse-docs.mp4',

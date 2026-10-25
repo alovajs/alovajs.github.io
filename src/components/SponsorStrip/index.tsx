@@ -1,5 +1,4 @@
-import Translate, { translate } from '@docusaurus/Translate';
-import Intro from '../../pages/_indexComponent/Intro';
+import { translate } from '@docusaurus/Translate';
 import sponsors from '@site/src/data/sponsors.json';
 import watchthisLogo from '@site/static/img/sponsors/watchthis-dev-500.png';
 import sealedRoseLogo from '@site/static/img/sponsors/mark-pure-white-wax.png';
@@ -38,18 +37,20 @@ export default function SponsorStrip({ hideSection = false }: { hideSection?: bo
 
       <div className="relative z-10 flex flex-col items-center gap-16">
         <div className="flex flex-col items-center text-center">
-          <Intro
-            section={translate({
-              message: '# Sponsors',
-              id: 'homepage.sponsors.sectionTitle'
-            })}
-            title={translate({
+          {hideSection ? null : (
+            <span className="text-primary-500 text-md font-bold">
+              {translate({
+                message: '# Sponsors',
+                id: 'homepage.sponsors.sectionTitle'
+              })}
+            </span>
+          )}
+          <span className="mt-3 dark:text-white text-2xl md:text-3xl font-bold">
+            {translate({
               message: 'Special thanks to our sponsors',
               id: 'homepage.sponsors.title'
             })}
-            className="items-center text-center"
-            hideSection={hideSection}
-          />
+          </span>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">

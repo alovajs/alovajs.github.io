@@ -719,17 +719,17 @@ html:not(.docs-wrapper) {
   }
 }
 
+/* 保持 Infima `.navbar--fixed-top` 的吸顶定位（仅用 relative 会让导航随页面滚走） */
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
 }
 
-/* 光谱发丝线：滚动后淡入 */
-@keyframes navbar-spectrum {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.55;
+/* 落地页（/landing）为固定浅色版式：暗色模式下滚动到白色正文时，
+   玻璃导航会变成「浅底浅字」，这里把导航玻璃压深保证可读性 */
+html[data-theme='dark']:has(.landing-page) {
+  .navbar__inner {
+    background-color: rgba(5, 10, 22, 0.92) !important;
   }
 }
 
@@ -748,19 +748,5 @@ html:not(.docs-wrapper) {
       animation-timeline: scroll(root);
       animation-range: 0 100px;
     }
-    .navbar::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 1px;
-      background: var(--spectrum-gradient);
-      pointer-events: none;
-      animation: navbar-spectrum linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 100px;
-    }
   }
 }
-
