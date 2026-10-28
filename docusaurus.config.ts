@@ -29,7 +29,12 @@ const config: Config = {
     locales: ['en', 'zh-CN'],
     localeConfigs: {
       en: {
+        label: 'English',
         htmlLang: 'en-GB'
+      },
+      'zh-CN': {
+        label: '简体中文',
+        htmlLang: 'zh-CN'
       }
     }
   },
@@ -376,7 +381,7 @@ const config: Config = {
     [
       'docusaurus-markdown-source-plugin',
       {
-        docsPath: '/',  // Show dropdown on all pages (docs-only site)
+        docsPath: '/' // Show dropdown on all pages (docs-only site)
       }
     ],
     [

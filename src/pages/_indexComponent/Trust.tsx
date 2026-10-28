@@ -1,23 +1,30 @@
 import Github from '@site/static/img/github.svg';
 import { CoreDevs, DeveloperComments, Project } from '@site/src/common/constants';
-import { metrics } from './content';
 import { MaterialIcon, SectionTagline } from './ui';
+import { metrics } from './content';
+import { translate } from '@docusaurus/Translate';
 
 /** S6 · 信任与数字：指标 / 社区项目与评价 / 团队 */
 export default function Trust() {
   return (
-    <section className="py-32 md:py-40 bg-zinc-50/60 border-t border-zinc-100">
+    <section className="py-32 md:py-40 bg-sunken dark:bg-white/[0.02] border-t border-hairline">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionTagline className="text-brand-blue mb-6">
-          06 · TRUSTED &amp; HONEST
+          {translate({ id: 'homepage.trust.sectionTitle', message: '06 · TRUSTED & HONEST' })}
         </SectionTagline>
 
         <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-950 tracking-[-0.035em]">
-            Built for real apps — and honest about when not to use it.
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-ink-1 tracking-[-0.035em]">
+            {translate({
+              id: 'homepage.trust.title',
+              message: 'Built for real apps, and honest about when not to use it.'
+            })}
           </h2>
-          <p className="text-zinc-500 text-base md:text-lg mt-4 font-normal">
-            Adopted in production environments handling millions of critical data events daily.
+          <p className="text-ink-3 text-base md:text-lg mt-4 font-normal">
+            {translate({
+              id: 'homepage.trust.description',
+              message: 'Adopted in production environments handling millions of critical data events daily.'
+            })}
           </p>
         </div>
 
@@ -26,16 +33,16 @@ export default function Trust() {
           {metrics.map(metric => (
             <div
               key={metric.label}
-              className="p-8 rounded-2xl bg-white border border-zinc-200/80 shadow-sm">
-              <span className="text-4xl md:text-5xl font-extrabold text-zinc-950 block mb-2 tracking-tight">
+              className="p-8 rounded-2xl bg-surface border border-hairline shadow-sm">
+              <span className="text-4xl md:text-5xl font-extrabold text-ink-1 block mb-2 tracking-tight">
                 {metric.value}
               </span>
-              <span className="text-xs font-bold text-zinc-800 tracking-wide block">
+              <span className="text-xs font-bold text-ink-2 tracking-wide block">
                 {metric.label}
               </span>
               {metric.href ? (
                 <a
-                  className="text-[11px] font-mono text-zinc-400 hover:text-black transition-colors inline-flex items-center gap-1 mt-1 font-medium"
+                  className="text-[11px] font-mono text-ink-4 hover:text-ink-1 transition-colors inline-flex items-center gap-1 mt-1 font-medium"
                   href={metric.href}
                   target="_blank"
                   rel="noreferrer">
@@ -46,7 +53,7 @@ export default function Trust() {
                   />
                 </a>
               ) : (
-                <span className="text-[11px] font-mono text-zinc-400 block mt-1">
+                <span className="text-[11px] font-mono text-ink-4 block mt-1">
                   {metric.secondary}
                 </span>
               )}
@@ -58,13 +65,19 @@ export default function Trust() {
         <div className="mb-24">
           <div className="flex flex-col items-center text-center">
             <SectionTagline className="justify-center text-brand-blue mb-5">
-              Join the community
+              {translate({ id: 'homepage.trust.community', message: 'Join the community' })}
             </SectionTagline>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-zinc-950 tracking-[-0.03em]">
-              Used in production by real teams
+            <h3 className="text-2xl md:text-3xl font-extrabold text-ink-1 tracking-[-0.03em]">
+              {translate({
+                id: 'homepage.trust.usedBy',
+                message: 'Used in production by real teams'
+              })}
             </h3>
-            <p className="text-zinc-500 text-sm md:text-base mt-3 font-normal">
-              Open source projects dependent on alova
+            <p className="text-ink-3 text-sm md:text-base mt-3 font-normal">
+              {translate({
+                id: 'homepage.trust.dependents',
+                message: 'Open source projects dependent on alova'
+              })}
             </p>
           </div>
 
@@ -82,7 +95,7 @@ export default function Trust() {
                   src={item.avatar as string}
                   alt={item.name}
                 />
-                <span className="text-sm font-semibold text-zinc-700 group-hover:text-brand-blue transition-colors">
+                <span className="text-sm font-semibold text-ink-2 group-hover:text-brand-blue transition-colors">
                   {item.name}
                 </span>
               </a>
@@ -94,18 +107,18 @@ export default function Trust() {
             {DeveloperComments.map(item => (
               <div
                 key={item.name}
-                className="p-8 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex gap-5">
+                className="p-8 rounded-2xl bg-surface border border-hairline shadow-sm flex gap-5">
                 <img
                   className="w-14 h-14 rounded-full object-cover shrink-0"
                   src={item.avatar as string}
                   alt={item.name}
                 />
                 <div>
-                  <span className="block text-sm font-bold text-zinc-900">{item.name}</span>
-                  <span className="block text-[11px] font-mono text-zinc-400 mt-1 mb-4">
+                  <span className="block text-sm font-bold text-ink-1">{item.name}</span>
+                  <span className="block text-[11px] font-mono text-ink-4 mt-1 mb-4">
                     {item.description}
                   </span>
-                  <div className="text-zinc-600 text-sm leading-relaxed font-normal">
+                  <div className="text-ink-2 text-sm leading-relaxed font-normal">
                     {item.children}
                   </div>
                 </div>
@@ -118,10 +131,10 @@ export default function Trust() {
         <div>
           <div className="flex flex-col items-center text-center">
             <SectionTagline className="justify-center text-brand-blue mb-5">
-              Alova team
+              {translate({ id: 'homepage.trust.team', message: 'Alova team' })}
             </SectionTagline>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-zinc-950 tracking-[-0.03em]">
-              Meet the core members
+            <h3 className="text-2xl md:text-3xl font-extrabold text-ink-1 tracking-[-0.03em]">
+              {translate({ id: 'homepage.trust.coreMembers', message: 'Meet the core members' })}
             </h3>
           </div>
 
@@ -129,19 +142,22 @@ export default function Trust() {
             {CoreDevs.map(item => (
               <div
                 key={item.name}
-                className="p-10 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col items-center gap-4">
+                className="p-10 rounded-2xl bg-surface border border-hairline shadow-sm flex flex-col items-center gap-4">
                 <img
                   className="w-20 h-20 rounded-full object-cover"
                   src={item.avatar as string}
                   alt={item.name}
                 />
-                <span className="text-base font-bold text-zinc-900">{item.name}</span>
+                <span className="text-base font-bold text-ink-1">{item.name}</span>
                 <a
-                  className="text-zinc-400 hover:text-black transition-colors"
+                  className="text-ink-4 hover:text-ink-1 transition-colors"
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`${item.name} on GitHub`}>
+                  aria-label={translate(
+                    { id: 'homepage.trust.githubAria', message: '{name} on GitHub' },
+                    { name: item.name }
+                  )}>
                   <Github className="w-5 h-5" />
                 </a>
               </div>

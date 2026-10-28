@@ -7,8 +7,9 @@ import styles from '../page.module.css';
  * 颜色取自 tokens.scss，避免再依赖外部资源。
  */
 export default function AuroraBackdrop() {
+  // 暗色画布下光带更容易冲淡正文，因此暗色下压低一档不透明度
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60 overflow-hidden">
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60 dark:opacity-40 overflow-hidden">
       <div
         aria-hidden
         className={clsx(styles.aurora, styles.auroraArt)}

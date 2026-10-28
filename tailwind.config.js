@@ -42,6 +42,7 @@ export default {
           4: 'var(--c-ink-4)'
         },
         hairline: 'var(--c-hairline)',
+        'hairline-strong': 'var(--c-hairline-strong)',
         spectrum: {
           trigger: 'var(--stage-trigger)',
           decision: 'var(--stage-decision)',

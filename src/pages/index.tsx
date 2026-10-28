@@ -10,6 +10,7 @@ import Hero from './_indexComponent/Hero';
 import RequestSceneModel from './_indexComponent/RequestSceneModel';
 import StrategyLibrary from './_indexComponent/StrategyLibrary';
 import Trust from './_indexComponent/Trust';
+import { translate } from '@docusaurus/Translate';
 import styles from './_indexComponent/page.module.css';
 
 const bodyFontsHref =
@@ -44,11 +45,20 @@ export default function LandingPage() {
 
   return (
     <Layout
-      title="alova.js - Next-Generation Request Strategy Library"
-      description="alova orchestrates trigger, decision, execution and data application into unified request scenarios — one declaration per scenario."
+      title={translate({
+        id: 'homepage.meta.title',
+        message: 'alova.js, a request strategy library'
+      })}
+      description={translate({
+        id: 'homepage.meta.description',
+        message:
+          'alova treats a request as a scenario. Trigger, decision, execution and data application, declared once. axios and fetch handle the network.'
+      })}
       wrapperClassName={clsx(
         styles.page,
-        'landing-page use-tailwind bg-white text-zinc-900 selection:bg-brand-blue selection:text-white'
+        // 底色与墨色走 tokens.scss 的语义变量（--c-canvas / --c-ink-*），
+        // 暗色由 [data-theme='dark'] 自动接管，页面内不再写死浅色
+        'landing-page use-tailwind bg-canvas text-ink-1 selection:bg-brand-blue selection:text-white'
       )}>
       <Head>
         <link

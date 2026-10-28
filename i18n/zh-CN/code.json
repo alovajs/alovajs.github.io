@@ -273,18 +273,6 @@
   "theme.featureBlock.learnMore": {
     "message": "查看详情"
   },
-  "homepage.title": {
-    "message": "少写请求代码，多做业务功能",
-    "description": "网站title"
-  },
-  "homepage.title.position": {
-    "message": "少写请求代码，多做业务功能",
-    "description": "网站title"
-  },
-  "homepage.tagline": {
-    "message": "JavaScript 请求策略层。别再在每个项目里手写分页、重试、表单的样板代码——alova 已为你打包成开箱即用的策略",
-    "description": "网站tagline"
-  },
   "homepage.automaticGenerate.sectionTitle": {
     "message": "OpenAPI 生成代码 · 由 worma 驱动",
     "description": "section title for automatic generate"
@@ -294,7 +282,7 @@
     "description": "title for automatic generate"
   },
   "homepage.automaticGenerate.description": {
-    "message": "worma 是一个独立的 OpenAPI 代码生成工具，对 alova 开箱即用。只要有一份接口规范，它就能生成类型安全的运行时代码、TypeScript 类型、文档和 AI 知识——在编辑器里直接获得接口提示、悬浮查看文档，还能一键插入调用代码。（同时也支持 axios、ky 与 fetch。）",
+    "message": "worma 是一个独立的 OpenAPI 代码生成工具，对 alova 开箱即用。只要有一份接口规范，它就能生成类型安全的运行时代码、TypeScript 类型、文档和 AI 知识，在编辑器里直接获得接口提示、悬浮查看文档，还能一键插入调用代码。（同时也支持 axios、ky 与 fetch。）",
     "description": "desc for automatic generate"
   },
   "homepage.automaticGenerate.Browse API docs in your editor": {
@@ -314,23 +302,23 @@
     "description": "worma website link"
   },
   "homepage.requestStrategy.sectionTitle": {
-    "message": "场景策略库",
-    "description": "section title for requestStrategy"
+    "message": "04 · 策略库",
+    "description": "S4 区块标签"
   },
   "homepage.requestStrategy.title": {
-    "message": "每个策略，都是一个完整场景。",
-    "description": "title for requestStrategy"
+    "message": "每个策略都是一个完整场景。",
+    "description": "S4 标题"
   },
   "homepage.requestStrategy.description": {
-    "message": "一次声明，预编排请求触发、决策、执行与数据应用的相关行为。",
-    "description": "desc for requestStrategy"
+    "message": "一次声明，预先编排触发、决策、执行与数据应用。",
+    "description": "S4 描述"
   },
   "homepage.requestStrategy.Pagination Request.title": {
     "message": "分页请求",
     "description": "title for Pagination Request"
   },
   "homepage.requestStrategy.Pagination Request.description": {
-    "message": "自动管理分页数据、预加载下一页并减少无效刷新，流畅度提升 300%，编码量减少 50%。",
+    "message": "自动管理分页、预加载下一页并减少无效刷新。分页成为一次声明的场景。",
     "description": "desc for Pagination Request"
   },
   "homepage.requestStrategy.Watching Request.title": {
@@ -338,7 +326,7 @@
     "description": "title for Pagination Request"
   },
   "homepage.requestStrategy.Watching Request.description": {
-    "message": "状态变化立即发送请求，这在标签页切换与条件查询中尤为实用。",
+    "message": "状态一变即刻发请求。标签页切换与条件查询场景尤其好用。",
     "description": "desc for Pagination Request"
   },
   "homepage.requestStrategy.Retry Request.title": {
@@ -346,7 +334,7 @@
     "description": "title for Pagination Request"
   },
   "homepage.requestStrategy.Retry Request.description": {
-    "message": "在重要的请求上使用它，可以提高请求的稳定性",
+    "message": "在关键请求上自动重试，提升其稳定性。",
     "description": "desc for Pagination Request"
   },
   "homepage.requestStrategy.Rate Limit.title": {
@@ -354,7 +342,7 @@
     "description": "title for Rate Limit"
   },
   "homepage.requestStrategy.Rate Limit.description": {
-    "message": "在限定时间内控制请求频率。",
+    "message": "限制给定时间窗口内发出的请求数量。",
     "description": "desc for Rate Limit"
   },
   "homepage.requestStrategy.Atomize Requests.title": {
@@ -362,7 +350,7 @@
     "description": "title for Atomize Requests"
   },
   "homepage.requestStrategy.Atomize Requests.description": {
-    "message": "在多进程环境下，用分布式锁保证请求的原子性——无需手写加锁逻辑。",
+    "message": "在多进程环境下，用分布式锁保证请求的原子性，无需手写加锁逻辑。",
     "description": "desc for Atomize Requests"
   },
   "homepage.requestStrategy.Fetch Data.title": {
@@ -378,7 +366,7 @@
     "description": "title for Token authentication"
   },
   "homepage.requestStrategy.Token authentication.description": {
-    "message": "支持无感刷新 Token 的全局拦截器，并统一管理基于令牌的登录、登出、令牌分配与刷新。",
+    "message": "带无感刷新 Token 的全局拦截器，统一管理登录、登出、令牌分配与刷新。",
     "description": "desc for Token authentication"
   },
   "homepage.requestStrategy.Form Submission.title": {
@@ -386,7 +374,7 @@
     "description": "title for Form Submission"
   },
   "homepage.requestStrategy.Form Submission.description": {
-    "message": "自动管理表单数据，让你快速实现各种表单功能",
+    "message": "自动管理表单状态，各类表单都能快速搭好。",
     "description": "desc for Form Submission"
   },
   "homepage.requestStrategy.Auto refresh data.title": {
@@ -402,7 +390,7 @@
     "description": "title for Action Delegation"
   },
   "homepage.requestStrategy.Action Delegation.description": {
-    "message": "跨组件触发、中止和共享请求——无需额外状态管理。",
+    "message": "跨组件触发、中止和共享请求，无需额外状态管理。",
     "description": "desc for Action Delegation"
   },
   "homepage.requestStrategy.Seamless Data Interaction.title": {
@@ -414,37 +402,28 @@
     "description": "desc for Seamless Data Interaction"
   },
   "homepage.requestStrategy.More Strategy.title": {
-    "message": "查看全部 20+ 个请求策略"
+    "message": "了解全部 20+ 策略",
+    "description": "S4 更多策略标题"
   },
   "homepage.requestStrategy.More Strategy.Client": {
-    "message": "客户端策略"
+    "message": "客户端策略",
+    "description": "S4 更多策略链接"
   },
   "homepage.requestStrategy.More Strategy.Server": {
-    "message": "服务端策略"
+    "message": "服务端策略",
+    "description": "S4 更多策略链接"
   },
   "homepage.Flexible.sectionTitle": {
     "message": "灵活性",
     "description": "section title for Flexible"
   },
   "homepage.Flexible.title": {
-    "message": "与任何请求工具在任何JS环境下运行",
-    "description": "title for Flexible"
+    "message": "可在任意 JS 环境、配合任意请求工具运行。",
+    "description": "S5 标题"
   },
   "homepage.Flexible.description": {
-    "message": "alova 的 use hooks 最初是为函数式组件设计的，但它同样兼容 Vue(options) 与 class 风格（如 Angular）的 UI 框架，这意味着你几乎可以在任何 JS 环境、任何 UI 框架中使用，还能搭配你熟悉的请求工具。",
-    "description": "desc for Flexible"
-  },
-  "homepage.Join the community.sectionTitle": {
-    "message": "加入社区",
-    "description": "section title for Join the community"
-  },
-  "homepage.Join the community.title": {
-    "message": "已在真实生产环境中使用",
-    "description": "title for Join the community"
-  },
-  "homepage.Join the community.description": {
-    "message": "正在使用 alova 的开源项目",
-    "description": "desc for Join the community"
+    "message": "alova 把网络调用交给你已经用惯的请求库：axios、fetch 或 XHR。并兼容 React、Vue、Svelte 及各类主流框架，包括 options 与 class 风格。",
+    "description": "S5 描述"
   },
   "homepage.projects.Scott Hu.desc": {
     "message": "alova创建者"
@@ -458,89 +437,13 @@
   "homepage.projects.Ah jung.comment": {
     "message": "alovajs很不错。我打算将我们的产品统一换成alovajs"
   },
-  "homepage.Alova team.sectionTitle": {
-    "message": "Alova 团队",
-    "description": "section title for Alova team"
-  },
-  "homepage.Alova team.title": {
-    "message": "认识核心成员",
-    "description": "title for Alova team"
-  },
-  "homepage.Try It Now.sectionTitle": {
-    "message": "现在尝试 Alova",
-    "description": "section title for Try It Now"
-  },
-  "homepage.Try It Now.title": {
-    "message": "将你的开发效率提升到上一个层次",
-    "description": "title for Try It Now"
-  },
-  "homepage.relationTitle": {
-    "message": "alova和请求库的关系",
-    "description": "关系标题"
-  },
-  "homepage.relationDesc": {
-    "message": "传统的基于 Promise 的请求库很好地解决了“怎么发请求”的问题，但它们仅仅是发请求的工具",
-    "description": "关系描述"
-  },
-  "homepage.relationAuxi": {
-    "message": "alova 就像给它们配套的增强工具，能让你获得更强大的能力。无论你习惯用 axios、superagent，还是浏览器的 fetch-api，alova 都能完美兼容",
-    "description": "关系附加信息"
-  },
   "homepage.Examples": {
     "message": "示例",
-    "description": "示例按钮文字"
+    "description": "Closing CTA"
   },
   "homepage.Getting Started": {
     "message": "快速开始",
-    "description": "开始按钮文字"
-  },
-  "homepage.features.Simple and familiar": {
-    "message": "简单熟悉",
-    "description": "简单熟悉"
-  },
-  "homepage.features.Simple and familiar.desc": {
-    "message": "与axios相似的api设计，让您上手更简单熟悉",
-    "description": "description of feature"
-  },
-  "homepage.features.High performance request strategy": {
-    "message": "高性能请求策略",
-    "description": "高性能请求策略"
-  },
-  "homepage.features.High performance request strategy.desc": {
-    "message": "10+个可直接使用的请求策略模块，选择你想要的使用就好了，还能减小请求带来的性能问题",
-    "description": "description of feature"
-  },
-  "homepage.features.Request-level cache": {
-    "message": "请求级缓存",
-    "description": "请求级缓存"
-  },
-  "homepage.features.Request-level cache.desc": {
-    "message": "提供内存模式、持久化模式等多种服务端数据缓存模式，提升用户体验，同时降低服务端压力",
-    "description": "description of feature"
-  },
-  "homepage.features.Lightweight": {
-    "message": "轻量级",
-    "description": "轻量级"
-  },
-  "homepage.features.Lightweight.desc": {
-    "message": "4kb+，只有axios的30%",
-    "description": "description of feature"
-  },
-  "homepage.availableScope.title": {
-    "message": "打破useHook使用边界",
-    "description": "description of available scope"
-  },
-  "homepage.availableScope.subtitle": {
-    "message": "现在，alova已经完美兼容了vue options，尽情使用吧！",
-    "description": "description of available scope desc"
-  },
-  "homepage.strategy.title": {
-    "message": "以声明的方式完成你的请求",
-    "description": "description of request strategy"
-  },
-  "homepage.strategy.subtitle": {
-    "message": "选择你想要使用的请求模块就好了，节省大量时间，还能让你的应用更加流畅",
-    "description": "description of request strategy desc"
+    "description": "Hero / Closing CTA"
   },
   "homepage.Custom strategy": {
     "message": "自定义你的请求策略",
@@ -549,302 +452,6 @@
   "homepage.Custom strategy.desc": {
     "message": "超强的扩展性可快速构建自定义请求策略",
     "description": "description of custom strategy desc"
-  },
-  "homepage.strategy.useRequest": {
-    "message": "基础请求",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.useRequest.desc": {
-    "message": "使用useRequest请求数据，它将自动维护当前请求的相关状态",
-    "description": "description of Pagination request strategy desc"
-  },
-  "homepage.strategy.useRequest.feature1": {
-    "message": "与axios相似的用法",
-    "description": "description of useRequest feature1"
-  },
-  "homepage.strategy.useRequest.feature2": {
-    "message": "自动维护相关的状态",
-    "description": "description of useRequest feature1"
-  },
-  "homepage.strategy.useRequest.feature3": {
-    "message": "响应数据缓存",
-    "description": "description of useRequest feature2"
-  },
-  "homepage.strategy.useRequest.feature4": {
-    "message": "共享同时发起的相同请求",
-    "description": "description of useRequest feature2"
-  },
-  "homepage.strategy.useWatcher": {
-    "message": "状态变化请求",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.useWatcher.desc": {
-    "message": "在开发例如分页、数据过滤、模糊搜索等功能时，监听状态变化并立即发送请求",
-    "description": "description of useWatcher desc"
-  },
-  "homepage.strategy.useWatcher.feature1": {
-    "message": "请求防抖",
-    "description": "description of useWatcher feature1"
-  },
-  "homepage.strategy.useWatcher.feature2": {
-    "message": "保证请求时序",
-    "description": "description of useWatcher feature1"
-  },
-  "homepage.strategy.useWatcher.feature3": {
-    "message": "过滤状态变化时是否发送请求",
-    "description": "description of useWatcher feature2"
-  },
-  "homepage.strategy.useFetcher": {
-    "message": "预加载数据",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.useFetcher.desc": {
-    "message": "提前预加载数据使界面更快呈现，或跨组件重新拉取数据",
-    "description": "description of useFetcher desc"
-  },
-  "homepage.strategy.useFetcher.feature1": {
-    "message": "跨模块/组件更新视图",
-    "description": "description of useFetcher feature1"
-  },
-  "homepage.strategy.useFetcher.feature2": {
-    "message": "预加载数据",
-    "description": "description of useFetcher feature1"
-  },
-  "homepage.strategy.Pagination": {
-    "message": "分页请求策略",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.Pagination.desc": {
-    "message": "自动管理分页数据，数据预加载，减少不必要的数据刷新，流畅性提高 300%，编码难度降低 50%",
-    "description": "description of Pagination request strategy desc"
-  },
-  "homepage.strategy.Pagination.feature1": {
-    "message": "丰富全面的分页状态和事件",
-    "description": "description of Pagination feature1"
-  },
-  "homepage.strategy.Pagination.feature2": {
-    "message": "监听状态改变自动获取指定分页数据",
-    "description": "description of Pagination feature2"
-  },
-  "homepage.strategy.Pagination.feature3": {
-    "message": "预加载下一页数据",
-    "description": "description of Pagination feature3"
-  },
-  "homepage.strategy.Pagination.feature4": {
-    "message": "高性能的列表操作函数",
-    "description": "description of Pagination feature4"
-  },
-  "homepage.strategy.Seamless interact strategy": {
-    "message": "无感数据交互策略",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.Seamless interact strategy.desc": {
-    "message": "全新的交互体验，提交即响应，大幅降低网络波动造成的影响，让你的应用在网络不稳定，甚至断网状态下依然可用",
-    "description": "description of Seamless interact strategy desc"
-  },
-  "homepage.strategy.Seamless interact strategy.feature1": {
-    "message": "像操作本地数据一样，无需等待网络响应",
-    "description": "description of Seamless interact strategy desc"
-  },
-  "homepage.strategy.Seamless interact strategy.feature2": {
-    "message": "弱网或断网状态依然可用",
-    "description": "description of Seamless interact strategy desc"
-  },
-  "homepage.strategy.Seamless interact strategy.feature3": {
-    "message": "更稳定的数据同步，用户无感知的",
-    "description": "description of Seamless interact strategy desc"
-  },
-  "homepage.strategy.Seamless interact strategy.feature4": {
-    "message": "自由切换无感请求和正常网络请求",
-    "description": "description of Seamless interact strategy desc"
-  },
-  "homepage.strategy.Token authentication": {
-    "message": "Token身份认证",
-    "description": "description of Token authentication request strategy"
-  },
-  "homepage.strategy.Token authentication.desc": {
-    "message": "统一管理token认证代码，支持无感刷新 token。",
-    "description": "description of Token authentication desc"
-  },
-  "homepage.strategy.Token authentication.feature1": {
-    "message": "支持在客户端和服务端无感刷新 token",
-    "description": "description of Token authentication desc"
-  },
-  "homepage.strategy.Token authentication.feature2": {
-    "message": "自动等待 token 刷新完成",
-    "description": "description of Token authentication desc"
-  },
-  "homepage.strategy.Token authentication.feature3": {
-    "message": "统一维护 Token 身份认证的所有代码",
-    "description": "description of Token authentication desc"
-  },
-  "homepage.strategy.Token authentication.feature4": {
-    "message": "使用元数据设置请求身份",
-    "description": "description of Token authentication desc"
-  },
-  "homepage.strategy.Token authentication.feature5": {
-    "message": "放行访客请求",
-    "description": "description of Token authentication desc"
-  },
-  "homepage.strategy.Cross-component request": {
-    "message": "跨组件请求策略",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.Cross-component request.desc": {
-    "message": "消除组件层级的限制，在任意组件中快速地触发任意请求的操作函数",
-    "description": "description of Cross-component request desc"
-  },
-  "homepage.strategy.Cross-component request.feature1": {
-    "message": "跨越任意组件层级触发重新请求",
-    "description": "description of Cross-component request feature1"
-  },
-  "homepage.strategy.Form submit": {
-    "message": "表单提交策略",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.Form submit.desc": {
-    "message": "自动管理表单数据，可以快速实现各种表单",
-    "description": "description of Form submit desc"
-  },
-  "homepage.strategy.Form submit.feature1": {
-    "message": "保存表单草稿",
-    "description": "description of Form submit feature1"
-  },
-  "homepage.strategy.Form submit.feature2": {
-    "message": "多步骤表单",
-    "description": "description of Form submit feature2"
-  },
-  "homepage.strategy.Form submit.feature3": {
-    "message": "表单提交自动重置数据",
-    "description": "description of Form submit feature3"
-  },
-  "homepage.strategy.Upload": {
-    "message": "文件上传策略",
-    "description": "description of Upload strategy"
-  },
-  "homepage.strategy.Upload.desc": {
-    "message": "更简单的文件上传策略，支持对base64、Blob、ArrayBuffer、Canvas数据的自动识别和转换",
-    "description": "description of Form submit desc"
-  },
-  "homepage.strategy.Upload.feature1": {
-    "message": "自动识别和转换数据格式",
-    "description": "description of Form submit feature1"
-  },
-  "homepage.strategy.Upload.feature2": {
-    "message": "多文件同时上传",
-    "description": "description of Form submit feature2"
-  },
-  "homepage.strategy.Upload.feature3": {
-    "message": "图片预览图生成",
-    "description": "description of Form submit feature3"
-  },
-  "homepage.strategy.Send captcha": {
-    "message": "发送验证码",
-    "description": "description of Send captcha strategy"
-  },
-  "homepage.strategy.Send captcha.desc": {
-    "message": "减掉你在开发验证码发送功能时的繁琐",
-    "description": "description of Form submit desc"
-  },
-  "homepage.strategy.Send captcha.feature1": {
-    "message": "自动倒计时",
-    "description": "description of Form submit feature1"
-  },
-  "homepage.strategy.Auto refetch": {
-    "message": "自动拉取数据",
-    "description": "description of Auto refetch strategy"
-  },
-  "homepage.strategy.Auto refetch.desc": {
-    "message": "通过浏览器事件或轮询自动拉取数据，保证始终展示最新数据",
-    "description": "description of Auto refetch desc"
-  },
-  "homepage.strategy.Auto refetch.feature1": {
-    "message": "自由选择4个拉取条件",
-    "description": "description of Form submit feature1"
-  },
-  "homepage.strategy.Auto refetch.feature2": {
-    "message": "自定义拉取触发规则",
-    "description": "description of Form submit feature2"
-  },
-  "homepage.strategy.Auto refetch.feature3": {
-    "message": "支持请求节流",
-    "description": "description of Form submit feature2"
-  },
-  "homepage.strategy.Request retry strategy": {
-    "message": "请求重试策略",
-    "description": "description of Pagination request strategy"
-  },
-  "homepage.strategy.Request retry strategy.desc": {
-    "message": "在重要的请求上使用它，可以提高请求的稳定性",
-    "description": "description of Request retry strategy desc"
-  },
-  "homepage.strategy.Request retry strategy.feature1": {
-    "message": "自定义是否重试，以及重试延迟",
-    "description": "description of Request retry strategy feature1"
-  },
-  "homepage.strategy.Request retry strategy.feature2": {
-    "message": "手动停止重试",
-    "description": "description of Request retry strategy feature2"
-  },
-  "homepage.strategy.SSE": {
-    "message": "SSE",
-    "description": "description of SSE strategy"
-  },
-  "homepage.strategy.SSE.desc": {
-    "message": "通过Server-sent Events进行请求",
-    "description": "description of SSE desc"
-  },
-  "homepage.strategy.SSE.feature1": {
-    "message": "通过全局响应和方法实例的函数transformData自动转换数据",
-    "description": "description of SSE feature1"
-  },
-  "homepage.strategy.SSE.feature2": {
-    "message": "EventSource的全部控制",
-    "description": "description of SSE feature2"
-  },
-  "homepage.strategy.More details": {
-    "message": "查看详情",
-    "description": "description of btnDetail of strategy"
-  },
-  "homepage.support.title": {
-    "message": "与任何请求工具在任何JS环境下运行",
-    "description": "description of support title"
-  },
-  "homepage.support.subtitle": {
-    "message": "use hooks起源于functional component, 但alova创新性地将它兼容了options和class风格的UI框架，这意味着alova的use hooks几乎不受JS环境和UI框架限制，并且可以与你熟悉的请求工具一起使用",
-    "description": "description of support subtitle"
-  },
-  "homepage.contributors.title": {
-    "message": "感谢有你们",
-    "description": "description of contributors title"
-  },
-  "homepage.contributors.subtitle": {
-    "message": "alova贡献者们的智慧和力量，正在让alova变得越来越完美",
-    "description": "description of contributors subtitle"
-  },
-  "homepage.like.title": {
-    "message": "如果你也喜欢alova",
-    "description": "description of support title"
-  },
-  "homepage.like.btnGithub": {
-    "message": "在Github点星",
-    "description": "description of like btnGithub"
-  },
-  "homepage.like.btnX": {
-    "message": "在X关注我们",
-    "description": "description of like btnGithub"
-  },
-  "homepage.like.btnDiscord": {
-    "message": "加入Discord",
-    "description": "description of like btnDiscord"
-  },
-  "homepage.like.btnWechat": {
-    "message": "加入微信群",
-    "description": "description of like btnWechat"
-  },
-  "homepage.release.announce": {
-    "message": "alova v3已发布",
-    "description": "description of release announce"
   },
   "ad.project collection": {
     "message": "alova用在项目里了吗？快来告诉我",
@@ -879,72 +486,44 @@
     "description": "description of example open in new tab"
   },
   "homepage.hero.badge": {
-    "message": "请求代码最多减少 70%",
-    "description": "homepage hero data badge"
-  },
-  "homepage.hero.getStarted": {
-    "message": "快速开始",
-    "description": "homepage hero get started CTA"
-  },
-  "homepage.hero.seeLessCode": {
-    "message": "如何减少代码",
-    "description": "homepage hero see how to reduce code CTA"
+    "message": "1 个统一场景策略",
+    "description": "alova 面板徽标"
   },
   "homepage.sponsors.sectionTitle": {
     "message": "赞助商",
     "description": "Section label for the sponsors section"
   },
   "homepage.sponsors.title": {
-    "message": "特别感谢我们的赞助商",
-    "description": "Title for the sponsors section"
-  },
-  "homepage.noBs.sectionTitle": {
-    "message": "直观对比",
-    "description": "section title for no-BS comparison"
-  },
-  "homepage.noBs.title": {
-    "message": "React Query 提供基础构件，alova 提供完整方案",
-    "description": "title for no-BS comparison"
-  },
-  "homepage.noBs.description": {
-    "message": "同一个分页列表，并排对比；不谈孰优孰劣，只比代码量。",
-    "description": "desc for no-BS comparison"
+    "message": "赞助商",
+    "description": "赞助商墙标题"
   },
   "homepage.requestStrategy.layer.client": {
     "message": "客户端策略",
-    "description": "heading for client strategy layer"
-  },
-  "homepage.requestStrategy.layer.client.note": {
-    "message": "内置的 hooks，替代你在 React Query / axios 里手写的样板代码。",
-    "description": "note for client strategy layer"
+    "description": "S4 客户端层"
   },
   "homepage.requestStrategy.layer.server": {
     "message": "服务端策略",
-    "description": "heading for server strategy layer"
+    "description": "S4 服务端层"
   },
   "homepage.requestStrategy.layer.server.note": {
-    "message": "服务端控制——重试、限流、原子化请求等——无需额外中间件。",
+    "message": "服务端控制覆盖重试、限流与原子化请求，无需额外中间件。",
     "description": "note for server strategy layer"
   },
   "homepage.requestStrategy.layer.cross": {
-    "message": "跨组件，免接线",
-    "description": "heading for cross-component layer"
+    "message": "跨组件，零接线",
+    "description": "S4 跨组件层"
   },
   "homepage.requestStrategy.layer.cross.note": {
-    "message": "在任意组件中触发并同步请求——无需层层传递 props，也无需引入全局状态管理。",
+    "message": "在任意组件中触发并同步请求。无需层层传递 props，也无需引入全局状态管理。",
     "description": "note for cross-component layer"
   },
   "homepage.trust.sectionTitle": {
-    "message": "受信赖，且诚实",
-    "description": "section title for trust & honest boundary"
+    "message": "06 · 值得信赖且坦诚",
+    "description": "S6 区块标签"
   },
   "homepage.trust.title": {
-    "message": "为真实应用而生——诚实告诉你什么时候不该用它",
-    "description": "title for trust & honest boundary"
-  },
-  "homepage.trust.stars": {
-    "message": "GitHub stars",
-    "description": "stars stat label"
+    "message": "为真实应用而生，也坦诚说明何时不该使用它。",
+    "description": "S6 标题"
   },
   "homepage.trust.frameworks": {
     "message": "支持的框架",
@@ -959,8 +538,8 @@
     "description": "MIT license stat label"
   },
   "homepage.trust.dependents": {
-    "message": "GitHub 上依赖 alova 的开源项目",
-    "description": "dependent repos stat label"
+    "message": "依赖 alova 的开源项目",
+    "description": "S6 社区描述"
   },
   "homepage.trust.boundary.title": {
     "message": "什么时候不该用 alova？",
@@ -998,197 +577,133 @@
     "message": "你需要内置策略（分页、鉴权、重试、SSE 服务端推送等）",
     "description": "when alova wins item 3"
   },
-  "homepage.hero.title": {
-    "message": "请求的单元，不是一次调用，是一个场景。",
-    "description": "S1 hero main title"
+  "homepage.hero.titleLead": {
+    "message": "请求的单元不是一次调用，",
+    "description": "Hero 主标题（前半，非渐变）"
+  },
+  "homepage.hero.titleTail": {
+    "message": "而是一个场景。",
+    "description": "Hero 主标题（后半，渐变）"
   },
   "homepage.hero.tagline": {
-    "message": "请求有生命周期，你的代码却把它切碎在组件里——AI 只会照着复制。",
-    "description": "S1 hero tagline"
+    "message": "请求拥有生命周期，而你的代码却把它切碎、散落在各个组件里，AI 也只会照抄。alova 把触发、决策、执行与数据应用收进同一个场景。",
+    "description": "Hero 副文案"
   },
   "homepage.hero.github": {
     "message": "GitHub",
-    "description": "S1 hero GitHub button"
+    "description": "GitHub 链接文字"
   },
   "homepage.hero.tabHandwritten": {
     "message": "手写实现",
-    "description": "S1 hero code panel handwritten tab"
+    "description": "面板 Tab"
   },
   "homepage.hero.tabAlova": {
     "message": "alova 场景声明",
-    "description": "S1 hero code panel alova tab"
+    "description": "面板 Tab"
   },
   "homepage.hero.stageTrigger": {
-    "message": "触发",
-    "description": "S1 hero stage legend: trigger"
+    "message": "阶段 1 · 触发",
+    "description": "手写面板阶段"
   },
   "homepage.hero.stageDecision": {
-    "message": "决策",
-    "description": "S1 hero stage legend: decision"
+    "message": "阶段 2 · 决策",
+    "description": "手写面板阶段"
   },
   "homepage.hero.stageExecution": {
-    "message": "执行",
-    "description": "S1 hero stage legend: execution"
+    "message": "阶段 3 · 执行",
+    "description": "手写面板阶段"
   },
   "homepage.hero.stageDataApplication": {
-    "message": "数据应用",
-    "description": "S1 hero stage legend: data application"
-  },
-  "homepage.hero.tagPagination": {
-    "message": "翻页管理",
-    "description": "S1 hero alova capability tag: pagination"
-  },
-  "homepage.hero.tagDebounce": {
-    "message": "防抖",
-    "description": "S1 hero alova capability tag: debounce"
-  },
-  "homepage.hero.tagCache": {
-    "message": "缓存",
-    "description": "S1 hero alova capability tag: cache"
-  },
-  "homepage.hero.tagDataPreloading": {
-    "message": "数据预加载",
-    "description": "S1 hero alova capability tag: data preloading"
-  },
-  "homepage.hero.tagStaleResponse": {
-    "message": "过期响应处理",
-    "description": "S1 hero alova capability tag: stale-response handling"
+    "message": "阶段 4 · 数据应用",
+    "description": "手写面板阶段"
   },
   "homepage.hero.compareToggle": {
     "message": "对照手写实现",
     "description": "S1 hero mobile toggle to compare with handwritten"
   },
   "homepage.rsm.section": {
-    "message": "请求场景模型",
-    "description": "S2 section label"
+    "message": "请求场景模型（RSM）",
+    "description": "S2 区块标签"
   },
   "homepage.rsm.title": {
-    "message": "alova 是一个请求策略库。",
-    "description": "S2 title"
+    "message": "一次请求是包含四个阶段的生命周期，而不只是那一次调用。",
+    "description": "S2 标题"
   },
   "homepage.rsm.description": {
-    "message": "以场景为请求的基本单元，提供可复用的场景策略，组织请求从触发到数据应用的完整过程。",
-    "description": "S2 description"
+    "message": "大多数库只管网络调用（阶段 03，执行）。触发、决策与数据应用被切碎，散落在各组件的手动胶水代码里。",
+    "description": "S2 描述"
   },
   "homepage.rsm.trigger.name": {
-    "message": "请求触发",
-    "description": "S2 stage 1 name"
+    "message": "请求何时需要触发？",
+    "description": "RSM 阶段 01 标题"
   },
   "homepage.rsm.trigger.question": {
     "message": "什么时候需要请求？",
     "description": "S2 stage 1 question"
   },
   "homepage.rsm.trigger.desc": {
-    "message": "状态变化、用户操作、定时刷新等条件产生数据交互需求。",
-    "description": "S2 stage 1 description"
+    "message": "状态变化、用户输入、可见性变化与定时器都会产生数据交换触发点，alova 以响应式方式将它们绑定。",
+    "description": "RSM 阶段 01 描述"
   },
   "homepage.rsm.decision.name": {
-    "message": "请求决策",
-    "description": "S2 stage 2 name"
+    "message": "应如何处理？",
+    "description": "RSM 阶段 02 标题"
   },
   "homepage.rsm.decision.question": {
     "message": "这次请求应该如何处理？",
     "description": "S2 stage 2 question"
   },
   "homepage.rsm.decision.desc": {
-    "message": "判断是否需要真正发送请求，以及如何处理缓存、请求共享等情况。",
-    "description": "S2 stage 2 description"
+    "message": "决定是否需要真正发起网络请求，评估 L1/L2 缓存、对突发请求做防抖并排队。",
+    "description": "RSM 阶段 02 描述"
   },
   "homepage.rsm.execution.name": {
-    "message": "请求执行",
-    "description": "S2 stage 3 name"
+    "message": "如何与服务器通信？",
+    "description": "RSM 阶段 03 标题"
   },
   "homepage.rsm.execution.question": {
     "message": "如何与服务端通信？",
     "description": "S2 stage 3 question"
   },
   "homepage.rsm.execution.desc": {
-    "message": "通过 axios、fetch、XHR 等请求工具发送请求并获取响应。",
-    "description": "S2 stage 3 description"
+    "message": "干净地委托给 fetch、axios 或 XHR。alova 把网络传输视为可替换的适配器，而非全部应用逻辑。",
+    "description": "RSM 阶段 03 描述"
   },
   "homepage.rsm.execNote": {
     "message": "仅此一段，交给请求工具。",
     "description": "S2 execution stage note"
   },
   "homepage.rsm.apply.name": {
-    "message": "数据应用",
-    "description": "S2 stage 4 name"
+    "message": "数据如何进入业务",
+    "description": "RSM 阶段 04 标题"
   },
   "homepage.rsm.apply.question": {
     "message": "响应如何进入业务？",
     "description": "S2 stage 4 question"
   },
   "homepage.rsm.apply.desc": {
-    "message": "完成数据转换、状态更新、缓存管理，以及跨组件的数据交互。",
-    "description": "S2 stage 4 description"
+    "message": "转换数据、注入 UI 状态、失效缓存，并在零 prop 透传的情况下跨同级组件同步。",
+    "description": "RSM 阶段 04 描述"
   },
   "homepage.rsm.link": {
     "message": "了解请求场景模型",
     "description": "S2 link to RSM doc page"
   },
   "homepage.capability.section": {
-    "message": "请求能力",
-    "description": "S3 section label"
+    "message": "默认即拥有 · 12 项能力",
+    "description": "S3 区块标签"
   },
   "homepage.capability.title": {
-    "message": "默认，超出预期。",
-    "description": "S3 title"
+    "message": "默认开启，而且超出预期。",
+    "description": "S3 标题"
   },
   "homepage.capability.description": {
-    "message": "alova 的请求策略默认提供超出预期的完整请求功能——防抖、缓存、竞态、重试，无需在提示词里额外说明。",
-    "description": "S3 description"
+    "message": "每一项能力都默认开启。无需插件、无需繁琐配置，为现代前端提供统一的原语。",
+    "description": "S3 描述"
   },
   "homepage.capability.defaultBadge": {
     "message": "默认在场",
     "description": "S3 highlighted chip badge"
-  },
-  "homepage.capability.chip.debounce": {
-    "message": "防抖",
-    "description": "S3 capability chip: debounce"
-  },
-  "homepage.capability.chip.autoRefresh": {
-    "message": "自动刷新",
-    "description": "S3 capability chip: auto refresh"
-  },
-  "homepage.capability.chip.polling": {
-    "message": "定时轮询",
-    "description": "S3 capability chip: polling"
-  },
-  "homepage.capability.chip.retry": {
-    "message": "失败重试",
-    "description": "S3 capability chip: retry"
-  },
-  "homepage.capability.chip.requestSharing": {
-    "message": "请求共享",
-    "description": "S3 capability chip: request sharing"
-  },
-  "homepage.capability.chip.multiLevelCache": {
-    "message": "多级缓存",
-    "description": "S3 capability chip: multi-level cache"
-  },
-  "homepage.capability.chip.dataPreloading": {
-    "message": "数据预加载",
-    "description": "S3 capability chip: data preloading"
-  },
-  "homepage.capability.chip.formDraft": {
-    "message": "表单草稿",
-    "description": "S3 capability chip: form draft"
-  },
-  "homepage.capability.chip.atomicRequest": {
-    "message": "原子化请求",
-    "description": "S3 capability chip: atomic request"
-  },
-  "homepage.capability.chip.transferProgress": {
-    "message": "上传下载进度",
-    "description": "S3 capability chip: upload & download progress"
-  },
-  "homepage.capability.chip.requestSequencing": {
-    "message": "请求时序",
-    "description": "S3 capability chip: request sequencing"
-  },
-  "homepage.capability.chip.stateDrivenRequest": {
-    "message": "变化请求",
-    "description": "S3 capability chip: state-driven request"
   },
   "homepage.stack.wormaHint": {
     "message": "需要从 API 规范生成请求代码？",
@@ -1208,14 +723,438 @@
   },
   "homepage.closing.lead": {
     "message": "打开你最近写的列表页，",
-    "description": "S7 closing lead"
+    "description": "S7 引导前半"
   },
   "homepage.closing.strong": {
-    "message": "把代码按四段标一遍。",
-    "description": "S7 closing emphasised sentence"
+    "message": "用四段把它的代码标注一遍。",
+    "description": "S7 引导后半（渐变）"
   },
   "homepage.closing.tail": {
-    "message": "看看请求执行占了几行，其余逻辑又散落在哪里。",
-    "description": "S7 closing tail"
+    "message": "看看执行占了多少行，其余逻辑又散落到了哪里。",
+    "description": "S7 描述"
+  },
+  "homepage.meta.title": {
+    "message": "alova.js，请求策略库",
+    "description": "首页 <title>"
+  },
+  "homepage.meta.description": {
+    "message": "alova 把一次请求当作一个场景：触发、决策、执行与数据应用，只需一次声明。网络部分交给 axios 与 fetch。",
+    "description": "首页 meta description"
+  },
+  "homepage.hero.eyebrow": {
+    "message": "场景优先的架构 · 01",
+    "description": "Hero 徽标"
+  },
+  "homepage.hero.copy": {
+    "message": "复制 “npm i alova”",
+    "description": "复制安装命令按钮 aria-label"
+  },
+  "homepage.rsm.trigger.stage": {
+    "message": "阶段 01",
+    "description": "RSM 阶段 01 序号"
+  },
+  "homepage.rsm.trigger.action": {
+    "message": "触发",
+    "description": "RSM 阶段 01 动作"
+  },
+  "homepage.rsm.trigger.footnote": {
+    "message": "01 / 触发",
+    "description": "RSM 阶段 01 脚注"
+  },
+  "homepage.rsm.decision.stage": {
+    "message": "阶段 02",
+    "description": "RSM 阶段 02 序号"
+  },
+  "homepage.rsm.decision.action": {
+    "message": "评估",
+    "description": "RSM 阶段 02 动作"
+  },
+  "homepage.rsm.decision.footnote": {
+    "message": "02 / 决策",
+    "description": "RSM 阶段 02 脚注"
+  },
+  "homepage.rsm.execution.stage": {
+    "message": "阶段 03",
+    "description": "RSM 阶段 03 序号"
+  },
+  "homepage.rsm.execution.action": {
+    "message": "委托",
+    "description": "RSM 阶段 03 动作"
+  },
+  "homepage.rsm.execution.footnote": {
+    "message": "03 / 执行",
+    "description": "RSM 阶段 03 脚注"
+  },
+  "homepage.rsm.apply.stage": {
+    "message": "阶段 04",
+    "description": "RSM 阶段 04 序号"
+  },
+  "homepage.rsm.apply.action": {
+    "message": "整合",
+    "description": "RSM 阶段 04 动作"
+  },
+  "homepage.rsm.apply.footnote": {
+    "message": "04 / 应用",
+    "description": "RSM 阶段 04 脚注"
+  },
+  "homepage.rsm.envelope": {
+    "message": "RSM 信封原则",
+    "description": "RSM 信封原则标题"
+  },
+  "homepage.rsm.envelopeTitle": {
+    "message": "把触发、决策、执行与数据应用封装进同一个内聚的场景。",
+    "description": "RSM 信封原则"
+  },
+  "homepage.rsm.envelopeDesc": {
+    "message": "alova 干净地位于你的传输层之上。axios 与 fetch 负责网络，alova 接管生命周期的其余部分。",
+    "description": "RSM 信封原则描述"
+  },
+  "homepage.rsm.core": {
+    "message": "RSM 核心",
+    "description": "RSM 链路"
+  },
+  "homepage.rsm.zeroBoilerplate": {
+    "message": "零样板",
+    "description": "RSM 链路"
+  },
+  "homepage.capability.explore": {
+    "message": "探索场景 Hook",
+    "description": "S3 CTA"
+  },
+  "homepage.capability.active": {
+    "message": "启用",
+    "description": "能力卡片底部状态"
+  },
+  "homepage.capability.chip.01.title": {
+    "message": "防抖",
+    "description": "能力 01"
+  },
+  "homepage.capability.chip.01.tag": {
+    "message": "01 / 防抖",
+    "description": "能力 01 标签"
+  },
+  "homepage.capability.chip.01.description": {
+    "message": "自动合并高频、重复的触发。一连串按键也不会把后端打爆。",
+    "description": "能力 01 描述"
+  },
+  "homepage.capability.chip.01.foot": {
+    "message": "内置守卫",
+    "description": "能力 01 脚注"
+  },
+  "homepage.capability.chip.02.title": {
+    "message": "重试",
+    "description": "能力 02"
+  },
+  "homepage.capability.chip.02.tag": {
+    "message": "02 / 韧性",
+    "description": "能力 02 标签"
+  },
+  "homepage.capability.chip.02.description": {
+    "message": "指数退避自动重试。不稳定的移动与边缘网络不再打断流程。",
+    "description": "能力 02 描述"
+  },
+  "homepage.capability.chip.02.foot": {
+    "message": "容错",
+    "description": "能力 02 脚注"
+  },
+  "homepage.capability.chip.03.title": {
+    "message": "多级缓存",
+    "description": "能力 03"
+  },
+  "homepage.capability.chip.03.tag": {
+    "message": "03 / 缓存",
+    "description": "能力 03 标签"
+  },
+  "homepage.capability.chip.03.description": {
+    "message": "L1 内存叠加持久化存储。页面瞬时恢复，并支持离线。",
+    "description": "能力 03 描述"
+  },
+  "homepage.capability.chip.03.foot": {
+    "message": "亚毫秒级",
+    "description": "能力 03 脚注"
+  },
+  "homepage.capability.chip.04.title": {
+    "message": "竞态处理",
+    "description": "能力 04"
+  },
+  "homepage.capability.chip.04.tag": {
+    "message": "04 / 竞态守卫",
+    "description": "能力 04 标签"
+  },
+  "homepage.capability.chip.04.description": {
+    "message": "自动处理竞态。永远采用最新请求的结果，过期响应直接丢弃。",
+    "description": "能力 04 描述"
+  },
+  "homepage.capability.chip.04.foot": {
+    "message": "无竞态",
+    "description": "能力 04 脚注"
+  },
+  "homepage.capability.chip.05.title": {
+    "message": "自动刷新",
+    "description": "能力 05"
+  },
+  "homepage.capability.chip.05.tag": {
+    "message": "05 / 重新校验",
+    "description": "能力 05 标签"
+  },
+  "homepage.capability.chip.05.description": {
+    "message": "窗口重新聚焦、网络重连或标签页再次可见时，自动重新校验数据。",
+    "description": "能力 05 描述"
+  },
+  "homepage.capability.chip.05.foot": {
+    "message": "事件驱动",
+    "description": "能力 05 脚注"
+  },
+  "homepage.capability.chip.06.title": {
+    "message": "轮询",
+    "description": "能力 06"
+  },
+  "homepage.capability.chip.06.tag": {
+    "message": "06 / 间隔",
+    "description": "能力 06 标签"
+  },
+  "homepage.capability.chip.06.description": {
+    "message": "灵活的连续或分步轮询，切换标签页时自动在后台暂停。",
+    "description": "能力 06 描述"
+  },
+  "homepage.capability.chip.06.foot": {
+    "message": "智能频率",
+    "description": "能力 06 脚注"
+  },
+  "homepage.capability.chip.07.title": {
+    "message": "请求共享",
+    "description": "能力 07"
+  },
+  "homepage.capability.chip.07.tag": {
+    "message": "07 / 去重",
+    "description": "能力 07 标签"
+  },
+  "homepage.capability.chip.07.description": {
+    "message": "把组件树中任意位置的相同并发请求去重为一次进行中的调用。",
+    "description": "能力 07 描述"
+  },
+  "homepage.capability.chip.07.foot": {
+    "message": "单次合并",
+    "description": "能力 07 脚注"
+  },
+  "homepage.capability.chip.08.title": {
+    "message": "数据预加载",
+    "description": "能力 08"
+  },
+  "homepage.capability.chip.08.tag": {
+    "message": "08 / 预取",
+    "description": "能力 08 标签"
+  },
+  "homepage.capability.chip.08.description": {
+    "message": "悬停时预加载下一页或详情视图。路由与翻页切换即时完成。",
+    "description": "能力 08 描述"
+  },
+  "homepage.capability.chip.08.foot": {
+    "message": "零延迟",
+    "description": "能力 08 脚注"
+  },
+  "homepage.capability.chip.09.title": {
+    "message": "表单草稿",
+    "description": "能力 09"
+  },
+  "homepage.capability.chip.09.tag": {
+    "message": "09 / 存储",
+    "description": "能力 09 标签"
+  },
+  "homepage.capability.chip.09.description": {
+    "message": "本地留存多步表单快照。误关标签页或刷新也不会丢失进度。",
+    "description": "能力 09 描述"
+  },
+  "homepage.capability.chip.09.foot": {
+    "message": "自动保存",
+    "description": "能力 09 脚注"
+  },
+  "homepage.capability.chip.10.title": {
+    "message": "原子请求",
+    "description": "能力 10"
+  },
+  "homepage.capability.chip.10.tag": {
+    "message": "10 / 原子",
+    "description": "能力 10 标签"
+  },
+  "homepage.capability.chip.10.description": {
+    "message": "把相关的读取与写入打包在一起。级联操作要么全部成功，要么整体回滚。",
+    "description": "能力 10 描述"
+  },
+  "homepage.capability.chip.10.foot": {
+    "message": "状态一致",
+    "description": "能力 10 脚注"
+  },
+  "homepage.capability.chip.11.title": {
+    "message": "上传与下载",
+    "description": "能力 11"
+  },
+  "homepage.capability.chip.11.tag": {
+    "message": "11 / 流",
+    "description": "能力 11 标签"
+  },
+  "homepage.capability.chip.11.description": {
+    "message": "字节级精确的进度钩子，支持大文件传输的暂停、中止与续传。",
+    "description": "能力 11 描述"
+  },
+  "homepage.capability.chip.11.foot": {
+    "message": "分块控制",
+    "description": "能力 11 脚注"
+  },
+  "homepage.capability.chip.12.title": {
+    "message": "状态驱动请求",
+    "description": "能力 12"
+  },
+  "homepage.capability.chip.12.tag": {
+    "message": "12 / 响应式",
+    "description": "能力 12 标签"
+  },
+  "homepage.capability.chip.12.description": {
+    "message": "去掉命令式派发。数据同步成为 UI 状态变化直接、响应式的结果。",
+    "description": "能力 12 描述"
+  },
+  "homepage.capability.chip.12.foot": {
+    "message": "响应式同步",
+    "description": "能力 12 脚注"
+  },
+  "homepage.requestStrategy.layer.clientNote": {
+    "message": "内置 Hook 用一次声明囊括完整场景：触发、决策、执行与应用。不必再手工拼装各个阶段。",
+    "description": "S4 客户端层说明"
+  },
+  "homepage.requestStrategy.layer.serverNote": {
+    "message": "服务端控制覆盖重试、限流与原子请求，无需额外中间件。",
+    "description": "S4 服务端层说明"
+  },
+  "homepage.requestStrategy.layer.crossNote": {
+    "message": "在任何组件间触发并同步请求。无需 prop 透传，也无需全局 store。",
+    "description": "S4 跨组件层说明"
+  },
+  "homepage.requestStrategy.More Strategy.desc": {
+    "message": "每个策略都是文档完备、开箱即用的模块。",
+    "description": "S4 更多策略描述"
+  },
+  "homepage.requestStrategy.learnMore": {
+    "message": "了解更多",
+    "description": "策略卡片链接"
+  },
+  "homepage.Flexible.section": {
+    "message": "05 · 弹性运行时",
+    "description": "S5 区块标签"
+  },
+  "homepage.trust.description": {
+    "message": "已被用于处理每日数百万关键数据事件的生产环境采用。",
+    "description": "S6 描述"
+  },
+  "homepage.trust.metric.githubStars": {
+    "message": "GitHub Star 数",
+    "description": "指标"
+  },
+  "homepage.trust.metric.githubStarsSecondary": {
+    "message": "1000+ 依赖仓库",
+    "description": "指标副文案"
+  },
+  "homepage.trust.metric.frameworks": {
+    "message": "框架",
+    "description": "指标"
+  },
+  "homepage.trust.metric.frameworksSecondary": {
+    "message": "通用现代 JS 运行时",
+    "description": "指标副文案"
+  },
+  "homepage.trust.metric.strategies": {
+    "message": "请求策略",
+    "description": "指标"
+  },
+  "homepage.trust.metric.strategiesSecondary": {
+    "message": "久经考验的场景",
+    "description": "指标副文案"
+  },
+  "homepage.trust.metric.license": {
+    "message": "开源协议",
+    "description": "指标"
+  },
+  "homepage.trust.metric.licenseSecondary": {
+    "message": "100% 免费且开源",
+    "description": "指标副文案"
+  },
+  "homepage.trust.community": {
+    "message": "加入社区",
+    "description": "S6 社区标签"
+  },
+  "homepage.trust.usedBy": {
+    "message": "已被真实团队用于生产",
+    "description": "S6 社区标题"
+  },
+  "homepage.trust.team": {
+    "message": "Alova 团队",
+    "description": "S6 团队标签"
+  },
+  "homepage.trust.coreMembers": {
+    "message": "认识核心成员",
+    "description": "S6 团队标题"
+  },
+  "homepage.trust.githubAria": {
+    "message": "{name} 在 GitHub 上",
+    "description": "团队成员 GitHub 链接 aria-label"
+  },
+  "homepage.closing.section": {
+    "message": "07 · 立即试用",
+    "description": "S7 区块标签"
+  },
+  "homepage.hero.tag.Pagination": {
+    "message": "分页",
+    "description": "Hero 能力标签"
+  },
+  "homepage.hero.tag.Debounce": {
+    "message": "防抖",
+    "description": "Hero 能力标签"
+  },
+  "homepage.hero.tag.Multi-level Cache": {
+    "message": "多级缓存",
+    "description": "Hero 能力标签"
+  },
+  "homepage.hero.tag.Data Preloading": {
+    "message": "数据预加载",
+    "description": "Hero 能力标签"
+  },
+  "homepage.hero.tag.Stale-response handling": {
+    "message": "过期响应处理",
+    "description": "Hero 能力标签"
+  },
+  "homepage.hero.handwrittenNote": {
+    "message": "⚠️ 4 个独立文件、重复的同步逻辑，以及手工处理的边界情况。",
+    "description": "手写面板提示"
+  },
+  "homepage.hero.toggleManual": {
+    "message": "手动查看",
+    "description": "轮播状态"
+  },
+  "homepage.hero.toggleAuto": {
+    "message": "自动轮播",
+    "description": "轮播状态"
+  },
+  "homepage.sponsors.gold": {
+    "message": "金牌",
+    "description": "赞助商档位"
+  },
+  "homepage.sponsors.silver": {
+    "message": "银牌",
+    "description": "赞助商档位"
+  },
+  "homepage.sponsors.bronze": {
+    "message": "铜牌",
+    "description": "赞助商档位"
+  },
+  "homepage.sponsors.yourLogo": {
+    "message": "在此展示你的 Logo",
+    "description": "赞助商空位"
+  },
+  "homepage.sponsors.become": {
+    "message": "成为赞助商",
+    "description": "赞助商 CTA"
+  },
+  "homepage.projects.Proddy.comment": {
+    "message": "我很喜欢这个库，正在把代码从 Axios 慢慢迁移到 Alova。",
+    "description": "开发者评价"
   }
 }

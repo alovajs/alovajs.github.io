@@ -1,10 +1,77 @@
 import clsx from 'clsx';
 import { MaterialIcon, SectionTagline } from './ui';
+import { translate } from '@docusaurus/Translate';
 import CubeGraphic from './visuals/CubeGraphic';
 import OrbGraphic from './visuals/OrbGraphic';
 import styles from './page.module.css';
 
 type StageTone = 'cyan' | 'blue' | 'violet' | 'emerald';
+
+interface Stage {
+  stage: string;
+  icon: string;
+  title: string;
+  description: string;
+  action: string;
+  footnote: string;
+  tone: StageTone;
+}
+
+/** 请求场景模型的四个阶段（文案接入 Docusaurus i18n） */
+const stages: Stage[] = [
+  {
+    stage: translate({ id: 'homepage.rsm.trigger.stage', message: 'Stage 01' }),
+    icon: 'play_circle',
+    title: translate({ id: 'homepage.rsm.trigger.name', message: 'When is a request needed?' }),
+    description: translate({
+      id: 'homepage.rsm.trigger.desc',
+      message:
+        'State changes, user inputs, visibility changes, and timers all create data exchange triggers. alova binds them reactively.'
+    }),
+    action: translate({ id: 'homepage.rsm.trigger.action', message: 'Initiate' }),
+    footnote: translate({ id: 'homepage.rsm.trigger.footnote', message: '01 / TRIGGER' }),
+    tone: 'cyan'
+  },
+  {
+    stage: translate({ id: 'homepage.rsm.decision.stage', message: 'Stage 02' }),
+    icon: 'schema',
+    title: translate({ id: 'homepage.rsm.decision.name', message: 'How should it be handled?' }),
+    description: translate({
+      id: 'homepage.rsm.decision.desc',
+      message:
+        'Decide whether to hit the network at all. Evaluate L1/L2 cache, debounce redundant surges, and queue requests.'
+    }),
+    action: translate({ id: 'homepage.rsm.decision.action', message: 'Evaluate' }),
+    footnote: translate({ id: 'homepage.rsm.decision.footnote', message: '02 / DECISION' }),
+    tone: 'blue'
+  },
+  {
+    stage: translate({ id: 'homepage.rsm.execution.stage', message: 'Stage 03' }),
+    icon: 'swap_horiz',
+    title: translate({ id: 'homepage.rsm.execution.name', message: 'How to talk to server?' }),
+    description: translate({
+      id: 'homepage.rsm.execution.desc',
+      message:
+        'Delegated cleanly to fetch, axios, or XHR. alova treats network transport as an interchangeable adapter, not the entire app logic.'
+    }),
+    action: translate({ id: 'homepage.rsm.execution.action', message: 'Delegate' }),
+    footnote: translate({ id: 'homepage.rsm.execution.footnote', message: '03 / EXECUTE' }),
+    tone: 'violet'
+  },
+  {
+    stage: translate({ id: 'homepage.rsm.apply.stage', message: 'Stage 04' }),
+    icon: 'auto_awesome',
+    title: translate({ id: 'homepage.rsm.apply.name', message: 'How does the data enter your app?' }),
+    description: translate({
+      id: 'homepage.rsm.apply.desc',
+      message:
+        'Transform data, hydrate UI state, invalidate caches, and sync across peer components with zero prop drilling.'
+    }),
+    action: translate({ id: 'homepage.rsm.apply.action', message: 'Integrate' }),
+    footnote: translate({ id: 'homepage.rsm.apply.footnote', message: '04 / APPLICATION' }),
+    tone: 'emerald'
+  }
+];
 
 interface StageToneStyle {
   card: string;
@@ -65,15 +132,7 @@ const stageToneStyles: Record<StageTone, StageToneStyle> = {
   }
 };
 
-interface StageCardProps {
-  stage: string;
-  icon: string;
-  title: string;
-  description: string;
-  action: string;
-  footnote: string;
-  tone: StageTone;
-}
+type StageCardProps = Stage;
 
 /** 请求场景模型的四个阶段卡片 */
 function StageCard(props: StageCardProps) {
@@ -126,55 +185,13 @@ function StageCard(props: StageCardProps) {
   );
 }
 
-const stages: StageCardProps[] = [
-  {
-    stage: 'Stage 01',
-    icon: 'play_circle',
-    title: 'When is a request needed?',
-    description:
-      'State changes, user inputs, visibility changes, and timers all create data exchange triggers. alova binds them reactively.',
-    action: 'Initiate',
-    footnote: '01 / TRIGGER',
-    tone: 'cyan'
-  },
-  {
-    stage: 'Stage 02',
-    icon: 'schema',
-    title: 'How should it be handled?',
-    description:
-      'Decide whether to hit the network at all. Evaluate L1/L2 cache, debounce redundant surges, and queue requests.',
-    action: 'Evaluate',
-    footnote: '02 / DECISION',
-    tone: 'blue'
-  },
-  {
-    stage: 'Stage 03',
-    icon: 'swap_horiz',
-    title: 'How to talk to server?',
-    description:
-      'Delegated cleanly to fetch, axios, or XHR. alova treats network transport as an interchangeable adapter, not the entire app logic.',
-    action: 'Delegate',
-    footnote: '03 / EXECUTE',
-    tone: 'violet'
-  },
-  {
-    stage: 'Stage 04',
-    icon: 'auto_awesome',
-    title: 'How data enters business',
-    description:
-      'Transform data, hydrate UI state, invalidate caches, and sync across peer components with zero prop drilling.',
-    action: 'Integrate',
-    footnote: '04 / APPLICATION',
-    tone: 'emerald'
-  }
-];
-
 /** S2 · 问题与架构：请求场景模型 */
 export default function RequestSceneModel() {
   return (
+    /* chapter-dark：暗色画布下用发丝线把这一章从画布里托起来（见 custom.scss） */
     <section
       id="rsm-model"
-      className="relative bg-black text-white py-32 md:py-40 overflow-hidden border-y border-zinc-900 scroll-mt-24">
+      className="relative chapter-dark bg-black text-white py-32 md:py-40 overflow-hidden border-y border-zinc-900 dark:border-transparent scroll-mt-24">
       {/* 右上角悬浮 3D 虹彩球体 */}
       <OrbGraphic />
 
@@ -183,18 +200,22 @@ export default function RequestSceneModel() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         <SectionTagline className="text-brand-cyan mb-8">
-          THE PROBLEM &amp; THE ARCHITECTURE
+          {translate({ id: 'homepage.rsm.section', message: 'THE REQUEST SCENARIO MODEL' })}
         </SectionTagline>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-3xl leading-[1.12] tracking-[-0.035em] mb-6">
-          Most organizations operate with broken request lifecycles,{' '}
-          <span className="text-zinc-500">siloed state, and fragmented APIs.</span>
+          {translate({
+            id: 'homepage.rsm.title',
+            message: 'A request is a lifecycle of four stages, not just the call.'
+          })}
         </h2>
 
         <p className="text-zinc-400 max-w-2xl text-base md:text-lg mb-20 leading-relaxed font-normal">
-          Current HTTP libraries only manage the network transport pipe (03 Execution). They abandon
-          the trigger, the caching decision, and the reactive state synchronization to repetitive
-          manual glue code.
+          {translate({
+            id: 'homepage.rsm.description',
+            message:
+              'Most libraries stop at the network call (Stage 03, Execution). Trigger, decision and data application get scattered into manual glue code across your components.'
+          })}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -214,24 +235,34 @@ export default function RequestSceneModel() {
             </div>
             <div>
               <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-1 font-semibold">
-                RSM Envelope Principle
+                {translate({ id: 'homepage.rsm.envelope', message: 'RSM Envelope Principle' })}
               </div>
               <h4 className="text-white text-xl md:text-2xl font-bold tracking-tight">
-                Encapsulate triggers, decisions, and cache in one cohesive shell.
+                {translate({
+                  id: 'homepage.rsm.envelopeTitle',
+                  message: 'Encapsulate trigger, decision, execution and data application in one cohesive scenario.'
+                })}
               </h4>
               <p className="text-zinc-400 text-xs mt-1 max-w-xl font-normal">
-                alova sits cleanly above your transport protocol, turning erratic HTTP roundtrips
-                into resilient, auto-recovering reactive streams.
+                {translate({
+                  id: 'homepage.rsm.envelopeDesc',
+                  message:
+                    'alova sits above your transport layer. axios and fetch handle the network, while alova owns the rest of the lifecycle.'
+                })}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-xs text-zinc-400 bg-zinc-900/90 px-5 py-3 rounded-full border border-zinc-800 shrink-0">
-            <span className="text-white font-semibold">RSM Core</span>
+            <span className="text-white font-semibold">
+              {translate({ id: 'homepage.rsm.core', message: 'RSM Core' })}
+            </span>
             <span className="text-zinc-600">→</span>
             <span className="text-zinc-400">axios / fetch</span>
             <span className="text-zinc-600">→</span>
-            <span className="text-brand-cyan font-semibold">Zero Boilerplate</span>
+            <span className="text-brand-cyan font-semibold">
+              {translate({ id: 'homepage.rsm.zeroBoilerplate', message: 'Zero Boilerplate' })}
+            </span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import sponsors from '../../data/sponsors.json';
 import { MaterialIcon } from './ui';
+import { translate } from '@docusaurus/Translate';
 
 type Sponsor = {
   name: string;
@@ -18,7 +19,7 @@ const tiers = [
   {
     key: 'gold',
     label: 'Gold',
-    headerClassName: 'bg-amber-100/70 text-amber-700',
+    headerClassName: 'bg-amber-100/70 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
     gridClassName: 'grid grid-cols-2 gap-3',
     columns: 2,
     cellClassName: 'h-32',
@@ -27,7 +28,7 @@ const tiers = [
   {
     key: 'silver',
     label: 'Silver',
-    headerClassName: 'bg-zinc-100 text-zinc-500',
+    headerClassName: 'bg-sunken text-ink-3',
     gridClassName: 'grid grid-cols-2 sm:grid-cols-3 gap-3',
     columns: 3,
     cellClassName: 'h-24',
@@ -36,7 +37,7 @@ const tiers = [
   {
     key: 'bronze',
     label: 'Bronze',
-    headerClassName: 'bg-amber-700/10 text-amber-800/80',
+    headerClassName: 'bg-amber-700/10 text-amber-800/80 dark:bg-amber-500/10 dark:text-amber-300/80',
     gridClassName: 'grid grid-cols-2 sm:grid-cols-4 gap-3',
     columns: 4,
     cellClassName: 'h-20',
@@ -49,9 +50,9 @@ export default function Sponsors() {
   const sponsorList = sponsors as Sponsor[];
 
   return (
-    <div className="max-w-6xl mx-auto px-6 mt-28 pt-10 border-t border-zinc-100">
-      <p className="text-center text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-400 mb-8">
-        Sponsors
+    <div className="max-w-6xl mx-auto px-6 mt-28 pt-10 border-t border-hairline">
+      <p className="text-center text-[11px] font-bold uppercase tracking-[0.3em] text-ink-4 mb-8">
+        {translate({ id: 'homepage.sponsors.title', message: 'Sponsors' })}
       </p>
 
       <div className="flex flex-col gap-6">
@@ -72,7 +73,7 @@ export default function Sponsors() {
                   'rounded-lg py-1.5 text-center text-[10px] font-bold uppercase tracking-[0.3em]',
                   tier.headerClassName
                 )}>
-                {tier.label}
+                {translate({ id: `homepage.sponsors.${tier.key}`, message: tier.label })}
               </div>
 
               <div className={tier.gridClassName}>
@@ -81,7 +82,8 @@ export default function Sponsors() {
                   const logo = (
                     <img
                       className={clsx(
-                        'max-w-[80%] w-auto object-contain grayscale opacity-60 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100',
+                        // 暗色卡片上反相让深色 logo 变浅，悬停时还原品牌色
+                        'max-w-[80%] w-auto object-contain grayscale opacity-60 transition duration-300 dark:invert dark:opacity-70 group-hover:grayscale-0 group-hover:opacity-100 dark:group-hover:invert-0',
                         tier.logoClassName
                       )}
                       src={sponsor.logo}
@@ -90,7 +92,7 @@ export default function Sponsors() {
                     />
                   );
                   const cellClassName = clsx(
-                    'group flex items-center justify-center rounded-xl border border-zinc-200/70 bg-white px-4 transition-colors hover:border-zinc-300',
+                    'group flex items-center justify-center rounded-xl border border-hairline bg-surface px-4 transition-colors hover:border-hairline-strong',
                     tier.cellClassName
                   );
 
@@ -118,10 +120,10 @@ export default function Sponsors() {
                   <div
                     key={`empty-${index}`}
                     className={clsx(
-                      'flex items-center justify-center rounded-xl border border-dashed border-zinc-200 bg-zinc-50/40 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-300',
+                      'flex items-center justify-center rounded-xl border border-dashed border-hairline bg-sunken px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-ink-4',
                       tier.cellClassName
                     )}>
-                    Your logo here
+                    {translate({ id: 'homepage.sponsors.yourLogo', message: 'Your logo here' })}
                   </div>
                 ))}
               </div>
@@ -132,7 +134,7 @@ export default function Sponsors() {
 
       <div className="mt-8 flex justify-center">
         <a
-          className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-zinc-600 shadow-sm transition-colors hover:border-brand-blue hover:text-brand-blue"
+          className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-ink-2 shadow-sm transition-colors hover:border-brand-blue hover:text-brand-blue"
           href="https://github.com/sponsors/alovajs"
           target="_blank"
           rel="noreferrer">
@@ -140,7 +142,7 @@ export default function Sponsors() {
             name="favorite"
             className="text-[15px]"
           />
-          <span>Become a sponsor</span>
+          <span>{translate({ id: 'homepage.sponsors.become', message: 'Become a sponsor' })}</span>
         </a>
       </div>
     </div>
