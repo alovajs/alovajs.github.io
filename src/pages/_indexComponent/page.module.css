@@ -93,57 +93,56 @@
   }
 }
 
-/* ---- RSM：3D 球体漂浮 + 冷色外发光 ---- */
-.orb {
-  animation: orbFloat 10s ease-in-out infinite alternate;
+/* ---- RSM：右上角模糊云缓慢呼吸（与 S1 极光同语言） ---- */
+.cloud {
+  animation: cloudFloat 18s ease-in-out infinite alternate;
   will-change: transform;
 }
 
 /**
- * 虹彩球体：同样用 CSS 复刻（原远程图失效）。
- * 高光 + 冷色内反光 + conic 渐变构成体积感，外层发光沿用 code.html 的青色光晕。
+ * 模糊云本体：与 S1 auroraArt 同一套多层径向渐变 + 高斯模糊的画法，
+ * 配色沿用 RSM 冷色系（蓝 / 青 / 紫 / 微粉），在纯黑画布上做氛围光。
  */
-.orbArt {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 9999px;
+.cloudArt {
+  width: 860px;
+  height: 560px;
+  max-width: none;
   background:
-    /* 左上高光 */
     radial-gradient(
-      circle at 33% 24%,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.4) 8%,
-      rgba(255, 255, 255, 0) 26%
+      40% 52% at 30% 42%,
+      rgba(var(--brand-blue-rgb), 0.55) 0%,
+      rgba(var(--brand-blue-rgb), 0) 70%
     ),
-    /* 右下冷光 */
-    radial-gradient(58% 58% at 72% 74%, rgba(0, 210, 255, 0.82) 0%, rgba(0, 210, 255, 0) 62%),
-    /* 左下紫光 */
     radial-gradient(
-      62% 62% at 24% 70%,
-      rgba(var(--brand-violet-rgb), 0.8) 0%,
-      rgba(var(--brand-violet-rgb), 0) 64%
+      38% 46% at 56% 30%,
+      rgba(var(--stage-execution-rgb), 0.5) 0%,
+      rgba(var(--stage-execution-rgb), 0) 72%
     ),
-    /* 右上蓝底 */
     radial-gradient(
-      78% 78% at 62% 30%,
-      rgba(var(--brand-blue-rgb), 0.85) 0%,
-      rgba(var(--brand-blue-rgb), 0) 72%
+      36% 44% at 68% 58%,
+      rgba(var(--brand-violet-rgb), 0.42) 0%,
+      rgba(var(--brand-violet-rgb), 0) 72%
     ),
-    /* 球体本体 */
-    radial-gradient(circle at 50% 50%, #0a1c3f 0%, #040a1a 78%);
-  box-shadow:
-    inset -28px -38px 78px rgba(2, 6, 18, 0.9),
-    inset 18px 22px 56px rgba(255, 255, 255, 0.2);
-  filter: drop-shadow(0 0 80px rgba(var(--stage-execution-rgb), 0.35)) saturate(1.15);
+    radial-gradient(
+      26% 32% at 44% 66%,
+      rgba(var(--brand-pink-rgb), 0.22) 0%,
+      rgba(var(--brand-pink-rgb), 0) 72%
+    ),
+    radial-gradient(
+      30% 38% at 78% 40%,
+      rgba(var(--brand-blue-rgb), 0.35) 0%,
+      rgba(var(--brand-blue-rgb), 0) 70%
+    );
+  filter: blur(56px) saturate(1.15);
 }
 
-@keyframes orbFloat {
+@keyframes cloudFloat {
   0%,
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: scale(1) translate(0, 0);
   }
   50% {
-    transform: translateY(-16px) rotate(4deg);
+    transform: scale(1.07) translate(1.5%, -2%);
   }
 }
 

@@ -32,8 +32,8 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 html[data-theme='dark'] {
-  --ifm-background-surface-color: #030e27 !important;
-  --ifm-background-color: #040f26;
+  --ifm-background-surface-color: #050a16 !important;
+  --ifm-background-color: #050a16;
 }
 
 // announcement
@@ -781,4 +781,51 @@ html[data-theme='dark'] .landing-page .chapter-dark {
       animation-range: 0 100px;
     }
   }
+}
+
+/* //////// HERO：动态渐变标题 //////// */
+/* 大标题末尾「而是一个场景 / it’s a scenario.」的流动渐变文字 */
+.titleGradient {
+  animation: 10s steps(1000) infinite e;
+  background: linear-gradient(120deg, #d7c383 -50%, #009dff 20%, #ff258e 40%, #a53eff 70%, #009dff 90%, #d7c383);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% auto;
+  color: #0000;
+}
+
+@keyframes e {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* //////// HERO：CTA 按钮渐变描边 //////// */
+/* 用 ::before + mask 在按钮边缘描出 2px 渐变环；border-radius 跟随按钮自身圆角 */
+.heroGradientBorder {
+  position: relative;
+}
+
+.heroGradientBorder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #2f6cf4, #55f6d3b3, #f554c599, #36363633);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: padding 0.2s ease;
+}
+
+/* hover 时渐变描边加粗到 4px */
+.heroGradientBorder:hover::before {
+  padding: 4px;
 }

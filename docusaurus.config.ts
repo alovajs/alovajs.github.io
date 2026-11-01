@@ -304,30 +304,14 @@ const config: Config = {
           ]
         }
       ],
-      copyright: `© ${new Date().getFullYear()} alova.js Core Team. Released under the MIT License.`
+      copyright: 'Copyright © 2026 alova.js Team and contributors'
     },
     // 统一页脚（@site/src/theme/Footer）的扩展内容：themeConfig 顶层允许自定义键，
     // footer 内部则只接受 Docusaurus 内置字段，所以品牌说明与法务链接放在这里
     footerExtras: {
       brand: {
-        description:
-          'High-performance Request Strategy Library for streamlined asynchronous state, predictive prefetching, and seamless client synchronization.',
         note: 'Architected for Modern UI Frameworks'
-      },
-      legalLinks: [
-        {
-          label: 'Privacy Policy',
-          href: '#'
-        },
-        {
-          label: 'Terms of Service',
-          href: '#'
-        },
-        {
-          label: 'Security Policy',
-          href: '#'
-        }
-      ]
+      }
     },
     prism: {
       theme: lightCodeTheme,

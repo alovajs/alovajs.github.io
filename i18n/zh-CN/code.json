@@ -306,7 +306,7 @@
     "description": "S4 区块标签"
   },
   "homepage.requestStrategy.title": {
-    "message": "每个策略都是一个完整场景。",
+    "message": "每个策略都是一个完整场景",
     "description": "S4 标题"
   },
   "homepage.requestStrategy.description": {
@@ -418,7 +418,7 @@
     "description": "section title for Flexible"
   },
   "homepage.Flexible.title": {
-    "message": "可在任意 JS 环境、配合任意请求工具运行。",
+    "message": "可在任意 JS 环境、配合任意请求工具运行",
     "description": "S5 标题"
   },
   "homepage.Flexible.description": {
@@ -429,7 +429,7 @@
     "message": "alova创建者"
   },
   "homepage.projects.Scott Hu.comment": {
-    "message": "像fetch和axios这样的请求库使请求变得非常简单，react-query和swr又进一步减少了请求的模板代码。但alova的目标是提供极致的API消费效率，消除几乎所有的请求工作，实现更高效的客户端-服务器数据交互"
+    "message": "像fetch和axios这样的请求库使请求变得非常简单，react-query和swr又进一步减少了请求的模板代码。但alova的目标是提供极致的API消费效率，实现更高效的数据交互，并且降低服务器压力"
   },
   "homepage.projects.0x1EC10D.comment": {
     "message": "alova是真的很细致，我看文档的时候每一个点都是痛点，解决了超多问题"
@@ -518,11 +518,11 @@
     "description": "note for cross-component layer"
   },
   "homepage.trust.sectionTitle": {
-    "message": "06 · 值得信赖且坦诚",
+    "message": "06 · 值得信赖且开源",
     "description": "S6 区块标签"
   },
   "homepage.trust.title": {
-    "message": "为真实应用而生，也坦诚说明何时不该使用它。",
+    "message": "大量真实应用已在生产环境得到验证",
     "description": "S6 标题"
   },
   "homepage.trust.frameworks": {
@@ -582,11 +582,11 @@
     "description": "Hero 主标题（前半，非渐变）"
   },
   "homepage.hero.titleTail": {
-    "message": "而是一个场景。",
+    "message": "而是一个场景",
     "description": "Hero 主标题（后半，渐变）"
   },
   "homepage.hero.tagline": {
-    "message": "请求拥有生命周期，而你的代码却把它切碎、散落在各个组件里，AI 也只会照抄。alova 把触发、决策、执行与数据应用收进同一个场景。",
+    "message": "alova 把各种请求场景总结成四个阶段，并封装成请求策略函数，请求完整性不再取决于工程师和AI提示词，而由特定场景的策略预先编排",
     "description": "Hero 副文案"
   },
   "homepage.hero.github": {
@@ -621,20 +621,68 @@
     "message": "对照手写实现",
     "description": "S1 hero mobile toggle to compare with handwritten"
   },
+  "homepage.hero.stageTriggerShort": {
+    "message": "触发",
+    "description": "S1 阶段导航简称"
+  },
+  "homepage.hero.stageDecisionShort": {
+    "message": "决策",
+    "description": "S1 阶段导航简称"
+  },
+  "homepage.hero.stageExecutionShort": {
+    "message": "执行",
+    "description": "S1 阶段导航简称"
+  },
+  "homepage.hero.stageDataApplicationShort": {
+    "message": "应用",
+    "description": "S1 阶段导航简称"
+  },
+  "homepage.hero.eqTrigger": {
+    "message": "响应式触发，无需手写 emit",
+    "description": "手写触发阶段对应的 alova 等价说明"
+  },
+  "homepage.hero.eqDecision": {
+    "message": "防抖 / 预加载 / 缓存命中由策略统一决策",
+    "description": "手写决策阶段对应的 alova 等价说明"
+  },
+  "homepage.hero.eqExecution": {
+    "message": "执行仍交给 axios / fetch",
+    "description": "手写执行阶段对应的 alova 等价说明"
+  },
+  "homepage.hero.eqApplication": {
+    "message": "数据、分页、加载态一次返回",
+    "description": "手写数据应用阶段对应的 alova 等价说明"
+  },
+  "homepage.hero.collapseToAlova": {
+    "message": "收拢为 alova 声明",
+    "description": "手写面板底部收拢按钮"
+  },
+  "homepage.hero.expandHandwritten": {
+    "message": "展开手写四段",
+    "description": "alova 面板底部回退按钮"
+  },
+  "homepage.hero.code.c.list": {
+    "message": "// 搜索分页列表（伪代码）",
+    "description": "S1 左侧手写伪代码注释"
+  },
+  "homepage.hero.code.c.debouncedTrigger": {
+    "message": "// 输入防抖后触发搜索",
+    "description": "S1 左侧手写伪代码注释"
+  },
   "homepage.rsm.section": {
     "message": "请求场景模型（RSM）",
     "description": "S2 区块标签"
   },
   "homepage.rsm.title": {
-    "message": "一次请求是包含四个阶段的生命周期，而不只是那一次调用。",
+    "message": "请求场景的四个生命周期",
     "description": "S2 标题"
   },
   "homepage.rsm.description": {
-    "message": "大多数库只管网络调用（阶段 03，执行）。触发、决策与数据应用被切碎，散落在各组件的手动胶水代码里。",
+    "message": "以这四个生命周期阶段为指引，每一类请求场景都能被完整地组织起来，它们清楚何时触发、何时复用、何时真正发出请求，而不再依赖零散的人工拼装。",
     "description": "S2 描述"
   },
   "homepage.rsm.trigger.name": {
-    "message": "请求何时需要触发？",
+    "message": "请求触发",
     "description": "RSM 阶段 01 标题"
   },
   "homepage.rsm.trigger.question": {
@@ -642,11 +690,11 @@
     "description": "S2 stage 1 question"
   },
   "homepage.rsm.trigger.desc": {
-    "message": "状态变化、用户输入、可见性变化与定时器都会产生数据交换触发点，alova 以响应式方式将它们绑定。",
+    "message": "在合适的时机触发请求，例如手动触发、状态变化、翻页、网络重连等，减少不必要的请求。",
     "description": "RSM 阶段 01 描述"
   },
   "homepage.rsm.decision.name": {
-    "message": "应如何处理？",
+    "message": "请求决策",
     "description": "RSM 阶段 02 标题"
   },
   "homepage.rsm.decision.question": {
@@ -654,11 +702,11 @@
     "description": "S2 stage 2 question"
   },
   "homepage.rsm.decision.desc": {
-    "message": "决定是否需要真正发起网络请求，评估 L1/L2 缓存、对突发请求做防抖并排队。",
+    "message": "判断发出请求前应如何处理本次请求。",
     "description": "RSM 阶段 02 描述"
   },
   "homepage.rsm.execution.name": {
-    "message": "如何与服务器通信？",
+    "message": "请求执行",
     "description": "RSM 阶段 03 标题"
   },
   "homepage.rsm.execution.question": {
@@ -666,7 +714,7 @@
     "description": "S2 stage 3 question"
   },
   "homepage.rsm.execution.desc": {
-    "message": "干净地委托给 fetch、axios 或 XHR。alova 把网络传输视为可替换的适配器，而非全部应用逻辑。",
+    "message": "网络通信发生，通常由 fetch、axios 或 XHR 等处理。",
     "description": "RSM 阶段 03 描述"
   },
   "homepage.rsm.execNote": {
@@ -674,7 +722,7 @@
     "description": "S2 execution stage note"
   },
   "homepage.rsm.apply.name": {
-    "message": "数据如何进入业务",
+    "message": "数据应用",
     "description": "RSM 阶段 04 标题"
   },
   "homepage.rsm.apply.question": {
@@ -682,23 +730,27 @@
     "description": "S2 stage 4 question"
   },
   "homepage.rsm.apply.desc": {
-    "message": "转换数据、注入 UI 状态、失效缓存，并在零 prop 透传的情况下跨同级组件同步。",
+    "message": "获得响应数据后的动作，如界面更新、自动转换、缓存更新和多端同步，以及后续步骤的使用等。",
     "description": "RSM 阶段 04 描述"
   },
   "homepage.rsm.link": {
     "message": "了解请求场景模型",
     "description": "S2 link to RSM doc page"
   },
+  "homepage.rsm.viewConcept": {
+    "message": "请求场景概念",
+    "description": "S2 标题右侧按钮"
+  },
   "homepage.capability.section": {
-    "message": "默认即拥有 · 12 项能力",
+    "message": "默认即拥有",
     "description": "S3 区块标签"
   },
   "homepage.capability.title": {
-    "message": "默认开启，而且超出预期。",
+    "message": "一个请求策略，不止于发起请求",
     "description": "S3 标题"
   },
   "homepage.capability.description": {
-    "message": "每一项能力都默认开启。无需插件、无需繁琐配置，为现代前端提供统一的原语。",
+    "message": "alova 的请求策略默认提供超出预期的完整请求功能，无需在提示词里额外说明。",
     "description": "S3 描述"
   },
   "homepage.capability.defaultBadge": {
@@ -722,15 +774,15 @@
     "description": "S6 core team github link"
   },
   "homepage.closing.lead": {
-    "message": "打开你最近写的列表页，",
+    "message": "让请求更完整，",
     "description": "S7 引导前半"
   },
   "homepage.closing.strong": {
-    "message": "用四段把它的代码标注一遍。",
+    "message": "体验更流畅",
     "description": "S7 引导后半（渐变）"
   },
   "homepage.closing.tail": {
-    "message": "看看执行占了多少行，其余逻辑又散落到了哪里。",
+    "message": "从触发、决策、执行到应用，alova 把整个请求生命周期收拢到一起，让每一次交互都完整而流畅。",
     "description": "S7 描述"
   },
   "homepage.meta.title": {
@@ -802,7 +854,7 @@
     "description": "RSM 信封原则标题"
   },
   "homepage.rsm.envelopeTitle": {
-    "message": "把触发、决策、执行与数据应用封装进同一个内聚的场景。",
+    "message": "把触发、决策、执行与数据应用封装进同一个内聚的场景",
     "description": "RSM 信封原则"
   },
   "homepage.rsm.envelopeDesc": {
@@ -1098,7 +1150,7 @@
     "description": "团队成员 GitHub 链接 aria-label"
   },
   "homepage.closing.section": {
-    "message": "07 · 立即试用",
+    "message": "07 · 现在尝试 Alova",
     "description": "S7 区块标签"
   },
   "homepage.hero.tag.Pagination": {
@@ -1133,6 +1185,10 @@
     "message": "自动轮播",
     "description": "轮播状态"
   },
+  "homepage.hero.toggleDone": {
+    "message": "演示完成",
+    "description": "步骤推进完成后的状态提示"
+  },
   "homepage.sponsors.gold": {
     "message": "金牌",
     "description": "赞助商档位"
@@ -1156,5 +1212,73 @@
   "homepage.projects.Proddy.comment": {
     "message": "我很喜欢这个库，正在把代码从 Axios 慢慢迁移到 Alova。",
     "description": "开发者评价"
+  },
+  "theme.footer.copyright": {
+    "message": "Copyright © 2026 alova.js Team and contributors",
+    "description": "页脚版权"
+  },
+  "theme.footer.brand.note": {
+    "message": "为现代 UI 框架而设计",
+    "description": "页脚品牌提示"
+  },
+  "theme.footer.links.col0.title": {
+    "message": "架构",
+    "description": "页脚链接列标题"
+  },
+  "theme.footer.links.col0.item0.label": {
+    "message": "RSM 模型",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col0.item1.label": {
+    "message": "分页策略",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col0.item2.label": {
+    "message": "静默提交",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col0.item3.label": {
+    "message": "全部 12 项能力",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col1.title": {
+    "message": "资源",
+    "description": "页脚链接列标题"
+  },
+  "theme.footer.links.col1.item0.label": {
+    "message": "快速上手指南",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col1.item1.label": {
+    "message": "适配器套件",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col1.item2.label": {
+    "message": "DevTools 扩展",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col1.item3.label": {
+    "message": "OpenAPI 生成器",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col2.title": {
+    "message": "社区",
+    "description": "页脚链接列标题"
+  },
+  "theme.footer.links.col2.item0.label": {
+    "message": "GitHub 仓库",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col2.item1.label": {
+    "message": "Discord 服务器",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col2.item2.label": {
+    "message": "贡献指南",
+    "description": "页脚链接"
+  },
+  "theme.footer.links.col2.item3.label": {
+    "message": "更新日志",
+    "description": "页脚链接"
   }
 }

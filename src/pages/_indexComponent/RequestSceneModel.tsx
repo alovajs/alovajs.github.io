@@ -1,9 +1,10 @@
-import clsx from 'clsx';
-import { MaterialIcon, SectionTagline } from './ui';
+import Link from '@docusaurus/Link';
 import { translate } from '@docusaurus/Translate';
-import CubeGraphic from './visuals/CubeGraphic';
-import OrbGraphic from './visuals/OrbGraphic';
+import clsx from 'clsx';
 import styles from './page.module.css';
+import { MaterialIcon, SectionTagline } from './ui';
+import CloudGraphic from './visuals/CloudGraphic';
+import CubeGraphic from './visuals/CubeGraphic';
 
 type StageTone = 'cyan' | 'blue' | 'violet' | 'emerald';
 
@@ -22,11 +23,11 @@ const stages: Stage[] = [
   {
     stage: translate({ id: 'homepage.rsm.trigger.stage', message: 'Stage 01' }),
     icon: 'play_circle',
-    title: translate({ id: 'homepage.rsm.trigger.name', message: 'When is a request needed?' }),
+    title: translate({ id: 'homepage.rsm.trigger.name', message: 'Request Trigger' }),
     description: translate({
       id: 'homepage.rsm.trigger.desc',
       message:
-        'State changes, user inputs, visibility changes, and timers all create data exchange triggers. alova binds them reactively.'
+        'Requests are triggered at the right moment — such as manual actions, state changes, pagination, or network reconnection — cutting down unnecessary calls.'
     }),
     action: translate({ id: 'homepage.rsm.trigger.action', message: 'Initiate' }),
     footnote: translate({ id: 'homepage.rsm.trigger.footnote', message: '01 / TRIGGER' }),
@@ -35,11 +36,13 @@ const stages: Stage[] = [
   {
     stage: translate({ id: 'homepage.rsm.decision.stage', message: 'Stage 02' }),
     icon: 'schema',
-    title: translate({ id: 'homepage.rsm.decision.name', message: 'How should it be handled?' }),
+    title: translate({
+      id: 'homepage.rsm.decision.name',
+      message: 'Request Decision'
+    }),
     description: translate({
       id: 'homepage.rsm.decision.desc',
-      message:
-        'Decide whether to hit the network at all. Evaluate L1/L2 cache, debounce redundant surges, and queue requests.'
+      message: 'Determines how the request should be handled before it is sent.'
     }),
     action: translate({ id: 'homepage.rsm.decision.action', message: 'Evaluate' }),
     footnote: translate({ id: 'homepage.rsm.decision.footnote', message: '02 / DECISION' }),
@@ -48,11 +51,14 @@ const stages: Stage[] = [
   {
     stage: translate({ id: 'homepage.rsm.execution.stage', message: 'Stage 03' }),
     icon: 'swap_horiz',
-    title: translate({ id: 'homepage.rsm.execution.name', message: 'How to talk to server?' }),
+    title: translate({
+      id: 'homepage.rsm.execution.name',
+      message: 'Request Execution'
+    }),
     description: translate({
       id: 'homepage.rsm.execution.desc',
       message:
-        'Delegated cleanly to fetch, axios, or XHR. alova treats network transport as an interchangeable adapter, not the entire app logic.'
+        'The network communication happens here, typically handled by fetch, axios, or XHR.'
     }),
     action: translate({ id: 'homepage.rsm.execution.action', message: 'Delegate' }),
     footnote: translate({ id: 'homepage.rsm.execution.footnote', message: '03 / EXECUTE' }),
@@ -61,11 +67,11 @@ const stages: Stage[] = [
   {
     stage: translate({ id: 'homepage.rsm.apply.stage', message: 'Stage 04' }),
     icon: 'auto_awesome',
-    title: translate({ id: 'homepage.rsm.apply.name', message: 'How does the data enter your app?' }),
+    title: translate({ id: 'homepage.rsm.apply.name', message: 'Data Application' }),
     description: translate({
       id: 'homepage.rsm.apply.desc',
       message:
-        'Transform data, hydrate UI state, invalidate caches, and sync across peer components with zero prop drilling.'
+        'The actions after the response is obtained — such as UI updates, automatic transformation, cache refresh, multi-end sync, and use by subsequent steps.'
     }),
     action: translate({ id: 'homepage.rsm.apply.action', message: 'Integrate' }),
     footnote: translate({ id: 'homepage.rsm.apply.footnote', message: '04 / APPLICATION' }),
@@ -192,8 +198,8 @@ export default function RequestSceneModel() {
     <section
       id="rsm-model"
       className="relative chapter-dark bg-black text-white py-32 md:py-40 overflow-hidden border-y border-zinc-900 dark:border-transparent scroll-mt-24">
-      {/* 右上角悬浮 3D 虹彩球体 */}
-      <OrbGraphic />
+      {/* 右上角模糊氛围云 */}
+      <CloudGraphic />
 
       {/* 球体背后的环境光 */}
       <div className="absolute top-1/4 right-[16%] w-96 h-96 bg-brand-cyan/15 rounded-full blur-[140px] pointer-events-none" />
@@ -203,20 +209,37 @@ export default function RequestSceneModel() {
           {translate({ id: 'homepage.rsm.section', message: 'THE REQUEST SCENARIO MODEL' })}
         </SectionTagline>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-3xl leading-[1.12] tracking-[-0.035em] mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-3xl tracking-[-0.035em] mb-6">
           {translate({
             id: 'homepage.rsm.title',
-            message: 'A request is a lifecycle of four stages, not just the call.'
+            message: 'The four lifecycle stages of a request scenario'
           })}
         </h2>
 
-        <p className="text-zinc-400 max-w-2xl text-base md:text-lg mb-20 leading-relaxed font-normal">
-          {translate({
-            id: 'homepage.rsm.description',
-            message:
-              'Most libraries stop at the network call (Stage 03, Execution). Trigger, decision and data application get scattered into manual glue code across your components.'
-          })}
-        </p>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20">
+          <p className="text-zinc-400 max-w-2xl text-base md:text-lg leading-relaxed font-normal">
+            {translate({
+              id: 'homepage.rsm.description',
+              message:
+                'Guided by these four lifecycle stages, every request scenario is organized completely, it knows exactly when to trigger, when to reuse, and when to actually send a request, instead of relying on scattered manual glue code.'
+            })}
+          </p>
+
+          <Link
+            to="/about/RSM"
+            className="text-xs font-bold uppercase tracking-wider text-white border-b border-white pb-1 hover:text-brand-cyan hover:border-brand-cyan transition-colors self-start md:self-auto inline-flex items-center gap-1.5 shrink-0">
+            <span>
+              {translate({
+                id: 'homepage.rsm.viewConcept',
+                message: 'View the request scenario model'
+              })}
+            </span>
+            <MaterialIcon
+              name="arrow_forward"
+              className="text-[15px]"
+            />
+          </Link>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stages.map(stage => (
@@ -240,7 +263,8 @@ export default function RequestSceneModel() {
               <h4 className="text-white text-xl md:text-2xl font-bold tracking-tight">
                 {translate({
                   id: 'homepage.rsm.envelopeTitle',
-                  message: 'Encapsulate trigger, decision, execution and data application in one cohesive scenario.'
+                  message:
+                    'Encapsulate trigger, decision, execution and data application in one cohesive scenario.'
                 })}
               </h4>
               <p className="text-zinc-400 text-xs mt-1 max-w-xl font-normal">

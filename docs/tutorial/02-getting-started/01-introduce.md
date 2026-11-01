@@ -15,44 +15,43 @@ import SponsorStrip from '@site/src/components/SponsorStrip';
 
 ## What is alova?
 
-alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a **request strategy library**: it treats the scenario as the basic unit of a request, packaging the request logic you've hand-written countless times — pagination, forms, uploads, retries — into 20+ ready-to-use request strategies.
+alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a **request strategy library**. It treats a request as a scenario with a lifecycle — not a one-time instantaneous call — and organizes the request logic you've hand-written countless times, such as pagination, forms, uploads, and authentication, into a complete whole we call **request strategies**. In the AI Coding era, what sets applications apart is user experience; with **request strategies**, you get complete request functionality beyond your expectations — no need to spell it out in your prompts.
 
-A request is not an instantaneous call — it is a scenario with a lifecycle. You don't have to throw away the axios or fetch you already know: alova builds right on top of your existing request library and takes over the request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and use it everywhere.
+You don't have to throw away the axios or fetch you already know: alova builds right on top of your existing request library and takes over the request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and use it everywhere.
 
-Learn about our story in [why built alova](/about/faqs), explore how we differ in our detailed [comparison with other request libraries](/about/comparison), or check out the [Request Scenario Model (RSM)](/about/RSM) — the conceptual foundation of alova.
+You can read the backstory in [Why alova was created](/about/faqs), and learn how alova differs in [Comparison with other request libraries](/about/comparison).
 
 ### Introduction to the Request Scenario Model (RSM)
 
-RSM (Request Scenario Model) expands a request scenario into four stages, each answering one question:
+[Request Scenario Model (RSM)](/about/RSM), or RSM for short, summarizes a request scenario into four stages, each answering one question:
 
-| Stage | What it answers | Details |
-| --- | --- | --- |
-| **Request Trigger** | What condition creates the need for data exchange? | Initialization, state changes, auto-refresh, retry on failure, debounce, polling — triggering doesn't mean sending: the need arises, but the network doesn't necessarily move |
-| **Request Decision** | How should this need be met? Does a request actually need to be sent? | Cache hits, reusing in-flight requests, suspending until conditions are met, discarding stale responses — all of this happens here |
-| **Request Execution** | How is the communication carried out and the response obtained? | Handed to axios / fetch / XHR — **usually just one line of code** |
-| **Data Application** | How does data enter the business, state and view? | Data transformation, state updates, cross-component/cross-page sync, cache persistence |
+| Stage                 | What it answers                                                       | Details                                                                                                                                                                       |
+| --------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Request Trigger**   | What condition creates the need for data exchange?                    | Initialization, state changes, auto-refresh, retry on failure, debounce, polling — triggering doesn't mean sending: the need arises, but the network doesn't necessarily move |
+| **Request Decision**  | How should this need be met? Does a request actually need to be sent? | Cache hits, reusing in-flight requests, suspending until conditions are met, discarding stale responses — all of this happens here                                            |
+| **Request Execution** | How is the communication carried out and the response obtained?       | Handed to axios / fetch / XHR — **usually just one line of code**                                                                                                             |
+| **Data Application**  | How does data enter the business, state and view?                     | Data transformation, state updates, cross-component/cross-page sync, cache persistence                                                                                        |
 
-Worth noticing: across the four stages, "execution" is usually just one line, while "trigger" is scattered in your components' data listeners and "application" is scattered in state assignments and view updates — and "decision" tends to be overlooked. See the full [Request Scenario Model (RSM)](/about/RSM).
+Worth noting: **request execution is usually just one line of code, yet you may use it the most often** — while **request triggering** is scattered across a component's data listeners, **data application** across state assignments and view updates, and **request decision** is often overlooked, resulting in request code that performs poorly, is hard to maintain, and is overly verbose. See the full [Request Scenario Model (RSM)](/about/RSM).
 
-### What you get with alova
+### Why use alova
 
-#### 1. A complete scenario, not just a working request
+#### 1. What you get is a complete scenario, not just a working request
 
-Let AI write it from scratch, and these words will most likely never show up in your prompt — not because AI isn't capable enough, but because you didn't mention them. And as for "which words should be mentioned", nobody has ever handed you a checklist. RSM is that checklist, and alova maps it onto the configuration options of scenario hooks: one declaration, and the whole scenario is in place.
+In the AI Coding era, what sets applications apart is user experience — not that AI isn't capable enough, but that your prompt is unlikely to spell out the following request features, because no one has ever handed you a checklist for how to manage your requests. For example:
 
 - **Input debounce**: without it, fast typing fires requests back to back
 - **Cache hits for identical conditions**: without it, the same endpoint is called over and over
 - **Discarding stale responses**: without it, an older response may overwrite a newer one
 - **Automatic retry on failure**: without it, a single failed request leaves the page blank
 - **Next-page preloading**: without it, users stare at the loading state on every page turn
+- ...
+
+RSM is exactly that checklist — alova maps it onto the configuration options of the scenario hooks.
 
 #### 2. No need to review AI-written code
 
 Request-layer code takes up a large share of your pages, and AI-written code always needs another round of review. With alova, the request layer is reduced to configuration you only need to verify — saving you time while improving stability.
-
-### When should you use alova?
-
-alova runs in virtually any JavaScript runtime. If your frontend app includes authentication, pagination, forms, uploads or captcha sending, or you need to reuse one API set across Web, React Native and mini-programs, or you need request governance such as rate limiting and BFF on Node.js or Bun servers, alova handles it all perfectly.
 
 ## Features
 
@@ -63,9 +62,11 @@ alova runs in virtually any JavaScript runtime. If your frontend app includes au
 - Request sharing and response caching to boost performance.
 - Type safety.
 
-alova is compatible with the following tech stacks; the grayed-out parts will be supported gradually in the future.
-
 <SupportList showStatus></SupportList>
+
+## When should you use alova?
+
+alova is compatible with the following tech stacks; the grayed-out parts will be supported gradually in the future. If your frontend app includes authentication, pagination, forms, uploads or captcha sending, or you need to reuse one API set across Web, React Native and mini-programs, or you need request governance such as rate limiting and BFF on Node.js or Bun servers, alova handles it all perfectly.
 
 ## Request Strategies in Action
 
@@ -429,9 +430,9 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 </details>
 
-## worma: write one API spec, and let it do the rest
+## A modern code generator for the AI era
 
-worma is a request code generator based on AI skills, and it works out of the box with alova. It reads your OpenAPI spec and generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can read directly** — your agent no longer has to guess; it can find the endpoint it needs directly.
+[worma](https://worma.js.org) is a request code generator based on AI skills, and it works out of the box with alova. It reads your OpenAPI spec and generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can read directly** — your agent no longer has to guess; it can find the endpoint it needs directly.
 
 ```mermaid
 flowchart LR
@@ -450,7 +451,7 @@ class B redNode;
 classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
 ```
 
-> Learn more at [worma.js.org](https://worma.js.org), or see how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
+> See how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
 
 ## Live Demo
 

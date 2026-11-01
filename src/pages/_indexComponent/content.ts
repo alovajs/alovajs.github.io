@@ -232,6 +232,8 @@ export interface Metric {
   label: string;
   secondary: string;
   href?: string;
+  /** 为 true 时，value 由动态获取的 GitHub star 数替换（加载前回退到 value） */
+  dynamicStars?: boolean;
 }
 
 export const metrics: Metric[] = [
@@ -242,7 +244,8 @@ export const metrics: Metric[] = [
       id: 'homepage.trust.metric.githubStarsSecondary',
       message: '1000+ dependent repositories'
     }),
-    href: repoUrl
+    href: repoUrl,
+    dynamicStars: true
   },
   {
     value: '15+',

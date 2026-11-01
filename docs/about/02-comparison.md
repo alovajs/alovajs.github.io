@@ -6,31 +6,42 @@ import Tabs from '@theme/Tabs';
 
 import TabItem from '@theme/TabItem';
 
-## react-query/swr/alova comparison
+## The difference between react-query / swr and alova
 
-react-query is a powerful asynchronous state management library, and swr is a React Hooks library for data fetching. They share common traits: both use hooks to send and manage requests, and both cache data. Here is a comparison table of the three.
+Before comparing, let's clarify a commonly confused point: **react-query, swr, and alova are not on the same conceptual level.** Let's start with the problems each one solves.
 
-| Features ↓/Library →                | react-query                       | swr                                   | alova                                         |
-| ----------------------------------- | --------------------------------- | ------------------------------------- | --------------------------------------------- |
-| Positioning                         | Asynchronous state management     | React Hooks library for data requests | Streamlined API integration workflow |
-| Usage mode                          | hooks                             | hooks                                 | Complete request scheme                       |
-| Applicable environment              | client                            | client                                | client/server                                 |
-| Framework support                   | Multi-package support             | React only                            | Any framework (via adapters)                  |
-| SSR                                 | ✅                                | ✅                                    | ✅                                            |
-| Number of hooks                     | 2-3                               | 2-3                                   | 15+                                           |
-| Hooks operation function            | ❌                                | ❌                                    | ✅                                            |
-| Server                              | ❌                                | ❌                                    | nodejs/deno/bun                               |
-| server hooks                        | ❌                                | ❌                                    | ✅                                            |
-| Freedom                             | 🟡 Limited                        | 🟡 Limited                            | 🟢 High flexibility                           |
-| Request sharing                     | ❌                                | ❌                                    | ✅                                            |
-| Cache strategy                      | Single-level cache                | Single-level cache                    | Multi-level cache                             |
-| Axios support                       | ✅                                | ✅                                    | ✅                                            |
-| Fetch support                       | ✅                                | ✅                                    | ✅                                            |
-| XMLHttpRequest support              | 🟡 Restricted                     | 🟡 Restricted                         | ✅                                            |
-| Request method                      | Third-party library               | Third-party library                   | Unified Method proxy                          |
-| OpenAPI support                     | 🟡 Restricted third-party library | 🟡 Restricted third-party library     | 🟢 More modern solutions                      |
-| Dependency collection (performance) | ❌                                | ✅                                    | ✅                                            |
-| Data synchronization                | ✅                                | ✅                                    | ✅                                            |
+### What problems each one solves
+
+react-query and swr are mature **asynchronous state management / data fetching libraries**. They focus on "how to sync server data into the client UI" — you provide a function that fetches data, and they handle caching, revalidation, and background refresh so your components always have the latest server state.
+
+alova is a **request strategy library**. It treats a single request as a **scenario with a complete lifecycle** — the [Request Scenario Model (RSM)](/about/RSM) — rather than a one-off call. A request is broken into four stages, each answering a question:
+
+- **Request triggering**: Under what conditions does a data interaction need arise? Initialization, state changes, debouncing, polling, failed retries...
+- **Request decision-making**: Does this need actually require sending a request? Cache hits, reusing in-flight requests, suspension, discarding stale responses...
+- **Request execution**: How to communicate and get a response? Hand off to axios / fetch / XHR, **usually just one line of code**.
+- **Data application**: How does data enter the business, state, and view? Transformation, cross-component synchronization, cache deposition...
+
+The request code you spend the most time writing day-to-day is often **not in "request execution"** (which is usually just one line), but in the triggering, decision-making, and application logic scattered across components. react-query / swr handle "caching + state synchronization" well, but scenario logic like pagination, forms, uploads, and authentication still has to be hand-written over and over. alova's approach is to organize these recurring patterns into reusable **request strategies**, turning them from boilerplate into a few configuration options.
+
+### Different concepts
+
+| Dimension                           | react-query / swr                            | alova                                              |
+| ----------------------------------- | -------------------------------------------- | -------------------------------------------------- |
+| Core positioning                    | Server-state management / data fetching      | Request strategy / full-lifecycle request management |
+| Focus                               | Caching and synchronization of data          | The complete scenario of trigger → decision → execution → application |
+| Typical usage                       | `useQuery(() => fetch(...))`                 | `usePagination(() => alova.Get(...), {...})`       |
+| Pagination / forms / uploads        | Implement or combine manually                | Built in as request strategies                     |
+| Authentication, retries, prefetching, silent submission | Partially require manual combination | Built in as request strategies                     |
+| Which layer it sits on              | Wraps your request function                  | Built on top of axios / fetch, taking over request logic |
+
+> **react-query / swr answer "how to cache data and keep it up to date", while alova answers "from the moment a request arises until it lands in the view, how should each step in between be handled".** The two address different problems, so "who has more features" is not a fair way to compare them.
+
+### How to choose
+
+- If your main need is to **cache server data and automatically keep it in sync**, react-query or swr are mature and lightweight choices, with ecosystems validated by many projects.
+- If your application is full of scenarios like **pagination, forms, uploads, authentication, prefetching, and silent submission**, and you want to turn this repetitive logic from boilerplate into configuration, alova can significantly reduce the request-layer code you need to maintain.
+
+Worth mentioning: alova does not require you to abandon your existing request approach. It runs directly on top of your existing axios / fetch, continues to hand off "request execution" to them, and only takes over the parts of request logic (triggering, decision-making, application) that react-query / swr typically don't cover. In other words, it is not a replacement for react-query / swr, but solves "how requests should be written" from a different angle.
 
 ## Compare with traditional request tools such as axios/fetch/XMLHttpRequest
 

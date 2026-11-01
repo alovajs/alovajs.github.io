@@ -1,6 +1,5 @@
-import Link from '@docusaurus/Link';
 import { repoUrl } from './content';
-import { MaterialIcon } from './ui';
+import { Button, MaterialIcon } from './ui';
 import { translate } from '@docusaurus/Translate';
 
 /** S7 · 收尾行动召唤 */
@@ -13,48 +12,47 @@ export default function Closing() {
         </span>
 
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-ink-1 max-w-3xl mx-auto leading-[1.12] tracking-[-0.035em] mb-6">
-          {translate({ id: 'homepage.closing.lead', message: 'Open the last list page you wrote, and ' })}
+          {translate({ id: 'homepage.closing.lead', message: 'Make requests more complete, ' })}
           <span className="bg-gradient-to-r from-brand-blue to-brand-cyan bg-clip-text text-transparent">
-            {translate({ id: 'homepage.closing.strong', message: 'label its code in four stages.' })}
+            {translate({ id: 'homepage.closing.strong', message: 'and smoother to use.' })}
           </span>
         </h2>
 
         <p className="text-ink-3 text-base md:text-lg max-w-xl mx-auto font-normal mb-12">
           {translate({
             id: 'homepage.closing.tail',
-            message: 'See how many lines the execution takes, and where the rest of the logic ended up.'
+            message:
+              'From trigger and decision to execution and application, alova gathers the whole request lifecycle so every interaction feels complete and smooth.'
           })}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link
-            className="px-8 py-3.5 rounded-full bg-ink-1 hover:bg-ink-2 text-canvas text-sm font-semibold tracking-wide transition-all shadow-sm flex items-center gap-2"
+          <Button
+            variant="primary"
             to="/tutorial/getting-started/introduce">
             <span>{translate({ id: 'homepage.Getting Started', message: 'Getting Started' })}</span>
             <MaterialIcon
               name="arrow_forward"
               className="text-[16px]"
             />
-          </Link>
+          </Button>
 
-          <Link
-            className="px-7 py-3.5 rounded-full bg-surface border border-hairline hover:border-hairline-strong text-ink-1 text-sm font-semibold tracking-wide transition-all"
+          <Button
+            variant="default"
             to="/examples">
             <span>{translate({ id: 'homepage.Examples', message: 'Examples' })}</span>
-          </Link>
+          </Button>
 
-          <a
-            className="px-7 py-3.5 rounded-full bg-surface border border-hairline hover:border-hairline-strong text-ink-1 text-sm font-semibold tracking-wide transition-all flex items-center gap-2"
-            href={repoUrl}
-            target="_blank"
-            rel="noreferrer">
+          <Button
+            variant="default"
+            href={repoUrl}>
             <MaterialIcon
               name="star"
               filled
               className="text-[16px] text-amber-500"
             />
             <span>{translate({ id: 'homepage.hero.github', message: 'GitHub' })}</span>
-          </a>
+          </Button>
         </div>
       </div>
     </section>

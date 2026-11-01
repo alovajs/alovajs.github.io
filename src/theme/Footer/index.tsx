@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
 import { useThemeConfig, type ThemeConfig } from '@docusaurus/theme-common';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
+import { translate } from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 /**
@@ -31,51 +31,13 @@ export type FooterColumn = {
 
 export type SiteFooterExtras = {
   brand?: {
-    description?: string;
     note?: string;
   };
-  legalLinks?: FooterLinkItem[];
 };
 
 type ThemeConfigWithExtras = ThemeConfig & {
   footerExtras?: SiteFooterExtras;
 };
-
-/** 单个页脚链接（对齐 code.html：继承父级文字色，hover 变白） */
-function FooterLink({ item, className }: { item: FooterLinkItem; className: string }) {
-  const toUrl = useBaseUrl(item.to);
-  const hrefUrl = useBaseUrl(item.href, { forcePrependBaseUrl: true });
-
-  if (item.html) {
-    return (
-      <div
-        className={className}
-        dangerouslySetInnerHTML={{ __html: item.html }}
-      />
-    );
-  }
-
-  if (item.to) {
-    return (
-      <Link
-        className={className}
-        to={toUrl}>
-        {item.label}
-      </Link>
-    );
-  }
-
-  const external = Boolean(item.href && /^https?:/i.test(item.href));
-
-  return (
-    <a
-      className={className}
-      href={hrefUrl}
-      {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
-      {item.label}
-    </a>
-  );
-}
 
 export default function Footer() {
   const { footer, footerExtras } = useThemeConfig() as ThemeConfigWithExtras;
@@ -85,7 +47,7 @@ export default function Footer() {
   }
 
   const { copyright } = footer;
-  const { brand, legalLinks } = footerExtras ?? {};
+  const { brand } = footerExtras ?? {};
   const columns = ((footer.links ?? []) as FooterColumn[]).filter(column =>
     Array.isArray(column.items)
   );
@@ -100,24 +62,25 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 pb-20 border-b border-solid border-zinc-900">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-6">
-              <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-black font-bold">
-                <span className="material-symbols-outlined text-[16px]">deployed_code</span>
-              </div>
+              <img
+                src="/img/logo.svg"
+                alt="Alova"
+                className="w-7 h-7 rounded-lg"
+              />
               <span className="text-xl font-extrabold tracking-tight text-white">
-                alova<span className="text-brand-cyan">.js</span>
+                Alova
               </span>
             </div>
-
-            {brand?.description ? (
-              <p className="text-zinc-500 text-xs leading-relaxed max-w-sm mb-6 font-normal">
-                {brand.description}
-              </p>
-            ) : null}
 
             {brand?.note ? (
               <div className="flex items-center gap-2 text-zinc-400 font-mono text-[11px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
-                <span>{brand.note}</span>
+                <span>
+                  {translate({
+                    id: 'theme.footer.brand.note',
+                    message: brand.note
+                  })}
+                </span>
               </div>
             ) : null}
           </div>
@@ -125,15 +88,22 @@ export default function Footer() {
           {columns.map((column, columnIndex) => (
             <div key={column.title ?? columnIndex}>
               <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-5 font-semibold">
-                {column.title}
+                {translate({
+                  id: `theme.footer.links.col${columnIndex}.title`,
+                  message: column.title ?? ''
+                })}
               </span>
               <div className="flex flex-col gap-3 text-xs text-zinc-500">
                 {column.items.map((item, itemIndex) => (
-                  <FooterLink
+                  <Link
                     key={item.label ?? item.href ?? itemIndex}
-                    item={item}
                     className="hover:text-white transition-colors"
-                  />
+                    {...(item.to ? { to: item.to } : { href: item.href })}>
+                    {translate({
+                      id: `theme.footer.links.col${columnIndex}.item${itemIndex}.label`,
+                      message: item.label ?? ''
+                    })}
+                  </Link>
                 ))}
               </div>
             </div>
@@ -141,19 +111,15 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-600 text-xs font-mono">
-          {copyright ? <div dangerouslySetInnerHTML={{ __html: copyright }} /> : <div />}
-
-          {legalLinks?.length ? (
-            <div className="flex items-center gap-6">
-              {legalLinks.map((item, index) => (
-                <FooterLink
-                  key={item.label ?? index}
-                  item={item}
-                  className="hover:text-zinc-400 transition-colors"
-                />
-              ))}
-            </div>
-          ) : null}
+          {copyright ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: translate({ id: 'theme.footer.copyright', message: copyright })
+              }}
+            />
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     </footer>

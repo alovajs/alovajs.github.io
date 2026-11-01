@@ -2,22 +2,25 @@ import Github from '@site/static/img/github.svg';
 import { CoreDevs, DeveloperComments, Project } from '@site/src/common/constants';
 import { MaterialIcon, SectionTagline } from './ui';
 import { metrics } from './content';
+import { useGitHubStars, formatStarsPlus } from './useGitHubStars';
 import { translate } from '@docusaurus/Translate';
 
 /** S6 · 信任与数字：指标 / 社区项目与评价 / 团队 */
 export default function Trust() {
+  const gitHubStars = useGitHubStars();
+
   return (
     <section className="py-32 md:py-40 bg-sunken dark:bg-white/[0.02] border-t border-hairline">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionTagline className="text-brand-blue mb-6">
-          {translate({ id: 'homepage.trust.sectionTitle', message: '06 · TRUSTED & HONEST' })}
+          {translate({ id: 'homepage.trust.sectionTitle', message: '06 · TRUSTED & OPEN SOURCE' })}
         </SectionTagline>
 
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-ink-1 tracking-[-0.035em]">
             {translate({
               id: 'homepage.trust.title',
-              message: 'Built for real apps, and honest about when not to use it.'
+              message: 'Proven across a large number of real-world applications.'
             })}
           </h2>
           <p className="text-ink-3 text-base md:text-lg mt-4 font-normal">
@@ -35,7 +38,11 @@ export default function Trust() {
               key={metric.label}
               className="p-8 rounded-2xl bg-surface border border-hairline shadow-sm">
               <span className="text-4xl md:text-5xl font-extrabold text-ink-1 block mb-2 tracking-tight">
-                {metric.value}
+                {metric.dynamicStars
+                  ? gitHubStars
+                    ? formatStarsPlus(gitHubStars)
+                    : metric.value
+                  : metric.value}
               </span>
               <span className="text-xs font-bold text-ink-2 tracking-wide block">
                 {metric.label}

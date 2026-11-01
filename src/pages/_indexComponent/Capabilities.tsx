@@ -89,19 +89,19 @@ export default function Capabilities() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
         <SectionTagline className="text-brand-blue mb-6">
-          {translate({ id: 'homepage.capability.section', message: 'DEFAULT-ON CAPABILITIES · 12' })}
+          {translate({ id: 'homepage.capability.section', message: 'DEFAULT-ON CAPABILITIES' })}
         </SectionTagline>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-ink-1 tracking-[-0.035em]">
-              {translate({ id: 'homepage.capability.title', message: 'On by default, and then some.' })}
+              {translate({ id: 'homepage.capability.title', message: 'A request strategy goes beyond just firing a request.' })}
             </h2>
             <p className="text-ink-3 text-base md:text-lg mt-4 max-w-2xl font-normal leading-relaxed">
               {translate({
                 id: 'homepage.capability.description',
                 message:
-                  'Every capability ships enabled by default. No plugins to wire up, no heavy config, just unified primitives for modern frontends.'
+                  'alova’s request strategies provide a complete, beyond-expectation request feature set by default — no need to spell it out in your prompts.'
               })}
             </p>
           </div>

@@ -82,13 +82,16 @@ const { loading, data, page, pageSize, pageCount, total } =
       id: 'homepage.requestStrategy.Retry Request.description'
     }),
     className: 'col-span-4 row-span-3',
-    snippet: `const res = await retry(alova.Post('/api/order'), {
-  retry: 3,
-  backoff: {
-    delay: 1000,
-    multiplier: 2
+    snippet: `const res = await retry(
+  alova.Post('/api/order'),
+  {
+    retry: 3,
+    backoff: {
+      delay: 1000,
+      multiplier: 2
+    }
   }
-})`
+);`
   },
   {
     type: 'Server',
@@ -166,6 +169,22 @@ const alovaInstance = createAlova({
         'Manage form state for you. Any kind of form comes together quickly.',
       id: 'homepage.requestStrategy.Form Submission.description'
     }),
+    snippet: `const {
+  loading: submitting,
+  form,
+  send: submit,
+  onSuccess,
+  onError,
+  onComplete
+} = useForm(
+  formData =>
+    alova.Post('/api/submit', formData),
+  {
+    initialForm: { name: '', cls: '1' }
+  }
+);
+
+const handleSubmit = () => submit();`,
     className: 'col-span-4 row-span-1'
   },
   {
@@ -180,6 +199,16 @@ const alovaInstance = createAlova({
         'Refresh data automatically on browser events. The UI always shows the latest.',
       id: 'homepage.requestStrategy.Auto refresh data.description'
     }),
+    snippet: `const { loading, data, error } = useAutoRequest(
+  () => alova.Get('/api/data'),
+  {
+    enableVisibility: true,
+    enableFocus: true,
+    enableNetwork: true,
+    throttle: 1000,
+    pollingTime: 2000
+  }
+);`,
     className: 'col-span-4 row-span-1'
   },
   {
@@ -268,10 +297,10 @@ export const DeveloperComments: UserDescProps[] = [
     children: (
       <p>
         <Translate id="homepage.projects.Scott Hu.comment">
-          Request libs like fetch and axios make requests very simple, react-query and swr
-          further reduce the template code of requests. But what alova aims to do is to provide
-          extreme API consumption efficiency, eliminating almost all of your request work and
-          achieving more efficient Client-Server data interaction.
+          Request libraries like fetch and axios make requests very simple, and react-query and
+          swr further reduce the boilerplate code of requests. But alova aims to provide extreme
+          API consumption efficiency, achieve more efficient data interaction, and reduce server
+          pressure.
         </Translate>
       </p>
     )
