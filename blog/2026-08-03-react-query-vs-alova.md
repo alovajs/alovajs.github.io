@@ -2,7 +2,7 @@
 slug: /compare/react-query
 title: "react-query or alova: does the request leave the browser?"
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [react-query, comparison, alova]
 date: 2026-08-03
 description: A straight comparison of react-query and alova, including where alova is the weaker pick. react-query owns the React browser cache; alova runs the same request logic on mobile and on a Node BFF.
@@ -12,6 +12,8 @@ keywords: [react-query vs alova, alova react-query comparison, alova server side
 # react-query or alova: does the request leave the browser?
 
 Choosing a data-fetching library usually starts with "which cache is better". That question skips the part that actually bites later: where do your requests run?
+
+<!-- truncate -->
 
 If every call lives in the browser and you're on React, react-query is a mature, well-trodden pick. But the moment you need the same request logic on a phone that isn't React Native, or inside a BFF that calls downstream services, the map changes. alova puts those cases on the same API. This post is a straight comparison, including where alova is the weaker choice.
 

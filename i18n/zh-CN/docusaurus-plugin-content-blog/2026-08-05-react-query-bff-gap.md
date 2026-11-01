@@ -2,7 +2,7 @@
 slug: /react-query-bff-gap
 title: react-query 管不到 BFF？alova/server 补上重试限流
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [react-query, bff, alova-server, 重试, 限流]
 date: 2026-08-05
 description: react-query 的重试和缓存都在浏览器里。你的 BFF 调下游服务的出站调用跑在服务端，react-query 够不到。这篇划清那条线，并给出两侧代码。
@@ -12,6 +12,8 @@ keywords: [react-query bff, alova server 重试, alova server 限流, bff 重试
 # react-query 管不到 BFF？alova/server 补上重试限流
 
 你用 react-query 搭了前端，它的缓存和重试让浏览器那边很顺。后来你起了个 Node BFF 调三个下游服务，这些调用的重试和限流都落在服务端，而 react-query 在那儿根本不跑。这篇划清 react-query 的工作止步于哪、alova/server 从哪接手，并给出两侧的代码。
+
+<!-- truncate -->
 
 ## 那条线
 

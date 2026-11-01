@@ -2,7 +2,7 @@
 slug: /compare/axios
 title: axios 和 alova 一起用，谁管什么
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [axios, 对比]
 date: 2026-07-30
 description: axios 和 alova 不是竞争关系。axios 负责发请求，alova 负责怎么请求——分页、缓存、重试；axios 可以直接作为 alova 的请求适配器继续工作。
@@ -11,6 +11,8 @@ description: axios 和 alova 不是竞争关系。axios 负责发请求，alova 
 # axios 和 alova 一起用，谁管什么
 
 **一句话：它们是分层关系，不是二选一。** axios 是 HTTP 客户端，负责把请求发出去；alova 是请求策略层，负责「怎么请求」——分页、缓存、重试、去重、token 刷新。alova 可以把 axios 用作请求适配器（`@alova/adapter-axios`），所以选 alova 从来不意味着扔掉 axios。
+
+<!-- truncate -->
 
 alova 的定位：一套请求 API，跑在 Web、App（uni-app/Taro/小程序）、服务端（BFF）。
 

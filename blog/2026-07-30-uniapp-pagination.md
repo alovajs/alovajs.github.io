@@ -2,7 +2,7 @@
 slug: /blog/uniapp-pagination
 title: "uni-app pagination with one hook: race conditions, duplicate requests, loading state"
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [uniapp, pagination, usePagination]
 date: 2026-07-30
 description: The race conditions, duplicate requests, and missing edge cases of hand-written uni-app pagination — and how alova's usePagination solves them all. With runnable code and a live demo.
@@ -12,6 +12,8 @@ keywords: [uniapp request pagination, uniapp pagination, uni-app load more, uni-
 # uni-app pagination with one hook: race conditions, duplicate requests, loading state
 
 You've probably written pagination like this in a uni-app project — bump the page inside `onReachBottom`, fire a request, concatenate the array:
+
+<!-- truncate -->
 
 ```html
 <script setup>

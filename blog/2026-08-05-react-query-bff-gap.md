@@ -2,7 +2,7 @@
 slug: /react-query-bff-gap
 title: "react-query stops at the browser. alova/server handles your BFF."
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [react-query, bff, alova-server, retry, rate-limit]
 date: 2026-08-05
 description: react-query retries and caches in the browser. Your BFF's outbound calls to downstream services run on the server, where react-query doesn't reach. Here is the exact line, with code for both sides.
@@ -12,6 +12,8 @@ keywords: [react-query bff, alova server retry, alova server rate limit, bff ret
 # react-query stops at the browser. alova/server handles your BFF.
 
 You built the frontend on react-query. Its cache and retry keep the browser happy. Then you stood up a Node BFF that calls three downstream services, and the retries and throttling for those calls live on the server. react-query never runs there. This post shows the exact line where react-query's job ends and where alova/server picks up, with the code for each side.
+
+<!-- truncate -->
 
 ## The line
 
