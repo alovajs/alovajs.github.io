@@ -2,7 +2,7 @@
 slug: /blog/uniapp-pagination
 title: uni-app 分页列表：用一个 hook 解决竞态、重复请求和加载状态
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [uniapp, 分页, usePagination]
 date: 2026-07-30
 description: 手写 uni-app 分页加载常见的竞态、重复请求、边界判断问题，以及如何用 alova 的 usePagination 一次解决。含完整可运行代码与在线示例。
@@ -12,6 +12,8 @@ keywords: [uniapp request pagination, uniapp 分页加载, uni-app 下拉加载,
 # uni-app 分页列表：用一个 hook 解决竞态、重复请求和加载状态
 
 你大概也在 uni-app 项目里写过这样的分页加载——`onReachBottom` 里加一页、发请求、拼数组：
+
+<!-- truncate -->
 
 ```html
 <script setup>

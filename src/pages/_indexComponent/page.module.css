@@ -1,0 +1,174 @@
+/**
+ * 落地页视觉原语。
+ *
+ * 约定：
+ * 1. 颜色一律引用 src/css/tokens.scss 里的语义变量，此文件不出现裸十六进制品牌色；
+ * 2. 只放 Tailwind 无法表达的动效（漂浮、进度条）、图标字体与少量复合滤镜；
+ * 3. 其余排版、间距、边框全部由页面内的 Tailwind 工具类承担。
+ */
+
+.page {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 从 font-mono 容器里还原正文（对应 mock 中的 font-sans） */
+.sans {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ---- Material Symbols Outlined：字体由页面 <Head> 注入 ---- */
+.icon {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.iconFilled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ---- Hero：极光图层缓慢呼吸 ---- */
+.aurora {
+  animation: auroraFloat 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/**
+ * 极光本体：code.html 原图是 googleusercontent 的临时链接（已失效），
+ * 这里用多层径向渐变 + 高斯模糊复刻同一层柔和流体色带，颜色取自 tokens.scss。
+ */
+.auroraArt {
+  width: 1400px;
+  height: 620px;
+  max-width: none;
+  background:
+    radial-gradient(
+      42% 58% at 28% 46%,
+      rgba(var(--brand-blue-rgb), 0.5) 0%,
+      rgba(var(--brand-blue-rgb), 0) 68%
+    ),
+    radial-gradient(
+      36% 50% at 46% 34%,
+      rgba(var(--stage-execution-rgb), 0.45) 0%,
+      rgba(var(--stage-execution-rgb), 0) 70%
+    ),
+    radial-gradient(
+      40% 52% at 62% 58%,
+      rgba(var(--brand-violet-rgb), 0.28) 0%,
+      rgba(var(--brand-violet-rgb), 0) 70%
+    ),
+    radial-gradient(
+      34% 44% at 74% 38%,
+      rgba(var(--stage-execution-rgb), 0.35) 0%,
+      rgba(var(--stage-execution-rgb), 0) 72%
+    ),
+    radial-gradient(
+      28% 36% at 40% 70%,
+      rgba(var(--brand-pink-rgb), 0.16) 0%,
+      rgba(var(--brand-pink-rgb), 0) 72%
+    );
+  filter: blur(48px) saturate(1.15);
+}
+
+@keyframes auroraFloat {
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, 2%);
+  }
+}
+
+/* ---- RSM：右上角模糊云缓慢呼吸（与 S1 极光同语言） ---- */
+.cloud {
+  animation: cloudFloat 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/**
+ * 模糊云本体：与 S1 auroraArt 同一套多层径向渐变 + 高斯模糊的画法，
+ * 配色沿用 RSM 冷色系（蓝 / 青 / 紫 / 微粉），在纯黑画布上做氛围光。
+ */
+.cloudArt {
+  width: 860px;
+  height: 560px;
+  max-width: none;
+  background:
+    radial-gradient(
+      40% 52% at 30% 42%,
+      rgba(var(--brand-blue-rgb), 0.55) 0%,
+      rgba(var(--brand-blue-rgb), 0) 70%
+    ),
+    radial-gradient(
+      38% 46% at 56% 30%,
+      rgba(var(--stage-execution-rgb), 0.5) 0%,
+      rgba(var(--stage-execution-rgb), 0) 72%
+    ),
+    radial-gradient(
+      36% 44% at 68% 58%,
+      rgba(var(--brand-violet-rgb), 0.42) 0%,
+      rgba(var(--brand-violet-rgb), 0) 72%
+    ),
+    radial-gradient(
+      26% 32% at 44% 66%,
+      rgba(var(--brand-pink-rgb), 0.22) 0%,
+      rgba(var(--brand-pink-rgb), 0) 72%
+    ),
+    radial-gradient(
+      30% 38% at 78% 40%,
+      rgba(var(--brand-blue-rgb), 0.35) 0%,
+      rgba(var(--brand-blue-rgb), 0) 70%
+    );
+  filter: blur(56px) saturate(1.15);
+}
+
+@keyframes cloudFloat {
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate(1.5%, -2%);
+  }
+}
+
+/* ---- Hero 双态面板：自动播放进度条（4.8s 与轮播节奏一致） ---- */
+.tabProgress {
+  animation: tabProgressBar 4.8s linear infinite;
+}
+
+@keyframes tabProgressBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* ---- 暗色卡片悬停光边 ---- */
+.glowCyan:hover {
+  box-shadow: 0 0 30px -5px rgba(var(--stage-execution-rgb), 0.15);
+}
+
+.glowBlue:hover {
+  box-shadow: 0 0 30px -5px rgba(var(--brand-blue-rgb), 0.15);
+}
+
+.glowViolet:hover {
+  box-shadow: 0 0 30px -5px rgb(139 92 246 / 0.15);
+}

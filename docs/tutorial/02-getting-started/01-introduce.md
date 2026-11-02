@@ -15,66 +15,30 @@ import SponsorStrip from '@site/src/components/SponsorStrip';
 
 ## What is alova?
 
-alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is the **request strategy layer** for JavaScript. Instead of hand-writing pagination, forms, uploads and retries over and over, you reach for 20+ ready-made request strategies that cut your request code by up to 70%. It works seamlessly with your favorite HTTP clients and UI frameworks, so you can focus on business logic on both the client and the server.
+alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a **fullstack request strategy library**. It treats a request as a scenario with a lifecycle — not a one-time instantaneous call — and organizes the request logic you've hand-written countless times, such as pagination, forms, uploads, and authentication, into a complete whole we call **request strategies**. In the AI Coding era, what sets applications apart is user experience; with **request strategies**, you get complete request functionality beyond your expectations — no need to spell it out in your prompts.
 
-You don't have to throw away the axios or fetch you already know. alova builds right on top of the request library you're using and takes over the repetitive request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and ship everywhere.
+You don't have to throw away the axios or fetch you already know: alova builds right on top of your existing request library and takes over the request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and use it everywhere.
 
-Learn about our story in [why built alova](/about/faqs), and explore how we differ in our detailed [comparison with other request libraries](/about/comparison).
+You can read the backstory in [Why alova was created](/about/faqs), and learn how alova differs in [Comparison with other request libraries](/about/comparison).
 
-## Features
+### Why use alova
 
-Rather than listing what alova *is*, here is what it *does for you* — each scenario mapped to the concrete gain:
+#### 1. What you get is a complete scenario, not just a working request
 
-| Scenario you're tired of | What alova gives you |
-| --- | --- |
-| Hand-writing pagination, forms, uploads, SSE state | `usePagination` / `useForm` / `useUploader` / `useSSE` — up to 70% less boilerplate |
-| Server-side rate limiting & retry (incl. distributed) | `alova/server` — capabilities React Query / SWR simply don't cover |
-| Rebuilding the same logic for every framework | One API set across React / Vue / Svelte / Solid / mini-programs |
-| Manual cache invalidation | Multi-level cache (L1/L2) + declarative auto-invalidation via `hitSource` |
-| Copy-pasting API info between docs and editor | [worma](https://worma.js.org) — API hints and docs right inside your editor |
+In the AI Coding era, what sets applications apart is user experience — not that AI isn't capable enough, but that your prompt is unlikely to spell out the following request features, because no one has ever handed you a checklist for how to manage your requests. For example:
 
-And of course: easy to use ([watch the 5-min video](/video-tutorial)), full compatibility with your favorite technology stack, request sharing, response cache, and end-to-end type safety.
+- **Input debounce**: without it, fast typing fires requests back to back
+- **Cache hits for identical conditions**: without it, the same endpoint is called over and over
+- **Discarding stale responses**: without it, an older response may overwrite a newer one
+- **Automatic retry on failure**: without it, a single failed request leaves the page blank
+- **Next-page preloading**: without it, users stare at the loading state on every page turn
+- ...
 
-<SupportList showStatus></SupportList>
+RSM is exactly that checklist — alova maps it onto the configuration options of the scenario hooks.
 
-## When should you use alova?
+#### 2. No need to review AI-written code
 
-alova is honest about where it shines and where a simpler tool is enough:
-
-| Your scenario | Recommendation |
-| --- | --- |
-| Simple CRUD with caching | React Query / SWR is perfectly fine |
-| Complex admin panels / forms / pagination / uploads | ✅ alova is a clear step ahead |
-| Cross-platform (Web + mini-program / uni-app / Taro) | ✅ one API set for all of them |
-| Server-side request governance (rate limit / retry / distributed) | ✅ alova is effectively the only option |
-| OpenAPI → type-safe code + AI-friendly API knowledge | ✅ pair it with [worma](https://worma.js.org) (works out of the box with alova) |
-
-## worma: write one API spec, and let it do the rest
-
-You know the drill: the backend ships an API, and you're stuck bouncing between the API docs and your editor — copying parameters, hand-writing call code. worma is built to end that.
-
-Point it at a single OpenAPI spec and it generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can actually read** — so your agent stops guessing and finds the right endpoint directly.
-
-```mermaid
-flowchart LR
-R1[OpenAPI spec] --> S1[worma] --> W1[API call function]
-S1[worma] --> W2[Complete API types]
-S1[worma] --> W3[Complete API docs]
-```
-
-In the old flow you'd open the intermediate docs, look up the parameters, then go back to the editor and hand-write the code. worma removes that middle step: right inside your editor you find the endpoint you need, read its full docs, and fill in parameters against the parameter table — making frontend-backend collaboration feel like passing through a wormhole.
-
-```mermaid
-flowchart LR
-A[Server ships API] --> B[<s>Open the intermediate API docs</s>] --> C[Write the API call code]
-
-class B redNode;
-classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
-```
-
-And if you're already using alova, it gets even easier — worma works out of the box. Install it and you get those API hints, hover docs and one-click code insertion without any extra wiring.
-
-> Learn more at [worma.js.org](https://worma.js.org), or see how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
+Request-layer code takes up a large share of your pages, and AI-written code always needs another round of review. With alova, the request layer is reduced to configuration you only need to verify — saving you time while improving stability.
 
 ## Live Demo
 
@@ -323,7 +287,7 @@ See [Seamless Data Interaction](/tutorial/client/strategy/seamless-data-interact
 <details>
 <summary>Cross-component request triggering middleware</summary>
 
-Break free of component hierarchy — trigger any request action from any component.
+Break free from component hierarchy — trigger any request action from any component.
 
 <Tabs className="file-tabs">
 <TabItem value="1" label="ComponentA">
@@ -391,7 +355,7 @@ See [Verification code strategy](/tutorial/client/strategy/use-captcha) for deta
 
 </details>
 
-alova ships 15+ client request strategies built on the [RSM](/about/RSM) specification. See the full [Request Strategy List](/tutorial/client/strategy).
+See the [Request Strategy List](/tutorial/client/strategy) for all client request strategies.
 
 ### Server Request Strategy
 
@@ -444,15 +408,15 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 </details>
 
+## When should you use alova?
+
+alova is compatible with the following tech stacks; the grayed-out parts will be supported gradually in the future. If your frontend app includes authentication, pagination, forms, uploads or captcha sending, or you need to reuse one API set across Web, React Native and mini-programs, or you need request governance such as rate limiting and BFF on Node.js or Bun servers, alova handles it all perfectly.
+
+<SupportList showStatus></SupportList>
+
 ## Write alova with an AI Agent (Agent Skills)
 
 Developing with an AI coding assistant? Install alova's [Agent Skills](/tutorial/getting-started/agent-skills) so your agent writes code following official best practices.
-
-## Building Client-Server Interaction Layer
-
-With the various features of alova, you can also build a Client-Server Interaction Layer (CSIL) for your project. The CSIL distributes response data to various components by merging identical requests. Additionally, it manages response data and the reactive states created by useHooks. You can access and modify the data in the CSIL from any UI component, as well as refresh it.
-
-> To learn how to build a CS Interaction Layer, refer to [Building the Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
 
 ## Migration Guide
 

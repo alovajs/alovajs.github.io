@@ -2,7 +2,7 @@
 slug: /compare/react-query
 title: react-query 还是 alova：看请求跑不跑出浏览器
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [react-query, 对比, alova]
 date: 2026-08-03
 description: 一篇诚实的 react-query 与 alova 对比，包括 alova 更弱的地方。react-query 守着 React 浏览器侧缓存；alova 把同一套请求逻辑跑在移动端和 Node BFF 上。
@@ -12,6 +12,8 @@ keywords: [react-query 对比 alova, alova react-query 对比, alova 服务端, 
 # react-query 还是 alova：看请求跑不跑出浏览器
 
 选数据请求库，通常开头都是「谁的缓存更好」。这个问题跳过了一个事后才咬人的点：你的请求到底跑在哪？
+
+<!-- truncate -->
 
 如果你的请求全在浏览器里、而且用 React，react-query 是成熟、踩坑少的选择。可一旦你需要同一套请求逻辑跑在「不是 React Native 的手机端」，或者跑在一个调下游服务的 BFF 里，地图就变了。alova 把这些情况收到了同一套 API 下。这篇是直来直去的对比，也包括 alova 更弱的地方。
 

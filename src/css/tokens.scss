@@ -1,0 +1,143 @@
+/**
+ * 设计基座 —— alova Spectrum Editorial
+ *
+ * 原则：
+ * 1. 装饰只读语义变量，绝不写死颜色；亮暗差异集中在 canvas / ink / orb-alpha 三组。
+ * 2. 品牌四色与四阶段色在两种模式下都满饱和，只改不透明度，浅色清透、暗色发光。
+ * 3. `--c-*` 是唯一取值源；`--rsm-*` 是给既有组件用的别名，全部由 `--c-*` 派生。
+ */
+
+:root {
+  /* ---- 画布 ---- */
+  --c-canvas: #f6f7fb;
+  --c-surface: #ffffff;
+  --c-sunken: #eef1f8;
+  --c-lavender: #efeffc;
+
+  /* ---- 墨色阶 ---- */
+  --c-ink-1: #0b1220;
+  --c-ink-2: #3b4a60;
+  --c-ink-3: #6b7a90;
+  --c-ink-4: #9aa6b6;
+
+  /* ---- 发丝线 / 网格 / 网点 ---- */
+  --c-hairline: rgba(11, 18, 32, 0.08);
+  --c-hairline-strong: rgba(11, 18, 32, 0.16);
+  --c-dot: rgba(11, 18, 32, 0.07);
+  --c-grid: rgba(11, 18, 32, 0.045);
+
+  /* ---- 光斑强度：亮暗只切这一个 ---- */
+  --orb-alpha: 0.18;
+
+  /* ---- 玻璃 ---- */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-stroke: rgba(255, 255, 255, 0.9);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --glass-blur: 20px;
+
+  /* ---- 品牌信号色（两模式都满饱和） ---- */
+  --brand-blue: #0a6cff;
+  --brand-violet: #711eff;
+  --brand-pink: #ff41c6;
+  --brand-orange: #ff772e;
+  --brand-blue-rgb: 10, 108, 255;
+  --brand-violet-rgb: 113, 30, 255;
+  --brand-pink-rgb: 255, 65, 198;
+  --brand-orange-rgb: 255, 119, 46;
+
+  /* ---- 请求四阶段光谱 ---- */
+  --stage-trigger: #ff772e;
+  --stage-decision: #711eff;
+  --stage-execution: #2c92ff;
+  --stage-apply: #ff41c6;
+  --stage-execution-rgb: 44, 146, 255;
+
+  /* ---- 圆角 ---- */
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* ---- 投影 ---- */
+  --shadow-soft: 0 2px 8px -2px rgba(11, 18, 32, 0.05), 0 24px 48px -32px rgba(11, 18, 32, 0.18);
+  --shadow-lift: 0 8px 20px -8px rgba(10, 108, 255, 0.2), 0 40px 80px -48px rgba(113, 30, 255, 0.35);
+
+  /* ---- 缓动 ---- */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* ---- 装饰尺寸 ---- */
+  --dot-pitch: 24px;
+  --grid-pitch: 64px;
+}
+
+[data-theme='dark'] {
+  --c-canvas: #050a16;
+  --c-surface: #0a1224;
+  --c-sunken: #070e1d;
+  --c-lavender: #141033;
+
+  --c-ink-1: #eaf1fc;
+  --c-ink-2: #a9b7ce;
+  --c-ink-3: #6e7e97;
+  --c-ink-4: #47566d;
+
+  --c-hairline: rgba(255, 255, 255, 0.08);
+  --c-hairline-strong: rgba(255, 255, 255, 0.16);
+  --c-dot: rgba(255, 255, 255, 0.1);
+  --c-grid: rgba(255, 255, 255, 0.05);
+
+  --orb-alpha: 0.3;
+
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-stroke: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --glass-blur: 20px;
+
+  --shadow-soft: 0 2px 8px -2px rgba(0, 0, 0, 0.5), 0 24px 48px -32px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 8px 24px -10px rgba(10, 108, 255, 0.35), 0 40px 90px -50px rgba(113, 30, 255, 0.5);
+}
+
+/* ---- 光谱：唯一的品牌装饰语法 ---- */
+:root {
+  --spectrum-gradient: linear-gradient(
+    100deg,
+    var(--stage-trigger) 0%,
+    var(--stage-decision) 34%,
+    var(--stage-execution) 67%,
+    var(--stage-apply) 100%
+  );
+  --spectrum-conic: conic-gradient(
+    from 210deg,
+    var(--stage-trigger),
+    var(--stage-decision),
+    var(--stage-execution),
+    var(--stage-apply),
+    var(--stage-trigger)
+  );
+}
+
+/* ---- 既有组件别名：全部由 --c-* 派生，换主题只改上面 ---- */
+:root {
+  --rsm-stage-gradient: var(--spectrum-gradient);
+  --rsm-grid-line: var(--c-grid);
+  --rsm-grid-size: var(--grid-pitch);
+  --rsm-grain-opacity: 0.26;
+  --rsm-grain-blend: soft-light;
+  --rsm-panel-bg: var(--glass-bg);
+  --rsm-panel-line: #e2eef7;
+  --rsm-panel-shadow: var(--shadow-soft);
+  --rsm-hero-bg: #f8fbff;
+  --rsm-hero-scrim: rgba(248, 251, 255, 0.9);
+}
+
+[data-theme='dark'] {
+  --rsm-grid-line: rgba(255, 255, 255, 0.05);
+  --rsm-grain-opacity: 0.3;
+  --rsm-grain-blend: overlay;
+  --rsm-panel-line: #222e49;
+  --rsm-panel-shadow: var(--shadow-soft);
+  --rsm-hero-bg: #050a16;
+  --rsm-hero-scrim: rgba(5, 10, 22, 0.82);
+}

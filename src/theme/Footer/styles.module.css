@@ -1,0 +1,7 @@
+/**
+ * 页脚字体与 code.html 对齐：落地页已加载 Plus Jakarta Sans，
+ * 其余页面未加载该字体时自然回退到站点正文字体。
+ */
+.footer {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}

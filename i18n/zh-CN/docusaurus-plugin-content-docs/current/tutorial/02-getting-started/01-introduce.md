@@ -15,68 +15,30 @@ import SponsorStrip from '@site/src/components/SponsorStrip';
 
 ## alova 是什么？
 
-alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />）是 JavaScript 的**请求策略层**。分页、表单、上传、重试这些逻辑你已经手写过无数遍，现在只需直接使用 20+ 个开箱即用的请求策略，最多可减少 70% 的请求代码。它完美兼容你最喜欢的 HTTP client 和 UI 框架，让你在客户端和服务端都能专心写业务逻辑。
+alova（读作`/əˈləʊva/`<AudioPlayer src={tts} />）是一个 **全栈请求策略库**，它将请求视为一个有生命周期的场景，而不是一次瞬时的调用，并把分页、表单、上传、权限管理等客户端请求逻辑，以及重试、验证服务、BFF等服务端逻辑完整地组织起来，我们称之为 **请求策略**，通过它你可以获得超出预期的完整请求功能，无需在提示词里额外说明。
 
-你不必扔掉已经用惯的 axios 或 fetch。alova 直接架在你现有的请求库之上，接管那些你每次都要重写一遍的请求逻辑。同一套 API 横跨 React、Vue、Svelte、Solid、小程序与服务端，一次学会，处处都能用。
+你不必扔掉已经用惯的 axios 或 fetch，alova 直接架在你现有的请求库之上，接管那些你每次都要重写一遍的请求逻辑。同一套 API 横跨 React、Vue、Svelte、Solid、小程序与服务端，一次学会，处处都能用。
 
-你可以在 [为什么创造 alova](/about/faqs) 中了解背景故事，我们也提供了一份详细的 [对比与其他请求库](/about/comparison) 了解 alova 的差异。
+你可以在 [为什么创造 alova](/about/faqs) 中了解背景故事，在 [与其他请求库对比](/about/comparison) 中了解 alova 的差异。
 
-## 特性
+### 为什么要使用 alova
 
-与其罗列 alova“是什么”，不如看它“替你解决什么”——每个场景都对应到具体收益：
+#### 一、交付的是完整的场景，不是能跑的请求
 
-| 你已经写腻的场景 | alova 给你的 |
-| --- | --- |
-| 反复手写分页、表单、上传、SSE 状态 | `usePagination` / `useForm` / `useUploader` / `useSSE`——最多减少 70% 样板 |
-| 服务端限流与重试（含分布式） | `alova/server`——React Query / SWR 完全不覆盖的能力 |
-| 每个框架都要重写一遍相同逻辑 | 同一套 API 横跨 React / Vue / Svelte / Solid / 小程序 |
-| 手动维护缓存失效 | 多级缓存（L1/L2）+ 基于 `hitSource` 的声明式自动失效 |
-| 在文档与编辑器之间复制粘贴 API 信息 | [worma](https://worma.js.org)——接口提示与文档直接出现在编辑器里 |
+AI Coding时代，拉开差距的是应用的用户体验，不是 AI 能力不够，而是你的 prompt 里大概率不会出现以下请求功能的说明，因为从来没人给过你一张清单告诉你应该如何管理你的请求，例如：
 
-当然还有：简单易用（[观看 5 分钟视频](/video-tutorial)）、完美兼容你最喜欢的技术栈、请求共享、响应缓存以及端到端的类型安全。
+- **输入防抖**：不写，快速输入就连发请求
+- **相同条件命中缓存**：不写，同一个接口反复打
+- **过期响应丢弃**：不写，旧响应可能覆盖新结果
+- **失败自动重试**：不写，一失败页面就白屏
+- **下一页预取**：不写，用户每次翻页都盯着 loading
+- ...
 
-alova 兼容以下技术栈，灰色部分将在未来逐渐支持。
+而 RSM 就是那张清单，alova 把这份清单落到了场景 hooks 的配置项里。
 
-<SupportList showStatus></SupportList>
+#### 二、无需审核ai写的代码
 
-## 什么时候该用 alova？
-
-alova 会坦诚地告诉你它在哪里出彩，以及在哪里更简单的工具就已足够：
-
-| 你的场景 | 建议 |
-| --- | --- |
-| 简单 CRUD + 缓存 | React Query / SWR 就够了 |
-| 复杂中后台 / 表单 / 分页 / 上传 | ✅ alova 明显领先一档 |
-| 跨端（Web + 小程序 / uni-app / Taro） | ✅ 同一套 API 全通吃 |
-| 服务端请求治理（限流 / 重试 / 分布式） | ✅ alova 几乎是唯一选择 |
-| OpenAPI → 类型安全代码 + AI 友好的接口知识 | ✅ 搭配 [worma](https://worma.js.org)（对 alova 开箱即用） |
-
-## worma：写一份接口规范，剩下的交给它
-
-你一定经历过：后端交付了接口，你却要在中间文档和编辑器之间反复横跳，复制粘贴参数、手写调用代码。worma 要解决的正是这件事。
-
-它读取你的一份 OpenAPI 规范，一次性帮你产出：类型安全的调用代码、每个接口的 TypeScript 类型、完整的接口文档，以及**能让 AI 编码助手直接读懂的接口知识**——你的 Agent 不再靠猜，而是能直接找到需要的接口。
-
-```mermaid
-flowchart LR
-R1[OpenAPI 规范] --> S1[worma] --> W1[API 调用函数]
-S1[worma] --> W2[完整的接口类型]
-S1[worma] --> W3[完整的接口文档]
-```
-
-过去，你拿到接口后要打开中间文档、查参数、再回到编辑器手写代码；现在 worma 帮你消掉了中间的文档环节。在编辑器里你就能直接找到需要的接口、查看它的完整文档、照着参数表快速填参，前后端协作像穿过一条虫洞。
-
-```mermaid
-flowchart LR
-  A[服务端部署 API] --> B[<s>查看中间的 API 文档</s>] --> C[编写 API 调用代码]
-
-  class B redNode;
-  classDef redNode fill:transparent,stroke:#ee440050,color:#ee4400,stroke-width:2px;
-```
-
-如果你用的是 alova，这件事更简单：worma 对它开箱即用。装上之后，你就能在编辑器里直接拿到接口提示、悬浮查看文档、一键插入调用代码，不用再做任何额外接入。
-
-> 前往 [worma.js.org](https://worma.js.org) 了解更多，或在 [集成 OpenAPI](/tutorial/getting-started/openapi-integration) 指南中查看如何接入。
+页面中请求层代码会占用很大一部分，ai写的代码总是需要我们重新review一遍，使用alova后请求层只需要核的配置即可，为你节省了时间的同时还提升稳定性。
 
 ## 在线体验
 
@@ -446,15 +408,15 @@ const orderRes = await limit(alova.Get('/api/order'));
 
 </details>
 
+## 什么时候该用 alova
+
+alova 兼容以下技术栈，灰色部分将在未来逐渐支持。如果你的前端应用中包含权限验证、分页、表单、上传、验证码发送等功能，或需要在 Web、React-Native、小程序中跨端复用同一套 API，或需要在Nodejs、Bun服务端做限流、BFF等请求治理，alova 都可以完美胜任。
+
+<SupportList showStatus></SupportList>
+
 ## 用 AI Agent 写 alova（Agent Skills）
 
 用 AI 编码助手开发？安装 alova 的 [Agent Skills](/tutorial/getting-started/agent-skills)，让 Agent 按官方最佳实践帮你写代码。
-
-## 构建 Client-Server 交互层
-
-通过 alova 的各种特性，你还可以为你的项目构建 Client-Server 交互层（CS 交互层），CS 交互层将会以合并相同请求的方式分发响应数据到各个组件中，此外，CS 交互层还管理响应数据和 useHooks 所创建的响应式状态，你可以在任意的 UI 组件中访问和修改 CS 交互层的数据，以及刷新 CS 交互层数据。
-
-> 如果你想要构建 CS 交互层，请参考[构建 Client-Server 交互层](/tutorial/project/best-practice/csil)
 
 ## 迁移指南
 

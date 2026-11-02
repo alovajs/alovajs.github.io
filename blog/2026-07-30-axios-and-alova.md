@@ -2,7 +2,7 @@
 slug: /compare/axios
 title: axios and alova, who handles what
 authors:
-  - name: Alova Team
+  - alova-team
 tags: [axios, comparison]
 date: 2026-07-30
 description: axios and alova are not competitors. axios sends requests; alova decides how requests run — pagination, caching, retry — and can use axios as its adapter.
@@ -11,6 +11,8 @@ description: axios and alova are not competitors. axios sends requests; alova de
 # axios and alova: who handles what
 
 **Short answer: they are layers, not rivals.** axios is an HTTP client — it sends requests. alova is a request strategy layer — it decides *how* requests run: pagination, caching, retry, deduplication, token refresh. alova can use axios as its request adapter (`@alova/adapter-axios`), so choosing alova never means throwing axios away.
+
+<!-- truncate -->
 
 alova in one line: one set of request APIs that runs on the web, in apps (uni-app / Taro / mini-programs), and on the server (BFF).
 

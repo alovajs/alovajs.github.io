@@ -4,6 +4,7 @@
  * work well for content-centric websites.
  */
 @use 'preflight';
+@use 'tokens';
 
 /* You can override the default Infima variables here. */
 :root {
@@ -31,8 +32,8 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 html[data-theme='dark'] {
-  --ifm-background-surface-color: #030e27 !important;
-  --ifm-background-color: #040f26;
+  --ifm-background-surface-color: #050a16 !important;
+  --ifm-background-color: #050a16;
 }
 
 // announcement
@@ -382,7 +383,8 @@ details {
 // 仅改变主页的样式
 html:not(.docs-wrapper) {
   &[data-theme='dark'] {
-    background-color: #040f26;
+    // 与 tokens.scss 的 --c-canvas 保持一致，切主题时主页不会闪出一层旧底色
+    background-color: var(--c-canvas);
   }
 
   .navbar__inner {
@@ -472,4 +474,358 @@ html:not(.docs-wrapper) {
       @apply dark:bg-white/5;
     }
   }
+}
+
+/* //////// Landing Page S1-S3：请求场景模型 //////// */
+/* 请求四阶段主题色 */
+:root {
+  --stage-trigger: #ff772e; /* 请求触发 */
+  --stage-decision: #711eff; /* 请求决策 */
+  --stage-execution: #2c92ff; /* 请求执行 */
+  --stage-apply: #ff41c6; /* 数据应用 */
+}
+
+/* 光斑漂移 */
+@keyframes blobDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(28px, -18px) scale(1.06);
+  }
+  66% {
+    transform: translate(-20px, 16px) scale(0.94);
+  }
+}
+
+/* 高亮呼吸（透明度脉冲，便于与 blobDrift 的位移叠加） */
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* 渐显 */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 进入视口渐显 */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 动效全量降级 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal,
+  .reveal.in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* //////// RSM 视觉系统：装饰原语（取值源见 tokens.scss） //////// */
+
+/* 噪点颗粒层：给扁平渐变加材质 */
+.rsm-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: var(--rsm-grain-opacity);
+  mix-blend-mode: var(--rsm-grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* 蓝图网格：局部铺，径向淡出 */
+.rsm-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--rsm-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rsm-grid-line) 1px, transparent 1px);
+  background-size: var(--rsm-grid-size) var(--rsm-grid-size);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(120% 90% at 50% 30%, #000 0%, transparent 78%);
+}
+
+/* halo：跟随光标的径向高光，由 --mx/--my/--halo-opacity 驱动 */
+.rsm-halo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--halo-opacity, 0);
+  transition: opacity 0.45s ease;
+  background: radial-gradient(
+    240px 240px at var(--mx, 50%) var(--my, 50%),
+    rgba(var(--ifm-color-primary-rgb), 0.16),
+    transparent 68%
+  );
+}
+
+/* 章节 eyebrow：mono 大写编号 */
+.rsm-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+}
+.rsm-eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--rsm-stage-gradient);
+}
+
+.rsm-eyebrow-index {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-style: normal;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.rsm-eyebrow-index::after {
+  content: '/';
+  color: var(--ifm-color-emphasis-400);
+  opacity: 0.7;
+}
+
+/* //////// keyframes //////// */
+/* 无缝 marquee */
+@keyframes rsm-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@keyframes rsm-marquee-reverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 描边光束旋转 */
+@keyframes rsm-beam-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* 节点冲击波 */
+@keyframes rsm-ring {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0.85;
+  }
+  100% {
+    box-shadow: 0 0 0 18px transparent;
+    opacity: 0;
+  }
+}
+
+/* 标题渐变扫过（一次性） */
+@keyframes rsm-sweep {
+  from {
+    background-position: 190% 50%;
+  }
+  to {
+    background-position: 0% 50%;
+  }
+}
+
+/* 行揭示 */
+@keyframes rsm-line-up {
+  from {
+    transform: translate3d(0, 110%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 向下流动的光点 */
+@keyframes rsm-drop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* 轻微漂浮 */
+@keyframes rsm-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* //////// 导航：玻璃浮条 + 光谱顶边（scroll-driven 渐进增强，零 JS） //////// */
+html:not(.docs-wrapper) {
+  .navbar__inner {
+    background-color: var(--rsm-panel-bg) !important;
+    backdrop-filter: blur(18px) saturate(1.5);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      0 12px 40px -32px rgba(11, 18, 32, 0.55);
+  }
+}
+
+/* 保持 Infima `.navbar--fixed-top` 的吸顶定位（仅用 relative 会让导航随页面滚走） */
+.navbar {
+  position: sticky;
+  top: 0;
+}
+
+/* 落地页（/landing）在暗色下走深色画布：导航玻璃同步压深，保证与正文对比 */
+html[data-theme='dark']:has(.landing-page) {
+  background-color: var(--c-canvas) !important;
+
+  .navbar__inner {
+    background-color: rgba(5, 10, 22, 0.92) !important;
+  }
+}
+
+/* //////// 暗色模式：落地页主题联动 //////// */
+
+/**
+ * 落地页的配色全部由 tokens.scss 的 --c-* 语义变量驱动，
+ * 因此这里只做两件事：切主题时的颜色过渡，以及暗色下的装饰层强度修正。
+ */
+.landing-page,
+.landing-page section,
+.landing-page header {
+  transition:
+    background-color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+}
+
+/* 暗色下面板与深色画布几乎同色：用发丝线把深色章节从画布里托起来 */
+html[data-theme='dark'] .landing-page .chapter-dark {
+  box-shadow:
+    inset 0 1px 0 var(--c-hairline-strong),
+    inset 0 -1px 0 var(--c-hairline-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-page,
+  .landing-page section,
+  .landing-page header {
+    transition: none;
+  }
+}
+
+/* 滚动收缩 */
+@keyframes navbar-tighten {
+  to {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .navbar__inner {
+      animation: navbar-tighten linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100px;
+    }
+  }
+}
+
+/* //////// HERO：动态渐变标题 //////// */
+/* 大标题末尾「而是一个场景 / it’s a scenario.」的流动渐变文字 */
+.titleGradient {
+  animation: 10s steps(1000) infinite e;
+  background: linear-gradient(120deg, #d7c383 -50%, #009dff 20%, #ff258e 40%, #a53eff 70%, #009dff 90%, #d7c383);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% auto;
+  color: #0000;
+}
+
+@keyframes e {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* //////// HERO：CTA 按钮渐变描边 //////// */
+/* 用 ::before + mask 在按钮边缘描出 2px 渐变环；border-radius 跟随按钮自身圆角 */
+.heroGradientBorder {
+  position: relative;
+}
+
+.heroGradientBorder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #2f6cf4, #55f6d3b3, #f554c599, #36363633);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: padding 0.2s ease;
+}
+
+/* hover 时渐变描边加粗到 4px */
+.heroGradientBorder:hover::before {
+  padding: 4px;
 }

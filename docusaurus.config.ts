@@ -29,7 +29,12 @@ const config: Config = {
     locales: ['en', 'zh-CN'],
     localeConfigs: {
       en: {
+        label: 'English',
         htmlLang: 'en-GB'
+      },
+      'zh-CN': {
+        label: '简体中文',
+        htmlLang: 'zh-CN'
       }
     }
   },
@@ -66,7 +71,9 @@ const config: Config = {
   ],
 
   stylesheets: [
-    'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Share+Tech:wght@400;500;600&display=swap'
+    'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Share+Tech:wght@400;500;600&display=swap',
+    // 页脚品牌标识使用 Material Symbols 图标（与 code.html 一致），全站注入
+    'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap'
   ],
   themeConfig: {
     image: '/img/card_image.jpg',
@@ -127,7 +134,7 @@ const config: Config = {
           items: [
             {
               label: 'Request Scene Model',
-              to: 'about/RSM'
+              to: 'tutorial/getting-started/rsm'
             },
             {
               label: 'Comparison',
@@ -229,52 +236,49 @@ const config: Config = {
       backgroundColor: 'rgba(var(--ifm-color-primary-rgb), 0.05)'
       // textColor: '#fff'
     },
+    // 统一页脚：由 @site/src/theme/Footer 渲染，内容全部在这里配置
     footer: {
-      style: 'light',
-      logo: {
-        alt: 'alova.js',
-        src: 'img/logo.svg',
-        href: 'https://github.com/alovajs/alova',
-        width: 160,
-        height: 51
-      },
-
+      style: 'dark',
       links: [
         {
-          title: 'Document',
+          title: 'Architecture',
           items: [
             {
-              label: 'Docs',
-              to: 'tutorial/getting-started/introduce'
+              label: 'RSM Model',
+              to: '/tutorial/getting-started/rsm'
             },
             {
-              label: 'Example',
-              to: 'examples'
+              label: 'Pagination Strategy',
+              to: '/tutorial/client/strategy/use-pagination'
             },
             {
-              label: 'API',
-              to: 'api/alova'
+              label: 'Silent Submissions',
+              to: '/tutorial/client/strategy/seamless-data-interaction/start-silent-factory'
             },
             {
-              label: 'Contributing',
-              to: 'contributing/overview'
+              label: 'All 12 Capabilities',
+              to: '/#capability'
             }
           ]
         },
         {
-          title: 'Resource',
+          title: 'Resources',
           items: [
             {
-              label: 'Request Adapter',
-              to: 'resource/request-adapter'
+              label: 'Quick Start Guide',
+              to: '/tutorial/getting-started/introduce'
             },
             {
-              label: 'Storage Adapter',
-              to: 'resource/storage-adapter'
+              label: 'Adapter Suite',
+              to: '/resource/request-adapter'
             },
             {
-              label: 'Framework Support',
-              to: 'category/framework'
+              label: 'DevTools Extension',
+              to: '/resource/devtool-plugins'
+            },
+            {
+              label: 'OpenAPI Generator',
+              href: 'https://worma.js.org'
             }
           ]
         },
@@ -282,37 +286,32 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Discord',
-              to: 'https://discord.gg/S47QGJgkVb'
+              label: 'GitHub Repository',
+              href: 'https://github.com/alovajs/alova'
             },
             {
-              label: 'X',
-              to: 'https://x.com/alovajs'
+              label: 'Discord Server',
+              href: 'https://discord.gg/S47QGJgkVb'
             },
             {
-              html: '<a href="/img/wechat_qrcode.jpg" target="_blank" class="footer__link-item" rel="noreferrer noopener">Wechat Group</a>'
-            }
-          ]
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              to: 'https://github.com/alovajs/alova'
+              label: 'Contributing Guide',
+              to: '/contributing/overview'
             },
             {
-              label: 'Issues',
-              to: 'https://github.com/alovajs/alova/issues'
-            },
-            {
-              label: 'Pull request',
-              to: 'https://github.com/alovajs/alova/pulls'
+              label: 'Changelog',
+              href: 'https://github.com/alovajs/alova/releases'
             }
           ]
         }
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} alova.js Team and contributors`
+      copyright: 'Copyright © 2026 alova.js Team and contributors'
+    },
+    // 统一页脚（@site/src/theme/Footer）的扩展内容：themeConfig 顶层允许自定义键，
+    // footer 内部则只接受 Docusaurus 内置字段，所以品牌说明与法务链接放在这里
+    footerExtras: {
+      brand: {
+        note: 'Architected for Modern UI Frameworks'
+      }
     },
     prism: {
       theme: lightCodeTheme,
@@ -366,7 +365,7 @@ const config: Config = {
     [
       'docusaurus-markdown-source-plugin',
       {
-        docsPath: '/',  // Show dropdown on all pages (docs-only site)
+        docsPath: '/' // Show dropdown on all pages (docs-only site)
       }
     ],
     [
