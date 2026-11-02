@@ -2,6 +2,8 @@
 
 **Short answer: they are layers, not rivals.** axios is an HTTP client — it sends requests. alova is a request strategy layer — it decides *how* requests run: pagination, caching, retry, deduplication, token refresh. alova can use axios as its request adapter (`@alova/adapter-axios`), so choosing alova never means throwing axios away.
 
+<!-- truncate -->
+
 alova in one line: one set of request APIs that runs on the web, in apps (uni-app / Taro / mini-programs), and on the server (BFF).
 
 ## Division of work

@@ -9,7 +9,7 @@
 - [GitHub repository](https://github.com/alovajs/alova): Source, issues, discussions, releases.
 
 ## Core concept
-- [What is alova / request strategy layer (RSM)](https://alova.js.org/about/RSM.md): The mental model — strategies instead of hand-written request logic, client + server in one library.
+- [What is alova / request strategy layer (RSM)](https://alova.js.org/tutorial/getting-started/rsm): The mental model — strategies instead of hand-written request logic, client + server in one library.
 - [Comparison with other request libraries](https://alova.js.org/about/comparison.md): alova vs React Query, SWR, ahooks useRequest — differences and when to use each.
 - [When to use / when NOT to use](https://alova.js.org/about/comparison.md): Honest guidance — simple CRUD+cache may be fine with React Query/SWR; alova wins on complex admin, BFF, cross-platform and server-side governance.
 

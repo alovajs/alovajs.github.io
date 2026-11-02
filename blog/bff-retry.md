@@ -2,6 +2,8 @@
 
 You run a Node BFF. It sits between your frontend and three downstream services. One afternoon the biggest downstream starts returning 429s, and your BFF answers every one by firing the same request again, immediately. Within a minute the downstream is buried under retries for requests it already rejected, and your frontend sees a wall of 500s. Sound familiar?
 
+<!-- truncate -->
+
 Here is the kind of handler that gets you there:
 
 ```js

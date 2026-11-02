@@ -2,6 +2,8 @@
 
 你大概也在 uni-app 项目里写过这样的分页加载——`onReachBottom` 里加一页、发请求、拼数组：
 
+<!-- truncate -->
+
 ```html
 <script setup>
 import { ref } from 'vue';

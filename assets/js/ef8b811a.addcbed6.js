@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkalova_website=globalThis.webpackChunkalova_website||[]).push([[8947],{56600(a){a.exports=JSON.parse('{"authors":[{"name":"Alova Team","title":"Core maintainers of alova","url":"https://github.com/alovajs","key":"alova-team","page":null,"count":5}]}')}}]);

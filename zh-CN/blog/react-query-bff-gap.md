@@ -2,6 +2,8 @@
 
 你用 react-query 搭了前端，它的缓存和重试让浏览器那边很顺。后来你起了个 Node BFF 调三个下游服务，这些调用的重试和限流都落在服务端，而 react-query 在那儿根本不跑。这篇划清 react-query 的工作止步于哪、alova/server 从哪接手，并给出两侧的代码。
 
+<!-- truncate -->
+
 ## 那条线
 
 react-query 活在浏览器里。它的 `useQuery` 重试、缓存、去重，全都发生在每个浏览器标签页里，绑着 React 的渲染周期。当你的 BFF 调下游时，这些逻辑在 BFF 内部一个都不执行。所以问题不是「react-query 还是 alova」，而是「服务端那层调用归谁管」。

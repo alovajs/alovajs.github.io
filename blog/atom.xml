@@ -38,6 +38,7 @@
 </ul>]]></content>
         <author>
             <name>Alova Team</name>
+            <uri>https://github.com/alovajs</uri>
         </author>
         <category label="react-query" term="react-query"/>
         <category label="bff" term="bff"/>
@@ -95,6 +96,7 @@
 </ul>]]></content>
         <author>
             <name>Alova Team</name>
+            <uri>https://github.com/alovajs</uri>
         </author>
         <category label="bff" term="bff"/>
         <category label="node" term="node"/>
@@ -155,6 +157,7 @@
 </ul>]]></content>
         <author>
             <name>Alova Team</name>
+            <uri>https://github.com/alovajs</uri>
         </author>
         <category label="react-query" term="react-query"/>
         <category label="comparison" term="comparison"/>
@@ -197,6 +200,7 @@
 </ul>]]></content>
         <author>
             <name>Alova Team</name>
+            <uri>https://github.com/alovajs</uri>
         </author>
         <category label="axios" term="axios"/>
         <category label="comparison" term="comparison"/>
@@ -249,6 +253,7 @@
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token function" style="color:hsl(221, 87%, 60%)">npm</span><span class="token plain"> i alova</span><br></div></code></pre></div></div>]]></content>
         <author>
             <name>Alova Team</name>
+            <uri>https://github.com/alovajs</uri>
         </author>
         <category label="uniapp" term="uniapp"/>
         <category label="pagination" term="pagination"/>

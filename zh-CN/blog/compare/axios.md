@@ -2,6 +2,8 @@
 
 **一句话：它们是分层关系，不是二选一。** axios 是 HTTP 客户端，负责把请求发出去；alova 是请求策略层，负责「怎么请求」——分页、缓存、重试、去重、token 刷新。alova 可以把 axios 用作请求适配器（`@alova/adapter-axios`），所以选 alova 从来不意味着扔掉 axios。
 
+<!-- truncate -->
+
 alova 的定位：一套请求 API，跑在 Web、App（uni-app/Taro/小程序）、服务端（BFF）。
 
 ## 分工表

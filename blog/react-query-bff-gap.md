@@ -2,6 +2,8 @@
 
 You built the frontend on react-query. Its cache and retry keep the browser happy. Then you stood up a Node BFF that calls three downstream services, and the retries and throttling for those calls live on the server. react-query never runs there. This post shows the exact line where react-query's job ends and where alova/server picks up, with the code for each side.
 
+<!-- truncate -->
+
 ## The line
 
 react-query lives in the browser. Its `useQuery` retry, its cache, its dedup, all happen per browser tab, bound to React's render cycle. None of that executes inside your BFF when your BFF calls a downstream. So the question isn't "react-query or alova". It's "who handles the server-side calls".

@@ -2,6 +2,8 @@
 
 You've probably written pagination like this in a uni-app project — bump the page inside `onReachBottom`, fire a request, concatenate the array:
 
+<!-- truncate -->
+
 ```html
 <script setup>
 import { ref } from 'vue';

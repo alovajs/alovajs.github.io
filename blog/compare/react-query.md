@@ -2,6 +2,8 @@
 
 Choosing a data-fetching library usually starts with "which cache is better". That question skips the part that actually bites later: where do your requests run?
 
+<!-- truncate -->
+
 If every call lives in the browser and you're on React, react-query is a mature, well-trodden pick. But the moment you need the same request logic on a phone that isn't React Native, or inside a BFF that calls downstream services, the map changes. alova puts those cases on the same API. This post is a straight comparison, including where alova is the weaker choice.
 
 ## Where react-query is clearly ahead

@@ -8,11 +8,11 @@ In addition, the client and server are developed separately. Front-end engineers
 
 alova is also highly extensible, letting you implement request strategies for different scenarios or even define your own. See the [Customization guide](/tutorial/advanced/custom).
 
-To cover even more scenarios, we abstracted request scenarios into the [Request Scenario Model (RSM)](/about/RSM), which explains alova's request strategy approach well. alova will keep exploring new request strategies in the future.
+To cover even more scenarios, we abstracted request scenarios into the [Request Scenario Model (RSM)](/tutorial/getting-started/rsm), which explains alova's request strategy approach well. alova will keep exploring new request strategies in the future.
 
 ## Is alova a replacement for request libraries?
 
-alova is a request strategy library. It was created to provide tailored request-strategy solutions for different scenarios, delivering a smoother experience more concisely and elegantly. Libraries like `$.ajax`, `axios`, and the `fetch` API handle sending requests and receiving responses well; they are an essential part of the [RSM](/about/RSM) process (request events). alova still depends on them to actually make requests, so you can think of alova as an enhancement layered on top of a request library, making it more powerful.
+alova is a request strategy library. It was created to provide tailored request-strategy solutions for different scenarios, delivering a smoother experience more concisely and elegantly. Libraries like `$.ajax`, `axios`, and the `fetch` API handle sending requests and receiving responses well; they are an essential part of the [RSM](/tutorial/getting-started/rsm) process (request events). alova still depends on them to actually make requests, so you can think of alova as an enhancement layered on top of a request library, making it more powerful.
 
 ## Why is alova tied to a UI framework?
 

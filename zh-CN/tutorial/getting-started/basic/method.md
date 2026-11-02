@@ -153,7 +153,7 @@ fetch('/todo/list', {
 
 ## 请求行为
 
-在[RSM](/about/RSM)中，请求行为用于描述将以怎样的方式处理请求。
+在[RSM](/tutorial/getting-started/rsm)中，请求行为用于描述将以怎样的方式处理请求。
 
 ### 超时时间
 
