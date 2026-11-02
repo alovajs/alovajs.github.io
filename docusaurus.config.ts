@@ -134,7 +134,7 @@ const config: Config = {
           items: [
             {
               label: 'Request Scene Model',
-              to: 'about/RSM'
+              to: 'tutorial/getting-started/rsm'
             },
             {
               label: 'Comparison',
@@ -245,15 +245,15 @@ const config: Config = {
           items: [
             {
               label: 'RSM Model',
-              to: 'about/RSM'
+              to: '/tutorial/getting-started/rsm'
             },
             {
               label: 'Pagination Strategy',
-              to: 'tutorial/client/strategy/use-pagination'
+              to: '/tutorial/client/strategy/use-pagination'
             },
             {
               label: 'Silent Submissions',
-              to: 'tutorial/client/strategy/seamless-data-interaction/start-silent-factory'
+              to: '/tutorial/client/strategy/seamless-data-interaction/start-silent-factory'
             },
             {
               label: 'All 12 Capabilities',
@@ -266,15 +266,15 @@ const config: Config = {
           items: [
             {
               label: 'Quick Start Guide',
-              to: 'tutorial/getting-started/introduce'
+              to: '/tutorial/getting-started/introduce'
             },
             {
               label: 'Adapter Suite',
-              to: 'resource/request-adapter'
+              to: '/resource/request-adapter'
             },
             {
               label: 'DevTools Extension',
-              to: 'resource/devtool-plugins'
+              to: '/resource/devtool-plugins'
             },
             {
               label: 'OpenAPI Generator',
@@ -295,7 +295,7 @@ const config: Config = {
             },
             {
               label: 'Contributing Guide',
-              to: 'contributing/overview'
+              to: '/contributing/overview'
             },
             {
               label: 'Changelog',

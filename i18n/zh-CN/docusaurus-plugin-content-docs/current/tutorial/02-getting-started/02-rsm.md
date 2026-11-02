@@ -1,5 +1,5 @@
 ---
-title: 请求场景模型（RSM）
+title: 请求场景模型
 ---
 
 RSM（Request Scenario Model）是 alova 提出的请求场景概念模型，用于描述数据交互涉及的核心阶段，以及不同请求策略如何组织这些阶段与数据流转。

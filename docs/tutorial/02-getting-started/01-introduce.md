@@ -15,24 +15,11 @@ import SponsorStrip from '@site/src/components/SponsorStrip';
 
 ## What is alova?
 
-alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a **request strategy library**. It treats a request as a scenario with a lifecycle — not a one-time instantaneous call — and organizes the request logic you've hand-written countless times, such as pagination, forms, uploads, and authentication, into a complete whole we call **request strategies**. In the AI Coding era, what sets applications apart is user experience; with **request strategies**, you get complete request functionality beyond your expectations — no need to spell it out in your prompts.
+alova (pronounced /əˈləʊva/<AudioPlayer src={tts} />) is a **fullstack request strategy library**. It treats a request as a scenario with a lifecycle — not a one-time instantaneous call — and organizes the request logic you've hand-written countless times, such as pagination, forms, uploads, and authentication, into a complete whole we call **request strategies**. In the AI Coding era, what sets applications apart is user experience; with **request strategies**, you get complete request functionality beyond your expectations — no need to spell it out in your prompts.
 
 You don't have to throw away the axios or fetch you already know: alova builds right on top of your existing request library and takes over the request logic you keep rewriting. The same API set runs across React, Vue, Svelte, Solid, mini-programs and the server, so you learn it once and use it everywhere.
 
 You can read the backstory in [Why alova was created](/about/faqs), and learn how alova differs in [Comparison with other request libraries](/about/comparison).
-
-### Introduction to the Request Scenario Model (RSM)
-
-[Request Scenario Model (RSM)](/about/RSM), or RSM for short, summarizes a request scenario into four stages, each answering one question:
-
-| Stage                 | What it answers                                                       | Details                                                                                                                                                                       |
-| --------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Request Trigger**   | What condition creates the need for data exchange?                    | Initialization, state changes, auto-refresh, retry on failure, debounce, polling — triggering doesn't mean sending: the need arises, but the network doesn't necessarily move |
-| **Request Decision**  | How should this need be met? Does a request actually need to be sent? | Cache hits, reusing in-flight requests, suspending until conditions are met, discarding stale responses — all of this happens here                                            |
-| **Request Execution** | How is the communication carried out and the response obtained?       | Handed to axios / fetch / XHR — **usually just one line of code**                                                                                                             |
-| **Data Application**  | How does data enter the business, state and view?                     | Data transformation, state updates, cross-component/cross-page sync, cache persistence                                                                                        |
-
-Worth noting: **request execution is usually just one line of code, yet you may use it the most often** — while **request triggering** is scattered across a component's data listeners, **data application** across state assignments and view updates, and **request decision** is often overlooked, resulting in request code that performs poorly, is hard to maintain, and is overly verbose. See the full [Request Scenario Model (RSM)](/about/RSM).
 
 ### Why use alova
 
@@ -53,20 +40,11 @@ RSM is exactly that checklist — alova maps it onto the configuration options o
 
 Request-layer code takes up a large share of your pages, and AI-written code always needs another round of review. With alova, the request layer is reduced to configuration you only need to verify — saving you time while improving stability.
 
-## Features
+## Live Demo
 
-- Easy to use — [watch the video](/video-tutorial) and get started in 5 minutes.
-- Perfect compatibility with your favorite tech stack.
-- 20+ high-performance business modules to help you build better-performing apps faster.
-- A more advanced OpenAPI solution for efficient interaction with API information right in your code.
-- Request sharing and response caching to boost performance.
-- Type safety.
+We've prepared a rich set of examples to help you quickly explore alova's capabilities.
 
-<SupportList showStatus></SupportList>
-
-## When should you use alova?
-
-alova is compatible with the following tech stacks; the grayed-out parts will be supported gradually in the future. If your frontend app includes authentication, pagination, forms, uploads or captcha sending, or you need to reuse one API set across Web, React Native and mini-programs, or you need request governance such as rate limiting and BFF on Node.js or Bun servers, alova handles it all perfectly.
+<Examples />
 
 ## Request Strategies in Action
 
@@ -430,44 +408,15 @@ See [Request Rate Limit Strategy](/tutorial/server/strategy/rate-limit) for deta
 
 </details>
 
-## A modern code generator for the AI era
+## When should you use alova?
 
-[worma](https://worma.js.org) is a request code generator based on AI skills, and it works out of the box with alova. It reads your OpenAPI spec and generates, in one pass: type-safe call code, TypeScript types for every endpoint, complete API documentation, and **API knowledge your AI coding assistant can read directly** — your agent no longer has to guess; it can find the endpoint it needs directly.
+alova is compatible with the following tech stacks; the grayed-out parts will be supported gradually in the future. If your frontend app includes authentication, pagination, forms, uploads or captcha sending, or you need to reuse one API set across Web, React Native and mini-programs, or you need request governance such as rate limiting and BFF on Node.js or Bun servers, alova handles it all perfectly.
 
-```mermaid
-flowchart LR
-R1[OpenAPI spec] --> S1[worma] --> W1[API call function]
-S1[worma] --> W2[Complete API types]
-S1[worma] --> W3[Complete API docs]
-```
-
-In the old flow you'd open the intermediate docs, look up the parameters, then go back to the editor and hand-write the code. worma removes that middle step: right inside your editor you find the endpoint you need, read its full docs, and fill in parameters against the parameter table — making frontend-backend collaboration feel like passing through a wormhole.
-
-```mermaid
-flowchart LR
-A[Server ships API] --> B[<s>Open the intermediate API docs</s>] --> C[Write the API call code]
-
-class B redNode;
-classDef redNode fill:transparent,stroke:#ee4400,color:#ee4400,stroke-width:4px;
-```
-
-> See how to wire it up in the [OpenAPI integration](/tutorial/getting-started/openapi-integration) guide.
-
-## Live Demo
-
-We've prepared a rich set of examples to help you quickly explore alova's capabilities.
-
-<Examples />
+<SupportList showStatus></SupportList>
 
 ## Write alova with an AI Agent (Agent Skills)
 
 Developing with an AI coding assistant? Install alova's [Agent Skills](/tutorial/getting-started/agent-skills) so your agent writes code following official best practices.
-
-## Building Client-Server Interaction Layer
-
-With the various features of alova, you can also build a Client-Server Interaction Layer (CSIL) for your project. The CSIL distributes response data to various components by merging identical requests. Additionally, it manages response data and the reactive states created by useHooks. You can access and modify the data in the CSIL from any UI component, as well as refresh it.
-
-> To learn how to build a CS Interaction Layer, refer to [Building the Client-Server Interaction Layer](/tutorial/project/best-practice/csil)
 
 ## Migration Guide
 

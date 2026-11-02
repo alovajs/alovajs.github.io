@@ -1,8 +1,8 @@
 ---
-title: Request Scene Model (RSM)
+title: Request Scenario Model
 ---
 
-The Request Scene Model (RSM) is the request scenario concept model proposed by alova. It describes the core stages involved in data exchange, and how different request strategies organize these stages and the data flow between them.
+The Request Scenario Model (RSM) is the request scenario concept model proposed by alova. It describes the core stages involved in data exchange, and how different request strategies organize these stages and the data flow between them.
 
 In modern applications, a request is not just sending data to the server and waiting for a response. Developers also need to deal with when a request is triggered, how the way to obtain data is decided, how network communication is performed, and how data is transformed and applied to business logic, application state and views.
 

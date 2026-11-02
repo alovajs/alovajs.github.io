@@ -14,7 +14,7 @@ Before comparing, let's clarify a commonly confused point: **react-query, swr, a
 
 react-query and swr are mature **asynchronous state management / data fetching libraries**. They focus on "how to sync server data into the client UI" — you provide a function that fetches data, and they handle caching, revalidation, and background refresh so your components always have the latest server state.
 
-alova is a **request strategy library**. It treats a single request as a **scenario with a complete lifecycle** — the [Request Scenario Model (RSM)](/about/RSM) — rather than a one-off call. A request is broken into four stages, each answering a question:
+alova is a **request strategy library**. It treats a single request as a **scenario with a complete lifecycle** — the [Request Scenario Model (RSM)](/tutorial/getting-started/rsm) — rather than a one-off call. A request is broken into four stages, each answering a question:
 
 - **Request triggering**: Under what conditions does a data interaction need arise? Initialization, state changes, debouncing, polling, failed retries...
 - **Request decision-making**: Does this need actually require sending a request? Cache hits, reusing in-flight requests, suspension, discarding stale responses...

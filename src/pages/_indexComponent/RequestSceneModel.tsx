@@ -226,7 +226,7 @@ export default function RequestSceneModel() {
           </p>
 
           <Link
-            to="/about/RSM"
+            to="/tutorial/getting-started/rsm"
             className="text-xs font-bold uppercase tracking-wider text-white border-b border-white pb-1 hover:text-brand-cyan hover:border-brand-cyan transition-colors self-start md:self-auto inline-flex items-center gap-1.5 shrink-0">
             <span>
               {translate({

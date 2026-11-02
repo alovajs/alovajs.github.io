@@ -157,7 +157,7 @@ If you use other request adapters, you can also pass the parameters they support
 
 ## Request behavior
 
-In [RSM](/about/RSM), request behavior is used to describe how the request will be processed.
+In [RSM](/tutorial/getting-started/rsm), request behavior is used to describe how the request will be processed.
 
 ### Timeout
 

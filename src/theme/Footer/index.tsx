@@ -1,4 +1,5 @@
 import Link from '@docusaurus/Link';
+import { useBaseUrlUtils } from '@docusaurus/useBaseUrl';
 import { useThemeConfig, type ThemeConfig } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import { translate } from '@docusaurus/Translate';
@@ -48,6 +49,7 @@ export default function Footer() {
 
   const { copyright } = footer;
   const { brand } = footerExtras ?? {};
+  const { withBaseUrl } = useBaseUrlUtils();
   const columns = ((footer.links ?? []) as FooterColumn[]).filter(column =>
     Array.isArray(column.items)
   );
@@ -98,7 +100,7 @@ export default function Footer() {
                   <Link
                     key={item.label ?? item.href ?? itemIndex}
                     className="hover:text-white transition-colors"
-                    {...(item.to ? { to: item.to } : { href: item.href })}>
+                    {...(item.to ? { to: withBaseUrl(item.to) } : { href: item.href })}>
                     {translate({
                       id: `theme.footer.links.col${columnIndex}.item${itemIndex}.label`,
                       message: item.label ?? ''
