@@ -3,26 +3,28 @@
     "name": "watchthis.dev",
     "logo": "/img/sponsors/watchthis-dev-500.png",
     "url": "https://watchthis.dev",
+    "title": "JavaScript SEO Checker: See What Google Sees",
     "tier": "bronze"
   },
   {
     "name": "worma",
     "logo": "https://worma.js.org/img/logo.svg",
     "url": "https://worma.js.org",
-    "tier": "bronze"
-  },
-  {
-    "name": "Sealed Rose",
-    "logo": "/img/sponsors/mark-pure-white-wax.png",
-    "url": "https://sealedrose.com/verify-video",
-    "title": "Sealed Rose — AI Deepfake Detector",
+    "title": "Generate type-safe API client code for developers and AI-readable API knowledge for agents. One spec, consistent contracts, faster collaboration.",
     "tier": "bronze"
   },
   {
     "name": "JamFeed",
     "logo": "/img/sponsors/jamfeed.png",
     "url": "https://jamfeed.com/tools/instagram-account-analyzer-for-musicians/",
-    "title": "JamFeed — Instagram Account Analyzer for Musicians",
+    "title": "Instagram Account Analyzer for Musicians",
     "tier": "bronze"
+  },
+  {
+    "name": "ZEIL TalentSeeker",
+    "logo": "/img/sponsors/zeil.png",
+    "url": "https://www.zeil.com/products/talentseeker",
+    "title": "ZEIL's hiring tool helping New Zealand employers find and shortlist the right candidates.",
+    "tier": "silver"
   }
 ]
